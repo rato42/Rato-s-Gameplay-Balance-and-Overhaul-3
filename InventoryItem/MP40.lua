@@ -1,0 +1,77 @@
+UndefineClass('MP40')
+DefineClass.MP40 = {
+	__parents = { "SubmachineGun" },
+	__generated_by_class = "ModItemInventoryItemCompositeDef",
+
+
+	comment = "------------ 9mm ----- SMG",
+	object_class = "SubmachineGun",
+	ScrapParts = 6,
+	Reliability = 70,
+	Icon = "UI/Icons/Weapons/MP40",
+	DisplayName = T(956884355875, --[[ModItemInventoryItemCompositeDef MP40 DisplayName]] "MP40"),
+	DisplayNamePlural = T(475882958605, --[[ModItemInventoryItemCompositeDef MP40 DisplayNamePlural]] "MP40s"),
+	Description = T(653775604087, --[[ModItemInventoryItemCompositeDef MP40 Description]] "Initially designed for vehicle crews and paratroopers, It really became widely used when the brutal urban combat of the Eastern front showed the value of a reliable submachine gun. "),
+	AdditionalHint = T(749284137120, --[[ModItemInventoryItemCompositeDef MP40 AdditionalHint]] "<description_hints>"),
+	LargeItem = 1,
+	UnitStat = "Marksmanship",
+	Cost = 1200,
+	CanAppearInShop = true,
+	RestockWeight = 70,
+	CategoryPair = "SubmachineGuns",
+	CanAppearStandard = false,
+	Caliber = "9mm",
+	Damage = 17,
+	AimAccuracy = 3,
+	MagazineSize = 32,
+	WeaponRange = 18,
+	PointBlankBonus = 1,
+	OverwatchAngle = 1321,
+	HandSlot = "TwoHanded",
+	Entity = "Weapon_MP40",
+	ComponentSlots = {
+		PlaceObj('WeaponComponentSlot', {
+			'SlotType', "Magazine",
+			'AvailableComponents', {
+				"MagNormal",
+				"MagLarge_11",
+			},
+			'DefaultComponent', "MagNormal",
+		}),
+		PlaceObj('WeaponComponentSlot', {
+			'SlotType', "Stock",
+			'AvailableComponents', {
+				"StockLight",
+			},
+			'DefaultComponent', "StockLight",
+		}),
+		PlaceObj('WeaponComponentSlot', {
+			'SlotType', "Scope",
+			'AvailableComponents', {
+				"ImprovedIronsight",
+			},
+			'DefaultComponent', "ImprovedIronsight",
+		}),
+	},
+	HolsterSlot = "Shoulder",
+	AvailableAttacks = {
+		"BurstFire",
+		"AutoFire",
+		"SingleShot",
+		"RunAndGun",
+		"CancelShot",
+	},
+	ShootAP = 3000,
+	ReloadAP = 3000,
+	PBbonus_base = 8,
+	wep_base_recoil_mul = 105,
+	placeholder_recoil = 90,
+	wep_base_hip_mul = 108,
+	wep_base_snapshot_mul = 91,
+	weigth_held_mul = 128,
+	is_vanilla_firearm = true,
+	Rat_cycling = "Auto",
+	recoil_mechanism = "Blowback",
+	rat_barrel_len = 250,
+}
+

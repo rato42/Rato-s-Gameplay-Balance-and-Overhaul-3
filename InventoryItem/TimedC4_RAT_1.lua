@@ -1,0 +1,38 @@
+UndefineClass('TimedC4_RAT_1')
+DefineClass.TimedC4_RAT_1 = {
+	__parents = { "ThrowableTrapItem" },
+	__generated_by_class = "ModItemInventoryItemCompositeDef",
+
+
+	object_class = "ThrowableTrapItem",
+	Repairable = false,
+	Reliability = 100,
+	Icon = "UI/Icons/Items/timed_c4",
+	ItemType = "Grenade",
+	DisplayName = T(467888601407, --[[ModItemInventoryItemCompositeDef TimedC4_RAT_1 DisplayName]] "Timed C4"),
+	DisplayNamePlural = T(162366951458, --[[ModItemInventoryItemCompositeDef TimedC4_RAT_1 DisplayNamePlural]] "Timed C4"),
+	AdditionalHint = T(693886320428, --[[ModItemInventoryItemCompositeDef TimedC4_RAT_1 AdditionalHint]] "<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Explodes after 1 turn (or 5 seconds out of combat)"),
+	UnitStat = "Explosives",
+	Cost = 1200,
+	CanAppearInShop = true,
+	Tier = 2,
+	MaxStock = 1,
+	RestockWeight = 10,
+	CategoryPair = "Grenade",
+	MinMishapChance = 20,
+	MaxMishapChance = 90,
+	MinMishapRange = 0,
+	MaxMishapRange = 3,
+	AttackAP = 4000,
+	BaseRange = 3,
+	ThrowMaxRange = 12,
+	CanBounce = false,
+	InaccurateMaxOffset = 4000,
+	IgnoreCoverReduction = 1,
+	Noise = 30,
+	Entity = "Explosive_C4",
+	ActionIcon = "UI/Icons/Hud/throw_timed_explosives",
+	TriggerType = "Timed",
+	ExplosiveType = "C4",
+}
+

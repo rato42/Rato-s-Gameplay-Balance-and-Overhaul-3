@@ -1,0 +1,36 @@
+UndefineClass('TimedTNT_RAT_1')
+DefineClass.TimedTNT_RAT_1 = {
+	__parents = { "ThrowableTrapItem" },
+	__generated_by_class = "ModItemInventoryItemCompositeDef",
+
+
+	object_class = "ThrowableTrapItem",
+	Repairable = false,
+	Reliability = 100,
+	Icon = "UI/Icons/Items/timed_tnt",
+	ItemType = "Grenade",
+	DisplayName = T(798671862200, --[[ModItemInventoryItemCompositeDef TimedTNT_RAT_1 DisplayName]] "Timed TNT"),
+	DisplayNamePlural = T(734706330132, --[[ModItemInventoryItemCompositeDef TimedTNT_RAT_1 DisplayNamePlural]] "Timed TNT"),
+	AdditionalHint = T(549451318224, --[[ModItemInventoryItemCompositeDef TimedTNT_RAT_1 AdditionalHint]] "<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Explodes after 1 turn (or 5 seconds out of combat)\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> High mishap chance"),
+	UnitStat = "Explosives",
+	Cost = 850,
+	CanAppearInShop = true,
+	Tier = 2,
+	MaxStock = 1,
+	RestockWeight = 20,
+	CategoryPair = "Grenade",
+	MinMishapChance = 20,
+	MaxMishapChance = 90,
+	MinMishapRange = 0,
+	MaxMishapRange = 3,
+	AttackAP = 4000,
+	BaseRange = 3,
+	ThrowMaxRange = 12,
+	CanBounce = false,
+	InaccurateMaxOffset = 4000,
+	Noise = 30,
+	Entity = "Explosive_TNT",
+	ActionIcon = "UI/Icons/Hud/throw_timed_explosives",
+	TriggerType = "Timed",
+}
+

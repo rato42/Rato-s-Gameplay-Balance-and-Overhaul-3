@@ -1,0 +1,65 @@
+UndefineClass('GoldenGun')
+DefineClass.GoldenGun = {
+	__parents = { "SniperRifle" },
+	__generated_by_class = "ModItemInventoryItemCompositeDef",
+
+
+	object_class = "SniperRifle",
+	ScrapParts = 16,
+	Reliability = 80,
+	Icon = "UI/Icons/Weapons/GoldenGun",
+	DisplayName = T(564487922035, --[[ModItemInventoryItemCompositeDef GoldenGun DisplayName]] "Gold Fever"),
+	DisplayNamePlural = T(328078825335, --[[ModItemInventoryItemCompositeDef GoldenGun DisplayNamePlural]] "Gold Fever"),
+	Description = T(248823932225, --[[ModItemInventoryItemCompositeDef GoldenGun Description]] "This custom-made M1-A is coated with 24-karat gold and has a mean aura."),
+	AdditionalHint = T(864686045799, --[[ModItemInventoryItemCompositeDef GoldenGun AdditionalHint]] "<description_hints>"),
+	LargeItem = 1,
+	Cumbersome = 1,
+	Valuable = 1,
+	Cost = 30000,
+	RestockWeight = 0,
+	Caliber = "762NATO",
+	Damage = 31,
+	AimAccuracy = 9,
+	CritChanceScaled = 40,
+	MagazineSize = 10,
+	WeaponRange = 26,
+	PointBlankBonus = 1,
+	OverwatchAngle = 870,
+	Noise = 22,
+	HandSlot = "TwoHanded",
+	Entity = "Weapon_M14_GoldEquip",
+	ComponentSlots = {
+		PlaceObj('WeaponComponentSlot', {
+			'SlotType', "Bipod",
+			'Modifiable', false,
+			'AvailableComponents', {
+				"Bipod",
+			},
+			'DefaultComponent', "Bipod",
+		}),
+		PlaceObj('WeaponComponentSlot', {
+			'SlotType', "Scope",
+			'Modifiable', false,
+			'AvailableComponents', {
+				"LROptics",
+			},
+			'DefaultComponent', "LROptics",
+		}),
+	},
+	HolsterSlot = "Shoulder",
+	ModifyRightHandGrip = true,
+	PreparedAttackType = "Both",
+	AvailableAttacks = {
+		"SingleShot",
+	},
+	ShootAP = 4000,
+	ReloadAP = 3000,
+	APStance = 4,
+	PBbonus_base = -1,
+	wep_base_hip_mul = 90,
+	Rat_swap_ap = 3,
+	is_vanilla_firearm = true,
+	Rat_cycling = "SemiAuto",
+	recoil_mechanism = "Single_Shot",
+}
+

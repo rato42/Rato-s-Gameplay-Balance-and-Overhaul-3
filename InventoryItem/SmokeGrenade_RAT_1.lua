@@ -1,0 +1,38 @@
+UndefineClass('SmokeGrenade_RAT_1')
+DefineClass.SmokeGrenade_RAT_1 = {
+	__parents = { "Grenade" },
+	__generated_by_class = "ModItemInventoryItemCompositeDef",
+
+
+	object_class = "Grenade",
+	Repairable = false,
+	Reliability = 100,
+	Icon = "UI/Icons/Weapons/SmokeGrenade",
+	ItemType = "Throwables",
+	DisplayName = T(704399547142, --[[ModItemInventoryItemCompositeDef SmokeGrenade_RAT_1 DisplayName]] "Smoke Grenade"),
+	DisplayNamePlural = T(995738533914, --[[ModItemInventoryItemCompositeDef SmokeGrenade_RAT_1 DisplayNamePlural]] "Smoke Grenades"),
+	AdditionalHint = T(228709020103, --[[ModItemInventoryItemCompositeDef SmokeGrenade_RAT_1 AdditionalHint]] "<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Ranged attacks passing through gas become <color EmStyle>grazing</color> hits\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> No damage\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Almost silent"),
+	UnitStat = "Explosives",
+	Cost = 600,
+	CanAppearInShop = true,
+	Tier = 2,
+	RestockWeight = 25,
+	CategoryPair = "Grenade",
+	MinMishapChance = 20,
+	MaxMishapChance = 90,
+	MinMishapRange = 0,
+	CenterUnitDamageMod = 0,
+	CenterObjDamageMod = 0,
+	AreaUnitDamageMod = 0,
+	AreaObjDamageMod = 0,
+	PenetrationClass = 1,
+	BaseDamage = 0,
+	Scatter = 4,
+	AttackAP = 4000,
+	InaccurateMaxOffset = 3000,
+	Noise = 0,
+	aoeType = "smoke",
+	Entity = "Weapon_SmokeGrenade_Test",
+	ActionIcon = "UI/Icons/Hud/smoke_grenade",
+}
+
