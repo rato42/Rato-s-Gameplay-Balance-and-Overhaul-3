@@ -1100,6 +1100,10 @@ return {
 		'CodeFileName', "Code/CharEffectCompositeDef_function.lua",
 	}),
 	PlaceObj('ModItemCode', {
+		'name', "FUNCTIONS_attributes",
+		'CodeFileName', "Code/FUNCTIONS_attributes.lua",
+	}),
+	PlaceObj('ModItemCode', {
 		'name', "FUNCTIONS_AI_custom",
 		'CodeFileName', "Code/FUNCTIONS_AI_custom.lua",
 	}),

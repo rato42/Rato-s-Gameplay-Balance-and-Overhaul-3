@@ -1,13 +1,9 @@
 
 
-test = false
 
-function test_cover()
-	print(test)
-end
 
 function change_class_unit_reaction(class, event, handler)
-	for i, reac in classe.unit_reactions do
+	for i, reac in class.unit_reactions do
 		if reac.Event == event then
 			reac.Handler = handler
 			break

@@ -26,7 +26,7 @@ function ow_cth()
 		local max = self:ResolveValue("MaxPenalty")
 		local min = self:ResolveValue("MinPenalty")
 		--------------------------
-		local reflex = (attacker.Dexterity+attacker.Agility)/2
+		local reflex = rGetReflex(attacker)
 		-- local prowess = (attacker.Strength + attacker.Dexterity)/2
 		-------------------------------
 		local value = 0

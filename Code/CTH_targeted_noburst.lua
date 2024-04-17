@@ -18,28 +18,21 @@ function targeted_noburst()
 		
 		mod = MulDivRound(mod, const.Combat.R_TargetedMul, 100)
 		
-		--print("targeted mod after option", mod)
 		
 		if mod == 0 then
 			return false, 0 
 		end
-		--print("mod inicial targeted", mod)
 		
 		if not IsKindOfClasses(weapon1, "MeleeWeapon") then
 			if action and (action.id == "AutoFire" or action.id == "PinDown") then
 				mod = MulDivRound(mod,100,100)
-				--metaText[#metaText + 1] = "(-) Snapshot"
-			
 			elseif aim < 1 then
-
 				mod = MulDivRound(mod,125,100)
 				metaText[#metaText + 1] = T(174427737737, "(-) Hipfire")
-				
 			elseif aim < 2 then
 				mod = MulDivRound(mod,113,100)
 				metaText[#metaText + 1] = T(477882742777, "(-) Snapshot")
 			end
-			
 			
 			local pb_dist = const.Weapons.PointBlankRange * const.SlabSizeX
 			local target_pos = target_pos or target:GetPos()
@@ -53,18 +46,7 @@ function targeted_noburst()
 			
 		end
 		
-		
 		-------------------------------------------------
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		if aim > 2 then
 			metaText[#metaText + 1] = T(212531647496, "Fully Aimed")
@@ -78,20 +60,6 @@ function targeted_noburst()
 			local other_bonus = -5
 			local effect = -20--self:ResolveValue("pistol_effect")
 			
-			-- local extra_penalty = 20
-			
-			-- if action.id == "SingleShot" then
-				-- extra_penalty = 0
-				-- scope_bonus = -50
-				-- metaText[#metaText + 1] = "Single Shot"
-			-- elseif action.id == "PinDown" then
-				-- extra_penalty = 0
-				-- scope_bonus = -50
-			-- end
-			
-			-- effect = effect + extra_penalty
-			
-			--print("1st effect targeted", effect)
 			if IsKindOfClasses(weapon1, "SniperRifle") then
 				effect = effect + sniper_bonus
 				metaText[#metaText + 1] = T(857733955586, "Precision Rifle")
@@ -131,28 +99,13 @@ function targeted_noburst()
 				metaText[#metaText + 1] = T(378613427576, "UV Dot")
 			end
 			
-			--print("targeted effect", effect)
+
 			
 			local mrks = attacker.Marksmanship 
 			local wis = attacker.Wisdom 
-			-- local percep = MulDivRound(wis+mrks, 1, 2)
-			-- local multipl = 0
-			-- if percep > 85 then
-				-- multipl = (percep*3-200)
-				-- metaText[#metaText + 1] = "High Composure"
-			-- elseif percep > 59 then
-				-- multipl = ((percep)*2-114)
-				-- metaText[#metaText + 1] = "Average Composure"
-			-- else
-				-- multipl = 0
-				-- metaText[#metaText + 1] = "Low Composure"
-			-- end
 
-
-			-- local scaling = (100-effect)*0.01*multipl
-			-- local final = 100-scaling
 			
-			local comp = Min(100,cRound(mrks*0.65 + wis*0.35))--/2.0
+			local comp = rGetComposure(attacker)
 			local min_compo = 50.0
 			local max_compo = 100.0
 			local min_scale = const.Combat.R_MinTargetedScaling/100.0
@@ -166,7 +119,6 @@ function targeted_noburst()
 				scale_factor = max_scale
 			end
 
-			--print("scale factor targeted", scale_factor)
 			
 			if comp < 70 then
 				metaText[#metaText + 1] = T(679732547244, "(-) Low Composure")
@@ -191,11 +143,7 @@ function targeted_noburst()
 
 			local final = (effect * scale_factor) +100.0
 			
-			-- print("final targeted", final)
-	
 
-			
-			-- print("mod targeted", mod)
 			
 			mod = Min(-1,MulDivRound(mod, final, 100))
 			return mod ~= 0, mod, T{357357827656, "<display_name> Shot", body_part_def}, metaText

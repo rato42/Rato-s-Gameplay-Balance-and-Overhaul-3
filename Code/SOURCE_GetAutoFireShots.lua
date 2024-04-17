@@ -14,14 +14,6 @@ function FirearmBase:GetAutofireShots(action)
   end
   
 -----------
-  
-  
-  
-  
-  
-  
-  
-  
   local shotsBoost = GetComponentEffectValue(self, "ExtraBurstShots", action.id)
 
   if shotsBoost then

@@ -32,10 +32,6 @@ end
 function Firearm:GetAttackResults(action, attack_args)
 	-- unpack some params & init default values
 	
-	-- if not attack_args.prediction then
-	-- Inspect(attack_args.lof[1])
-	-- end
-	
 	local attacker = attack_args.obj
 	local anim = attack_args.anim
 	local prediction = attack_args.prediction

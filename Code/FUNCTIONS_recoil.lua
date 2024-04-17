@@ -3,13 +3,15 @@ local function rT(id, text)
 end
 
 local function processMetatext(id, text, populate_crosshair)
-	if populate_crosshair then
-		if type(id) == "table" then
-			return {id[1], id[2]}
-		end
-		return {id, text}
+	local in_id, in_text = id, text
+	if type(id) == "table" then
+		in_id = id[1]
+		in_text = id[2]
 	end
-	return T(id, text)
+	if populate_crosshair then
+		return TranslationTable[in_id] or in_text	
+	end
+	return T(in_id, in_text)
 end
 
 function GetWepRecoil(weapon, attacker, display)
@@ -803,7 +805,7 @@ function get_recoil(attacker, target, target_pos, action, weapon1, aim, num_shot
 		end
 		
 		
-		--print("penalty", penalty)
+
 		for i, text in ipairs(metaText) do
 			metaText[i] = processMetatext(text[1], text[2], populate_recoil)
 		end
@@ -925,7 +927,7 @@ function get_recoilP_value(attacker, action, weapon1, aim, stacks, unit_command)
 		
 		local side = attacker and attacker.team and attacker.team.side or ''
 		
-		if not (side == 'player1' or side == 'player2') and not test then
+		if not (side == 'player1' or side == 'player2') then
 			penalty = AIpenal_reduc(attacker, penalty, "Recoil", true)
 		end
 		

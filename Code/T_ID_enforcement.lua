@@ -93,8 +93,10 @@ function GedOpGenTTableMod(socket, root)
 			table.iappend(csv, item:GenTTable())
 		end)
 		
-		
-		
+		if true then
+			Inspect(csv)
+			return csv
+		end
 		-----------
         for _, line in ipairs(code_text_table) do
             table.iappend(csv, {line})

@@ -134,7 +134,7 @@ end
 function Composure_RollSkillCheck(unit, modifier, add)
   modifier = modifier or 100
   add = add or 0
-  local skill = MulDivRound(unit.Marksmanship + unit.Wisdom,50,100)
+  local skill = rGetComposure(unit)
   --print(skill)
   local roll = 1 + unit:Random(100)
   local adjustRoll = GameDifficulties[Game.game_difficulty]:ResolveValue("rollSkillCheckBonus") or 0
@@ -211,7 +211,7 @@ function R_tableContains(table, element)
 end
 
 
-function rat_shotgun_dmg_scale(attacker, target)
+function rat_shotgun_dmg_scale(attacker, target) ---not used
 		local target = target
 		local target_pos = target or target:GetPos()
 		local attacker_pos = attacker:GetPos()
@@ -259,7 +259,7 @@ end
 
 
 function rat_getMobileshot_moveAP(self,unit,weapon)
-	--print("start mobile calc")
+
 	local stanceap = 1
 	if IsKindOf(weapon,"Firearm") then
 		stanceap = weapon.APStance *2
@@ -279,10 +279,10 @@ function rat_getMobileshot_moveAP(self,unit,weapon)
 	
 	local free_ap = Max(0, (agi - 40.0) /10.0)
 	
-	--print("agiap", free_ap, "stanceap  -  ", (stanceap))
+
 	
 	local move_ap = cRound(9.0 + free_ap - (stanceap) )
-	--print("move ap", move_ap)
+
 	
 	if move_ap < 5 then
 		move_ap = 5
@@ -298,7 +298,9 @@ end
 
 function GetWeapon_StanceAP(unit, weapon, display)
 	
-	local cost = weapon.APStance 
+	if not weapon then return 0 end
+	
+	local cost = weapon.APStance
 	cost = Cumbersome_StanceAP(unit, weapon, cost)
 	
 	local modifyVal, compDef = GetComponentEffectValue(weapon, "stance_ap_inc_STR", "StanceIncreaseSTR")
@@ -434,8 +436,7 @@ function hand_eye_crit(action_id, weapon, attacker, aim)
 
 	--local w1, w2 = attacker:GetActiveWeapons() or false, false
 	
-	local hand_eye = (attacker.Dexterity+attacker.Marksmanship)/2.0
-	
+	local hand_eye = rGetHandEyeCoordination(attacker)
 	
 	local factor = not_single 
 	
@@ -515,36 +516,6 @@ function rat_getDeltaAP(action, weapon, action_id_override)
 	return base
 end
 	
-	-- local w1, w2 = attacker:GetActiveWeapons() or false, false
-	
-	-- local hand_eye = (attacker.Dexterity+attacker.Marksmanship)/2.0
-	
-	-- local crit_HEC = 0
-
-
-	-- if action_id and action_id == "SingleShot" then
-			-- if not w2 then
-				-- crit_HEC = (hand_eye * 3.60/100)* (0 + (aim or 0))
-				-- crit_HEC = cRound(crit_HEC)
-
-				-- data.crit_chance = data.crit_chance + crit_HEC
-			-- else
-				-- crit_HEC = (hand_eye * 0.88/100)* (0 + (aim or 0))
-				-- crit_HEC = cRound(crit_HEC)
-				
-				-- data.crit_chance = data.crit_chance + crit_HEC
-			-- end
-	-- elseif action_id and action_id == "BurstFire" and weapon and IsKindOf(weapon, "G36") then
-				-- crit_HEC = (hand_eye * 2.8/100)* (0 + (aim or 0))
-				-- crit_HEC = cRound(crit_HEC)
-				-- data.crit_chance = data.crit_chance + crit_HEC
-	-- else
-				-- crit_HEC = (hand_eye * 0.88/100)* (0 + (aim or 0))
-				
-				-- crit_HEC = cRound(crit_HEC)
-
-				-- data.crit_chance = data.crit_chance + crit_HEC
-	-- end
 
 	
 		
@@ -560,57 +531,9 @@ function IsMod_loaded(mod_id)
 end
 
 
-
-
-
-  -- return T{
-    -- "<style CrosshairAPTotal>",
-    -- "<color PDABrowserFlavorMedium>" .. term1 .. "</color>",
-    -- "<color PDABrowserTextHighlight>" .. term2 .. "</color>",
-    -- term3 .. "</style>"
-  -- }
--- end
-
-
 function rat_get_mechanism()
 	return {"Revolver","Blowback","Single_Shot","Striker_Fired","Short_Recoil","Gas_Operated","Recoil_Operated","Roller_Delayed","Break_Action","Pump_Action","Bolt_Action","Lever_Action", ""}
 end
-
--- firearmData = {
-    -- Gewehr98 = 88.54,
-    -- BarretM82 = 71.92,
-    -- PSG1 = 87.12,
-    -- M24Sniper = 91.68,
-    -- DragunovSVD = 92.93,
-    -- RPK74 = 91.98,
-    -- M1Garand_2 = 94.25,
-    -- MG42 = 82.28,
-    -- FNFAL = 95.46,
-    -- HK21 = 89.39,
-    -- Winchester1894 = 97.98,
-    -- FAMAS = 97.38,
-    -- AUG = 97.19,
-    -- M16A2 = 98.26,
-    -- G36 = 98.22,
-    -- AA12 = 97.64,
-    -- FNMinimi = 91.93,
-    -- AR15 = 101.02,
-    -- AK74 = 100.94,
-    -- AK47 = 99.87,
-    -- M4Commando = 108.79,
-    -- MP40 = 105.99,
-    -- UZI = 108.31,
-    -- MP5 = 109.00,
-    -- AKSU = 109.30,
-    -- DesertEagle = 112.76,
-    -- ColtAnaconda = 114.01,
-    -- Bereta92 = 115.83,
-    -- MP5K = 114.29,
-    -- Glock18 = 116.29,
-    -- HiPower = 115.99,
-    -- ColtPeacemaker = 114.89
--- }
-
 
 
 	function GetRecoil_mul(self)

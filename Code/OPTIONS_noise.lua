@@ -441,7 +441,7 @@ function print_noise()
 	for i, k in ipairs(vanilla_map) do
 		print(i,k)
 		local item = g_Classes[k]
-		if item and( item.is_vanilla_firearm or is_tog_patched) then
+		if item and( item.is_vanilla_firearm or item.is_tog_patched) then
 			if item.is_vanilla_firearm then
 				print("vanilla", k[1], k[2])
 			else

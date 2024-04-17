@@ -42,12 +42,11 @@ function aim_cth()
 		
 		local metaText = {}
 		
-		local dex_at = attacker.Dexterity 
-		local mrks = attacker.Marksmanship
-		local total = (dex_at + mrks)/2.00
-		local dex = dex_at
+
+
+		local dex = attacker.Dexterity 
 		if IsKindOf(weapon1, "Firearm") then
-			dex = total
+			dex = rGetHandEyeCoordination(attacker)
 			if dex < 70 then
 				metaText[#metaText + 1] = T{436284795734, "(-) Low Hand-Eye Coordination"}
 			elseif dex >84 then           
@@ -322,7 +321,7 @@ function aim_cth()
 				
 				if weapon1:HasComponent("grip_prone_penalty") then
 					local placeholder, componentdef = GetComponentEffectValue(weapon1, "grip_prone_penalty")
-					bonus = bonus *92/110
+					bonus = bonus *85/100.0
 					local meta = T{676119455163, "(-) " .. componentdef.DisplayName}
 					metaText[#metaText + 1] = meta
 				end

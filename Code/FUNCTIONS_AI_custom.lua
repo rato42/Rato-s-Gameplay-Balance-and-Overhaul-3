@@ -54,10 +54,10 @@ function OnMsg.UnitEnterCombat(unit)
 	local side = unit and unit.team and unit.team.side or ''
 	
 	if not (side == 'player1' or side == 'player2') and not HasPerk(unit, "Spiritual") then
-		--print("ai enter combat")
-		unit:AddStatusEffect("Spiritual") 
-		unit.spiritual_added = 1
-		--print("spiritual")
+
+		--unit:AddStatusEffect("Spiritual") 
+		--unit.spiritual_added = 1
+
 	end
 	
 	if (side == 'player1' or side == 'player2') and HasPerk(unit, "Spiritual") then
@@ -112,7 +112,7 @@ end
 
 
 
-function AIStanceAdj(self, results, attack_args, action)
+function AIStanceAdj(self, results, attack_args, action) ---not used
 	local attacker = self
 	
 

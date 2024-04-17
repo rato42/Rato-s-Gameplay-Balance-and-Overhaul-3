@@ -9,10 +9,8 @@ function point_blank_cth()
 				pb_bonus = cRound((pb_bonus2+pb_bonus)/2)
 			end
 			
-			local dex_at = attacker.Dexterity 
-			local mrks = attacker.Marksmanship
-			local total = (dex_at + mrks)/2
-			local dex = dex_at
+
+			local dex = attacker.Dexterity 
 			
 			local min_dex = 10.0
 			local max_dex = 100.0
@@ -20,7 +18,7 @@ function point_blank_cth()
 			local max_scale = const.Combat.R_MaxAimScaling/100.0
 
 			if IsKindOf(weapon1, "Firearm") then
-				dex = total
+				dex = rGetHandEyeCoordination(attacker)
 				if dex < 70 then
 					metaText[#metaText + 1] = T(273969979692, "(-) Low Hand-Eye Coordination")
 				elseif dex >84 then

@@ -64,7 +64,7 @@ function AnimChangeHook:SetState(anim, flags, crossfade, ...)
 			
 			if not (angle == self_angle) then
 			
-				self:AnimatedRotation(angle)--SetOrientationAngle(angle)
+				self:AnimatedRotation(angle)
 			end
 		end
 		
@@ -88,33 +88,3 @@ function AnimChangeHook:SetState(anim, flags, crossfade, ...)
   end
 end
 
-
-
-
-
--- function AnimChangeHook:SetState(anim, flags, crossfade, ...)
-  -- local old_anim = self:GetStateText()
-  -- if IsValid(self) and self:IsAnimEnd() then
-    -- self:OnAnimMoment("end")
-  -- end
-  -- Object.SetState(self, anim, flags, crossfade, ...)
-  -- self:AnimationChanged(1, old_anim, flags, crossfade)
-  ----------------------------------------------
-  -- if self:HasStatusEffect("shooting_stance") then
-	-- local new_anim = self:GetStateText()
-	-- local stance = self.stance
-	-- local aim_state = self:GetAimAnim(action,stance)
-	-- local idle = string.match(new_anim,"Idle")
-	
-	-- print(aim_state)
-	-- if idle then
-	
-		-- if IsValid(self) and self:IsAnimEnd() then
-			-- self:OnAnimMoment("end")
-		-- end
-		-- if new_anim ~= aim_state then
-			-- self:SetState(aim_state, const.eKeepComponentTargets)
-		-- end
-	-- end
-  -- end
--- end

@@ -5,13 +5,13 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.45b\nfixed not being able to shoot using dual fire",
+	'last_changes', "3.46\nChange the weigths on Hand Eye Coordination calculations to use more dexterity",
 	'dependencies', {},
 	'id', "cfahRED",
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 45,
-	'version', 10626,
+	'version', 10671,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -56,6 +56,7 @@ return PlaceObj('ModDef', {
 		"Code/CTH_shooting_stance_hipfire.lua",
 		"Code/CTH_targeted_noburst.lua",
 		"Code/CharEffectCompositeDef_function.lua",
+		"Code/FUNCTIONS_attributes.lua",
 		"Code/FUNCTIONS_AI_custom.lua",
 		"Code/FUNCTIONS_changeMagComponent.lua",
 		"Code/FUNCTIONS_custom.lua",
@@ -226,8 +227,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1712979771,
-	'code_hash', 4580157507425231220,
+	'saved', 1713338739,
+	'code_hash', 2655232871087697782,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "Caliber",

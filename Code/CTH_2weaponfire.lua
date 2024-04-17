@@ -74,10 +74,11 @@ function two_weaponcth()
 		--print("2w dx value", value)
 		if HasPerk(attacker, "Ambidextrous") then
 			value = MulDivRound(value, 90, 100)
+
 			--print("2w perk value", value)
-			--metaText[#metaText + 1] = T(951997386335, "Perk: Ambidextrous")
+			metaText[#metaText + 1] = T(951997386335, "Perk: Ambidextrous")
 		end
-		
+		--print("2w  value", value)
 		if IsKindOf(weapon1, "TexRevolver") then
 			value = MulDivRound(value, 85, 100)
 			metaText[#metaText + 1] = T(934969441824, "Tex's Revolver")
@@ -112,3 +113,5 @@ local t_id_table = {
 }
 
 ratG_T_table['CTH_2weaponfire.lua'] = t_id_table
+
+

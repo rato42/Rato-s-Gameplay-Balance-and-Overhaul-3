@@ -185,7 +185,7 @@ function Rat_recoil_PopulateCrosshair(win, attacker, action, attackResults, targ
 	local function processString(input, prefix)
 		
 		if type(input) == "table" then
-			print("table input", input)
+			
 			-- if input[2] then
 				-- input = input[1] .. input[2]
 			-- else
@@ -204,7 +204,7 @@ function Rat_recoil_PopulateCrosshair(win, attacker, action, attackResults, targ
 	
 	local modifiers = {}
 	for i, meta in ipairs(meta_text) do
-
+		--print("meta in populate", meta)
 
 		local value = 1
 		local text = meta
@@ -220,7 +220,8 @@ function Rat_recoil_PopulateCrosshair(win, attacker, action, attackResults, targ
 			value = -1
 		end
 		--print(meta)
-		modifiers[i] = {id = name .. "id", name =  name, value = value, t_id = t_id}
+		modifiers[i] = {id = name .. "id", name =  name, value = value}
+		
 	end
 	
 	
@@ -251,17 +252,13 @@ function Rat_recoil_PopulateCrosshair(win, attacker, action, attackResults, targ
 				sign = "<color DescriptionTextRed>-</color>"
 			end
 			--if CthVisible() then sign = T{257328164584, "<percent(value)> ", value = mod.value} end
-			if mod.t_id then
-				concatList[#concatList + 1] = T{mod.t_id, "<name><right><style PDABrowserTextLightBold><sign></style>", name = mod.name, sign = sign}
-			else
-				concatList[#concatList + 1] = {"<name><right><style PDABrowserTextLightBold><sign></style>", name = mod.name, sign = sign}
-			end
+
+			concatList[#concatList + 1] = {"<name><right><style PDABrowserTextLightBold><sign></style>", name = mod.name, sign = sign}
+			
 		else
-			if mod.t_id then
-				concatList[#concatList + 1] = T{mod.t_id, name = mod.name}
-			else
-				concatList[#concatList + 1] = mod.name
-			end
+
+			concatList[#concatList + 1] = mod.name
+
 		end
 		
 		if mod.metaText then
@@ -276,7 +273,27 @@ function Rat_recoil_PopulateCrosshair(win, attacker, action, attackResults, targ
 		
 		::continue::
 	end
-	local concatStr = table.concat(concatList, "\n<left>")
+
+	--------------------------------
+	local formattedStrings = {}
+
+	
+	for _, item in ipairs(concatList) do
+		local formatString = item[1]  -- Assuming the format string is the first element
+		local name = item.name        -- Assuming the name is stored with the key "name"
+		local sign = item.sign        -- Assuming the sign is stored with the key "sign"
+		
+		-- Replace placeholders in the format string with actual values
+		local formattedString = name .."<right><style PDABrowserTextLightBold>" .. sign .. "</style>"--string.format(formatString, name, sign)
+		
+		-- Add the formatted string to the list
+		table.insert(formattedStrings, formattedString)
+	end
+
+	--------------------------------
+
+	--local concatStr = table.concat(concatList, "\n<left>")
+	local concatStr = table.concat(formattedStrings, "\n<left>")
 	win.idModifiers:SetVisible(true)
 	win.idModifiers:SetText(Untranslated(concatStr))
 end

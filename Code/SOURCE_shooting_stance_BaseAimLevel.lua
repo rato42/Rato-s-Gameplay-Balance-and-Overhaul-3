@@ -31,27 +31,11 @@ function Unit:GetBaseAimLevelRange(action, target)
 	  if action.id == "GrizzlyPerk" then
 		max = 1
 	  end
-	 
+	  
 	  if self.Mobile_aimed then
-		--print("uyes")
 		min = 1
 	  end
-	  
-	  -- if HasPerk(self, "shooting_stance") then	
-		-- print("Aim +1 stance")
-		-- min = Max(min, 1)
-	  -- end
-		--------------------------------------------------------------
-		--    removed in 1.4 
-      --[[if actionWep:HasComponent("MinAim") then
-        min = Max(min, GetComponentEffectValue(actionWep, "MinAim", "min_aim"))
-      end
-      local startedCombat = g_Combat and g_Combat.current_turn == 1 and IsKindOf(g_AttackSpentAPQueue[1], "Unit") and g_AttackSpentAPQueue[1].session_id == self.session_id
-      local firstShotBoost = not self.performed_action_this_turn and not startedCombat and not IsOverwatchAction(action.id) and GetComponentEffectValue(actionWep, "FirstShotIncreasedAim", "min_aim")
-      if firstShotBoost then
-        max = Max(max, firstShotBoost)
-        min = Min(max, firstShotBoost)
-      end]] 
+	  -----
     end
   end
   return min, max
