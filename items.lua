@@ -1100,6 +1100,10 @@ return {
 		'CodeFileName', "Code/CharEffectCompositeDef_function.lua",
 	}),
 	PlaceObj('ModItemCode', {
+		'name', "FUNCTION_disable_unpatched_shop",
+		'CodeFileName', "Code/FUNCTION_disable_unpatched_shop.lua",
+	}),
+	PlaceObj('ModItemCode', {
 		'name', "FUNCTIONS_attributes",
 		'CodeFileName', "Code/FUNCTIONS_attributes.lua",
 	}),

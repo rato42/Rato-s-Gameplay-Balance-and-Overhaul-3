@@ -234,7 +234,7 @@ function GetWepRecoil(weapon, attacker, display)
 		
 		
 		
-		mod = mod --^ 0.8
+		--mod = mod --^ 0.8
 		
 		
 	if display then 
@@ -468,7 +468,7 @@ function GetRecoilOther(weapon, attacker, action)
 		end
 		--print(mod)
 		
-		mod = mod --^0.8
+		--mod = mod ^0.8
 		--print(mod)
 		--print(mod)
 	

@@ -1,6 +1,6 @@
 
 
-function PrepareShopItemsForRestock(unlocked_tier, used)
+--[[ function PrepareShopItemsForRestock(unlocked_tier, used)
     --bobby_restock_print("Restocking shop")
     local category_weights = {}
     local category_count = {}
@@ -40,4 +40,4 @@ function PrepareShopItemsForRestock(unlocked_tier, used)
     end)
 	print("returning")
     return category_items, category_count, category_weights, category_items_set
-end
+end ]]
