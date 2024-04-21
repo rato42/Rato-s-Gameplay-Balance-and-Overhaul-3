@@ -1085,9 +1085,9 @@ return {
 		'CodeFileName', "Code/CTH_pointblank.lua",
 	}),
 	PlaceObj('ModItemCode', {
-		'name', "CTH_shooting_stance_hipfire",
+		'name', "CTH_hipfire_and_snapshot",
 		'comment', "----CTH",
-		'CodeFileName', "Code/CTH_shooting_stance_hipfire.lua",
+		'CodeFileName', "Code/CTH_hipfire_and_snapshot.lua",
 	}),
 	PlaceObj('ModItemCode', {
 		'name', "CTH_targeted_noburst",
@@ -1270,9 +1270,8 @@ return {
 		'CodeFileName', "Code/shooting_stance_aoesector_functions.lua",
 	}),
 	PlaceObj('ModItemCode', {
-		'name', "shooting_stance_combat_actions",
-		'comment', "setar nas combat actions",
-		'CodeFileName', "Code/shooting_stance_combat_actions.lua",
+		'name', "COMBAT_ACTIONS",
+		'CodeFileName', "Code/COMBAT_ACTIONS.lua",
 	}),
 	PlaceObj('ModItemCode', {
 		'name', "shooting_stance_functions",
