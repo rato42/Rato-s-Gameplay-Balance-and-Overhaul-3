@@ -1,4 +1,3 @@
-
 function rat_place_prepareweapon_combat_actions()
 	PlaceObj('CombatAction', {
 		ActionType = "Ranged Attack",
@@ -9,45 +8,44 @@ function rat_place_prepareweapon_combat_actions()
 		Description = T(222855944347, "Enter <em>Shooting Stance</em> and end your turn."),
 		DisplayName = T(187383913751, "Prepare Weapon"),
 		-------------------
-		Execute = function (self, units, args)
+		Execute = function(self, units, args)
 			local unit = units[1]
-			--local attacks, aim = unit:GetOverwatchAttacksAndAim(self, args)
+			-- local attacks, aim = unit:GetOverwatchAttacksAndAim(self, args)
 			-----------
 			args.num_attacks = 0
 			args.aim = 0
-		
-			--args.free_aim = true
+
+			-- args.free_aim = true
 			----------------
 			local ap = self:GetAPCost(unit, args)
 			NetStartCombatAction(self.id, unit, ap, args)
 		end,
-		
+
 		-----
-		GetAPCost = function (self, unit, args)
-			
+		GetAPCost = function(self, unit, args)
+
 			local stance = 0
 			local param
-			--local weapon = self:GetAttackWeapons(unit, args)
+			-- local weapon = self:GetAttackWeapons(unit, args)
 			local weapon = unit:GetActiveWeapons()
-			--local attack = unit:GetDefaultAttackAction("ranged", "ungrouped")
+			-- local attack = unit:GetDefaultAttackAction("ranged", "ungrouped")
 			local action = self
 			if not HasPerk(unit, "shooting_stance") then
 				param = "stance"
 				stance = unit:GetApExtra(unit, args and args.target or false, weapon, args and args.aim or 0, action, param) or 0
 			end
-			
+
 			if not HasPerk(unit, "shooting_stance") then
 				stance = stance + Get_AimCost()
-				return stance--Max(unit:GetUIActionPoints(), stance), stance
-			else 
-				local rotate = unit:GetApExtra(unit, args and args.target or false, weapon, args and args.aim or 0, action, param) or 0 
+				return stance -- Max(unit:GetUIActionPoints(), stance), stance
+			else
+				local rotate =
+									unit:GetApExtra(unit, args and args.target or false, weapon, args and args.aim or 0, action, param) or 0
 
-				rotate = Max(1 *const.Scale.AP,rotate)
-				return rotate--Max(unit:GetUIActionPoints(), rotate), rotate
+				rotate = Max(1 * const.Scale.AP, rotate)
+				return rotate -- Max(unit:GetUIActionPoints(), rotate), rotate
 			end
-			
-			
-			
+
 		end,
 		---------------------
 		--[[GetReservedAP = function (self, units)
@@ -63,60 +61,61 @@ function rat_place_prepareweapon_combat_actions()
 			local num = Max(0, unit:GetUIActionPoints()) --- cost)--------- custo?
 			num = Min(num, 3*const.Scale.AP)
 		end,]]
-			
-			
-		
-		GetActionDescription = function (self, units)
+
+		GetActionDescription = function(self, units)
 			local descr
 			local unit = units[1]
 			if not HasPerk(unit, "shooting_stance") then
-				descr = T{399161531399, "Enter <em>Shooting Stance</em> and <em>end your turn</em>."}
-				
+				descr = T {399161531399, "Enter <em>Shooting Stance</em>."}
+
 			else
-				descr = T{878229893688, "Rotate your weapon and <em>end your turn</em>."}
-				
+				descr = T {878229893688, "Rotate your weapon."}
+
 			end
-			
-				local num = Max(0, unit:GetUIActionPoints())
-				num = Min(num, 3*const.Scale.AP)
-				
-				
-				if num >= const.Scale.AP then
-					return descr .. T{128220108077, "<newline><newline>This action will transfer <em><ap(num_ap)></em> to the next turn", num_ap = num}
-				end	
-			
-			
-			
+
+			--[[ 			local num = Max(0, unit:GetUIActionPoints())
+			num = Min(num, 3 * const.Scale.AP)
+
+			if num >= const.Scale.AP then
+				return descr .. T {
+					128220108077,
+					"<newline><newline>This action will transfer <em><ap(num_ap)></em> to the next turn",
+					num_ap = num,
+				}
+			end ]]
+
 			return descr
 		end,
-		
+
 		---------------------------------
-		
-		GetActionDisplayName = function (self, units)
-				local name
-				local unit = units[1]
-				if not HasPerk(unit, "shooting_stance") then
-					name = T(871168252913, "Prepare Weapon")
-				else
-					name = T(735297133453, "Rotate Weapon")
-				end	
-				return name
+
+		GetActionDisplayName = function(self, units)
+			local name
+			local unit = units[1]
+			if not HasPerk(unit, "shooting_stance") then
+				name = T(871168252913, "Prepare Weapon")
+			else
+				name = T(735297133453, "Rotate Weapon")
+			end
+			return name
 		end,
-		GetActionIcon = function (self, units)
+		GetActionIcon = function(self, units)
 			-- if not g_Combat then
-				-- return CombatActions.ExplorationOverwatch.Icon
+			-- return CombatActions.ExplorationOverwatch.Icon
 			-- end
 			return self.Icon
 		end,
-		GetActionResults = function (self, unit, args)
-			
+		--[[ 		GetActionResults = function(self, unit, args)
+
 			local target = args.target
 			local weapon = self:GetAttackWeapons(unit, args)
-			if not weapon then return {} end
+			if not weapon then
+				return {}
+			end
 			local sub_action = unit:GetDefaultAttackAction("ranged", "ungrouped")
 			local attack_args = unit:PrepareAttackArgs(self.id, args)
 			local targets = unit:GetVisibleEnemies()
-			
+
 			local results = {}
 			if sub_action.AimType == "cone" then
 				-- check for collateral damage around exact targets
@@ -129,7 +128,7 @@ function rat_place_prepareweapon_combat_actions()
 					end
 				end
 			end
-			
+
 			local modifiers = GetAreaAttackHitModifiers(self.id, attack_args, targets)
 			local sub_action_lof_params = {
 				can_use_covers = false,
@@ -151,7 +150,7 @@ function rat_place_prepareweapon_combat_actions()
 							target_hit = true
 						end
 					end
-					--if not target_hit then
+					-- if not target_hit then
 					local target_lof_data = lof_data[i]
 					if target_lof_data.clear_attacks == 0 then
 						results.no_lof_targets = results.no_lof_targets or {}
@@ -159,98 +158,101 @@ function rat_place_prepareweapon_combat_actions()
 					end
 				end
 			end
-			
+
 			-- We dont want to show damage prediction, just hit prediction.
 			for i, result in ipairs(results) do
 				result.damage = 0
 				result.display_only = true
 				result.ignore_armor = true
 			end
-			
+
 			return results, attack_args
-			
-		end,
-		GetAimParams = function (self, unit, weapon)
+
+		end, ]]
+		GetAimParams = function(self, unit, weapon)
 			local params = weapon:R_GetAreaAttackParams(self.id, unit)
-			
-			
-			--params.min_range = self:GetMinAimRange(unit, weapon)
-			params.max_range = self:GetMaxAimRange(unit, weapon)*1.5
-			params.min_range = params.max_range*1.5
-			--assert(params.max_range >= params.min_range)
+
+			-- params.min_range = self:GetMinAimRange(unit, weapon)
+			params.max_range = self:GetMaxAimRange(unit, weapon) * 1.5
+			params.min_range = params.max_range * 1.5
+			-- assert(params.max_range >= params.min_range)
 			return params
 		end,
-		GetAttackWeapons = function (self, unit, args)
-			if args and args.weapon then return args.weapon end
+		GetAttackWeapons = function(self, unit, args)
+			if args and args.weapon then
+				return args.weapon
+			end
 			return unit:GetActiveWeapons("Firearm")
 		end,
-		GetMaxAimRange = function (self, unit, weapon)
+		GetMaxAimRange = function(self, unit, weapon)
 			local range = weapon:GetOverwatchConeParam("MaxRange")
 			local sight = unit:GetSightRadius() / const.SlabSizeX
 			return Min(range, sight)
 		end,
-		GetMinAimRange = function (self, unit, weapon)
+		GetMinAimRange = function(self, unit, weapon)
 			local range = weapon:GetOverwatchConeParam("MinRange")
 			local sight = unit:GetSightRadius() / const.SlabSizeX
 			return Min(range, sight)
 		end,
-		GetUIState = function (self, units, args)
+		GetUIState = function(self, units, args)
 			local unit = units[1]
 			local cost = self:GetAPCost(unit, args)
 			local weapon = unit:GetActiveWeapons()
-			
+
 			if not IsKindOf(weapon, "Firearm") then
 				return "hidden"
 			end
-			
-			if cost < 0 then return "hidden" end
-			
+
+			if cost < 0 then
+				return "hidden"
+			end
+
 			if g_Overwatch[unit] then
 				return "hidden"
 			end
-			
-			if not unit:UIHasAP(cost) then 
-				return "disabled", GetUnitNoApReason(unit) 
+
+			if not unit:UIHasAP(cost) then
+				return "disabled", GetUnitNoApReason(unit)
 			else
 				return "enabled"
 			end
 
 		end,
-		
 
-		--RequireTargets = false,
-		
+		-- RequireTargets = false,
+
 		Icon = "Mod/cfahRED/Images/shootingstancecompleto.png",
 		IdDefault = "R_PrepareWeapon",
-		--IdDefault = "Overwatchdefault",
-		--KeybindingFromAction = "actionRedirectOverwatch",
+		-- IdDefault = "Overwatchdefault",
+		-- KeybindingFromAction = "actionRedirectOverwatch",
 		MultiSelectBehavior = "first",
 		KeybindingSortId = "2351",
-		--QueuedBadgeText = T(507392307526, --[[CombatAction Overwatch QueuedBadgeText]] "OVERWATCH"),
+		-- QueuedBadgeText = T(507392307526, --[[CombatAction Overwatch QueuedBadgeText]] "OVERWATCH"),
 		QueuedBadgeText = T(756827411698, "PREPARE"),
 		RequireState = "any",
-		Run = function (self, unit, ap, ...)
-			--local vr = IsMerc(unit) and "Overwatch" or "AIOverwatch"
-			--PlayVoiceResponse(unit, vr)
-			--unit.ui_reserved = self:GetReservedAP(self, units)
+		Run = function(self, unit, ap, ...)
+			-- local vr = IsMerc(unit) and "Overwatch" or "AIOverwatch"
+			-- PlayVoiceResponse(unit, vr)
+			-- unit.ui_reserved = self:GetReservedAP(self, units)
 
-			unit:AddStatusEffect("R_ReservedAP_stance")
-			local effect = unit:GetStatusEffect("R_ReservedAP_stance")
-			
-			effect:SetParameter("action_ap_cost", ap)
-			--print(effect)
-			unit:SetActionCommand("OverwatchAction", self.id, ap, ...)
+			--[[ unit:AddStatusEffect("R_ReservedAP_stance")
+			local effect = unit:GetStatusEffect("R_ReservedAP_stance") ]]
+			local args = ...
+
+			--[[ 			effect:SetParameter("action_ap_cost", ap) ]]
+			-- print(effect)
+			SetShootingStanceCommand(unit, args.target)
+			-- unit:SetActionCommand("OverwatchAction", self.id, ap, ...)
 		end,
 		SortKey = 2,
-		UIBegin = function (self, units, args)
-	 
+		UIBegin = function(self, units, args)
+
 			CombatActionAttackStart(self, units, args, "IModeCombatAreaAim", "cancel")
-			
+
 		end,
 		group = "Default",
 		id = "R_PrepareWeapon",
 	})
-
 
 	PlaceObj('CombatAction', {
 		ActionPoints = 0000,
@@ -258,34 +260,33 @@ function rat_place_prepareweapon_combat_actions()
 		ConfigurableKeybind = false,
 		Description = T(148517345744, "Exit <em>Shooting Stance</em>"),
 		DisplayName = T(567973728148, "Lower Weapon"),
-		GetActionDescription = function (self, units)
+		GetActionDescription = function(self, units)
 			local unit = units[1]
 			-- if unit:IsBeingBandaged() then
-				-- return T(540349977342, "Cancel the bandaging action. The unit will be able to move but not regain any more HP.")
+			-- return T(540349977342, "Cancel the bandaging action. The unit will be able to move but not regain any more HP.")
 			-- end
 			-- if not g_Combat then
-				-- return T(151546259528, "Cancel the bandaging action. The bandaged unit will not regain any more HP.")
+			-- return T(151546259528, "Cancel the bandaging action. The bandaged unit will not regain any more HP.")
 			-- end
-			
+
 			local description = self.Description
-			
+
 			if unit.return_pos_reserved then
 				description = description .. " and return to cover."
 			else
 				description = description .. "."
 			end
-			
+
 			return description
 		end,
 		-- GetAPCost = function (self, unit, args)
-			-- return 1 * const.Scale.ap
+		-- return 1 * const.Scale.ap
 		-- end,
-		GetUIState = function (self, units, args)
-		---------------------
+		GetUIState = function(self, units, args)
+			---------------------
 			local unit = units[1]
-			local cost = self:GetAPCost(unit,args)
-			
-			
+			local cost = self:GetAPCost(unit, args)
+
 			if not HasPerk(unit, "shooting_stance") then
 				return "hidden"
 			elseif not unit:UIHasAP(1000) and (unit.free_move_ap and unit.free_move_ap < 1000) then
@@ -293,11 +294,11 @@ function rat_place_prepareweapon_combat_actions()
 			end
 
 			-- else
-				-- if not unit:UIHasAP(cost) then 
-					-- return "disabled", GetUnitNoApReason(unit) 
-				-- else
-					-- return "enabled"
-				-- end
+			-- if not unit:UIHasAP(cost) then 
+			-- return "disabled", GetUnitNoApReason(unit) 
+			-- else
+			-- return "enabled"
+			-- end
 			-- end
 			return "enabled"
 			------------------
@@ -305,23 +306,23 @@ function rat_place_prepareweapon_combat_actions()
 		Icon = "Mod/cfahRED/Images/shootingstance_removal3.png",
 		IdDefault = "R_LowerWeapon",
 		IsAimableAttack = false,
-		--KeybindingFromAction = "actionRedirectBandage",
+		-- KeybindingFromAction = "actionRedirectBandage",
 		KeybindingSortId = "2352",
 		MultiSelectBehavior = "first",
 		RequireState = "any",
-		Run = function (self, unit, ap, ...)
+		Run = function(self, unit, ap, ...)
 			unit:RemoveStatusEffect("shooting_stance")
 			unit:InterruptPreparedAttack()
 			unit:SetCommand("Idle")
-			--ObjModified(unit)
+			-- ObjModified(unit)
 			-- if unit:GetBandageTarget() then
-				-- unit:SetActionCommand("EndCombatBandage")
+			-- unit:SetActionCommand("EndCombatBandage")
 			-- else
-				-- for _, other in ipairs(g_Units) do
-					-- if unit ~= other and other:GetBandageTarget() == unit then
-						-- other:SetActionCommand("EndCombatBandage")
-					-- end
-				-- end
+			-- for _, other in ipairs(g_Units) do
+			-- if unit ~= other and other:GetBandageTarget() == unit then
+			-- other:SetActionCommand("EndCombatBandage")
+			-- end
+			-- end
 			-- end
 		end,
 		SortKey = 21,
@@ -330,22 +331,40 @@ function rat_place_prepareweapon_combat_actions()
 	})
 end
 
+function SetShootingStanceCommand(unit, target)
+
+	local orientation = CalcOrientation(unit, target)
+	local stance = unit.stance
+	local aim_state = unit:GetAimAnim(stance)
+
+	if g_Combat then
+		unit:AnimatedRotation(orientation)
+		unit:SetState(aim_state, const.eKeepComponentTargets)
+		Sleep(300)
+	else ---- not sure how to create a thread, so cant Sleep
+		unit:SetOrientationAngle(orientation)
+		unit:SetState(aim_state, const.eKeepComponentTargets)
+	end
+
+	ShootingStance(unit, target)
+	SetInGameInterfaceMode(g_Combat and "IModeCombatMovement" or "IModeExploration")
+end
 
 ---------------------------------------------------------------------------------------------------------
 
 local t_id_table = {
-[222855944347] = "Enter <em>Shooting Stance</em> and end your turn.",
-[187383913751] = "Prepare Weapon",
-[871168252913] = "Prepare Weapon",
-[735297133453] = "Rotate Weapon",
-[756827411698] = "PREPARE",
-[148517345744] = "Exit <em>Shooting Stance</em>",
-[567973728148] = "Lower Weapon",
-[540349977342] = "Cancel the bandaging action. The unit will be able to move but not regain any more HP.",
-[151546259528] = "Cancel the bandaging action. The bandaged unit will not regain any more HP.",
-[677754398866] = "<color AmmoAPColor>Turn Ended</color>",
-[399161531399] = "Enter <em>Shooting Stance</em> and <em>end your turn</em>.",
-[878229893688] = "Rotate your weapon and <em>end your turn</em>.",
+	[222855944347] = "Enter <em>Shooting Stance</em> and end your turn.",
+	[187383913751] = "Prepare Weapon",
+	[871168252913] = "Prepare Weapon",
+	[735297133453] = "Rotate Weapon",
+	[756827411698] = "PREPARE",
+	[148517345744] = "Exit <em>Shooting Stance</em>",
+	[567973728148] = "Lower Weapon",
+	[540349977342] = "Cancel the bandaging action. The unit will be able to move but not regain any more HP.",
+	[151546259528] = "Cancel the bandaging action. The bandaged unit will not regain any more HP.",
+	[677754398866] = "<color AmmoAPColor>Turn Ended</color>",
+	[399161531399] = "Enter <em>Shooting Stance</em> and <em>end your turn</em>.",
+	[878229893688] = "Rotate your weapon and <em>end your turn</em>.",
 }
 
 ratG_T_table['shooting_stance_prepare_weapon_action.lua'] = t_id_table

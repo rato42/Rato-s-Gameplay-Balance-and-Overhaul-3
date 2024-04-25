@@ -5,13 +5,13 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.46b\n\nfixed M70 being able to shoot while having a grenade loaded",
+	'last_changes', "3.47\ncustom HE grenade removed, for now...\n\nDefault ExtraAP option is now 0\n\n---------------------------------------------------------------\nPersistant Recoil effect on aim has been reworked\nIt will be more relevant\nthe cost will be displayed in the  crosshair UI (might improve the visual at some point)\nlarger calibers will have more impact\nthis cost can never be higher than 5 or the cost of exiting and re-entering shooting stance (qol)\nweapons that need to be manually cycled will have less aim cost penalty\nAdded a mod option to control the aim cost effect of recoil\n---------------------------------------------------------------\n\n\nShooting Stance max reserved ap is now 2\nShooting Stance bar action no longer ends turn\n\nDecreased Benelli range to 12\nAdded Assalto RS to Famas\nSuppressors will reduce noise a bit more efficiently",
 	'dependencies', {},
 	'id', "cfahRED",
 	'author', "rato",
 	'version_major', 3,
-	'version_minor', 46,
-	'version', 10680,
+	'version_minor', 47,
+	'version', 10804,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -201,11 +201,10 @@ return PlaceObj('ModDef', {
 		"InventoryItem/DragunovSVD.lua",
 		"InventoryItem/BrowningM2HMG.lua",
 		"InventoryItem/GoldenGun.lua",
-		"InventoryItem/HE_Grenade_1.lua",
 	},
 	'default_options', {
 		AwareSight = "38 (rato's GBO default)",
-		Extra_start_ap = "1 (default for Rato's GBO)",
+		Extra_start_ap = "0 (default for Rato's GBO)",
 		NightDetect = "-40 (Rato's Default)",
 		NightSight = "-40 (Rato's Default)",
 		UnawareSight = "18 (rato's GBO default)",
@@ -223,13 +222,14 @@ return PlaceObj('ModDef', {
 		penalty_hipfire = "-40 (default for Rato's GBO)",
 		penalty_snapshot = "-30 (default for Rato's GBO)",
 		r_round_mul = true,
+		recoil_persistent_aim_effect = "100",
 		recoil_persistent_setting = "100 (default for Rato's GBO)",
 		recoil_setting = "100 (default for Rato's GBO)",
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1713692018,
-	'code_hash', -983412304195916053,
+	'saved', 1714079547,
+	'code_hash', 6304586994441186219,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "Caliber",
@@ -430,11 +430,6 @@ return PlaceObj('ModDef', {
 			'Class', "ConstDef",
 			'Id', "R_Round_Mul",
 			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "CraftOperationsRecipeDef",
-			'Id', "He_grenade_craft_1",
-			'ClassDisplayName', "Crafting operation recipe",
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "CraftOperationsRecipeDef",
@@ -949,11 +944,6 @@ return PlaceObj('ModDef', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "InventoryItemCompositeDef",
 			'Id', "GoldenGun",
-			'ClassDisplayName', "Inventory item",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "InventoryItemCompositeDef",
-			'Id', "HE_Grenade_1",
 			'ClassDisplayName', "Inventory item",
 		}),
 		PlaceObj('ModResourcePreset', {
@@ -1789,11 +1779,6 @@ return PlaceObj('ModDef', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "WeaponComponent",
 			'Id', "BarrelShortImproved_AUG",
-			'ClassDisplayName', "Weapon component",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "WeaponComponent",
-			'Id', "teste",
 			'ClassDisplayName', "Weapon component",
 		}),
 		PlaceObj('ModResourcePreset', {

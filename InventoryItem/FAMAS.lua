@@ -64,6 +64,7 @@ DefineClass.FAMAS = {
 				"ScopeCOG",
 				"ThermalScope",
 				"_ReflexSIghtVigilance",
+				"ReflexSightAdvanced",
 				"WideScope",
 				"ImprovedIronsight",
 			},

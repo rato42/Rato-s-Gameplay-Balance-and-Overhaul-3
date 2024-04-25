@@ -263,7 +263,7 @@ DefineClass.shooting_stance = {
 		PlaceObj('UnitReaction', {
 			Event = "OnEndTurn",
 			Handler = function (self, target)
-				local ap_carried = Min(3000,target.ActionPoints)
+				local ap_carried = Min(2000,target.ActionPoints)
 				local text_ap = MulDivRound(ap_carried, 1, const.Scale.AP)
 				if ap_carried > 950 then
 					if text_ap and text_ap > 0 then

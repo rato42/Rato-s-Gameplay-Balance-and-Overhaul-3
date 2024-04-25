@@ -359,7 +359,7 @@ return {
 			PlaceObj('UnitReaction', {
 				Event = "OnEndTurn",
 				Handler = function (self, target)
-					local ap_carried = Min(3000,target.ActionPoints)
+					local ap_carried = Min(2000,target.ActionPoints)
 					local text_ap = MulDivRound(ap_carried, 1, const.Scale.AP)
 					if ap_carried > 950 then
 						if text_ap and text_ap > 0 then
@@ -809,7 +809,7 @@ return {
 			}),
 		},
 		'DisplayName', T(644573309574, --[[ModItemCharacterEffectCompositeDef Rat_recoil DisplayName]] "Recoil"),
-		'Description', T(810661063156, --[[ModItemCharacterEffectCompositeDef Rat_recoil Description]] "Recoil accumulated from previous shots. Grants <color EmStyle>Accuracy penalty</color> to all firearm attacks. \n\nWill reach max penalty after <shots_fired_max> attacks.\n\nCan be <color EmStyle>negated by aiming up to three times</color>, but high recoil can increase the cost for doing so. Fully aimed (+3 aim level) attacks will also <color EmStyle>reset the stacks</color>.\n\nCurrently increases aim cost - up to the third aim level - by <color EmStyle><aim_cost></color>.\n\nMoving 3 tiles, reloading, entering Overwatch or exiting Shooting Stance will remove this effect. "),
+		'Description', T(810661063156, --[[ModItemCharacterEffectCompositeDef Rat_recoil Description]] "Recoil accumulated from previous shots. Grants <color EmStyle>Accuracy penalty</color> to all firearm attacks. \n\nWill reach max penalty after <shots_fired_max> attacks.\n\nCan be <color EmStyle>negated by aiming up to three times</color>, but high recoil can increase the cost for doing so. Fully aimed (+3 aim level) attacks will also <color EmStyle>reset the stacks</color>. Manually cycled weapons have decreased aim cost penalty.\n\nCurrently increases aim cost - up to the third aim level - by <color EmStyle><aim_cost></color>.\n\nMoving 3 tiles, reloading, entering Overwatch or exiting Shooting Stance will remove this effect. "),
 		'type', "Debuff",
 		'lifetime', "Until End of Turn",
 		'Icon', "Mod/cfahRED/Images/reco10.png",
@@ -1471,24 +1471,6 @@ return {
 		id = "R_Round_Mul",
 		type = "bool",
 		value = true,
-	}),
-	PlaceObj('ModItemCraftOperationsRecipeDef', {
-		CraftTime = 15,
-		Ingredients = {
-			PlaceObj('RecipeIngredient', {
-				'item', "Parts",
-				'amount', 15,
-			}),
-			PlaceObj('RecipeIngredient', {
-				'item', "TNT",
-				'amount', 3,
-			}),
-		},
-		ResultItem = PlaceObj('RecipeIngredient', {
-			'item', "HE_Grenade_1",
-			'amount', 5,
-		}),
-		id = "He_grenade_craft_1",
 	}),
 	PlaceObj('ModItemCraftOperationsRecipeDef', {
 		CraftTime = 15,
@@ -4412,7 +4394,7 @@ return {
 		'AimAccuracy', 3,
 		'CritChanceScaled', 20,
 		'MagazineSize', 6,
-		'WeaponRange', 14,
+		'WeaponRange', 12,
 		'PointBlankBonus', 1,
 		'OverwatchAngle', 881,
 		'BuckshotConeAngle', 480,
@@ -6308,6 +6290,7 @@ return {
 					"ScopeCOG",
 					"ThermalScope",
 					"_ReflexSIghtVigilance",
+					"ReflexSightAdvanced",
 					"WideScope",
 					"ImprovedIronsight",
 				},
@@ -8173,47 +8156,6 @@ return {
 		'Rat_cycling', "SemiAuto",
 		'recoil_mechanism', "Single_Shot",
 	}),
-	PlaceObj('ModItemInventoryItemCompositeDef', {
-		'Group', "Grenade - Explosive",
-		'Id', "HE_Grenade_1",
-		'object_class', "Grenade",
-		'Repairable', false,
-		'Reliability', 100,
-		'Icon', "Mod/cfahRED/Images/he2 2.png",
-		'ItemType', "Grenade",
-		'DisplayName', T(246786397859, --[[ModItemInventoryItemCompositeDef HE_Grenade_1 DisplayName]] "High Explosive Grenade"),
-		'DisplayNamePlural', T(994813300714, --[[ModItemInventoryItemCompositeDef HE_Grenade_1 DisplayNamePlural]] "High Explosive Grenades"),
-		'Description', T(565165220665, --[[ModItemInventoryItemCompositeDef HE_Grenade_1 Description]] "<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120>Inflicts <color EmStyle>Bleeding</color>"),
-		'AdditionalHint', T(930117164234, --[[ModItemInventoryItemCompositeDef HE_Grenade_1 AdditionalHint]] "<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Knocks down units \n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Smaller area\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Good at destroying objects\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Penetrates any armor\n"),
-		'UnitStat', "Explosives",
-		'Cost', 400,
-		'CanAppearInShop', true,
-		'Tier', 2,
-		'CategoryPair', "Grenade",
-		'MinMishapChance', -2,
-		'MaxMishapChance', 18,
-		'MinMishapRange', 0,
-		'CenterUnitDamageMod', 130,
-		'CenterObjDamageMod', 500,
-		'CenterAppliedEffects', {
-			"KnockDown",
-		},
-		'AreaOfEffect', 2,
-		'AreaObjDamageMod', 500,
-		'AreaAppliedEffects', {
-			"KnockDown",
-		},
-		'BurnGround', false,
-		'DeathType', "BlowUp",
-		'BaseDamage', 35,
-		'Scatter', 4,
-		'BaseRange', 7,
-		'ThrowMaxRange', 17,
-		'InaccurateMaxOffset', 3000,
-		'Noise', 30,
-		'Entity', "MilitaryCamp_Grenade_02",
-		'ActionIcon', "UI/Icons/Hud/throw_grenade",
-	}),
 	PlaceObj('ModItemLootDef', {
 		Comment = "enemy legion boss",
 		comment = "lootdef not touched by TE",
@@ -9778,7 +9720,7 @@ return {
 	PlaceObj('ModItemOptionChoice', {
 		'name', "recoil_persistent_setting",
 		'DisplayName', "Persistent Recoil penalty %",
-		'Help', "Multiplies the Recoil CTH penalty that persists from shots. Will also affect the aim AP cost of recoil. If set to 0, disable this mechanic.",
+		'Help', "Multiplies the Recoil CTH penalty that persists from shots. This in turn also increases the aim AP cost of recoil. If set to 0, disable this mechanic.",
 		'DefaultValue', "100 (default for Rato's GBO)",
 		'ChoiceList', {
 			"0",
@@ -9805,18 +9747,47 @@ return {
 		},
 	}),
 	PlaceObj('ModItemOptionChoice', {
+		'name', "recoil_persistent_aim_effect",
+		'DisplayName', "Persistent Recoil Aim cost %",
+		'Help', "To fine tune only the Aim cost effects of Persistant recoil",
+		'DefaultValue', "100",
+		'ChoiceList', {
+			"0",
+			"10",
+			"20",
+			"30",
+			"40",
+			"50",
+			"60",
+			"70",
+			"80",
+			"90",
+			"100",
+			"110",
+			"120",
+			"130",
+			"140",
+			"150",
+			"160",
+			"170",
+			"180",
+			"190",
+			"200",
+		},
+	}),
+	PlaceObj('ModItemOptionChoice', {
 		'name', "Extra_start_ap",
 		'DisplayName', "Extra Max AP",
 		'Help', "Adds this value to the Max AP for every unit",
-		'DefaultValue', "1 (default for Rato's GBO)",
+		'DefaultValue', "0 (default for Rato's GBO)",
 		'ChoiceList', {
 			"-5",
 			"-4",
 			"-3",
 			"-2",
 			"-1",
-			"0",
-			"1 (default for Rato's GBO)",
+			"0 (default for Rato's GBO)",
+			"1 ",
 			"2",
 			"3",
 			"4",
@@ -10062,7 +10033,7 @@ return {
 		Parameters = {
 			PlaceObj('PresetParamPercent', {
 				'Name', "NoiseMultiplier",
-				'Value', 40,
+				'Value', 30,
 				'Tag', "<NoiseMultiplier>%",
 			}),
 			PlaceObj('PresetParamNumber', {
@@ -10295,7 +10266,7 @@ return {
 			}),
 			PlaceObj('PresetParamPercent', {
 				'Name', "NoiseMultiplier",
-				'Value', 60,
+				'Value', 50,
 				'Tag', "<NoiseMultiplier>%",
 			}),
 			PlaceObj('PresetParamPercent', {
@@ -26101,27 +26072,6 @@ return {
 			}),
 		},
 		id = "BarrelShortImproved_AUG",
-	}),
-	PlaceObj('ModItemWeaponComponent', {
-		DisplayName = T(800100772725, --[[ModItemWeaponComponent teste DisplayName]] "Teste"),
-		ModificationDifficulty = -25,
-		Parameters = {
-			PlaceObj('PresetParamNumber', {
-				'Name', "DamageReduced",
-				'Value', 1,
-				'Tag', "<DamageReduced>",
-			}),
-		},
-		Slot = "Scope",
-		Visuals = {
-			PlaceObj('WeaponComponentVisual', {
-				Entity = "WeaponAttA_MagazineAK74_06",
-				Slot = "Scope",
-				param_bindings = false,
-			}),
-		},
-		group = "Default",
-		id = "teste",
 	}),
 	PlaceObj('ModItemWeaponComponent', {
 		DisplayName = T(847613561983, --[[ModItemWeaponComponent M16_Handguard DisplayName]] "Default Handguard"),

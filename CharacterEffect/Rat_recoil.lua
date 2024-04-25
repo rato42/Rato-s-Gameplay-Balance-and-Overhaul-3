@@ -153,7 +153,7 @@ DefineClass.Rat_recoil = {
 		}),
 	},
 	DisplayName = T(644573309574, --[[ModItemCharacterEffectCompositeDef Rat_recoil DisplayName]] "Recoil"),
-	Description = T(810661063156, --[[ModItemCharacterEffectCompositeDef Rat_recoil Description]] "Recoil accumulated from previous shots. Grants <color EmStyle>Accuracy penalty</color> to all firearm attacks. \n\nWill reach max penalty after <shots_fired_max> attacks.\n\nCan be <color EmStyle>negated by aiming up to three times</color>, but high recoil can increase the cost for doing so. Fully aimed (+3 aim level) attacks will also <color EmStyle>reset the stacks</color>.\n\nCurrently increases aim cost - up to the third aim level - by <color EmStyle><aim_cost></color>.\n\nMoving 3 tiles, reloading, entering Overwatch or exiting Shooting Stance will remove this effect. "),
+	Description = T(810661063156, --[[ModItemCharacterEffectCompositeDef Rat_recoil Description]] "Recoil accumulated from previous shots. Grants <color EmStyle>Accuracy penalty</color> to all firearm attacks. \n\nWill reach max penalty after <shots_fired_max> attacks.\n\nCan be <color EmStyle>negated by aiming up to three times</color>, but high recoil can increase the cost for doing so. Fully aimed (+3 aim level) attacks will also <color EmStyle>reset the stacks</color>. Manually cycled weapons have decreased aim cost penalty.\n\nCurrently increases aim cost - up to the third aim level - by <color EmStyle><aim_cost></color>.\n\nMoving 3 tiles, reloading, entering Overwatch or exiting Shooting Stance will remove this effect. "),
 	type = "Debuff",
 	lifetime = "Until End of Turn",
 	Icon = "Mod/cfahRED/Images/reco10.png",
