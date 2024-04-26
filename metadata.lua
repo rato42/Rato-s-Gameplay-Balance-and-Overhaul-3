@@ -5,13 +5,13 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.47\ncustom HE grenade removed, for now...\n\nDefault ExtraAP option is now 0\n\n---------------------------------------------------------------\nPersistant Recoil effect on aim has been reworked\nIt will be more relevant\nthe cost will be displayed in the  crosshair UI (might improve the visual at some point)\nlarger calibers will have more impact\nthis cost can never be higher than 5 or the cost of exiting and re-entering shooting stance (qol)\nweapons that need to be manually cycled will have less aim cost penalty\nAdded a mod option to control the aim cost effect of recoil\n---------------------------------------------------------------\n\n\nShooting Stance max reserved ap is now 2\nShooting Stance bar action no longer ends turn\n\nDecreased Benelli range to 12\nAdded Assalto RS to Famas\nSuppressors will reduce noise a bit more efficiently",
+	'last_changes', "3.47a\n\nfixed selective fire recoil display bug",
 	'dependencies', {},
 	'id', "cfahRED",
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 47,
-	'version', 10804,
+	'version', 10809,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -228,8 +228,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1714079547,
-	'code_hash', 6304586994441186219,
+	'saved', 1714158370,
+	'code_hash', -2930860489678124163,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "Caliber",
