@@ -229,6 +229,9 @@ function Rat_recoil_PopulateCrosshair(win, attacker, action, attackResults, targ
 	if CthVisible() then
 		win.idChanceToHit:SetText(T{ "RECOIL PER SHOT: <right><percent(chanceToHit)>", chanceToHit = chanceToHit})
 		win.idChanceToHit.parent:SetZOrder(1)
+	elseif IsMod_loaded("N6rmtjQ") then
+		local sign = DCth_calculateModString(chanceToHit)
+		win.idChanceToHit:SetText(T{ "RECOIL PER SHOT: <right><style PDABrowserTextLightBold><value></style>", value = sign})
 	else
 		win.idChanceToHit:SetText(T{"RECOIL PER SHOT", chanceToHit = chanceToHit})
 		win.idChanceToHit.parent:SetZOrder(0)

@@ -5,13 +5,13 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.47a\n\nfixed selective fire recoil display bug",
+	'last_changes', "3.48\n\nFixed Descriptive CTH compatibility with newer versions\nAdded support for Descriptive CTH for recoil display\n\nfixed aim cost of recoil being half of what it should be. If you feel that is too much use the mod options to decrease it",
 	'dependencies', {},
 	'id', "cfahRED",
 	'author', "rato",
 	'version_major', 3,
-	'version_minor', 47,
-	'version', 10809,
+	'version_minor', 48,
+	'version', 10850,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -228,8 +228,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1714158370,
-	'code_hash', -2930860489678124163,
+	'saved', 1714347768,
+	'code_hash', 8091433581291851517,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "Caliber",

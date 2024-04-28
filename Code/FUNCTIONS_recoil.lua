@@ -38,7 +38,7 @@ function Unit:ApplyPersistantRecoilEffects(aim, action, weapon, attack_args)
 
 	--[[ 	print("aim_mul", aim_mul) ]]
 
-	local aim_cost = ((-recoil_value * 0.7 * aim_mul / 60.00) * (option_mul or 100)) / 100.0 -- cRoundDown(-recoil_value/20)--/2.0  ---51
+	local aim_cost = ((-recoil_value * 0.7 * aim_mul / 30.00) * (option_mul or 100)) / 100.0 -- cRoundDown(-recoil_value/20)--/2.0  ---51
 	local bolt_cost_adj = 0
 	if rat_canBolt(weapon) then
 		bolt_cost_adj = rat_get_manual_cyclingAP(self, weapon, true) * 0.6

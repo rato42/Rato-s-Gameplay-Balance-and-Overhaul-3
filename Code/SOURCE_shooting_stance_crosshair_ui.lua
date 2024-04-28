@@ -1,11 +1,13 @@
 ----- UI/CrosshairUI.lua
 ----- ok 1.5
 local function formatNumber(num)
-	if num == math.floor(num) and num ~= num + 0.5 then
-		return string.format("%d", num)
-	else
-		return tostring(num)
-	end
+    local integerPart = math.floor(num)
+    local fractionalPart = num - integerPart
+    if fractionalPart == 0 and fractionalPart ~= 0.5 then
+        return string.format("%d", num)
+    else
+        return tostring(num)
+    end
 end
 
 function redefine_crosshairUI_function()
@@ -286,7 +288,7 @@ function redefine_crosshairUI_function()
 			elseif IsMod_loaded("N6rmtjQ") and (DCth_LabelsOnBodyParts()) then
 				cth = cthTable[p.context.id]
 				if (cth) then
-					local stat = DCth_chooseInfoStat(attacker)
+					local stat = DCth_chooseLabelStat(attacker)
 					local label = DCth_calculateCthLabel(cth, stat)
 					p.idHitChance:SetText("<valign bottom +1>" .. label)
 				else
@@ -331,11 +333,16 @@ function redefine_crosshairUI_function()
 				prep = ap_extra .. "<style CrosshairAPTotal>+</style>"
 
 			end
+
 			local recoil = attacker:GetStatusEffect("Rat_recoil")
 			local aim_pen_string = ""
 			if recoil then
-				local aim_penalty = formatNumber(recoil:ResolveValue("aim_cost"))
-				aim_pen_string = "<scale 500><color AmmoAPColor>\nrecoil aim: +" .. aim_penalty .. " AP</color>"
+				local aim_penalty = recoil:ResolveValue("aim_cost")
+				--print("aim pen", aim_penalty)
+				if aim_penalty and aim_penalty >= 0.5 then
+					aim_penalty = formatNumber(aim_penalty)
+					aim_pen_string = "<scale 450><color AmmoAPColor>\naim: +" .. aim_penalty .. " AP</color>"
+				end
 			end
 
 			------------------------------------
