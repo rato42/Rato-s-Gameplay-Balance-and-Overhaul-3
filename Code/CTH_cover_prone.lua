@@ -79,7 +79,8 @@ function prone_cover()
 			
 		--------------------------------------------------------	
 		else
-			local target_h = target_pos:z() 
+			local target_pos = target_pos or target:GetPos()
+			local target_h = target_pos:z() or target_pos:SetTerrainZ():z()
 			local target_return_pos = target.return_pos_reserved or target.return_pos or false
 			if target_return_pos then -----------IsValidZ() 
 				target_return_pos = target_return_pos:SetZ(target_h)

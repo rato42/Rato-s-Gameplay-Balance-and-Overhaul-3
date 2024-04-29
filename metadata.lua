@@ -5,13 +5,13 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.48\n\nFixed Descriptive CTH compatibility with newer versions\nAdded support for Descriptive CTH for recoil display\n\nfixed aim cost of recoil being half of what it should be. If you feel that is too much use the mod options to decrease it",
+	'last_changes', "3.48a\n\nfixed explosive crafting interface\nsome small code improvements",
 	'dependencies', {},
 	'id', "cfahRED",
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 48,
-	'version', 10850,
+	'version', 10857,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -70,7 +70,6 @@ return PlaceObj('ModDef', {
 		"Code/FX_inherit.lua",
 		"Code/REACTIONS.lua",
 		"Code/RECIPE_craftable_new_calibers.lua",
-		"Code/RECIPE_he_recipe.lua",
 		"Code/SOURCE_ Unit_EnterCombat.lua",
 		"Code/SOURCE_AISignatureAction_MatchUnit.lua",
 		"Code/SOURCE_GetAutoFireShots.lua",
@@ -228,8 +227,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1714347768,
-	'code_hash', 8091433581291851517,
+	'saved', 1714419636,
+	'code_hash', -5820492407307878100,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "Caliber",

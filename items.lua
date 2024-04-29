@@ -1157,10 +1157,6 @@ return {
 		'CodeFileName', "Code/RECIPE_craftable_new_calibers.lua",
 	}),
 	PlaceObj('ModItemCode', {
-		'name', "RECIPE_he_recipe",
-		'CodeFileName', "Code/RECIPE_he_recipe.lua",
-	}),
-	PlaceObj('ModItemCode', {
 		'name', "SOURCE_ Unit:EnterCombat",
 		'CodeFileName', "Code/SOURCE_ Unit_EnterCombat.lua",
 	}),
