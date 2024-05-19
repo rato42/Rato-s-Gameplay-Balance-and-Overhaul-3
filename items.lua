@@ -362,7 +362,7 @@ return {
 					local ap_carried = Min(2000,target.ActionPoints)
 					local text_ap = MulDivRound(ap_carried, 1, const.Scale.AP)
 					if ap_carried > 950 then
-						if text_ap and text_ap > 0 then
+						if text_ap and text_ap > 0 and not R_IsAI(target) then
 							text_ap = "<scale 600>"  .. text_ap .. " AP reserved"
 							CreateFloatingText(target:GetPos(),  T(text_ap))
 						end
@@ -3496,7 +3496,7 @@ return {
 		'AdditionalHint', T(901243090653, --[[ModItemInventoryItemCompositeDef LionRoar AdditionalHint]] "<description_hints>\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> OUR weapon\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Burst fire has 4 shots\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Limited ammo capacity\n"),
 		'Cost', 3000,
 		'Caliber', "9mm",
-		'Damage', 18,
+		'Damage', 19,
 		'AimAccuracy', 4,
 		'MagazineSize', 20,
 		'PointBlankBonus', 1,
@@ -3565,7 +3565,7 @@ return {
 		'MaxStock', 4,
 		'CategoryPair', "SubmachineGuns",
 		'Caliber', "9mm",
-		'Damage', 17,
+		'Damage', 18,
 		'MagazineSize', 25,
 		'WeaponRange', 18,
 		'PointBlankBonus', 1,
@@ -3718,7 +3718,7 @@ return {
 		'CategoryPair', "SubmachineGuns",
 		'CanAppearStandard', false,
 		'Caliber', "9mm",
-		'Damage', 17,
+		'Damage', 18,
 		'AimAccuracy', 3,
 		'MagazineSize', 32,
 		'WeaponRange', 18,
@@ -3791,7 +3791,7 @@ return {
 		'RestockWeight', 50,
 		'CategoryPair', "SubmachineGuns",
 		'Caliber', "9mm",
-		'Damage', 18,
+		'Damage', 19,
 		'AimAccuracy', 4,
 		'MagazineSize', 15,
 		'PointBlankBonus', 1,
@@ -3919,7 +3919,7 @@ return {
 		'RestockWeight', 30,
 		'CategoryPair', "SubmachineGuns",
 		'Caliber', "9mm",
-		'Damage', 18,
+		'Damage', 19,
 		'AimAccuracy', 4,
 		'MagazineSize', 15,
 		'PointBlankBonus', 1,
@@ -4032,8 +4032,8 @@ return {
 		'CategoryPair', "Handguns",
 		'CanAppearStandard', false,
 		'Caliber', "9mm",
-		'Damage', 18,
-		'AimAccuracy', 3,
+		'Damage', 17,
+		'AimAccuracy', 4,
 		'MagazineSize', 13,
 		'WeaponRange', 16,
 		'PointBlankBonus', 1,

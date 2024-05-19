@@ -720,7 +720,7 @@ end]]
 
 function OnMsg.UnitDied(unit)
 	if unit then
-		local roll = unit:Random(100)
+		local roll = unit:Random(100) + 1
 		local chance = const.BaseDropChance.Ammo * 1.1
 		print("chance of drop", chance, "roll", roll)
 		if roll < chance then

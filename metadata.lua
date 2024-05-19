@@ -5,13 +5,13 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.48a\n\nfixed explosive crafting interface\nsome small code improvements",
+	'last_changes', "3.49\n\nshooting stance wont display reservedAP for AI, to prevent revealing their positions\nincreased damage of 9mm SMGs by 1\ndecreased Hipower damage by 1,increased aim by 1",
 	'dependencies', {},
 	'id', "cfahRED",
 	'author', "rato",
 	'version_major', 3,
-	'version_minor', 48,
-	'version', 10857,
+	'version_minor', 49,
+	'version', 10869,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -227,8 +227,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1714419636,
-	'code_hash', -5820492407307878100,
+	'saved', 1716149405,
+	'code_hash', 3767452466316679488,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "Caliber",

@@ -266,7 +266,7 @@ DefineClass.shooting_stance = {
 				local ap_carried = Min(2000,target.ActionPoints)
 				local text_ap = MulDivRound(ap_carried, 1, const.Scale.AP)
 				if ap_carried > 950 then
-					if text_ap and text_ap > 0 then
+					if text_ap and text_ap > 0 and not R_IsAI(target) then
 						text_ap = "<scale 600>"  .. text_ap .. " AP reserved"
 						CreateFloatingText(target:GetPos(),  T(text_ap))
 					end
