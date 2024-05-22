@@ -15,7 +15,7 @@ DefineClass._545x39_Subsonic = {
 	Description = T(994779027609, --[[ModItemInventoryItemCompositeDef _545x39_Subsonic Description]] "5.45x39 Subsonic Ammo for Soviet Assault Rifles."),
 	AdditionalHint = T(810426376068, --[[ModItemInventoryItemCompositeDef _545x39_Subsonic AdditionalHint]] "<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Less noisy\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128\n120> Less bullet speed, resulting in less Aim Accuracy, Range and no armor penetration\n"),
 	MaxStacks = 500,
-	Caliber = "545x39",
+	Caliber = "5_45x39",
 	Modifications = {
 		PlaceObj('CaliberModification', {
 			mod_add = 20,

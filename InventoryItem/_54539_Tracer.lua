@@ -16,10 +16,10 @@ DefineClass._54539_Tracer = {
 	Tier = 2,
 	MaxStock = 5,
 	RestockWeight = 25,
-	CategoryPair = "545x39",
+	CategoryPair = "5_45x39",
 	ShopStackSize = 30,
 	MaxStacks = 500,
-	Caliber = "545x39",
+	Caliber = "5_45x39",
 	Modifications = {
 		PlaceObj('CaliberModification', {
 			mod_add = 2,
