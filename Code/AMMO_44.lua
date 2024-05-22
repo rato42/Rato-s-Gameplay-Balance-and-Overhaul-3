@@ -244,7 +244,7 @@ function GBO_44()
         "Bleeding",
     }
 
-    -- _44CAL_Subsonic.lua
+    -- TODO _44CAL_Subsonic.lua
 
     -- TODO Shock Subsonic for and MAG and AMP 
 
