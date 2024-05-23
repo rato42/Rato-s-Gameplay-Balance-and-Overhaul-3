@@ -3,7 +3,7 @@
 function GBO_408_ChayTac()
 	print("GBO _408_ChayTac ...")
 
-	_408_ChayTac_AP.Cost = 180
+	_408_ChayTac_AP.Cost = 300
 	_408_ChayTac_AP.AdditionalHint = T({ "" }) -- TODO
 	_408_ChayTac_AP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -42,7 +42,7 @@ function GBO_408_ChayTac()
 	_408_ChayTac_AP.AppliedEffects = { -- TODO
 	}
 
-	_408_ChayTac_Basic.Cost = 90
+	_408_ChayTac_Basic.Cost = 150
 	_408_ChayTac_Basic.AdditionalHint = T({ "" }) -- TODO
 	_408_ChayTac_Basic.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -81,7 +81,7 @@ function GBO_408_ChayTac()
 	_408_ChayTac_Basic.AppliedEffects = { -- TODO
 	}
 
-	_408_ChayTac_HP.Cost = 180
+	_408_ChayTac_HP.Cost = 300
 	_408_ChayTac_HP.AdditionalHint = T({ "" }) -- TODO
 	_408_ChayTac_HP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -121,7 +121,7 @@ function GBO_408_ChayTac()
 		"Bleeding"
 	}
 
-	_408_ChayTac_Match.Cost = 180
+	_408_ChayTac_Match.Cost = 300
 	_408_ChayTac_Match.AdditionalHint = T({ "" }) -- TODO
 	_408_ChayTac_Match.Modifications = {
 		PlaceObj('CaliberModification', {

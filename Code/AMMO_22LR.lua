@@ -3,7 +3,7 @@
 function GBO_22LR()
 	print("GBO _22LR ...")
 
-	_22LR_AP.Cost = 180
+	_22LR_AP.Cost = 300
 	_22LR_AP.AdditionalHint = T({ "" }) -- TODO
 	_22LR_AP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -42,7 +42,7 @@ function GBO_22LR()
 	_22LR_AP.AppliedEffects = { -- TODO
 	}
 
-	_22LR_Basic.Cost = 90
+	_22LR_Basic.Cost = 150
 	_22LR_Basic.AdditionalHint = T({ "" }) -- TODO
 	_22LR_Basic.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -81,7 +81,7 @@ function GBO_22LR()
 	_22LR_Basic.AppliedEffects = { -- TODO
 	}
 
-	_22LR_HP.Cost = 180
+	_22LR_HP.Cost = 300
 	_22LR_HP.AdditionalHint = T({ "" }) -- TODO
 	_22LR_HP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -121,7 +121,7 @@ function GBO_22LR()
 		"Bleeding"
 	}
 
-	_22LR_Match.Cost = 180
+	_22LR_Match.Cost = 300
 	_22LR_Match.AdditionalHint = T({ "" }) -- TODO
 	_22LR_Match.Modifications = {
 		PlaceObj('CaliberModification', {

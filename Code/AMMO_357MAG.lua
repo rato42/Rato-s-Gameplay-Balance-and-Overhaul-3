@@ -3,7 +3,7 @@
 function GBO_357MAG()
 	print("GBO _357MAG ...")
 
-	_357MAG_AP.Cost = 180
+	_357MAG_AP.Cost = 300
 	_357MAG_AP.AdditionalHint = T({ "" }) -- TODO
 	_357MAG_AP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -42,7 +42,7 @@ function GBO_357MAG()
 	_357MAG_AP.AppliedEffects = { -- TODO
 	}
 
-	_357MAG_Basic.Cost = 90
+	_357MAG_Basic.Cost = 150
 	_357MAG_Basic.AdditionalHint = T({ "" }) -- TODO
 	_357MAG_Basic.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -81,7 +81,7 @@ function GBO_357MAG()
 	_357MAG_Basic.AppliedEffects = { -- TODO
 	}
 
-	_357MAG_HP.Cost = 180
+	_357MAG_HP.Cost = 300
 	_357MAG_HP.AdditionalHint = T({ "" }) -- TODO
 	_357MAG_HP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -121,7 +121,7 @@ function GBO_357MAG()
 		"Bleeding"
 	}
 
-	_357MAG_Match.Cost = 180
+	_357MAG_Match.Cost = 300
 	_357MAG_Match.AdditionalHint = T({ "" }) -- TODO
 	_357MAG_Match.Modifications = {
 		PlaceObj('CaliberModification', {

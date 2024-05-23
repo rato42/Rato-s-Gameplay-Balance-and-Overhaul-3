@@ -3,7 +3,7 @@
 function GBO_38SP()
 	print("GBO _38SP ...")
 
-	_38SP_AP.Cost = 180
+	_38SP_AP.Cost = 300
 	_38SP_AP.AdditionalHint = T({ "" }) -- TODO
 	_38SP_AP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -42,7 +42,7 @@ function GBO_38SP()
 	_38SP_AP.AppliedEffects = { -- TODO
 	}
 
-	_38SP_Basic.Cost = 90
+	_38SP_Basic.Cost = 150
 	_38SP_Basic.AdditionalHint = T({ "" }) -- TODO
 	_38SP_Basic.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -81,7 +81,7 @@ function GBO_38SP()
 	_38SP_Basic.AppliedEffects = { -- TODO
 	}
 
-	_38SP_HP.Cost = 180
+	_38SP_HP.Cost = 300
 	_38SP_HP.AdditionalHint = T({ "" }) -- TODO
 	_38SP_HP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -121,7 +121,7 @@ function GBO_38SP()
 		"Bleeding"
 	}
 
-	_38SP_Match.Cost = 180
+	_38SP_Match.Cost = 300
 	_38SP_Match.AdditionalHint = T({ "" }) -- TODO
 	_38SP_Match.Modifications = {
 		PlaceObj('CaliberModification', {

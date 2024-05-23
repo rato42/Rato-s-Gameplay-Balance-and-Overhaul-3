@@ -3,7 +3,7 @@
 function GBO_9x39()
 	print("GBO _9x39 ...")
 
-	_9x39_AP.Cost = 180
+	_9x39_AP.Cost = 300
 	_9x39_AP.AdditionalHint = T({ "" }) -- TODO
 	_9x39_AP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -42,7 +42,7 @@ function GBO_9x39()
 	_9x39_AP.AppliedEffects = { -- TODO
 	}
 
-	_9x39_Basic.Cost = 90
+	_9x39_Basic.Cost = 150
 	_9x39_Basic.AdditionalHint = T({ "" }) -- TODO
 	_9x39_Basic.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -81,7 +81,7 @@ function GBO_9x39()
 	_9x39_Basic.AppliedEffects = { -- TODO
 	}
 
-	_9x39_HP.Cost = 180
+	_9x39_HP.Cost = 300
 	_9x39_HP.AdditionalHint = T({ "" }) -- TODO
 	_9x39_HP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -121,7 +121,7 @@ function GBO_9x39()
 		"Bleeding"
 	}
 
-	_9x39_Match.Cost = 180
+	_9x39_Match.Cost = 300
 	_9x39_Match.AdditionalHint = T({ "" }) -- TODO
 	_9x39_Match.Modifications = {
 		PlaceObj('CaliberModification', {

@@ -3,7 +3,7 @@
 function GBO_308Win()
 	print("GBO _308Win ...")
 
-	_308Win_AP.Cost = 180
+	_308Win_AP.Cost = 300
 	_308Win_AP.AdditionalHint = T({ "" }) -- TODO
 	_308Win_AP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -42,7 +42,7 @@ function GBO_308Win()
 	_308Win_AP.AppliedEffects = { -- TODO
 	}
 
-	_308Win_Basic.Cost = 90
+	_308Win_Basic.Cost = 150
 	_308Win_Basic.AdditionalHint = T({ "" }) -- TODO
 	_308Win_Basic.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -81,7 +81,7 @@ function GBO_308Win()
 	_308Win_Basic.AppliedEffects = { -- TODO
 	}
 
-	_308Win_HP.Cost = 180
+	_308Win_HP.Cost = 300
 	_308Win_HP.AdditionalHint = T({ "" }) -- TODO
 	_308Win_HP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -121,7 +121,7 @@ function GBO_308Win()
 		"Bleeding"
 	}
 
-	_308Win_Match.Cost = 180
+	_308Win_Match.Cost = 300
 	_308Win_Match.AdditionalHint = T({ "" }) -- TODO
 	_308Win_Match.Modifications = {
 		PlaceObj('CaliberModification', {

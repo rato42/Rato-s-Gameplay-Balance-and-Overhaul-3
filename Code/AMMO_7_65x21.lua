@@ -3,7 +3,7 @@
 function GBO_7_65x21()
 	print("GBO _7_65x21 ...")
 
-	_7_65x21_AP.Cost = 180
+	_7_65x21_AP.Cost = 300
 	_7_65x21_AP.AdditionalHint = T({ "" }) -- TODO
 	_7_65x21_AP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -42,7 +42,7 @@ function GBO_7_65x21()
 	_7_65x21_AP.AppliedEffects = { -- TODO
 	}
 
-	_7_65x21_Basic.Cost = 90
+	_7_65x21_Basic.Cost = 150
 	_7_65x21_Basic.AdditionalHint = T({ "" }) -- TODO
 	_7_65x21_Basic.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -81,7 +81,7 @@ function GBO_7_65x21()
 	_7_65x21_Basic.AppliedEffects = { -- TODO
 	}
 
-	_7_65x21_HP.Cost = 180
+	_7_65x21_HP.Cost = 300
 	_7_65x21_HP.AdditionalHint = T({ "" }) -- TODO
 	_7_65x21_HP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -121,7 +121,7 @@ function GBO_7_65x21()
 		"Bleeding"
 	}
 
-	_7_65x21_Match.Cost = 180
+	_7_65x21_Match.Cost = 300
 	_7_65x21_Match.AdditionalHint = T({ "" }) -- TODO
 	_7_65x21_Match.Modifications = {
 		PlaceObj('CaliberModification', {

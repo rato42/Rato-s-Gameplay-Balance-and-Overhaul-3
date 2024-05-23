@@ -3,7 +3,7 @@
 function GBO_45ACP()
 	print("GBO _45ACP ...")
 
-	_45ACP_AP.Cost = 180
+	_45ACP_AP.Cost = 300
 	_45ACP_AP.AdditionalHint = T({ "" }) -- TODO
 	_45ACP_AP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -42,7 +42,7 @@ function GBO_45ACP()
 	_45ACP_AP.AppliedEffects = { -- TODO
 	}
 
-	_45ACP_Basic.Cost = 90
+	_45ACP_Basic.Cost = 150
 	_45ACP_Basic.AdditionalHint = T({ "" }) -- TODO
 	_45ACP_Basic.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -81,7 +81,7 @@ function GBO_45ACP()
 	_45ACP_Basic.AppliedEffects = { -- TODO
 	}
 
-	_45ACP_HP.Cost = 180
+	_45ACP_HP.Cost = 300
 	_45ACP_HP.AdditionalHint = T({ "" }) -- TODO
 	_45ACP_HP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -121,7 +121,7 @@ function GBO_45ACP()
 		"Bleeding"
 	}
 
-	_45ACP_Match.Cost = 180
+	_45ACP_Match.Cost = 300
 	_45ACP_Match.AdditionalHint = T({ "" }) -- TODO
 	_45ACP_Match.Modifications = {
 		PlaceObj('CaliberModification', {
