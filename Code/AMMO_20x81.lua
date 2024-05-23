@@ -3,7 +3,7 @@
 function GBO_20x81()
 	print("GBO _20x81 ...")
 
-	_20x81_Incendiary.Cost = 500
+	_20x81_Incendiary.Cost = 830
 	_20x81_Incendiary.AdditionalHint = T({ "" }) -- TODO
 	_20x81_Incendiary.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -44,7 +44,7 @@ function GBO_20x81()
 		"Revealed_R"
 	}
 
-	_20x82_Basic.Cost = 250
+	_20x82_Basic.Cost = 420
 	_20x82_Basic.AdditionalHint = T({ "" }) -- TODO
 	_20x82_Basic.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -83,7 +83,7 @@ function GBO_20x81()
 	_20x82_Basic.AppliedEffects = { -- TODO
 	}
 
-	_20x82_HE.Cost = 500
+	_20x82_HE.Cost = 830
 	_20x82_HE.AdditionalHint = T({ "" }) -- TODO
 	_20x82_HE.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -123,7 +123,7 @@ function GBO_20x81()
 		"Bleeding"
 	}
 
-	_20x82_SLAP.Cost = 500
+	_20x82_SLAP.Cost = 830
 	_20x82_SLAP.AdditionalHint = T({ "" }) -- TODO
 	_20x82_SLAP.Modifications = {
 		PlaceObj('CaliberModification', {

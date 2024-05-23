@@ -3,7 +3,7 @@
 function GBO_338_Lapua_Magnum()
 	print("GBO _338_Lapua_Magnum ...")
 
-	_338_Lapua_Magnum_AP.Cost = 180
+	_338_Lapua_Magnum_AP.Cost = 300
 	_338_Lapua_Magnum_AP.AdditionalHint = T({ "" }) -- TODO
 	_338_Lapua_Magnum_AP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -42,7 +42,7 @@ function GBO_338_Lapua_Magnum()
 	_338_Lapua_Magnum_AP.AppliedEffects = { -- TODO
 	}
 
-	_338_Lapua_Magnum_Basic.Cost = 90
+	_338_Lapua_Magnum_Basic.Cost = 150
 	_338_Lapua_Magnum_Basic.AdditionalHint = T({ "" }) -- TODO
 	_338_Lapua_Magnum_Basic.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -81,7 +81,7 @@ function GBO_338_Lapua_Magnum()
 	_338_Lapua_Magnum_Basic.AppliedEffects = { -- TODO
 	}
 
-	_338_Lapua_Magnum_HP.Cost = 180
+	_338_Lapua_Magnum_HP.Cost = 300
 	_338_Lapua_Magnum_HP.AdditionalHint = T({ "" }) -- TODO
 	_338_Lapua_Magnum_HP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -121,7 +121,7 @@ function GBO_338_Lapua_Magnum()
 		"Bleeding"
 	}
 
-	_338_Lapua_Magnum_Match.Cost = 180
+	_338_Lapua_Magnum_Match.Cost = 300
 	_338_Lapua_Magnum_Match.AdditionalHint = T({ "" }) -- TODO
 	_338_Lapua_Magnum_Match.Modifications = {
 		PlaceObj('CaliberModification', {

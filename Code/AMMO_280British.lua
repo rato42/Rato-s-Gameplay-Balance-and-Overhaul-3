@@ -3,7 +3,7 @@
 function GBO_280British()
 	print("GBO _280British ...")
 
-	_280British_AP.Cost = 180
+	_280British_AP.Cost = 300
 	_280British_AP.AdditionalHint = T({ "" }) -- TODO
 	_280British_AP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -42,7 +42,7 @@ function GBO_280British()
 	_280British_AP.AppliedEffects = { -- TODO
 	}
 
-	_280British_Basic.Cost = 90
+	_280British_Basic.Cost = 150
 	_280British_Basic.AdditionalHint = T({ "" }) -- TODO
 	_280British_Basic.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -81,7 +81,7 @@ function GBO_280British()
 	_280British_Basic.AppliedEffects = { -- TODO
 	}
 
-	_280British_HP.Cost = 180
+	_280British_HP.Cost = 300
 	_280British_HP.AdditionalHint = T({ "" }) -- TODO
 	_280British_HP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -121,7 +121,7 @@ function GBO_280British()
 		"Bleeding"
 	}
 
-	_280British_Match.Cost = 180
+	_280British_Match.Cost = 300
 	_280British_Match.AdditionalHint = T({ "" }) -- TODO
 	_280British_Match.Modifications = {
 		PlaceObj('CaliberModification', {

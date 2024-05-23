@@ -3,7 +3,7 @@
 function GBO_300Blackout()
 	print("GBO _300Blackout ...")
 
-	_300Blackout_AP.Cost = 180
+	_300Blackout_AP.Cost = 300
 	_300Blackout_AP.AdditionalHint = T({ "" }) -- TODO
 	_300Blackout_AP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -42,7 +42,7 @@ function GBO_300Blackout()
 	_300Blackout_AP.AppliedEffects = { -- TODO
 	}
 
-	_300Blackout_Basic.Cost = 90
+	_300Blackout_Basic.Cost = 150
 	_300Blackout_Basic.AdditionalHint = T({ "" }) -- TODO
 	_300Blackout_Basic.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -81,7 +81,7 @@ function GBO_300Blackout()
 	_300Blackout_Basic.AppliedEffects = { -- TODO
 	}
 
-	_300Blackout_HP.Cost = 180
+	_300Blackout_HP.Cost = 300
 	_300Blackout_HP.AdditionalHint = T({ "" }) -- TODO
 	_300Blackout_HP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -121,7 +121,7 @@ function GBO_300Blackout()
 		"Bleeding"
 	}
 
-	_300Blackout_Match.Cost = 180
+	_300Blackout_Match.Cost = 300
 	_300Blackout_Match.AdditionalHint = T({ "" }) -- TODO
 	_300Blackout_Match.Modifications = {
 		PlaceObj('CaliberModification', {

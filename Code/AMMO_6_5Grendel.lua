@@ -3,7 +3,7 @@
 function GBO_6_5Grendel()
 	print("GBO _6_5Grendel ...")
 
-	_6_5Grendel_AP.Cost = 180
+	_6_5Grendel_AP.Cost = 300
 	_6_5Grendel_AP.AdditionalHint = T({ "" }) -- TODO
 	_6_5Grendel_AP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -42,7 +42,7 @@ function GBO_6_5Grendel()
 	_6_5Grendel_AP.AppliedEffects = { -- TODO
 	}
 
-	_6_5Grendel_Basic.Cost = 90
+	_6_5Grendel_Basic.Cost = 150
 	_6_5Grendel_Basic.AdditionalHint = T({ "" }) -- TODO
 	_6_5Grendel_Basic.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -81,7 +81,7 @@ function GBO_6_5Grendel()
 	_6_5Grendel_Basic.AppliedEffects = { -- TODO
 	}
 
-	_6_5Grendel_HP.Cost = 180
+	_6_5Grendel_HP.Cost = 300
 	_6_5Grendel_HP.AdditionalHint = T({ "" }) -- TODO
 	_6_5Grendel_HP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -121,7 +121,7 @@ function GBO_6_5Grendel()
 		"Bleeding"
 	}
 
-	_6_5Grendel_Match.Cost = 180
+	_6_5Grendel_Match.Cost = 300
 	_6_5Grendel_Match.AdditionalHint = T({ "" }) -- TODO
 	_6_5Grendel_Match.Modifications = {
 		PlaceObj('CaliberModification', {

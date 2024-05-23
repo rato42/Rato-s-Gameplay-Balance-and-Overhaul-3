@@ -3,7 +3,7 @@
 function GBO_300WinMag()
 	print("GBO _300WinMag ...")
 
-	_300WinMag_AP.Cost = 180
+	_300WinMag_AP.Cost = 300
 	_300WinMag_AP.AdditionalHint = T({ "" }) -- TODO
 	_300WinMag_AP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -42,7 +42,7 @@ function GBO_300WinMag()
 	_300WinMag_AP.AppliedEffects = { -- TODO
 	}
 
-	_300WinMag_Basic.Cost = 90
+	_300WinMag_Basic.Cost = 150
 	_300WinMag_Basic.AdditionalHint = T({ "" }) -- TODO
 	_300WinMag_Basic.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -81,7 +81,7 @@ function GBO_300WinMag()
 	_300WinMag_Basic.AppliedEffects = { -- TODO
 	}
 
-	_300WinMag_HP.Cost = 180
+	_300WinMag_HP.Cost = 300
 	_300WinMag_HP.AdditionalHint = T({ "" }) -- TODO
 	_300WinMag_HP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -121,7 +121,7 @@ function GBO_300WinMag()
 		"Bleeding"
 	}
 
-	_300WinMag_Match.Cost = 180
+	_300WinMag_Match.Cost = 300
 	_300WinMag_Match.AdditionalHint = T({ "" }) -- TODO
 	_300WinMag_Match.Modifications = {
 		PlaceObj('CaliberModification', {

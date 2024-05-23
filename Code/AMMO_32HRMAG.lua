@@ -3,7 +3,7 @@
 function GBO_32HRMAG()
 	print("GBO _32HRMAG ...")
 
-	_32HRMAG_AP.Cost = 180
+	_32HRMAG_AP.Cost = 300
 	_32HRMAG_AP.AdditionalHint = T({ "" }) -- TODO
 	_32HRMAG_AP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -42,7 +42,7 @@ function GBO_32HRMAG()
 	_32HRMAG_AP.AppliedEffects = { -- TODO
 	}
 
-	_32HRMAG_Basic.Cost = 90
+	_32HRMAG_Basic.Cost = 150
 	_32HRMAG_Basic.AdditionalHint = T({ "" }) -- TODO
 	_32HRMAG_Basic.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -81,7 +81,7 @@ function GBO_32HRMAG()
 	_32HRMAG_Basic.AppliedEffects = { -- TODO
 	}
 
-	_32HRMAG_HP.Cost = 180
+	_32HRMAG_HP.Cost = 300
 	_32HRMAG_HP.AdditionalHint = T({ "" }) -- TODO
 	_32HRMAG_HP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -121,7 +121,7 @@ function GBO_32HRMAG()
 		"Bleeding"
 	}
 
-	_32HRMAG_Match.Cost = 180
+	_32HRMAG_Match.Cost = 300
 	_32HRMAG_Match.AdditionalHint = T({ "" }) -- TODO
 	_32HRMAG_Match.Modifications = {
 		PlaceObj('CaliberModification', {

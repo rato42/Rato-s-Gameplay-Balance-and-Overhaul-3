@@ -3,7 +3,7 @@
 function GBO_303()
 	print("GBO _303 ...")
 
-	_303_AP.Cost = 180
+	_303_AP.Cost = 300
 	_303_AP.AdditionalHint = T({ "" }) -- TODO
 	_303_AP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -42,7 +42,7 @@ function GBO_303()
 	_303_AP.AppliedEffects = { -- TODO
 	}
 
-	_303_Basic.Cost = 90
+	_303_Basic.Cost = 150
 	_303_Basic.AdditionalHint = T({ "" }) -- TODO
 	_303_Basic.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -81,7 +81,7 @@ function GBO_303()
 	_303_Basic.AppliedEffects = { -- TODO
 	}
 
-	_303_HP.Cost = 180
+	_303_HP.Cost = 300
 	_303_HP.AdditionalHint = T({ "" }) -- TODO
 	_303_HP.Modifications = {
 		PlaceObj('CaliberModification', {
@@ -121,7 +121,7 @@ function GBO_303()
 		"Bleeding"
 	}
 
-	_303_Match.Cost = 180
+	_303_Match.Cost = 300
 	_303_Match.AdditionalHint = T({ "" }) -- TODO
 	_303_Match.Modifications = {
 		PlaceObj('CaliberModification', {
