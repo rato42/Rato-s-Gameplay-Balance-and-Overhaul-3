@@ -1,7 +1,8 @@
 -- ========== 9×19mm Parabellum [Vanilla 9mm] [9mm Nato] ==========
+-- = Group 2: Standard Service and Self-Defense Pistols =
 
 function GBO_9x19()
-    print("GBO 9x19 ...")
+    print("GBO 9x19 9×19mm Parabellum [Vanilla 9mm] ...")
 
     _9mm_AP.Cost = 120
     _9mm_AP.AdditionalHint = T({ "<bullet_point> Improved armor penetration\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil" })
@@ -134,7 +135,7 @@ function GBO_9x19()
         "Revealed_R",
     }
 
-    print("GBO 9x19 DONE")
+    print("GBO 9x19 9×19mm Parabellum [Vanilla 9mm] DONE")
 end
 
 OnMsg.ClassesGenerate = GBO_9x19
