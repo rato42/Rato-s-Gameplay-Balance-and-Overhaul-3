@@ -5,7 +5,7 @@ function GBO_762x39()
 
     _762WP_AP.Cost = 180
     _762WP_AP.AdditionalHint = T({
-        "<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Improved armor penetration\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Decreased Critical Damage\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Increased recoil" })
+        "<bullet_point> Improved armor penetration\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil" })
     _762WP_AP.Modifications = {
         PlaceObj('CaliberModification', {
             mod_add = 3,
@@ -39,7 +39,7 @@ function GBO_762x39()
 
     _762WP_HP.Cost = 180
     _762WP_HP.AdditionalHint = T({
-        "<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> No armor penetration\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> High Critical Damage\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Inflicts <color EmStyle>Bleeding</color> " })
+        "<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color> " })
     _762WP_HP.Modifications = {
         PlaceObj('CaliberModification', {
             mod_add = 50,
@@ -60,7 +60,7 @@ function GBO_762x39()
 
     _762WP_Match.Cost = 240
     _762WP_Match.AdditionalHint = T({
-        "<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Increased bonus from Aiming\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Increased range\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Increased Critical Chance scaling" })
+        "<bullet_point> Increased bonus from Aiming\n<bullet_point> Increased range\n<bullet_point> Increased Critical Chance scaling" })
     _762WP_Match.Modifications = {
         PlaceObj('CaliberModification', {
             mod_add = 1,
@@ -86,7 +86,7 @@ function GBO_762x39()
 
     _762WP_Tracer.Cost = 180
     _762WP_Tracer.AdditionalHint = T({
-        "<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Hit enemies are <color EmStyle>Marked</color> \n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Easier to compensate recoil in multishot attacks" })
+        "<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks" })
     _762WP_Tracer.Modifications = {
         PlaceObj('CaliberModification', {
             mod_add = 1,
