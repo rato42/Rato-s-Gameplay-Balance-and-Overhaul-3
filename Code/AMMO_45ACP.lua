@@ -1,7 +1,9 @@
 -- ========== .45 ACP ==========
+-- = Group 2: Standard Service and Self-Defense Pistols =
+-- Delivers substantial energy on target. CritDamage+2, CritChance+1
 
 function GBO_45ACP()
-	print("GBO _45ACP ...")
+	print("GBO _45ACP .45 ACP ...")
 
 	_45ACP_AP.Cost = 190
 	_45ACP_AP.AdditionalHint = T({ "<bullet_point> Improved armor penetration\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil" })
@@ -11,8 +13,12 @@ function GBO_45ACP()
 			target_prop = "PenetrationClass",
 		}),
 		PlaceObj('CaliberModification', {
-			mod_add = -20,
+			mod_add = -18,
 			target_prop = "CritDamage",
+		}),
+		PlaceObj('CaliberModification', {
+			mod_add = 1,
+			target_prop = "CritChance",
 		}),
 		PlaceObj('CaliberModification', {
 			mod_add = 17,
@@ -30,14 +36,26 @@ function GBO_45ACP()
 			mod_add = 17,
 			target_prop = "Noise",
 		}),
+		PlaceObj('CaliberModification', {
+			mod_add = 2,
+			target_prop = "CritDamage",
+		}),
+		PlaceObj('CaliberModification', {
+			mod_add = 1,
+			target_prop = "CritChance",
+		}),
 	}
 
 	_45ACP_HP.Cost = 190
 	_45ACP_HP.AdditionalHint = T({ "<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>" })
 	_45ACP_HP.Modifications = {
 		PlaceObj('CaliberModification', {
-			mod_add = 50,
+			mod_add = 52,
 			target_prop = "CritDamage",
+		}),
+		PlaceObj('CaliberModification', {
+			mod_add = 1,
+			target_prop = "CritChance",
 		}),
 		PlaceObj('CaliberModification', {
 			mod_add = -4,
@@ -68,13 +86,21 @@ function GBO_45ACP()
 			target_prop = "CritChanceScaled",
 		}),
 		PlaceObj('CaliberModification', {
+			mod_add = 2,
+			target_prop = "CritDamage",
+		}),
+		PlaceObj('CaliberModification', {
+			mod_add = 1,
+			target_prop = "CritChance",
+		}),
+		PlaceObj('CaliberModification', {
 			mod_add = 17,
 			target_prop = "Noise",
 		}),
 	}
 	_45ACP_Match.AppliedEffects = {}
 
-	print("GBO _45ACP DONE")
+	print("GBO _45ACP .45 ACP DONE")
 end
 
 OnMsg.ClassesGenerate = GBO_45ACP
