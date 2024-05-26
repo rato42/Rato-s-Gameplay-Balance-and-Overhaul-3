@@ -1,6 +1,6 @@
 -- ========== .50 AE ==========
 -- = Group 4: Magnum and Large Caliber Pistols =
--- CritChance+3 CritDamage+2
+-- CritDamage+4 CritChance+2
 
 function GBO_50AE()
 	print("GBO _50AE .50 AE ...")
@@ -13,7 +13,7 @@ function GBO_50AE()
 			target_prop = "PenetrationClass",
 		}),
 		PlaceObj('CaliberModification', {
-			mod_add = -18,
+			mod_add = -16,
 			target_prop = "CritDamage",
 		}),
 		PlaceObj('CaliberModification', {
@@ -25,7 +25,7 @@ function GBO_50AE()
 			target_prop = "ArmorPir",
 		}),
 		PlaceObj('CaliberModification', {
-			mod_add = 3,
+			mod_add = 2,
 			target_prop = "CritChance",
 		}),
 	}
@@ -37,11 +37,11 @@ function GBO_50AE()
 			target_prop = "Noise",
 		}),
 		PlaceObj('CaliberModification', {
-			mod_add = 3,
+			mod_add = 2,
 			target_prop = "CritChance",
 		}),
 		PlaceObj('CaliberModification', {
-			mod_add = 2,
+			mod_add = 4,
 			target_prop = "CritDamage",
 		}),
 	}
@@ -50,7 +50,7 @@ function GBO_50AE()
 	_50AE_HP.AdditionalHint = T({ "<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>" })
 	_50AE_HP.Modifications = {
 		PlaceObj('CaliberModification', {
-			mod_add = 52,
+			mod_add = 54,
 			target_prop = "CritDamage",
 		}),
 		PlaceObj('CaliberModification', {
@@ -62,7 +62,7 @@ function GBO_50AE()
 			target_prop = "Noise",
 		}),
 		PlaceObj('CaliberModification', {
-			mod_add = 3,
+			mod_add = 2,
 			target_prop = "CritChance",
 		}),
 	}
@@ -90,11 +90,11 @@ function GBO_50AE()
 			target_prop = "Noise",
 		}),
 		PlaceObj('CaliberModification', {
-			mod_add = 3,
+			mod_add = 2,
 			target_prop = "CritChance",
 		}),
 		PlaceObj('CaliberModification', {
-			mod_add = 2,
+			mod_add = 4,
 			target_prop = "CritDamage",
 		}),
 	}

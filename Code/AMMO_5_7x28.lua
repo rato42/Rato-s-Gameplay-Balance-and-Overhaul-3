@@ -1,166 +1,84 @@
--- ========== _5_7x28 ==========
+-- ========== 5.7x28mm ==========
+-- = Group 3: High-Velocity Small Calibers =
+-- CritChance+1
 
 function GBO_5_7x28()
-	print("GBO _5_7x28 ...")
+	print("GBO _5_7x28 5.7x28mm ...")
 
 	_5_7x28_AP.Cost = 300
-	_5_7x28_AP.AdditionalHint = T({ "" }) -- TODO
+	_5_7x28_AP.AdditionalHint = T({ "<bullet_point> Improved armor penetration\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil" })
 	_5_7x28_AP.Modifications = {
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "AimAccuracy",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "ArmorPir",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "CritChance",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "CritChanceScaled",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "CritDamage",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "Noise",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "PenetrationClass",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "WeaponRange",
-		}),
-	}
-	_5_7x28_AP.AppliedEffects = { -- TODO
+        PlaceObj('CaliberModification', {
+            mod_add = 2,
+            target_prop = "PenetrationClass",
+        }),
+        PlaceObj('CaliberModification', {
+            mod_add = -20,
+            target_prop = "CritDamage",
+        }),
+        PlaceObj('CaliberModification', {
+            mod_add = 15,
+            target_prop = "Noise",
+        }),
+        PlaceObj('CaliberModification', {
+            mod_add = 1,
+            target_prop = "ArmorPir",
+        }),
 	}
 
 	_5_7x28_Basic.Cost = 150
-	_5_7x28_Basic.AdditionalHint = T({ "" }) -- TODO
 	_5_7x28_Basic.Modifications = {
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "AimAccuracy",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "ArmorPir",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "CritChance",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "CritChanceScaled",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "CritDamage",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "Noise",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "PenetrationClass",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "WeaponRange",
-		}),
-	}
-	_5_7x28_Basic.AppliedEffects = { -- TODO
+        PlaceObj('CaliberModification', {
+            mod_add = 15,
+            target_prop = "Noise",
+        }),
 	}
 
 	_5_7x28_HP.Cost = 300
-	_5_7x28_HP.AdditionalHint = T({ "" }) -- TODO
+	_5_7x28_HP.AdditionalHint = T({
+        "<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>" })
 	_5_7x28_HP.Modifications = {
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "AimAccuracy",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "ArmorPir",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "CritChance",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "CritChanceScaled",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "CritDamage",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "Noise",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "PenetrationClass",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "WeaponRange",
-		}),
+        PlaceObj('CaliberModification', {
+            mod_add = 50,
+            target_prop = "CritDamage",
+        }),
+        PlaceObj('CaliberModification', {
+            mod_add = -4,
+            target_prop = "PenetrationClass",
+        }),
+        PlaceObj('CaliberModification', {
+            mod_add = 15,
+            target_prop = "Noise",
+        }),
 	}
-	_5_7x28_HP.AppliedEffects = { -- TODO
+	_5_7x28_HP.AppliedEffects = 
 		"Bleeding"
 	}
 
 	_5_7x28_Match.Cost = 300
-	_5_7x28_Match.AdditionalHint = T({ "" }) -- TODO
+	_5_7x28_Match.AdditionalHint = T({
+        "<bullet_point> Increased bonus from Aiming\n<bullet_point> Increased range\n<bullet_point> Increased Critical Chance scaling" })
 	_5_7x28_Match.Modifications = {
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "AimAccuracy",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "ArmorPir",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "CritChance",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "CritChanceScaled",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "CritDamage",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "Noise",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "PenetrationClass",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 0, -- TODO
-			target_prop = "WeaponRange",
-		}),
+        PlaceObj('CaliberModification', {
+            mod_add = 2,
+            target_prop = "AimAccuracy",
+        }),
+        PlaceObj('CaliberModification', {
+            mod_add = 2,
+            target_prop = "WeaponRange",
+        }),
+        PlaceObj('CaliberModification', {
+            mod_add = 10,
+            target_prop = "CritChanceScaled",
+        }),
+        PlaceObj('CaliberModification', {
+            mod_add = 15,
+            target_prop = "Noise",
+        }),
 	}
-	_5_7x28_Match.AppliedEffects = { -- TODO
-	}
+	_5_7x28_Match.AppliedEffects = {}
 
-	print("GBO _5_7x28 DONE")
+	print("GBO _5_7x28 5.7x28mm DONE")
 end
 
 OnMsg.ClassesGenerate = GBO_5_7x28

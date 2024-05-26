@@ -1,6 +1,6 @@
 -- ========== .44 [Vanilla 44CAL] ==========
 -- = Group 4: Magnum and Large Caliber Pistols =
--- CritChance+2
+-- CritDamage+2
 
 function GBO_44CAL()
     print("GBO .44CAL .44 [Vanilla 44CAL] ...")
@@ -13,7 +13,7 @@ function GBO_44CAL()
             target_prop = "PenetrationClass",
         }),
         PlaceObj('CaliberModification', {
-            mod_add = -20,
+            mod_add = -18,
             target_prop = "CritDamage",
         }),
         PlaceObj('CaliberModification', {
@@ -24,10 +24,6 @@ function GBO_44CAL()
             mod_add = 1,
             target_prop = "ArmorPir",
         }),
-		PlaceObj('CaliberModification', {
-			mod_add = 2,
-			target_prop = "CritChance",
-		}),
     }
     _44CAL_AP.AppliedEffects = {}
 
@@ -39,7 +35,7 @@ function GBO_44CAL()
         }),
 		PlaceObj('CaliberModification', {
 			mod_add = 2,
-			target_prop = "CritChance",
+			target_prop = "CritDamage",
 		}),
     }
     _44CAL_Basic.AppliedEffects = {}
@@ -48,7 +44,7 @@ function GBO_44CAL()
     _44CAL_HP.AdditionalHint = T({ "<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>" })
     _44CAL_HP.Modifications = {
         PlaceObj('CaliberModification', {
-            mod_add = 50,
+            mod_add = 52,
             target_prop = "CritDamage",
         }),
         PlaceObj('CaliberModification', {
@@ -59,10 +55,6 @@ function GBO_44CAL()
             mod_add = 19,
             target_prop = "Noise",
         }),
-		PlaceObj('CaliberModification', {
-			mod_add = 2,
-			target_prop = "CritChance",
-		}),
     }
     _44CAL_HP.AppliedEffects = {
         "Bleeding",
@@ -89,7 +81,7 @@ function GBO_44CAL()
         }),
 		PlaceObj('CaliberModification', {
 			mod_add = 2,
-			target_prop = "CritChance",
+			target_prop = "CritDamage",
 		}),
     }
     _44CAL_Match.AppliedEffects = {}
@@ -99,7 +91,7 @@ function GBO_44CAL()
         "<bullet_point> Reduced range\n<bullet_point> No armor penetration\n<bullet_point> Greater Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>" })
     _44CAL_Shock.Modifications = {
         PlaceObj('CaliberModification', {
-            mod_add = 70,
+            mod_add = 72,
             target_prop = "CritDamage",
         }),
         PlaceObj('CaliberModification', {
@@ -110,10 +102,6 @@ function GBO_44CAL()
             mod_add = 19,
             target_prop = "Noise",
         }),
-		PlaceObj('CaliberModification', {
-			mod_add = 2,
-			target_prop = "CritChance",
-		}),
     }
     _44CAL_Shock.AppliedEffects = {
         "Bleeding",
