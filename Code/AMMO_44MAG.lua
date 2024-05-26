@@ -1,6 +1,6 @@
 -- ========== .44 Magnum(Revolvers) ==========
 -- = Group 4: Magnum and Large Caliber Pistols =
--- CritChance+2
+-- CritDamage+2
 
 function GBO_44MAG()
     print("GBO .44MAG .44 Magnum ...")
@@ -13,7 +13,7 @@ function GBO_44MAG()
             target_prop = "PenetrationClass",
         }),
         PlaceObj('CaliberModification', {
-            mod_add = -20,
+            mod_add = -18,
             target_prop = "CritDamage",
         }),
         PlaceObj('CaliberModification', {
@@ -24,10 +24,6 @@ function GBO_44MAG()
             mod_add = 1,
             target_prop = "ArmorPir",
         }),
-		PlaceObj('CaliberModification', {
-			mod_add = 2,
-			target_prop = "CritChance",
-		}),
     }
     _44MAG_AP.AppliedEffects = {}
 
@@ -39,7 +35,7 @@ function GBO_44MAG()
         }),
 		PlaceObj('CaliberModification', {
 			mod_add = 2,
-			target_prop = "CritChance",
+			target_prop = "CritDamage",
 		}),
     }
     _44MAG_Basic.AppliedEffects = {}
@@ -49,7 +45,7 @@ function GBO_44MAG()
     _44MAG_HP.AdditionalHint = T({ "<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>" })
     _44MAG_HP.Modifications = {
         PlaceObj('CaliberModification', {
-            mod_add = 50,
+            mod_add = 52,
             target_prop = "CritDamage",
         }),
         PlaceObj('CaliberModification', {
@@ -60,10 +56,6 @@ function GBO_44MAG()
             mod_add = 19,
             target_prop = "Noise",
         }),
-		PlaceObj('CaliberModification', {
-			mod_add = 2,
-			target_prop = "CritChance",
-		}),
     }
     _44MAG_HP.AppliedEffects = {
         "Bleeding",
@@ -90,7 +82,7 @@ function GBO_44MAG()
         }),
 		PlaceObj('CaliberModification', {
 			mod_add = 2,
-			target_prop = "CritChance",
+			target_prop = "CritDamage",
 		}),
     }
     _44MAG_Match.AppliedEffects = {}

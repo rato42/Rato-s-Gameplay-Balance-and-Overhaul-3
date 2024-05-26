@@ -1,6 +1,6 @@
 -- ========== .32 HR Magnum ==========
 -- = Group 4: Magnum and Large Caliber Pistols =
--- CritChance+1
+-- CritDamage+1
 
 function GBO_32HRMAG()
 	print("GBO _32HRMAG .32 HR Magnum ...")
@@ -13,7 +13,7 @@ function GBO_32HRMAG()
 			target_prop = "PenetrationClass",
 		}),
 		PlaceObj('CaliberModification', {
-			mod_add = -20,
+			mod_add = -19,
 			target_prop = "CritDamage",
 		}),
 		PlaceObj('CaliberModification', {
@@ -23,10 +23,6 @@ function GBO_32HRMAG()
 		PlaceObj('CaliberModification', {
 			mod_add = 1,
 			target_prop = "ArmorPir",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 1,
-			target_prop = "CritChance",
 		}),
 	}
 
@@ -38,7 +34,7 @@ function GBO_32HRMAG()
 		}),
 		PlaceObj('CaliberModification', {
 			mod_add = 1,
-			target_prop = "CritChance",
+			target_prop = "CritDamage",
 		}),
 	}
 
@@ -46,7 +42,7 @@ function GBO_32HRMAG()
 	_32HRMAG_HP.AdditionalHint = T({ "<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>" })
 	_32HRMAG_HP.Modifications = {
 		PlaceObj('CaliberModification', {
-			mod_add = 50,
+			mod_add = 51,
 			target_prop = "CritDamage",
 		}),
 		PlaceObj('CaliberModification', {
@@ -56,10 +52,6 @@ function GBO_32HRMAG()
 		PlaceObj('CaliberModification', {
 			mod_add = 18,
 			target_prop = "Noise",
-		}),
-		PlaceObj('CaliberModification', {
-			mod_add = 1,
-			target_prop = "CritChance",
 		}),
 	}
 	_32HRMAG_HP.AppliedEffects = {
@@ -87,7 +79,7 @@ function GBO_32HRMAG()
 		}),
 		PlaceObj('CaliberModification', {
 			mod_add = 1,
-			target_prop = "CritChance",
+			target_prop = "CritDamage",
 		}),
 	}
 	_32HRMAG_Match.AppliedEffects = {}
