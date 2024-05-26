@@ -1,6 +1,6 @@
 -- ========== 5.7x28mm ==========
 -- = Group 3: High-Velocity Small Calibers =
--- CritChance+1
+-- CritChance+1 CritDamage-1
 
 function GBO_5_7x28()
 	print("GBO _5_7x28 5.7x28mm ...")
@@ -13,25 +13,37 @@ function GBO_5_7x28()
             target_prop = "PenetrationClass",
         }),
         PlaceObj('CaliberModification', {
-            mod_add = -20,
+            mod_add = -21,
             target_prop = "CritDamage",
         }),
         PlaceObj('CaliberModification', {
-            mod_add = 15,
+            mod_add = 16,
             target_prop = "Noise",
         }),
         PlaceObj('CaliberModification', {
             mod_add = 1,
             target_prop = "ArmorPir",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 1,
+			target_prop = "CritChance",
+		}),
 	}
 
 	_5_7x28_Basic.Cost = 150
 	_5_7x28_Basic.Modifications = {
         PlaceObj('CaliberModification', {
-            mod_add = 15,
+            mod_add = 16,
             target_prop = "Noise",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 1,
+			target_prop = "CritChance",
+		}),
+		PlaceObj('CaliberModification', {
+			mod_add = -1,
+			target_prop = "CritDamage",
+		}),
 	}
 
 	_5_7x28_HP.Cost = 300
@@ -39,7 +51,7 @@ function GBO_5_7x28()
         "<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>" })
 	_5_7x28_HP.Modifications = {
         PlaceObj('CaliberModification', {
-            mod_add = 50,
+            mod_add = 49,
             target_prop = "CritDamage",
         }),
         PlaceObj('CaliberModification', {
@@ -47,9 +59,13 @@ function GBO_5_7x28()
             target_prop = "PenetrationClass",
         }),
         PlaceObj('CaliberModification', {
-            mod_add = 15,
+            mod_add = 16,
             target_prop = "Noise",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 1,
+			target_prop = "CritChance",
+		}),
 	}
 	_5_7x28_HP.AppliedEffects = 
 		"Bleeding"
@@ -72,9 +88,17 @@ function GBO_5_7x28()
             target_prop = "CritChanceScaled",
         }),
         PlaceObj('CaliberModification', {
-            mod_add = 15,
+            mod_add = 16,
             target_prop = "Noise",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 1,
+			target_prop = "CritChance",
+		}),
+		PlaceObj('CaliberModification', {
+			mod_add = -1,
+			target_prop = "CritDamage",
+		}),
 	}
 	_5_7x28_Match.AppliedEffects = {}
 
