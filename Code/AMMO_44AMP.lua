@@ -1,7 +1,9 @@
 -- ========== .44 AMP(Auto Magnum Pistol) ==========
+-- = Group 4: Magnum and Large Caliber Pistols =
+-- CritChance+2
 
 function GBO_44AMP()
-    print("GBO .44AMP ...")
+    print("GBO .44AMP .44 AMP ...")
 
     _44AMP_AP.Cost = 200
     _44AMP_AP.AdditionalHint = T({ "<bullet_point> Improved armor penetration\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil" })
@@ -15,22 +17,30 @@ function GBO_44AMP()
             target_prop = "CritDamage",
         }),
         PlaceObj('CaliberModification', {
-            mod_add = 18,
+            mod_add = 19,
             target_prop = "Noise",
         }),
         PlaceObj('CaliberModification', {
             mod_add = 1,
             target_prop = "ArmorPir",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 2,
+			target_prop = "CritChance",
+		}),
     }
     _44AMP_AP.AppliedEffects = {}
 
     _44AMP_Basic.Cost = 100
     _44AMP_Basic.Modifications = {
         PlaceObj('CaliberModification', {
-            mod_add = 18,
+            mod_add = 19,
             target_prop = "Noise",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 2,
+			target_prop = "CritChance",
+		}),
     }
     _44AMP_Basic.AppliedEffects = {}
 
@@ -46,9 +56,13 @@ function GBO_44AMP()
             target_prop = "PenetrationClass",
         }),
         PlaceObj('CaliberModification', {
-            mod_add = 18,
+            mod_add = 19,
             target_prop = "Noise",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 2,
+			target_prop = "CritChance",
+		}),
     }
     _44AMP_HP.AppliedEffects = {
         "Bleeding",
@@ -70,15 +84,19 @@ function GBO_44AMP()
             target_prop = "CritChanceScaled",
         }),
         PlaceObj('CaliberModification', {
-            mod_add = 18,
+            mod_add = 19,
             target_prop = "Noise",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 2,
+			target_prop = "CritChance",
+		}),
     }
     _44AMP_Match.AppliedEffects = {}
 
     -- TODO Shock Subsonic AMP
 
-    print("GBO .44AMP DONE")
+    print("GBO .44AMP .44 AMP DONE")
 end
 
 OnMsg.ClassesGenerate = GBO_44AMP

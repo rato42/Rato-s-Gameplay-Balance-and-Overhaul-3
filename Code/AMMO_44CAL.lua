@@ -1,7 +1,9 @@
 -- ========== .44 [Vanilla 44CAL] ==========
+-- = Group 4: Magnum and Large Caliber Pistols =
+-- CritChance+2
 
 function GBO_44CAL()
-    print("GBO .44CAL ...")
+    print("GBO .44CAL .44 [Vanilla 44CAL] ...")
 
     _44CAL_AP.Cost = 200
     _44CAL_AP.AdditionalHint = T({ "<bullet_point> Improved armor penetration\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil" })
@@ -15,22 +17,30 @@ function GBO_44CAL()
             target_prop = "CritDamage",
         }),
         PlaceObj('CaliberModification', {
-            mod_add = 18,
+            mod_add = 19,
             target_prop = "Noise",
         }),
         PlaceObj('CaliberModification', {
             mod_add = 1,
             target_prop = "ArmorPir",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 2,
+			target_prop = "CritChance",
+		}),
     }
     _44CAL_AP.AppliedEffects = {}
 
     _44CAL_Basic.Cost = 100
     _44CAL_Basic.Modifications = {
         PlaceObj('CaliberModification', {
-            mod_add = 18,
+            mod_add = 19,
             target_prop = "Noise",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 2,
+			target_prop = "CritChance",
+		}),
     }
     _44CAL_Basic.AppliedEffects = {}
 
@@ -46,9 +56,13 @@ function GBO_44CAL()
             target_prop = "PenetrationClass",
         }),
         PlaceObj('CaliberModification', {
-            mod_add = 18,
+            mod_add = 19,
             target_prop = "Noise",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 2,
+			target_prop = "CritChance",
+		}),
     }
     _44CAL_HP.AppliedEffects = {
         "Bleeding",
@@ -70,9 +84,13 @@ function GBO_44CAL()
             target_prop = "CritChanceScaled",
         }),
         PlaceObj('CaliberModification', {
-            mod_add = 18,
+            mod_add = 19,
             target_prop = "Noise",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 2,
+			target_prop = "CritChance",
+		}),
     }
     _44CAL_Match.AppliedEffects = {}
 
@@ -89,9 +107,13 @@ function GBO_44CAL()
             target_prop = "WeaponRange",
         }),
         PlaceObj('CaliberModification', {
-            mod_add = 18,
+            mod_add = 19,
             target_prop = "Noise",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 2,
+			target_prop = "CritChance",
+		}),
     }
     _44CAL_Shock.AppliedEffects = {
         "Bleeding",
@@ -99,7 +121,7 @@ function GBO_44CAL()
 
     -- TODO _44CAL_Subsonic.lua
 
-    print("GBO .44CAL DONE")
+    print("GBO .44CAL .44 [Vanilla 44CAL] DONE")
 end
 
 OnMsg.ClassesGenerate = GBO_44CAL

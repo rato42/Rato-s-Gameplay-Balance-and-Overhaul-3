@@ -1,7 +1,9 @@
 -- ========== .44 Magnum(Revolvers) ==========
+-- = Group 4: Magnum and Large Caliber Pistols =
+-- CritChance+2
 
 function GBO_44MAG()
-    print("GBO .44MAG ...")
+    print("GBO .44MAG .44 Magnum ...")
 
     _44MAG_AP.Cost = 200
     _44MAG_AP.AdditionalHint = T({ "<bullet_point> Improved armor penetration\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil" })
@@ -15,22 +17,30 @@ function GBO_44MAG()
             target_prop = "CritDamage",
         }),
         PlaceObj('CaliberModification', {
-            mod_add = 18,
+            mod_add = 19,
             target_prop = "Noise",
         }),
         PlaceObj('CaliberModification', {
             mod_add = 1,
             target_prop = "ArmorPir",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 2,
+			target_prop = "CritChance",
+		}),
     }
     _44MAG_AP.AppliedEffects = {}
 
     _44MAG_Basic.Cost = 100
     _44MAG_Basic.Modifications = {
         PlaceObj('CaliberModification', {
-            mod_add = 18,
+            mod_add = 19,
             target_prop = "Noise",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 2,
+			target_prop = "CritChance",
+		}),
     }
     _44MAG_Basic.AppliedEffects = {}
 
@@ -47,9 +57,13 @@ function GBO_44MAG()
             target_prop = "PenetrationClass",
         }),
         PlaceObj('CaliberModification', {
-            mod_add = 18,
+            mod_add = 19,
             target_prop = "Noise",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 2,
+			target_prop = "CritChance",
+		}),
     }
     _44MAG_HP.AppliedEffects = {
         "Bleeding",
@@ -71,15 +85,19 @@ function GBO_44MAG()
             target_prop = "CritChanceScaled",
         }),
         PlaceObj('CaliberModification', {
-            mod_add = 18,
+            mod_add = 19,
             target_prop = "Noise",
         }),
+		PlaceObj('CaliberModification', {
+			mod_add = 2,
+			target_prop = "CritChance",
+		}),
     }
     _44MAG_Match.AppliedEffects = {}
 
     -- TODO Shock Subsonic MAG
 
-    print("GBO .44MAG DONE")
+    print("GBO .44MAG .44 Magnum DONE")
 end
 
 OnMsg.ClassesGenerate = GBO_44MAG
