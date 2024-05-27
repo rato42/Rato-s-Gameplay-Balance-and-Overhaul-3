@@ -6,7 +6,12 @@ return PlaceObj('ModDef', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
 	'last_changes', "3.49\n\nshooting stance wont display reservedAP for AI, to prevent revealing their positions\nincreased damage of 9mm SMGs by 1\ndecreased Hipower damage by 1,increased aim by 1",
-	'dependencies', {},
+	'dependencies', {
+		PlaceObj('ModDependency', {
+			'id', "Tc3ajdY",
+			'title', "Zulib Weapons Core",
+		}),
+	},
 	'id', "cfahRED",
 	'author', "rato",
 	'version_major', 3,
