@@ -10,7 +10,7 @@ function GBO_545x39()
 		"5.45x39 mm ammo for Soviet Assault Rifles, SMGs and Machine Guns.",
 	})
 	_5_45x39_AP.AdditionalHint = T({
-		"<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Tumbling effects increase Critical Chance\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Improved armor penetration\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Decreased Critical Damage\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Increased recoil",
+		"<bullet_point> Tumbling effects increase Critical Chance\n<bullet_point> Improved armor penetration\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil",
 	})
 	_5_45x39_AP.Modifications = {
 		PlaceObj("CaliberModification", {
@@ -41,7 +41,7 @@ function GBO_545x39()
 		"5.45x39 mm ammo for Soviet Assault Rifles, SMGs and Machine Guns.",
 	})
 	_5_45x39_Basic.AdditionalHint = T({
-		"<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Tumbling effects increase Critical Chance",
+		"<bullet_point> Tumbling effects increase Critical Chance",
 	})
 	_5_45x39_Basic.Modifications = {
 		PlaceObj("CaliberModification", {
@@ -64,7 +64,7 @@ function GBO_545x39()
 		"5.45x39 mm ammo for Soviet Assault Rifles, SMGs and Machine Guns.",
 	})
 	_5_45x39_HP.AdditionalHint = T({
-		"<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Tumbling effects increase Critical Chance\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> No armor penetration\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Increased Critical Damage\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Inflicts <color EmStyle>Bleeding</color>",
+		"<bullet_point> Tumbling effects increase Critical Chance\n<bullet_point> No armor penetration\n<bullet_point> Increased Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
 	})
 	_5_45x39_HP.Modifications = {
 		PlaceObj("CaliberModification", {
@@ -94,7 +94,7 @@ function GBO_545x39()
 		"5.45x39 mm ammo for Soviet Assault Rifles, SMGs and Machine Guns.",
 	})
 	_5_45x39_Match.AdditionalHint = T({
-		"<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Tumbling effects increase Critical Chance\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Increased bonus from Aiming\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Increased range\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Increased Critical Chance scaling",
+		"<bullet_point> Tumbling effects increase Critical Chance\n<bullet_point> Increased bonus from Aiming\n<bullet_point> Increased range\n<bullet_point> Increased Critical Chance scaling",
 	})
 	_5_45x39_Match.Modifications = {
 		PlaceObj("CaliberModification", {
