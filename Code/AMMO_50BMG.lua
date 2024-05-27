@@ -16,7 +16,7 @@ function GBO_50BMG()
 
 	_50BMG_HE.Cost = 850
 	_50BMG_HE.AdditionalHint = T({
-		"<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> No armor penetration\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> High Crit chance",
+		"<bullet_point> No armor penetration\n<bullet_point> High Crit chance",
 	})
 	_50BMG_HE.Modifications = {
 		PlaceObj("CaliberModification", {
@@ -35,7 +35,7 @@ function GBO_50BMG()
 
 	_50BMG_Incendiary.Cost = 850
 	_50BMG_Incendiary.AdditionalHint = T({
-		"<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Hit enemies are <color EmStyle>Exposed</color> and lose the benefits of Cover\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Inflicts <color EmStyle>Burning</color>",
+		"<bullet_point> Hit enemies are <color EmStyle>Exposed</color> and lose the benefits of Cover\n<bullet_point> Inflicts <color EmStyle>Burning</color>",
 	})
 	_50BMG_Incendiary.Modifications = {
 		PlaceObj("CaliberModification", {
@@ -54,7 +54,7 @@ function GBO_50BMG()
 
 	_50BMG_SLAP.Cost = 850
 	_50BMG_SLAP.AdditionalHint = T({
-		"<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Improved armor penetration\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Slightly higher Crit chance",
+		"<bullet_point> Improved armor penetration\n<bullet_point> Slightly higher Crit chance",
 	})
 	_50BMG_SLAP.Modifications = {
 		PlaceObj("CaliberModification", {

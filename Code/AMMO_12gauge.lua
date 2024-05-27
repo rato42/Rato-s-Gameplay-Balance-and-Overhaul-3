@@ -4,7 +4,7 @@ function GBO_12gauge()
 
 	_12gauge_Breacher.Cost = 240
 	_12gauge_Breacher.AdditionalHint = T({
-		"<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Very short range\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Wide attack cone\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Improved armor penetration\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Prevents Grazing hits due to opponents Taking Cover\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Inflicts <color EmStyle>Suppressed</color>",
+		"<bullet_point> Very short range\n<bullet_point> Wide attack cone\n<bullet_point> Improved armor penetration\n<bullet_point> Prevents Grazing hits due to opponents Taking Cover\n<bullet_point> Inflicts <color EmStyle>Suppressed</color>",
 	})
 	_12gauge_Breacher.Modifications = {
 		PlaceObj("CaliberModification", {
@@ -47,7 +47,7 @@ function GBO_12gauge()
 
 	_12gauge_Flechette.Cost = 240
 	_12gauge_Flechette.AdditionalHint = T({
-		"<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Longer range\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Less damage\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Narrow attack cone\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Inflicts <color EmStyle>Bleeding</color>",
+		"<bullet_point> Longer range\n<bullet_point> Less damage\n<bullet_point> Narrow attack cone\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
 	})
 	_12gauge_Flechette.Modifications = {
 		PlaceObj("CaliberModification", {
@@ -73,7 +73,7 @@ function GBO_12gauge()
 
 	_12gauge_Saltshot.Cost = 240
 	_12gauge_Saltshot.AdditionalHint = T({
-		"<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Low damage\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Shorter range\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Wide attack cone\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Inflicts <color EmStyle>Inaccurate</color> and <color EmStyle>Slowed</color>",
+		"<bullet_point> Low damage\n<bullet_point> Shorter range\n<bullet_point> Wide attack cone\n<bullet_point> Inflicts <color EmStyle>Inaccurate</color> and <color EmStyle>Slowed</color>",
 	})
 	_12gauge_Saltshot.Modifications = {
 		PlaceObj("CaliberModification", {

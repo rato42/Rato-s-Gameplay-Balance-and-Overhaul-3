@@ -6,7 +6,7 @@ function GBO_408_ChayTac()
 
 	_408_ChayTac_AP.Cost = 500
 	_408_ChayTac_AP.AdditionalHint = T({
-		"<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Improved armor penetration\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Decreased Critical Damage\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Increased recoil",
+		"<bullet_point> Improved armor penetration\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil",
 	})
 	_408_ChayTac_AP.Modifications = {
 		PlaceObj("CaliberModification", {
@@ -63,7 +63,7 @@ function GBO_408_ChayTac()
 
 	_408_ChayTac_HP.Cost = 500
 	_408_ChayTac_HP.AdditionalHint = T({
-		"<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> No armor penetration\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> High Critical Damage\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Inflicts <color EmStyle>Bleeding</color> ",
+		"<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color> ",
 	})
 	_408_ChayTac_HP.Modifications = {
 		PlaceObj("CaliberModification", {
@@ -93,7 +93,7 @@ function GBO_408_ChayTac()
 
 	_408_ChayTac_Match.Cost = 500
 	_408_ChayTac_Match.AdditionalHint = T({
-		"<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Increased bonus from Aiming\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Increased range\n<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Increased Critical Chance scaling",
+		"<bullet_point> Increased bonus from Aiming\n<bullet_point> Increased range\n<bullet_point> Increased Critical Chance scaling",
 	})
 	_408_ChayTac_Match.Modifications = {
 		PlaceObj("CaliberModification", {
