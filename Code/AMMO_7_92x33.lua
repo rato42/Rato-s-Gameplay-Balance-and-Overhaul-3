@@ -1,4 +1,4 @@
--- ========== 7.92x33mm ==========
+-- ========== 7.92x33mm Kurz ==========
 -- = Group 5: Assault Rifle and Intermediate Cartridges =
 -- Both calibers have similar stopping power, with the 7.62x39mm having a slight edge due to its higher velocity and energy. CritDamage-2 CritChance-2
 function GBO_7_92x33()
@@ -18,7 +18,7 @@ function GBO_7_92x33()
 			target_prop = "CritDamage",
 		}),
 		PlaceObj("CaliberModification", {
-			mod_add = 25,
+			mod_add = 24,
 			target_prop = "Noise",
 		}),
 		PlaceObj("CaliberModification", {
@@ -38,7 +38,7 @@ function GBO_7_92x33()
 	})
 	_7_92x33_Basic.Modifications = {
 		PlaceObj("CaliberModification", {
-			mod_add = 25,
+			mod_add = 24,
 			target_prop = "Noise",
 		}),
 		PlaceObj("CaliberModification", {
@@ -70,7 +70,7 @@ function GBO_7_92x33()
 			target_prop = "PenetrationClass",
 		}),
 		PlaceObj("CaliberModification", {
-			mod_add = 25,
+			mod_add = 24,
 			target_prop = "Noise",
 		}),
 		PlaceObj("CaliberModification", {
@@ -82,7 +82,7 @@ function GBO_7_92x33()
 		"Bleeding",
 	}
 
-	_7_92x33_Match.Cost = 270 
+	_7_92x33_Match.Cost = 270
 	_7_92x33_Match.AdditionalHint = T({
 		"<bullet_point> Increased bonus from Aiming\n<bullet_point> Increased range\n<bullet_point> Increased Critical Chance scaling",
 	})
@@ -100,7 +100,7 @@ function GBO_7_92x33()
 			target_prop = "WeaponRange",
 		}),
 		PlaceObj("CaliberModification", {
-			mod_add = 25,
+			mod_add = 24,
 			target_prop = "Noise",
 		}),
 		PlaceObj("CaliberModification", {

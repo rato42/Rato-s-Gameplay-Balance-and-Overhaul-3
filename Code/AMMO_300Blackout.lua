@@ -1,5 +1,6 @@
 -- ========== .300 Blackout ==========
 -- = Group 5: Assault Rifle and Intermediate Cartridges =
+-- Generally designed for energy transfer and stopping power without relying on fragmentation, particularly effective in subsonic suppressed applications. Less likely to fragment compared to 5.56×45mm NATO rounds. CritDamage -15 CritChance +30
 function GBO_300Blackout()
 	print("GBO _300Blackout .300 Blackout ...")
 
@@ -13,16 +14,20 @@ function GBO_300Blackout()
 			target_prop = "PenetrationClass",
 		}),
 		PlaceObj("CaliberModification", {
-			mod_add = -20,
+			mod_add = -35,
 			target_prop = "CritDamage",
 		}),
 		PlaceObj("CaliberModification", {
-			mod_add = 23,
+			mod_add = 21,
 			target_prop = "Noise",
 		}),
 		PlaceObj("CaliberModification", {
 			mod_add = 1,
 			target_prop = "ArmorPir",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 30,
+			target_prop = "CritChance",
 		}),
 	}
 	_300Blackout_AP.AppliedEffects = {}
@@ -33,12 +38,20 @@ function GBO_300Blackout()
 	})
 	_300Blackout_Basic.Modifications = {
 		PlaceObj("CaliberModification", {
-			mod_add = 23,
+			mod_add = 21,
 			target_prop = "Noise",
 		}),
 		PlaceObj("CaliberModification", {
 			mod_add = 2,
 			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 30,
+			target_prop = "CritChance",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = -15,
+			target_prop = "CritDamage",
 		}),
 	}
 	_300Blackout_Basic.AppliedEffects = {}
@@ -49,7 +62,7 @@ function GBO_300Blackout()
 	})
 	_300Blackout_HP.Modifications = {
 		PlaceObj("CaliberModification", {
-			mod_add = 50,
+			mod_add = 35,
 			target_prop = "CritDamage",
 		}),
 		PlaceObj("CaliberModification", {
@@ -57,8 +70,12 @@ function GBO_300Blackout()
 			target_prop = "PenetrationClass",
 		}),
 		PlaceObj("CaliberModification", {
-			mod_add = 23,
+			mod_add = 21,
 			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 30,
+			target_prop = "CritChance",
 		}),
 	}
 	_300Blackout_HP.AppliedEffects = {
@@ -83,12 +100,20 @@ function GBO_300Blackout()
 			target_prop = "WeaponRange",
 		}),
 		PlaceObj("CaliberModification", {
-			mod_add = 23,
+			mod_add = 21,
 			target_prop = "Noise",
 		}),
 		PlaceObj("CaliberModification", {
 			mod_add = 2,
 			target_prop = "AimAccuracy",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 30,
+			target_prop = "CritChance",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = -15,
+			target_prop = "CritDamage",
 		}),
 	}
 	_300Blackout_Match.AppliedEffects = {}
