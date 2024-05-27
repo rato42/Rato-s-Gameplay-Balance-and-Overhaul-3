@@ -28,7 +28,7 @@ function GBO_308Win()
 	}
 
 	_308Win_Basic.Cost = 170
-	_Win_Basic.Modifications = {
+	_308Win_Basic.Modifications = {
 		PlaceObj("CaliberModification", {
 			mod_add = 30,
 			target_prop = "Noise",

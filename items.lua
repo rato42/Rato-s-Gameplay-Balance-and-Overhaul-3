@@ -963,6 +963,170 @@ return {
 		'CodeFileName', "Code/_______init_globals.lua",
 	}),
 	PlaceObj('ModItemCode', {
+		'name', "AMMO_12gauge",
+		'CodeFileName', "Code/AMMO_12gauge.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_20x81",
+		'CodeFileName', "Code/AMMO_20x81.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_22LR",
+		'CodeFileName', "Code/AMMO_22LR.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_280British",
+		'CodeFileName', "Code/AMMO_280British.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_300Blackout",
+		'CodeFileName', "Code/AMMO_300Blackout.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_300WinMag",
+		'CodeFileName', "Code/AMMO_300WinMag.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_303",
+		'CodeFileName', "Code/AMMO_303.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_308Win",
+		'CodeFileName', "Code/AMMO_308Win.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_30_60",
+		'CodeFileName', "Code/AMMO_30_60.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_32ACP",
+		'CodeFileName', "Code/AMMO_32ACP.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_32HRMAG",
+		'CodeFileName', "Code/AMMO_32HRMAG.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_338_Lapua_Magnum",
+		'CodeFileName', "Code/AMMO_338_Lapua_Magnum.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_357MAG",
+		'CodeFileName', "Code/AMMO_357MAG.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_380ACP",
+		'CodeFileName', "Code/AMMO_380ACP.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_38SP",
+		'CodeFileName', "Code/AMMO_38SP.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_408_ChayTac",
+		'CodeFileName', "Code/AMMO_408_ChayTac.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_40SW",
+		'CodeFileName', "Code/AMMO_40SW.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_44AMP",
+		'CodeFileName', "Code/AMMO_44AMP.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_44CAL",
+		'CodeFileName', "Code/AMMO_44CAL.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_44MAG",
+		'CodeFileName', "Code/AMMO_44MAG.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_45ACP",
+		'CodeFileName', "Code/AMMO_45ACP.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_4_6x30",
+		'CodeFileName', "Code/AMMO_4_6x30.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_4_7x33",
+		'CodeFileName', "Code/AMMO_4_7x33.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_50AE",
+		'CodeFileName', "Code/AMMO_50AE.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_50BMG",
+		'CodeFileName', "Code/AMMO_50BMG.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_545x39",
+		'CodeFileName', "Code/AMMO_545x39.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_556x45",
+		'CodeFileName', "Code/AMMO_556x45.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_5_7x28",
+		'CodeFileName', "Code/AMMO_5_7x28.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_6_5Creedmoor",
+		'CodeFileName', "Code/AMMO_6_5Creedmoor.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_6_5Grendel",
+		'CodeFileName', "Code/AMMO_6_5Grendel.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_762x39",
+		'CodeFileName', "Code/AMMO_762x39.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_762x51",
+		'CodeFileName', "Code/AMMO_762x51.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_762x54",
+		'CodeFileName', "Code/AMMO_762x54.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_792x57",
+		'CodeFileName', "Code/AMMO_792x57.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_7_5x54",
+		'CodeFileName', "Code/AMMO_7_5x54.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_7_62x25",
+		'CodeFileName', "Code/AMMO_7_62x25.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_7_65x21",
+		'CodeFileName', "Code/AMMO_7_65x21.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_7_92x33",
+		'CodeFileName', "Code/AMMO_7_92x33.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_9x18",
+		'CodeFileName', "Code/AMMO_9x18.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_9x19",
+		'CodeFileName', "Code/AMMO_9x19.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "AMMO_9x39",
+		'CodeFileName', "Code/AMMO_9x39.lua",
+	}),
+	PlaceObj('ModItemCode', {
 		'name', "UPDATE_Change components",
 		'CodeFileName', "Code/UPDATE_Change components.lua",
 	}),
@@ -1151,10 +1315,6 @@ return {
 	PlaceObj('ModItemCode', {
 		'name', "REACTIONS",
 		'CodeFileName', "Code/REACTIONS.lua",
-	}),
-	PlaceObj('ModItemCode', {
-		'name', "RECIPE_craftable_new_calibers",
-		'CodeFileName', "Code/RECIPE_craftable_new_calibers.lua",
 	}),
 	PlaceObj('ModItemCode', {
 		'name', "SOURCE_ Unit:EnterCombat",
@@ -1467,115 +1627,6 @@ return {
 		id = "R_Round_Mul",
 		type = "bool",
 		value = true,
-	}),
-	PlaceObj('ModItemCraftOperationsRecipeDef', {
-		CraftTime = 15,
-		Ingredients = {
-			PlaceObj('RecipeIngredient', {
-				'item', "Parts",
-				'amount', 10,
-			}),
-			PlaceObj('RecipeIngredient', {
-				'item', "_79257_Basic",
-				'amount', 30,
-			}),
-		},
-		ResultItem = PlaceObj('RecipeIngredient', {
-			'item', "_79257_AP",
-			'amount', 30,
-		}),
-		group = "Ammo",
-		id = "AP_792_craft",
-	}),
-	PlaceObj('ModItemCraftOperationsRecipeDef', {
-		CraftTime = 15,
-		Ingredients = {
-			PlaceObj('RecipeIngredient', {
-				'item', "Parts",
-				'amount', 10,
-			}),
-			PlaceObj('RecipeIngredient', {
-				'item', "_79257_Basic",
-				'amount', 30,
-			}),
-		},
-		ResultItem = PlaceObj('RecipeIngredient', {
-			'item', "_79257_AP",
-			'amount', 30,
-		}),
-		group = "Ammo",
-		id = "HP_792_craft",
-	}),
-	PlaceObj('ModItemCraftOperationsRecipeDef', {
-		CraftTime = 15,
-		Ingredients = {
-			PlaceObj('RecipeIngredient', {
-				'item', "Parts",
-				'amount', 10,
-			}),
-			PlaceObj('RecipeIngredient', {
-				'item', "_79257_Basic",
-				'amount', 30,
-			}),
-		},
-		ResultItem = PlaceObj('RecipeIngredient', {
-			'item', "_79257_AP",
-			'amount', 30,
-		}),
-		group = "Ammo",
-		id = "TRACER_792_craft",
-	}),
-	PlaceObj('ModItemCraftOperationsRecipeDef', {
-		CraftTime = 15,
-		Ingredients = {
-			PlaceObj('RecipeIngredient', {
-				'item', "Parts",
-				'amount', 10,
-			}),
-			PlaceObj('RecipeIngredient', {
-				'item', "_79257_Basic",
-				'amount', 30,
-			}),
-		},
-		ResultItem = PlaceObj('RecipeIngredient', {
-			'item', "_79257_Match",
-			'amount', 30,
-		}),
-		group = "Ammo",
-		id = "Match_792_craft",
-	}),
-	PlaceObj('ModItemCraftOperationsRecipeDef', {
-		CraftTime = 15,
-		Ingredients = {
-			PlaceObj('RecipeIngredient', {
-				'item', "Parts",
-				'amount', 10,
-			}),
-			PlaceObj('RecipeIngredient', {
-				'item', "BlackPowder",
-			}),
-		},
-		ResultItem = PlaceObj('RecipeIngredient', {
-			'item', "_79257_Basic",
-			'amount', 30,
-		}),
-		group = "Ammo",
-		id = "BASIC_792_craft",
-	}),
-	PlaceObj('ModItemCraftOperationsRecipeDef', {
-		CraftTime = 10,
-		Ingredients = {
-			PlaceObj('RecipeIngredient', {
-				'item', "_762NATO_Basic",
-				'amount', 20,
-			}),
-		},
-		ResultItem = PlaceObj('RecipeIngredient', {
-			'item', "_79257_Basic",
-			'amount', 15,
-		}),
-		group = "Ammo",
-		id = "BASIC_792_convert",
 	}),
 	PlaceObj('ModItemInventoryItemCompositeDef', {
 		'Group', "Ammo",
@@ -6406,106 +6457,6 @@ return {
 		'recoil_mechanism', "Single_Shot",
 	}),
 	PlaceObj('ModItemLootDef', {
-		Comment = "enemy legion boss",
-		comment = "lootdef not touched by TE",
-		group = "Enemy - Legion",
-		id = "TheMajor",
-		loot = "all",
-		PlaceObj('LootEntryUpgradedWeapon', {
-			upgrades = {
-				"MagLarge",
-				"ReflexSightAdvanced",
-				"MuzzleBooster",
-				"LaserDot",
-			},
-			weapon = "AK74",
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "Knife",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "HeavyArmorTorso_WeavePadding",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "HeavyArmorHelmet_WeavePadding",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "HeavyArmorLeggings_WeavePadding",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "ConcussiveGrenade",
-			stack_max = 4,
-			stack_min = 4,
-		}),
-		PlaceObj('LootEntryLootDef', {
-			loot_def = "ammo_rand_545",
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			guaranteed = true,
-			item = "_54539_Basic",
-			stack_max = 20,
-			stack_min = 10,
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		comment = "ammo-variant",
-		group = "Enemy - General",
-		id = "ammo_rand_762_54R",
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_76254R_AP",
-			stack_max = 20,
-			stack_min = 20,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_76254R_HP",
-			stack_max = 20,
-			stack_min = 20,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_76254R_Match",
-			stack_max = 20,
-			stack_min = 20,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_76254R_Tracer",
-			stack_max = 20,
-			stack_min = 20,
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		comment = "ammo-variant",
-		group = "Enemy - General",
-		id = "ammo_rand_545",
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_54539_AP",
-			stack_max = 30,
-			stack_min = 30,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_54539_HP",
-			stack_max = 30,
-			stack_min = 30,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_54539_Match",
-			stack_max = 30,
-			stack_min = 30,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_54539_Tracer",
-			stack_max = 30,
-			stack_min = 30,
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
 		Comment = "enemy rebels",
 		comment = "lootdef not touched by TE",
 		group = "Enemy - Rebels",
@@ -6520,38 +6471,6 @@ return {
 		}),
 		PlaceObj('LootEntryLootDef', {
 			loot_def = "Ak_SKS",
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		Comment = "enemy rebels",
-		comment = "lootdef not touched by TE",
-		group = "Enemy - Rebels",
-		id = "RebelGunner",
-		loot = "all",
-		PlaceObj('LootEntryInventoryItem', {
-			Condition = 78,
-			RandomizeCondition = true,
-			drop_chance_mod = 300,
-			item = "RPK74",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryLootDef', {
-			loot_def = "RebelsArmor_Pants_Chest_Light",
-		}),
-		PlaceObj('LootEntryLootDef', {
-			loot_def = "ammo_rand_545",
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_54539_Basic",
-			stack_max = 50,
-			stack_min = 40,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			guaranteed = true,
-			item = "_54539_Basic",
-			stack_max = 20,
-			stack_min = 10,
 		}),
 	}),
 	PlaceObj('ModItemLootDef', {
@@ -6592,72 +6511,6 @@ return {
 			},
 			weapon = "AK47",
 			weight = 5000,
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		Comment = "enemy rebels",
-		comment = "lootdef not touched by TE",
-		id = "RebelSniper",
-		loot = "all",
-		PlaceObj('LootEntryInventoryItem', {
-			Condition = 89,
-			RandomizeCondition = true,
-			item = "DragunovSVD",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryLootDef', {
-			loot_def = "RebelsArmor_Pants_Chest_Light_Randomized",
-		}),
-		PlaceObj('LootEntryLootDef', {
-			loot_def = "EnemyValuables",
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			guaranteed = true,
-			item = "_76254R_Basic",
-			stack_max = 10,
-			stack_min = 10,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_76254R_Basic",
-			stack_max = 20,
-			stack_min = 20,
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		Comment = "enemy thugs",
-		comment = "lootdef not touched by TE",
-		id = "ThugGunner",
-		loot = "all",
-		PlaceObj('LootEntryInventoryItem', {
-			Condition = 81,
-			RandomizeCondition = true,
-			drop_chance_mod = 0,
-			item = "Knife",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			Condition = 78,
-			RandomizeCondition = true,
-			drop_chance_mod = 300,
-			item = "RPK74",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryLootDef', {
-			loot_def = "ThugsArmor_Pants_Chest_Light",
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			guaranteed = true,
-			item = "_54539_Basic",
-			stack_max = 20,
-			stack_min = 10,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_54539_Basic",
-			stack_max = 50,
-			stack_min = 40,
 		}),
 	}),
 	PlaceObj('ModItemLootDef', {
@@ -6713,22 +6566,6 @@ return {
 			stack_min = 1,
 		}),
 		PlaceObj('LootEntryInventoryItem', {
-			game_conditions = {
-				PlaceObj('QuestIsVariableBool', {
-					QuestId = "PantagruelDramas",
-					Vars = set( "YoungHearts" ),
-					__eval = function ()
-						local quest = gv_Quests['PantagruelDramas'] or QuestGetState('PantagruelDramas')
-						return quest.YoungHearts
-					end,
-				}),
-			},
-			guaranteed = true,
-			item = "_54539_HP",
-			stack_max = 30,
-			stack_min = 30,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
 			item = "HeavyArmorChestplate_CeramicPlates",
 			stack_max = 1,
 			stack_min = 1,
@@ -6740,166 +6577,6 @@ return {
 		}),
 		PlaceObj('LootEntryInventoryItem', {
 			item = "KevlarLeggings",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		Comment = "enemy thugs",
-		comment = "lootdef not touched by TE",
-		id = "ThugSniper_Stronger",
-		loot = "all",
-		PlaceObj('LootEntryInventoryItem', {
-			Condition = 87,
-			RandomizeCondition = true,
-			drop_chance_mod = 0,
-			item = "Knife",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			Condition = 61,
-			RandomizeCondition = true,
-			item = "DragunovSVD",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryLootDef', {
-			loot_def = "ThugsArmor_Pants_Chest_Light",
-		}),
-		PlaceObj('LootEntryLootDef', {
-			loot_def = "EnemyValuables",
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_76254R_Basic",
-			stack_max = 20,
-			stack_min = 20,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			guaranteed = true,
-			item = "_76254R_Basic",
-			stack_max = 10,
-			stack_min = 10,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			drop_chance_mod = 400,
-			item = "_76254R_AP",
-			stack_max = 10,
-			stack_min = 10,
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		Comment = "ernie container",
-		group = "MapContainers - Sector Specific",
-		id = "Bunker_MG42_ammo",
-		loot = "all",
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_79257_Basic",
-			stack_max = 80,
-			stack_min = 60,
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		Comment = "ernie container",
-		group = "MapContainers - Sector Specific",
-		id = "Bunker_SpecialAmmo",
-		loot = "all",
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_79257_Match",
-			stack_max = 40,
-			stack_min = 20,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "Lockpick",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		Comment = "ernie container",
-		group = "Ernie",
-		id = "FlagHill_Beach_Gun",
-		loot = "all",
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_79257_Basic",
-			stack_max = 10,
-			stack_min = 5,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "Parts",
-			stack_max = 12,
-			stack_min = 4,
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		Comment = "ernie container",
-		group = "Ernie",
-		id = "Outlook_Chest_Up_Tower",
-		loot = "all",
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_79257_Basic",
-			stack_max = 30,
-			stack_min = 15,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			Condition = 82,
-			item = "Gewehr98",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		Comment = "ernie container",
-		group = "Ernie",
-		id = "Fortress_Tower",
-		loot = "all",
-		PlaceObj('LootEntryInventoryItem', {
-			Condition = 49,
-			item = "Gewehr98",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_79257_AP",
-			stack_max = 20,
-			stack_min = 10,
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		Comment = "ernie container",
-		group = "Ernie",
-		id = "Bunker_MP40_add_ammo",
-		loot = "all",
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_79257_Basic",
-			stack_max = 60,
-			stack_min = 30,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			Condition = 73,
-			item = "MP40",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		Comment = "merc",
-		group = "Ernie",
-		id = "Kalyna",
-		loot = "all",
-		PlaceObj('LootEntryInventoryItem', {
-			Condition = 87,
-			item = "Gewehr98",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_79257_Basic",
-			stack_max = 10,
-			stack_min = 10,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "Wirecutter",
 			stack_max = 1,
 			stack_min = 1,
 		}),
@@ -6939,68 +6616,6 @@ return {
 			item = "Meds",
 			stack_max = 16,
 			stack_min = 16,
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		Comment = "merc",
-		group = "Ernie",
-		id = "Scope",
-		loot = "all",
-		PlaceObj('LootEntryInventoryItem', {
-			item = "Gewehr98",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_79257_Basic",
-			stack_max = 15,
-			stack_min = 15,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "FlakArmor",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "LightHelmet",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		Comment = "merc",
-		group = "Mercs",
-		id = "Scully",
-		loot = "all",
-		PlaceObj('LootEntryInventoryItem', {
-			item = "AKSU",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "_54539_Basic",
-			stack_max = 60,
-			stack_min = 60,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "FlakArmor",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "FlakLeggings",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "LightHelmet",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "Knife",
-			stack_max = 1,
-			stack_min = 1,
 		}),
 	}),
 	PlaceObj('ModItemOptionChoice', {
