@@ -1,26 +1,27 @@
 -- ========== .38 Special ==========
 -- = Group 2: Standard Service and Self-Defense Pistols =
 -- Lacks raw power. CritDamage-1
-
 function GBO_38SP()
 	print("GBO _38SP .38 Special ...")
 
 	_38SP_AP.Cost = 220
-	_38SP_AP.AdditionalHint = T({ "<bullet_point> Improved armor penetration\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil" })
+	_38SP_AP.AdditionalHint = T({
+		"<bullet_point> Improved armor penetration\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil",
+	})
 	_38SP_AP.Modifications = {
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 2,
 			target_prop = "PenetrationClass",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = -21,
 			target_prop = "CritDamage",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 18,
 			target_prop = "Noise",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 1,
 			target_prop = "ArmorPir",
 		}),
@@ -28,56 +29,60 @@ function GBO_38SP()
 
 	_38SP_Basic.Cost = 110
 	_38SP_Basic.Modifications = {
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 18,
 			target_prop = "Noise",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = -1,
 			target_prop = "CritDamage",
 		}),
 	}
 
 	_38SP_HP.Cost = 220
-	_38SP_HP.AdditionalHint = T({ "<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>" })
+	_38SP_HP.AdditionalHint = T({
+		"<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
+	})
 	_38SP_HP.Modifications = {
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 49,
 			target_prop = "CritDamage",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = -4,
 			target_prop = "PenetrationClass",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 18,
 			target_prop = "Noise",
 		}),
 	}
 	_38SP_HP.AppliedEffects = {
-		"Bleeding"
+		"Bleeding",
 	}
 
 	_38SP_Match.Cost = 220
-	_38SP_Match.AdditionalHint = T({ "<bullet_point> Increased bonus from Aiming\n<bullet_point> Increased range\n<bullet_point> Increased Critical Chance scaling" })
+	_38SP_Match.AdditionalHint = T({
+		"<bullet_point> Increased bonus from Aiming\n<bullet_point> Increased range\n<bullet_point> Increased Critical Chance scaling",
+	})
 	_38SP_Match.Modifications = {
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 2,
 			target_prop = "AimAccuracy",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 2,
 			target_prop = "WeaponRange",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 10,
 			target_prop = "CritChanceScaled",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = -1,
 			target_prop = "CritDamage",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 18,
 			target_prop = "Noise",
 		}),

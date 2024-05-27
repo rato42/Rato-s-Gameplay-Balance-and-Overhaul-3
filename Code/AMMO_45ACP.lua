@@ -1,30 +1,31 @@
 -- ========== .45 ACP ==========
 -- = Group 2: Standard Service and Self-Defense Pistols =
 -- Delivers substantial energy on target. CritDamage+2, CritChance+1
-
 function GBO_45ACP()
 	print("GBO _45ACP .45 ACP ...")
 
 	_45ACP_AP.Cost = 190
-	_45ACP_AP.AdditionalHint = T({ "<bullet_point> Improved armor penetration\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil" })
+	_45ACP_AP.AdditionalHint = T({
+		"<bullet_point> Improved armor penetration\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil",
+	})
 	_45ACP_AP.Modifications = {
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 2,
 			target_prop = "PenetrationClass",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = -18,
 			target_prop = "CritDamage",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 1,
 			target_prop = "CritChance",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 17,
 			target_prop = "Noise",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 1,
 			target_prop = "ArmorPir",
 		}),
@@ -32,36 +33,38 @@ function GBO_45ACP()
 
 	_45ACP_Basic.Cost = 100
 	_45ACP_Basic.Modifications = {
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 17,
 			target_prop = "Noise",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 2,
 			target_prop = "CritDamage",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 1,
 			target_prop = "CritChance",
 		}),
 	}
 
 	_45ACP_HP.Cost = 190
-	_45ACP_HP.AdditionalHint = T({ "<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>" })
+	_45ACP_HP.AdditionalHint = T({
+		"<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
+	})
 	_45ACP_HP.Modifications = {
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 52,
 			target_prop = "CritDamage",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 1,
 			target_prop = "CritChance",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = -4,
 			target_prop = "PenetrationClass",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 17,
 			target_prop = "Noise",
 		}),
@@ -71,29 +74,31 @@ function GBO_45ACP()
 	}
 
 	_45ACP_Match.Cost = 250
-	_45ACP_Match.AdditionalHint = T({ "<bullet_point> Increased bonus from Aiming\n<bullet_point> Increased range\n<bullet_point> Increased Critical Chance scaling" })
+	_45ACP_Match.AdditionalHint = T({
+		"<bullet_point> Increased bonus from Aiming\n<bullet_point> Increased range\n<bullet_point> Increased Critical Chance scaling",
+	})
 	_45ACP_Match.Modifications = {
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 2,
 			target_prop = "AimAccuracy",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 2,
 			target_prop = "WeaponRange",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 10,
 			target_prop = "CritChanceScaled",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 2,
 			target_prop = "CritDamage",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 1,
 			target_prop = "CritChance",
 		}),
-		PlaceObj('CaliberModification', {
+		PlaceObj("CaliberModification", {
 			mod_add = 17,
 			target_prop = "Noise",
 		}),
