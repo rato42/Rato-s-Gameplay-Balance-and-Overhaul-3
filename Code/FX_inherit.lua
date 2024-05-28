@@ -54,6 +54,7 @@ function rat_apply_inherit(rules)
 				"RAT_VSK_Suppressor",
 				"RAT_TOG_suppressor_762",
 				"RAT_TOG_suppressor_wp",
+				"SteyrS_Muzzle_def_1",
 				
 		},
 		
