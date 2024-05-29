@@ -102,5 +102,5 @@ function GBO_6_5Grendel()
 	print("GBO _6_5Grendel 6.5mm Grendel DONE")
 end
 
-OnMsg.ClassesGenerate = GBO_6_5Grendel
+OnMsg.zCore_ClassesGenerate = GBO_6_5Grendel
 

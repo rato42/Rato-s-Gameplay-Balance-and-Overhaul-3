@@ -92,4 +92,4 @@ function GBO_38SP()
 	print("GBO _38SP .38 Special DONE")
 end
 
-OnMsg.ClassesGenerate = GBO_38SP
+OnMsg.zCore_ClassesGenerate = GBO_38SP

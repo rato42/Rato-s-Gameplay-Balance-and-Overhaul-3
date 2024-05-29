@@ -96,4 +96,4 @@ function GBO_44AMP()
 	print("GBO .44AMP .44 AMP DONE")
 end
 
-OnMsg.ClassesGenerate = GBO_44AMP
+OnMsg.zCore_ClassesGenerate = GBO_44AMP

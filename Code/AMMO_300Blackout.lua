@@ -123,5 +123,5 @@ function GBO_300Blackout()
 	print("GBO _300Blackout .300 Blackout DONE")
 end
 
-OnMsg.ClassesGenerate = GBO_300Blackout
+OnMsg.zCore_ClassesGenerate = GBO_300Blackout
 

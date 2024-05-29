@@ -108,4 +108,4 @@ function GBO_45ACP()
 	print("GBO _45ACP .45 ACP DONE")
 end
 
-OnMsg.ClassesGenerate = GBO_45ACP
+OnMsg.zCore_ClassesGenerate = GBO_45ACP

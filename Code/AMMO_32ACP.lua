@@ -102,4 +102,4 @@ function GBO_32ACP()
 	print("GBO _32ACP .32 ACP DONE")
 end
 
-OnMsg.ClassesGenerate = GBO_32ACP
+OnMsg.zCore_ClassesGenerate = GBO_32ACP
