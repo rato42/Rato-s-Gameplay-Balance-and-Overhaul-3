@@ -77,4 +77,4 @@ function GBO_20x81()
 	print("GBO _20x81 DONE")
 end
 
-OnMsg.zCore_ClassesGenerate = GBO_20x81
+OnMsg.ClassesGenerate = GBO_20x81

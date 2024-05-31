@@ -92,4 +92,4 @@ function GBO_32HRMAG()
 	print("GBO _32HRMAG .32 HR Magnum DONE")
 end
 
-OnMsg.zCore_ClassesGenerate = GBO_32HRMAG
+OnMsg.ClassesGenerate = GBO_32HRMAG

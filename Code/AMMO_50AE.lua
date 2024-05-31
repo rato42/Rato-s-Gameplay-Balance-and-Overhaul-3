@@ -108,4 +108,4 @@ function GBO_50AE()
 	print("GBO _50AE .50 AE DONE")
 end
 
-OnMsg.zCore_ClassesGenerate = GBO_50AE
+OnMsg.ClassesGenerate = GBO_50AE

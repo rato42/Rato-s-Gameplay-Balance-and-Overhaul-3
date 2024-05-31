@@ -102,4 +102,4 @@ function GBO_7_65x21()
 	print("GBO _7_65x21 7.65x21mm DONE")
 end
 
-OnMsg.zCore_ClassesGenerate = GBO_7_65x21
+OnMsg.ClassesGenerate = GBO_7_65x21

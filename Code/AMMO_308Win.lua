@@ -92,5 +92,5 @@ function GBO_308Win()
 	print("GBO _308Win .308 Winchester DONE")
 end
 
-OnMsg.zCore_ClassesGenerate = GBO_308Win
+OnMsg.ClassesGenerate = GBO_308Win
 

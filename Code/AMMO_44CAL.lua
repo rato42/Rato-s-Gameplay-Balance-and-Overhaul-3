@@ -118,4 +118,4 @@ function GBO_44CAL()
 	print("GBO .44CAL .44 [Vanilla 44CAL] DONE")
 end
 
-OnMsg.zCore_ClassesGenerate = GBO_44CAL
+OnMsg.ClassesGenerate = GBO_44CAL

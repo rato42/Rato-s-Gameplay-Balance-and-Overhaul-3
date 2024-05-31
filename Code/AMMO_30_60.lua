@@ -103,5 +103,5 @@ function GBO_30_60()
 	print("GBO _30_60 .30-06 Springfield DONE")
 end
 
-OnMsg.zCore_ClassesGenerate = GBO_30_60
+OnMsg.ClassesGenerate = GBO_30_60
 

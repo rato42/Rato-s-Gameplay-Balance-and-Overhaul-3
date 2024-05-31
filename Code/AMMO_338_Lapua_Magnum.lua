@@ -126,5 +126,5 @@ function GBO_338_Lapua_Magnum()
 	print("GBO _338_Lapua_Magnum .338 Lapua Magnum DONE")
 end
 
-OnMsg.zCore_ClassesGenerate = GBO_338_Lapua_Magnum
+OnMsg.ClassesGenerate = GBO_338_Lapua_Magnum
 

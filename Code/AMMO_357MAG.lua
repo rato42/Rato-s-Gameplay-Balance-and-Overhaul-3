@@ -100,4 +100,4 @@ function GBO_357MAG()
 	print("GBO _357MAG .357 Magnum DONE")
 end
 
-OnMsg.zCore_ClassesGenerate = GBO_357MAG
+OnMsg.ClassesGenerate = GBO_357MAG

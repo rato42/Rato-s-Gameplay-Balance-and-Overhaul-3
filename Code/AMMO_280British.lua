@@ -94,5 +94,5 @@ function GBO_280British()
 	print("GBO _280British .280 British DONE")
 end
 
-OnMsg.zCore_ClassesGenerate = GBO_280British
+OnMsg.ClassesGenerate = GBO_280British
 

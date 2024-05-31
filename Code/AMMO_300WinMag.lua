@@ -126,5 +126,5 @@ function GBO_300WinMag()
 	print("GBO _300WinMag .300 Winchester Magnum DONE")
 end
 
-OnMsg.zCore_ClassesGenerate = GBO_300WinMag
+OnMsg.ClassesGenerate = GBO_300WinMag
 
