@@ -6,12 +6,6 @@ return PlaceObj('ModDef', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
 	'last_changes', "3.49a -  not released\n\nfixed steyr scout suppresor having no sound",
-	'dependencies', {
-		PlaceObj('ModDependency', {
-			'id', "Tc3ajdY",
-			'title', "Zulib Weapons Core",
-		}),
-	},
 	'id', "cfahRED",
 	'author', "rato",
 	'version_major', 3,
