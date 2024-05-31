@@ -718,34 +718,6 @@ end
 		end
 end]]
 
-function OnMsg.UnitDied(unit)
-	if unit then
-		local roll = unit:Random(100) + 1
-		local chance = const.BaseDropChance.Ammo * 1.1
-		print("chance of drop", chance, "roll", roll)
-		if roll < chance then
-			local weapon = unit:GetActiveWeapons()
-
-			local cal = weapon and weapon.Caliber or false
-			if not weapon or not cal then
-				return
-			end
-			local ammo
-			if (cal == "545x39" or cal == "45ACP" or cal == "762x54R" or cal == "792x57" or cal == "9x39") then
-				ammo = PlaceInventoryItem(GetAmmosWithCaliber(cal, "sort")[1].id)
-				print("ammo", ammo)
-			elseif cal == "792x33" then
-				ammo = PlaceInventoryItem(GetAmmosWithCaliber(cal, "sort")[1].id)
-			else
-				return
-			end
-			ammo.Amount = 30
-			unit:AddItem("InventoryDead", ammo)
-			-- print("ammo drop", cal)
-		end
-	end
-end
-
 -- function OnMsg.OnAttack(self, action, results, attack_args, combat_starting, attacker, target)
 
 -- local ap = attacker:GetUIActionPoints()	
