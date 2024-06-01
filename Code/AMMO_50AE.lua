@@ -47,6 +47,33 @@ function GBO_50AE()
 		}),
 	}
 
+	_50AE_Tracer.Cost = 240
+	_50AE_Tracer.AdditionalHint = T({
+		"<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks",
+	})
+	_50AE_Tracer.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 21,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "tracer",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "CritChance",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 4,
+			target_prop = "CritDamage",
+		}),
+	}
+	_50AE_Tracer.AppliedEffects = {
+		"Marked",
+		"Revealed_R",
+	}
+
 	_50AE_HP.Cost = 240
 	_50AE_HP.AdditionalHint = T({
 		"<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
@@ -104,6 +131,32 @@ function GBO_50AE()
 		}),
 	}
 	_50AE_Match.AppliedEffects = {}
+
+	_50AE_Shock.Cost = 360
+	_50AE_Shock.AdditionalHint = T({
+		"<bullet_point> Little improved armor penetration. \n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
+	})
+	_50AE_Shock.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 21,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "CritChance",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 4,
+			target_prop = "CritDamage",
+		}),
+	}
+	_50AE_Shock.AppliedEffects = {
+		"Bleeding",
+	}
 
 	print("GBO _50AE .50 AE DONE")
 end

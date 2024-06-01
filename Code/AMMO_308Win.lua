@@ -39,6 +39,29 @@ function GBO_308Win()
 		}),
 	}
 
+	_308Win_Tracer.Cost = 340
+	_308Win_Tracer.AdditionalHint = T({
+		"<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks",
+	})
+	_308Win_Tracer.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 30,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "tracer",
+		}),
+	}
+	_308Win_Tracer.AppliedEffects = {
+		"Marked",
+		"Revealed_R",
+	}
+
 	_308Win_HP.Cost = 340
 	_308Win_HP.AdditionalHint = T({
 		"<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color> ",

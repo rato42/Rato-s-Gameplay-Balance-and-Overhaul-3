@@ -14,6 +14,29 @@ function GBO_20x81()
 		}),
 	}
 
+	_22LR_Tracer.Cost = 830
+	_22LR_Tracer.AdditionalHint = T({
+		"<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks",
+	})
+	_22LR_Tracer.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 3,
+			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 39,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "tracer",
+		}),
+	}
+	_22LR_Tracer.AppliedEffects = {
+		"Marked",
+		"Revealed_R",
+	}
+
 	_20x82_HE.Cost = 830
 	_20x82_HE.AdditionalHint = T({
 		"<bullet_point> No armor penetration\n<bullet_point> High Crit chance",

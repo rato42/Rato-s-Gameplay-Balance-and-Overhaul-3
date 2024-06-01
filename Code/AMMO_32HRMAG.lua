@@ -39,6 +39,29 @@ function GBO_32HRMAG()
 		}),
 	}
 
+	_32HRMAG_Tracer.Cost = 200
+	_32HRMAG_Tracer.AdditionalHint = T({
+		"<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks",
+	})
+	_32HRMAG_Tracer.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 18,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "tracer",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "CritDamage",
+		}),
+	}
+	_32HRMAG_Tracer.AppliedEffects = {
+		"Marked",
+		"Revealed_R",
+	}
+
 	_32HRMAG_HP.Cost = 200
 	_32HRMAG_HP.AdditionalHint = T({
 		"<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
@@ -79,7 +102,7 @@ function GBO_32HRMAG()
 			target_prop = "CritChanceScaled",
 		}),
 		PlaceObj("CaliberModification", {
-			mod_add = 19,
+			mod_add = 18,
 			target_prop = "Noise",
 		}),
 		PlaceObj("CaliberModification", {
@@ -88,6 +111,28 @@ function GBO_32HRMAG()
 		}),
 	}
 	_32HRMAG_Match.AppliedEffects = {}
+
+	_32HRMAG_Shock.Cost = 300
+	_32HRMAG_Shock.AdditionalHint = T({
+		"<bullet_point> Little improved armor penetration. \n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
+	})
+	_32HRMAG_Shock.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 18,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "CritDamage",
+		}),
+	}
+	_32HRMAG_Shock.AppliedEffects = {
+		"Bleeding",
+	}
 
 	print("GBO _32HRMAG .32 HR Magnum DONE")
 end

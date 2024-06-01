@@ -61,6 +61,41 @@ function GBO_338_Lapua_Magnum()
 	}
 	_338_Lapua_Magnum_Basic.AppliedEffects = {}
 
+	_338_Lapua_Magnum_Tracer.Cost = 460
+	_338_Lapua_Magnum_Tracer.AdditionalHint = T({
+		"<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks",
+	})
+	_338_Lapua_Magnum_Tracer.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 27,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "tracer",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "AimAccuracy",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "WeaponRange",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 5,
+			target_prop = "CritDamage",
+		}),
+	}
+	_338_Lapua_Magnum_Tracer.AppliedEffects = {
+		"Marked",
+		"Revealed_R",
+	}
+
 	_338_Lapua_Magnum_HP.Cost = 460
 	_338_Lapua_Magnum_HP.AdditionalHint = T({
 		"<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color> ",

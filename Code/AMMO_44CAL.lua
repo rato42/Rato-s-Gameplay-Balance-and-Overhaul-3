@@ -93,27 +93,50 @@ function GBO_44CAL()
 
 	_44CAL_Shock.Cost = 300
 	_44CAL_Shock.AdditionalHint = T({
-		"<bullet_point> Reduced range\n<bullet_point> No armor penetration\n<bullet_point> Greater Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
+		"<bullet_point> Little improved armor penetration. \n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
 	})
 	_44CAL_Shock.Modifications = {
 		PlaceObj("CaliberModification", {
-			mod_add = 72,
-			target_prop = "CritDamage",
-		}),
-		PlaceObj("CaliberModification", {
-			mod_add = -4,
-			target_prop = "WeaponRange",
+			mod_add = 1,
+			target_prop = "PenetrationClass",
 		}),
 		PlaceObj("CaliberModification", {
 			mod_add = 19,
 			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "CritDamage",
 		}),
 	}
 	_44CAL_Shock.AppliedEffects = {
 		"Bleeding",
 	}
 
-	-- TODO _44CAL_Subsonic.lua
+	_44CAL_Subsonic.Cost = 260
+	_44CAL_Subsonic.AdditionalHint = T({
+		"<bullet_point> Less noisy\n<bullet_point> Less bullet speed, resulting in less Aim Accuracy, Range and Armor Penetration",
+	})
+	_44CAL_Subsonic.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 19,
+			mod_mul = 500,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = -2,
+			target_prop = "WeaponRange",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = -1,
+			target_prop = "AimAccuracy",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "CritDamage",
+		}),
+	}
+	_44CAL_Subsonic.AppliedEffects = {}
 
 	print("GBO .44CAL .44 [Vanilla 44CAL] DONE")
 end

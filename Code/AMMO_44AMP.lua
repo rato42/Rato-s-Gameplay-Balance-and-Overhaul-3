@@ -91,7 +91,75 @@ function GBO_44AMP()
 	}
 	_44AMP_Match.AppliedEffects = {}
 
-	-- TODO Shock Subsonic AMP
+	_44AMP_Tracer.Cost = 200
+	_44AMP_Tracer.AdditionalHint = T({
+		"<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks",
+	})
+	_44AMP_Tracer.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 19,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "tracer",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "CritDamage",
+		}),
+	}
+	_44AMP_Tracer.AppliedEffects = {
+		"Marked",
+		"Revealed_R",
+	}
+
+	_44AMP_Shock.Cost = 300
+	_44AMP_Shock.AdditionalHint = T({
+		"<bullet_point> Little improved armor penetration. \n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
+	})
+	_44AMP_Shock.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 19,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "CritDamage",
+		}),
+	}
+	_44AMP_Shock.AppliedEffects = {
+		"Bleeding",
+	}
+
+	_44AMP_Subsonic.Cost = 260
+	_44AMP_Subsonic.AdditionalHint = T({
+		"<bullet_point> Less noisy\n<bullet_point> Less bullet speed, resulting in less Aim Accuracy, Range and Armor Penetration",
+	})
+	_44AMP_Subsonic.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 19,
+			mod_mul = 500,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = -2,
+			target_prop = "WeaponRange",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = -1,
+			target_prop = "AimAccuracy",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "CritDamage",
+		}),
+	}
+	_44AMP_Subsonic.AppliedEffects = {}
 
 	print("GBO .44AMP .44 AMP DONE")
 end

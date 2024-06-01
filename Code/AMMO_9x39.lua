@@ -42,6 +42,29 @@ function GBO_9x39()
 		}),
 	}
 
+	_9x39_Tracer.Cost = 360
+	_9x39_Tracer.AdditionalHint = T({
+		"<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks",
+	})
+	_9x39_Tracer.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 13,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "tracer",
+		}),
+	}
+	_9x39_Tracer.AppliedEffects = {
+		"Marked",
+		"Revealed_R",
+	}
+
 	_9x39_HP.Cost = 360
 	_9x39_HP.AdditionalHint = T({
 		"<bullet_point> Quieter due to its subsonic nature\n<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color> ",

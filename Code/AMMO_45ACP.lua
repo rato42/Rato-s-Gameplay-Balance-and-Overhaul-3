@@ -47,6 +47,33 @@ function GBO_45ACP()
 		}),
 	}
 
+	_45ACP_Tracer.Cost = 190
+	_45ACP_Tracer.AdditionalHint = T({
+		"<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks",
+	})
+	_45ACP_Tracer.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 17,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "tracer",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "CritDamage",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "CritChance",
+		}),
+	}
+	_45ACP_Tracer.AppliedEffects = {
+		"Marked",
+		"Revealed_R",
+	}
+
 	_45ACP_HP.Cost = 190
 	_45ACP_HP.AdditionalHint = T({
 		"<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
@@ -104,6 +131,35 @@ function GBO_45ACP()
 		}),
 	}
 	_45ACP_Match.AppliedEffects = {}
+
+	_45SCP_Subsonic.Cost = 190
+	_45SCP_Subsonic.AdditionalHint = T({
+		"<bullet_point> Less noisy\n<bullet_point> Less bullet speed, resulting in less Aim Accuracy, Range and Armor Penetration",
+	})
+	_45SCP_Subsonic.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 17,
+			mod_mul = 500,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = -2,
+			target_prop = "WeaponRange",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = -1,
+			target_prop = "AimAccuracy",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "CritDamage",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "CritChance",
+		}),
+	}
+	_45SCP_Subsonic.AppliedEffects = {}
 
 	print("GBO _45ACP .45 ACP DONE")
 end

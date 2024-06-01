@@ -58,6 +58,34 @@ function GBO_545x39()
 		}),
 	}
 
+	_5_45x39_Tracer.Cost = 200
+	_5_45x39_Tracer.Icon = "Mod/cfahRED/Images/545tracer.png"
+	_5_45x39_Tracer.AdditionalHint = T({
+		"<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks",
+	})
+	_5_45x39_Tracer.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 22,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "tracer",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 15,
+			target_prop = "CritChance",
+		}),
+	}
+	_5_45x39_Tracer.AppliedEffects = {
+		"Marked",
+		"Revealed_R",
+	}
+
 	_5_45x39_HP.Icon = "Mod/cfahRED/Images/545hp.png"
 	_5_45x39_HP.Cost = 300
 	_5_45x39_HP.Description = T({
@@ -122,8 +150,6 @@ function GBO_545x39()
 			target_prop = "CritChance",
 		}),
 	}
-
-	-- TODO _54539_Tracer.lua
 
 	print("GBO 545x39 DONE")
 end

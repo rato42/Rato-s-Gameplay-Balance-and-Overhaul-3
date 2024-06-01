@@ -40,6 +40,30 @@ function GBO_762x54()
 		}),
 	}
 
+	_7_62x54_Tracer.Cost = 360
+	_7_62x54_Tracer.Icon = "Mod/cfahRED/Images/bearTracer.png"
+	_7_62x54_Tracer.AdditionalHint = T({
+		"<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks",
+	})
+	_7_62x54_Tracer.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 32,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "tracer",
+		}),
+	}
+	_7_62x54_Tracer.AppliedEffects = {
+		"Marked",
+		"Revealed_R",
+	}
+
 	_7_62x54_HP.Cost = 360
 	_7_62x54_HP.Icon = "Mod/cfahRED/Images/bearHP.png"
 	_7_62x54_HP.AdditionalHint = T({
@@ -90,9 +114,6 @@ function GBO_762x54()
 			target_prop = "AimAccuracy",
 		}),
 	}
-
-	-- TODO _76254R_Tracer.lua
-	-- TODO _762x54R_Subsonic.lua
 
 	print("GBO 762x54 DONE")
 end

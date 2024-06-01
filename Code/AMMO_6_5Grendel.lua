@@ -45,6 +45,33 @@ function GBO_6_5Grendel()
 	}
 	_6_5Grendel_Basic.AppliedEffects = {}
 
+	_6_5Grendel_Tracer.Cost = 320
+	_6_5Grendel_Tracer.AdditionalHint = T({
+		"<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks",
+	})
+	_6_5Grendel_Tracer.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 24,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "tracer",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 10,
+			target_prop = "CritDamage",
+		}),
+	}
+	_6_5Grendel_Tracer.AppliedEffects = {
+		"Marked",
+		"Revealed_R",
+	}
+
 	_6_5Grendel_HP.Cost = 320
 	_6_5Grendel_HP.AdditionalHint = T({
 		"<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color> ",

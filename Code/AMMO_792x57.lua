@@ -40,6 +40,30 @@ function GBO_792x57()
 		}),
 	}
 
+	_7_92x57_Tracer.Cost = 300
+	_7_92x57_Tracer.Icon = "Mod/cfahRED/Images/mousertracer.png"
+	_7_92x57_Tracer.AdditionalHint = T({
+		"<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks",
+	})
+	_7_92x57_Tracer.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 31,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "tracer",
+		}),
+	}
+	_7_92x57_Tracer.AppliedEffects = {
+		"Marked",
+		"Revealed_R",
+	}
+
 	_7_92x57_HP.Cost = 300
 	_7_92x57_HP.Icon = "Mod/cfahRED/Images/mouserhp.png"
 	_7_92x57_HP.AdditionalHint = T({

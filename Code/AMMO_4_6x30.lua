@@ -47,6 +47,33 @@ function GBO_4_6x30()
 		}),
 	}
 
+	_4_6x30_Tracer.Cost = 300
+	_4_6x30_Tracer.AdditionalHint = T({
+		"<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks",
+	})
+	_4_6x30_Tracer.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 16,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "tracer",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "CritChance",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = -2,
+			target_prop = "CritDamage",
+		}),
+	}
+	_4_6x30_Tracer.AppliedEffects = {
+		"Marked",
+		"Revealed_R",
+	}
+
 	_4_6x30_HP.Cost = 300
 	_4_6x30_HP.AdditionalHint = T({
 		"<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",

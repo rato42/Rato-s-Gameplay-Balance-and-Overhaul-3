@@ -46,6 +46,33 @@ function GBO_30_60()
 		}),
 	}
 
+	_30_60_Tracer.Cost = 300
+	_30_60_Tracer.AdditionalHint = T({
+		"<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks",
+	})
+	_30_60_Tracer.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 2,
+			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 25,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "tracer",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 10,
+			target_prop = "CritDamage",
+		}),
+	}
+	_30_60_Tracer.AppliedEffects = {
+		"Marked",
+		"Revealed_R",
+	}
+
 	_30_60_HP.Cost = 300
 	_30_60_HP.AdditionalHint = T({
 		"<bullet_point> Fragmentation effects increase Critical Damage\n<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color> ",

@@ -56,6 +56,37 @@ function GBO_7_92x33()
 	}
 	_7_92x33_Basic.AppliedEffects = {}
 
+	_7_92x33_Tracer.Cost = 270
+	_7_92x33_Tracer.AdditionalHint = T({
+		"<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks",
+	})
+	_7_92x33_Tracer.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 24,
+			target_prop = "Noise",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "tracer",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = -2,
+			target_prop = "CritDamage",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = -2,
+			target_prop = "CritChance",
+		}),
+	}
+	_7_92x33_Tracer.AppliedEffects = {
+		"Marked",
+		"Revealed_R",
+	}
+
 	_7_92x33_HP.Cost = 270
 	_7_92x33_HP.AdditionalHint = T({
 		"<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
