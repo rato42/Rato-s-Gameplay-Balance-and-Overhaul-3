@@ -92,4 +92,4 @@ function GBO_40SW()
 	print("GBO _40SW .40 S&W DONE")
 end
 
-OnMsg.ClassesGenerate = GBO_40SW
+OnMsg.zCore_ClassesGenerate = GBO_40SW

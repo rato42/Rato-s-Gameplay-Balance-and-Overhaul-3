@@ -102,4 +102,4 @@ function GBO_22LR()
 	print("GBO _22LR .22LR DONE")
 end
 
-OnMsg.ClassesGenerate = GBO_22LR
+OnMsg.zCore_ClassesGenerate = GBO_22LR

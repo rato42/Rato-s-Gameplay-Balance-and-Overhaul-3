@@ -74,4 +74,4 @@ function GBO_50BMG()
 	print("GBO 50BMG DONE")
 end
 
-OnMsg.ClassesGenerate = GBO_50BMG
+OnMsg.zCore_ClassesGenerate = GBO_50BMG

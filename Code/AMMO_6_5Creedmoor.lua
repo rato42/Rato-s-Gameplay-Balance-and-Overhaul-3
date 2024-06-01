@@ -118,5 +118,5 @@ function GBO_6_5Creedmoor()
 	print("GBO _6_5Creedmoor 6.5 Creedmoor DONE")
 end
 
-OnMsg.ClassesGenerate = GBO_6_5Creedmoor
+OnMsg.zCore_ClassesGenerate = GBO_6_5Creedmoor
 

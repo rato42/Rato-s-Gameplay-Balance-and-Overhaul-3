@@ -126,5 +126,5 @@ function GBO_408_ChayTac()
 	print("GBO _408_ChayTac .408 CheyTac DONE")
 end
 
-OnMsg.ClassesGenerate = GBO_408_ChayTac
+OnMsg.zCore_ClassesGenerate = GBO_408_ChayTac
 
