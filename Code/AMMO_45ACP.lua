@@ -132,11 +132,11 @@ function GBO_45ACP()
 	}
 	_45ACP_Match.AppliedEffects = {}
 
-	_45SCP_Subsonic.Cost = 190
-	_45SCP_Subsonic.AdditionalHint = T({
+	_45ACP_Subsonic.Cost = 190
+	_45ACP_Subsonic.AdditionalHint = T({
 		"<bullet_point> Less noisy\n<bullet_point> Less bullet speed, resulting in less Aim Accuracy, Range and Armor Penetration",
 	})
-	_45SCP_Subsonic.Modifications = {
+	_45ACP_Subsonic.Modifications = {
 		PlaceObj("CaliberModification", {
 			mod_add = 17,
 			mod_mul = 500,
@@ -159,7 +159,7 @@ function GBO_45ACP()
 			target_prop = "CritChance",
 		}),
 	}
-	_45SCP_Subsonic.AppliedEffects = {}
+	_45ACP_Subsonic.AppliedEffects = {}
 
 	print("GBO _45ACP .45 ACP DONE")
 end
