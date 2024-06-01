@@ -135,6 +135,7 @@ return PlaceObj('ModDef', {
 		"Code/SOURCE_BobbyRay_PickRandomWeightItems.lua",
 		"Code/UNIT_REACTIONS_changes.lua",
 		"Code/PATCH_call.lua",
+		"Code/PATCH_old_ammo.lua",
 		"Code/PATCH_weapons.lua",
 		"Code/shooting_stance_aoesector_functions.lua",
 		"Code/COMBAT_ACTIONS.lua",

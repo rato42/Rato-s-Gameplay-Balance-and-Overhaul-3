@@ -275,7 +275,7 @@ function RatoGBO_WepPatch()
 	AR15.ScrapParts = 10
 	AR15.AdditionalHint = T {
 		145852997392, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Only semi-auto with standard stocks]]}
+<bullet_point> Only semi-auto with standard stocks]]}
 	AR15.Noise = 20
 	AR15.CritChanceScaled = 30
 	AR15.AimAccuracy = 5
@@ -454,7 +454,7 @@ function RatoGBO_WepPatch()
 	FAMAS.ScrapParts = 10
 	FAMAS.AdditionalHint = T {
 		423566125417, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Increased Reload cost]]}
+<bullet_point> Increased Reload cost]]}
 	FAMAS.Noise = 18
 	FAMAS.CritChanceScaled = 10
 	FAMAS.AimAccuracy = 4
@@ -639,7 +639,7 @@ function RatoGBO_WepPatch()
 	G36.ScrapParts = 10
 	G36.AdditionalHint = T {
 		507516354956, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Special 2-shot burst mode with improved critical chance and reduced recoil]]}
+<bullet_point> Special 2-shot burst mode with improved critical chance and reduced recoil]]}
 	G36.Valuable = 1
 	G36.Noise = 18
 	G36.CritChanceScaled = 20
@@ -728,7 +728,7 @@ function RatoGBO_WepPatch()
 	Galil.ScrapParts = 10
 	Galil.AdditionalHint = T {
 		233977894097, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> In-built bottle opener]]}
+<bullet_point> In-built bottle opener]]}
 	Galil.Valuable = 1
 	Galil.Noise = 22
 	Galil.CritChanceScaled = 30
@@ -815,7 +815,7 @@ function RatoGBO_WepPatch()
 	M14SAW.ScrapParts = 10
 	M14SAW.AdditionalHint = T {
 		517364861436, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Civilian issued, most commonly found variant. Only fires in semi-auto]]}
+<bullet_point> Civilian issued, most commonly found variant. Only fires in semi-auto]]}
 	M14SAW.Noise = 20
 	M14SAW.CritChanceScaled = 10
 	M14SAW.AimAccuracy = 4
@@ -908,7 +908,7 @@ function RatoGBO_WepPatch()
 	M14SAW_AUTO.ScrapParts = 10
 	M14SAW_AUTO.AdditionalHint = T {
 		419078734073, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Military variant with burst fire and auto fire modes
+<bullet_point> Military variant with burst fire and auto fire modes
  <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Has a big recoil penalty]]}
 	M14SAW_AUTO.Noise = 20
 	M14SAW_AUTO.CritChanceScaled = 10
@@ -1002,7 +1002,7 @@ function RatoGBO_WepPatch()
 	M16A2.ScrapParts = 10
 	M16A2.AdditionalHint = T {
 		550693603298, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> No Auto firing mode]]}
+<bullet_point> No Auto firing mode]]}
 	M16A2.Noise = 18
 	M16A2.CritChanceScaled = 10
 	M16A2.AimAccuracy = 5
@@ -1073,7 +1073,7 @@ function RatoGBO_WepPatch()
 	Bereta92.ScrapParts = 6
 	Bereta92.AdditionalHint = T {
 		612920982302, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Swapping to this weapon is free, as long it is not dual-wielded]]}
+<bullet_point> Swapping to this weapon is free, as long it is not dual-wielded]]}
 	Bereta92.Noise = 18
 	Bereta92.CritChanceScaled = 30
 	Bereta92.AimAccuracy = 3
@@ -1136,7 +1136,7 @@ function RatoGBO_WepPatch()
 	ColtAnaconda.ScrapParts = 8
 	ColtAnaconda.AdditionalHint = T {
 		879153829726, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Double action
+<bullet_point> Double action
  <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Swapping to this weapon is free, as long it is not dual-wielded]]}
 	ColtAnaconda.Valuable = 1
 	ColtAnaconda.Noise = 18
@@ -1193,7 +1193,7 @@ function RatoGBO_WepPatch()
 	ColtPeacemaker.ScrapParts = 6
 	ColtPeacemaker.AdditionalHint = T {
 		626602087367, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Single action
+<bullet_point> Single action
  <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Swapping to this weapon is free, as long it is not dual-wielded]]}
 	ColtPeacemaker.Noise = 18
 	ColtPeacemaker.CritChanceScaled = 20
@@ -1261,7 +1261,7 @@ function RatoGBO_WepPatch()
 	DesertEagle.ScrapParts = 10
 	DesertEagle.AdditionalHint = T {
 		467653092333, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Swapping to this weapon is free, as long it is not dual-wielded]]}
+<bullet_point> Swapping to this weapon is free, as long it is not dual-wielded]]}
 	DesertEagle.Valuable = 1
 	DesertEagle.Noise = 20
 	DesertEagle.CritChanceScaled = 20
@@ -1331,7 +1331,7 @@ function RatoGBO_WepPatch()
 	Glock18.ScrapParts = 6
 	Glock18.AdditionalHint = T {
 		850719596587, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Swapping to this weapon is free, as long it is not dual-wielded
+<bullet_point> Swapping to this weapon is free, as long it is not dual-wielded
  <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Automatic firing modes]]}
 	Glock18.Noise = 18
 	Glock18.CritChanceScaled = 10
@@ -1402,7 +1402,7 @@ function RatoGBO_WepPatch()
 	HiPower.ScrapParts = 6
 	HiPower.AdditionalHint = T {
 		345858616651, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Swapping to this weapon is free, as long it is not dual-wielded]]}
+<bullet_point> Swapping to this weapon is free, as long it is not dual-wielded]]}
 	HiPower.Noise = 18
 	HiPower.CritChanceScaled = 10
 	HiPower.AimAccuracy = 4
@@ -1456,7 +1456,7 @@ function RatoGBO_WepPatch()
 	TexRevolver.ScrapParts = 8
 	TexRevolver.AdditionalHint = T {
 		596143246468, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Tex has reduced penalty when using Dual Shot with his revolvers
+<bullet_point> Tex has reduced penalty when using Dual Shot with his revolvers
  <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Single action]]}
 	TexRevolver.Noise = 18
 	TexRevolver.CritChanceScaled = 50
@@ -1502,7 +1502,7 @@ function RatoGBO_WepPatch()
 	BrowningM2HMG.ScrapParts = 20
 	BrowningM2HMG.AdditionalHint = T {
 		891996501927, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Stationary weapon
+<bullet_point> Stationary weapon
  ]]}
 	BrowningM2HMG.Noise = 30
 	BrowningM2HMG.CritChanceScaled = 10
@@ -2260,7 +2260,7 @@ function RatoGBO_WepPatch()
 	Winchester1894.ScrapParts = 8
 	Winchester1894.AdditionalHint = T {
 		709693708737, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Lever action
+<bullet_point> Lever action
  ]]}
 	Winchester1894.Noise = 20
 	Winchester1894.CritChanceScaled = 30
@@ -2795,7 +2795,7 @@ function RatoGBO_WepPatch()
 	AA12.ScrapParts = 12
 	AA12.AdditionalHint = T {
 		141818519778, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Special firing mode: Buckshot Burst]]}
+<bullet_point> Special firing mode: Buckshot Burst]]}
 	AA12.Valuable = 1
 	AA12.Noise = 25
 	AA12.CritChanceScaled = 10
@@ -2899,7 +2899,7 @@ function RatoGBO_WepPatch()
 	DoubleBarrelShotgun.ScrapParts = 8
 	DoubleBarrelShotgun.AdditionalHint = T {
 		150578847961, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Special firing mode: Double Barrel]]}
+<bullet_point> Special firing mode: Double Barrel]]}
 	DoubleBarrelShotgun.Noise = 25
 	DoubleBarrelShotgun.CritChanceScaled = 10
 	DoubleBarrelShotgun.AimAccuracy = 1
@@ -3010,7 +3010,7 @@ function RatoGBO_WepPatch()
 	Auto5_quest.ScrapParts = 10
 	Auto5_quest.AdditionalHint = T {
 		732527392585, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Rapid Invalidation]]}
+<bullet_point> Rapid Invalidation]]}
 	Auto5_quest.Noise = 25
 	Auto5_quest.CritChanceScaled = 10
 	Auto5_quest.AimAccuracy = 1
@@ -3133,7 +3133,7 @@ function RatoGBO_WepPatch()
 	LionRoar.ScrapParts = 10
 	LionRoar.AdditionalHint = T {
 		901243090653, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> OUR weapon
+<bullet_point> OUR weapon
  <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Burst fire has 4 shots
  <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128120>Limitedammocapacity]]}
 	LionRoar.Noise = 20
@@ -3194,7 +3194,7 @@ function RatoGBO_WepPatch()
 	Winchester_Quest.ScrapParts = 8
 	Winchester_Quest.AdditionalHint = T {
 		271837025192, [[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128 120> Backstabby and Silent
+<bullet_point> Backstabby and Silent
  <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Lever action
  ]]}
 	Winchester_Quest.Noise = 30
