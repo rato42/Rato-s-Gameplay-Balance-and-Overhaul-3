@@ -22,6 +22,7 @@ function RatoGBO_WepPatch()
 		}}
 	GoldenGun.OverwatchAngle = 870
 	GoldenGun.Damage = 31
+	GoldenGun.MagazineSize = 10
 	GoldenGun.RepairCost = 80
 	GoldenGun.RestockWeight = 0
 	GoldenGun.ScrapParts = 16
@@ -106,6 +107,7 @@ function RatoGBO_WepPatch()
 		}}
 	AK47.OverwatchAngle = 1086
 	AK47.Damage = 26
+	AK47.MagazineSize = 30
 	AK47.RepairCost = 20
 	AK47.RestockWeight = 120
 	AK47.ScrapParts = 10
@@ -182,6 +184,7 @@ function RatoGBO_WepPatch()
 		}}
 	AK74.OverwatchAngle = 1127
 	AK74.Damage = 24
+	AK74.MagazineSize = 30
 	AK74.RepairCost = 20
 	AK74.RestockWeight = 80
 	AK74.ScrapParts = 10
@@ -266,6 +269,7 @@ function RatoGBO_WepPatch()
 		}}
 	AR15.OverwatchAngle = 1130
 	AR15.Damage = 24
+	AR15.MagazineSize = 30
 	AR15.RepairCost = 80
 	AR15.RestockWeight = 90
 	AR15.ScrapParts = 10
@@ -361,6 +365,7 @@ function RatoGBO_WepPatch()
 		}}
 	AUG.OverwatchAngle = 983
 	AUG.Damage = 23
+	AUG.MagazineSize = 30
 	AUG.RepairCost = 80
 	AUG.RestockWeight = 20
 	AUG.ScrapParts = 10
@@ -443,6 +448,7 @@ function RatoGBO_WepPatch()
 		}}
 	FAMAS.OverwatchAngle = 1051
 	FAMAS.Damage = 22
+	FAMAS.MagazineSize = 25
 	FAMAS.RepairCost = 80
 	FAMAS.RestockWeight = 80
 	FAMAS.ScrapParts = 10
@@ -544,6 +550,7 @@ function RatoGBO_WepPatch()
 		}}
 	FNFAL.OverwatchAngle = 1021
 	FNFAL.Damage = 30
+	FNFAL.MagazineSize = 20
 	FNFAL.RepairCost = 80
 	FNFAL.RestockWeight = 40
 	FNFAL.ScrapParts = 10
@@ -626,6 +633,7 @@ function RatoGBO_WepPatch()
 		}}
 	G36.OverwatchAngle = 1023
 	G36.Damage = 23
+	G36.MagazineSize = 30
 	G36.RepairCost = 80
 	G36.RestockWeight = 20
 	G36.ScrapParts = 10
@@ -714,6 +722,7 @@ function RatoGBO_WepPatch()
 		}}
 	Galil.OverwatchAngle = 1052
 	Galil.Damage = 30
+	Galil.MagazineSize = 25
 	Galil.RepairCost = 50
 	Galil.RestockWeight = 40
 	Galil.ScrapParts = 10
@@ -800,6 +809,7 @@ function RatoGBO_WepPatch()
 		}}
 	M14SAW.OverwatchAngle = 870
 	M14SAW.Damage = 29
+	M14SAW.MagazineSize = 10
 	M14SAW.RepairCost = 80
 	M14SAW.RestockWeight = 80
 	M14SAW.ScrapParts = 10
@@ -892,6 +902,7 @@ function RatoGBO_WepPatch()
 		}}
 	M14SAW_AUTO.OverwatchAngle = 870
 	M14SAW_AUTO.Damage = 29
+	M14SAW_AUTO.MagazineSize = 10
 	M14SAW_AUTO.RepairCost = 80
 	M14SAW_AUTO.RestockWeight = 40
 	M14SAW_AUTO.ScrapParts = 10
@@ -985,6 +996,7 @@ function RatoGBO_WepPatch()
 		}}
 	M16A2.OverwatchAngle = 1024
 	M16A2.Damage = 24
+	M16A2.MagazineSize = 20
 	M16A2.RepairCost = 80
 	M16A2.RestockWeight = 40
 	M16A2.ScrapParts = 10
@@ -1055,6 +1067,7 @@ function RatoGBO_WepPatch()
 		}}
 	Bereta92.OverwatchAngle = 2209
 	Bereta92.Damage = 17
+	Bereta92.MagazineSize = 15
 	Bereta92.RepairCost = 70
 	Bereta92.RestockWeight = 70
 	Bereta92.ScrapParts = 6
@@ -1117,6 +1130,7 @@ function RatoGBO_WepPatch()
 		}}
 	ColtAnaconda.OverwatchAngle = 2118
 	ColtAnaconda.Damage = 22
+	ColtAnaconda.MagazineSize = 6
 	ColtAnaconda.RepairCost = 30
 	ColtAnaconda.RestockWeight = 70
 	ColtAnaconda.ScrapParts = 8
@@ -1173,6 +1187,7 @@ function RatoGBO_WepPatch()
 		}}
 	ColtPeacemaker.OverwatchAngle = 2162
 	ColtPeacemaker.Damage = 21
+	ColtPeacemaker.MagazineSize = 6
 	ColtPeacemaker.RepairCost = 30
 	ColtPeacemaker.RestockWeight = 100
 	ColtPeacemaker.ScrapParts = 6
@@ -1240,6 +1255,7 @@ function RatoGBO_WepPatch()
 		}}
 	DesertEagle.OverwatchAngle = 1936
 	DesertEagle.Damage = 23
+	DesertEagle.MagazineSize = 15
 	DesertEagle.RepairCost = 70
 	DesertEagle.RestockWeight = 40
 	DesertEagle.ScrapParts = 10
@@ -1309,6 +1325,7 @@ function RatoGBO_WepPatch()
 		}}
 	Glock18.OverwatchAngle = 2232
 	Glock18.Damage = 16
+	Glock18.MagazineSize = 15
 	Glock18.RepairCost = 70
 	Glock18.RestockWeight = 30
 	Glock18.ScrapParts = 6
@@ -1379,6 +1396,7 @@ function RatoGBO_WepPatch()
 		}}
 	HiPower.OverwatchAngle = 2216
 	HiPower.Damage = 17
+	HiPower.MagazineSize = 13
 	HiPower.RepairCost = 70
 	HiPower.RestockWeight = 100
 	HiPower.ScrapParts = 6
@@ -1433,6 +1451,7 @@ function RatoGBO_WepPatch()
 		}}
 	TexRevolver.OverwatchAngle = 2162
 	TexRevolver.Damage = 21
+	TexRevolver.MagazineSize = 6
 	TexRevolver.RepairCost = 50
 	TexRevolver.ScrapParts = 8
 	TexRevolver.AdditionalHint = T {
@@ -1478,6 +1497,7 @@ function RatoGBO_WepPatch()
 		}}
 	BrowningM2HMG.OverwatchAngle = 3600
 	BrowningM2HMG.Damage = 45
+	BrowningM2HMG.MagazineSize = 100
 	BrowningM2HMG.RepairCost = 80
 	BrowningM2HMG.ScrapParts = 20
 	BrowningM2HMG.AdditionalHint = T {
@@ -1548,6 +1568,7 @@ function RatoGBO_WepPatch()
 		}}
 	FNMinimi.OverwatchAngle = 781
 	FNMinimi.Damage = 23
+	FNMinimi.MagazineSize = 100
 	FNMinimi.RepairCost = 120
 	FNMinimi.RestockWeight = 25
 	FNMinimi.ScrapParts = 16
@@ -1635,6 +1656,7 @@ function RatoGBO_WepPatch()
 		}}
 	HK21.OverwatchAngle = 695
 	HK21.Damage = 30
+	HK21.MagazineSize = 20
 	HK21.RepairCost = 80
 	HK21.RestockWeight = 40
 	HK21.ScrapParts = 16
@@ -1680,6 +1702,7 @@ function RatoGBO_WepPatch()
 		}}
 	MG42.OverwatchAngle = 571
 	MG42.Damage = 28
+	MG42.MagazineSize = 50
 	MG42.RepairCost = 80
 	MG42.RestockWeight = 80
 	MG42.ScrapParts = 12
@@ -1730,6 +1753,7 @@ function RatoGBO_WepPatch()
 		}}
 	MG58.OverwatchAngle = 571
 	MG58.Damage = 30
+	MG58.MagazineSize = 50
 	MG58.RepairCost = 80
 	MG58.ScrapParts = 12
 	MG58.AdditionalHint = T {240845249658, [[<description_hints>]]}
@@ -1810,6 +1834,7 @@ function RatoGBO_WepPatch()
 		}}
 	RPK74.OverwatchAngle = 815
 	RPK74.Damage = 22
+	RPK74.MagazineSize = 45
 	RPK74.RepairCost = 80
 	RPK74.RestockWeight = 30
 	RPK74.ScrapParts = 16
@@ -1874,6 +1899,7 @@ function RatoGBO_WepPatch()
 		}}
 	BarretM82.OverwatchAngle = 545
 	BarretM82.Damage = 90
+	BarretM82.MagazineSize = 5
 	BarretM82.RepairCost = 80
 	BarretM82.RestockWeight = 20
 	BarretM82.ScrapParts = 16
@@ -1947,6 +1973,7 @@ function RatoGBO_WepPatch()
 		}}
 	DragunovSVD.OverwatchAngle = 820
 	DragunovSVD.Damage = 32
+	DragunovSVD.MagazineSize = 10
 	DragunovSVD.RepairCost = 80
 	DragunovSVD.RestockWeight = 60
 	DragunovSVD.ScrapParts = 14
@@ -2005,6 +2032,7 @@ function RatoGBO_WepPatch()
 		}}
 	Gewehr98.OverwatchAngle = 651
 	Gewehr98.Damage = 29
+	Gewehr98.MagazineSize = 5
 	Gewehr98.RepairCost = 80
 	Gewehr98.RestockWeight = 100
 	Gewehr98.ScrapParts = 8
@@ -2085,6 +2113,7 @@ function RatoGBO_WepPatch()
 		}}
 	M24Sniper.OverwatchAngle = 772
 	M24Sniper.Damage = 33
+	M24Sniper.MagazineSize = 5
 	M24Sniper.RepairCost = 80
 	M24Sniper.RestockWeight = 50
 	M24Sniper.ScrapParts = 14
@@ -2159,6 +2188,7 @@ function RatoGBO_WepPatch()
 		}}
 	PSG1.OverwatchAngle = 596
 	PSG1.Damage = 31
+	PSG1.MagazineSize = 5
 	PSG1.RepairCost = 80
 	PSG1.RestockWeight = 30
 	PSG1.ScrapParts = 14
@@ -2225,6 +2255,7 @@ function RatoGBO_WepPatch()
 		}}
 	Winchester1894.OverwatchAngle = 1053
 	Winchester1894.Damage = 23
+	Winchester1894.MagazineSize = 9
 	Winchester1894.RepairCost = 80
 	Winchester1894.ScrapParts = 8
 	Winchester1894.AdditionalHint = T {
@@ -2306,6 +2337,7 @@ function RatoGBO_WepPatch()
 		}}
 	AKSU.OverwatchAngle = 1448
 	AKSU.Damage = 21
+	AKSU.MagazineSize = 30
 	AKSU.RepairCost = 50
 	AKSU.RestockWeight = 40
 	AKSU.ScrapParts = 10
@@ -2382,6 +2414,7 @@ function RatoGBO_WepPatch()
 		}}
 	M4Commando.OverwatchAngle = 1429
 	M4Commando.Damage = 22
+	M4Commando.MagazineSize = 20
 	M4Commando.RepairCost = 80
 	M4Commando.RestockWeight = 30
 	M4Commando.ScrapParts = 10
@@ -2440,6 +2473,7 @@ function RatoGBO_WepPatch()
 		}}
 	MP40.OverwatchAngle = 1321
 	MP40.Damage = 18
+	MP40.MagazineSize = 32
 	MP40.RepairCost = 80
 	MP40.RestockWeight = 70
 	MP40.ScrapParts = 6
@@ -2525,6 +2559,7 @@ function RatoGBO_WepPatch()
 		}}
 	MP5.OverwatchAngle = 1437
 	MP5.Damage = 19
+	MP5.MagazineSize = 15
 	MP5.RepairCost = 80
 	MP5.RestockWeight = 50
 	MP5.ScrapParts = 8
@@ -2605,6 +2640,7 @@ function RatoGBO_WepPatch()
 	MP5K.HandSlot = "OneHanded"
 	MP5K.OverwatchAngle = 1437
 	MP5K.Damage = 19
+	MP5K.MagazineSize = 15
 	MP5K.RepairCost = 80
 	MP5K.RestockWeight = 30
 	MP5K.ScrapParts = 8
@@ -2686,6 +2722,7 @@ function RatoGBO_WepPatch()
 		}}
 	UZI.OverwatchAngle = 1410
 	UZI.Damage = 18
+	UZI.MagazineSize = 25
 	UZI.RepairCost = 80
 	UZI.RestockWeight = 100
 	UZI.ScrapParts = 6
@@ -2752,6 +2789,7 @@ function RatoGBO_WepPatch()
 		}}
 	AA12.OverwatchAngle = 1001
 	AA12.Damage = 25
+	AA12.MagazineSize = 8
 	AA12.RepairCost = 50
 	AA12.RestockWeight = 40
 	AA12.ScrapParts = 12
@@ -2808,6 +2846,7 @@ function RatoGBO_WepPatch()
 		}}
 	Auto5.OverwatchAngle = 959
 	Auto5.Damage = 27
+	Auto5.MagazineSize = 4
 	Auto5.RepairCost = 50
 	Auto5.RestockWeight = 50
 	Auto5.ScrapParts = 10
@@ -2854,6 +2893,7 @@ function RatoGBO_WepPatch()
 		}}
 	DoubleBarrelShotgun.OverwatchAngle = 901
 	DoubleBarrelShotgun.Damage = 25
+	DoubleBarrelShotgun.MagazineSize = 2
 	DoubleBarrelShotgun.RepairCost = 50
 	DoubleBarrelShotgun.RestockWeight = 120
 	DoubleBarrelShotgun.ScrapParts = 8
@@ -2917,6 +2957,7 @@ function RatoGBO_WepPatch()
 		}}
 	M41Shotgun.OverwatchAngle = 881
 	M41Shotgun.Damage = 27
+	M41Shotgun.MagazineSize = 6
 	M41Shotgun.RepairCost = 50
 	M41Shotgun.RestockWeight = 60
 	M41Shotgun.ScrapParts = 10
@@ -2964,6 +3005,7 @@ function RatoGBO_WepPatch()
 		}}
 	Auto5_quest.OverwatchAngle = 959
 	Auto5_quest.Damage = 24
+	Auto5_quest.MagazineSize = 8
 	Auto5_quest.RepairCost = 50
 	Auto5_quest.ScrapParts = 10
 	Auto5_quest.AdditionalHint = T {
@@ -3037,6 +3079,7 @@ function RatoGBO_WepPatch()
 		}}
 	Galil_FlagHill.OverwatchAngle = 1080
 	Galil_FlagHill.Damage = 30
+	Galil_FlagHill.MagazineSize = 25
 	Galil_FlagHill.RepairCost = 50
 	Galil_FlagHill.ScrapParts = 10
 	Galil_FlagHill.AdditionalHint = T {811371938636, [[<description_hints>]]}
@@ -3085,6 +3128,7 @@ function RatoGBO_WepPatch()
 		}}
 	LionRoar.OverwatchAngle = 1410
 	LionRoar.Damage = 19
+	LionRoar.MagazineSize = 20
 	LionRoar.RepairCost = 80
 	LionRoar.ScrapParts = 10
 	LionRoar.AdditionalHint = T {
@@ -3145,6 +3189,7 @@ function RatoGBO_WepPatch()
 		}}
 	Winchester_Quest.OverwatchAngle = 1320
 	Winchester_Quest.Damage = 22
+	Winchester_Quest.MagazineSize = 4
 	Winchester_Quest.RepairCost = 80
 	Winchester_Quest.ScrapParts = 8
 	Winchester_Quest.AdditionalHint = T {
