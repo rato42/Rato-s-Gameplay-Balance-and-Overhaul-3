@@ -1,7 +1,11 @@
-local function isZulibModActive()
-	-- TODO use zulib mod option
-	return not not table.find_value(ModsLoaded, "id", "Tc3ajdY")
+local isZulibModActive = true
+
+local function reloadIsZulibModActive()
+	local zulib = table.find_value(ModsLoaded, "id", "Tc3ajdY")
+	isZulibModActive = zulib and not zulib.options["zz_Opt_DontChangeCalibers"] and true or false
 end
+OnMsg.ModsReloaded = reloadIsZulibModActive
+OnMsg.ApplyModOptions = reloadIsZulibModActive
 
 GBO_OldAmmoMapping = {
 	ZULIB = {
@@ -77,18 +81,11 @@ GBO_OldAmmoMapping = {
 		_57x28_Match = "_9mm_Match",
 	},
 }
-local function getAmmoMappingKey()
-	if isZulibModActive() then
-		return "ZULIB"
-	else
-		return "VANILLA"
-	end
-end
 
 local GBO_PlaceInventoryItem = PlaceInventoryItem
 
 function PlaceInventoryItem(item_id, instance, ...)
-	local key = getAmmoMappingKey()
+	local key = isZulibModActive and "ZULIB" or "VANILLA"
 	if GBO_OldAmmoMapping[key][item_id] then
 		print("GBO PATCH OLD AMMO", key, "from", item_id, "to", GBO_OldAmmoMapping[key][item_id])
 		local obj = GBO_PlaceInventoryItem(GBO_OldAmmoMapping[key][item_id], instance, ...)
