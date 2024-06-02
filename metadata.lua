@@ -14,7 +14,6 @@ return PlaceObj('ModDef', {
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
-		"Code/TODO.lua",
 		"CharacterEffect/shoot_move.lua",
 		"CharacterEffect/shooting_stance.lua",
 		"CharacterEffect/Marked.lua",

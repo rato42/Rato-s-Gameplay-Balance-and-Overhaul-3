@@ -6,10 +6,6 @@ return {
 		comment = "7.62x54mmR",
 		id = "762x54R",
 	}),
-	PlaceObj('ModItemCode', {
-		'name', "TODO",
-		'CodeFileName', "Code/TODO.lua",
-	}),
 	PlaceObj('ModItemCaliber', {
 		ImpactForce = 1,
 		Name = T(589568304301, --[[ModItemCaliber Default 545x39 Name]] "5.45x39mm"),
