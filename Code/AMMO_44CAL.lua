@@ -113,6 +113,11 @@ function GBO_44CAL()
 		"Bleeding",
 	}
 
+	print("GBO .44CAL .44 [Vanilla 44CAL] DONE")
+end
+
+function GBO_44CAL_Zulib()
+	print("GBO .44CAL .44 [Zulib 44CAL] ...")
 	_44CAL_Subsonic.Cost = 260
 	_44CAL_Subsonic.AdditionalHint = T({
 		"<bullet_point> Less noisy\n<bullet_point> Less bullet speed, resulting in less Aim Accuracy, Range and Armor Penetration",
@@ -138,7 +143,8 @@ function GBO_44CAL()
 	}
 	_44CAL_Subsonic.AppliedEffects = {}
 
-	print("GBO .44CAL .44 [Vanilla 44CAL] DONE")
+	print("GBO .44CAL .44 [Zulib 44CAL] DONE")
 end
 
 OnMsg.ClassesGenerate = GBO_44CAL
+OnMsg.zCore_ClassesGenerate = GBO_44CAL_Zulib
