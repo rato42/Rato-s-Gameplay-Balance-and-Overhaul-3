@@ -1099,7 +1099,7 @@ function RatoGBO_WepPatch()
 	Bereta92.PenetrationClass = 1
 
 	ColtAnaconda.Cost = 4500
-	ColtAnaconda.WeaponRange = 18
+	ColtAnaconda.WeaponRange = 20
 	ColtAnaconda.ShootAP = 4000
 	ColtAnaconda.ReloadAP = 3000
 	ColtAnaconda.Reliability = 85
@@ -1129,7 +1129,7 @@ function RatoGBO_WepPatch()
 			AvailableComponents = {'SADA_action'},
 		}}
 	ColtAnaconda.OverwatchAngle = 2118
-	ColtAnaconda.Damage = 22
+	ColtAnaconda.Damage = 27
 	ColtAnaconda.MagazineSize = 6
 	ColtAnaconda.RepairCost = 30
 	ColtAnaconda.RestockWeight = 70
@@ -1154,7 +1154,7 @@ function RatoGBO_WepPatch()
 	ColtAnaconda.Rat_swap_ap = 1
 	ColtAnaconda.recoil_mechanism = "Revolver"
 	ColtAnaconda.Rat_cycling = "DoubleAction"
-	ColtAnaconda.wep_base_recoil_mul = 114
+	ColtAnaconda.wep_base_recoil_mul = 106
 	ColtAnaconda.wep_base_hip_mul = 114
 	ColtAnaconda.wep_base_snapshot_mul = 75
 	ColtAnaconda.weigth_held_mul = 110
@@ -1221,6 +1221,7 @@ function RatoGBO_WepPatch()
 
 	DesertEagle.Cost = 6000
 	DesertEagle.ShootAP = 4000
+	DesertEagle.WeaponRange = 22
 	DesertEagle.ReloadAP = 3000
 	DesertEagle.Reliability = 40
 	DesertEagle.AvailableAttacks = {"SingleShot", "DualShot", "CancelShot", "MobileShot"}
@@ -1254,7 +1255,7 @@ function RatoGBO_WepPatch()
 			AvailableComponents = {'FlashlightDot', 'Flashlight', 'LaserDot', 'UVDot'},
 		}}
 	DesertEagle.OverwatchAngle = 1936
-	DesertEagle.Damage = 23
+	DesertEagle.Damage = 28
 	DesertEagle.MagazineSize = 15
 	DesertEagle.RepairCost = 70
 	DesertEagle.RestockWeight = 40
@@ -1278,7 +1279,7 @@ function RatoGBO_WepPatch()
 	DesertEagle.Rat_swap_ap = 1
 	DesertEagle.recoil_mechanism = "Short_Recoil"
 	DesertEagle.Rat_cycling = "SemiAuto"
-	DesertEagle.wep_base_recoil_mul = 112
+	DesertEagle.wep_base_recoil_mul = 99
 	DesertEagle.wep_base_hip_mul = 114
 	DesertEagle.wep_base_snapshot_mul = 77
 	DesertEagle.weigth_held_mul = 115
@@ -2254,7 +2255,7 @@ function RatoGBO_WepPatch()
 			AvailableComponents = {'lever_action'},
 		}}
 	Winchester1894.OverwatchAngle = 1053
-	Winchester1894.Damage = 23
+	Winchester1894.Damage = 28
 	Winchester1894.MagazineSize = 9
 	Winchester1894.RepairCost = 80
 	Winchester1894.ScrapParts = 8
@@ -3188,7 +3189,7 @@ function RatoGBO_WepPatch()
 			AvailableComponents = {'lever_action'},
 		}}
 	Winchester_Quest.OverwatchAngle = 1320
-	Winchester_Quest.Damage = 22
+	Winchester_Quest.Damage = 27
 	Winchester_Quest.MagazineSize = 4
 	Winchester_Quest.RepairCost = 80
 	Winchester_Quest.ScrapParts = 8

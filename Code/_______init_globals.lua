@@ -54,15 +54,11 @@ if FirstLoad then
 			["44CAL"] = {
 				str = 58,
 			},
-			["44MAG"] = {
-				str = 58,
-			},
+
 			["44AMP"] = {
 				str = 58,
 			},
-			["50AE"] = {
-				str = 65,
-			},
+
 		},
 		medium = {
 			modifier = 1.38,
@@ -80,6 +76,11 @@ if FirstLoad then
 			["300Blackout"] = {
 				str = 64,
 			},
+			-----
+			["44MAG"] = {
+				str = 70,
+			},
+
 		},
 		medium_large = {
 			modifier = 1.58,
@@ -104,6 +105,11 @@ if FirstLoad then
 			["303"] = {
 				str = 69,
 			},
+			-----
+			["50AE"] = {
+				str = 75,
+			},
+
 		},
 		large = {
 			modifier = 1.78,
@@ -134,6 +140,7 @@ if FirstLoad then
 			["6_5Grendel"] = {
 				str = 74,
 			},
+
 		},
 		extra_large = {
 			modifier = 2.1,

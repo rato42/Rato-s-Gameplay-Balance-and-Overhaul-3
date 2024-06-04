@@ -10,7 +10,7 @@ function GBO_44MAG()
 	})
 	_44MAG_AP.Modifications = {
 		PlaceObj("CaliberModification", {
-			mod_add = 2,
+			mod_add = 3,
 			target_prop = "PenetrationClass",
 		}),
 		PlaceObj("CaliberModification", {
@@ -30,6 +30,10 @@ function GBO_44MAG()
 
 	_44MAG_Basic.Cost = 100
 	_44MAG_Basic.Modifications = {
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "PenetrationClass",
+		}),
 		PlaceObj("CaliberModification", {
 			mod_add = 19,
 			target_prop = "Noise",
@@ -69,6 +73,10 @@ function GBO_44MAG()
 	})
 	_44MAG_Match.Modifications = {
 		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
 			mod_add = 2,
 			target_prop = "AimAccuracy",
 		}),
@@ -97,6 +105,10 @@ function GBO_44MAG()
 	})
 	_44MAG_Tracer.Modifications = {
 		PlaceObj("CaliberModification", {
+			mod_add = 1,
+			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
 			mod_add = 19,
 			target_prop = "Noise",
 		}),
@@ -116,13 +128,9 @@ function GBO_44MAG()
 
 	_44MAG_Shock.Cost = 300
 	_44MAG_Shock.AdditionalHint = T({
-		"<bullet_point> Little improved armor penetration. \n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
+		"\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
 	})
 	_44MAG_Shock.Modifications = {
-		PlaceObj("CaliberModification", {
-			mod_add = 1,
-			target_prop = "PenetrationClass",
-		}),
 		PlaceObj("CaliberModification", {
 			mod_add = 19,
 			target_prop = "Noise",
