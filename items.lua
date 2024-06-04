@@ -3025,20 +3025,22 @@ return {
 				'Type', "FineSteelPipe",
 			}),
 		},
-		Cost = 30,
-		DisplayName = T(682294285321, --[[ModItemWeaponComponent Barrel50BMG_DesertEagle DisplayName]] ".50 BMG Barrel"),
+		Cost = 40,
+		DisplayName = T(682294285321, --[[ModItemWeaponComponent Barrel50BMG_DesertEagle DisplayName]] ".50 AE Barrel"),
 		Icon = "UI/Icons/Upgrades/default_barrel",
-		ModificationDifficulty = 10,
+		ModificationDifficulty = 20,
 		ModificationEffects = {
 			"IncreaseDamage",
 			"ChangeCaliberToBMG",
 			"ReduceReliability",
 			"StanceAPincrease",
+			"IncreaseRange",
+			"longbarrel",
 		},
 		Parameters = {
 			PlaceObj('PresetParamNumber', {
 				'Name', "DamageIncrease",
-				'Value', 20,
+				'Value', 10,
 				'Tag', "<DamageIncrease>",
 			}),
 			PlaceObj('PresetParamNumber', {
@@ -3050,6 +3052,11 @@ return {
 				'Name', "ReliabilityDecrease",
 				'Value', 10,
 				'Tag', "<ReliabilityDecrease>",
+			}),
+			PlaceObj('PresetParamNumber', {
+				'Name', "RangeIncrease",
+				'Value', 2,
+				'Tag', "<RangeIncrease>",
 			}),
 		},
 		Slot = "Barrel",

@@ -5,12 +5,20 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.49a -  not released\n\nfixed steyr scout suppresor having no sound",
+	'last_changes', "3.50 -  not released\n\nChanged Anaconda, Winchester 1984 and Desert Eagle to .44 Magnum caliber, stats changed accordingly, expect more damage and penetration and bigger recoil\n\nChanged DE .50BMG barrel to .50AE barrel\n\nfixed steyr scout suppresor having no sound",
+	'dependencies', {
+		PlaceObj('ModDependency', {
+			'id', "Tc3ajdY",
+			'title', "Zulib Weapons Core",
+			'version_major', 1,
+			'version_minor', 6,
+		}),
+	},
 	'id', "cfahRED",
 	'author', "rato",
 	'version_major', 3,
-	'version_minor', 49,
-	'version', 10879,
+	'version_minor', 50,
+	'version', 10888,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -172,8 +180,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1717170395,
-	'code_hash', -8380171563753028819,
+	'saved', 1717513096,
+	'code_hash', -831483625162551174,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "Caliber",
