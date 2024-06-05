@@ -78,16 +78,12 @@ function GBO_9x19()
 
 	_9mm_Shock.Cost = 180
 	_9mm_Shock.AdditionalHint = T({
-		"<bullet_point> Reduced range\n<bullet_point> No armor penetration\n<bullet_point> Greater Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
+		"<bullet_point> Reduced range\n<bullet_point> Greater Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
 	})
 	_9mm_Shock.Modifications = {
 		PlaceObj("CaliberModification", {
 			mod_add = 70,
 			target_prop = "CritDamage",
-		}),
-		PlaceObj("CaliberModification", {
-			mod_add = -4,
-			target_prop = "PenetrationClass",
 		}),
 		PlaceObj("CaliberModification", {
 			mod_add = -4,
@@ -99,6 +95,7 @@ function GBO_9x19()
 		}),
 	}
 	_9mm_Shock.AppliedEffects = {
+		"Exposed",
 		"Bleeding",
 	}
 

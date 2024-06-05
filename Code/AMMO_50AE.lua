@@ -111,22 +111,26 @@ function GBO_50AE()
 	_50AE_Match.AppliedEffects = {}
 
 	_50AE_Shock.Cost = 360
-	_50AE_Shock.AdditionalHint = T({"\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>"})
+	_50AE_Shock.AdditionalHint = T({
+		"<bullet_point> Reduced range\n<bullet_point> Greater Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>"})
 	_50AE_Shock.Modifications = {
 		PlaceObj("CaliberModification", {
-			mod_add = 0,
+			mod_add = 74,
+			target_prop = "CritDamage",
+		}), PlaceObj("CaliberModification", {
+			mod_add = 1,
 			target_prop = "PenetrationClass",
+		}), PlaceObj("CaliberModification", {
+			mod_add = -4,
+			target_prop = "WeaponRange",
 		}), PlaceObj("CaliberModification", {
 			mod_add = 21,
 			target_prop = "Noise",
 		}), PlaceObj("CaliberModification", {
 			mod_add = 2,
 			target_prop = "CritChance",
-		}), PlaceObj("CaliberModification", {
-			mod_add = 4,
-			target_prop = "CritDamage",
 		})}
-	_50AE_Shock.AppliedEffects = {"Bleeding"}
+	_50AE_Shock.AppliedEffects = {"Exposed", "Bleeding"}
 
 	print("GBO _50AE .50 AE DONE")
 end

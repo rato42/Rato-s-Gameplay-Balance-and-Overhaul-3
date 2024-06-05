@@ -116,23 +116,24 @@ function GBO_44AMP()
 
 	_44AMP_Shock.Cost = 300
 	_44AMP_Shock.AdditionalHint = T({
-		"<bullet_point> Little improved armor penetration. \n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
+		"<bullet_point> Reduced range\n<bullet_point> Greater Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
 	})
 	_44AMP_Shock.Modifications = {
 		PlaceObj("CaliberModification", {
-			mod_add = 1,
-			target_prop = "PenetrationClass",
+			mod_add = 72,
+			target_prop = "CritDamage",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = -4,
+			target_prop = "WeaponRange",
 		}),
 		PlaceObj("CaliberModification", {
 			mod_add = 19,
 			target_prop = "Noise",
 		}),
-		PlaceObj("CaliberModification", {
-			mod_add = 2,
-			target_prop = "CritDamage",
-		}),
 	}
 	_44AMP_Shock.AppliedEffects = {
+		"Exposed",
 		"Bleeding",
 	}
 
