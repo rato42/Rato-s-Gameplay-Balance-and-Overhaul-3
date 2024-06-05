@@ -145,6 +145,7 @@ function GBO_44MAG()
 		}),
 	}
 	_44MAG_Shock.AppliedEffects = {
+		"Exposed",
 		"Bleeding",
 	}
 

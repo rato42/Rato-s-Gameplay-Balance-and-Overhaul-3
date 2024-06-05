@@ -110,6 +110,7 @@ function GBO_44CAL()
 		}),
 	}
 	_44CAL_Shock.AppliedEffects = {
+		"Exposed",
 		"Bleeding",
 	}
 

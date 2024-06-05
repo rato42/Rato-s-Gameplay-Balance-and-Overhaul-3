@@ -131,6 +131,7 @@ function GBO_32HRMAG()
 		}),
 	}
 	_32HRMAG_Shock.AppliedEffects = {
+		"Exposed",
 		"Bleeding",
 	}
 

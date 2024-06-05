@@ -171,6 +171,7 @@ function GBO_50AE()
 		}),
 	}
 	_50AE_Shock.AppliedEffects = {
+		"Exposed",
 		"Bleeding",
 	}
 

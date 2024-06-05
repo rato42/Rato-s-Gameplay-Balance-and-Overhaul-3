@@ -133,6 +133,7 @@ function GBO_44AMP()
 		}),
 	}
 	_44AMP_Shock.AppliedEffects = {
+		"Exposed",
 		"Bleeding",
 	}
 

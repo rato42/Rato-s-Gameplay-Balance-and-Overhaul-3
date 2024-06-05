@@ -95,6 +95,7 @@ function GBO_9x19()
 		}),
 	}
 	_9mm_Shock.AppliedEffects = {
+		"Exposed",
 		"Bleeding",
 	}
 
