@@ -205,7 +205,8 @@ function change_handgun_barrel(unit)
 				if weapon.components.Barrel then
 					if weapon:HasComponent("longbarrel") or weapon:HasComponent("shortbarrel") then
 						local current_comp = weapon.components.Barrel
-						if current_comp == "ToG_Comp_AR_Barrel_Long_1" or current_comp == "ToG_Comp_AR_Barrel_Long_2_SMG" then
+						if (current_comp == "ToG_Comp_AR_Barrel_Long_1" or current_comp == "ToG_Comp_AR_Barrel_Long_2_SMG") and
+											WeaponComponents[current_comp .. "_SMG"] then
 							weapon:SetWeaponComponent("Barrel", current_comp .. "_SMG")
 							ObjModified(weapon)
 						end
