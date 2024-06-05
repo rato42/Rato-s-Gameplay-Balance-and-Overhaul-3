@@ -146,12 +146,20 @@ function GBO_50AE()
 
 	_50AE_Shock.Cost = 360
 	_50AE_Shock.AdditionalHint = T({
-		"\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
+		"<bullet_point> Reduced range\n<bullet_point> Greater Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
 	})
 	_50AE_Shock.Modifications = {
 		PlaceObj("CaliberModification", {
-			mod_add = 0,
+			mod_add = 74,
+			target_prop = "CritDamage",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 1,
 			target_prop = "PenetrationClass",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = -4,
+			target_prop = "WeaponRange",
 		}),
 		PlaceObj("CaliberModification", {
 			mod_add = 21,
@@ -160,10 +168,6 @@ function GBO_50AE()
 		PlaceObj("CaliberModification", {
 			mod_add = 2,
 			target_prop = "CritChance",
-		}),
-		PlaceObj("CaliberModification", {
-			mod_add = 4,
-			target_prop = "CritDamage",
 		}),
 	}
 	_50AE_Shock.AppliedEffects = {

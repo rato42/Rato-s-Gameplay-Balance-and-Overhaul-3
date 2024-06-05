@@ -128,16 +128,20 @@ function GBO_44MAG()
 
 	_44MAG_Shock.Cost = 300
 	_44MAG_Shock.AdditionalHint = T({
-		"\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
+		"<bullet_point> Reduced range\n<bullet_point> Greater Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>",
 	})
 	_44MAG_Shock.Modifications = {
 		PlaceObj("CaliberModification", {
-			mod_add = 19,
-			target_prop = "Noise",
+			mod_add = 72,
+			target_prop = "CritDamage",
 		}),
 		PlaceObj("CaliberModification", {
-			mod_add = 2,
-			target_prop = "CritDamage",
+			mod_add = -4,
+			target_prop = "WeaponRange",
+		}),
+		PlaceObj("CaliberModification", {
+			mod_add = 19,
+			target_prop = "Noise",
 		}),
 	}
 	_44MAG_Shock.AppliedEffects = {
