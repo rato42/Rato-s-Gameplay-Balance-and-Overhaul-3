@@ -5,7 +5,7 @@ function rat_place_prepareweapon_combat_actions()
 		AimType = "cone",
 		ConfigurableKeybind = false,
 		------------------
-		Description = T(222855944347, "Enter <em>Shooting Stance</em> and end your turn."),
+		Description = T(222855944347, "Enter <em>Shooting Stance</em>."),
 		DisplayName = T(187383913751, "Prepare Weapon"),
 		-------------------
 		Execute = function(self, units, args)

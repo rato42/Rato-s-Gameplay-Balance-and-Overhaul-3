@@ -125,7 +125,7 @@ if FirstLoad then
 				str = 78,
 			},
 			["762NATO"] = {
-				str = 78,
+				str = 77,
 			},
 			["7_62x54R"] = {
 				str = 81,
