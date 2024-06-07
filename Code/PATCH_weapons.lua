@@ -832,7 +832,7 @@ function RatoGBO_WepPatch()
 	M14SAW.recoil_mechanism = "Gas_Operated"
 	M14SAW.Rat_cycling = "SemiAuto"
 	M14SAW.placeholder_recoil = 115
-	M14SAW.wep_base_recoil_mul = 89
+	M14SAW.wep_base_recoil_mul = 87
 	M14SAW.wep_base_hip_mul = 97
 	M14SAW.wep_base_snapshot_mul = 109
 	M14SAW.weigth_held_mul = 137
@@ -926,7 +926,7 @@ function RatoGBO_WepPatch()
 	M14SAW_AUTO.recoil_mechanism = "Gas_Operated"
 	M14SAW_AUTO.Rat_cycling = "Auto"
 	M14SAW_AUTO.placeholder_recoil = 115
-	M14SAW_AUTO.wep_base_recoil_mul = 89
+	M14SAW_AUTO.wep_base_recoil_mul = 87
 	M14SAW_AUTO.wep_base_hip_mul = 97
 	M14SAW_AUTO.wep_base_snapshot_mul = 109
 	M14SAW_AUTO.weigth_held_mul = 137
@@ -2032,7 +2032,7 @@ function RatoGBO_WepPatch()
 			AvailableComponents = {'Bolt_action'},
 		}}
 	Gewehr98.OverwatchAngle = 651
-	Gewehr98.Damage = 29
+	Gewehr98.Damage = 32
 	Gewehr98.MagazineSize = 5
 	Gewehr98.RepairCost = 80
 	Gewehr98.RestockWeight = 100
@@ -2053,7 +2053,7 @@ function RatoGBO_WepPatch()
 	Gewehr98.Rat_swap_ap = 3
 	Gewehr98.recoil_mechanism = "Bolt_Action"
 	Gewehr98.Rat_cycling = "BoltAction"
-	Gewehr98.wep_base_recoil_mul = 88
+	Gewehr98.wep_base_recoil_mul = 89
 	Gewehr98.wep_base_hip_mul = 82
 	Gewehr98.wep_base_snapshot_mul = 126
 	Gewehr98.weigth_held_mul = 132

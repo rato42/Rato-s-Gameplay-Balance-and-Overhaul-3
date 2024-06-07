@@ -119,7 +119,7 @@ if FirstLoad then
 			},
 			-- Group 6: Battle Rifle and Full-Power Rifle Cartridges
 			["30-60"] = { -- 30-06
-				str = 79,
+				str = 80,
 			},
 			["308Win"] = {
 				str = 78,
