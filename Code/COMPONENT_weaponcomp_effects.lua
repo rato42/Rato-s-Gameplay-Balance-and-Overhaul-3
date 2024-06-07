@@ -303,6 +303,12 @@ function weapon_components_rat()
 		id = "ChangeCaliberTo762_54r"
 	})
 	
+		PlaceObj('WeaponComponentEffect', {
+		CaliberChange = "556",
+		Description = T(864532654693, "Changes caliber to 5.56x45mm"),
+		group = "Caliber",
+		id = "ChangeCaliberTo556"
+	})
 	
 
 	PlaceObj('WeaponComponentEffect', {
@@ -1207,6 +1213,7 @@ local t_table ={
 [897995963554] = 'Increases Point Blank Range accuracy bonus by 1',
 [236633317127] = 'Decreases weapon length, affecting Recoil, Snapshot, Hipfire accuracy penalties and Point Blank Range accuracy modifiers',
 [219179226706] = 'Increases weapon length, affecting Recoil, Snapshot, Hipfire accuracy penalties and Point Blank Range accuracy modifiers',
+[864532654693] = "Changes caliber to 5.56x45mm",
 }
 
 ratG_T_table['COMPONENT_weaponcomp_effects.lua'] = t_table
