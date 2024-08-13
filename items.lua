@@ -1,4 +1,13 @@
 return {
+	PlaceObj('ModItemXTemplate', {
+		Singleton = true,
+		__is_kind_of = "XDialog",
+		group = "Zulu",
+		id = "GBOMessagePopup",
+		PlaceObj('XTemplateTemplate', {
+			'__template', "PopupNotificationBaseTemplate",
+		}),
+	}),
 	PlaceObj('ModItemCaliber', {
 		ImpactForce = 1,
 		Name = T(447736504931, --[[ModItemCaliber Default 762x54R Name]] "7.62x54mmR"),
