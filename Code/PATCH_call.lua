@@ -30,7 +30,7 @@ local function openZulibVersionWarning()
 	local msg = {
 		SortKey = 100,
 		Title = T("Zulib Weapons Core compability issue"), -- Header
-		Text = T("Zulib Weapons Core mod is outdate\n\nPlease use this version instead:\n\n[link palceholder]"), -- Text
+		Text = T("Zulib Weapons Core mod is outdate\n\nPlease use this version instead:\n\nZulib Weapons Core - unreleased 1.06 version\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=3309452207"), -- Text
 		group = "Default",
 		id = "ZulibMsg",
 		open_as_read = true,
