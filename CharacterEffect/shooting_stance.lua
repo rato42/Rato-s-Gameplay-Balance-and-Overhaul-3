@@ -146,47 +146,35 @@ DefineClass.shooting_stance = {
 			Handler = function (self, obj, id, stacks, reason)
 				local reaction_def = (self.msg_reactions or empty_table)[5]
 				if self:VerifyReaction("StatusEffectRemoved", reaction_def, obj, obj, id, stacks, reason) then
-					  if id == "shooting_stance" then
-						
+					if id == "shooting_stance" then
 					if HasPerk(obj,"Rat_recoil") then
-					
 						obj:RemoveStatusEffect("Rat_recoil", "all")
 					end
-				   	DoneObject(obj.shooter_cone_v)
+				   DoneObject(obj.shooter_cone_v)
 				    obj.shooter_cone_v = nil
-				   	DoneObject(obj.snap_cone)
+				   DoneObject(obj.snap_cone)
 				    obj.snap_cone = nil
-					
 					obj.return_pos = obj.return_pos_reserved
-					--obj:SetCommand("ReturnToCover") 
 					obj.return_pos_reserved = false
 					obj.shooting_target_pos = false
 				    obj:InterruptPreparedAttack()
-				    --obj:SetCommand("Idle")
-				
-				  end
+				end
 				end
 			end,
 			HandlerCode = function (self, obj, id, stacks, reason)
-				  if id == "shooting_stance" then
-						
+				if id == "shooting_stance" then
 					if HasPerk(obj,"Rat_recoil") then
-					
 						obj:RemoveStatusEffect("Rat_recoil", "all")
 					end
-				   	DoneObject(obj.shooter_cone_v)
+				   DoneObject(obj.shooter_cone_v)
 				    obj.shooter_cone_v = nil
-				   	DoneObject(obj.snap_cone)
+				   DoneObject(obj.snap_cone)
 				    obj.snap_cone = nil
-					
 					obj.return_pos = obj.return_pos_reserved
-					--obj:SetCommand("ReturnToCover") 
 					obj.return_pos_reserved = false
 					obj.shooting_target_pos = false
 				    obj:InterruptPreparedAttack()
-				    --obj:SetCommand("Idle")
-				
-				  end
+				end
 			end,
 		}),
 		PlaceObj('MsgActorReaction', {
