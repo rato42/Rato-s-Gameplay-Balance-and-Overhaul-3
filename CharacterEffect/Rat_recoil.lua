@@ -58,10 +58,25 @@ DefineClass.Rat_recoil = {
 			end,
 		}),
 		PlaceObj('MsgActorReaction', {
+			Event = "UnitBeginTurn",
+			Handler = function (self, unit)
+				local reaction_def = (self.msg_reactions or empty_table)[4]
+				local actors = self:GetReactionActors("UnitBeginTurn", reaction_def, unit)
+				for _, reaction_actor in ipairs(actors) do
+					if self:VerifyReaction("UnitBeginTurn", reaction_def, reaction_actor, unit) then
+						unit:RemoveStatusEffect("Rat_recoil", "all")
+					end
+				end
+			end,
+			HandlerCode = function (self, unit)
+				unit:RemoveStatusEffect("Rat_recoil", "all")
+			end,
+		}),
+		PlaceObj('MsgActorReaction', {
 			ActorParam = "unit",
 			Event = "UnitMovementDone",
 			Handler = function (self, unit, action_id, prev_pos)
-				local reaction_def = (self.msg_reactions or empty_table)[4]
+				local reaction_def = (self.msg_reactions or empty_table)[5]
 				if self:VerifyReaction("UnitMovementDone", reaction_def, unit, unit, action_id, prev_pos) then
 					local effect = unit:GetStatusEffect("Rat_recoil")
 				

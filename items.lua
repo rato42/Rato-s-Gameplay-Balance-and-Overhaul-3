@@ -708,10 +708,26 @@ return {
 				param_bindings = false,
 			}),
 			PlaceObj('MsgActorReaction', {
+				Event = "UnitBeginTurn",
+				Handler = function (self, unit)
+					local reaction_def = (self.msg_reactions or empty_table)[4]
+					local actors = self:GetReactionActors("UnitBeginTurn", reaction_def, unit)
+					for _, reaction_actor in ipairs(actors) do
+						if self:VerifyReaction("UnitBeginTurn", reaction_def, reaction_actor, unit) then
+							unit:RemoveStatusEffect("Rat_recoil", "all")
+						end
+					end
+				end,
+				HandlerCode = function (self, unit)
+					unit:RemoveStatusEffect("Rat_recoil", "all")
+				end,
+				param_bindings = false,
+			}),
+			PlaceObj('MsgActorReaction', {
 				ActorParam = "unit",
 				Event = "UnitMovementDone",
 				Handler = function (self, unit, action_id, prev_pos)
-					local reaction_def = (self.msg_reactions or empty_table)[4]
+					local reaction_def = (self.msg_reactions or empty_table)[5]
 					if self:VerifyReaction("UnitMovementDone", reaction_def, unit, unit, action_id, prev_pos) then
 						local effect = unit:GetStatusEffect("Rat_recoil")
 					
@@ -4705,7 +4721,7 @@ return {
 		},
 		Cost = 30,
 		DisplayName = T(520876141203, --[[ModItemWeaponComponent _ReflexSIghtVigilance DisplayName]] '"Vigilante" Reflex Sight 1.5x'),
-		Icon = "UI/Icons/Upgrades/scope_reflex",
+		Icon = "Mod/KQkEVHf/Icons/Upgrades/ToC_Scope_kentaur.png",
 		ModificationDifficulty = 10,
 		ModificationEffects = {
 			"OpportunityAttackBonusCth",
@@ -4750,7 +4766,7 @@ return {
 		Slot = "Scope",
 		Visuals = {
 			PlaceObj('WeaponComponentVisual', {
-				Entity = "WeaponAttA_ScopeReflex",
+				Entity = "ToC_Scope_Kent6",
 				Slot = "Scope",
 				param_bindings = false,
 			}),
@@ -16233,7 +16249,7 @@ return {
 			}),
 			PlaceObj('WeaponComponentVisual', {
 				ApplyTo = "UZI",
-				Entity = "WeaponAttA_StockGalil_01",
+				Entity = "ToC_Stock_Uzi2",
 				Icon = "UI/Icons/Upgrades/ak74_stock_wooden",
 				Slot = "Stock",
 				param_bindings = false,
