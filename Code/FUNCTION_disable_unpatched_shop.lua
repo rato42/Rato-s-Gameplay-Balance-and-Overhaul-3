@@ -26,7 +26,7 @@ function disable_zulib_22mm_recipes()
 	local to_remove = {}
 	for i, recipe in ipairs(recipes) do
 		local class = g_Classes[recipe.item_id]
-		if class and class.Caliber == "22mm_Nato" or class.Caliber == "22mm_WP" then
+		if class and (class.Caliber == "22mm_Nato" or class.Caliber == "22mm_WP") then
 			table.insert(to_remove, recipe)
 		end
 	end
