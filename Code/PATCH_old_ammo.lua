@@ -39,6 +39,10 @@ GBO_OldAmmoMapping = {
 		_57x28_HP = "_5_7x28_HP",
 		_57x28_Tracer = "_5_7x28_Tracer",
 		_57x28_Match = "_5_7x28_Match",
+
+		MoW_762Tok_Basic = "_7_62x25_Basic",
+		MoW_45ACP_Basic = "_45ACP_Basic",
+		MoW_45ACP_HP = "_45ACP_HP",
 	},
 	VANILLA = {
 		_79257_AP = "_762NATO_AP",
@@ -79,6 +83,10 @@ GBO_OldAmmoMapping = {
 		_57x28_HP = "_9mm_HP",
 		_57x28_Tracer = "_9mm_Tracer",
 		_57x28_Match = "_9mm_Match",
+
+		MoW_762Tok_Basic = "_762WP_Basic",
+		MoW_45ACP_Basic = "_44CAL_Basic",
+		MoW_45ACP_HP = "_44CAL_HP",
 	},
 }
 
