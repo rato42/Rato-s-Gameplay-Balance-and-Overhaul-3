@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.50 \n\nChanged Anaconda, Winchester 1984 and Desert Eagle to .44 Magnum caliber, stats changed accordingly, expect more damage and penetration and bigger recoil\n\nChanged DE .50BMG barrel to .50AE barrel\n\nfixed steyr scout suppresor having no sound\n\nSnapshot change:\nIf attacking the same target as the last attack, snapshot penalty wont apply\nMoving resets the last attack target for this purpose\n\nRecoil will be also reset when a unit starts a turn\n\nFixed some spelling errors",
+	'last_changes', "3.50a\nsmall code fix",
 	'dependencies', {
 		PlaceObj('ModDependency', {
 			'id', "Tc3ajdY",
@@ -18,7 +18,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 50,
-	'version', 10919,
+	'version', 10920,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -180,8 +180,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1723839866,
-	'code_hash', -4222669620229147357,
+	'saved', 1724219831,
+	'code_hash', 6039503298971464584,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
