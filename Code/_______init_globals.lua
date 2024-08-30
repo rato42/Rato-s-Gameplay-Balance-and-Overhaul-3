@@ -67,7 +67,7 @@ if FirstLoad then
 				str = 64,
 			},
 			-- Group 5: Assault Rifle and Intermediate Cartridges
-			["545x39"] = {
+			["5_45x39"] = {
 				str = 62,
 			},
 			["4_7x33"] = {

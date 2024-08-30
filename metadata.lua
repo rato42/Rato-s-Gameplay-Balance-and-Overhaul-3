@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.50a\nsmall code fix",
+	'last_changes', "3.50b\nfixed 556 tracer rounds\nfixed 5.45 armor penetration to medium\nfixed 5.45 missing recoil data",
 	'dependencies', {
 		PlaceObj('ModDependency', {
 			'id', "Tc3ajdY",
@@ -18,7 +18,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 50,
-	'version', 10920,
+	'version', 10921,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -180,8 +180,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1724219831,
-	'code_hash', 6039503298971464584,
+	'saved', 1725051078,
+	'code_hash', 4525320203095803493,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
