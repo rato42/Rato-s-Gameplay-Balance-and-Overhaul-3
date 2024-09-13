@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.50b\nfixed 556 tracer rounds\nfixed 5.45 armor penetration to medium\nfixed 5.45 missing recoil data",
+	'last_changes', "3.50c\n\nSmall improvement in compatibility with revised mags, you should be able to cycle weapons normally\nAlso added reload sound when cycling weapons",
 	'dependencies', {
 		PlaceObj('ModDependency', {
 			'id', "Tc3ajdY",
@@ -18,7 +18,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 50,
-	'version', 10921,
+	'version', 10925,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -180,8 +180,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1725051078,
-	'code_hash', 4525320203095803493,
+	'saved', 1726268891,
+	'code_hash', -7016142744694928779,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

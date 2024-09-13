@@ -20,35 +20,35 @@ end
 
 -----UI/IModeCommonUnitControl.lua
 
-function QuickReloadButton(parent, weapon, delayed_fx)
-	local unit = SelectedObj
-	---------------
-	if weapon.unbolted then
-		local ap_cost = rat_get_manual_cyclingAP(unit, weapon) * const.Scale.AP
-		if unit:UIHasAP(ap_cost) then
-		
-			unit.ActionPoints = unit.ActionPoints - ap_cost
-			CombatPathReset(unit)
-			Msg("UnitAPChanged", unit)
-			
-			
 
-				--PlayFX("WeaponReload", "start", weapon.class, weapon.class)
-			
-			weapon.unbolted = false
-			ObjModified(weapon)
-			ObjModified(unit)
-		else
-			CreateFloatingText(GetCursorPos(),  T(179344335298, "<color AmmoAPColor>INSUFFICIENT AP</color>"))
+
+function redefine_Quick_reload_button()
+	local GBO_original_QuickReloadButton = QuickReloadButton
+
+	function QuickReloadButton(parent, weapon, delayed_fx)
+		local unit = SelectedObj
+		if weapon.unbolted then
+			local ap_cost = rat_get_manual_cyclingAP(unit, weapon) * const.Scale.AP
+			if unit:UIHasAP(ap_cost) then
+				unit.ActionPoints = unit.ActionPoints - ap_cost
+				CombatPathReset(unit)
+				Msg("UnitAPChanged", unit)
+				PlayFX("WeaponLoad", "start", weapon.class, weapon.class)
+				weapon.unbolted = false
+				ObjModified(weapon)
+				ObjModified(unit)
+			else
+				CreateFloatingText(GetCursorPos(),  T(179344335298, "<color AmmoAPColor>INSUFFICIENT AP</color>"))
+			end
+			return true
 		end
-		return true
+
+		GBO_original_QuickReloadButton(parent, weapon, delayed_fx)
 	end
-	
-	-----------------------
-	local wepIdx, ammo = GetQuickReloadWeaponAndAmmo(parent, weapon)
-	if not wepIdx then return end
-	CombatActions.Reload:Execute({unit}, { weapon = wepIdx, target = ammo.class, delayed_fx = delayed_fx, item_id = weapon and weapon.id })
-	return true
+end
+
+function OnMsg.ModsReloaded()
+	redefine_Quick_reload_button()
 end
 
 
