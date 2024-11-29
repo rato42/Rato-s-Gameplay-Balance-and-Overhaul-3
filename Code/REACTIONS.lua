@@ -8,9 +8,6 @@ function OnMsg.UnitStanceChanged(unit)
 	if unit.stance == 'Prone' then
 		unit:RemoveStatusEffect("shooting_stance")
 	end
-
-	-- print("attaches", attaches)
-
 end
 
 function OnMsg.UnitStanceChanged(unit)
@@ -28,26 +25,8 @@ function OnMsg.UnitStanceChanged(unit)
 	end
 end
 
--- function OnMsg.UnitSwappedWeapon(unit)
--- if unit ~= SelectedObj then return end
--- local w1 = GetUnitWeapons(unit, otherSet)
--- local w2 = GetOtherWeaponSet(unit.current_weapon)
--- if GameState.sync_loading then
--- return
--- end
--- if w1 ~= w2 then
--- unit:RemoveStatusEffect("shooting_stance")
--- end
 
--- end
--- function OnMsg.GatherCTHModifications(self, action, target, results, attack_args)
--- if attack_args then
--- if not attack_args.gruntyPerk then
--- return
--- end
--- print("grunty")
--- end
--- end
+
 
 function OnMsg.OnAttack(self, action, target, results, attack_args)
 
@@ -57,54 +36,14 @@ function OnMsg.OnAttack(self, action, target, results, attack_args)
 	end
 
 	if IsKindOfClasses(weapon, "Pistol", "Revolver", "SubmachineGun") then
-		-- print("freemove")
 		self:AddStatusEffect("shoot_move")
 	end
 
 end
 
-function OnMsg.OnAttack(self, action, target, results, attack_args)
-
-	local weapon = attack_args.weapon or self:GetActiveWeapons()
-	-- print("self", self.unitdatadef_id)
-	-- print("action", action)
-
-	if not weapon or not action then
-		return
-	end
-
-	if not IsKindOf(weapon, "Firearm") then
-		return
-	end
-
-	local aim = attack_args.aim or 0
-	-- print("args", attack_args)
-	if const.Combat.R_RecoilP > 0 then
-		-- print("args", attack_args)
-
-		-- (attack_args and attack_args.opportunity_attack) or 
-		if IsKindOf(weapon, "HeavyWeapon") then
-			-- print("oportunitty attack")
-		else
-			self:ApplyPersistantRecoilEffects(aim, action, weapon, attack_args)
-		end
-	end
-
-	if g_Overwatch[self] then
-		return
-	end
-
-	local target_pos = IsValid(target) and target:GetPos() or target
-
-	if aim and aim > 0 or HasPerk(self, "shooting_stance") then
-		ShootingStance(self, target, attack_args)
-	end
-
-end
 
 ---------------------------------------------------
 
--- function OnMsg.GatherCTHModifications(self, attacker, cth_id, action_id, target, weapon1, weapon2, data)
 
 function OnMsg.GatherCritChanceModifications(attacker, target, action_id, weapon, data)
 
@@ -127,78 +66,79 @@ function OnMsg.GatherCritChanceModifications(attacker, target, action_id, weapon
 		aim = 0
 	end
 
+
+	local crit_chance_breakdown = {base = data.crit_chance}
+
 	local crit_HEC = hand_eye_crit(action_id, weapon, attacker, aim) or 0
+
+	crit_chance_breakdown["HEC"] = crit_HEC
 
 	data.crit_chance = data.crit_chance + crit_HEC
 
 	if weapon and weapon:HasComponent("critical_per_aim_scope") then
-		local crit_scope_aim = 4 * aim
+		local crit_scope_aim = 3 * aim
+		crit_chance_breakdown["critical_per_aim_scope"] = crit_scope_aim
 		data.crit_chance = data.crit_chance + crit_scope_aim
 	end
 
 	if weapon and weapon:HasComponent("critical_per_aim_laser") then
-		local laser_aim = 1.20 * aim
+		local laser_aim = 1 * aim
 		laser_aim = cRound(laser_aim)
-
+		crit_chance_breakdown["critical_per_aim_laser"] = laser_aim
 		data.crit_chance = data.crit_chance + laser_aim
 	end
 
 	if weapon and weapon:HasComponent("pso_dragunov_scope_critical") and aim > 1 then
-		data.crit_chance = data.crit_chance + 10
+		local pso_bonus = 10
+		data.crit_chance = data.crit_chance + pso_bonus
+		crit_chance_breakdown["PSO_scope"] = pso_bonus
 	end
 
 	if weapon and weapon:HasComponent("first_aim_crit") then
 		if aim and aim > 0 then
-			data.crit_chance = data.crit_chance + 8
-			-- elseif HasPerk(attacker, "shooting_stance") then
-			-- data.crit_chance = data.crit_chance + 8
+			local first_aim_bonus = 6
+			data.crit_chance = data.crit_chance + first_aim_bonus
+			crit_chance_breakdown["first_aim_bonus"] = first_aim_bonus
 		end
 	end
 
-	if aim < 1 then
-		return
-	end
+	if aim > 0  then
+		if data.target_spot_group and data.target_spot_group == "Head" then
 
-	if data.target_spot_group and data.target_spot_group == "Head" then
+			local modifyVal, compDef = GetComponentEffectValue(weapon, "scout_scope_crit", "critical_head")
 
-		local modifyVal, compDef = GetComponentEffectValue(weapon, "scout_scope_crit", "critical_head")
+			if modifyVal then
+				data.crit_chance = data.crit_chance + modifyVal
+				crit_chance_breakdown["scout_scope_crit"] = modifyVal
+			end
+		end
 
-		if modifyVal then
-			data.crit_chance = data.crit_chance + modifyVal
+		if data.target_spot_group and data.target_spot_group == "Torso" then
+
+			local modifyVal, compDef = GetComponentEffectValue(weapon, "zrak_scope_crit", "crit_torso")
+
+			if modifyVal then
+				data.crit_chance = data.crit_chance + modifyVal
+				crit_chance_breakdown["zrak_scope_crit"] = modifyVal
+			end
 		end
 	end
-
-	if data.target_spot_group and data.target_spot_group == "Torso" then
-
-		local modifyVal, compDef = GetComponentEffectValue(weapon, "zrak_scope_crit", "crit_torso")
-
-		if modifyVal then
-			data.crit_chance = data.crit_chance + modifyVal
-		end
-	end
-
+	data.crit_chance_breakdown = crit_chance_breakdown
 end
 
 function OnMsg.GatherCTHModifications(attacker, cth_id, action_id, target, weapon1, weapon2, data)
-
 	if cth_id == "SameTarget" then
-
 		if data.enabled then
 			data.mod_add = data.mod_add - 8
 		end
 	end
-
 end
 
 function OnMsg.GatherCritChanceModifications(attacker, target, action_id, weapon, data)
-	-- print(attacker.team.side)
 	local side = attacker and attacker.team and attacker.team.side or ''
 	if not (side == 'player1' or side == 'player2') then
-		-- print(data.crit_chance)
 		data.crit_chance = MulDivRound(data.crit_chance, (const.Combat.R_AI_critmul or 100), 100)
-		-- print(data.crit_chance)
 	end
-
 end
 
 function OnMsg.GatherDamageModifications(attacker, target, action_id, self, mod_attack_args, mod_hit_data, data)
@@ -217,14 +157,12 @@ end
 
 function OnMsg.GatherDamageModifications(attacker, target, action_id, self, mod_attack_args, mod_hit_data, data)
 	local weapon = data.weapon
-	-- print('D',data)
 	if not weapon or not IsKindOf(weapon, "Firearm") then
 		return
 	end
 	if target:HasStatusEffect("Flanked") and weapon:HasComponent("flanker") then
 		local damageBonus = 10
 		data.base_damage = MulDivRound(data.base_damage, 100 + damageBonus, 100)
-		-- data.breakdown[#data.breakdown + 1] = { name = self.DisplayName, value = damageBonus }
 	end
 	if target:HasStatusEffect("Flanked") and IsKindOf(weapon, "SubmachineGun") then
 		local damageBonus = 15
@@ -232,63 +170,33 @@ function OnMsg.GatherDamageModifications(attacker, target, action_id, self, mod_
 	end
 end
 
--- function OnMsg.OnBandage(healer, target)
--- healer:RemoveStatusEffect("shooting_stance")
--- target:RemoveStatusEffect("shooting_stance")
--- end
-
--- function OnMsg.IGIModeChanged(self, new_mode)
--- if not CurrentActionCamera then
--- return
--- end
-
--- RestoreDefaultMode(SelectedObj)
-
--- end
-
 function OnMsg.IGIModeChanged(self, new_mode)
 	local unit = SelectedObj
-	-- print("dlg", self)
 	if IsKindOf(unit, "Unit") then
 		unit:RecalcUIActions(true)
 	end
-
 end
 
 function OnMsg.GatherDamageModifications(attacker, target, action_id, self, mod_attack_args, mod_hit_data, data)
 	local weapon = data.weapon
-	-- print("d", data)
-	-- print("w", weapon)
 	if weapon then
 		if IsKindOf(weapon, "EndlessKnives") then
 			local level = attacker:GetLevel()
 			local damage_mul = 2 * level
-			-- print("dmg mul", damage_mul)
-			-- print(data.base_damage)
 			data.base_damage = MulDivRound(data.base_damage, 100 + damage_mul, 100)
 		end
 
 		if IsKindOf(weapon, "Unarmed") and HasPerk(attacker, "MartialArts") and attacker.species == "Human" then
-
 			local dex_mod = 100 + MulDivRound(attacker.Dexterity, 115, 100)
 			data.base_damage = MulDivRound(data.base_damage, dex_mod, 100)
 		end
 	end
-
 end
 
 function OnMsg.UnitEnterCombat(unit)
 
 	if unit.unitdatadef_id == "Blood" then
-		-- print("isblood")
-		-- local starting_perks = unit.StartingPerks
-		-- for i, p in ipairs(starting_perks) do
-		-- if p == "MartialArts" then
-		-- starting_perks[i] = "CQCTraining"
-		-- end
-		-- end
 		if unit:HasStatusEffect("MartialArts") then
-
 			unit:RemoveStatusEffect("MartialArts")
 			unit:AddStatusEffect("CQCTraining")
 			ObjModified(unit)
@@ -311,10 +219,6 @@ end
 -- end
 
 function OnMsg.CombatActionEnd(unit)
-	-- print("combat action end")
-	-- print("reactions unit command", unit.action_command)
-	-- HundredKnives
-	-- or unit.action_command == "HundredKnives"
 
 	if unit.action_command == "RunAndGun" or unit.action_command == "RecklessAssault" or unit.action_command ==
 						"HundredKnives" then
@@ -323,16 +227,13 @@ function OnMsg.CombatActionEnd(unit)
 		else
 			unit:AddStatusEffect("R_outofbreath")
 		end
-		-- if unit.Mobile_aimed then
-		-- ShootingStance(unit)
-		-- unit.Mobile_aimed = nil
-		-- end
 	end
 
 	if unit.Mobile_aimed then
 		unit.Mobile_aimed = nil
 	end
 
+------ Persistant Recoil
 	if unit.action_command == "OverwatchAction" then
 
 		local overwatch = g_Overwatch[unit]
@@ -343,104 +244,26 @@ function OnMsg.CombatActionEnd(unit)
 			end
 		end
 	end
-	---------------------------Shooting stance for mobile attacks
+end 
 
-	if unit.action_command == 'TakeCover' then
-		unit:RemoveStatusEffect("shooting_stance")
-	end
-	if unit.action_command == 'LeaveEmplacement' then
-		unit:RemoveStatusEffect("shooting_stance")
-	end
-	if unit.action_command == 'MGPack' then
-		unit:RemoveStatusEffect("shooting_stance")
-	end
-	if unit.action_command == 'ThrowGrenade' then
-		unit:RemoveStatusEffect("shooting_stance")
-	end
-	if unit.action_command == 'InteractWith' then
-		unit:RemoveStatusEffect("shooting_stance")
-	end
-	if unit.action_command == 'ThrowKnife' then
-		unit:RemoveStatusEffect("shooting_stance")
-	end
-	if unit.action_command == 'ReloadAction' then
-		unit:RemoveStatusEffect("shooting_stance")
-	end
 
-	if unit.action_command == 'DoubleToss' then
-		unit:RemoveStatusEffect("shooting_stance")
-	end
 
-	-- if HasPerk(unit, "shooting_stance") then
-	-- local attacker_pos = unit:GetPos()
-	-- local aim_pos = unit.aim_pos_stance or false
 
-	-- if aim_pos then
-	-- local angle = CalcOrientation(attacker_pos, aim_pos)
-	-- print("angle", angle)
-	-- unit:SetOrientationAngle(angle)
-	-- print("oriented")
-	-- end
-	-- end
+------ Persistant Recoil
+function OnMsg.OnAttack(self, action, target, results, attack_args)
 
-	local weapon = unit:GetActiveWeapons()
-	-- print("weapon",weapon)
-	if weapon and IsKindOf(weapon, "BrowningM2HMG") then
-		unit:AddStatusEffect("shooting_stance")
-		return
-	end
+	local weapon = attack_args.weapon or self:GetActiveWeapons()
+	local aim = attack_args.aim or 0
+	if const.Combat.R_RecoilP > 0 and IsKindOf(weapon, "Firearm") then
 
-	-- print("command",unit.action_command)
-
-end
-
-function OnMsg.UnitMovementDone(unit, action_id, prev_pos)
-	-- print("moving")
-	-- if not g_Combat then
-	-- if dist > 1400 then
-	-- unit:RemoveStatusEffect("shooting_stance")
-	-- end
-	-- end	
-
-	local ret = true
-	if action_id == 'Move' then
-		ret = false
-	elseif action_id == "RunAndGun" then
-		ret = false
-	elseif action_id == "RecklessAssault" then
-		ret = false
-	elseif action_id == "MobileShot" then
-		ret = false
-	elseif action_id == "HundredKnives" then
-		ret = false
-	end
-
-	if ret == true then
-		return
-	end
-
-	local dist = unit:GetDist(prev_pos)
-
-	local side = unit and unit.team and unit.team.side or ''
-	if not (side == 'player1' or side == 'player2') then
-		if unit:HasStatusEffect("shooting_stance") then
-			local weapon = unit:GetActiveWeapons()
-			local stance_ap = (weapon.APStance / 2) * const.Scale.AP
-
-			if dist < 2000 then
-				unit:GainAP(stance_ap)
-			elseif dist < 4700 then
-				unit:GainAP(MulDivRound(stance_ap, 50, 100))
-			elseif dist < 8200 then
-				unit:GainAP(MulDivRound(stance_ap, 25, 100))
-			end
+		if IsKindOf(weapon, "HeavyWeapon") then
+			--pass
+		else
+			self:ApplyPersistantRecoilEffects(aim, action, weapon, attack_args)
 		end
 	end
-
-	unit:RemoveStatusEffect("shooting_stance")
-	-- print("stance removed")
-
 end
+
 
 -------------------------------------------------DEBUG
 function debug_component(w)
@@ -502,79 +325,8 @@ function OnMsg.UnitEnterCombat(unit)
 end
 ----------------------------------------------------
 
-function OnMsg.SelectedObjChange()
-	local selected = SelectedObj
-	local overwatch = g_Overwatch[selected]
-	-- print("s", selected)
-	-- if selected.aim_pos_stance then
-	-- local self_angle = selected:GetAngle()
-	-- local center = selected.aim_pos_stance -- selected.shooter_cone_v.main_ray 
-	-- local angle = CalcOrientation(selected, center)--selected:AngleToPoint(center)
-	-- print("angle", angle)
-	-- selected:SetOrientationAngle(angle, 200)
-	-- print("Ok")
-	-- end
-	-- if overwatch then
-	-- print("num attacks",overwatch.num_attacks)
-	-- end
 
-	-- selected:GetStatusEffect("shooting_stance").Icon = "Mod/cfahRED/Images/output-onlinepngtools.png"
-	-- selected:UpdateOutfit()
 
-	-- local visible_to = {}
-	-- for _, unit in ipairs(g_Units) do
-	-- if HasVisibilityTo(selected, unit) then
-	-- table.insert(visible_to, unit.unitdatadef_id)
-	-- end
-	-- end
-
-	-- selected.VISIBLITY_TEST = visible_to
-	-- print(visible_to)
-
-	-- Inspect(selected)
-	-- selected:SetCommand("Die")
-	-- if IsKindOf(selected, "Unit") then
-	-- print("selected",selected)
-	-- local prop = selected.properties
-	-- local result = ""
-	-- for i, p in ipairs(prop) do
-	-- result = result .. tostring(p) .. "\n"
-	-- end
-	-- CopyToClipboard(result)
-	-- local _, __, weapons = selected:GetActiveWeapons()
-	-- for i, w in ipairs(weapons) do
-	-- print(selected)
-	-- print("applied modifiers")
-	-- print(w.applied_modifiers)
-	-- print("modifications")
-	-- print(w.modifications)
-	-- end
-	-- end
-
-	for _, unit in ipairs(g_Units) do
-		if unit:HasStatusEffect("shooting_stance") then
-
-			if unit == selected then
-				if unit.shooter_cone_v then
-					unit.shooter_cone_v:SetOpacity(100)
-					unit.snap_cone:SetOpacity(100)
-				else
-					local self = unit
-					local weapon = unit:GetActiveWeapons()
-					if not (overwatch and overwatch.permanent) then
-						CreateStanceConeV(self, weapon)
-					end
-				end
-			else
-				if unit.shooter_cone_v then
-					unit.shooter_cone_v:SetOpacity(0)
-					unit.snap_cone:SetOpacity(0)
-				end
-			end
-		end
-	end
-
-end
 
 function OnMsg.DamageDone(attacker, target, damage)
 	if not attacker or not target then
@@ -596,7 +348,7 @@ function OnMsg.DamageDone(attacker, target, damage)
 			if not (side == 'player1' or side == 'player2') then
 				bonus = bonus + 10
 			end
-			local add = -ratio + bonus
+			local add = -ratio + bonus + 10
 			if not Composure_RollSkillCheck(target, 100, add) then
 				target:RemoveStatusEffect("shooting_stance")
 			end

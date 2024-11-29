@@ -414,47 +414,37 @@ end
 
 
 function hand_eye_crit(action_id, weapon, attacker, aim)
-	--print(action_id)
 	if not action_id then
 		return 0
 	end
 	
-	local single_factor = 2.88
-	local not_single = 0.70
+	local single_factor = 3.0
+	local not_single = 1.0
 	local burst_factor = not_single
 	
 	if IsKindOf(weapon, "SniperRifle") then
-		single_factor = 4.0
+		single_factor = 5.0
 	end
 
 	if IsKindOf(weapon, "G36") then
-		burst_factor = 2.20
+		burst_factor = 2.5
 	end
-	
-	
-
-
-	--local w1, w2 = attacker:GetActiveWeapons() or false, false
 	
 	local hand_eye = rGetHandEyeCoordination(attacker)
 	
 	local factor = not_single 
 	
 	if action_id == "SingleShot" or action_id == "PinDown" then
-	
 		factor = single_factor
-
 	elseif action_id == "BurstFire" then
-	
 		factor = burst_factor
 	end
 	
-	--or action_id == "MGBurstFire"
-	local crit_HEC = cRound(hand_eye * factor/100)* (0 + (aim or 0))
+
+	local hec_factor = hand_eye * factor
+	local crit_HEC = cRound(hec_factor/100* (0 + (aim or 0)) )
+	
 	--print("crit_hec", crit_HEC)
-	if not crit_HEC then
-		return 0
-	end
 	
 	return crit_HEC
 end

@@ -1,6 +1,10 @@
 
 function rat_changeMag_component(unit)
 
+	if IsMod_loaded("URkxyfE") then
+		return
+	end
+
 	if not unit then
 		return
 	end

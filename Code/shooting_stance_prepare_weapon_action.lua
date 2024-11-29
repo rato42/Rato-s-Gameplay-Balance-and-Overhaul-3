@@ -213,7 +213,7 @@ end
 ---------------------------------------------------------------------------------------------------------
 
 local t_id_table = {
-	[222855944347] = "Enter <em>Shooting Stance</em> and end your turn.",
+	[222855944347] = "Enter <em>Shooting Stance</em>.",
 	[187383913751] = "Prepare Weapon",
 	[871168252913] = "Prepare Weapon",
 	[735297133453] = "Rotate Weapon",
@@ -223,8 +223,8 @@ local t_id_table = {
 	[540349977342] = "Cancel the bandaging action. The unit will be able to move but not regain any more HP.",
 	[151546259528] = "Cancel the bandaging action. The bandaged unit will not regain any more HP.",
 	[677754398866] = "<color AmmoAPColor>Turn Ended</color>",
-	[399161531399] = "Enter <em>Shooting Stance</em> and <em>end your turn</em>.",
-	[878229893688] = "Rotate your weapon and <em>end your turn</em>.",
+	[399161531399] = "Enter <em>Shooting Stance</em>.",
+	[878229893688] = "Rotate your weapon.",
 }
 
 ratG_T_table['shooting_stance_prepare_weapon_action.lua'] = t_id_table

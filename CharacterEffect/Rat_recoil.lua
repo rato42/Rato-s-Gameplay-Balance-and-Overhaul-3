@@ -30,7 +30,6 @@ DefineClass.Rat_recoil = {
 					
 				
 				if unit.action_command == 'TakeCover' or unit.action_command == 'LeaveEmplacement' or unit.action_command == 'MGPack' or unit.action_command == 'ThrowGrenade' or unit.action_command == 'InteractWith' or unit.action_command == 'ThrowKnife' or unit.action_command == "ReloadAction"  or unit.action_command == "DobuleToss" then
-				  
 					unit:RemoveStatusEffect("Rat_recoil", "all")
 				end
 				end
@@ -39,7 +38,6 @@ DefineClass.Rat_recoil = {
 				
 				
 				if unit.action_command == 'TakeCover' or unit.action_command == 'LeaveEmplacement' or unit.action_command == 'MGPack' or unit.action_command == 'ThrowGrenade' or unit.action_command == 'InteractWith' or unit.action_command == 'ThrowKnife' or unit.action_command == "ReloadAction"  or unit.action_command == "DobuleToss" then
-				  
 					unit:RemoveStatusEffect("Rat_recoil", "all")
 				end
 			end,
@@ -80,6 +78,14 @@ DefineClass.Rat_recoil = {
 				if self:VerifyReaction("UnitMovementDone", reaction_def, unit, unit, action_id, prev_pos) then
 					local effect = unit:GetStatusEffect("Rat_recoil")
 				
+				
+				local command = unit.action_command or ''
+				if command == "RunAndGun" or command == "RecklessAssault" then
+					unit:RemoveStatusEffect("Rat_recoil", "all")
+					return
+				end
+				
+				
 				local current_pos = unit:GetPos()
 				local dist = current_pos:Dist(prev_pos) or 0 
 				local previous_dist = effect:ResolveValue("movement") or 0
@@ -97,6 +103,14 @@ DefineClass.Rat_recoil = {
 			end,
 			HandlerCode = function (self, unit, action_id, prev_pos)
 				local effect = unit:GetStatusEffect("Rat_recoil")
+				
+				
+				local command = unit.action_command or ''
+				if command == "RunAndGun" or command == "RecklessAssault" then
+					unit:RemoveStatusEffect("Rat_recoil", "all")
+					return
+				end
+				
 				
 				local current_pos = unit:GetPos()
 				local dist = current_pos:Dist(prev_pos) or 0 

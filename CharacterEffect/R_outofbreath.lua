@@ -26,7 +26,7 @@ DefineClass.R_outofbreath = {
 	},
 	Modifiers = {},
 	DisplayName = T(373983661042, --[[ModItemCharacterEffectCompositeDef R_outofbreath DisplayName]] "Out of Breath"),
-	Description = T(981332796704, --[[ModItemCharacterEffectCompositeDef R_outofbreath Description]] "Penalty of <color EmStyle><ap_loss></color>per stack is applied to your maximum AP. Reduces <color EmStyle>Free Move AP</color> per stack. Recovers in the next turn."),
+	Description = T(981332796704, --[[ModItemCharacterEffectCompositeDef R_outofbreath Description]] "Penalty of <color EmStyle><ap_loss></color> per stack is applied to your maximum AP. Reduces <color EmStyle>Free Move AP</color> per stack. Recovers in the next turn."),
 	AddEffectText = T(132260163193, --[[ModItemCharacterEffectCompositeDef R_outofbreath AddEffectText]] "<color EmStyle><DisplayName></color> is out of breath"),
 	OnAdded = function (self, obj)
 		obj:RemoveStatusEffect("FreeMove")

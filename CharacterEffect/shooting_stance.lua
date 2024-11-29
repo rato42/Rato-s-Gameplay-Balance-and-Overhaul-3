@@ -260,6 +260,13 @@ DefineClass.shooting_stance = {
 					end
 					self:SetParameter("AP_Carried",ap_carried)
 				end
+				
+				
+				----- visual
+				if target.shooter_cone_v then
+					target.shooter_cone_v:SetOpacity(0)
+					target.snap_cone:SetOpacity(0)
+				end
 			end,
 		}),
 		PlaceObj('UnitReaction', {

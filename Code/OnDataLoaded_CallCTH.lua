@@ -35,6 +35,10 @@ function OnMsg.DataLoaded()
 	
 end
 
+function OnMsg.EnterSector()
+	recoil_template()
+end
+
 function OnMsg.ModsReloaded()
 	rat_upd_visu()
 end

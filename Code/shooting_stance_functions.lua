@@ -144,7 +144,10 @@ end
 
 function CreateStanceConeV(self, weapon)
 	--print("creating stance cone")
-	
+	local side = self and self.team and self.team.side or ''
+	if not (side == 'player1' or side == 'player2') or (SelectedObj and not SelectedObj == self) then
+		return
+	end
 
 	local pos = self:GetPos()
 	local angle = self:GetAngle()
@@ -194,8 +197,8 @@ function CreateStanceConeV(self, weapon)
 	
 	
     self.shooter_cone_v = CreateAOETilesSector_Shooter(step_positions, step_objs, empty_table, self.shooter_cone_v, pos, target, 1 * guim, distance, cone_angle, "Overwatch4_Deployed_Ally")
-   local side = self and self.team and self.team.side or ''
-	self.shooter_cone_v:SetOpacity(100)
+
+	--self.shooter_cone_v:SetOpacity(100)
 	
 	
 	------------------
@@ -253,15 +256,12 @@ function CreateStanceConeV(self, weapon)
 	
 	self.snap_cone = CreateAOETilesSector_Snap(step_positions, step_objs, empty_table, self.snap_cone, pos, target, 1 * guim, distance, cone_angle, "Overwatch4_Deployed_Ally")
 	
-	self.snap_cone:SetOpacity(100)
-	if not (side == 'player1' or side == 'player2') then	
-		--Sleep(1000)
-		self.snap_cone:SetOpacity(0)
-		self.shooter_cone_v:SetOpacity(0)
-	else
-	
+	if self == SelectedObj then
 		self.snap_cone:SetOpacity(100)
 		self.shooter_cone_v:SetOpacity(100)
+	else
+		self.snap_cone:SetOpacity(0)
+		self.shooter_cone_v:SetOpacity(0)
 	end
 	----------------------------------
 	

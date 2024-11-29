@@ -5,7 +5,7 @@ PlaceObj('ChanceToHitModifier', {
 		if not attacker or not target then 
 			return false, 0
 		end
-		if target.stance == "Prone" then
+		if target.stance == "Prone" or target.stance == "Crouch" then
 			return false, 0
 		end
 		
@@ -23,30 +23,24 @@ PlaceObj('ChanceToHitModifier', {
 		end
 		
 		local metaText = {}
-		local value = -20
-		local pist = 10
-		local longb = -10
-		local shortb = 15
+		local value = -15
 		local dist = attacker_pos:Dist(target_pos)
 		local mrange = 1.5 * const.SlabSizeX
 		
 
 		if dist < mrange then
-			if weapon1.default_long_barrel then
-				value = value + longb
-				metaText[#metaText + 1] = T(371165966796, "(-) Extended Barrel")
-			elseif weapon1 and weapon1:HasComponent("longbarrel") then
-				value = value + longb
+			if weapon1 and (weapon1:HasComponent("longbarrel") or weapon1.default_long_barrel) then
+				value = MulDivRound(value, 140 ,100) 
 				metaText[#metaText + 1] = T(924992454524, "(-) Extended Barrel")
 			elseif weapon1 and weapon1:HasComponent("shortbarrel") then
-				value = value + shortb
+				value = MulDivRound(value, 80 ,100) 
 				metaText[#metaText + 1] = T(749892252984, "Short Barrel")
 			end
 			if IsKindOfClasses(weapon1, "Pistol", "Revolver") then
-				value = MulDivRound(value, 50 ,100) 
+				value = MulDivRound(value, 40 ,100) 
 				metaText[#metaText + 1] =T(476231976166, "Handgun")
 			elseif IsKindOfClasses(weapon1, "SubmachineGun") then
-				value = MulDivRound(value, 80 ,100) 
+				value = MulDivRound(value, 60 ,100) 
 				metaText[#metaText + 1] =T(759763123531, "SMG")
 			end
 		else
