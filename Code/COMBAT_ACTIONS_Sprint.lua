@@ -28,7 +28,9 @@ function Unit:Sprint(action_id, cost_ap, args)
 
     local pathObj, path
     self:PushDestructor(function(self)
-        if pathObj then DoneObject(pathObj) end
+        if pathObj then
+            DoneObject(pathObj)
+        end
     end)
     pathObj = CombatPath:new()
 
@@ -63,20 +65,22 @@ function Unit:Sprint(action_id, cost_ap, args)
         path = pathObj:GetCombatPathFromPos(target)
         self:CombatGoto(action_id, 0, nil, path, true)
     end
-    if shot_threads then Firearm:WaitFiredShots(shot_threads) end
+    if shot_threads then
+        Firearm:WaitFiredShots(shot_threads)
+    end
     self:PopAndCallDestructor() -- pathObj 
 end
 
 DefineClass.IModeCombatSprint = {
     __parents = {"IModeCombatMovingAttack"},
-
     target_as_pos = true
-
 }
 
 function IModeCombatSprint:Confirm()
     local blackboard = self.targeting_blackboard
-    if not blackboard then return end
+    if not blackboard then
+        return
+    end
 
     if self.potential_target and self.potential_target:CanBeControlled() then
         SelectObj(self.potential_target)
@@ -97,14 +101,16 @@ function IModeCombatSprint:Confirm()
     return IModeCombatAttackBase.Confirm(self)
 end
 
-PlaceObj('XTemplate', {
-    group = "Zulu",
-    id = "IModeCombatSprint",
-    PlaceObj('XTemplateWindow', {'__class', "IModeCombatSprint"}, {
-        PlaceObj('XTemplateTemplate',
-                 {'__template', "IModeCombatAttackBaseGeneric"})
+function OnMsg.ClassesBuilt()
+    PlaceObj('XTemplate', {
+        group = "Zulu",
+        id = "IModeCombatSprint",
+        PlaceObj('XTemplateWindow', {'__class', "IModeCombatSprint"}, {
+            PlaceObj('XTemplateTemplate',
+                     {'__template', "IModeCombatAttackBaseGeneric"})
+        })
     })
-})
+end
 
 local mobile_targeting_special_args = {
     no_ap_indicator = true,
@@ -113,11 +119,14 @@ local mobile_targeting_special_args = {
     hide_avatar = true
 }
 
-function CustomSprint_Targeting_Mobile(dialog, blackboard, command, pt)
+function Sprint_Targeting_Mobile(dialog, blackboard, command, pt)
+
     local attacker = dialog.attacker
     local action = dialog.action
 
-    if dialog:PlayerActionPending(attacker) then command = "delete" end
+    if dialog:PlayerActionPending(attacker) then
+        command = "delete"
+    end
 
     if command == "setup" then
         dialog.args_gotopos = true
@@ -138,9 +147,12 @@ function CustomSprint_Targeting_Mobile(dialog, blackboard, command, pt)
 
     local clickWillSelect = dialog.potential_target and
                                 dialog.potential_target:CanBeControlled()
-    if clickWillSelect then SetAPIndicator(false, "unreachable") end
+    if clickWillSelect then
+        SetAPIndicator(false, "unreachable")
+    end
 
     if command == "delete" then
+
         if blackboard.fx_target then
             PlayFX(blackboard.fx_target_action, "end", blackboard.fx_target)
             blackboard.fx_target = false
@@ -149,7 +161,9 @@ function CustomSprint_Targeting_Mobile(dialog, blackboard, command, pt)
             DoneObject(blackboard.combat_path)
             blackboard.combat_path = nil
         end
-        for i, fx in ipairs(blackboard.fx_shot_lines) do DoneObject(fx) end
+        for i, fx in ipairs(blackboard.fx_shot_lines) do
+            DoneObject(fx)
+        end
         blackboard.fx_shot_lines = false
         dialog.args_gotopos = false
         SetAPIndicator(false, "moving-attack")
@@ -182,7 +196,9 @@ function CustomSprint_Targeting_Mobile(dialog, blackboard, command, pt)
     if GetUIStyleGamepad() then
         local timeSinceLastSetTarget = dialog.last_set_target_time or 0
         if RealTime() - timeSinceLastSetTarget <
-            SnapCameraToObjInterpolationTimeDefault then return end
+            SnapCameraToObjInterpolationTimeDefault then
+            return
+        end
     end
 
     local shot_positions, shot_targets, shot_cth, valid_shots = {}, {}, {}, 0
@@ -197,24 +213,30 @@ function CustomSprint_Targeting_Mobile(dialog, blackboard, command, pt)
                              blackboard.fxToDoStance or "Standing", "update_pos")
     SetAPIndicator(APIndicatorNoTarget,
                    results.shot_canceling_reason or "unreachable")
-    -- end
+
     dialog.movement_mode = true
     dialog:UpdateTargetCovers("force")
 
-    for i, fx in ipairs(blackboard.fx_shot_lines) do DoneObject(fx) end
+    for i, fx in ipairs(blackboard.fx_shot_lines) do
+        DoneObject(fx)
+    end
 
     local fx_shot_lines = {}
     blackboard.fx_shot_lines = fx_shot_lines
 
     local apCost = action:GetAPCost(attacker, {goto_pos = goto_pos})
+
     local extraAP = false
     if blackboard.fxToDoStance and blackboard.fxToDoStance ~= attacker.stance then
         extraAP = CombatActions["Stance" .. blackboard.fxToDoStance]:GetAPCost(
                       attacker)
         apCost = apCost + extraAP
     end
+
     SetAPIndicator(apCost, "moving-attack")
-    ObjModified(APIndicator) -- Manually notify because the cost could be the same
+
+    ObjModified(APIndicator)
+    -- Manually notify because the cost could be the same
 
     if GetUIStyleGamepad() and dialog.potential_target then
         dialog:SetTarget(dialog.potential_target, true)
@@ -222,14 +244,19 @@ function CustomSprint_Targeting_Mobile(dialog, blackboard, command, pt)
     end
 
     -- If more than one shot (or zero shots), it isn't clear which one we're inspecting.
-    if valid_shots ~= 1 then dialog:SetTarget(false, true) end
+    if valid_shots ~= 1 then
+        dialog:SetTarget(false, true)
+    end
+
+    Sleep(50)
 end
 
 local original_Targeting_Mobile = Targeting_Mobile
 
 function Targeting_Mobile(dialog, blackboard, command, pt)
+
     if dialog and dialog.class == "IModeCombatSprint" then
-        CustomSprint_Targeting_Mobile(dialog, blackboard, command, pt)
+        Sprint_Targeting_Mobile(dialog, blackboard, command, pt)
     else
         original_Targeting_Mobile(dialog, blackboard, command, pt)
     end

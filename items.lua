@@ -104,11 +104,7 @@ return {
 					local reaction_def = (self.msg_reactions or empty_table)[1]
 					if self:VerifyReaction("UnitAnyMovementStart", reaction_def, unit, unit, target, toDoStance) then
 						unit.return_pos_reserved = false
-					--if reserved_pos then
-						--if target == reserved_pos then
-							--unit.returning_to_cover = true
-						--end
-					--end
+					
 					if not g_Combat then
 						unit:RemoveStatusEffect("shooting_stance")
 					end
@@ -120,11 +116,7 @@ return {
 				end,
 				HandlerCode = function (self, unit, target, toDoStance)
 					unit.return_pos_reserved = false
-					--if reserved_pos then
-						--if target == reserved_pos then
-							--unit.returning_to_cover = true
-						--end
-					--end
+					
 					if not g_Combat then
 						unit:RemoveStatusEffect("shooting_stance")
 					end
@@ -137,84 +129,10 @@ return {
 				param_bindings = false,
 			}),
 			PlaceObj('MsgActorReaction', {
-				ActorParam = "obj",
-				Event = "StatusEffectAdded",
-				Handler = function (self, obj, id, stacks)
-					local reaction_def = (self.msg_reactions or empty_table)[2]
-					if self:VerifyReaction("StatusEffectAdded", reaction_def, obj, obj, id, stacks) then
-						obj.auto_face =false
-					
-					local side = obj and obj.team and obj.team.side or ''
-					if (side == 'player1' or side == 'player2') then
-						--return
-					end
-					local ap_divida = obj.divida_stance_ap
-					if ap_divida then
-						obj:ConsumeAP(ap_divida)
-						obj.divida_stance_ap = false
-						ap_divida = false
-						Msg("UnitAPChanged", obj)
-					end
-					
-					--obj.aim_action_id = true
-					--print("obj",obj)
-					end
-				end,
-				HandlerCode = function (self, obj, id, stacks)
-					obj.auto_face =false
-					
-					local side = obj and obj.team and obj.team.side or ''
-					if (side == 'player1' or side == 'player2') then
-						--return
-					end
-					local ap_divida = obj.divida_stance_ap
-					if ap_divida then
-						obj:ConsumeAP(ap_divida)
-						obj.divida_stance_ap = false
-						ap_divida = false
-						Msg("UnitAPChanged", obj)
-					end
-					
-					--obj.aim_action_id = true
-					--print("obj",obj)
-				end,
-				helpActor = "obj",
-				param_bindings = false,
-			}),
-			PlaceObj('MsgActorReaction', {
-				ActorParam = "unit",
-				Event = "CombatActionEnd",
-				Handler = function (self, unit)
-					local reaction_def = (self.msg_reactions or empty_table)[3]
-					if self:VerifyReaction("CombatActionEnd", reaction_def, unit, unit) then
-						local side = unit and unit.team and unit.team.side or ''
-					if not (side == 'player1' or side == 'player2') then
-						return
-					end
-					
-					--if == "Reload" then
-						--unit:RemoveStatusEffect("shooting_stance")
-					--end
-					end
-				end,
-				HandlerCode = function (self, unit)
-					local side = unit and unit.team and unit.team.side or ''
-					if not (side == 'player1' or side == 'player2') then
-						return
-					end
-					
-					--if == "Reload" then
-						--unit:RemoveStatusEffect("shooting_stance")
-					--end
-				end,
-				helpActor = "unit",
-				param_bindings = false,
-			}),
-			PlaceObj('MsgActorReaction', {
 				ActorParam = "unit",
 				Event = "UnitDowned",
 				Handler = function (self, unit)
-					local reaction_def = (self.msg_reactions or empty_table)[4]
+					local reaction_def = (self.msg_reactions or empty_table)[2]
 					if self:VerifyReaction("UnitDowned", reaction_def, unit, unit) then
 						unit:RemoveStatusEffect("shooting_stance")
 					    if not unit.shooter_cone_v then
@@ -243,7 +161,7 @@ return {
 				ActorParam = "obj",
 				Event = "StatusEffectRemoved",
 				Handler = function (self, obj, id, stacks, reason)
-					local reaction_def = (self.msg_reactions or empty_table)[5]
+					local reaction_def = (self.msg_reactions or empty_table)[3]
 					if self:VerifyReaction("StatusEffectRemoved", reaction_def, obj, obj, id, stacks, reason) then
 						if id == "shooting_stance" then
 						if HasPerk(obj,"Rat_recoil") then
@@ -282,7 +200,7 @@ return {
 				ActorParam = "obj",
 				Event = "InventoryChange",
 				Handler = function (self, obj)
-					local reaction_def = (self.msg_reactions or empty_table)[6]
+					local reaction_def = (self.msg_reactions or empty_table)[4]
 					if self:VerifyReaction("InventoryChange", reaction_def, obj, obj) then
 						--local equip_wep = self:GetActiveWeapons()
 					--print("eq wp", equip_wep)
@@ -300,7 +218,7 @@ return {
 				ActorParam = "obj",
 				Event = "ItemRemoved",
 				Handler = function (self, obj,item, slot_name, pos)
-					local reaction_def = (self.msg_reactions or empty_table)[7]
+					local reaction_def = (self.msg_reactions or empty_table)[5]
 					if self:VerifyReaction("ItemRemoved", reaction_def, obj, obj,item, slot_name, pos) then
 						local effect = obj:GetStatusEffect("shooting_stance")
 					local slot = effect:ResolveValue("weapon1") or ''
@@ -347,7 +265,8 @@ return {
 			PlaceObj('UnitReaction', {
 				Event = "OnCalcMinAimActions",
 				Handler = function (self, target, value, attacker, attack_target, action, weapon)
-					        if target == attacker then
+					
+							if target == attacker then
 					          return value + 1
 					        end
 				end,
