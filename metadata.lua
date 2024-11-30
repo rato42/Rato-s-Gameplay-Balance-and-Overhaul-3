@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', '3.51\n\nMod Options:\n\nDefault AI penalty reduction option set to 0.\nNew option: "Guns Freaking Hurt". With it, you can manipulate the damage of all firearms. By default, this option will be set to 120%\nSome cleaning in the mod options\n\nRevised Mags Compatibility:\n\nChanged AK74 magazines to 5.45\nChanged RPK74 to use AK74 plataform\nCHanged Desert Eagle magazines to .44 magnum\n\n\nBalance:\n\nIncreased range of most firearms by 4, shotguns by 2\nSmall buffs for the Peacemaker\nReduced the penalty for shooting at melee range, and increased the reduction for handguns and SMG. This penalty now only affects targets that are Standing\nOther small weapon balance tweaks\nIts a bit harder to lose shoting stance due to receveing damage\nChanged a bit the critical chance calculations\n\nFixes:\n\nFixed recoil accumulating on all attacks from Run And Gun and Mobile Attack.\nFixed AR15 heavy stock increasing stance AP even when you have enough STR.\nSome small compatibility fix with the Mod library\nSome visual fixes',
+	'last_changes', '3.51\n\nMod Options:\n\nDefault AI penalty reduction option set to 0.\nNew option: "Guns Freaking Hurt". With it, you can manipulate the damage of all firearms. By default, this option will be set to 120%\nSome cleaning in the mod options\n\nRevised Mags Compatibility:\n\nChanged AK74 magazines to 5.45\nChanged RPK74 to use AK74 plataform\nCHanged Desert Eagle magazines to .44 magnum\n\n\nBalance:\n\nReworked the Fast Runner perk:\nIt will now grant you a combat action: Sprint.\nSprint costs 1 AP, and makes you Out of Breath. It lets you move an amount of tiles based on your agility plus other factors (like bulk of equipment)\nFast Runner will still apply vanilla effects to AI, as they cant use the new action\n\n\nIncreased range of most firearms by 4, shotguns by 2\nSmall buffs for the Peacemaker\nReduced the penalty for shooting at melee range, and increased the reduction for handguns and SMG. This penalty now only affects targets that are Standing\nOther small weapon balance tweaks\nIts a bit harder to lose shoting stance due to receveing damage\nChanged a bit the critical chance calculations\nBurstFire and other multishots attacks have 20% reduction  on critical chance from all sources (0.2 * original, not flat decrease)\n\nFixes:\n\nFixed recoil accumulating on all attacks from Run And Gun and Mobile Attack.\nFixed AR15 heavy stock increasing stance AP even when you have enough STR.\nSome small compatibility fix with the Mod library\nSome visual fixes',
 	'dependencies', {
 		PlaceObj('ModDependency', {
 			'id', "Tc3ajdY",
@@ -24,7 +24,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 51,
-	'version', 11097,
+	'version', 11136,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -86,6 +86,8 @@ return PlaceObj('ModDef', {
 		"Code/OPTIONS_noise.lua",
 		"Code/OnDataLoaded_CallCTH.lua",
 		"Code/UnitDataDef_changes.lua",
+		"Code/COMBAT_ACTIONS.lua",
+		"Code/COMBAT_ACTIONS_Sprint.lua",
 		"Code/COMPATIBILITY_SmartOverwatch.lua",
 		"Code/COMPATIBILITY_DescriptiveCTH.lua",
 		"Code/COMPATIBILITY_RevMags.lua",
@@ -154,7 +156,6 @@ return PlaceObj('ModDef', {
 		"Code/PATCH_old_ammo.lua",
 		"Code/PATCH_weapons.lua",
 		"Code/shooting_stance_aoesector_functions.lua",
-		"Code/COMBAT_ACTIONS.lua",
 		"Code/shooting_stance_functions.lua",
 		"Code/shooting_stance_getap_extra.lua",
 		"Code/shooting_stance_prepare_weapon_action.lua",
@@ -184,8 +185,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1732774359,
-	'code_hash', 218732035985912547,
+	'saved', 1732931622,
+	'code_hash', -3767176031674931399,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
@@ -251,6 +252,11 @@ return PlaceObj('ModDef', {
 			'Class', "CharacterEffectCompositeDef",
 			'Id', "grunty_bonus",
 			'ClassDisplayName', "Character effect",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "CombatAction",
+			'Id', "Sprint",
+			'ClassDisplayName', "Combat Action",
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "ConstDef",
@@ -360,6 +366,11 @@ return PlaceObj('ModDef', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "ConstDef",
 			'Id', "R_ExtraAP",
+			'ClassDisplayName', "Constant",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "ConstDef",
+			'Id', "BurstFireCriticalChanceMul",
 			'ClassDisplayName', "Constant",
 		}),
 		PlaceObj('ModResourcePreset', {

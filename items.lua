@@ -1189,6 +1189,151 @@ return {
 		'CodeFileName', "Code/UnitDataDef_changes.lua",
 	}),
 	PlaceObj('ModItemCode', {
+		'name', "COMBAT_ACTIONS",
+		'CodeFileName', "Code/COMBAT_ACTIONS.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "COMBAT_ACTIONS_Sprint",
+		'CodeFileName', "Code/COMBAT_ACTIONS_Sprint.lua",
+	}),
+	PlaceObj('ModItemCombatAction', {
+		ActionCamera = true,
+		ActionPoints = 1000,
+		ActionType = "Melee Attack",
+		AimType = "mobile",
+		Description = "",
+		DisplayName = T(496598327198, --[[ModItemCombatAction Sprint DisplayName]] "Sprint"),
+		GetActionDamage = function (self, unit, target, args)
+			return T("")
+		end,
+		GetActionDescription = function (self, units)
+			local description = self.Description
+			local unit = units and units[1]
+			if not unit then
+				return self:GetActionDisplayName()
+			end
+			----------------
+			
+			local weapon = self:GetAttackWeapons(unit)
+			local DisplayMoveAP = rat_getMobileshot_moveAP(self, unit, weapon)
+			description = T(979712456456, "Rush to a new position, using up to <em>" .. DisplayMoveAP ..
+								                " Move AP</em>.")
+			local args = false
+			local cost = self.GetAPCost(self, unit, args)
+			
+			description = description .. T(966648741688, "\n\nThe unit will be <em>Out of Breath</em>.")
+			-------
+			
+			--local damage, base, bonus = self:GetActionDamage(unit)
+			return T {
+				description,
+				--damage = damage,
+				--basedamage = base,
+				--bonusdamage = bonus,
+			}
+		end,
+		GetActionDisplayName = function (self, units)
+			local name = self.DisplayName
+			if (name or "") == "" then
+				name = Untranslated(self.id)
+			end
+			return name
+		end,
+		GetActionResults = function (self, unit, args)
+			return GetMobileShotResults(self, unit, args)
+		end,
+		GetAimParams = function (self, unit, weapon)
+			
+				local move_ap = rat_getMobileshot_moveAP(self, unit, weapon) -- self:ResolveValue("mobile_move_ap")
+				assert(move_ap)
+			
+				return {
+					num_shots = 0,
+					move_ap = move_ap * const.Scale.AP,
+				}
+		end,
+		GetAnyTarget = function (self, units)
+			return {}
+		end,
+		GetAttackWeapons = function (self, unit, args)
+			if args and args.weapon then return args.weapon end
+			local weapon = unit:GetActiveWeapons() or unit:GetActiveWeapons("UnarmedWeapon")
+			
+			return weapon -- make sure to return only 1 weapon, the attack doesn't use 2
+		end,
+		GetTargets = function (self, units)
+			--return CombatActionGetAttackableEnemies(self, units and units[1])
+			return {}
+		end,
+		GetUIState = function (self, units, args)
+			
+			
+			local unit = units[1]
+			if g_Combat then
+				if unit:HasStatusEffect("StationedMachineGun") then
+					return "hidden"
+				elseif unit:HasStatusEffect("ManningEmplacement") then
+					return "hidden"
+				elseif unit:HasPreparedAttack() then
+					return "hidden"
+				end
+			else
+				return "hidden", AttackDisableReasons.CombatOnly
+			end
+			
+			if not HasPerk(unit, "SteadyBreathing") then
+				return 'hidden'
+			end
+			
+			if args then
+				local cost = self:GetAPCost(unit, args)
+				if cost < 0 then
+					return "hidden"
+				end
+				if not unit:UIHasAP(cost, self.id) then
+					return "disabled", GetUnitNoApReason(unit)
+				end
+			end
+			
+			if unit:GetBandageTarget() or unit:IsBeingBandaged() then
+				return "hidden"
+			end
+			
+			----
+			if unit:HasStatusEffect("R_outofbreath") then
+				return "disabled", T(545341281514, "<color AmmoAPColor>Out of Breath</color>")
+			end
+			-------
+			return "enabled"
+		end,
+		Icon = "Mod/cfahRED/Images/sprint2.png",
+		IdDefault = "Sprintdefault",
+		IsAimableAttack = false,
+		KeybindingSortId = "2371",
+		MultiSelectBehavior = "first",
+		Parameters = {
+			PlaceObj('PresetParamNumber', {
+				'Name', "mobile_move_ap",
+				'Value', 8,
+				'Tag', "<mobile_move_ap>",
+			}),
+			PlaceObj('PresetParamNumber', {
+				'Name', "cooldown",
+				'Tag', "<cooldown>",
+			}),
+		},
+		RequireState = "any",
+		Run = function (self, unit, ap, ...)
+			unit:SetActionCommand("Sprint", self.id, ap, ...)
+		end,
+		SortKey = 10,
+		UIBegin = function (self, units, args)
+			CombatActionAttackStart(self, units, args, "IModeCombatSprint")
+		end,
+		group = "Default",
+		id = "Sprint",
+	}),
+	PlaceObj('ModItemCode', {
 		'name', "COMPATIBILITY_SmartOverwatch",
 		'CodeFileName', "Code/COMPATIBILITY_SmartOverwatch.lua",
 	}),
@@ -1484,10 +1629,6 @@ return {
 		'CodeFileName', "Code/shooting_stance_aoesector_functions.lua",
 	}),
 	PlaceObj('ModItemCode', {
-		'name', "COMBAT_ACTIONS",
-		'CodeFileName', "Code/COMBAT_ACTIONS.lua",
-	}),
-	PlaceObj('ModItemCode', {
 		'name', "shooting_stance_functions",
 		'CodeFileName', "Code/shooting_stance_functions.lua",
 	}),
@@ -1647,6 +1788,11 @@ return {
 		group = "Combat",
 		id = "R_ExtraAP",
 		value = 1,
+	}),
+	PlaceObj('ModItemConstDef', {
+		group = "Combat",
+		id = "BurstFireCriticalChanceMul",
+		value = 80,
 	}),
 	PlaceObj('ModItemConstDef', {
 		Comment = "Sight radius (in tiles) for units aware of the target unit",
