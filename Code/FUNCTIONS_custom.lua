@@ -5,15 +5,23 @@ function GetPBbonus(weapon)
     local class = 0
     local modifyVal, compDef
 
-    if IsKindOf(weapon, "SubmachineGun") then class = 3 end
+    if IsKindOf(weapon, "SubmachineGun") then
+        class = 3
+    end
     if IsKindOfClasses(weapon, "Pistol", "Revolver") or weapon.pistol_swap then
         class = 3
     end
-    if IsKindOf(weapon, "SniperRifle") then class = 0 end
+    if IsKindOf(weapon, "SniperRifle") then
+        class = 0
+    end
 
-    if IsKindOf(weapon, "Shotgun") then class = 4 end
+    if IsKindOf(weapon, "Shotgun") then
+        class = 4
+    end
 
-    if IsKindOf(weapon, "AssaultRifle") then class = 2 end
+    if IsKindOf(weapon, "AssaultRifle") then
+        class = 2
+    end
 
     if weapon.default_long_barrel then
         value = value - 5
@@ -43,7 +51,7 @@ function GetPBbonus(weapon)
         if weapon and weapon:HasComponent("shortbarrel") then
             value = value + 6
         elseif weapon and weapon:HasComponent("longbarrel") then
-            value = value - 4
+            value = value - 3
         end
     else
         if weapon and weapon:HasComponent("shortbarrel") then
@@ -53,13 +61,17 @@ function GetPBbonus(weapon)
         end
     end
 
-    if weapon and weapon:HasComponent("tac_grip_PB") then value = value + 4 end
+    if weapon and weapon:HasComponent("tac_grip_PB") then
+        value = value + 4
+    end
 
     if weapon and weapon:HasComponent("vigneron_folded_PB") then
         value = value + 1
     end
 
-    if weapon and weapon:HasComponent("bullpup") then value = value + 5 end
+    if weapon and weapon:HasComponent("bullpup") then
+        value = value + 5
+    end
 
     if weapon and weapon:HasComponent("handguard_ext") then
         modifyVal = GetComponentEffectValue(weapon, "handguard_ext",
@@ -183,7 +195,11 @@ function Composure_RollSkillCheck(unit, modifier, add)
 end
 
 function R_tableContains(table, element)
-    for _, value in pairs(table) do if value == element then return true end end
+    for _, value in pairs(table) do
+        if value == element then
+            return true
+        end
+    end
     return false
 end
 
@@ -238,10 +254,14 @@ function rat_getMobileshot_moveAP(self, unit, weapon)
     if weapon and IsKindOf(weapon, "Firearm") then
         stanceap = weapon.APStance * 2
 
-        if weapon.LargeItem < 1 then stanceap = stanceap - 1 end
+        if weapon.LargeItem < 1 then
+            stanceap = stanceap - 1
+        end
 
         if not (IsKindOf(weapon, "SubmachineGun") or IsKindOf(weapon, "Pistol") or
-            IsKindOf(weapon, "Revolver")) then stanceap = stanceap + 1 end
+            IsKindOf(weapon, "Revolver")) then
+            stanceap = stanceap + 1
+        end
     end
 
     local agi = unit.Agility
@@ -250,7 +270,9 @@ function rat_getMobileshot_moveAP(self, unit, weapon)
 
     local move_ap = cRound(9.0 + free_ap - (stanceap))
 
-    if move_ap < 5 then move_ap = 5 end
+    if move_ap < 5 then
+        move_ap = 5
+    end
 
     return move_ap
 end
@@ -261,7 +283,9 @@ end
 
 function GetWeapon_StanceAP(unit, weapon, display)
 
-    if not weapon then return 0 end
+    if not weapon then
+        return 0
+    end
 
     local cost = weapon.APStance
     cost = Cumbersome_StanceAP(unit, weapon, cost)
@@ -272,7 +296,6 @@ function GetWeapon_StanceAP(unit, weapon, display)
 
     local str_min = 0
     if modifyVal then
-
         str_min = GetComponentEffectValue(weapon, "stance_ap_inc_STR",
                                           "STR_threshold")
         if not unit or unit.Strength < str_min then
@@ -280,12 +303,13 @@ function GetWeapon_StanceAP(unit, weapon, display)
         end
     end
 
-    if display then return cost end
+    if display then
+        return cost
+    end
 
-    -- print("modv", modifyVal, "strmin", str_min)
-    local side = unit and unit.team and unit.team.side or ''
-    if not (side == 'player1' or side == 'player2') then
-        cost = MulDivRound(cost, 50, 100)
+    if R_IsAI(unit) then
+        cost = MulDivRound(cost, const.Combat.AI_ShootingStanceAP_Mul or 100,
+                           100)
     end
 
     return cost * const.Scale.AP
@@ -294,7 +318,10 @@ end
 function Cumbersome_StanceAP(unit, weapon, cost)
     if weapon:IsCumbersome() then
         cost = cost + 1
-        if unit and unit.Strength > 89 then cost = Max(1, cost - 1) end
+        if unit and unit.Strength >=
+            const.Combat.CumbersomeStanceAP_StrThreshold then
+            cost = Max(1, cost - 1)
+        end
     end
     return cost
 end
@@ -304,16 +331,24 @@ function GetHipfire_StanceAP(unit, weapon)
     local ap_hipfire = 1 -------------hipfire
     ap_hipfire = Cumbersome_StanceAP(unit, weapon, ap_hipfire)
 
-    if R_IsAI(unit) then ap_hipfire = MulDivRound(ap_hipfire, 50, 100) end
+    if R_IsAI(unit) then
+        ap_hipfire = MulDivRound(ap_hipfire,
+                                 const.Combat.AI_ShootingStanceAP_Mul or 100,
+                                 100)
+    end
 
-    return ap_hipfire * const.Scale.AP
+    return 0 -- ap_hipfire * const.Scale.AP
 end
 
 function rat_MobileAction_AP(self, unit)
 
-    if not unit then return 0, 0 end
+    if not unit then
+        return 0, 0
+    end
 
-    if not self then return 0, 0 end
+    if not self then
+        return 0, 0
+    end
 
     local weapon = self:GetAttackWeapons(unit)
     local att_cost = unit:GetAttackAPCost(self, weapon, nil, 0) -- CombatActions.BurstFire.GetAPCost(self, unit, args)
@@ -323,10 +358,14 @@ function rat_MobileAction_AP(self, unit)
     if rat_canBolt(weapon) then
         local unbolted_shots = 3
         local cycling_ap = rat_get_manual_cyclingAP(unit, weapon, true)
-        if not weapon.unbolted then unbolted_shots = unbolted_shots - 1 end
+        if not weapon.unbolted then
+            unbolted_shots = unbolted_shots - 1
+        end
 
         cycling_ap = cRound(cycling_ap * unbolted_shots * const.Scale.AP * 0.5)
-        if cycling_ap and cycling_ap > 0 then cost = cost + cycling_ap end
+        if cycling_ap and cycling_ap > 0 then
+            cost = cost + cycling_ap
+        end
 
     end
 
@@ -348,20 +387,28 @@ function IsAimed_Mobile(self, unit, ap)
 
     local cost, aimed_cost = rat_MobileAction_AP(self, unit)
 
-    if ap < aimed_cost then return false end
+    if ap < aimed_cost then
+        return false
+    end
     return true
 end
 
 function hand_eye_crit(action_id, weapon, attacker, aim)
-    if not action_id then return 0 end
+    if not action_id then
+        return 0
+    end
 
     local single_factor = 3.0
     local not_single = 1.0
     local burst_factor = not_single
 
-    if IsKindOf(weapon, "SniperRifle") then single_factor = 5.0 end
+    if IsKindOf(weapon, "SniperRifle") then
+        single_factor = 5.0
+    end
 
-    if IsKindOf(weapon, "G36") then burst_factor = 2.5 end
+    if IsKindOf(weapon, "G36") then
+        burst_factor = 2.5
+    end
 
     local hand_eye = rGetHandEyeCoordination(attacker)
 
@@ -408,7 +455,9 @@ function rat_getDeltaAP(action, weapon, action_id_override)
         action_id = action.id
     end
 
-    if action_id == "MobileShot" then action_id = "SingleShot" end
+    if action_id == "MobileShot" then
+        action_id = "SingleShot"
+    end
 
     if action_id == "SingleShot" then
         if IsKindOfClasses(weapon, "SubmachineGun") then
@@ -418,7 +467,9 @@ function rat_getDeltaAP(action, weapon, action_id_override)
             IsKindOf(weapon, "G36") or IsKindOf(weapon, "B93RR_1") then
             base = base + 1000
         end
-        if IsKindOf(weapon, "AN94_1") then base = base + 2000 end
+        if IsKindOf(weapon, "AN94_1") then
+            base = base + 2000
+        end
     elseif action_id == "AutoFire" then
         if IsKindOf(weapon, "AN94_1") then
             base = base + 1000
@@ -435,7 +486,9 @@ end
 function IsMod_loaded(mod_id)
     local mod_check = table.find(ModsLoaded, 'id', mod_id) or nil -- Replace "Mod_Id" with exact case sensitive modID you're testing for.
 
-    if mod_check then return true end
+    if mod_check then
+        return true
+    end
     return false
 end
 

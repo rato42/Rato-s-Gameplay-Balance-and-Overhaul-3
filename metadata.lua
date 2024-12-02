@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', '3.51\n\nMod Options:\n\nDefault AI penalty reduction option set to 0.\nNew option: "Guns Freaking Hurt". With it, you can manipulate the damage of all firearms. By default, this option will be set to 120%\nSome cleaning in the mod options\n\nRevised Mags Compatibility:\n\nChanged AK74 magazines to 5.45\nChanged RPK74 to use AK74 plataform\nCHanged Desert Eagle magazines to .44 magnum\n\n\nBalance:\n\nReworked the Fast Runner perk:\nIt will now grant you a combat action: Sprint.\nSprint costs 1 AP, and makes you Out of Breath. It lets you move an amount of tiles based on your agility plus other factors (like bulk of equipment)\nFast Runner will still apply vanilla effects to AI, as they cant use the new action\n\n\nIncreased range of most firearms by 4, shotguns by 2\nSmall buffs for the Peacemaker\nReduced the penalty for shooting at melee range, and increased the reduction for handguns and SMG. This penalty now only affects targets that are Standing\nOther small weapon balance tweaks\nIts a bit harder to lose shoting stance due to receveing damage\nChanged a bit the critical chance calculations\nBurstFire and other multishots attacks have 20% reduction  on critical chance from all sources (0.2 * original, not flat decrease)\n\nFixes:\n\nFixed recoil accumulating on all attacks from Run And Gun and Mobile Attack.\nFixed AR15 heavy stock increasing stance AP even when you have enough STR.\nSome small compatibility fix with the Mod library\nSome visual fixes',
+	'last_changes', '3.51\n\nMod Options:\n\nDefault AI penalty reduction option set to 0.\nNew option: "Guns Freaking Hurt". With it, you can manipulate the damage of all firearms. By default, this option will be set to 120%\nSome cleaning in the mod options\n\nRevised Mags Compatibility:\n\nChanged AK74 magazines to 5.45\nChanged RPK74 to use AK74 plataform\nCHanged Desert Eagle magazines to .44 magnum\n\n\nBalance:\n\nReworked the Fast Runner perk:\nIt will now grant you a combat action: Sprint.\nSprint costs 1 AP, and makes you Out of Breath. It lets you move an amount of tiles based on your agility plus other factors (like bulk of equipment)\nFast Runner will still apply vanilla effects to AI, as they cant use the new action\n\n\nIncreased range of most firearms by 4, shotguns by 2\nSmall buffs for the Peacemaker\nReduced the penalty for shooting at melee range, and increased the reduction for handguns and SMG. This penalty now only affects targets that are Standing\nOther small weapon balance tweaks\nIts a bit harder to lose shoting stance due to receveing damage\nChanged a bit the critical chance calculations\nHipfiring no long has 1 extra AP cost\nBurstFire and other multishots attacks have 20% reduction  on critical chance from all sources (0.2 * original, not flat decrease)\n\nFixes:\n\nFixed recoil accumulating on all attacks from Run And Gun and Mobile Attack.\nFixed AR15 heavy stock increasing stance AP even when you have enough STR.\nSome small compatibility fix with the Mod library\nSome visual fixes',
 	'dependencies', {
 		PlaceObj('ModDependency', {
 			'id', "Tc3ajdY",
@@ -24,7 +24,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 51,
-	'version', 11163,
+	'version', 11201,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -185,8 +185,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1733008860,
-	'code_hash', 620558709736019222,
+	'saved', 1733109711,
+	'code_hash', 6031580084316152498,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
@@ -375,6 +375,16 @@ return PlaceObj('ModDef', {
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "ConstDef",
+			'Id', "AI_ShootingStanceAP_Mul",
+			'ClassDisplayName', "Constant",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "ConstDef",
+			'Id', "CumbersomeStanceAP_StrThreshold",
+			'ClassDisplayName', "Constant",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "ConstDef",
 			'Id', "AwareSightRange",
 			'ClassDisplayName', "Constant",
 		}),
@@ -431,6 +441,21 @@ return PlaceObj('ModDef', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "WeaponComponent",
 			'Id', "HIll_StockGalil_01",
+			'ClassDisplayName', "Weapon component",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "WeaponComponent",
+			'Id', "_Master_BarrelShort",
+			'ClassDisplayName', "Weapon component",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "WeaponComponent",
+			'Id', "_Master_MagLargeFine",
+			'ClassDisplayName', "Weapon component",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "WeaponComponent",
+			'Id', "_Master_MagLarge",
 			'ClassDisplayName', "Weapon component",
 		}),
 		PlaceObj('ModResourcePreset', {
@@ -590,11 +615,6 @@ return PlaceObj('ModDef', {
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "WeaponComponent",
-			'Id', "_master_BarrelShort",
-			'ClassDisplayName', "Weapon component",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "WeaponComponent",
 			'Id', "BarrelShort_Light",
 			'ClassDisplayName', "Weapon component",
 		}),
@@ -686,6 +706,16 @@ return PlaceObj('ModDef', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "WeaponComponent",
 			'Id', "MagNormal",
+			'ClassDisplayName', "Weapon component",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "WeaponComponent",
+			'Id', "_Master_MagNormal",
+			'ClassDisplayName', "Weapon component",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "WeaponComponent",
+			'Id', "_Master_DrumMag",
 			'ClassDisplayName', "Weapon component",
 		}),
 		PlaceObj('ModResourcePreset', {
@@ -825,11 +855,6 @@ return PlaceObj('ModDef', {
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "WeaponComponent",
-			'Id', "_RatMaster_MagLarge",
-			'ClassDisplayName', "Weapon component",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "WeaponComponent",
 			'Id', "MagQuick",
 			'ClassDisplayName', "Weapon component",
 		}),
@@ -841,6 +866,11 @@ return PlaceObj('ModDef', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "WeaponComponent",
 			'Id', "MagNormalFine",
+			'ClassDisplayName', "Weapon component",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "WeaponComponent",
+			'Id', "_Master_MagNormalFine",
 			'ClassDisplayName', "Weapon component",
 		}),
 		PlaceObj('ModResourcePreset', {

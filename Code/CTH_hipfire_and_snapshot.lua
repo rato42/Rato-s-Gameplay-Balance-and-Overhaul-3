@@ -1,8 +1,11 @@
 function place_hipfire_cth()
     PlaceObj('ChanceToHitModifier', {
-        CalcValue = function(self, attacker, target, body_part_def, action,
-                             weapon1, weapon2, lof, aim, opportunity_attack,
-                             attacker_pos, target_pos)
+        CalcValue = function(self, attacker, target, body_part_def, action, weapon1, weapon2, lof, aim,
+                             opportunity_attack, attacker_pos, target_pos)
+
+            if not action then
+                return false, 0
+            end
 
             local side = attacker and attacker.team and attacker.team.side or ''
 
@@ -14,8 +17,7 @@ function place_hipfire_cth()
                 return false, 0
             end
 
-            if action and action.id == "AutoFire" and
-                HasPerk(attacker, "shooting_stance") then
+            if action and action.id == "AutoFire" and HasPerk(attacker, "shooting_stance") then
                 return false, 0
             end
 
@@ -31,6 +33,8 @@ function place_hipfire_cth()
                 return false, 0
             end
 
+            ------
+
             local metaText = {}
 
             local dist = attacker:GetDist(target)
@@ -41,20 +45,18 @@ function place_hipfire_cth()
             local penalty = 1.0
 
             if opportunity_attack then
-
-                if HasPerk(attacker, "shooting_stance") then
-                    aim = Max(1, aim)
-                end
+                -- if HasPerk(attacker, "shooting_stance") then
+                aim = Max(1, aim)
+                -- end
             end
 
             local display = false
 
-            local wep_hip_penal, wep_meta =
-                GetHipfirePenal(weapon, attacker, action, display, aim)
-            if action.id == "DualShot" then
+            local wep_hip_penal, wep_meta = GetHipfirePenal(weapon, attacker, action, display, aim)
+
+            if action and action.id == "DualShot" then
                 weapon = weapon2
-                local wep_hip_penal2 = GetHipfirePenal(weapon, attacker, action,
-                                                       display, aim)
+                local wep_hip_penal2 = GetHipfirePenal(weapon, attacker, action, display, aim)
                 weapon = weapon1
                 wep_hip_penal = (wep_hip_penal + wep_hip_penal2) / 2
                 wep_meta = {T {392849416519, "Average: Two Weapons"}}
@@ -97,9 +99,8 @@ function place_hipfire_cth()
             end
 
             if not opportunity_attack and aim < 1 and
-                ((action.id == "BuckshotBurst" or action.id == "MGBurstFire" or
-                    action.id == "GrizzlyPerk" or action.id == "AutoFire") or
-                    (ratio and ratio > 1)) then
+                ((action.id == "BuckshotBurst" or action.id == "MGBurstFire" or action.id == "GrizzlyPerk" or action.id ==
+                    "AutoFire") or (ratio and ratio > 1)) then
                 local reflex = attacker.Strength
 
                 local min = 0.65
@@ -142,9 +143,6 @@ function place_hipfire_cth()
 
             if not (side == 'player1' or side == 'player2') then
                 weapon_ref = AIpenal_reduc(attacker, weapon_ref)
-                -- if action.id == "AutoFire" then
-                -- aim = 1
-                -- end
             end
 
             if action.id == "GrizzlyPerk" then
@@ -184,8 +182,7 @@ function place_hipfire_cth()
                 -- print("snap penal", max_penal)
                 base_penal1 = -10 ---5
 
-                base_penal =
-                    MulDivRound(dist, base_penal1, 16 * const.SlabSizeX)
+                base_penal = MulDivRound(dist, base_penal1, 16 * const.SlabSizeX)
 
                 if base_penal < base_penal1 then
                     base_penal = base_penal1
@@ -193,11 +190,9 @@ function place_hipfire_cth()
                     base_penal = cRound(base_penal1 / 2)
                 end
 
-                local snap_penal =
-                    Min(0, MulDivRound(dist, max_penal, max_dist))
+                local snap_penal = Min(0, MulDivRound(dist, max_penal, max_dist))
 
-                snap_penal = MulDivRound(snap_penal, weapon_ref, 100) +
-                                 base_penal
+                snap_penal = MulDivRound(snap_penal, weapon_ref, 100) + base_penal
 
                 if (g_Overwatch[attacker] and g_Overwatch[attacker].permanent) then
                     metaText[#metaText + 1] = T {516951375425, "MG Setup"}

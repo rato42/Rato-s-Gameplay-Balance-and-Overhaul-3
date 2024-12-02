@@ -152,7 +152,9 @@ DefineClass.Rat_recoil = {
 					end
 					local cth_text = "Recoil (x" .. stacks.. ")"
 					local recoil_cth = {id = "recoil_persistent", metaText = #metaText ~= 0 and metaText, name = T(cth_text), value = recoil}
-					table.insert(data.modifiers, recoil_cth)
+					if data.modifiers then
+						table.insert(data.modifiers, recoil_cth)
+					end
 					data.mod_add = data.mod_add + recoil
 					--print("d", data.modifiers)
 					--ApplyCthModifier_Add(self .. "X" .. stacks, data, recoil)

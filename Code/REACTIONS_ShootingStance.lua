@@ -55,7 +55,7 @@ function OnMsg.UnitMovementDone(unit, action_id, prev_pos)
         return
     end
 
-    local dist = unit:GetDist(prev_pos)
+    --[[local dist = unit:GetDist(prev_pos)
 
     local side = unit and unit.team and unit.team.side or ''
     if not (side == 'player1' or side == 'player2') then
@@ -71,7 +71,7 @@ function OnMsg.UnitMovementDone(unit, action_id, prev_pos)
                 unit:GainAP(MulDivRound(stance_ap, 25, 100))
             end
         end
-    end
+    end]]
 
     unit:RemoveStatusEffect("shooting_stance")
 end
@@ -79,8 +79,8 @@ end
 function OnMsg.CombatActionEnd(unit)
 
     local actions_to_remove_stance = {
-        "TakeCover", "LeaveEmplacement", "MGPack", "ThrowGrenade",
-        "InteractWith", "ThrowKnife", "ReloadAction", "DoubleToss", "Sprint"
+        "TakeCover", "LeaveEmplacement", "MGPack", "ThrowGrenade", "InteractWith", "ThrowKnife", "ReloadAction",
+        "DoubleToss", "Sprint"
     }
 
     if actions_to_remove_stance[unit.action_command] then
@@ -94,9 +94,9 @@ function OnMsg.CombatActionEnd(unit)
     end
 end
 
-function OnMsg.OnAttack(self, action, target, results, attack_args)
+function OnMsg.OnAttack(unit, action, target, results, attack_args)
 
-    local weapon = attack_args.weapon or self:GetActiveWeapons()
+    local weapon = attack_args.weapon or unit:GetActiveWeapons()
 
     if not weapon or not action then
         return
@@ -106,7 +106,7 @@ function OnMsg.OnAttack(self, action, target, results, attack_args)
         return
     end
 
-    if g_Overwatch[self] then
+    if g_Overwatch[unit] then
         return
     end
 
@@ -114,8 +114,50 @@ function OnMsg.OnAttack(self, action, target, results, attack_args)
 
     -- local target_pos = IsValid(target) and target:GetPos() or target
 
-    if aim and aim > 0 or HasPerk(self, "shooting_stance") then
-        ShootingStance(self, target, attack_args)
+    if aim and aim > 0 or HasPerk(unit, "shooting_stance") then
+        ShootingStance(unit, target, attack_args)
     end
 end
 
+function OnMsg.CombatActionEnd(unit)
+
+    if g_Pindown[unit] and unit.shooter_cone_v then
+        DestroyStanceConeV(unit)
+    end
+
+    if g_Overwatch[unit] then
+
+        local overwatch = g_Overwatch[unit]
+
+        DestroyStanceConeV(unit)
+
+        if g_Overwatch[unit].permanent then
+            unit:AddStatusEffect("shooting_stance")
+            return
+        end
+
+        local angle = g_Overwatch[unit].angle
+        local dir = g_Overwatch[unit].dir
+        -- unit:SetOrientation(dir, angle)
+        unit:SetOrientationAngle(angle)
+        -- local weapon = unit:GetActiveWeapons() 
+        -- local pos = unit:GetPos()
+
+        local target_pos = g_Overwatch[unit].target_pos
+        -- local z = pos:z()
+        -- target_pos = target_pos:SetZ(z)
+
+        local target = target_pos
+        local angle = unit:GetAngle()
+
+        local attack_args = unit.ow_args_stance or false
+        unit.ow_args_stance = nil
+        ShootingStance(unit, target, attack_args)
+
+        if not overwatch.permanent then
+            if overwatch and (overwatch.num_attacks < 1) then
+                unit:InterruptPreparedAttack()
+            end
+        end
+    end
+end

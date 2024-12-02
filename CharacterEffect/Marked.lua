@@ -57,8 +57,11 @@ DefineClass.Marked = {
 				if target == attack_target then
 					local value_mod = 10
 					local markedcth = {id = "markedcth", name = T{"Marked"}, value = value_mod}
-					table.insert(data.modifiers, markedcth)
-					data.mod_add = data.mod_add + value_mod
+						data.mod_add = data.mod_add + value_mod
+					if data.modifiers then
+						table.insert(data.modifiers, markedcth)
+					end
+				
 				end
 			end,
 		}),

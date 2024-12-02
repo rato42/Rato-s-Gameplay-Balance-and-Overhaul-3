@@ -153,7 +153,7 @@ DefineClass.shooting_stance = {
 				--[[local side = attacker and attacker.team and attacker.team.side or ''
 				if not (side == 'player1' or side == 'player2') then
 					print("AI bonus cth angle")
-					local angle_s = ShootingConeAngle(self, attacker, weapon1, attack_target) 
+					local angle_s = ShootingConeAngle(attacker, weapon1, attack_target) 
 					--print("angle", angle_s)
 					local bonus_angle = cRound(10.0/(1+angle_s))
 					data.mod_add = data.mod_add + bonus_angle
@@ -166,7 +166,7 @@ DefineClass.shooting_stance = {
 			Event = "OnCalcMinAimActions",
 			Handler = function (self, target, value, attacker, attack_target, action, weapon)
 				
-						if target == attacker then
+						if target == attacker  and not target.AI_dont_return_Stance_min_aim_level then
 				          return value + 1
 				        end
 			end,
