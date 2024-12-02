@@ -24,7 +24,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 51,
-	'version', 11201,
+	'version', 11204,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -155,6 +155,7 @@ return PlaceObj('ModDef', {
 		"Code/PATCH_call.lua",
 		"Code/PATCH_old_ammo.lua",
 		"Code/PATCH_weapons.lua",
+		"Code/PATCH_GBOComponents.lua",
 		"Code/shooting_stance_aoesector_functions.lua",
 		"Code/shooting_stance_functions.lua",
 		"Code/shooting_stance_getap_extra.lua",
@@ -185,8 +186,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1733109711,
-	'code_hash', 6031580084316152498,
+	'saved', 1733111027,
+	'code_hash', 3713514093463231460,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
@@ -705,22 +706,12 @@ return PlaceObj('ModDef', {
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "WeaponComponent",
-			'Id', "MagNormal",
-			'ClassDisplayName', "Weapon component",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "WeaponComponent",
 			'Id', "_Master_MagNormal",
 			'ClassDisplayName', "Weapon component",
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "WeaponComponent",
 			'Id', "_Master_DrumMag",
-			'ClassDisplayName', "Weapon component",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "WeaponComponent",
-			'Id', "MagLargeFine",
 			'ClassDisplayName', "Weapon component",
 		}),
 		PlaceObj('ModResourcePreset', {
@@ -781,11 +772,6 @@ return PlaceObj('ModDef', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "WeaponComponent",
 			'Id', "MagLargeFine_12",
-			'ClassDisplayName', "Weapon component",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "WeaponComponent",
-			'Id', "MagLarge",
 			'ClassDisplayName', "Weapon component",
 		}),
 		PlaceObj('ModResourcePreset', {
@@ -861,11 +847,6 @@ return PlaceObj('ModDef', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "WeaponComponent",
 			'Id', "R_MagQuickLarge",
-			'ClassDisplayName', "Weapon component",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "WeaponComponent",
-			'Id', "MagNormalFine",
 			'ClassDisplayName', "Weapon component",
 		}),
 		PlaceObj('ModResourcePreset', {
