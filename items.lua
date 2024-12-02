@@ -7657,22 +7657,23 @@ return {
 			"IncreaseOverwatchAngle",
 			"hipfire_no_stock",
 			"Enable_RunAndGun",
+			"zzStockEquipped",
 		},
 		Parameters = {
 			PlaceObj('PresetParamNumber', {
 				'Name', "AimAccuracyDecrease",
-				'Value', 2,
+				'Value', 3,
 				'Tag', "<AimAccuracyDecrease>",
-			}),
-			PlaceObj('PresetParamNumber', {
-				'Name', "APdecrease",
-				'Value', 1,
-				'Tag', "<APdecrease>",
 			}),
 			PlaceObj('PresetParamNumber', {
 				'Name', "OverwatchAngleIncrease",
 				'Value', 115,
 				'Tag', "<OverwatchAngleIncrease>",
+			}),
+			PlaceObj('PresetParamNumber', {
+				'Name', "APdecrease",
+				'Value', 1,
+				'Tag', "<APdecrease>",
 			}),
 		},
 		Slot = "Stock",
@@ -16219,6 +16220,9 @@ return {
 		DisplayName = T(802752529448, --[[ModItemWeaponComponent foldable_StockNormal DisplayName]] "Default Stock"),
 		Icon = "UI/Icons/Upgrades/default_stock",
 		ModificationDifficulty = 0,
+		ModificationEffects = {
+			"zzStockEquipped",
+		},
 		Slot = "Stock",
 		Visuals = {
 			PlaceObj('WeaponComponentVisual', {

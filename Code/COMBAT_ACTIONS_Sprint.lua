@@ -20,11 +20,11 @@ function Unit:Sprint(action_id, cost_ap, args)
     NetUpdateHash("RunAndGun_0", self, args)
     local results = action:GetActionResults(self, args)
     local action_camera = false --[[ disable action camera for now ]]
-    if #(results.attacks or empty_table) == 0 then
+    --[[if #(results.attacks or empty_table) == 0 then
         self:GainAP(cost_ap)
         CombatActionInterruped(self)
         return
-    end
+    end]]
 
     local pathObj, path
     self:PushDestructor(function(self)
@@ -57,8 +57,7 @@ function Unit:Sprint(action_id, cost_ap, args)
     local occupiedPos = self:GetOccupiedPos()
     if self.return_pos and self.return_pos:Dist(target) < const.SlabSizeX / 2 then
         self:ReturnToCover()
-    elseif self:GetDist(occupiedPos) > const.SlabSizeX / 2 and
-        self:GetDist(target) < const.SlabSizeX / 2 then
+    elseif self:GetDist(occupiedPos) > const.SlabSizeX / 2 and self:GetDist(target) < const.SlabSizeX / 2 then
         self:SetTargetDummyFromPos()
     else
         pathObj:RebuildPaths(self, aim_params.move_ap)
@@ -71,10 +70,7 @@ function Unit:Sprint(action_id, cost_ap, args)
     self:PopAndCallDestructor() -- pathObj 
 end
 
-DefineClass.IModeCombatSprint = {
-    __parents = {"IModeCombatMovingAttack"},
-    target_as_pos = true
-}
+DefineClass.IModeCombatSprint = {__parents = {"IModeCombatMovingAttack"}, target_as_pos = true}
 
 function IModeCombatSprint:Confirm()
     local blackboard = self.targeting_blackboard
@@ -105,10 +101,8 @@ function OnMsg.ClassesBuilt()
     PlaceObj('XTemplate', {
         group = "Zulu",
         id = "IModeCombatSprint",
-        PlaceObj('XTemplateWindow', {'__class', "IModeCombatSprint"}, {
-            PlaceObj('XTemplateTemplate',
-                     {'__template', "IModeCombatAttackBaseGeneric"})
-        })
+        PlaceObj('XTemplateWindow', {'__class', "IModeCombatSprint"},
+                 {PlaceObj('XTemplateTemplate', {'__template', "IModeCombatAttackBaseGeneric"})})
     })
 end
 
@@ -135,18 +129,14 @@ function Sprint_Targeting_Mobile(dialog, blackboard, command, pt)
         local aim_params = action:GetAimParams(attacker, weapon)
         if aim_params.move_ap then
             blackboard.combat_path = CombatPath:new()
-            blackboard.combat_path:RebuildPaths(attacker, aim_params.move_ap,
-                                                nil, "Standing", nil, nil,
-                                                action.id)
+            blackboard.combat_path:RebuildPaths(attacker, aim_params.move_ap, nil, "Standing", nil, nil, action.id)
             blackboard.custom_combat_path = true
         end
     end
 
-    Targeting_Movement(dialog, blackboard, command, pt,
-                       mobile_targeting_special_args)
+    Targeting_Movement(dialog, blackboard, command, pt, mobile_targeting_special_args)
 
-    local clickWillSelect = dialog.potential_target and
-                                dialog.potential_target:CanBeControlled()
+    local clickWillSelect = dialog.potential_target and dialog.potential_target:CanBeControlled()
     if clickWillSelect then
         SetAPIndicator(false, "unreachable")
     end
@@ -195,24 +185,18 @@ function Sprint_Targeting_Mobile(dialog, blackboard, command, pt)
     -- This allows the gamepad to cycle between targets.
     if GetUIStyleGamepad() then
         local timeSinceLastSetTarget = dialog.last_set_target_time or 0
-        if RealTime() - timeSinceLastSetTarget <
-            SnapCameraToObjInterpolationTimeDefault then
+        if RealTime() - timeSinceLastSetTarget < SnapCameraToObjInterpolationTimeDefault then
             return
         end
     end
 
     local shot_positions, shot_targets, shot_cth, valid_shots = {}, {}, {}, 0
-    local results = dialog.action:GetActionResults(dialog.attacker, {
-        goto_pos = goto_pos,
-        prediction = true
-    })
+    local results = dialog.action:GetActionResults(dialog.attacker, {goto_pos = goto_pos, prediction = true})
 
     local movement_mode = IsKindOf(dialog, "IModeCombatMovement")
 
-    UpdateMovementAvatar(dialog, point20, movement_mode and
-                             blackboard.fxToDoStance or "Standing", "update_pos")
-    SetAPIndicator(APIndicatorNoTarget,
-                   results.shot_canceling_reason or "unreachable")
+    UpdateMovementAvatar(dialog, point20, movement_mode and blackboard.fxToDoStance or "Standing", "update_pos")
+    SetAPIndicator(APIndicatorNoTarget, results.shot_canceling_reason or "unreachable")
 
     dialog.movement_mode = true
     dialog:UpdateTargetCovers("force")
@@ -228,8 +212,7 @@ function Sprint_Targeting_Mobile(dialog, blackboard, command, pt)
 
     local extraAP = false
     if blackboard.fxToDoStance and blackboard.fxToDoStance ~= attacker.stance then
-        extraAP = CombatActions["Stance" .. blackboard.fxToDoStance]:GetAPCost(
-                      attacker)
+        extraAP = CombatActions["Stance" .. blackboard.fxToDoStance]:GetAPCost(attacker)
         apCost = apCost + extraAP
     end
 

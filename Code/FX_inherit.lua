@@ -21,7 +21,7 @@ function rat_apply_inherit(rules)
         -- "HE_Grenade_1" 
         -- },
         {"FragGrenade", "ShapedCharge"}, {"UnderslungGrenadeLauncher", "rat_22mmUnderslungGrenadeLauncher"},
-        {"Warhead_Frag", "_22m_HE"}
+        {"Warhead_Frag", "_22m_HE"}, {"MP40", "VigM2_1"}, {'ToG_VFX_Muzzle', "VigM2_Barrel_def_1"}
 
     }
 
