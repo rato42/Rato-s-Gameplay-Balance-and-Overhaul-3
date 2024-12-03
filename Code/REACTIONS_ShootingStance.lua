@@ -76,11 +76,15 @@ function OnMsg.UnitMovementDone(unit, action_id, prev_pos)
     unit:RemoveStatusEffect("shooting_stance")
 end
 
+--[[function OnMsg.StatusEffectAdded(unit, id)
+    print("tentando tirar shooting stance", id)
+end]]
+
 function OnMsg.CombatActionEnd(unit)
 
     local actions_to_remove_stance = {
-        "TakeCover", "LeaveEmplacement", "MGPack", "ThrowGrenade", "InteractWith", "ThrowKnife", "ReloadAction",
-        "DoubleToss", "Sprint"
+        "TakeCover", "LeaveEmplacement", "MGPack", "ThrowGrenade", "InteractWith", "ThrowKnife",
+        "ReloadAction", "DoubleToss", "Sprint"
     }
 
     if actions_to_remove_stance[unit.action_command] then
