@@ -10,6 +10,10 @@ function OnMsg.UnitStanceChanged(unit)
     end
 end
 
+function OnMsg.UnitSwappedWeapon(unit)
+    unit:RecalcUIActions(true)
+end
+
 function OnMsg.UnitStanceChanged(unit)
 
     local attaches = unit:GetAttaches(WeaponVisualClasses)
@@ -17,7 +21,9 @@ function OnMsg.UnitStanceChanged(unit)
         local parts = attach.parts
         local is_holstered = attach.equip_index ~= 1 and attach.equip_index ~= 2
         if parts and parts.Grip and parts.Grip:HasState("folded") then
-            local bipod_state = is_holstered or unit.stance ~= "Prone" and "folded" or unit.stance == "Prone" and "idle"
+            local bipod_state =
+                is_holstered or unit.stance ~= "Prone" and "folded" or unit.stance == "Prone" and
+                    "idle"
             if parts.Grip:GetStateText() ~= bipod_state then
                 parts.Grip:SetState(bipod_state)
             end
@@ -95,7 +101,8 @@ function OnMsg.GatherCritChanceModifications(attacker, target, action_id, weapon
     if aim > 0 then
         if data.target_spot_group and data.target_spot_group == "Head" then
 
-            local modifyVal, compDef = GetComponentEffectValue(weapon, "scout_scope_crit", "critical_head")
+            local modifyVal, compDef = GetComponentEffectValue(weapon, "scout_scope_crit",
+                                                               "critical_head")
 
             if modifyVal then
                 data.crit_chance = data.crit_chance + modifyVal
@@ -105,7 +112,8 @@ function OnMsg.GatherCritChanceModifications(attacker, target, action_id, weapon
 
         if data.target_spot_group and data.target_spot_group == "Torso" then
 
-            local modifyVal, compDef = GetComponentEffectValue(weapon, "zrak_scope_crit", "crit_torso")
+            local modifyVal, compDef = GetComponentEffectValue(weapon, "zrak_scope_crit",
+                                                               "crit_torso")
 
             if modifyVal then
                 data.crit_chance = data.crit_chance + modifyVal
@@ -116,10 +124,11 @@ function OnMsg.GatherCritChanceModifications(attacker, target, action_id, weapon
     --------
 
     ----------- Burst Critical Reduction
-    if action_id == "BurstFire" or action_id == "AutoFire" or action_id == "RunAndGun" or action_id == "MGBurstFire" or
-        action_id == "GrizzlyPerk" or action_id == "BuckshotBurst" then
+    if action_id == "BurstFire" or action_id == "AutoFire" or action_id == "RunAndGun" or action_id ==
+        "MGBurstFire" or action_id == "GrizzlyPerk" or action_id == "BuckshotBurst" then
 
-        data.crit_chance = MulDivRound(data.crit_chance, const.Combat.BurstFireCriticalChanceMul, 100)
+        data.crit_chance = MulDivRound(data.crit_chance, const.Combat.BurstFireCriticalChanceMul,
+                                       100)
     end
     ----------
 
@@ -141,7 +150,8 @@ function OnMsg.GatherCritChanceModifications(attacker, target, action_id, weapon
     end
 end
 
-function OnMsg.GatherDamageModifications(attacker, target, action_id, self, mod_attack_args, mod_hit_data, data)
+function OnMsg.GatherDamageModifications(attacker, target, action_id, self, mod_attack_args,
+                                         mod_hit_data, data)
     local weapon = data.weapon
 
     if not IsKindOf(weapon, "Firearm") then
@@ -155,7 +165,8 @@ function OnMsg.GatherDamageModifications(attacker, target, action_id, self, mod_
 
 end
 
-function OnMsg.GatherDamageModifications(attacker, target, action_id, self, mod_attack_args, mod_hit_data, data)
+function OnMsg.GatherDamageModifications(attacker, target, action_id, self, mod_attack_args,
+                                         mod_hit_data, data)
     local weapon = data.weapon
     if not weapon or not IsKindOf(weapon, "Firearm") then
         return
@@ -177,7 +188,8 @@ function OnMsg.IGIModeChanged(self, new_mode)
     end
 end
 
-function OnMsg.GatherDamageModifications(attacker, target, action_id, self, mod_attack_args, mod_hit_data, data)
+function OnMsg.GatherDamageModifications(attacker, target, action_id, self, mod_attack_args,
+                                         mod_hit_data, data)
     local weapon = data.weapon
     if weapon then
         if IsKindOf(weapon, "EndlessKnives") then
@@ -186,7 +198,8 @@ function OnMsg.GatherDamageModifications(attacker, target, action_id, self, mod_
             data.base_damage = MulDivRound(data.base_damage, 100 + damage_mul, 100)
         end
 
-        if IsKindOf(weapon, "Unarmed") and HasPerk(attacker, "MartialArts") and attacker.species == "Human" then
+        if IsKindOf(weapon, "Unarmed") and HasPerk(attacker, "MartialArts") and attacker.species ==
+            "Human" then
             local dex_mod = 100 + MulDivRound(attacker.Dexterity, 115, 100)
             data.base_damage = MulDivRound(data.base_damage, dex_mod, 100)
         end
@@ -218,8 +231,8 @@ end
 
 function OnMsg.CombatActionEnd(unit)
 
-    if unit.action_command == "RunAndGun" or unit.action_command == "RecklessAssault" or unit.action_command ==
-        "HundredKnives" or unit.action_command == "Sprint" then
+    if unit.action_command == "RunAndGun" or unit.action_command == "RecklessAssault" or
+        unit.action_command == "HundredKnives" or unit.action_command == "Sprint" then
         if unit.action_command == "RecklessAssault" then
             unit:AddStatusEffect("R_outofbreath", 2)
         else

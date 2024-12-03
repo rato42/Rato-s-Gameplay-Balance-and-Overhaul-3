@@ -914,19 +914,3 @@ local t_table = {
 
 ratG_T_table['COMPONENT_weaponcomp_effects.lua'] = t_table
 
-function print_wp_cp_effect()
-	local comps = WeaponComponentEffects
-	for k, v in pairs(comps) do
-		if next(v.RequiredParams) then
-			print(k, v.RequiredParams)
-		end
-
-	end
-end
-
-function print_wp_used()
-	ForEachPreset()
-	for k, v in pairs(comp) do
-		print(k, v.CanBeAttachedTo)
-	end
-end

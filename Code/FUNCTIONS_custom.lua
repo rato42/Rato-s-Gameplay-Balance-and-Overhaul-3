@@ -74,12 +74,10 @@ function GetPBbonus(weapon)
     end
 
     if weapon and weapon:HasComponent("handguard_ext") then
-        modifyVal = GetComponentEffectValue(weapon, "handguard_ext",
-                                            "pb_bonus_hg")
+        modifyVal = GetComponentEffectValue(weapon, "handguard_ext", "pb_bonus_hg")
         value = value + (modifyVal or 0)
     elseif weapon and weapon:HasComponent("handguard_short") then
-        modifyVal = GetComponentEffectValue(weapon, "handguard_short",
-                                            "pb_bonus_hg")
+        modifyVal = GetComponentEffectValue(weapon, "handguard_short", "pb_bonus_hg")
         value = value + (modifyVal or 0)
     end
 
@@ -118,8 +116,7 @@ end
 function Get_AimCost() --------------add self, check if indoors
     local aim_cost = const.Scale.AP
     if GameState.RainHeavy then
-        aim_cost = MulDivRound(aim_cost,
-                               100 + const.EnvEffects.RainAimingMultiplier, 100)
+        aim_cost = MulDivRound(aim_cost, 100 + const.EnvEffects.RainAimingMultiplier, 100)
     end
     return aim_cost
 end
@@ -130,15 +127,14 @@ function Composure_RollSkillCheck(unit, modifier, add)
     local skill = rGetComposure(unit)
     -- print(skill)
     local roll = 1 + unit:Random(100)
-    local adjustRoll = GameDifficulties[Game.game_difficulty]:ResolveValue(
-                           "rollSkillCheckBonus") or 0
+    local adjustRoll = GameDifficulties[Game.game_difficulty]:ResolveValue("rollSkillCheckBonus") or
+                           0
     roll = roll + adjustRoll
     roll = Min(roll, 95)
     local value = MulDivRound(skill, modifier, 100) + add
     -- print(value)
     local pass = roll < value or CheatEnabled("SkillCheck")
-    local t_res = pass and Untranslated("<em>Pass</em>") or
-                      Untranslated("<em>Fail</em>")
+    local t_res = pass and Untranslated("<em>Pass</em>") or Untranslated("<em>Fail</em>")
     -- local meta = "Composure"--unit:GetPropertyMetadata(skill)
 
     local t_skill = "Composure"
@@ -168,23 +164,12 @@ function Composure_RollSkillCheck(unit, modifier, add)
             })
         end
     elseif 0 < add then
-        t_skill = T({
-            481345361355,
-            "<skill>+<number>",
-            number = add,
-            skill = "Composure"
-        })
+        t_skill = T({481345361355, "<skill>+<number>", number = add, skill = "Composure"})
     elseif add < 0 then
-        t_skill = T({
-            945399039468,
-            "<skill><number>",
-            number = add,
-            skill = "Composure"
-        })
+        t_skill = T({945399039468, "<skill><number>", number = add, skill = "Composure"})
     end
     CombatLog("debug", T({
-        Untranslated(
-            "<em><name><em> Skill check (Composure) <roll>/<target>: <result>"),
+        Untranslated("<em><name><em> Skill check (Composure) <roll>/<target>: <result>"),
         name = unit:GetLogName(),
         skill = t_skill,
         roll = roll,
@@ -219,8 +204,7 @@ function rat_shotgun_dmg_scale(attacker, target) ---not used
     local weapon = attacker:GetActiveWeapons()
     local buck_angle = weapon.BuckshotConeAngle * 1.0 -- or 10*60
     print("angle", buck_angle)
-    local angle_factor = ((buck_angle - min_angle) / (max_angle - min_angle)) +
-                             0.2
+    local angle_factor = ((buck_angle - min_angle) / (max_angle - min_angle)) + 0.2
 
     print("angle_factor", angle_factor)
 
@@ -247,32 +231,29 @@ function rat_shotgun_dmg_scale(attacker, target) ---not used
     return scaled_value
 end
 
-function rat_getMobileshot_moveAP(self, unit, weapon)
+function rat_getMobileshot_moveAP(action, unit, weapon)
+
+    local base_ap = 9
+    local min_ap = 6
+    local weapon_multiplier = (action and action.id == "Sprint") and 1.0 or 1.5
 
     local stanceap = 0
-
     if weapon and IsKindOf(weapon, "Firearm") then
-        stanceap = weapon.APStance * 2
 
-        if weapon.LargeItem < 1 then
-            stanceap = stanceap - 1
+        stanceap = (GetWeapon_StanceAP(unit, weapon) / const.Scale.AP) * weapon_multiplier
+
+        if weapon.LargeItem < 1 or weapon:HasComponent("no_stock") then
+            stanceap = Max(0, stanceap - 1)
         end
 
         if not (IsKindOf(weapon, "SubmachineGun") or IsKindOf(weapon, "Pistol") or
             IsKindOf(weapon, "Revolver")) then
-            stanceap = stanceap + 1
+            stanceap = stanceap + 2
         end
     end
 
-    local agi = unit.Agility
-
-    local free_ap = Max(0, (agi - 40.0) / 10.0)
-
-    local move_ap = cRound(9.0 + free_ap - (stanceap))
-
-    if move_ap < 5 then
-        move_ap = 5
-    end
+    local agility_scaling = Max(0, (unit.Agility - 40.0) / 10.0)
+    local move_ap = Max(min_ap, cRound(base_ap * 1.00 + agility_scaling - (stanceap)))
 
     return move_ap
 end
@@ -290,14 +271,12 @@ function GetWeapon_StanceAP(unit, weapon, display)
     local cost = weapon.APStance
     cost = Cumbersome_StanceAP(unit, weapon, cost)
 
-    local modifyVal, compDef = GetComponentEffectValue(weapon,
-                                                       "stance_ap_inc_STR",
+    local modifyVal, compDef = GetComponentEffectValue(weapon, "stance_ap_inc_STR",
                                                        "StanceIncreaseSTR")
 
     local str_min = 0
     if modifyVal then
-        str_min = GetComponentEffectValue(weapon, "stance_ap_inc_STR",
-                                          "STR_threshold")
+        str_min = GetComponentEffectValue(weapon, "stance_ap_inc_STR", "STR_threshold")
         if not unit or unit.Strength < str_min then
             cost = cost + modifyVal
         end
@@ -308,8 +287,7 @@ function GetWeapon_StanceAP(unit, weapon, display)
     end
 
     if R_IsAI(unit) then
-        cost = MulDivRound(cost, const.Combat.AI_ShootingStanceAP_Mul or 100,
-                           100)
+        cost = MulDivRound(cost, const.Combat.AI_ShootingStanceAP_Mul or 100, 100)
     end
 
     return cost * const.Scale.AP
@@ -318,8 +296,7 @@ end
 function Cumbersome_StanceAP(unit, weapon, cost)
     if weapon:IsCumbersome() then
         cost = cost + 1
-        if unit and unit.Strength >=
-            const.Combat.CumbersomeStanceAP_StrThreshold then
+        if unit and unit.Strength >= const.Combat.CumbersomeStanceAP_StrThreshold then
             cost = Max(1, cost - 1)
         end
     end
@@ -332,9 +309,7 @@ function GetHipfire_StanceAP(unit, weapon)
     ap_hipfire = Cumbersome_StanceAP(unit, weapon, ap_hipfire)
 
     if R_IsAI(unit) then
-        ap_hipfire = MulDivRound(ap_hipfire,
-                                 const.Combat.AI_ShootingStanceAP_Mul or 100,
-                                 100)
+        ap_hipfire = MulDivRound(ap_hipfire, const.Combat.AI_ShootingStanceAP_Mul or 100, 100)
     end
 
     return 0 -- ap_hipfire * const.Scale.AP
@@ -463,8 +438,8 @@ function rat_getDeltaAP(action, weapon, action_id_override)
         if IsKindOfClasses(weapon, "SubmachineGun") then
             base = base + 1000
         end
-        if IsKindOf(weapon, "Glock18") or IsKindOf(weapon, "B93R_1") or
-            IsKindOf(weapon, "G36") or IsKindOf(weapon, "B93RR_1") then
+        if IsKindOf(weapon, "Glock18") or IsKindOf(weapon, "B93R_1") or IsKindOf(weapon, "G36") or
+            IsKindOf(weapon, "B93RR_1") then
             base = base + 1000
         end
         if IsKindOf(weapon, "AN94_1") then
@@ -494,9 +469,9 @@ end
 
 function rat_get_mechanism()
     return {
-        "Revolver", "Blowback", "Single_Shot", "Striker_Fired", "Short_Recoil",
-        "Gas_Operated", "Recoil_Operated", "Roller_Delayed", "Break_Action",
-        "Pump_Action", "Bolt_Action", "Lever_Action", ""
+        "Revolver", "Blowback", "Single_Shot", "Striker_Fired", "Short_Recoil", "Gas_Operated",
+        "Recoil_Operated", "Roller_Delayed", "Break_Action", "Pump_Action", "Bolt_Action",
+        "Lever_Action", ""
     }
 end
 
@@ -506,8 +481,7 @@ function GetRecoil_mul(self)
     local attacker = false
 
     if self.owner then
-        attacker = not gv_SatelliteView and g_Units[self.owner] or
-                       gv_UnitData[self.owner]
+        attacker = not gv_SatelliteView and g_Units[self.owner] or gv_UnitData[self.owner]
     else
         attacker = {}
         attacker.placeholder = true

@@ -8,8 +8,7 @@ function AICalcAttacksAndAim(context, ap)
     local min_aim, max_aim = unit:GetBaseAimLevelRange(context.default_attack, false)
     unit.AI_dont_return_Stance_min_aim_level = false
 
-    ----------------- Remember to change back
-    min_aim = 0 ---------------------------- min_aim or 0
+    min_aim = min_aim or 0
     ----
 
     ---- Shooting Stance checks
@@ -29,7 +28,8 @@ function AICalcAttacksAndAim(context, ap)
         end
 
         if has_stance then
-            stance_cost = unit:GetShootingStanceAP(context.current_target, context.weapon, 1, context.default_attack,
+            stance_cost = unit:GetShootingStanceAP(context.current_target, context.weapon, 1,
+                                                   context.default_attack,
             -- context.current_action, -- which???
                                                    "rotate")
         end
@@ -63,8 +63,9 @@ function AICalcAttacksAndAim(context, ap)
 
     if context.force_max_aim then
         num_attacks = ------ stance_cost added
-        Min((ap - stance_cost) / (cost + aim_cost * (max_aim - min_aim)), -- context.weapon.MaxAimActions),
-        context.max_attacks)
+       
+            Min((ap - stance_cost) / (cost + aim_cost * (max_aim - min_aim)), -- context.weapon.MaxAimActions),
+                context.max_attacks)
         ------
         --[[elseif force_enter_stance then
         num_attacks = Min(

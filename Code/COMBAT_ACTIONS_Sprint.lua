@@ -18,7 +18,7 @@ function Unit:Sprint(action_id, cost_ap, args)
 
     args.prediction = false
     NetUpdateHash("RunAndGun_0", self, args)
-    local results = action:GetActionResults(self, args)
+    -- local results = action:GetActionResults(self, args)
     local action_camera = false --[[ disable action camera for now ]]
     --[[if #(results.attacks or empty_table) == 0 then
         self:GainAP(cost_ap)
@@ -57,7 +57,8 @@ function Unit:Sprint(action_id, cost_ap, args)
     local occupiedPos = self:GetOccupiedPos()
     if self.return_pos and self.return_pos:Dist(target) < const.SlabSizeX / 2 then
         self:ReturnToCover()
-    elseif self:GetDist(occupiedPos) > const.SlabSizeX / 2 and self:GetDist(target) < const.SlabSizeX / 2 then
+    elseif self:GetDist(occupiedPos) > const.SlabSizeX / 2 and self:GetDist(target) <
+        const.SlabSizeX / 2 then
         self:SetTargetDummyFromPos()
     else
         pathObj:RebuildPaths(self, aim_params.move_ap)
@@ -129,7 +130,8 @@ function Sprint_Targeting_Mobile(dialog, blackboard, command, pt)
         local aim_params = action:GetAimParams(attacker, weapon)
         if aim_params.move_ap then
             blackboard.combat_path = CombatPath:new()
-            blackboard.combat_path:RebuildPaths(attacker, aim_params.move_ap, nil, "Standing", nil, nil, action.id)
+            blackboard.combat_path:RebuildPaths(attacker, aim_params.move_ap, nil, "Standing", nil,
+                                                nil, action.id)
             blackboard.custom_combat_path = true
         end
     end
@@ -191,11 +193,13 @@ function Sprint_Targeting_Mobile(dialog, blackboard, command, pt)
     end
 
     local shot_positions, shot_targets, shot_cth, valid_shots = {}, {}, {}, 0
-    local results = dialog.action:GetActionResults(dialog.attacker, {goto_pos = goto_pos, prediction = true})
+    local results = dialog.action:GetActionResults(dialog.attacker,
+                                                   {goto_pos = goto_pos, prediction = true})
 
     local movement_mode = IsKindOf(dialog, "IModeCombatMovement")
 
-    UpdateMovementAvatar(dialog, point20, movement_mode and blackboard.fxToDoStance or "Standing", "update_pos")
+    UpdateMovementAvatar(dialog, point20, movement_mode and blackboard.fxToDoStance or "Standing",
+                         "update_pos")
     SetAPIndicator(APIndicatorNoTarget, results.shot_canceling_reason or "unreachable")
 
     dialog.movement_mode = true
