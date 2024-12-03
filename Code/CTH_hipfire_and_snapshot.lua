@@ -17,11 +17,11 @@ function place_hipfire_cth()
                 return false, 0
             end
 
-            if action and action.id == "AutoFire" and HasPerk(attacker, "shooting_stance") then
+            if action and action.id == "AutoFire" and HasPerk(attacker, "shooting_stance") and not opportunity_attack then
                 return false, 0
             end
 
-            if action and action.id == "AutoFire" and aim > 0 then
+            if action and action.id == "AutoFire" and aim > 0 and not opportunity_attack then
                 return false, 0
             end
 
@@ -48,6 +48,10 @@ function place_hipfire_cth()
                 -- if HasPerk(attacker, "shooting_stance") then
                 aim = Max(1, aim)
                 -- end
+            end
+
+            if g_Overwatch[attacker] and g_Overwatch[attacker].permanent then
+                aim = Max(1, aim)
             end
 
             local display = false
@@ -132,13 +136,13 @@ function place_hipfire_cth()
 
             -- print("dist", dist / const.SlabSizeX)
 
-            local max_dist = 26 * const.SlabSizeX
-            local max_penal = const.Combat.R_HipFirePenalty - 35 ---45
+            local max_dist = const.Combat.Hipfire_MaxDistforPenalty * const.SlabSizeX
+            local max_penal = const.Combat.HipFireMaxPenalty
 
             local hip_penal = Min(0, MulDivRound(dist, max_penal, max_dist))
 
             local weapon_ref = reflex_s * penalty * 100
-            local base_penal1 = -18 ---10
+            local base_penal1 = const.Combat.Hipfire_BasePenalty
             local base_penal
 
             if not (side == 'player1' or side == 'player2') then
@@ -177,10 +181,10 @@ function place_hipfire_cth()
             end
 
             if aim > 0 and aim < 3 then
-                max_dist = 26 * const.SlabSizeX
-                max_penal = const.Combat.R_SnapshotPenalty
-                -- print("snap penal", max_penal)
-                base_penal1 = -10 ---5
+                max_dist = const.Combat.Snapshot_MaxDistforPenalty * const.SlabSizeX
+                max_penal = const.Combat.SnapshotMaxPenalty
+
+                base_penal1 = const.Combat.Snapshot_BasePenalty
 
                 base_penal = MulDivRound(dist, base_penal1, 16 * const.SlabSizeX)
 

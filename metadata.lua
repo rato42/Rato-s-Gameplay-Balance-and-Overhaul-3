@@ -1,11 +1,11 @@
 return PlaceObj('ModDef', {
 	'title', "Rato's Gameplay Balance and Overhaul 3",
-	'description', "[h1]Rato's Balance and Overhaul:[/h1]\n\nBig thanks to playtesters for giving valuable feedback:\n[list]\n[*][b]mousetrapreplica[TSC][/b] - who has been playtesting this mod since almost the beginning\n[*][b]Starbuck[/b]\n[*][b]Caladan[/b]\n[*][b]Player One[/b]\n[*][b]infiniteMotion[/b]\n[*][b]redparadize[/b]\n[*][b]KreNich[/b]\n[*]and many others\n[/list]\n\nAlso [b]Toni[/b] and [b]MantisClaw[/b], gun experts from Discord\n\nIf you want to buy me a coffee you can do so here: https://www.buymeacoffee.com/rato_modder\n\n\nThis mod aims to provide a balanced but very challenging experience, improving depth of gameplay, [b]increasing lethality[/b] and incorporating some realistic mechanics. [b]Auto fire modes have full bullet damage, and single shots have more chance of critical hit[/b]. \n\n[b]Please use a fresh savegame with this mod, so that the components will have their proper effects and to avoid bugs.\n\nIt is also recommended to not use an Ironman mode save[/b]\n\nRequires Zulib Weapons Core 1.6 or higher, which can be found at this link:\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=3309452207\n\n[b]Compatibility patches[/b]:\n\nWith ToG. Add Tons of Guns\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=3101203757\n\nIf you have ToG and ToC loaded, this mod will use some custom visuals for the added scopes. Recommended\n\nCompatible with Smart Overwatch - really recommended  \nCompatible with Descriptive CTH\n\n[hr][/hr]\n\n[b]Penalties can be customized in mod options[/b]\n\n[h1]Gun overhaul overview:[/h1]\n\n[list]\n\n[*][b]Aiming Rework[/b]: Mercs with low [b]Hand-Eye Coordination[/b] (Dex + Marks) will get less benefits from aim bonus.\n\n[*][b]Shooting Stance[/b]: you need to spend AP to shoulder your weapon to aim. This will create an angle where you can shoot more accurately. If you aim outsde the angle, you must spend AP to rotate. Unaimed shots now have Hipfire penalty. 1 aim level shots have Snapshot penalty. Component weight or barrel length can reduce shooting angle. Inspired by [b]Wax's[/b] mod.\n\n[*]Weapons have rotation angles based on real life weight and barrel length.\n\n[*]New mechanics and components permit you to make your weapon into a [b]hybrid[/b]: rip the stock off your rifle to make it deadly and fast at close range - like a SMG -, or mount a sniper scope and heavy barrel to have precise single headshots at a distance.\n\n[*]Correct magazine and expanded magazine sizes.\n\n[*]Weapon calibers are realistic, so two weapons with the same caliber will have very similar damage. There is room for variations depending on the class of the weapon or other aspects.\n\n[*]Penetration depends on the caliber.\n\n[*]Weapons classes were changed to dominate a specific range and have a specific function.\n\n\n[/list]\n\n[h1]Ammo Overhaul:[/h1]\n[list]\n[*]5.45 rounds now have [b]tumbling[/b] effect, which increase critical chance \n[*]5.56 rounds have [b]fragmentation[/b] effect, which increase critical damage \n[*]AP rounds now have decreased critical damage and increased recoil\n[*]Match rounds have increased aim, range, and Critical Scaling\n[*]Tracer rounds apply Marked, Revealed and are easier to compensate recoil\n[*]HP rounds now have increased critical damage (instead of chance)\n\n[/list]\n\nGun Stats Info:\n\nRecoil Penalty determines how much accuracy degradation your burst attacks will suffer. It also influences the persistant recoil for single shots in a turn.\n\nHipfire penalty determines the penalty when you shoot with 0 aim levels.\n\nSnapshot penalty determines the easiness of rapidly aquiring new targets. Will apply a penalty when shooting with less than 3 aim levels. If you are attacking the same target as your last attack, this penalty is negated. It is also important for Overwatch and Mobile attacks accuracy. \n\nFor these stats, the lower, the better.\n\n[h1]New systems based on attributes[/h1]\n\n[B]New multishot systems[/b]\n\nFull damage in all forms of Automatic Fire\n\n[*][b]New recoil system [/b]: \n\nCTH is decreased shot by shot.\n\nScales with [b]Strength[/b] and [b]Marksmanship[/b], diferent scaling for calibers. All calibers have a [b]Recoil Breakpoint[/b] in Str: if you are below this str level the penalties will be even higher per point. It also represents a flat component of the recoil, so the higher the breakpoint, the higher will be the overral penalty to hit\n\n[*][b]Autofire[/b]: shoots 10 bullets, has fixed AP cost, can be aimed once.\n\n[*][b]MG burst rework [/b]: Shoots 6 bullets. [b]Strength[/b] has more impact on determining accuracy of the MG.\n\n[*][b]Run and Gun reworked[/b]: lethal at close range, has big accuracy penalty at distance. The move range depends on agility and bulk of the weapon\n\nOther changes:\n\n[*][b]Dual Fire rework[/b]: Max aim = 1, AP cost reduced. Dexterity reduces penalty. Higher penalty at distance.\n\n[*][b]Low Cover effect is increased[/b].\n\n[*][b]Sight Radius is increased[/b].\n\n[*][b]Shot Crit bonus[/b]: firearms have critical bonus chance that scales with [b]Dexterity+Marksmanship[/b]. The effect is based on aim level. Single shot have significant more scaling.\n\n[*][b]Targeted shot bonus reworked[/b]: Applies when fully aimed. Scales with [i][b]Composure[/b][/i] (compost of Marksmanship and Wisdom). Snipers have better scaling. Single shot has better scaling.\n\n[*][b]Melee range shooting penalty[/b]: long barrels make it harder to hit at melee range, while short ones make it easier.\n\n[b]Weapon class:[/b]\n\n[list]\n[*][b]9mm pistols[/b]:  Low range, low damage, low stance AP. [b]Recover half free move AP after firing[/b]\n[*] [b]Snipers[/b]: have very high critical damage scaling. High aim and range, medium damage. Good at targeting body parts. Bolt action snipers are exceptional at targeting body parts.\n[*] [b]SMGs[/b]: have extra 10% damage against flanked targets. Medium-low range, medium aim, medium damage [b]Recover half free move AP after firing[/b]\n[*][b]ARs[/b]: have good damage with new burst fire changes.\n[*][b]MGs[/b]: have been rebalanced, have good damage and overwatch, low aim and medium range. \n[*][b]Shotguns[/b]: have high damage, low range. The cone is less wide and the range has been improved. Flechette and saltshot ammo reworked.\n[*][b]Revolvers[/b]: have medium range, medium damage, good critical scaling and decent aim. \n[/list]\n\n[h1] Scope and component overhaul [/h1]\nWhat really makes a sniper weapon? [b]A precision scope[/b].\n\nScopes now give a high range bonus. They come in 5 magnification scales. The higher magnification scopes now give a penalty when shooting at close range. The penalty is proportional to the bonus range, and get progressively higher the closer you are to the target. \n\nBeware, choosing a scope now [b]is making a commitment[/b], and the penalties can be very severe at close range with the higher magnification ones.\n\nWant to make a semi auto for close range? Or an assault rifle to one tap at distance? Now you can. \n\n[h1]Stealth overhaul:[/h1]\n\n        Suppressors no longer completely silence your gun, they cut the noise radius by half. To effectively sneak, you need to use Subsonic ammo now, a type of bullet designed to travel slowly and be less loud.\n\n        [b]It's harder to do a stealth kill on aware opponents.[/b]\n\n		 [b]Enemy detection range is increased.[/b]\n		\n\n[h1]Optional Addons (Recommended):[/h1]\n\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=3028029624 Wounding Overhaul\n\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=3253652174 [b]NEW[/b] Explosives Overhaul 2.0\n\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=3087514348 Cash economy customizer",
-	'image', "Mod/cfahRED/Images/rat mod315.png",
+	'description', "[h1]Rato's Balance and Overhaul:[/h1]\n\nBig thanks to playtesters for giving valuable feedback:\n[list]\n[*][b]mousetrapreplica[TSC][/b] - who has been playtesting this mod since almost the beginning\n[*][b]Starbuck[/b]\n[*][b]Caladan[/b]\n[*][b]Player One[/b]\n[*][b]infiniteMotion[/b]\n[*][b]redparadize[/b]\n[*][b]KreNich[/b]\n[*]and many others\n[/list]\n\nAlso [b]Toni[/b] and [b]MantisClaw[/b], gun experts from Discord\n\nIf you want to buy me a coffee you can do so here: https://www.buymeacoffee.com/rato_modder\n\n\nThis mod aims to provide a balanced but very challenging experience, improving depth of gameplay, [b]increasing lethality[/b] and incorporating some realistic mechanics. [b]Auto fire modes have full bullet damage, and single shots have more chance of critical hit[/b]. \n\n[b]Please use a fresh savegame with this mod, so that the components will have their proper effects and to avoid bugs.\n\nIt is also recommended to not use an Ironman mode save[/b]\n\nRequires Zulib Weapons Core 1.6 or higher, which can be found at this link:\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=3309452207\n\n\n\n\n\n[b]Compatibility patches[/b]:\n\n[*] NEW - Compatible with Revised Mags II\n\nWith ToG. Add Tons of Guns\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=3101203757\n\nIf you have ToG and ToC loaded, this mod will use some custom visuals for the added scopes. Recommended\n\nCompatible with Smart Overwatch\nCompatible with Descriptive CTH\n\n[hr][/hr]\n\n[b]Penalties can be customized in mod options[/b]\n\n[h1]Gun overhaul overview:[/h1]\n\n[list]\n\n[*][b]Aiming Rework[/b]: Mercs with low [b]Hand-Eye Coordination[/b] (Dex + Marks) will get less benefits from aim bonus.\n\n[*][b]Shooting Stance[/b]: you need to spend AP to shoulder your weapon to aim. This will create an angle where you can shoot more accurately. If you aim outsde the angle, you must spend AP to rotate. Unaimed shots now have Hipfire penalty. 1 aim level shots have Snapshot penalty. Component weight or barrel length can reduce shooting angle. Inspired by [b]Wax's[/b] mod.\n\n[*]Weapons have rotation angles based on real life weight and barrel length.\n\n[*]New mechanics and components permit you to make your weapon into a [b]hybrid[/b]: rip the stock off your rifle to make it deadly and fast at close range - like a SMG -, or mount a sniper scope and heavy barrel to have precise single headshots at a distance.\n\n[*]Correct magazine and expanded magazine sizes.\n\n[*]Weapon calibers are realistic, so two weapons with the same caliber will have very similar damage. There is room for variations depending on the class of the weapon or other aspects.\n\n[*]Penetration depends on the caliber.\n\n[*]Weapons classes were changed to dominate a specific range and have a specific function.\n\n\n[/list]\n\n[h1]Ammo Overhaul:[/h1]\n[list]\n[*]5.45 rounds now have [b]tumbling[/b] effect, which increase critical chance \n[*]5.56 rounds have [b]fragmentation[/b] effect, which increase critical damage \n[*]AP rounds now have decreased critical damage and increased recoil\n[*]Match rounds have increased aim, range, and Critical Scaling\n[*]Tracer rounds apply Marked, Revealed and are easier to compensate recoil\n[*]HP rounds now have increased critical damage (instead of chance)\n\n[/list]\n\nGun Stats Info:\n\nRecoil Penalty determines how much accuracy degradation your burst attacks will suffer. It also influences the persistant recoil for single shots in a turn.\n\nHipfire penalty determines the penalty when you shoot with 0 aim levels.\n\nSnapshot penalty determines the easiness of rapidly aquiring new targets. Will apply a penalty when shooting with less than 3 aim levels. If you are attacking the same target as your last attack, this penalty is negated. It is also important for Overwatch and Mobile attacks accuracy. \n\nFor these stats, the lower, the better.\n\n[h1]New systems based on attributes[/h1]\n\n[B]New multishot systems[/b]\n\nFull damage in all forms of Automatic Fire\n\n[*][b]New recoil system [/b]: \n\nCTH is decreased shot by shot.\n\nScales with [b]Strength[/b] and [b]Marksmanship[/b], diferent scaling for calibers. All calibers have a [b]Recoil Breakpoint[/b] in Str: if you are below this str level the penalties will be even higher per point. It also represents a flat component of the recoil, so the higher the breakpoint, the higher will be the overral penalty to hit\n\n[*][b]Autofire[/b]: shoots 10 bullets, has fixed AP cost, can be aimed once.\n\n[*][b]MG burst rework [/b]: Shoots 6 bullets. [b]Strength[/b] has more impact on determining accuracy of the MG.\n\n[*][b]Run and Gun reworked[/b]: lethal at close range, has big accuracy penalty at distance. The move range depends on agility and bulk of the weapon\n\nOther changes:\n\n[*][b]Dual Fire rework[/b]: Max aim = 1, AP cost reduced. Dexterity reduces penalty. Higher penalty at distance.\n\n[*][b]Low Cover effect is increased[/b].\n\n[*][b]Sight Radius is increased[/b].\n\n[*][b]Shot Crit bonus[/b]: firearms have critical bonus chance that scales with [b]Dexterity+Marksmanship[/b]. The effect is based on aim level. Single shot have significant more scaling.\n\n[*][b]Targeted shot bonus reworked[/b]: Applies when fully aimed. Scales with [i][b]Composure[/b][/i] (compost of Marksmanship and Wisdom). Snipers have better scaling. Single shot has better scaling.\n\n[*][b]Melee range shooting penalty[/b]: long barrels make it harder to hit at melee range, while short ones make it easier.\n\n[b]Weapon class:[/b]\n\n[list]\n[*][b]9mm pistols[/b]:  Low range, low damage, low stance AP. [b]Recover half free move AP after firing[/b]\n[*] [b]Snipers[/b]: have very high critical damage scaling. High aim and range, medium damage. Good at targeting body parts. Bolt action snipers are exceptional at targeting body parts.\n[*] [b]SMGs[/b]: have extra 10% damage against flanked targets. Medium-low range, medium aim, medium damage [b]Recover half free move AP after firing[/b]\n[*][b]ARs[/b]: have good damage with new burst fire changes.\n[*][b]MGs[/b]: have been rebalanced, have good damage and overwatch, low aim and medium range. \n[*][b]Shotguns[/b]: have high damage, low range. The cone is less wide and the range has been improved. Flechette and saltshot ammo reworked.\n[*][b]Revolvers[/b]: have medium range, medium damage, good critical scaling and decent aim. \n[/list]\n\n[h1] Scope and component overhaul [/h1]\nWhat really makes a sniper weapon? [b]A precision scope[/b].\n\nScopes now give a high range bonus. They come in 5 magnification scales. The higher magnification scopes now give a penalty when shooting at close range. The penalty is proportional to the bonus range, and get progressively higher the closer you are to the target. \n\nBeware, choosing a scope now [b]is making a commitment[/b], and the penalties can be very severe at close range with the higher magnification ones.\n\nWant to make a semi auto for close range? Or an assault rifle to one tap at distance? Now you can. \n\n[h1]Stealth overhaul:[/h1]\n\n        Suppressors no longer completely silence your gun, they cut the noise radius by half. To effectively sneak, you need to use Subsonic ammo now, a type of bullet designed to travel slowly and be less loud.\n\n        [b]It's harder to do a stealth kill on aware opponents.[/b]\n\n		 [b]Enemy detection range is increased.[/b]\n		\n\n[h1]Optional Addons (Recommended):[/h1]\n\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=3028029624 Wounding Overhaul\n\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=3253652174 [b]NEW[/b] Explosives Overhaul 2.0\n\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=3087514348 Cash economy customizer",
+	'image', "Mod/cfahRED/Images/CapaGBO.png",
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', '3.51\n\nMod Options:\n\nDefault AI penalty reduction option set to 0.\nNew option: "Guns Freaking Hurt". With it, you can manipulate the damage of all firearms. By default, this option will be set to 120%\nSome cleaning in the mod options\n\nRevised Mags Compatibility:\n\nChanged AK74 magazines to 5.45\nChanged RPK74 to use AK74 plataform\nCHanged Desert Eagle magazines to .44 magnum\n\n\nBalance:\n\nReworked the Fast Runner perk:\nIt will now grant you a combat action: Sprint.\nSprint costs 1 AP, and makes you Out of Breath. It lets you move an amount of tiles based on your agility plus other factors (like bulk of equipment)\nFast Runner will still apply vanilla effects to AI, as they cant use the new action\n\n\nIncreased range of most firearms by 4, shotguns by 2\nSmall buffs for the Peacemaker\nReduced the penalty for shooting at melee range, and increased the reduction for handguns and SMG. This penalty now only affects targets that are Standing\nOther small weapon balance tweaks\nIts a bit harder to lose shoting stance due to receveing damage\nChanged a bit the critical chance calculations\nHipfiring no long has 1 extra AP cost\nBurstFire and other multishots attacks have 20% reduction  on critical chance from all sources (0.2 * original, not flat decrease)\n\nFixes:\n\nFixed recoil accumulating on all attacks from Run And Gun and Mobile Attack.\nFixed AR15 heavy stock increasing stance AP even when you have enough STR.\nSome small compatibility fix with the Mod library\nSome visual fixes',
+	'last_changes', '3.51\n\nNow uses JA3 CommonLib as a dependancy\n\nMod Options:\n\nDefault AI penalty reduction option set to 0.\nNew option: "Guns Freaking Hurt". With it, you can manipulate the damage of all firearms. By default, this option will be set to 120%\nSome cleaning in the mod options\n\nRevised Mags Compatibility:\n\nChanged AK74 magazines to 5.45\nChanged RPK74 to use AK74 plataform\nM14 (auto variant) will now use correct mag\nChanged Desert Eagle magazines to .44 magnum\n\nAI:\n\nSome major rework in the AI aiming logic, expect them to enter shooting stance more frequently\nThey will no longer pay reduced costs to enter shooting stance, and no longer will have penalty reductions by default\nFurther AI improvements are planned\n\nBalance:\n\nReworked the Fast Runner perk:\nIt will now grant you a combat action: Sprint.\nSprint costs 1 AP, and makes you Out of Breath. It lets you move an amount of tiles based on your agility plus other factors (like bulk of equipment)\nFast Runner will still apply vanilla effects to AI, as they cant use the new action\n\n\nIncreased range of most firearms by 6, shotguns by 4\nSmall buffs for the Peacemaker\nReduced the penalty for shooting at melee range, and increased the reduction for handguns and SMG. This penalty now only affects targets that are Standing\nOther small weapon balance tweaks\nIts a bit harder to lose shoting stance due to receveing damage\nChanged a bit the critical chance calculations\nHipfiring no long has 1 extra AP cost\nBurstFire and other multishots attacks have 30% reduction  on critical chance from all sources (0.7 * original, not flat decrease)\nRecoil is reduced \nSnapshot and Hipfire penalties tweaked\nAgility effect on AP reworked: mercs with lower agility will have increased AP, and mercs with high agility will have even more Free Move\n\nFixes:\n\nFixed recoil accumulating on all attacks from Run And Gun and Mobile Attack.\nFixed AR15 heavy stock increasing stance AP even when you have enough STR.\nSome small compatibility fix with the Mod library\nSome visual fixes',
 	'dependencies', {
 		PlaceObj('ModDependency', {
 			'id', "Tc3ajdY",
@@ -24,7 +24,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 51,
-	'version', 11209,
+	'version', 11233,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -79,6 +79,7 @@ return PlaceObj('ModDef', {
 		"Code/AMMO_9x18.lua",
 		"Code/AMMO_9x19.lua",
 		"Code/AMMO_9x39.lua",
+		"Code/CONSTANT_Control.lua",
 		"Code/UPDATE_Change components.lua",
 		"Code/DESCRIPTION_HINTS_get.lua",
 		"Code/T_ID_enforcement.lua",
@@ -96,7 +97,6 @@ return PlaceObj('ModDef', {
 		"Code/BOBBYRAY_category_pairs.lua",
 		"Code/COMPONENT_weaponcomp_effects.lua",
 		"Code/CONSTANTS_mod_options.lua",
-		"Code/CONST_crit damage.lua",
 		"Code/CTH_2weaponfire.lua",
 		"Code/CTH_Setting.lua",
 		"Code/CTH_unwield_weapon.lua",
@@ -150,7 +150,8 @@ return PlaceObj('ModDef', {
 		"Code/SOURCE_GetMaxAP.lua",
 		"Code/SOURCE_CombatActionGetAttackableEnemies.lua",
 		"Code/SOURCE_Firearm_GetItemStatusUI and QuickReloadButton.lua",
-		"Code/SOURCE_BobbyRay_PickRandomWeightItems.lua",
+		"Code/SOURCE_AICalcAttacksandAim.lua",
+		"Code/SOURCE_AIPrecalcDamageScore.lua",
 		"Code/PATCH_OnClassesGenerate.lua",
 		"Code/PATCH_call.lua",
 		"Code/PATCH_old_ammo.lua",
@@ -186,8 +187,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1733120489,
-	'code_hash', -3836031429008770428,
+	'saved', 1733183367,
+	'code_hash', 9102428496798041079,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
@@ -261,11 +262,6 @@ return PlaceObj('ModDef', {
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "ConstDef",
-			'Id', "GrazingHitDamage",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
 			'Id', "R_BurstFirePenalty",
 			'ClassDisplayName', "Constant",
 		}),
@@ -287,16 +283,6 @@ return PlaceObj('ModDef', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "ConstDef",
 			'Id', "R_HeldCumbersomePenalty",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "R_HipFirePenalty",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "R_SnapshotPenalty",
 			'ClassDisplayName', "Constant",
 		}),
 		PlaceObj('ModResourcePreset', {
@@ -371,42 +357,12 @@ return PlaceObj('ModDef', {
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "ConstDef",
-			'Id', "BurstFireCriticalChanceMul",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "AI_ShootingStanceAP_Mul",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "CumbersomeStanceAP_StrThreshold",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
 			'Id', "AwareSightRange",
 			'ClassDisplayName', "Constant",
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "ConstDef",
 			'Id', "UnawareSightRange",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "RainAimingMultiplier",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "PointBlankRange",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "MGFreeInterruptAttacks",
 			'ClassDisplayName', "Constant",
 		}),
 		PlaceObj('ModResourcePreset', {

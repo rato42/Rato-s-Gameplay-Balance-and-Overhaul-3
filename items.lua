@@ -1089,6 +1089,10 @@ return {
 		}),
 		}),
 	PlaceObj('ModItemCode', {
+		'name', "CONSTANT_Control",
+		'CodeFileName', "Code/CONSTANT_Control.lua",
+	}),
+	PlaceObj('ModItemCode', {
 		'name', "UPDATE_Change components",
 		'CodeFileName', "Code/UPDATE_Change components.lua",
 	}),
@@ -1293,11 +1297,6 @@ return {
 	PlaceObj('ModItemCode', {
 		'name', "CONSTANTS_mod_options",
 		'CodeFileName', "Code/CONSTANTS_mod_options.lua",
-	}),
-	PlaceObj('ModItemCode', {
-		'name', "CONST_crit damage",
-		'comment', "----------------------- CONSTANT",
-		'CodeFileName', "Code/CONST_crit damage.lua",
 	}),
 	PlaceObj('ModItemCode', {
 		'name', "CTH_2weaponfire",
@@ -1532,8 +1531,12 @@ return {
 		'CodeFileName', "Code/SOURCE_Firearm_GetItemStatusUI and QuickReloadButton.lua",
 	}),
 	PlaceObj('ModItemCode', {
-		'name', "SOURCE_BobbyRay_PickRandomWeightItems",
-		'CodeFileName', "Code/SOURCE_BobbyRay_PickRandomWeightItems.lua",
+		'name', "SOURCE_AICalcAttacksandAim",
+		'CodeFileName', "Code/SOURCE_AICalcAttacksandAim.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "SOURCE_AIPrecalcDamageScore",
+		'CodeFileName', "Code/SOURCE_AIPrecalcDamageScore.lua",
 	}),
 	PlaceObj('ModItemCode', {
 		'name', "PATCH_OnClassesGenerate",
@@ -1590,13 +1593,6 @@ return {
 		'CodeFileName', "Code/OPTIONS_GunsHurt.lua",
 	}),
 	PlaceObj('ModItemConstDef', {
-		comment = "-------------------CONSTANT",
-		group = "Combat",
-		id = "GrazingHitDamage",
-		scale = "%",
-		value = 40,
-	}),
-	PlaceObj('ModItemConstDef', {
 		comment = "-------------------CONSTANT CUSTOM",
 		group = "Combat",
 		id = "R_BurstFirePenalty",
@@ -1625,18 +1621,6 @@ return {
 		group = "Combat",
 		id = "R_HeldCumbersomePenalty",
 		value = -10,
-	}),
-	PlaceObj('ModItemConstDef', {
-		comment = "-------------------CONSTANT CUSTOM",
-		group = "Combat",
-		id = "R_HipFirePenalty",
-		value = -40,
-	}),
-	PlaceObj('ModItemConstDef', {
-		comment = "-------------------CONSTANT CUSTOM",
-		group = "Combat",
-		id = "R_SnapshotPenalty",
-		value = -30,
 	}),
 	PlaceObj('ModItemConstDef', {
 		comment = "-------------------CONSTANT CUSTOM",
@@ -1719,22 +1703,6 @@ return {
 		comment = "-------------------CONSTANT CUSTOM",
 		group = "Combat",
 		id = "R_ExtraAP",
-		value = 1,
-	}),
-	PlaceObj('ModItemConstDef', {
-		group = "Combat",
-		id = "BurstFireCriticalChanceMul",
-		value = 80,
-	}),
-	PlaceObj('ModItemConstDef', {
-		group = "Combat",
-		id = "AI_ShootingStanceAP_Mul",
-		value = 100,
-	}),
-	PlaceObj('ModItemConstDef', {
-		group = "Combat",
-		id = "CumbersomeStanceAP_StrThreshold",
-		value = 90,
 	}),
 	PlaceObj('ModItemConstDef', {
 		Comment = "Sight radius (in tiles) for units aware of the target unit",
@@ -1747,24 +1715,6 @@ return {
 		group = "Combat",
 		id = "UnawareSightRange",
 		value = 18,
-	}),
-	PlaceObj('ModItemConstDef', {
-		group = "EnvEffects",
-		id = "RainAimingMultiplier",
-		scale = "%",
-		value = 100,
-	}),
-	PlaceObj('ModItemConstDef', {
-		Comment = "in tiles",
-		group = "Weapons",
-		id = "PointBlankRange",
-		value = 6,
-	}),
-	PlaceObj('ModItemConstDef', {
-		Comment = "bonus out-of-turn interrupt attacks with machine guns at 0 ap",
-		group = "Combat",
-		id = "MGFreeInterruptAttacks",
-		value = 2,
 	}),
 	PlaceObj('ModItemConstDef', {
 		comment = "-------------------CONSTANT CUSTOM",

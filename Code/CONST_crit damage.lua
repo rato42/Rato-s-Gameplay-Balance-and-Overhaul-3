@@ -1,1 +1,0 @@
-const.Weapons.CriticalDamage = 60
