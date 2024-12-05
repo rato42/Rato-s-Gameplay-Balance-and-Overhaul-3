@@ -3,6 +3,9 @@ function define_getOWattacks_and_aim()
 
         ---- Shooting Stance will properly modify aim num
         local aim = 0
+        if self:HasStatusEffect("shooting_stance") then
+            aim = 1
+        end
         -------
 
         action = action or CombatActions.Overwatch
@@ -13,8 +16,7 @@ function define_getOWattacks_and_aim()
         -- local AP_delta = attack.ActionPointDelta or 0
         ---------------------------
 
-        unit_ap = unit_ap or g_Combat and self:GetUIActionPoints() or
-                      self:GetMaxActionPoints()
+        unit_ap = unit_ap or g_Combat and self:GetUIActionPoints() or self:GetMaxActionPoints()
         args = table.copy(args)
 
         -----------------------------------------Retrieves base cost (stance) using the OW combat action
@@ -42,14 +44,12 @@ function define_getOWattacks_and_aim()
         ------Checks if subsequent attacks should have bolting ap cost
         local w2_bolting_cost = 0
         if w2 and rat_canBolt(w2) and not w2.unbolted then
-            w2_bolting_cost = rat_get_manual_cyclingAP(self, w2, true) *
-                                  const.Scale.AP
+            w2_bolting_cost = rat_get_manual_cyclingAP(self, w2, true) * const.Scale.AP
         end
 
         local w1_bolting_cost = 0
         if rat_canBolt(weapon) and not weapon.unbolted then
-            w1_bolting_cost = rat_get_manual_cyclingAP(self, weapon, true) *
-                                  const.Scale.AP
+            w1_bolting_cost = rat_get_manual_cyclingAP(self, weapon, true) * const.Scale.AP
         end
 
         ------- if the weapon is unbolted, the attack cost will automatically default to the unbolted value
@@ -66,8 +66,7 @@ function define_getOWattacks_and_aim()
         end
         ap = ap - first_shot_ap
         if atk_cost <= 0 then
-            print("overwatch calc n attacks, attk cost is less than zero:",
-                  atk_cost, "...")
+            print("overwatch calc n attacks, attk cost is less than zero:", atk_cost, "...")
             print("... action:", action, "weapon", weapon)
             return 0
         else
@@ -80,8 +79,7 @@ function define_getOWattacks_and_aim()
 
         -- print("attacks", attacks)
 
-        attacks = self:CallReactions_Modify("OnCalcOverwatchAttacks", attacks,
-                                            action, args)
+        attacks = self:CallReactions_Modify("OnCalcOverwatchAttacks", attacks, action, args)
         -- print("number of ow attacks", attacks)
         -------------------------------------
 

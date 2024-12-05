@@ -303,14 +303,14 @@ function Cumbersome_StanceAP(unit, weapon, cost)
     return cost
 end
 
-function GetHipfire_StanceAP(unit, weapon)
+function GetHipfire_StanceAP(unit, weapon) ---- not used
 
-    local ap_hipfire = 1 -------------hipfire
+    --[[local ap_hipfire = 1 -------------hipfire
     ap_hipfire = Cumbersome_StanceAP(unit, weapon, ap_hipfire)
 
     if R_IsAI(unit) then
         ap_hipfire = MulDivRound(ap_hipfire, const.Combat.AI_ShootingStanceAP_Mul or 100, 100)
-    end
+    end]]
 
     return 0 -- ap_hipfire * const.Scale.AP
 end
@@ -341,14 +341,12 @@ function rat_MobileAction_AP(self, unit)
         if cycling_ap and cycling_ap > 0 then
             cost = cost + cycling_ap
         end
-
     end
 
     local ap_extra = GetWeapon_StanceAP(unit, weapon) + Get_AimCost() -- mobile_stance_ap(unit, weapon)
     local cost_aimed = cost + ap_extra
 
     return cost, cost_aimed
-
 end
 
 function IsAimed_Mobile(self, unit, ap)

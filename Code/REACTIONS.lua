@@ -100,10 +100,8 @@ function OnMsg.GatherCritChanceModifications(attacker, target, action_id, weapon
 
     if aim > 0 then
         if data.target_spot_group and data.target_spot_group == "Head" then
-
             local modifyVal, compDef = GetComponentEffectValue(weapon, "scout_scope_crit",
                                                                "critical_head")
-
             if modifyVal then
                 data.crit_chance = data.crit_chance + modifyVal
                 crit_chance_breakdown["scout_scope_crit"] = modifyVal
@@ -111,10 +109,8 @@ function OnMsg.GatherCritChanceModifications(attacker, target, action_id, weapon
         end
 
         if data.target_spot_group and data.target_spot_group == "Torso" then
-
             local modifyVal, compDef = GetComponentEffectValue(weapon, "zrak_scope_crit",
                                                                "crit_torso")
-
             if modifyVal then
                 data.crit_chance = data.crit_chance + modifyVal
                 crit_chance_breakdown["zrak_scope_crit"] = modifyVal

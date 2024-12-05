@@ -5,7 +5,8 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', '3.51b\n\nfixed missing Str recoil value for 792x33\n\n-------------\nChanged Sprint move AP calculation sligthly\nFixed not being able to sprint when out of ammo\n\n-------------------------\nNow uses JA3 CommonLib as a dependancy\n\nMod Options:\n\nDefault AI penalty reduction option set to 0.\nNew option: "Guns Freaking Hurt". With it, you can manipulate the damage of all firearms. By default, this option will be set to 120%\nSome cleaning in the mod options\n\nRevised Mags Compatibility:\n\nChanged AK74 magazines to 5.45\nChanged RPK74 to use AK74 plataform\nM14 (auto variant) will now use correct mag\nChanged Desert Eagle magazines to .44 magnum\n\nAI:\n\nSome major rework in the AI aiming logic, expect them to enter shooting stance more frequently\nThey will no longer pay reduced costs to enter shooting stance, and no longer will have penalty reductions by default\nFurther AI improvements are planned\n\nBalance:\n\nReworked the Fast Runner perk:\nIt will now grant you a combat action: Sprint.\nSprint costs 1 AP, and makes you Out of Breath. It lets you move an amount of tiles based on your agility plus other factors (like bulk of equipment)\nFast Runner will still apply vanilla effects to AI, as they cant use the new action\n\n\nIncreased range of most firearms by 6, shotguns by 4\nSmall buffs for the Peacemaker\nReduced the penalty for shooting at melee range, and increased the reduction for handguns and SMG. This penalty now only affects targets that are Standing\nOther small weapon balance tweaks\nIts a bit harder to lose shoting stance due to receveing damage\nChanged a bit the critical chance calculations\nHipfiring no long has 1 extra AP cost\nBurstFire and other multishots attacks have 30% reduction  on critical chance from all sources (0.7 * original, not flat decrease)\nRecoil is reduced \nSnapshot and Hipfire penalties tweaked\nAgility effect on AP reworked: mercs with lower agility will have increased AP, and mercs with high agility will have even more Free Move\n\nFixes:\n\nFixed recoil accumulating on all attacks from Run And Gun and Mobile Attack.\nFixed AR15 heavy stock increasing stance AP even when you have enough STR.\nSome small compatibility fix with the Mod library\nSome visual fixes',
+	'last_changes', "3.51c\n\nFixed a bug related to overwatch aim level calculation\nreduced the str necessary to negate extra AP cost from cumbersome weapons from 90 to 80\nreduced run and gun base penalty\nfurther AI improvements",
+	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
 			'id', "Tc3ajdY",
@@ -24,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 51,
-	'version', 11258,
+	'version', 11298,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -135,7 +136,6 @@ return PlaceObj('ModDef', {
 		"Code/SOURCE_IsOverwatchAction.lua",
 		"Code/SOURCE_R_GetAreaAttackParams.lua",
 		"Code/SOURCE_SwapWeapon.lua",
-		"Code/SOURCE_bobbyray_adj.lua",
 		"Code/SOURCE_recklessassault_tired.lua",
 		"Code/SOURCE_shooting_stance_ANIMchangehook.lua",
 		"Code/SOURCE_shooting_stance_BaseAimLevel.lua",
@@ -145,14 +145,15 @@ return PlaceObj('ModDef', {
 		"Code/SOURCE_shooting_stance_overwatch_function_n_attacks.lua",
 		"Code/SOURCE_stealth_calc.lua",
 		"Code/SOURCE_unitEnumUIactions.lua",
-		"Code/SOURCE_unit_FirearmAttack.lua",
 		"Code/SOURCE_FirearmGetAttackResults.lua",
 		"Code/SOURCE_GetMaxAP.lua",
 		"Code/SOURCE_UnitCanAttack.lua",
 		"Code/SOURCE_CombatActionGetAttackableEnemies.lua",
 		"Code/SOURCE_Firearm_GetItemStatusUI and QuickReloadButton.lua",
-		"Code/SOURCE_AICalcAttacksandAim.lua",
 		"Code/SOURCE_AIPrecalcDamageScore.lua",
+		"Code/SOURCE_AICreateContext.lua",
+		"Code/SOURCE_AIGetAttackArgs.lua",
+		"Code/SOURCE_AICalcAttacksandAim.lua",
 		"Code/PATCH_OnClassesGenerate.lua",
 		"Code/PATCH_call.lua",
 		"Code/PATCH_old_ammo.lua",
@@ -188,8 +189,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1733225355,
-	'code_hash', -4502325796556562952,
+	'saved', 1733440638,
+	'code_hash', 3094404899058811742,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

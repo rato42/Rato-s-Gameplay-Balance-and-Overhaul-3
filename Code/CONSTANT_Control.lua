@@ -18,12 +18,15 @@ const.Combat.Hipfire_MaxDistforPenalty = 26
 const.Combat.Snapshot_BasePenalty = -5 ---- -10
 const.Combat.SnapshotMaxPenalty = -30
 const.Combat.Snapshot_MaxDistforPenalty = 26
+-- RunAndGun
+const.Combat.RunAndGunMaxPenalty = -20
+const.Combat.RunAndGun_MaxDistforPenalty = 14
 
 ----- AI
-const.Combat.AI_ShootingStanceAP_Mul = 100 --- % 
+const.Combat.AI_ShootingStanceAP_Mul = 50 --- % 
 
 ----- AP
-const.Combat.CumbersomeStanceAP_StrThreshold = 90
+const.Combat.CumbersomeStanceAP_StrThreshold = 80
 
 -------------
 ----- Vanilla

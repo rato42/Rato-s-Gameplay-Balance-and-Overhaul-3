@@ -1463,10 +1463,6 @@ return {
 		'CodeFileName', "Code/SOURCE_SwapWeapon.lua",
 	}),
 	PlaceObj('ModItemCode', {
-		'name', "SOURCE_bobbyray_adj",
-		'CodeFileName', "Code/SOURCE_bobbyray_adj.lua",
-	}),
-	PlaceObj('ModItemCode', {
 		'name', "SOURCE_recklessassault_tired",
 		'CodeFileName', "Code/SOURCE_recklessassault_tired.lua",
 	}),
@@ -1508,10 +1504,6 @@ return {
 		'CodeFileName', "Code/SOURCE_unitEnumUIactions.lua",
 	}),
 	PlaceObj('ModItemCode', {
-		'name', "SOURCE_unit_FirearmAttack",
-		'CodeFileName', "Code/SOURCE_unit_FirearmAttack.lua",
-	}),
-	PlaceObj('ModItemCode', {
 		'name', "SOURCE_FirearmGetAttackResults",
 		'comment', "---------------------- the holy grail ------------------------",
 		'CodeFileName', "Code/SOURCE_FirearmGetAttackResults.lua",
@@ -1533,14 +1525,26 @@ return {
 		'comment', "bolt action",
 		'CodeFileName', "Code/SOURCE_Firearm_GetItemStatusUI and QuickReloadButton.lua",
 	}),
-	PlaceObj('ModItemCode', {
-		'name', "SOURCE_AICalcAttacksandAim",
-		'CodeFileName', "Code/SOURCE_AICalcAttacksandAim.lua",
-	}),
-	PlaceObj('ModItemCode', {
-		'name', "SOURCE_AIPrecalcDamageScore",
-		'CodeFileName', "Code/SOURCE_AIPrecalcDamageScore.lua",
-	}),
+	PlaceObj('ModItemFolder', {
+		'name', "AI",
+	}, {
+		PlaceObj('ModItemCode', {
+			'name', "SOURCE_AIPrecalcDamageScore",
+			'CodeFileName', "Code/SOURCE_AIPrecalcDamageScore.lua",
+		}),
+		PlaceObj('ModItemCode', {
+			'name', "SOURCE_AICreateContext",
+			'CodeFileName', "Code/SOURCE_AICreateContext.lua",
+		}),
+		PlaceObj('ModItemCode', {
+			'name', "SOURCE_AIGetAttackArgs",
+			'CodeFileName', "Code/SOURCE_AIGetAttackArgs.lua",
+		}),
+		PlaceObj('ModItemCode', {
+			'name', "SOURCE_AICalcAttacksandAim",
+			'CodeFileName', "Code/SOURCE_AICalcAttacksandAim.lua",
+		}),
+		}),
 	PlaceObj('ModItemCode', {
 		'name', "PATCH_OnClassesGenerate",
 		'CodeFileName', "Code/PATCH_OnClassesGenerate.lua",
