@@ -13,6 +13,7 @@ function AICalcAttacksAndAim(context, ap)
     ---- Shooting Stance checks
     local stance_cost = 0
     local recoil_aim_cost = 0
+    local rotation_cost = 0
 
     if IsKindOf(context.weapon, "Firearm") then
         local unit_pos = unit and unit:GetPos()
@@ -29,18 +30,18 @@ function AICalcAttacksAndAim(context, ap)
 
         -------- Persistant recoil aim cost increase
         --- I dont think this is going to work 
-        if not_moved then
+        --[[if not_moved then
             local recoil = unit:GetStatusEffect("Rat_recoil")
             if recoil then
                 recoil_aim_cost = recoil:ResolveValue("aim_cost")
             end
-        end
+        end]]
 
         if has_stance then
-            stance_cost = unit:GetShootingStanceAP(context.current_target, context.weapon, 1,
-                                                   context.default_attack,
+            rotation_cost = unit:GetShootingStanceAP(context.current_target, context.weapon, 1,
+                                                     context.default_attack,
             -- context.current_action, -- which???
-                                                   "rotate")
+                                                     "rotate")
         else
             -- force_enter_stance = true
             stance_cost = GetWeapon_StanceAP(unit, context.weapon)
@@ -57,7 +58,7 @@ function AICalcAttacksAndAim(context, ap)
 
     ------- Verify if has AP to enter Stance
     local ap = ap - free_move_ap --- Fixes considering free move ap as AP
-    local total_stance_cost = cost + stance_cost + aim_cost + recoil_aim_cost
+    local total_stance_cost = cost + stance_cost + aim_cost -- + recoil_aim_cost
     local has_stance_ap = ap >= total_stance_cost
 
     if not has_stance_ap then
@@ -72,7 +73,7 @@ function AICalcAttacksAndAim(context, ap)
     if context.force_max_aim and has_stance_ap then --- Only Aim if can enter stance
         num_attacks = ------ stance_cost added
         Max(1, ---- At least one attack if the max aim level goes beyond what the unit can do
-        Min((ap - stance_cost) /
+        Min((ap - stance_cost - rotation_cost) /
                 (cost + aim_cost * (max_aim - min_aim) + recoil_aim_cost * --- Persistant recoil aim cost increase
                     Min(3, (max_aim - min_aim))), -- context.weapon.MaxAimActions),
         context.max_attacks))
@@ -86,7 +87,7 @@ function AICalcAttacksAndAim(context, ap)
     end
 
     ------ Stance Cost addition
-    local remaining = ap - (num_attacks * cost) - stance_cost
+    local remaining = ap - (num_attacks * cost) - stance_cost - rotation_cost
     ------
 
     local aims = {}

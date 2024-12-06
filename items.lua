@@ -311,6 +311,15 @@ return {
 				end,
 				param_bindings = false,
 			}),
+			PlaceObj('UnitReaction', {
+				Event = "OnStatusEffectAdded",
+				Handler = function (self, target, id, stacks)
+					if id == "Protected" then
+						target:RemoveStatusEffect("shooting_stance")
+					end
+				end,
+				param_bindings = false,
+			}),
 		},
 		'Modifiers', {},
 		'DisplayName', T(357872332596, --[[ModItemCharacterEffectCompositeDef shooting_stance DisplayName]] "Shooting Stance"),

@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.51c\n\nFixed a bug related to overwatch aim level calculation\nreduced the str necessary to negate extra AP cost from cumbersome weapons from 90 to 80\nreduced run and gun base penalty\nfurther AI improvements",
+	'last_changes', "3.51d\n\nfixed shooting_stance not being removed when taking cover",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 51,
-	'version', 11298,
+	'version', 11302,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -189,8 +189,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1733440638,
-	'code_hash', 3094404899058811742,
+	'saved', 1733471472,
+	'code_hash', -5585379697056759798,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
