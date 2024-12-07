@@ -15,8 +15,8 @@ function rat_combat_actions()
         local weapon = self:GetAttackWeapons(unit, args)
         local action = self
 
-        local ap_extra =
-            unit:GetShootingStanceAP(args and args.target or false, weapon, args and args.aim or 0, action) or 0
+        local ap_extra = unit:GetShootingStanceAP(args and args.target or false, weapon,
+                                                  args and args.aim or 0, action) or 0
 
         local ap_delta = rat_getDeltaAP(action, weapon)
 
@@ -26,8 +26,8 @@ function rat_combat_actions()
             cycling_ap = rat_get_manual_cyclingAP(unit, weapon, true) * const.Scale.AP
         end
 
-        return unit:GetAttackAPCost(self, weapon1, false, args and args.aim or 0, ap_delta) + ap_extra + cycling_ap or
-                   -1
+        return unit:GetAttackAPCost(self, weapon1, false, args and args.aim or 0, ap_delta) +
+                   ap_extra + cycling_ap or -1
     end
 
     CombatActions.SingleShot.GetUIState = function(self, units, args)
@@ -137,11 +137,11 @@ function rat_combat_actions()
         local weapon = weapon1
 
         local action = self
-        local ap_extra1 =
-            unit:GetShootingStanceAP(args and args.target or false, weapon, args and args.aim or 0, action)
+        local ap_extra1 = unit:GetShootingStanceAP(args and args.target or false, weapon,
+                                                   args and args.aim or 0, action)
         weapon = weapon2
-        local ap_extra2 =
-            unit:GetShootingStanceAP(args and args.target or false, weapon, args and args.aim or 0, action)
+        local ap_extra2 = unit:GetShootingStanceAP(args and args.target or false, weapon,
+                                                   args and args.aim or 0, action)
 
         local ap_extra = Max(ap_extra1, ap_extra2)
 
@@ -182,8 +182,8 @@ function rat_combat_actions()
         end
 
         return Max(unit:GetAttackAPCost(self, weapon1, weapon1.ShootAP, aim, ap1),
-                   unit:GetAttackAPCost(self, weapon2, weapon2.ShootAP, aim, ap2)) + ap_extra + twohand_cost +
-                   cycling_total
+                   unit:GetAttackAPCost(self, weapon2, weapon2.ShootAP, aim, ap2)) + ap_extra +
+                   twohand_cost + cycling_total
 
     end
 
@@ -299,13 +299,14 @@ function rat_combat_actions()
         if self.CostBasedOnWeapon then
             local weapon = self:GetAttackWeapons(unit, args)
             local action = self
-            local ap_extra = unit:GetShootingStanceAP(args and args.target or false, weapon, args and args.aim or 0,
-                                                      action) or 0
+            local ap_extra = unit:GetShootingStanceAP(args and args.target or false, weapon,
+                                                      args and args.aim or 0, action) or 0
             local ap_delta = rat_getDeltaAP(self, weapon)
 
             -- print("burst cost",(unit:GetAttackAPCost(self, weapon, nil, args and args.aim or 0) + ap_delta) + ap_extra or -1)
-            return weapon and (unit:GetAttackAPCost(self, weapon, nil, args and args.aim or 0) + ap_delta) + ap_extra or
-                       -1
+            return weapon and
+                       (unit:GetAttackAPCost(self, weapon, nil, args and args.aim or 0) + ap_delta) +
+                       ap_extra or -1
         end
 
         return self.ActionPoints
@@ -323,8 +324,8 @@ function rat_combat_actions()
         local action = self
         local ap_delta = rat_getDeltaAP(self, weapon)
 
-        local ap_extra =
-            unit:GetShootingStanceAP(args and args.target or false, weapon, args and args.aim or 0, action) or 0
+        local ap_extra = unit:GetShootingStanceAP(args and args.target or false, weapon,
+                                                  args and args.aim or 0, action) or 0
 
         local cost = unit:GetAttackAPCost(self, weapon, nil, args and args.aim or 0)
         cost = cost + ap_extra + ap_delta
@@ -335,16 +336,17 @@ function rat_combat_actions()
         if self.CostBasedOnWeapon then
             local weapon = self:GetAttackWeapons(unit, args)
             local action = self
-            local ap_extra = unit:GetShootingStanceAP(args and args.target or false, weapon, args and args.aim or 0,
-                                                      action) or 0
+            local ap_extra = unit:GetShootingStanceAP(args and args.target or false, weapon,
+                                                      args and args.aim or 0, action) or 0
             local ap_delta = rat_getDeltaAP(self, weapon)
 
             if args and args.ow_get_atks then
                 ap_extra = 0
             end
 
-            return weapon and (unit:GetAttackAPCost(self, weapon, nil, args and args.aim or 0, ap_delta) + ap_extra) or
-                       -1
+            return weapon and
+                       (unit:GetAttackAPCost(self, weapon, nil, args and args.aim or 0, ap_delta) +
+                           ap_extra) or -1
         end
         return self.ActionPoints
     end
@@ -363,10 +365,11 @@ function rat_combat_actions()
         local action = self
         local ap_delta = rat_getDeltaAP(self, weapon)
 
-        local ap_extra =
-            unit:GetShootingStanceAP(args and args.target or false, weapon, args and args.aim or 0, action) or 0
+        local ap_extra = unit:GetShootingStanceAP(args and args.target or false, weapon,
+                                                  args and args.aim or 0, action) or 0
 
-        return (unit:GetAttackAPCost(self, weapon1, false, args and args.aim or 0) + ap_extra + ap_delta) or -1
+        return (unit:GetAttackAPCost(self, weapon1, false, args and args.aim or 0) + ap_extra +
+                   ap_delta) or -1
     end
 
     -- CombatActions.Buckshot.GetActionResults = function (self, unit, args)
@@ -399,8 +402,8 @@ function rat_combat_actions()
         local weapon = weapon1
         local action = self
 
-        local ap_extra =
-            unit:GetShootingStanceAP(args and args.target or false, weapon, args and args.aim or 0, action) or 0
+        local ap_extra = unit:GetShootingStanceAP(args and args.target or false, weapon,
+                                                  args and args.aim or 0, action) or 0
 
         return unit:GetAttackAPCost(self, weapon1, false, args and args.aim or 0) + ap_extra or -1
     end
@@ -416,8 +419,8 @@ function rat_combat_actions()
         end
         local weapon = weapon1
         local action = self
-        local ap_extra =
-            unit:GetShootingStanceAP(args and args.target or false, weapon, args and args.aim or 0, action) or 0
+        local ap_extra = unit:GetShootingStanceAP(args and args.target or false, weapon,
+                                                  args and args.aim or 0, action) or 0
 
         local cost = unit:GetAttackAPCost(self, weapon1, false, args and args.aim or 0) + ap_extra
         return cost and cost + self.ActionPoints or -1
@@ -466,7 +469,8 @@ function rat_combat_actions()
 
         local unit = units[1]
         local weapon = self:GetAttackWeapons(unit, args)
-        if not weapon or (weapon.PreparedAttackType ~= "Pin Down" and weapon.PreparedAttackType ~= "Both") then
+        if not weapon or
+            (weapon.PreparedAttackType ~= "Pin Down" and weapon.PreparedAttackType ~= "Both") then
             return "hidden"
         end
 
@@ -491,7 +495,8 @@ function rat_combat_actions()
     CombatActions.PinDown.GetAPCost = function(self, unit, args)
 
         local weapon = self:GetAttackWeapons(unit, args)
-        if not weapon or (weapon.PreparedAttackType ~= "Pin Down" and weapon.PreparedAttackType ~= "Both") then
+        if not weapon or
+            (weapon.PreparedAttackType ~= "Pin Down" and weapon.PreparedAttackType ~= "Both") then
             return -1
         end
 
@@ -504,8 +509,8 @@ function rat_combat_actions()
         -- local aim = 1
         local ap_extra = GetWeapon_StanceAP(unit, weapon)
         if HasPerk(unit, "shooting_stance") then
-            ap_extra = unit:GetShootingStanceAP(args and args.target or false, weapon, args and args.aim or 0, self) or
-                           0
+            ap_extra = unit:GetShootingStanceAP(args and args.target or false, weapon,
+                                                args and args.aim or 0, self) or 0
         end
 
         ----------------
@@ -521,7 +526,7 @@ function rat_combat_actions()
             cycling_ap = rat_get_manual_cyclingAP(unit, weapon, true) * const.Scale.AP
         end
 
-        ap = ap + ap_extra + cycling_ap -- + Get_AimCost()
+        ap = ap + ap_extra + cycling_ap -- + Get_AimCost(unit)
         ---------------
         -- print("pindown ap", ap)
         return Max(ap, unit:GetUIActionPoints()), ap
@@ -537,13 +542,15 @@ function rat_combat_actions()
         -- end
         -- print(self.ActionPoints)
         local weapon, w2 = self:GetAttackWeapons(unit, args)
-        if not weapon or (weapon.PreparedAttackType ~= "Overwatch" and weapon.PreparedAttackType ~= "Both") then
+        if not weapon or
+            (weapon.PreparedAttackType ~= "Overwatch" and weapon.PreparedAttackType ~= "Both") then
             return -1
         end
         local attack -- = SO_GetOverwatchAction(unit, weapon) or unit:GetDefaultAttackAction("ranged", "ungrouped")
         -- and not R_IsAI(unit)
         if IsMod_loaded("Msdfsds3") then -- SmartOverwatch override attack action ap
-            attack = SO_GetOverwatchAction(unit, weapon) or unit:GetDefaultAttackAction("ranged", "ungrouped")
+            attack = SO_GetOverwatchAction(unit, weapon) or
+                         unit:GetDefaultAttackAction("ranged", "ungrouped")
         else
             attack = unit:GetDefaultAttackAction("ranged", "ungrouped")
         end
@@ -556,15 +563,15 @@ function rat_combat_actions()
         ------------------- base cost = shooting stance
         if not HasPerk(unit, "shooting_stance") then
             param = "stance"
-            stance = unit:GetShootingStanceAP(args and args.target or false, weapon, args and args.aim or 0, action,
-                                              param) or 0
+            stance = unit:GetShootingStanceAP(args and args.target or false, weapon,
+                                              args and args.aim or 0, action, param) or 0
 
-            stance = stance + Get_AimCost()
+            stance = stance + Get_AimCost(unit)
 
         else
             param = "rotate"
-            stance = unit:GetShootingStanceAP(args and args.target or false, weapon, args and args.aim or 0, action,
-                                              param) or 0
+            stance = unit:GetShootingStanceAP(args and args.target or false, weapon,
+                                              args and args.aim or 0, action, param) or 0
         end
 
         -- print("ow base cost combat action", stance)
@@ -644,7 +651,7 @@ function rat_combat_actions()
 
         if not unit:UIHasAP(cost) then
             -- if not HasPerk(unit, "shooting_stance") then
-            -- stance = stance + Get_AimCost()
+            -- stance = stance + Get_AimCost(unit)
             -- if unit:UIHasAP(stance) then
 
             -- return "enabled"
@@ -675,43 +682,51 @@ function rat_combat_actions()
 
     --------------Description
 
-    CombatActions.Overwatch.GetActionDescription = function(self, units, args)
-        local unit = units[1]
-        local apply, value = Presets.ChanceToHitModifier.Default.OpportunityAttack:CalcValue(unit, nil, nil, nil, nil,
-                                                                                             nil, nil, nil, true)
-        local total, cost = self:GetAPCost(unit)
-        local attacks = 1
-        local descr
+    CombatActions.Overwatch.GetActionDescription =
+        function(self, units, args)
+            local unit = units[1]
+            local apply, value =
+                Presets.ChanceToHitModifier.Default.OpportunityAttack:CalcValue(unit, nil, nil, nil,
+                                                                                nil, nil, nil, nil,
+                                                                                true)
+            local total, cost = self:GetAPCost(unit)
+            local attacks = 1
+            local descr
 
-        if unit and (cost or -1) >= 0 then
-            attacks = unit:GetOverwatchAttacksAndAim()
+            if unit and (cost or -1) >= 0 then
+                attacks = unit:GetOverwatchAttacksAndAim()
+            end
+
+            descr = g_Combat and self.Description or CombatActions.ExplorationOverwatch.Description
+            local description = descr
+            if g_Overwatch[unit] and (g_Overwatch[unit].num_attacks or 0) > 0 then
+                -- add remaining attacks text
+                attacks = g_Overwatch[unit].num_attacks
+                description = descr ..
+                                  T {
+                        133054169959,
+                        "<newline><newline>Remaining attacks: <em><attacks></em>",
+                        attacks = attacks
+                    }
+            elseif unit:UIHasAP(cost, self.id) then
+                -- add max attacks text
+                description = descr ..
+                                  T {
+                        452784485986,
+                        "<newline><newline>Max attacks: <em><attacks></em>",
+                        attacks = attacks
+                    }
+            end
+
+            local action = unit and unit:GetDefaultAttackAction()
+            if action and (action.id == "Buckshot" or action.id == "DoubleBarrel") then
+                description = description .. "<newline><newline>" ..
+                                  T(769183913636,
+                                    "Collateral damage might hit units outside the overwatch cone.")
+            end
+
+            return description
         end
-
-        descr = g_Combat and self.Description or CombatActions.ExplorationOverwatch.Description
-        local description = descr
-        if g_Overwatch[unit] and (g_Overwatch[unit].num_attacks or 0) > 0 then
-            -- add remaining attacks text
-            attacks = g_Overwatch[unit].num_attacks
-            description = descr ..
-                              T {
-                    133054169959,
-                    "<newline><newline>Remaining attacks: <em><attacks></em>",
-                    attacks = attacks
-                }
-        elseif unit:UIHasAP(cost, self.id) then
-            -- add max attacks text
-            description = descr ..
-                              T {452784485986, "<newline><newline>Max attacks: <em><attacks></em>", attacks = attacks}
-        end
-
-        local action = unit and unit:GetDefaultAttackAction()
-        if action and (action.id == "Buckshot" or action.id == "DoubleBarrel") then
-            description = description .. "<newline><newline>" ..
-                              T(769183913636, "Collateral damage might hit units outside the overwatch cone.")
-        end
-
-        return description
-    end
 
     ---------------Name
 
@@ -838,8 +853,8 @@ function rat_combat_actions()
         if self.CostBasedOnWeapon then
             local weapon = self:GetAttackWeapons(unit, args)
             local action = self
-            local ap_extra = unit:GetShootingStanceAP(args and args.target or false, weapon, args and args.aim or 0,
-                                                      action) or 0
+            local ap_extra = unit:GetShootingStanceAP(args and args.target or false, weapon,
+                                                      args and args.aim or 0, action) or 0
             -- print("ap_extra", ap_extra)
             local ap_delta = rat_getDeltaAP(self, weapon)
 
@@ -847,8 +862,9 @@ function rat_combat_actions()
                 ap_extra = 0
             end
 
-            return weapon and (unit:GetAttackAPCost(self, weapon, nil, args and args.aim or 0) + ap_delta) + ap_extra or
-                       -1
+            return weapon and
+                       (unit:GetAttackAPCost(self, weapon, nil, args and args.aim or 0) + ap_delta) +
+                       ap_extra or -1
         end
 
         return self.ActionPoints
@@ -904,7 +920,8 @@ function rat_combat_actions()
                 return "disabled", reason
             end
         else
-            return "disabled", T(565263742146, "<color AmmoAPColor>Weapon not capable of burst</color>")
+            return "disabled",
+                   T(565263742146, "<color AmmoAPColor>Weapon not capable of burst</color>")
         end
 
         if unit:HasStatusEffect("R_outofbreath") then
@@ -1052,7 +1069,8 @@ function rat_combat_actions()
         ----------
         local weapon = self:GetAttackWeapons(unit) -- or unit:GetActiveWeapons()
         local DisplayMoveAP = rat_getMobileshot_moveAP(self, unit, weapon)
-        local description = T(336535188124, "Move to a new position, using up to <em>" .. DisplayMoveAP ..
+        local description = T(336535188124,
+                              "Move to a new position, using up to <em>" .. DisplayMoveAP ..
                                   " Move AP</em>.\n\nFire a number of bursts during movement toward the closest enemies. \n\nEach shot suffers increased <em>Hipfire</em> and <em>Recoil</em> accuracy penalties.")
 
         --------------------------
@@ -1060,14 +1078,16 @@ function rat_combat_actions()
         local cost, aimed = self.GetAPCost(self, unit, args)
 
         if aimed then
-            description = T(466718396934, "Move to a new position, using up to <em>" .. DisplayMoveAP ..
+            description = T(466718396934,
+                            "Move to a new position, using up to <em>" .. DisplayMoveAP ..
                                 " Move AP</em>.\n\nFire a number of bursts during movement toward the closest enemies. \n\nEach shot has <em>1 aim level</em>, but <em>aim accuracy is reduced by half</em>. \n\nEach shot suffers increased <em>Snapshot</em> and <em>Recoil</em> accuracy penalties.")
         end
 
         description = description .. T(312473917195, "\n\nThe unit will be <em>Out of Breath</em>.")
 
         if unit.stance ~= "Standing" then
-            description = description .. T(801805830695, "<newline>You will end up in Standing stance.")
+            description = description ..
+                              T(801805830695, "<newline>You will end up in Standing stance.")
         end
 
         return description
@@ -1180,7 +1200,8 @@ function rat_combat_actions()
         local cost, aimed = self.GetAPCost(self, unit, args)
 
         if aimed then
-            description = T(283631569874, "Move to a new position, using up to <em>" .. DisplayMoveAP ..
+            description = T(283631569874,
+                            "Move to a new position, using up to <em>" .. DisplayMoveAP ..
                                 " Move AP</em>.\n\nFire a number of shots during movement toward the closest enemies. \n\nEach shot has <em>1 aim level</em>, but <em>aim accuracy is reduced by half</em>. \n\nEach shot suffers increased <em>Snapshot</em> accuracy penalty.")
         end
 
@@ -1192,24 +1213,25 @@ function rat_combat_actions()
 
     end
 
-    CombatActions.RecklessAssault.GetActionResults = function(self, unit, args)
-        local weapon = self:GetAttackWeapons(unit)
-        args.attack_id = "BurstFire"
-        args.num_shots = weapon and weapon:GetAutofireShots("BurstFire") or
-                             CombatActions.BurstFire:ResolveValue("num_shots")
-        args.multishot = true
+    CombatActions.RecklessAssault.GetActionResults =
+        function(self, unit, args)
+            local weapon = self:GetAttackWeapons(unit)
+            args.attack_id = "BurstFire"
+            args.num_shots = weapon and weapon:GetAutofireShots("BurstFire") or
+                                 CombatActions.BurstFire:ResolveValue("num_shots")
+            args.multishot = true
 
-        ---
+            ---
 
-        local cost, aimed = self.GetAPCost(self, unit, args)
+            local cost, aimed = self.GetAPCost(self, unit, args)
 
-        if aimed then
-            args.aim = 1
-            -- print("RNG aim", args.aim)
+            if aimed then
+                args.aim = 1
+                -- print("RNG aim", args.aim)
+            end
+
+            return GetMobileShotResults(self, unit, args)
         end
-
-        return GetMobileShotResults(self, unit, args)
-    end
 
     CombatActions.RecklessAssault.GetActionDescription = function(self, units)
 
@@ -1235,19 +1257,20 @@ function rat_combat_actions()
 
     end
 
-    CombatActions.RecklessAssault.GetAttackWeapons = function(self, unit, args)
-        if args and args.weapon then
-            return args.weapon
+    CombatActions.RecklessAssault.GetAttackWeapons =
+        function(self, unit, args)
+            if args and args.weapon then
+                return args.weapon
+            end
+            local weapon = CombatActions.RunAndGun:GetAttackWeapons(unit)
+
+            if weapon then
+                return weapon
+            end
+
+            return unit:GetActiveWeapons("SubmachineGun")
+
         end
-        local weapon = CombatActions.RunAndGun:GetAttackWeapons(unit)
-
-        if weapon then
-            return weapon
-        end
-
-        return unit:GetActiveWeapons("SubmachineGun")
-
-    end
 
     CombatActions.RecklessAssault.ActionPointDelta = 3000
     CombatActions.RecklessAssault.GetAPCost = function(self, unit, args)
@@ -1349,7 +1372,8 @@ function rat_combat_actions()
         local unit = units and units[1]
         local weapon = self:GetAttackWeapons(unit) -- or unit:GetActiveWeapons()
         local DisplayMoveAP = rat_getMobileshot_moveAP(self, unit, weapon)
-        local description = T(248617882285, "Move to another position using up to <em>" .. DisplayMoveAP ..
+        local description = T(248617882285,
+                              "Move to another position using up to <em>" .. DisplayMoveAP ..
                                   " Move AP</em>, while <em>throwing knives</em> at nearby enemies.")
 
         description = description .. T(258829833148, "\n\nBlood will be <em>Out of Breath</em>.")
@@ -1395,13 +1419,16 @@ function rat_combat_actions()
             if weapon:HasComponent("Enable_RunAndGun") then
                 num_shots = num_shots + 1
             end
-        elseif (IsKindOf(weapon, "AssaultRifle") or IsKindOf(weapon, "SniperRifle") or IsKindOf(weapon, "MachineGun")) then
+        elseif (IsKindOf(weapon, "AssaultRifle") or IsKindOf(weapon, "SniperRifle") or
+            IsKindOf(weapon, "MachineGun")) then
             num_shots = 2
         end
 
         local num_shots_real = weapon and weapon:GetAutofireShots(self) -- or CombatActions.BurstFire:ResolveValue("num_shots")
 
-        num_shots = "<style CrosshairAPTotal><color PDABrowserTextHighlight>" .. num_shots .. "X " .. "</style></color>"
+        num_shots =
+            "<style CrosshairAPTotal><color PDABrowserTextHighlight>" .. num_shots .. "X " ..
+                "</style></color>"
         return T(num_shots .. num_shots_real .. "X" .. damage)
 
     end
@@ -1418,7 +1445,9 @@ function rat_combat_actions()
 
         -- local num_shots_real = weapon and weapon:GetAutofireShots(self)-- or CombatActions.BurstFire:ResolveValue("num_shots")
 
-        num_shots = "<style CrosshairAPTotal><color PDABrowserTextHighlight>" .. num_shots .. "X " .. "</style></color>"
+        num_shots =
+            "<style CrosshairAPTotal><color PDABrowserTextHighlight>" .. num_shots .. "X " ..
+                "</style></color>"
         return T(num_shots .. damage)
 
     end

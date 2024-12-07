@@ -25,19 +25,16 @@ function rat_place_prepareweapon_combat_actions()
             local action = self
             if not HasPerk(unit, "shooting_stance") then
                 param = "stance"
-                stance = unit:GetShootingStanceAP(args and args.target or false,
-                                                  weapon,
-                                                  args and args.aim or 0,
-                                                  action, param) or 0
+                stance = unit:GetShootingStanceAP(args and args.target or false, weapon,
+                                                  args and args.aim or 0, action, param) or 0
             end
 
             if not HasPerk(unit, "shooting_stance") then
-                stance = stance + Get_AimCost()
+                stance = stance + Get_AimCost(unit)
                 return stance -- Max(unit:GetUIActionPoints(), stance), stance
             else
-                local rotate = unit:GetShootingStanceAP(
-                                   args and args.target or false, weapon,
-                                   args and args.aim or 0, action, param) or 0
+                local rotate = unit:GetShootingStanceAP(args and args.target or false, weapon,
+                                                        args and args.aim or 0, action, param) or 0
 
                 rotate = Max(1 * const.Scale.AP, rotate)
                 return rotate -- Max(unit:GetUIActionPoints(), rotate), rotate
@@ -133,8 +130,7 @@ function rat_place_prepareweapon_combat_actions()
         end,
         SortKey = 2,
         UIBegin = function(self, units, args)
-            CombatActionAttackStart(self, units, args, "IModeCombatAreaAim",
-                                    "cancel")
+            CombatActionAttackStart(self, units, args, "IModeCombatAreaAim", "cancel")
         end,
         group = "Default",
         id = "R_PrepareWeapon"
@@ -167,10 +163,8 @@ function rat_place_prepareweapon_combat_actions()
 
             if not HasPerk(unit, "shooting_stance") then
                 return "hidden"
-            elseif not unit:UIHasAP(1000) and
-                (unit.free_move_ap and unit.free_move_ap < 1000) then
-                return "disabled",
-                       T(677754398866, "<color AmmoAPColor>Turn Ended</color>")
+            elseif not unit:UIHasAP(1000) and (unit.free_move_ap and unit.free_move_ap < 1000) then
+                return "disabled", T(677754398866, "<color AmmoAPColor>Turn Ended</color>")
             end
 
             return "enabled"
@@ -214,8 +208,7 @@ function SetShootingStanceCommand(unit, target)
     end
 
     ShootingStance(unit, target)
-    SetInGameInterfaceMode(g_Combat and "IModeCombatMovement" or
-                               "IModeExploration")
+    SetInGameInterfaceMode(g_Combat and "IModeCombatMovement" or "IModeExploration")
 end
 
 ---------------------------------------------------------------------------------------------------------

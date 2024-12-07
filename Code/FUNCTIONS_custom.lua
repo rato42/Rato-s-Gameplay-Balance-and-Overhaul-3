@@ -113,9 +113,10 @@ function Is_AimingAttack()
     end
 end
 
-function Get_AimCost() --------------add self, check if indoors
+function Get_AimCost(unit) --------------add self, check if indoors
     local aim_cost = const.Scale.AP
-    if GameState.RainHeavy then
+    local indoors = unit and unit.indoors
+    if GameState.RainHeavy and not indoors then
         aim_cost = MulDivRound(aim_cost, 100 + const.EnvEffects.RainAimingMultiplier, 100)
     end
     return aim_cost
@@ -315,19 +316,19 @@ function GetHipfire_StanceAP(unit, weapon) ---- not used
     return 0 -- ap_hipfire * const.Scale.AP
 end
 
-function rat_MobileAction_AP(self, unit)
+function rat_MobileAction_AP(action, unit)
 
     if not unit then
         return 0, 0
     end
 
-    if not self then
+    if not action then
         return 0, 0
     end
 
-    local weapon = self:GetAttackWeapons(unit)
-    local att_cost = unit:GetAttackAPCost(self, weapon, nil, 0) -- CombatActions.BurstFire.GetAPCost(self, unit, args)
-    local ap_delta = rat_getDeltaAP(self, weapon)
+    local weapon = action:GetAttackWeapons(unit)
+    local att_cost = unit:GetAttackAPCost(action, weapon, nil, 0) -- CombatActions.BurstFire.GetAPCost(self, unit, args)
+    local ap_delta = rat_getDeltaAP(action, weapon)
     local cost = att_cost + ap_delta
 
     if rat_canBolt(weapon) then
@@ -343,7 +344,7 @@ function rat_MobileAction_AP(self, unit)
         end
     end
 
-    local ap_extra = GetWeapon_StanceAP(unit, weapon) + Get_AimCost() -- mobile_stance_ap(unit, weapon)
+    local ap_extra = GetWeapon_StanceAP(unit, weapon) + Get_AimCost(unit) -- mobile_stance_ap(unit, weapon)
     local cost_aimed = cost + ap_extra
 
     return cost, cost_aimed

@@ -49,10 +49,7 @@ function AICalcAttacksAndAim(context, ap)
     end
     ------
 
-    local aim_cost = const.Scale.AP
-    if GameState.RainHeavy then
-        aim_cost = MulDivRound(aim_cost, 100 + const.EnvEffects.RainAimingMultiplier, 100)
-    end
+    local aim_cost = Get_AimCost(unit)
 
     local cost = context.default_attack_cost
 

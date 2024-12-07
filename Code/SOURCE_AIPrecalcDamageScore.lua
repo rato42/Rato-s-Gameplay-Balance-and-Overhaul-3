@@ -50,7 +50,8 @@ function AIPrecalcDamageScore(context, destinations, preferred_target, debug_dat
     end
     -- end
     -- ground difference mod
-    local MinGroundDifference = hit_modifiers.GroundDifference:ResolveValue("RangeThreshold") * const.SlabSizeZ / 100
+    local MinGroundDifference = hit_modifiers.GroundDifference:ResolveValue("RangeThreshold") *
+                                    const.SlabSizeZ / 100
     local modHighGround = hit_modifiers.GroundDifference:ResolveValue("HighGround")
     local modLowGround = hit_modifiers.GroundDifference:ResolveValue("LowGround")
     -- cover
@@ -81,7 +82,8 @@ function AIPrecalcDamageScore(context, destinations, preferred_target, debug_dat
             for _, obj in ipairs(Groups[target_group]) do
                 if IsKindOf(obj, "Unit") and not table.find(targets, obj) then
                     table.insert(targets, obj) -- make sure the target is considired regardless if it's an enemy or not
-                    table.insert(target_score_mod, 100 + ((tsr > 0) and unit:RandRange(-tsr, tsr) or 0))
+                    table.insert(target_score_mod,
+                                 100 + ((tsr > 0) and unit:RandRange(-tsr, tsr) or 0))
                 end
             end
         end
@@ -121,7 +123,8 @@ function AIPrecalcDamageScore(context, destinations, preferred_target, debug_dat
 	end
 	logdata.preferred_target = preferred_target and (IsKindOf(preferred_target, "Unit") and _InternalTranslate(preferred_target.Name or "") or preferred_target.class) or tostring(preferred_target)--]]
     destinations = destinations or context.destinations
-    NetUpdateHash("AIPrecalcDamageScore", unit, hashParamTable(destinations), hashParamTable(targets), preferred_target)
+    NetUpdateHash("AIPrecalcDamageScore", unit, hashParamTable(destinations),
+                  hashParamTable(targets), preferred_target)
     for j, upos in ipairs(destinations) do
 
         ----
@@ -138,7 +141,9 @@ function AIPrecalcDamageScore(context, destinations, preferred_target, debug_dat
         local potential_targets, target_score, target_cth = {}, {}, {}
         if weapon and ap >= cost_ap then
             local pos_mod = base_mod
-            pos_mod = pos_mod + (ustance_idx == 2 and modCrouchBonus or ustance_idx == 3 and modProneBonus or 0)
+            pos_mod = pos_mod +
+                          (ustance_idx == 2 and modCrouchBonus or ustance_idx == 3 and modProneBonus or
+                              0)
 
             local targets_attack_data
             if not is_melee then
@@ -167,8 +172,8 @@ function AIPrecalcDamageScore(context, destinations, preferred_target, debug_dat
                     local hit_mod = pos_mod
                     if not is_heavy then
                         hit_mod = hit_mod +
-                                      (uz > tz + MinGroundDifference and modHighGround or uz < tz - MinGroundDifference and
-                                          modLowGround or 0)
+                                      (uz > tz + MinGroundDifference and modHighGround or uz < tz -
+                                          MinGroundDifference and modLowGround or 0)
                         hit_mod = hit_mod + (unit:GetLastAttack() == target and modSameTarget or 0)
                     end
                     local target_cover = GetCoverFrom(tpos, upos)
@@ -180,9 +185,12 @@ function AIPrecalcDamageScore(context, destinations, preferred_target, debug_dat
 
                     local mod = hit_mod - penalty -- dist_penalty
                     -- environmental modifiers when applicable
-                    local apply, value, target_spot_group, action, weapon1, weapon2, lof, aim, opportunity_attack
-                    apply, value = hit_modifiers.Darkness:CalcValue(unit, target, target_spot_group, action, weapon1,
-                                                                    weapon2, lof, aim, opportunity_attack, attacker_pos)
+                    local apply, value, target_spot_group, action, weapon1, weapon2, lof, aim,
+                          opportunity_attack
+                    apply, value = hit_modifiers.Darkness:CalcValue(unit, target, target_spot_group,
+                                                                    action, weapon1, weapon2, lof,
+                                                                    aim, opportunity_attack,
+                                                                    attacker_pos)
                     if apply then
                         mod = mod + value
                     end
@@ -206,7 +214,8 @@ function AIPrecalcDamageScore(context, destinations, preferred_target, debug_dat
                                 ----- Weapon accuracy and other components are disregarded
                                 -- use, bonus = aim_mod:CalcValue(unit, nil, nil, nil, nil, nil, nil, aims[i])
                                 use, bonus = aim_mod:CalcValue(unit, context.current_target, nil,
-                                                               context.default_attack, context.weapon, nil, nil, aims[i])
+                                                               context.default_attack,
+                                                               context.weapon, nil, nil, aims[i])
                             end
 
                             -- print("-----------------------------------------------")
@@ -241,21 +250,25 @@ function AIPrecalcDamageScore(context, destinations, preferred_target, debug_dat
                             mod = mod + MulDivRound(peval or 0, policy.Weight, 100)
                         end
 
-                        if IsKindOf(target, "Unit") and (target:IsDowned() or target:IsGettingDowned()) then
+                        if IsKindOf(target, "Unit") and
+                            (target:IsDowned() or target:IsGettingDowned()) then
                             mod = MulDivRound(mod, 5, 100)
                         end
 
                         local attack_data = targets_attack_data and targets_attack_data[k]
-                        local ally_in_danger = attack_data and (attack_data.best_ally_hits_count or 0) > 0
+                        local ally_in_danger = attack_data and
+                                                   (attack_data.best_ally_hits_count or 0) > 0
 
                         if action and action.AimType == "cone" then
                             ally_in_danger = ally_in_danger or
-                                                 AIAllyInDanger(context.allies, context.ally_pos, attacker_pos, target,
+                                                 AIAllyInDanger(context.allies, context.ally_pos,
+                                                                attacker_pos, target,
                                                                 const.AIFriendlyFire_LOFConeNear,
                                                                 const.AIFriendlyFire_LOFConeFar)
                         else
                             ally_in_danger = ally_in_danger or
-                                                 AIAllyInDanger(context.allies, context.ally_pos, attacker_pos, target,
+                                                 AIAllyInDanger(context.allies, context.ally_pos,
+                                                                attacker_pos, target,
                                                                 const.AIFriendlyFire_LOFWidth,
                                                                 const.AIFriendlyFire_LOFWidth)
                         end
@@ -292,7 +305,8 @@ function AIPrecalcDamageScore(context, destinations, preferred_target, debug_dat
                         best_score = Max(best_score, mod)
                         target_cth[target] = base_mod
                         target_score[target] = mod
-                        local threshold = MulDivRound(best_score or 0, const.AIDecisionThreshold, 100)
+                        local threshold = MulDivRound(best_score or 0, const.AIDecisionThreshold,
+                                                      100)
                         if mod >= threshold then
                             potential_targets[#potential_targets + 1] = target
                             for i = #potential_targets, 1, -1 do

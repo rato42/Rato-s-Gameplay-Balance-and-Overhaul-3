@@ -8,7 +8,7 @@ function AICreateContext(unit, context)
     if IsKindOf(weapon, "Firearm") and not unit:GetStatusEffect("shooting_stance") then
         local attack_cost = default_attack:GetAPCost(unit)
         local stance_cost = GetWeapon_StanceAP(unit, default_attack:GetAttackWeapons(unit) or
-                                                   unit:GetActiveWeapons()) + Get_AimCost()
+                                                   unit:GetActiveWeapons()) + Get_AimCost(unit)
         local free_move_ap = unit.free_move_ap or 0
         local ap = unit.ActionPoints - free_move_ap
         local total_stance_cost = attack_cost + stance_cost

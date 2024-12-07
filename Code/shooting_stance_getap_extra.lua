@@ -33,9 +33,8 @@ function Unit:GetShootingStanceAP(target, weapon, aim, action, param)
     end
 
     if HasPerk(self, "shooting_stance") then
-        ap_rotate = Clamp(
-                        ShootingConeAngle(self, weapon, target, param_angle) *
-                            const.Scale.AP, 0, ap_stance + Get_AimCost())
+        ap_rotate = Clamp(ShootingConeAngle(self, weapon, target, param_angle) * const.Scale.AP, 0,
+                          ap_stance + Get_AimCost(self))
     else
         ap_rotate = 0
     end

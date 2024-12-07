@@ -54,7 +54,7 @@ function Unit:ApplyPersistantRecoilEffects(aim, action, weapon, attack_args)
 
     aim_cost = Min(5, aim_cost)
     if HasPerk(self, "shooting_stance") then
-        local stance_cost = (GetWeapon_StanceAP(self, weapon) + (Get_AimCost() * 2)) / 1000.00
+        local stance_cost = (GetWeapon_StanceAP(self, weapon) + (Get_AimCost(self) * 2)) / 1000.00
         aim_cost = Min(stance_cost, aim_cost)
     end
 
@@ -297,15 +297,23 @@ function GetCaliberStrRecoil(weapon, attacker, num_shots)
 
     if str < breakpoint then
         is_below_breakpoint = true
-        scaleFactor = 20.0 + ((100.0 - 20.0) * (adjusted_breakpoint - adjusted_str) / adjusted_breakpoint)
+        scaleFactor = 20.0 +
+                          ((100.0 - 20.0) * (adjusted_breakpoint - adjusted_str) /
+                              adjusted_breakpoint)
         metaText[#metaText + 1] = rT(285153762692, "(-) Low Strength")
     else
         if breakpoint < 80 then
-            scaleFactor = 20.0 - (20.0 * (adjusted_str - adjusted_breakpoint) / (100.0 - adjusted_breakpoint))
+            scaleFactor = 20.0 -
+                              (20.0 * (adjusted_str - adjusted_breakpoint) /
+                                  (100.0 - adjusted_breakpoint))
         elseif breakpoint < 90 then
-            scaleFactor = 20.0 - (18 * (adjusted_str - adjusted_breakpoint) / (100.0 - adjusted_breakpoint))
+            scaleFactor = 20.0 -
+                              (18 * (adjusted_str - adjusted_breakpoint) /
+                                  (100.0 - adjusted_breakpoint))
         else
-            scaleFactor = 20.0 - (12 * (adjusted_str - adjusted_breakpoint) / (100.0 - adjusted_breakpoint))
+            scaleFactor = 20.0 -
+                              (12 * (adjusted_str - adjusted_breakpoint) /
+                                  (100.0 - adjusted_breakpoint))
         end
         metaText[#metaText + 1] = rT(988872717528, "Strength")
 
@@ -377,14 +385,16 @@ function GetRecoilOther(weapon, attacker, action)
             metaText[#metaText + 1] = rT(712682745289, "Perk: Recoil Management")
         end
 
-        if action and not (action.id == "SingleShot" or action.id == "Buckshot" or action.id == "Pindown") and
+        if action and
+            not (action.id == "SingleShot" or action.id == "Buckshot" or action.id == "Pindown") and
             attacker:HasStatusEffect("AutoWeapons") then
             mod = mod * 0.82
             metaText[#metaText + 1] = rT(764956297274, "Perk: Auto Weapons")
 
         end
 
-        if action and (action.id == "BurstFire" or action.id == "RunAndGun" or action.id == "RecklessAssault") then
+        if action and
+            (action.id == "BurstFire" or action.id == "RunAndGun" or action.id == "RecklessAssault") then
 
             if weapon.burst_recoil_delta and weapon.burst_recoil_delta ~= 100 then
                 local burst_delta = weapon.burst_recoil_delta / 100.0
@@ -529,8 +539,8 @@ local stacks_multiplier = const.Combat.Recoil_StacksMultiplier
 local flat_penalty_base = const.Combat.Recoil_BasePenalty
 local param_base = const.Combat.Recoil_MaxPenalty
 
-function get_recoil(attacker, target, target_pos, action, weapon1, aim, num_shots, stacks, test, test_distance,
-                    unit_command, populate_recoil)
+function get_recoil(attacker, target, target_pos, action, weapon1, aim, num_shots, stacks, test,
+                    test_distance, unit_command, populate_recoil)
 
     if not attacker or not target then
         return 0
@@ -671,7 +681,8 @@ function get_recoil(attacker, target, target_pos, action, weapon1, aim, num_shot
 
         if held_mg then
             metaText[#metaText + 1] = rT(594122678151, "(-) Held MG")
-            hip_mod = (GetHipfirePenal(weapon, attacker, action, false, 1) * 0.5 * (weapon.weigth_held_mul / 100.0))
+            hip_mod = (GetHipfirePenal(weapon, attacker, action, false, 1) * 0.5 *
+                          (weapon.weigth_held_mul / 100.0))
             mg_mod = 180 * hip_mod
         end
 
