@@ -59,12 +59,14 @@ function define_getOWattacks_and_aim()
 
         atk_cost = atk_cost + w1_bolting_cost + w2_bolting_cost
 
+        ap = ap - first_shot_ap
+
         -- print("unboltable weapon ow atk cost", atk_cost)
         if not atk_cost then
             print("overwatch calc n attacks, attk cost is nil")
             atk_cost = 0
         end
-        ap = ap - first_shot_ap
+
         if atk_cost <= 0 then
             print("overwatch calc n attacks, attk cost is less than zero:", atk_cost, "...")
             print("... action:", action, "weapon", weapon)

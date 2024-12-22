@@ -1,4 +1,4 @@
-function GetHipfirePenal(weapon, attacker, action, display, aim)
+function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
 
     local penalty = 1.00
     local weapon1 = weapon
@@ -108,9 +108,7 @@ function GetHipfirePenal(weapon, attacker, action, display, aim)
     if aim == 0 then ------so p hipfire
 
         if weapon1 and weapon1:HasComponent("handguard_short") then
-            modifyVal, compDef = GetComponentEffectValue(weapon1,
-                                                         "handguard_short",
-                                                         "hipfire_mul")
+            modifyVal, compDef = GetComponentEffectValue(weapon1, "handguard_short", "hipfire_mul")
             local sign = "(-) "
             if modifyVal and modifyVal < 100 then
                 sign = ""
@@ -160,9 +158,7 @@ function GetHipfirePenal(weapon, attacker, action, display, aim)
     elseif aim > 0 then
 
         if weapon1 and weapon1:HasComponent("handguard_short") then
-            modifyVal, compDef = GetComponentEffectValue(weapon1,
-                                                         "handguard_short",
-                                                         "snapshot_mul")
+            modifyVal, compDef = GetComponentEffectValue(weapon1, "handguard_short", "snapshot_mul")
             local sign = "(-) "
             if modifyVal and modifyVal < 100 then
                 sign = ""
@@ -183,9 +179,7 @@ function GetHipfirePenal(weapon, attacker, action, display, aim)
 
         end
 
-        local modifyVal, compDef = GetComponentEffectValue(weapon1,
-                                                           "scope_snapshot",
-                                                           "snap_reduc")
+        local modifyVal, compDef = GetComponentEffectValue(weapon1, "scope_snapshot", "snap_reduc")
         if modifyVal then
             local reduc = (100.0 - modifyVal) / 100
             penalty = penalty * reduc

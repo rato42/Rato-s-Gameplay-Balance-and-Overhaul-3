@@ -1,7 +1,7 @@
 function place_hipfire_cth()
     PlaceObj('ChanceToHitModifier', {
-        CalcValue = function(self, attacker, target, body_part_def, action, weapon1, weapon2, lof, aim,
-                             opportunity_attack, attacker_pos, target_pos)
+        CalcValue = function(self, attacker, target, body_part_def, action, weapon1, weapon2, lof,
+                             aim, opportunity_attack, attacker_pos, target_pos)
 
             if not action then
                 return false, 0
@@ -17,7 +17,8 @@ function place_hipfire_cth()
                 return false, 0
             end
 
-            if action and action.id == "AutoFire" and HasPerk(attacker, "shooting_stance") and not opportunity_attack then
+            if action and action.id == "AutoFire" and HasPerk(attacker, "shooting_stance") and
+                not opportunity_attack then
                 return false, 0
             end
 
@@ -25,7 +26,7 @@ function place_hipfire_cth()
                 return false, 0
             end
 
-            if aim > 0 and attacker:GetLastAttack() == target then
+            if aim > 0 and (target and attacker:GetLastAttack() == target) then
                 return false, 0
             end
 
@@ -37,17 +38,23 @@ function place_hipfire_cth()
 
             local metaText = {}
 
-            local dist = attacker:GetDist(target)
+            local dist = (attacker and target and attacker:GetDist(target)) or
+                             (attacker_pos and target_pos and attacker_pos:Dist(target_pos))
+
             ---------------------------
 
             local weapon = weapon1
 
             local penalty = 1.0
 
-            if opportunity_attack then
-                -- if HasPerk(attacker, "shooting_stance") then
+            if opportunity_attack or attacker:HasStatusEffect("shooting_stance") or
+                attacker:HasStatusEffect("ManningEmplacement") or
+                attacker:HasStatusEffect("StationedMachineGun") then
                 aim = Max(1, aim)
-                -- end
+            end
+
+            if action.id == "MGSetup" or action.id == "Overwatch" then
+                aim = Max(1, aim)
             end
 
             if g_Overwatch[attacker] and g_Overwatch[attacker].permanent then
@@ -56,11 +63,13 @@ function place_hipfire_cth()
 
             local display = false
 
-            local wep_hip_penal, wep_meta = GetHipfirePenal(weapon, attacker, action, display, aim)
+            local wep_hip_penal, wep_meta = GetWeaponHipfireOrSnapshotMul(weapon, attacker, action,
+                                                                          display, aim)
 
             if action and action.id == "DualShot" then
                 weapon = weapon2
-                local wep_hip_penal2 = GetHipfirePenal(weapon, attacker, action, display, aim)
+                local wep_hip_penal2 = GetWeaponHipfireOrSnapshotMul(weapon, attacker, action,
+                                                                     display, aim)
                 weapon = weapon1
                 wep_hip_penal = (wep_hip_penal + wep_hip_penal2) / 2
                 wep_meta = {T {392849416519, "Average: Two Weapons"}}
@@ -72,29 +81,6 @@ function place_hipfire_cth()
                 table.insert(metaText, text)
             end
 
-            -- if dist < (6* const.SlabSizeX) then
-            -- penalty = penalty * 0.9
-            -- metaText[#metaText + 1] = "Close Range"
-            -- end
-
-            --[[if action and action.id == "GrizzlyPerk" then
-				local reflex = attacker.Strength
-				
-				local min = 0.40
-				local max = 1.10
-				local reflex_s = max - (max - min)* reflex/ 100
-				
-				
-				if reflex_s >= 0.75 then
-					metaText[#metaText + 1] = "Low Strength"
-				elseif reflex_s <= 0.65 then
-					metaText[#metaText + 1] = "High Strength"
-				-- else
-					-- metaText[#metaText + 1] = "Reflexes"
-				end	
-			else]]
-            -- print("hip action", action.id)
-
             local reflex_s = 1.0
             local ratio
 
@@ -103,8 +89,8 @@ function place_hipfire_cth()
             end
 
             if not opportunity_attack and aim < 1 and
-                ((action.id == "BuckshotBurst" or action.id == "MGBurstFire" or action.id == "GrizzlyPerk" or action.id ==
-                    "AutoFire") or (ratio and ratio > 1)) then
+                ((action.id == "BuckshotBurst" or action.id == "MGBurstFire" or action.id ==
+                    "GrizzlyPerk" or action.id == "AutoFire") or (ratio and ratio > 1)) then
                 local reflex = attacker.Strength
 
                 local min = 0.65

@@ -681,7 +681,7 @@ function get_recoil(attacker, target, target_pos, action, weapon1, aim, num_shot
 
         if held_mg then
             metaText[#metaText + 1] = rT(594122678151, "(-) Held MG")
-            hip_mod = (GetHipfirePenal(weapon, attacker, action, false, 1) * 0.5 *
+            hip_mod = (GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, false, 1) * 0.5 *
                           (weapon.weigth_held_mul / 100.0))
             mg_mod = 180 * hip_mod
         end
@@ -694,7 +694,7 @@ function get_recoil(attacker, target, target_pos, action, weapon1, aim, num_shot
     end
 
     -- if held_mg then
-    -- local hip_mod = (GetHipfirePenal(weapon, attacker, action, display, 1)*0.8)*100
+    -- local hip_mod = (GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, 1)*0.8)*100
     -- penalty = MulDivRound(penalty,Max(100, hip_mod), 100)
     -- end
 

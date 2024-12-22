@@ -961,25 +961,9 @@ function rat_combat_actions()
     CombatActions.RunAndGun.ActionPointDelta = 3000
 
     CombatActions.RunAndGun.GetAPCost = function(self, unit, args)
-
-        -- local weapon = self:GetAttackWeapons(unit, args)
-        -- local burst_cost = unit:GetAttackAPCost(self, weapon, nil, args and args.aim or 0)--CombatActions.BurstFire.GetAPCost(self, unit, args)
-
-        -- local ap_extra = (weapon.APStance + 1 )*const.Scale.AP --unit:GetShootingStanceAP( args and args.target or false, weapon, args and args.aim or 0, action) or 0	
-
-        -- local ap_extra = mobile_stance_ap(unit, weapon)
-        -- local ap_delta = rat_getDeltaAP(self, weapon)
-
-        -- print("ap_extra", ap_extra)
-
-        -- local cost = burst_cost + ap_delta
-
-        -- local cost_aimed = cost + ap_extra
-
         local cost, cost_aimed = rat_MobileAction_AP(self, unit)
 
         if unit:UIHasAP(cost_aimed, self.id) then
-
             return cost_aimed, true
         end
 
@@ -1026,11 +1010,8 @@ function rat_combat_actions()
         if IsAimed then
             unit.Mobile_aimed = true
         end
-        -- print("aimed", unit.Mobile_aimed)
 
         unit:SetActionCommand("RunAndGun", self.id, ap, ...)
-        -- unit:AddStatusEffect("R_outofbreath")
-
     end
 
     CombatActions.MobileShot.Run = function(self, unit, ap, ...)
@@ -1275,22 +1256,7 @@ function rat_combat_actions()
     CombatActions.RecklessAssault.ActionPointDelta = 3000
     CombatActions.RecklessAssault.GetAPCost = function(self, unit, args)
 
-        -- local weapon = CombatActions.RunAndGun:GetAttackWeapons(unit)
-        -- local burst_cost = unit:GetAttackAPCost(self, weapon, nil, args and args.aim or 0)--CombatActions.BurstFire.GetAPCost(self, unit, args)
-
-        -- local ap_extra = (weapon.APStance + 1 )*const.Scale.AP --unit:GetShootingStanceAP( args and args.target or false, weapon, args and args.aim or 0, action) or 0	
-
-        -- local ap_extra = mobile_stance_ap(unit, weapon)
-        -- local ap_delta = rat_getDeltaAP(self, weapon)
-
-        -- print("ap_extra", ap_extra)
-
-        -- local cost = burst_cost + ap_delta
-
-        -- local cost_aimed = cost + ap_extra
-
         local cost, cost_aimed = rat_MobileAction_AP(self, unit)
-
         if unit:UIHasAP(cost_aimed, self.id) then
 
             return cost_aimed, true
@@ -1428,7 +1394,7 @@ function rat_combat_actions()
 
         num_shots =
             "<style CrosshairAPTotal><color PDABrowserTextHighlight>" .. num_shots .. "X " ..
-                "</style></color>"
+                "</color></style>"
         return T(num_shots .. num_shots_real .. "X" .. damage)
 
     end
@@ -1447,7 +1413,7 @@ function rat_combat_actions()
 
         num_shots =
             "<style CrosshairAPTotal><color PDABrowserTextHighlight>" .. num_shots .. "X " ..
-                "</style></color>"
+                "</color></style>"
         return T(num_shots .. damage)
 
     end

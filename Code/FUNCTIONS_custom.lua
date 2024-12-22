@@ -113,7 +113,7 @@ function Is_AimingAttack()
     end
 end
 
-function Get_AimCost(unit) --------------add self, check if indoors
+function Get_AimCost(unit)
     local aim_cost = const.Scale.AP
     local indoors = unit and unit.indoors
     if GameState.RainHeavy and not indoors then
@@ -510,7 +510,7 @@ function GetHipfire_mul(self)
     local action = false
     local aim = 0
     local display = true
-    local hip = GetHipfirePenal(weapon, attacker, action, display, aim)
+    local hip = GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
     return string.format("%.2f", hip)
 end
 
@@ -521,7 +521,7 @@ function GetSnapshot_mul(self)
     local action = false
     local aim = 1
     local display = true
-    local hip = GetHipfirePenal(weapon, attacker, action, display, aim)
+    local hip = GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
     return string.format("%.2f", hip)
 end
 
