@@ -28,6 +28,10 @@ const.Combat.AI_ShootingStanceAP_Mul = 50 --- %
 ----- AP
 const.Combat.CumbersomeStanceAP_StrThreshold = 80
 
+----- BoltAction
+const.Combat.BoltActionDexFirstThreshold = 85
+const.Combat.BoltActionDexSecondThreshold = 95
+
 -------------
 ----- Vanilla
 const.Combat.GrazingHitDamage = 40 --- %

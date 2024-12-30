@@ -1538,35 +1538,33 @@ end
 function rat_MGSetup_getap()
     CombatActions.MGSetup.GetAPCost = function(self, unit, args)
 
-        -- local base = self:ResolveValue("max_cost") * const.Scale.AP
-        -- local min = self:ResolveValue("min_cost") * const.Scale.AP
-        -- local min_str = self:ResolveValue("min_str")
-
-        local weapon = unit:GetActiveWeapons()
+        local weapon = args and args.weapon or self:GetAttackWeapons(unit, args) -- unit:GetActiveWeapons()
 
         local ap_extra = GetWeapon_StanceAP(unit, weapon)
 
+        --[[local base = self:ResolveValue("max_cost") * const.Scale.AP
+        local min = self:ResolveValue("min_cost") * const.Scale.AP
+        local min_str = self:ResolveValue("min_str")
+
+        ic(base, min, min_str)
+        base = ap_extra
+        ic(base)
+        local cost = base - MulDivRound(Max(0, unit.Strength - min_str), base - min, 100 - min_str)
+        ic(cost)
+        cost = Max(min, (cost / const.Scale.AP) * const.Scale.AP)
+        ic(cost)]]
+
         local cost = ap_extra + (2 * const.Scale.AP)
-        -- base - MulDivRound(Max(0, unit.Strength - min_str), base - min, 100 - min_str)
-        -- cost = Max(min, (cost / const.Scale.AP) * const.Scale.AP)
+
         if HasPerk(unit, "HeavyWeaponsTraining") then
             local effect = unit:GetStatusEffect("HeavyWeaponsTraining")
             local reduction = effect:ResolveValue("ap_cost_reduction") * const.Scale.AP
             local minCost = effect:ResolveValue("min_ap_cost") * const.Scale.AP
 
             cost = Max(minCost, cost - reduction)
-            -- return HeavyWeaponsTrainingCostMod(cost)
+
         end
 
-        -- if CurrentModOptions["SO_free_precombat_MGsetup"] then ------MG setup option from SmartOverwatch
-        -- print("option")
-        -- if not g_Combat then
-        -- cost=0
-        -- return 0
-        -- end 
-        -- end
-
-        -- print("cost", cost)
         return cost
 
     end

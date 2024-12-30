@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.51c\n\n### remember to change light stock description\n\nchanged min dex for aim scaling from 50 to 10. this will ease up the scaling for low dex units",
+	'last_changes', "3.51c\n\n### remember to change light stock description\nchanged upper dex threshold to reduce manual cycling cost to 95 (now 85 = -1 ap, 95 = -2 ap)\nchanged min dex for aim scaling from 50 to 10. this will ease up the scaling for low dex units",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 51,
-	'version', 11331,
+	'version', 11341,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -189,8 +189,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1734965922,
-	'code_hash', -8880441289057699122,
+	'saved', 1735523093,
+	'code_hash', 6922183413842397456,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

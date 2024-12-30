@@ -1,15 +1,28 @@
 function prone_cover()
     local cover = -35
+    local prone = -30
+    local crouch = -12
 
     for _, param in ipairs(Presets.ChanceToHitModifier.Default["RangeAttackTargetStanceCover"]
                                .Parameters) do
         if param.Name == 'Cover' then
             param.Value = cover
+        elseif param.Name == 'PronePenalty' then
+            param.Value = prone
+        elseif param.Name == 'CrouchPenalty' then
+            param.Value = crouch
         end
+
     end
     --
     g_PresetParamCache[Presets.ChanceToHitModifier.Default["RangeAttackTargetStanceCover"]]['Cover'] =
         cover
+
+    g_PresetParamCache[Presets.ChanceToHitModifier.Default["RangeAttackTargetStanceCover"]]['PronePenalty'] =
+        prone
+
+    g_PresetParamCache[Presets.ChanceToHitModifier.Default["RangeAttackTargetStanceCover"]]['CrouchPenalty'] =
+        crouch
 
     Presets.ChanceToHitModifier.Default["RangeAttackTargetStanceCover"].CalcValue = function(self,
                                                                                              attacker,
@@ -28,7 +41,7 @@ function prone_cover()
         end
         local target_stance = target:GetHitStance()
         if target_stance == "Prone" then
-            local value = -30 -- self:ResolveValue("PronePenalty")
+            local value = self:ResolveValue("PronePenalty")
 
             local max_dist = 24 * const.SlabSizeX
             local target_pos = target_pos or target:GetPos()
@@ -42,14 +55,8 @@ function prone_cover()
             end
 
             local mul = dist * 1.00 / max_dist
-            -- print("dist", dist /const.SlabSizeX)
-            -- print("max dist", max_dist)
-            -- print("mul", mul)
 
             value = cRound(value * mul)
-
-            -- print("prone pen", value)
-
             return true, value, T(904752344471, "Target Prone")
         end
 
@@ -95,7 +102,6 @@ function prone_cover()
             local peek, any, peek_percent
             if target_return_pos then
                 peek, any, peek_percent = target:GetCoverPercentage(attacker_pos, target_return_pos)
-                -- print("peek", peek, "any" ,any, "percent", peek_percent)
             end
 
             if peek_percent and peek_percent > 80 then
@@ -114,21 +120,17 @@ function prone_cover()
 
                 local peek_value = InterpolateCoverEffect(coverage, full_value, exposed_value)
                 peek_value = MulDivRound(peek_value, 60, 100)
-                -- print("peek value", peek_value)
                 local metaText = false
                 return true, peek_value, name, metaText, "Cover"
             end
         end
 
         if target_stance == "Crouch" then
-
-            local value = -12 -- self:ResolveValue("CrouchPenalty")
+            local value = self:ResolveValue("CrouchPenalty")
 
             local max_dist = 26 * const.SlabSizeX
             local target_pos = target_pos or target:GetPos()
-
             local dist = attacker_pos:Dist(target_pos)
-
             dist = Min(max_dist, dist)
 
             if dist < 1.5 * const.SlabSizeX then
@@ -136,7 +138,6 @@ function prone_cover()
             end
 
             local mul = dist * 1.00 / max_dist
-
             value = cRound(value * mul)
 
             return true, value, T(309253003316, "Target Crouched")
