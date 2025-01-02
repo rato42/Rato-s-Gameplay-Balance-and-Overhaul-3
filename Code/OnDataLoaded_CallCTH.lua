@@ -30,7 +30,6 @@ function OnMsg.DataLoaded()
     place_hipfire_cth()
     recoil_template()
     -- add_recalcUI() ----smart ow compatibility
-
 end
 
 function OnMsg.EnterSector()

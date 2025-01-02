@@ -1386,8 +1386,20 @@ return {
 		'CodeFileName', "Code/CharEffectCompositeDef_function.lua",
 	}),
 	PlaceObj('ModItemCode', {
+		'name', "UTIL",
+		'CodeFileName', "Code/UTIL.lua",
+	}),
+	PlaceObj('ModItemCode', {
 		'name', "FUNCTION_disable_unpatched_shop",
 		'CodeFileName', "Code/FUNCTION_disable_unpatched_shop.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "FUNCTIONS_CombatGeneral",
+		'CodeFileName', "Code/FUNCTIONS_CombatGeneral.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "FUNCTIONS_CombatAP",
+		'CodeFileName', "Code/FUNCTIONS_CombatAP.lua",
 	}),
 	PlaceObj('ModItemCode', {
 		'name', "FUNCTIONS_attributes",
@@ -1404,14 +1416,6 @@ return {
 	PlaceObj('ModItemCode', {
 		'name', "FUNCTIONS_custom",
 		'CodeFileName', "Code/FUNCTIONS_custom.lua",
-	}),
-	PlaceObj('ModItemCode', {
-		'name', "FUNCTIONS_dynamic_loot",
-		'CodeFileName', "Code/FUNCTIONS_dynamic_loot.lua",
-	}),
-	PlaceObj('ModItemCode', {
-		'name', "FUNCTION_Archetype_assign",
-		'CodeFileName', "Code/FUNCTION_Archetype_assign.lua",
 	}),
 	PlaceObj('ModItemCode', {
 		'name', "FUNCTIONS_Boltaction",
@@ -1582,11 +1586,6 @@ return {
 	PlaceObj('ModItemCode', {
 		'name', "shooting_stance_functions",
 		'CodeFileName', "Code/shooting_stance_functions.lua",
-	}),
-	PlaceObj('ModItemCode', {
-		'name', "shooting_stance_getap_extra",
-		'comment', "GET ap",
-		'CodeFileName', "Code/shooting_stance_getap_extra.lua",
 	}),
 	PlaceObj('ModItemCode', {
 		'name', "shooting_stance_prepare_weapon_action",

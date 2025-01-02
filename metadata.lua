@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.51c\n\n### remember to change light stock description\nchanged upper dex threshold to reduce manual cycling cost to 95 (now 85 = -1 ap, 95 = -2 ap)\nchanged min dex for aim scaling from 50 to 10. this will ease up the scaling for low dex units",
+	'last_changes', "3.52\n\nFixes:\nFixed 5.7x28mm not having armor penetration\nFixed not being able to load ammo in Winchester barrel adaptation\nFixed SmartOverwatch compatibility for the steam version\nSome other code improvements\n\nBalance:\nLight stock aim reduction from -15% to -10%\nChanged upper dex threshold to reduce manual cycling cost to 95 (now 85 = -1 ap, 95 = -2 ap)\nChanged min dex for aim scaling from 50 to 10. this will ease up the scaling for low dex units",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -24,8 +24,8 @@ return PlaceObj('ModDef', {
 	'id', "cfahRED",
 	'author', "rato",
 	'version_major', 3,
-	'version_minor', 51,
-	'version', 11341,
+	'version_minor', 52,
+	'version', 11355,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -115,13 +115,14 @@ return PlaceObj('ModDef', {
 		"Code/CTH_hipfire_and_snapshot.lua",
 		"Code/CTH_targeted_noburst.lua",
 		"Code/CharEffectCompositeDef_function.lua",
+		"Code/UTIL.lua",
 		"Code/FUNCTION_disable_unpatched_shop.lua",
+		"Code/FUNCTIONS_CombatGeneral.lua",
+		"Code/FUNCTIONS_CombatAP.lua",
 		"Code/FUNCTIONS_attributes.lua",
 		"Code/FUNCTIONS_AI_custom.lua",
 		"Code/FUNCTIONS_changeMagComponent.lua",
 		"Code/FUNCTIONS_custom.lua",
-		"Code/FUNCTIONS_dynamic_loot.lua",
-		"Code/FUNCTION_Archetype_assign.lua",
 		"Code/FUNCTIONS_Boltaction.lua",
 		"Code/FUNCTIONS_recoil.lua",
 		"Code/XTEMP_recoil.lua",
@@ -161,7 +162,6 @@ return PlaceObj('ModDef', {
 		"Code/PATCH_GBOComponents.lua",
 		"Code/shooting_stance_aoesector_functions.lua",
 		"Code/shooting_stance_functions.lua",
-		"Code/shooting_stance_getap_extra.lua",
 		"Code/shooting_stance_prepare_weapon_action.lua",
 		"Code/unit_properties.lua",
 		"Code/weapon.properties.lua",
@@ -189,8 +189,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1735523093,
-	'code_hash', 6922183413842397456,
+	'saved', 1735787453,
+	'code_hash', -63113255556329236,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

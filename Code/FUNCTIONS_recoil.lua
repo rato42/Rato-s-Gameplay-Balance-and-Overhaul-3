@@ -32,11 +32,7 @@ function Unit:ApplyPersistantRecoilEffects(aim, action, weapon, attack_args)
     local stacks = effect.stacks
     local recoil_value = get_recoilP_value(self, action, weapon, false, stacks, false)
 
-    --[[ 	print("recoil value", recoil_value) ]]
-
     local aim_mul = GetAimMul_Recoil_byCaliber(weapon)
-
-    --[[ 	print("aim_mul", aim_mul) ]]
 
     local aim_cost = ((-recoil_value * 0.7 * aim_mul / 30.00) * (option_mul or 100)) / 100.0 -- cRoundDown(-recoil_value/20)--/2.0  ---51
     local bolt_cost_adj = 0
@@ -44,21 +40,14 @@ function Unit:ApplyPersistantRecoilEffects(aim, action, weapon, attack_args)
         bolt_cost_adj = rat_get_manual_cyclingAP(self, weapon, true) * 0.6
     end
 
-    --[[ 	print("boltcost", bolt_cost_adj)
-	print("recoil by aim mul", -recoil_value * aim_mul)
-	print("aim cost", aim_cost) ]]
     aim_cost = Max(0, aim_cost - bolt_cost_adj)
     aim_cost = cRoundFlt(aim_cost, 0.5)
-
-    --[[ 	print("aim cost rounded", aim_cost) ]]
 
     aim_cost = Min(5, aim_cost)
     if HasPerk(self, "shooting_stance") then
         local stance_cost = (GetWeapon_StanceAP(self, weapon) + (Get_AimCost(self) * 2)) / 1000.00
         aim_cost = Min(stance_cost, aim_cost)
     end
-
-    --[[ 	print("final aim cost", aim_cost) ]]
 
     effect:SetParameter("Recoil_value", recoil_value)
     effect:SetParameter("aim_cost", aim_cost)
@@ -76,8 +65,6 @@ function GetWepRecoil(weapon, attacker, display)
         local equipped_w = attacker:GetEquippedWeapons(slot)
 
         weapon2 = equipped_w and equipped_w[2] or false
-        -- print(weapon2)
-
     end
 
     ----------------weaponkind
@@ -123,10 +110,7 @@ function GetWepRecoil(weapon, attacker, display)
     mod = mod * mech
 
     if weapon and weapon:HasComponent("Vert_grip_recoil") then
-
-        -- if action and action.id == "DualShot" then
         if weapon2 then
-            -- print("w2")
         else
             mod = mod * 0.92
             metaText[#metaText + 1] = rT(892823936544, "Vertical Grip")
@@ -134,10 +118,7 @@ function GetWepRecoil(weapon, attacker, display)
     end
 
     if weapon and weapon:HasComponent("tac_grip_recoil") then
-
-        -- if action and action.id == "DualShot" then
         if weapon2 then
-            -- print("w2")
         else
             mod = mod * 0.97
             metaText[#metaText + 1] = rT(371872683581, "Foldable Grip")
@@ -145,13 +126,10 @@ function GetWepRecoil(weapon, attacker, display)
     end
 
     if weapon and weapon:HasComponent("no_stock") then
-
         if IsKindOfClasses(weapon, "SubmachineGun") then
             mod = mod * 1.80
-
         else
             mod = mod * 1.90
-
         end
         metaText[#metaText + 1] = rT(115796595571, "(-) No Stock")
     end
