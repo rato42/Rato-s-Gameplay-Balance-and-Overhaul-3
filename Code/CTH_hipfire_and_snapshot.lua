@@ -38,8 +38,8 @@ function place_hipfire_cth()
 
             local metaText = {}
 
-            local dist = (attacker and target and attacker:GetDist(target)) or
-                             (attacker_pos and target_pos and attacker_pos:Dist(target_pos))
+            local dist = (attacker_pos and target_pos and attacker_pos:Dist(target_pos)) or
+                             (attacker and target and attacker:GetDist(target))
 
             ---------------------------
 

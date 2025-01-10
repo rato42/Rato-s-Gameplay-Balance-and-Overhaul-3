@@ -4,6 +4,7 @@ end
 
 function OnMsg.ModsReloaded()
     RatoGBOComponents()
+    GBO_patch_WeaponsPresetsClass()
 end
 
 local function isModActiveInVersion(modId, version)
@@ -17,7 +18,8 @@ local function isModActiveInVersion(modId, version)
 end
 
 local function openZulibVersionWarning()
-    local properZulibVersion = isModActiveInVersion("Tc3ajdY", {version_major = 1, version_minor = 6})
+    local properZulibVersion = isModActiveInVersion("Tc3ajdY",
+                                                    {version_major = 1, version_minor = 6})
     if properZulibVersion then
         return
     end

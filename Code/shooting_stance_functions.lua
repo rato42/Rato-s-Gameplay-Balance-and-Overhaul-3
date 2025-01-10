@@ -54,6 +54,9 @@ function ShootingStance(unit, target, attack_args)
         unit:AddStatusEffect("shooting_stance")
     end
 
+    local effect = unit:GetStatusEffect("shooting_stance")
+    effect:SetParameter("aim_pos", target_pos)
+
     local aim_state = unit:GetStateText()
 
     -- local attacker_pos = unit:GetPos()
@@ -67,20 +70,27 @@ function ShootingStance(unit, target, attack_args)
 
 end
 
-function ShootingConeAngle(unit, weapon, target, param)
-
+function GetShootingAngleDiff(unit, weapon, target, force)
     local cone_angle = weapon.OverwatchAngle / 2
     local target_pos = IsValid(target) and target:GetPos()
-    if Is_AimingAttack() then
+    if force or Is_AimingAttack() then
         target_pos = IsValid(target) and target:GetPos() or GetCursorPos(true) -- :SetZ(attacker_z)
     end
 
     if not target_pos then
         return 0
     end
+
     local target_angle = abs(unit:AngleToPoint(target_pos))
 
     local angle_dif = target_angle / cone_angle
+
+    return angle_dif
+end
+
+function ShootingConeAngle(unit, weapon, target, param)
+
+    local angle_dif = GetShootingAngleDiff(unit, weapon, target)
 
     if weapon and weapon:HasComponent("rotate_ap_bipod") then
         if unit.stance == "Prone" then
@@ -97,8 +107,7 @@ end
 function CreateStanceConeV(unit, weapon)
     -- print("creating stance cone")
     local side = unit and unit.team and unit.team.side or ''
-    if not (side == 'player1' or side == 'player2') or
-        (SelectedObj and not SelectedObj == unit) then
+    if not (side == 'player1' or side == 'player2') or (SelectedObj and not SelectedObj == unit) then
         return
     end
 
@@ -107,10 +116,8 @@ function CreateStanceConeV(unit, weapon)
     local weapon = weapon or unit:GetActiveWeapons()
 
     if weapon then
-        local min_aim_range = weapon:GetOverwatchConeParam("MinRange") *
-                                  const.SlabSizeX
-        local max_aim_range = weapon:GetOverwatchConeParam("MaxRange") *
-                                  const.SlabSizeX
+        local min_aim_range = weapon:GetOverwatchConeParam("MinRange") * const.SlabSizeX
+        local max_aim_range = weapon:GetOverwatchConeParam("MaxRange") * const.SlabSizeX
         unit.properties = table.copy(g_Classes[unit.class].properties)
         local idx = table.find(unit.properties, "id", "target_dist")
         if idx then
@@ -136,25 +143,20 @@ function CreateStanceConeV(unit, weapon)
 
     local cone_angle = weapon.OverwatchAngle
 
-    local min_aim_range = weapon:GetOverwatchConeParam("MinRange") *
-                              const.SlabSizeX
+    local min_aim_range = weapon:GetOverwatchConeParam("MinRange") * const.SlabSizeX
 
-    local max_aim_range = weapon:GetOverwatchConeParam("MaxRange") *
-                              const.SlabSizeX
+    local max_aim_range = weapon:GetOverwatchConeParam("MaxRange") * const.SlabSizeX
     local distance = max_aim_range * 1.5 -- Clamp(unit.target_dist, min_aim_range, max_aim_range)
     unit.target_dist = distance
     local target = pos + Rotate(point(distance, 0, 0), angle)
     ---------------
-    local step_positions, step_objs = GetStepPositionsInArea(pos, distance, 0,
-                                                             cone_angle, angle,
+    local step_positions, step_objs = GetStepPositionsInArea(pos, distance, 0, cone_angle, angle,
                                                              "force2d")
 
     step_objs = empty_table
 
-    unit.shooter_cone_v = CreateAOETilesSector_Shooter(step_positions,
-                                                       step_objs, empty_table,
-                                                       unit.shooter_cone_v, pos,
-                                                       target, 1 * guim,
+    unit.shooter_cone_v = CreateAOETilesSector_Shooter(step_positions, step_objs, empty_table,
+                                                       unit.shooter_cone_v, pos, target, 1 * guim,
                                                        distance, cone_angle,
                                                        "Overwatch4_Deployed_Ally")
 
@@ -167,10 +169,8 @@ function CreateStanceConeV(unit, weapon)
     cone_angle = cone_angle * 2
 
     if weapon then
-        local min_aim_range = weapon:GetOverwatchConeParam("MinRange") *
-                                  const.SlabSizeX
-        local max_aim_range = weapon:GetOverwatchConeParam("MaxRange") *
-                                  const.SlabSizeX
+        local min_aim_range = weapon:GetOverwatchConeParam("MinRange") * const.SlabSizeX
+        local max_aim_range = weapon:GetOverwatchConeParam("MaxRange") * const.SlabSizeX
         unit.properties = table.copy(g_Classes[unit.class].properties)
         local idx = table.find(unit.properties, "id", "target_dist")
         if idx then
@@ -194,26 +194,21 @@ function CreateStanceConeV(unit, weapon)
         unit:SetProperty("target_dist", meta.default)
     end
 
-    local min_aim_range = weapon:GetOverwatchConeParam("MinRange") *
-                              const.SlabSizeX
+    local min_aim_range = weapon:GetOverwatchConeParam("MinRange") * const.SlabSizeX
 
-    local max_aim_range = weapon:GetOverwatchConeParam("MaxRange") *
-                              const.SlabSizeX
+    local max_aim_range = weapon:GetOverwatchConeParam("MaxRange") * const.SlabSizeX
     local distance = max_aim_range * 1.5 -- Clamp(unit.target_dist, min_aim_range, max_aim_range)
     unit.target_dist = distance
     local target = pos + Rotate(point(distance, 0, 0), angle)
     ---------------
-    local step_positions, step_objs = GetStepPositionsInArea(pos, distance, 0,
-                                                             cone_angle, angle,
+    local step_positions, step_objs = GetStepPositionsInArea(pos, distance, 0, cone_angle, angle,
                                                              "force2d")
 
     step_objs = empty_table
 
-    unit.snap_cone = CreateAOETilesSector_Snap(step_positions, step_objs,
-                                               empty_table, unit.snap_cone, pos,
-                                               target, 1 * guim, distance,
-                                               cone_angle,
-                                               "Overwatch4_Deployed_Ally")
+    unit.snap_cone = CreateAOETilesSector_Snap(step_positions, step_objs, empty_table,
+                                               unit.snap_cone, pos, target, 1 * guim, distance,
+                                               cone_angle, "Overwatch4_Deployed_Ally")
 
     if unit == SelectedObj then
         unit.snap_cone:SetOpacity(100)

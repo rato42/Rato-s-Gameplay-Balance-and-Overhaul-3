@@ -174,7 +174,6 @@ function GetWepRecoil(weapon, attacker, display)
     end
 
     if (weapon and weapon:HasComponent("longbarrel")) or (weapon and weapon.default_long_barrel) then
-
         if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
             mod = mod * 0.94
         elseif IsKindOf(weapon, "Revolver") then
@@ -184,23 +183,19 @@ function GetWepRecoil(weapon, attacker, display)
         else
             mod = mod * 0.90
         end
-
         metaText[#metaText + 1] = rT(894953874886, "Extended Barrel")
     end
 
     if weapon and weapon:HasComponent("shortbarrel") then
-
         if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
             mod = mod * 1.03
         elseif IsKindOf(weapon, "Revolver") then
             mod = mod * 1.04
         elseif IsKindOf(weapon, "SubmachineGun") then
             mod = mod * 1.09
-
         else
             mod = mod * 1.10
         end
-
         metaText[#metaText + 1] = rT(228113672715, "(-) Short Barrel")
     end
 
@@ -211,16 +206,13 @@ function GetWepRecoil(weapon, attacker, display)
             mod = mod * 1.07
         elseif IsKindOf(weapon, "SubmachineGun") then
             mod = mod * 1.10
-
         else
             mod = mod * 1.12
         end
-
         metaText[#metaText + 1] = rT(826212377342, "(-) Light Barrel")
     end
 
     if weapon and weapon:HasComponent("heavy_barrel_effect") then
-
         if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
             mod = mod * 0.95
         elseif IsKindOf(weapon, "Revolver") then
@@ -230,7 +222,6 @@ function GetWepRecoil(weapon, attacker, display)
         else
             mod = mod * 0.91
         end
-
         metaText[#metaText + 1] = rT(649749565849, "Heavy Barrel")
     end
 
@@ -340,12 +331,9 @@ function GetRecoilOther(weapon, attacker, action)
 
     if marks > 59 then
         local marks_scaling = 0.77 + 0.23 * (1 - (marks - 60 * 1.00) / 40 * 1.00)
-
         mod = mod * marks_scaling
-        -- print("marks scaling", marks_scaling)
+
         if marks == 100 then
-            -- mod = mod * 0.99
-            -- print("marks scaling 100", marks_scaling *0.96)
             metaText[#metaText + 1] = rT(869135768177, "Perfect Technique")
         elseif marks > 85 then
             metaText[#metaText + 1] = rT(495676736357, "High Marksmanship")
@@ -364,8 +352,8 @@ function GetRecoilOther(weapon, attacker, action)
         end
 
         if action and
-            not (action.id == "SingleShot" or action.id == "Buckshot" or action.id == "Pindown") and
-            attacker:HasStatusEffect("AutoWeapons") then
+            not (action.id == "SingleShot" or action.id == "Buckshot" or action.id == "Pindown" or
+                action.id == "MobileShot") and attacker:HasStatusEffect("AutoWeapons") then
             mod = mod * 0.82
             metaText[#metaText + 1] = rT(764956297274, "Perk: Auto Weapons")
 
@@ -376,19 +364,13 @@ function GetRecoilOther(weapon, attacker, action)
 
             if weapon.burst_recoil_delta and weapon.burst_recoil_delta ~= 100 then
                 local burst_delta = weapon.burst_recoil_delta / 100.0
-
                 mod = mod * burst_delta
-
             end
+
             if weapon and weapon:HasComponent("recoil_bump") then
                 mod = mod * 1.10
                 metaText[#metaText + 1] = rT(749694622664, "(-) Bump Stock")
             end
-
-            -- if weapon and weapon:HasComponent("bullpup") then
-            -- mod = mod * 0.95
-            -- metaText[#metaText + 1] = "Bullpup"
-            -- end
 
             if weapon.burst_selective or weapon:HasComponent("Reduce_recoil_burst_delta") then
                 local name = type(weapon.DisplayName) == "table" and weapon.DisplayName[2] or false
@@ -398,30 +380,19 @@ function GetRecoilOther(weapon, attacker, action)
         end
 
         if action and (action.id == "AutoFire") then
-
             if weapon.auto_recoil_delta and weapon.auto_recoil_delta ~= 100 then
                 local auto_delta = weapon.auto_recoil_delta / 100.0
                 mod = mod * auto_delta
-
             end
-
         end
 
         if action and (action.id == "MGBurstFire" or action.id == "GrizzlyPerk") then
-
             if weapon.long_recoil_delta and weapon.long_recoil_delta ~= 100 then
                 local long_delta = weapon.long_recoil_delta / 100.0
                 mod = mod * long_delta
-
             end
-
         end
     end
-    -- print(mod)
-
-    -- mod = mod ^0.8
-    -- print(mod)
-    -- print(mod)
 
     return mod, metaText
 end
@@ -518,7 +489,7 @@ local flat_penalty_base = const.Combat.Recoil_BasePenalty
 local param_base = const.Combat.Recoil_MaxPenalty
 
 function get_recoil(attacker, target, target_pos, action, weapon1, aim, num_shots, stacks, test,
-                    test_distance, unit_command, populate_recoil)
+                    test_distance, unit_command, populate_recoil, attacker_pos)
 
     if not attacker or not target then
         return 0
@@ -534,13 +505,9 @@ function get_recoil(attacker, target, target_pos, action, weapon1, aim, num_shot
     local mod = 100
     local display = false
 
-    if IsKindOf(target, "Unit") then
-        local target_pos = target:GetPos()
-    end
+    local target_pos = target_pos or IsKindOf(target, "Unit") and target:GetPos()
 
-    -- print("actionid", action.id)
-    -- print("command", attacker.unit_command)
-    local attacker_pos = attacker:GetPos()
+    local attacker_pos = attacker_pos or attacker:GetPos()
 
     local w1, weapon2 = attacker:GetActiveWeapons()
 

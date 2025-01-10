@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 52,
-	'version', 11355,
+	'version', 11366,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -33,7 +33,6 @@ return PlaceObj('ModDef', {
 		"CharacterEffect/shooting_stance.lua",
 		"CharacterEffect/Marked.lua",
 		"CharacterEffect/Revealed_R.lua",
-		"CharacterEffect/wounded_Test.lua",
 		"CharacterEffect/Rat_recoil.lua",
 		"CharacterEffect/R_outofbreath.lua",
 		"CharacterEffect/R_ReservedAP_stance.lua",
@@ -159,6 +158,7 @@ return PlaceObj('ModDef', {
 		"Code/PATCH_call.lua",
 		"Code/PATCH_old_ammo.lua",
 		"Code/PATCH_weapons.lua",
+		"Code/PATCH_WeaponsPresetClass.lua",
 		"Code/PATCH_GBOComponents.lua",
 		"Code/shooting_stance_aoesector_functions.lua",
 		"Code/shooting_stance_functions.lua",
@@ -189,8 +189,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1735787453,
-	'code_hash', -63113255556329236,
+	'saved', 1736483952,
+	'code_hash', -5360030115458447484,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
@@ -230,11 +230,6 @@ return PlaceObj('ModDef', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "CharacterEffectCompositeDef",
 			'Id', "Revealed_R",
-			'ClassDisplayName', "Character effect",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "CharacterEffectCompositeDef",
-			'Id', "wounded_Test",
 			'ClassDisplayName', "Character effect",
 		}),
 		PlaceObj('ModResourcePreset', {
