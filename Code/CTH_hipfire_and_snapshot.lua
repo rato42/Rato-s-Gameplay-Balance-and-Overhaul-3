@@ -13,16 +13,20 @@ function place_hipfire_cth()
                 return false, 0
             end
 
-            if action and action.id == "PinDown" then
+            if action.id == "MGSetup" then
                 return false, 0
             end
 
-            if action and action.id == "AutoFire" and HasPerk(attacker, "shooting_stance") and
+            if action.id == "PinDown" then
+                return false, 0
+            end
+
+            if action.id == "AutoFire" and HasPerk(attacker, "shooting_stance") and
                 not opportunity_attack then
                 return false, 0
             end
 
-            if action and action.id == "AutoFire" and aim > 0 and not opportunity_attack then
+            if action.id == "AutoFire" and aim > 0 and not opportunity_attack then
                 return false, 0
             end
 
@@ -53,7 +57,7 @@ function place_hipfire_cth()
                 aim = Max(1, aim)
             end
 
-            if action.id == "MGSetup" or action.id == "Overwatch" then
+            if action.id == "Overwatch" then
                 aim = Max(1, aim)
             end
 
