@@ -135,10 +135,10 @@ DefineClass.Rat_recoil = {
 				if target == attacker then
 					local effect = target:GetStatusEffect("Rat_recoil")
 					local target_pos =  IsValid(attack_target) and attack_target:GetPos() or attack_target
-					--print("targetpos", target_pos)
+				
 					local aim = data.aim or 0
 					local stacks = self.stacks--effect:ResolveValue("shots_fired") or 1
-					--print("stacks",stacks)
+				
 					local recoil = get_recoil(attacker, attack_target, target_pos, action, weapon1, aim, false, stacks)
 					local metaText = {}
 					if recoil and aim > 0 then
@@ -156,8 +156,6 @@ DefineClass.Rat_recoil = {
 						table.insert(data.modifiers, recoil_cth)
 					end
 					data.mod_add = data.mod_add + recoil
-					--print("d", data.modifiers)
-					--ApplyCthModifier_Add(self .. "X" .. stacks, data, recoil)
 				end
 			end,
 		}),
@@ -166,19 +164,13 @@ DefineClass.Rat_recoil = {
 			Handler = function (self, target, current_ap, action, weapon, aim)
 				local aim_level = Min(3,aim or 0)
 				
-				if HasPerk(target,"shooting_stance") then
-					--aim_level = Max(0, aim_level -1)
-				end
 				if aim_level < 1 then
 					return
 				end
+				
 				local aim_cost = self:ResolveValue("aim_cost") 
-				
-				
-				
-				
 				local extra_cost = cRoundDown(aim_cost * aim_level) * const.Scale.AP
-				--print("extra_cost", extra_cost)
+				
 				return current_ap + extra_cost
 			end,
 		}),

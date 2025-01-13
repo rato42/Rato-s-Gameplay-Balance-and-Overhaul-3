@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.52\n\nFixes:\nFixed 5.7x28mm not having armor penetration\nFixed not being able to load ammo in Winchester barrel adaptation\nFixed SmartOverwatch compatibility for the steam version\nSome other code improvements\n\nBalance:\nLight stock aim reduction from -15% to -10%\nChanged upper dex threshold to reduce manual cycling cost to 95 (now 85 = -1 ap, 95 = -2 ap)\nChanged min dex for aim scaling from 50 to 10. this will ease up the scaling for low dex units",
+	'last_changes', "3.53 #### not released\n\nFixes:\nFixed some weirdness related to units in shooting stance changing orientation when in uneven terrain and prone\nUsing Prepare Weapon outside of combat will now properly display the animation and take the correct amount of time\n",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -24,8 +24,8 @@ return PlaceObj('ModDef', {
 	'id', "cfahRED",
 	'author', "rato",
 	'version_major', 3,
-	'version_minor', 52,
-	'version', 11366,
+	'version_minor', 53,
+	'version', 11483,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -189,8 +189,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1736483952,
-	'code_hash', -5360030115458447484,
+	'saved', 1736744047,
+	'code_hash', 4231532567510458386,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

@@ -18,12 +18,10 @@ function rat_unbolt(self, target, attacker, action, attack_target, results, atta
     end
 end
 
-function rat_endturn_bolt(self, target)
+function rat_endturn_bolt(self, target, unit_override)
     if self.unbolted then
-        if not self.owner then
-            return
-        end
-        local unit = g_Units[self.owner]
+
+        local unit = self.owner and g_Units[self.owner] or unit_override
 
         if not unit then
             return
@@ -89,7 +87,7 @@ end
 ----
 
 function rat_canBolt(weapon)
-    if not weapon then
+    if not weapon or not IsKindOf(weapon, "Firearm") then
         return false
     end
     if weapon:HasComponent("DASA_action_ap") or weapon:HasComponent("bolt_action_ap") then

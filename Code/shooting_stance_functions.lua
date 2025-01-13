@@ -1,73 +1,104 @@
-function ShootingStance(unit, target, attack_args)
+function Unit:EnterShootingStance(target, args)
 
-    -- print(attack_args)
+    local weapon = args and args.weapon or self:GetActiveWeapons()
+    local target = args and args.target or target or self:GetLastAttack()
 
-    -- ShootingStance(unit, action, target, results, attack_args, ow)
-
-    -- if ow then
-    -- local attack_args = unit.ow_args
-    -- end
-
-    -- print(g_Combat)
-
-    local aim, weapon, target
-
-    local args = attack_args or false
-    if args then
-        aim = args.aim
-        weapon = args.weapon
-        target = args.target
-    else
-        aim = 0
-        weapon = unit:GetActiveWeapons()
-        target = unit:GetLastAttack()
-    end
-
-    if not weapon then
+    if not weapon or not IsKindOf(weapon, "Firearm") then
         return
     end
 
     local target_pos = IsValid(target) and target:GetPos() or target
 
-    -- local lof_idx = table.find(attack_args.lof, "target_spot_group", attack_args.target_spot_group or "Torso")
-    -- local lof_data = attack_args.lof and attack_args.lof[lof_idx or 1] or attack_args
-
-    -- local aim_pos = lof_data.lof_pos2
-
-    local aim_pos = target_pos -- aim_pos or attack_args.target
-
-    if aim_pos then
-        unit.aim_pos_stance = aim_pos
-    end
-
-    if unit.return_pos then
-        unit.return_pos_reserved = unit.return_pos
-        unit.return_pos = false
+    if self.return_pos then
+        self.return_pos_reserved = self.return_pos
+        self.return_pos = false
     end
 
     if IsKindOf(weapon, "BrowningM2HMG") then
-        unit:AddStatusEffect("shooting_stance")
+        self:AddStatusEffect("shooting_stance")
         return
     end
 
-    if not unit:HasStatusEffect("shooting_stance") then
-        unit:AddStatusEffect("shooting_stance")
+    if not self:HasStatusEffect("shooting_stance") then
+        self:AddStatusEffect("shooting_stance")
     end
 
-    local effect = unit:GetStatusEffect("shooting_stance")
-    effect:SetParameter("aim_pos", target_pos)
+    local effect = self:GetStatusEffect("shooting_stance")
+    PackAimPosInStanceEffect(effect, target_pos)
 
-    local aim_state = unit:GetStateText()
+    CreateStanceConeV(self, weapon)
+end
 
-    -- local attacker_pos = unit:GetPos()
+function Unit:ShootingStanceCommand(action_id, cost_ap, args)
+    local stance_effect = self:GetStatusEffect("shooting_stance")
+    local target = args and args.target or GetAimPos_ShootingStance(stance_effect)
 
-    -- local angle = CalcOrientation(attacker_pos, aim_pos)
-    -- print("angle", angle)
-    -- unit:SetOrientationAngle(angle)
-    -- unit:SetState(aim_state, const.eKeepComponentTargets)
+    if not target then
+        return
+    end
 
-    CreateStanceConeV(unit, weapon)
+    local orientation = CalcOrientation(self, target)
+    local stance = self.stance
+    local aim_state = self:GetAimAnim(stance)
 
+    self:AnimatedRotation(orientation)
+    self:SetState(aim_state, const.eKeepComponentTargets)
+    ----
+    local target_pos = IsValid(target) and target:GetPos() or target
+    PackAimPosInStanceEffect(stance_effect, target_pos)
+    ----
+    Sleep(300)
+
+    self:EnterShootingStance(target)
+    -- self:SetCommand("ShootingStanceIdle")
+
+    SetInGameInterfaceMode(g_Combat and "IModeCombatMovement" or "IModeExploration")
+end
+
+--[[function Unit:ShootingStanceIdle()
+    self:SetTargetDummy(self:GetPos(), self:GetOrientationAngle(), self:GetStateText(), 0)
+    Msg("Idle", self)
+    Halt()
+end
+
+function OnMsg.UnitStanceChanged(unit)
+    if unit:HasStatusEffect("shooting_stance") then
+        unit:SetActionCommand("ShootingStanceCommand", "Rato_StanceChanged", nil)
+    end
+end]]
+
+function Unit:Reorient_ShootingStance(effect)
+    local aim_pos = GetAimPos_ShootingStance(effect)
+    if aim_pos then
+        local angle = CalcOrientation(self:GetPos(), aim_pos)
+        -- Sleep(100)
+        if g_Combat then
+            self:AnimatedRotation(angle)
+        else
+            self:SetOrientationAngle(angle)
+        end
+    end
+end
+
+function PackAimPosInStanceEffect(effect, pos)
+    if not pos or not effect then
+        return
+    end
+
+    effect:SetParameter("x", pos:x())
+    effect:SetParameter("y", pos:y())
+    effect:SetParameter("z", pos:z())
+end
+
+function GetAimPos_ShootingStance(effect)
+    if not effect then
+        return false
+    end
+    local x = effect:ResolveValue("x")
+    local y = effect:ResolveValue("y")
+    local z = effect:ResolveValue("z")
+
+    return x and point(x, y, z)
 end
 
 function GetShootingAngleDiff(unit, weapon, target, force)
@@ -88,7 +119,7 @@ function GetShootingAngleDiff(unit, weapon, target, force)
     return angle_dif
 end
 
-function ShootingConeAngle(unit, weapon, target, param)
+function ShootingConeAngle(unit, weapon, target)
 
     local angle_dif = GetShootingAngleDiff(unit, weapon, target)
 
@@ -104,8 +135,17 @@ function ShootingConeAngle(unit, weapon, target, param)
 
 end
 
+function DestroyStanceConeV(unit)
+    if unit.shooter_cone_v then
+        DoneObject(unit.shooter_cone_v)
+        unit.shooter_cone_v = nil
+        DoneObject(unit.snap_cone)
+        unit.snap_cone = nil
+    end
+end
+
 function CreateStanceConeV(unit, weapon)
-    -- print("creating stance cone")
+
     local side = unit and unit.team and unit.team.side or ''
     if not (side == 'player1' or side == 'player2') or (SelectedObj and not SelectedObj == unit) then
         return
@@ -197,6 +237,7 @@ function CreateStanceConeV(unit, weapon)
     local min_aim_range = weapon:GetOverwatchConeParam("MinRange") * const.SlabSizeX
 
     local max_aim_range = weapon:GetOverwatchConeParam("MaxRange") * const.SlabSizeX
+    -------------
     local distance = max_aim_range * 1.5 -- Clamp(unit.target_dist, min_aim_range, max_aim_range)
     unit.target_dist = distance
     local target = pos + Rotate(point(distance, 0, 0), angle)
@@ -220,173 +261,3 @@ function CreateStanceConeV(unit, weapon)
     ----------------------------------
 
 end
-
--- local lAoEGetAimPoint = function(obj, pt, start_pos)
--- if not pt:IsValidZ() then
--- pt = pt:SetTerrainZ()
--- end
--- if not start_pos:IsValidZ() then
--- start_pos = start_pos:SetTerrainZ()
--- end
--- local min_range = const.SlabSizeX / 2
--- if IsCloser2D(start_pos, pt, min_range) then
--- pt = RotateRadius(min_range, obj:GetAngle(), start_pos)
--- end
--- return pt
--- end
-
--- local SetAreaMovementAvatarVisibile = function(dialog, blackboard, visible, time)
--- if not IsValidThread(dialog.real_time_threads.MovementAvatarVisibilityUpdate) then
--- dialog:CreateThread("MovementAvatarVisibilityUpdate", VisUpdateThread, blackboard)
--- end
--- if visible == blackboard.move_avatar_visible then
--- return
--- end
--- blackboard.move_avatar_visible = visible
--- Wakeup(dialog.real_time_threads.MovementAvatarVisibilityUpdate)
--- end
-
--- function Targeting_AOE_Cone(dialog, blackboard, command, pt)
--- pt = GetCursorPos("walkableFlag")
--- local attacker = dialog.attacker
--- local action = dialog.action
--- if not blackboard.firing_mode_action then
--- if action.group == "FiringModeMetaAction" then
--- action = GetUnitDefaultFiringModeActionFromMetaAction(attacker, action)
--- end
--- blackboard.firing_mode_action = action
--- end
--- action = action.group == "FiringModeMetaAction" and blackboard.firing_mode_action or action
--- if action.IsTargetableAttack and not dialog.context.free_aim then
--- blackboard.gamepad_aim = false
--- return Targeting_AOE_Cone_TargetRequired(dialog, blackboard, command, pt)
--- end
--- if dialog:PlayerActionPending(attacker) then
--- command = "delete"
--- end
--- if command == "delete" then
--- if blackboard.mesh then
--- if IsActivePaused() and dialog.action and dialog.action.ActivePauseBehavior == "queue" and attacker.queued_action_id == dialog.action.id then
--- attacker.queued_action_visual = blackboard.mesh
--- else
--- DoneObject(blackboard.mesh)
--- end
--- blackboard.mesh = false
--- end
--- if blackboard.movement_avatar then
--- UpdateMovementAvatar(dialog, point20, nil, "delete")
--- end
--- UnlockCamera("AOE-Gamepad")
--- SetAPIndicator(false, "free-aim")
--- ClearDamagePrediction()
--- return
--- end
--- local shouldGamepadAim = GetUIStyleGamepad()
--- local wasGamepadAim = blackboard.gamepad_aim
--- if shouldGamepadAim ~= wasGamepadAim then
--- if shouldGamepadAim then
--- LockCamera("AOE-Gamepad")
--- SnapCameraToObj(attacker, "force")
--- else
--- UnlockCamera("AOE-Gamepad")
--- end
--- blackboard.gamepad_aim = shouldGamepadAim
--- end
--- local weapon = action:GetAttackWeapons(attacker)
--- local aoe_params = action:GetAimParams(attacker, weapon) or weapon and weapon:GetAreaAttackParams(action.id, attacker)
--- if not aoe_params then
--- return
--- end
--- local min_aim_range = aoe_params.min_range * const.SlabSizeX
--- local max_aim_range = aoe_params.max_range * const.SlabSizeX
--- local lof_params = {
--- weapon = weapon,
--- step_pos = dialog.move_step_position or attacker:GetOccupiedPos(),
--- prediction = true
--- }
--- local attack_data = attacker:ResolveAttackParams(action.id, pt, lof_params)
--- local attacker_pos3D = attack_data.step_pos
--- if not attacker_pos3D:IsValidZ() then
--- attacker_pos3D = attacker_pos3D:SetTerrainZ()
--- end
--- if not blackboard.movement_avatar then
--- UpdateMovementAvatar(dialog, point20, nil, "setup")
--- UpdateMovementAvatar(dialog, point20, nil, "update_weapon")
--- blackboard.movement_avatar:SetVisible(false)
--- blackboard.move_avatar_visible = false
--- blackboard.move_avatar_time = RealTime()
--- end
--- if not IsCloser(attacker, attack_data.step_pos, const.SlabSizeX / 2 + 1) then
--- UpdateMovementAvatar(dialog, attack_data.step_pos, false, "update_pos")
--- local aim_anim = attacker:GetAimAnim(attack_data.action_id, attack_data.stance)
--- blackboard.movement_avatar:SetState(aim_anim, 0, 0)
--- blackboard.movement_avatar:Face(pt)
--- SetAreaMovementAvatarVisibile(dialog, blackboard, true, AreaTargetMoveAvatarVisibilityDelay)
--- elseif blackboard.movement_avatar then
--- SetAreaMovementAvatarVisibile(dialog, blackboard, false, AreaTargetMoveAvatarVisibilityDelay)
--- end
--- if blackboard.gamepad_aim then
--- local currentLength = blackboard.gamepad_aim_length
--- currentLength = currentLength or max_aim_range
--- local gamepadState = GetActiveGamepadState()
--- local ptRight = gamepadState.RightThumb
--- if ptRight ~= point20 then
--- local up = ptRight:y() < -1
--- currentLength = currentLength + 500 * (up and -1 or 1)
--- currentLength = Clamp(currentLength, min_aim_range, max_aim_range)
--- blackboard.gamepad_aim_length = currentLength
--- end
--- local ptLeft = gamepadState.LeftThumb
--- if ptLeft == point20 then
--- if blackboard.gamepad_aim_last_pos then
--- ptLeft = blackboard.gamepad_aim_last_pos
--- else
--- local p1 = attacker:GetPos()
--- local p2 = p1 + Rotate(point(5 * guim, 0), attacker:GetAngle())
--- local s1 = select(2, GameToScreen(p1))
--- local s2 = select(2, GameToScreen(p2))
--- local angle = CalcOrientation(s1, s2)
--- ptLeft = Rotate(point(guim, 0), -angle)
--- end
--- end
--- blackboard.gamepad_aim_last_pos = ptLeft
--- ptLeft = ptLeft:SetY(-ptLeft:y())
--- ptLeft = Normalize(ptLeft)
--- local cameraDirection = point(camera.GetDirection():xy())
--- local directionAngle = atan(cameraDirection:y(), cameraDirection:x())
--- directionAngle = directionAngle + 5400
--- ptLeft = RotateAxis(ptLeft, axis_z, directionAngle)
--- pt = attacker:GetPos() + SetLen(ptLeft, currentLength)
--- local zoom = Lerp(800, hr.CameraTacMaxZoom * 10, currentLength, max_aim_range)
--- cameraTac.SetZoom(zoom, 50)
--- end
--- local moved = dialog.target_as_pos ~= pt or blackboard.attacker_pos ~= attack_data.step_pos
--- moved = moved or dialog.target_as_pos and dialog.target_as_pos:Dist(pt) > 8 * guim
--- if not moved then
--- return
--- end
--- local attacker_pos = attack_data.step_pos
--- blackboard.attacker_pos = attacker_pos
--- local aim_pt = lAoEGetAimPoint(attacker, pt, attacker_pos3D)
--- dialog.target_as_pos = aim_pt
--- local attack_distance = Clamp(attacker_pos3D:Dist(aim_pt), min_aim_range, max_aim_range)
--- local args = {
--- target = aim_pt,
--- distance = attack_distance,
--- step_pos = dialog.move_step_position
--- }
--- ApplyDamagePrediction(attacker, action, args)
--- dialog:AttackerAimAnimation(pt)
--- local cone2d = action.id == "Overwatch" or action.id == "DanceForMe" or action.id == "MGSetup" or action.id == "PrepareWeapon"
--- local cone_target = cone2d and CalcOrientation(attacker_pos, aim_pt) or aim_pt
--- local stance = action.id == "MGSetup" and "Prone" or attacker.stance
--- local step_positions, step_objs, los_values
--- if action.id == "EyesOnTheBack" then
--- step_positions, step_objs, los_values = GetAOETiles(attacker_pos, stance, attack_distance)
--- blackboard.mesh = CreateAOETilesCircle(step_positions, step_objs, blackboard.mesh, attacker_pos3D, attack_distance, los_values)
--- else
--- step_positions, step_objs, los_values = GetAOETiles(attacker_pos, stance, attack_distance, aoe_params.cone_angle, cone_target, "force2d")
--- blackboard.mesh = CreateAOETilesSector(step_positions, step_objs, los_values, blackboard.mesh, attacker_pos3D, aim_pt, guim, attack_distance, aoe_params.cone_angle, false, aoe_params.falloff_start)
--- end
--- blackboard.mesh:SetColorFromTextStyle("WeaponAOE")
--- end

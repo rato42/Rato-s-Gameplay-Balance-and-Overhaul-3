@@ -125,8 +125,10 @@ function rat_place_prepareweapon_combat_actions()
         QueuedBadgeText = T(756827411698, "PREPARE"),
         RequireState = "any",
         Run = function(self, unit, ap, ...)
-            local args = ...
-            SetShootingStanceCommand(unit, args.target)
+
+            unit:SetActionCommand("ShootingStanceCommand", self.id, ap, ...)
+            -- local args = ...
+            -- SetShootingStanceCommand(unit, args.target)
         end,
         SortKey = 2,
         UIBegin = function(self, units, args)
@@ -145,7 +147,7 @@ function rat_place_prepareweapon_combat_actions()
         GetActionDescription = function(self, units)
             local unit = units[1]
 
-            local description = self.Description
+            local description = TranslationTable[148517345744] or "Exit <em>Shooting Stance</em>" -- self.Description
 
             if unit.return_pos_reserved then
                 description = description .. " and return to cover."
@@ -153,7 +155,7 @@ function rat_place_prepareweapon_combat_actions()
                 description = description .. "."
             end
 
-            return description
+            return T(description)
         end,
 
         GetUIState = function(self, units, args)
@@ -187,12 +189,8 @@ function rat_place_prepareweapon_combat_actions()
     })
 end
 
-function SetShootingStanceCommand(unit, target)
-
-    --[[ 	if not CurrentThread() then
-		CreateGameTimeThread(SetShootingStanceCommand, unit, target)
-		return
-	end ]]
+---- New version moved to shooting_stance functions
+--[[function SetShootingStanceCommand(unit, target)
 
     local orientation = CalcOrientation(unit, target)
     local stance = unit.stance
@@ -201,16 +199,19 @@ function SetShootingStanceCommand(unit, target)
     if g_Combat then
         unit:AnimatedRotation(orientation)
         unit:SetState(aim_state, const.eKeepComponentTargets)
+        ----
+        PackAimPosInStanceEffect(unit:GetStatusEffect("shooting_stance"), target)
+        ----
         Sleep(300)
     else ---- not sure how to create a thread, so cant Sleep
         unit:SetOrientationAngle(orientation)
         unit:SetState(aim_state, const.eKeepComponentTargets)
     end
 
-    ShootingStance(unit, target)
-    SetInGameInterfaceMode(g_Combat and "IModeCombatMovement" or "IModeExploration")
-end
+    unit:EnterShootingStance(target)
 
+    SetInGameInterfaceMode(g_Combat and "IModeCombatMovement" or "IModeExploration")
+end]]
 ---------------------------------------------------------------------------------------------------------
 
 local t_id_table = {

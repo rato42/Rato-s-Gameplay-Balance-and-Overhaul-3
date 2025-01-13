@@ -95,6 +95,13 @@ return {
 	}),
 	PlaceObj('ModItemCharacterEffectCompositeDef', {
 		'Id', "shooting_stance",
+		'Parameters', {
+			PlaceObj('PresetParamNumber', {
+				'Name', "MaxAPCarried",
+				'Value', 2,
+				'Tag', "<MaxAPCarried>",
+			}),
+		},
 		'object_class', "StatusEffect",
 		'msg_reactions', {
 			PlaceObj('MsgActorReaction', {
@@ -108,10 +115,8 @@ return {
 					if not g_Combat then
 						unit:RemoveStatusEffect("shooting_stance")
 					end
-						if unit.shooter_cone_v then
-							unit.shooter_cone_v:SetOpacity(0)
-							unit.snap_cone:SetOpacity(0)
-						end
+					
+					DestroyStanceConeV(unit)
 					end
 				end,
 				HandlerCode = function (self, unit, target, toDoStance)
@@ -120,10 +125,8 @@ return {
 					if not g_Combat then
 						unit:RemoveStatusEffect("shooting_stance")
 					end
-						if unit.shooter_cone_v then
-							unit.shooter_cone_v:SetOpacity(0)
-							unit.snap_cone:SetOpacity(0)
-						end
+					
+					DestroyStanceConeV(unit)
 				end,
 				helpActor = "unit",
 				param_bindings = false,
@@ -135,24 +138,12 @@ return {
 					local reaction_def = (self.msg_reactions or empty_table)[2]
 					if self:VerifyReaction("UnitDowned", reaction_def, unit, unit) then
 						unit:RemoveStatusEffect("shooting_stance")
-					    if not unit.shooter_cone_v then
-					        return
-					    end
-					   	DoneObject(obj.shooter_cone_v)
-					    obj.shooter_cone_v = nil
-					   	DoneObject(obj.snap_cone)
-					    obj.snap_cone = nil
+					DestroyStanceConeV(unit)
 					end
 				end,
 				HandlerCode = function (self, unit)
 					unit:RemoveStatusEffect("shooting_stance")
-					    if not unit.shooter_cone_v then
-					        return
-					    end
-					   	DoneObject(obj.shooter_cone_v)
-					    obj.shooter_cone_v = nil
-					   	DoneObject(obj.snap_cone)
-					    obj.snap_cone = nil
+					DestroyStanceConeV(unit)
 				end,
 				helpActor = "unit",
 				param_bindings = false,
@@ -167,13 +158,12 @@ return {
 						if HasPerk(obj,"Rat_recoil") then
 							obj:RemoveStatusEffect("Rat_recoil", "all")
 						end
-					   DoneObject(obj.shooter_cone_v)
-					    obj.shooter_cone_v = nil
-					   DoneObject(obj.snap_cone)
-					    obj.snap_cone = nil
+						
+						DestroyStanceConeV(obj)
+						
 						obj.return_pos = obj.return_pos_reserved
 						obj.return_pos_reserved = false
-						obj.shooting_target_pos = false
+					
 					    obj:InterruptPreparedAttack()
 					end
 					end
@@ -183,13 +173,12 @@ return {
 						if HasPerk(obj,"Rat_recoil") then
 							obj:RemoveStatusEffect("Rat_recoil", "all")
 						end
-					   DoneObject(obj.shooter_cone_v)
-					    obj.shooter_cone_v = nil
-					   DoneObject(obj.snap_cone)
-					    obj.snap_cone = nil
+						
+						DestroyStanceConeV(obj)
+						
 						obj.return_pos = obj.return_pos_reserved
 						obj.return_pos_reserved = false
-						obj.shooting_target_pos = false
+					
 					    obj:InterruptPreparedAttack()
 					end
 				end,
@@ -198,27 +187,9 @@ return {
 			}),
 			PlaceObj('MsgActorReaction', {
 				ActorParam = "obj",
-				Event = "InventoryChange",
-				Handler = function (self, obj)
-					local reaction_def = (self.msg_reactions or empty_table)[4]
-					if self:VerifyReaction("InventoryChange", reaction_def, obj, obj) then
-						--local equip_wep = self:GetActiveWeapons()
-					--print("eq wp", equip_wep)
-					--print("self", self,"obj", obj)
-					end
-				end,
-				HandlerCode = function (self, obj)
-					--local equip_wep = self:GetActiveWeapons()
-					--print("eq wp", equip_wep)
-					--print("self", self,"obj", obj)
-				end,
-				param_bindings = false,
-			}),
-			PlaceObj('MsgActorReaction', {
-				ActorParam = "obj",
 				Event = "ItemRemoved",
 				Handler = function (self, obj,item, slot_name, pos)
-					local reaction_def = (self.msg_reactions or empty_table)[5]
+					local reaction_def = (self.msg_reactions or empty_table)[4]
 					if self:VerifyReaction("ItemRemoved", reaction_def, obj, obj,item, slot_name, pos) then
 						local effect = obj:GetStatusEffect("shooting_stance")
 					local slot = effect:ResolveValue("weapon1") or ''
@@ -247,22 +218,6 @@ return {
 		},
 		'unit_reactions', {
 			PlaceObj('UnitReaction', {
-				Event = "OnCalcChanceToHit",
-				Handler = function (self, target, attacker, action, attack_target, weapon1, weapon2, data)
-					--[[local side = attacker and attacker.team and attacker.team.side or ''
-					if not (side == 'player1' or side == 'player2') then
-						print("AI bonus cth angle")
-						local angle_s = ShootingConeAngle(attacker, weapon1, attack_target) 
-						--print("angle", angle_s)
-						local bonus_angle = cRound(10.0/(1+angle_s))
-						data.mod_add = data.mod_add + bonus_angle
-					end
-					
-					--print("d",data)]]
-				end,
-				param_bindings = false,
-			}),
-			PlaceObj('UnitReaction', {
 				Event = "OnCalcMinAimActions",
 				Handler = function (self, target, value, attacker, attack_target, action, weapon)
 					
@@ -275,7 +230,7 @@ return {
 			PlaceObj('UnitReaction', {
 				Event = "OnEndTurn",
 				Handler = function (self, target)
-					local ap_carried = Min(2000,target.ActionPoints)
+					local ap_carried = Min(self:ResolveValue("MaxAPCarried") * const.Scale.AP,target.ActionPoints)
 					local text_ap = MulDivRound(ap_carried, 1, const.Scale.AP)
 					if ap_carried > 950 then
 						if text_ap and text_ap > 0 and not R_IsAI(target) then
@@ -287,10 +242,7 @@ return {
 					
 					
 					----- visual
-					if target.shooter_cone_v then
-						target.shooter_cone_v:SetOpacity(0)
-						target.snap_cone:SetOpacity(0)
-					end
+					DestroyStanceConeV(unit)
 				end,
 				param_bindings = false,
 			}),
@@ -633,10 +585,10 @@ return {
 					if target == attacker then
 						local effect = target:GetStatusEffect("Rat_recoil")
 						local target_pos =  IsValid(attack_target) and attack_target:GetPos() or attack_target
-						--print("targetpos", target_pos)
+					
 						local aim = data.aim or 0
 						local stacks = self.stacks--effect:ResolveValue("shots_fired") or 1
-						--print("stacks",stacks)
+					
 						local recoil = get_recoil(attacker, attack_target, target_pos, action, weapon1, aim, false, stacks)
 						local metaText = {}
 						if recoil and aim > 0 then
@@ -654,8 +606,6 @@ return {
 							table.insert(data.modifiers, recoil_cth)
 						end
 						data.mod_add = data.mod_add + recoil
-						--print("d", data.modifiers)
-						--ApplyCthModifier_Add(self .. "X" .. stacks, data, recoil)
 					end
 				end,
 				param_bindings = false,
@@ -665,19 +615,13 @@ return {
 				Handler = function (self, target, current_ap, action, weapon, aim)
 					local aim_level = Min(3,aim or 0)
 					
-					if HasPerk(target,"shooting_stance") then
-						--aim_level = Max(0, aim_level -1)
-					end
 					if aim_level < 1 then
 						return
 					end
+					
 					local aim_cost = self:ResolveValue("aim_cost") 
-					
-					
-					
-					
 					local extra_cost = cRoundDown(aim_cost * aim_level) * const.Scale.AP
-					--print("extra_cost", extra_cost)
+					
 					return current_ap + extra_cost
 				end,
 				param_bindings = false,

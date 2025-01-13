@@ -1,12 +1,3 @@
-function DestroyStanceConeV(unit)
-    if unit.shooter_cone_v then
-        DoneObject(unit.shooter_cone_v)
-        unit.shooter_cone_v = nil
-        DoneObject(unit.snap_cone)
-        unit.snap_cone = nil
-    end
-end
-
 function OnMsg.TurnEnded()
     for _, unit in ipairs(g_Units) do
         DestroyStanceConeV(unit)
@@ -76,10 +67,6 @@ function OnMsg.UnitMovementDone(unit, action_id, prev_pos)
     unit:RemoveStatusEffect("shooting_stance")
 end
 
---[[function OnMsg.StatusEffectAdded(unit, id)
-    print("tentando tirar shooting stance", id)
-end]]
-
 function OnMsg.CombatActionEnd(unit)
 
     local actions_to_remove_stance = {
@@ -116,10 +103,9 @@ function OnMsg.OnAttack(unit, action, target, results, attack_args)
 
     local aim = attack_args.aim or 0
 
-    -- local target_pos = IsValid(target) and target:GetPos() or target
-
     if aim and aim > 0 or HasPerk(unit, "shooting_stance") then
-        ShootingStance(unit, target, attack_args)
+        unit:EnterShootingStance(target, attack_args)
+        -- unit:SetActionCommand("ShootingStanceCommand", action.id, nil, attack_args)
     end
 end
 
@@ -130,33 +116,25 @@ function OnMsg.CombatActionEnd(unit)
     end
 
     if g_Overwatch[unit] then
-
         local overwatch = g_Overwatch[unit]
 
         DestroyStanceConeV(unit)
 
-        if g_Overwatch[unit].permanent then
+        if overwatch.permanent then
             unit:AddStatusEffect("shooting_stance")
             return
         end
 
         local angle = g_Overwatch[unit].angle
         local dir = g_Overwatch[unit].dir
-        -- unit:SetOrientation(dir, angle)
         unit:SetOrientationAngle(angle)
-        -- local weapon = unit:GetActiveWeapons() 
-        -- local pos = unit:GetPos()
 
-        local target_pos = g_Overwatch[unit].target_pos
-        -- local z = pos:z()
-        -- target_pos = target_pos:SetZ(z)
-
-        local target = target_pos
-        local angle = unit:GetAngle()
+        local target = g_Overwatch[unit].target_pos
 
         local attack_args = unit.ow_args_stance or false
         unit.ow_args_stance = nil
-        ShootingStance(unit, target, attack_args)
+
+        unit:EnterShootingStance(target, attack_args)
 
         if not overwatch.permanent then
             if overwatch and (overwatch.num_attacks < 1) then
