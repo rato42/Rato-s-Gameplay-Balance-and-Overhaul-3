@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.53 #### not released\n\nFixes:\nFixed some weirdness related to units in shooting stance changing orientation when in uneven terrain and prone\nUsing Prepare Weapon outside of combat will now properly display the animation and take the correct amount of time\n",
+	'last_changes', "3.53 #### not released\n\nPindown rework\n---------- Need to remove exposed\n\nFixes:\nFixed some weirdness related to units in shooting stance changing orientation when in uneven terrain and prone\nUsing Prepare Weapon outside of combat will now properly display the animation and take the correct amount of time\n",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 53,
-	'version', 11483,
+	'version', 11523,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -189,8 +189,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1736744047,
-	'code_hash', 4231532567510458386,
+	'saved', 1736839909,
+	'code_hash', 5322236949506370565,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

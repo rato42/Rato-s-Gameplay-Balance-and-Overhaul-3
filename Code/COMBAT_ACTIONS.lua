@@ -426,44 +426,7 @@ function rat_combat_actions()
         return cost and cost + self.ActionPoints or -1
     end
 
-    --[[CombatActions.MGSetup.GetAPCost = function(self,unit,args) 
-	
-		--local base = self:ResolveValue("max_cost") * const.Scale.AP
-		--local min = self:ResolveValue("min_cost") * const.Scale.AP
-		--local min_str = self:ResolveValue("min_str")
-
-		local weapon = unit:GetActiveWeapons()
-	
-		local ap_extra = GetWeapon_StanceAP(unit, weapon)
-		
-		
-		local cost = ap_extra + (2 * const.Scale.AP)
-		--base - MulDivRound(Max(0, unit.Strength - min_str), base - min, 100 - min_str)
-		--cost = Max(min, (cost / const.Scale.AP) * const.Scale.AP)
-		if HasPerk(unit, "HeavyWeaponsTraining") then
-			local effect = unit:GetStatusEffect("HeavyWeaponsTraining")
-			local reduction = effect:ResolveValue("ap_cost_reduction") * const.Scale.AP
-			local minCost = effect:ResolveValue("min_ap_cost") * const.Scale.AP
-			
-			cost = Max(minCost, cost - reduction)
-			--return HeavyWeaponsTrainingCostMod(cost)
-		end
-		
-		
-		
-		-- if CurrentModOptions["SO_free_precombat_MGsetup"] then ------MG setup option from SmartOverwatch
-			-- print("option")
-			-- if not g_Combat then
-				-- cost=0
-				-- return 0
-			-- end 
-		-- end
-		
-		
-		--print("cost", cost)
-		return cost
-	
-	end]]
+    ----------------------------- Pindown
 
     CombatActions.PinDown.GetUIState = function(self, units, args)
 
@@ -492,6 +455,9 @@ function rat_combat_actions()
 
     end
 
+    -- CombatActions.PinDown.CostBasedOnWeapon = true
+    -- CombatActions.PinDown.ActionPointDelta = 3000
+    CombatActions.PinDown.ActionPoints = 2000
     CombatActions.PinDown.GetAPCost = function(self, unit, args)
 
         local weapon = self:GetAttackWeapons(unit, args)
@@ -501,18 +467,11 @@ function rat_combat_actions()
         end
 
         ------------
-
-        if args and (not args.aim or args.aim and args.aim < 1) then
-            args.aim = 1
-        end
-
-        -- local aim = 1
-        local ap_extra = GetWeapon_StanceAP(unit, weapon)
+        local stance_ap = GetWeapon_StanceAP(unit, weapon) + Get_AimCost(unit)
         if HasPerk(unit, "shooting_stance") then
-            ap_extra = unit:GetShootingStanceAP(args and args.target or false, weapon,
-                                                args and args.aim or 0, self) or 0
+            stance_ap = (args and args.target and IsKindOf(args.target, "Unit")) and
+                            unit:GetShootingStanceAP(args.target, weapon, 1, self) or 0
         end
-
         ----------------
 
         local ap = self.ActionPoints
@@ -520,17 +479,41 @@ function rat_combat_actions()
             ap = CharacterEffectDefs.HawksEye:ResolveValue("pindownCostOverwrite") * const.Scale.AP
         end
 
+        ----------- "Aiming" cost 
+        local base_aim_levels = 2
+        local aim_ap = const.Scale.AP * base_aim_levels -- Get_AimCost(unit) * base_aim_levels
+        local recoil = unit:GetStatusEffect("Rat_recoil")
+        local recoil_extra_cost = 0
+        if recoil then
+            recoil_extra_cost = cRoundDown(recoil:ResolveValue("aim_cost") or 0 * base_aim_levels) *
+                                    const.Scale.AP
+        end
         -----------
+
         local cycling_ap = 0
         if weapon.unbolted then
             cycling_ap = rat_get_manual_cyclingAP(unit, weapon, true) * const.Scale.AP
         end
 
-        ap = ap + ap_extra + cycling_ap -- + Get_AimCost(unit)
+        ap = ap + stance_ap + cycling_ap + aim_ap + recoil_extra_cost
+        -- ic(ap, stance_ap, cycling_ap, aim_ap, recoil_extra_cost)
         ---------------
-        -- print("pindown ap", ap)
-        return Max(ap, unit:GetUIActionPoints()), ap
 
+        return ap, ap -- Max(ap, unit:GetUIActionPoints()), ap
+
+    end
+
+    CombatActions.PinDown.GetActionResults = function(self, unit, args)
+        local attack_args = unit:PrepareAttackArgs(self.id, args)
+        -------- Moved the logic to FirearmGetAttackResults cause fuck this
+        local _, max_aim = unit:GetBaseAimLevelRange(self, args.target)
+        args.aim = Max(args.aim or 0, max_aim)
+        --------
+        local results = attack_args.weapon:GetAttackResults(self, attack_args)
+        --------
+        results.aim = Max(results.aim or 0, max_aim)
+        --------
+        return results, attack_args
     end
     -----------------------------OW	
     CombatActions.Overwatch.GetAPCost = function(self, unit, args)

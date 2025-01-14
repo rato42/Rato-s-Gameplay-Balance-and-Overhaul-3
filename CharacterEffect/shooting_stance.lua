@@ -136,7 +136,7 @@ DefineClass.shooting_stance = {
 				
 				
 				----- visual
-				DestroyStanceConeV(unit)
+				DestroyStanceConeV(target)
 			end,
 		}),
 		PlaceObj('UnitReaction', {

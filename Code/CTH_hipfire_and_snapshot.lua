@@ -30,7 +30,11 @@ function place_hipfire_cth()
                 return false, 0
             end
 
-            if aim > 0 and (target and attacker:GetLastAttack() == target) then
+            local actions_that_use_snapshot_always = {"Overwatch", "MobileShot", "RunAndGun"}
+
+            if aim > 0 and
+                (not table.find(actions_that_use_snapshot_always, action.id) and target and
+                    attacker:GetLastAttack() == target) then
                 return false, 0
             end
 

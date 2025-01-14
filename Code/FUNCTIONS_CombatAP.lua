@@ -46,7 +46,7 @@ function Unit:GetShootingStanceAP(target, weapon, aim, action, param)
         return ap_stance
     end
 
-    if stance == true then
+    if stance then
         return ap_rotate
     elseif aim < 1 then
         return ap_hipfire

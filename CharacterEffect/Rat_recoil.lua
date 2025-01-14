@@ -89,9 +89,6 @@ DefineClass.Rat_recoil = {
 				local current_pos = unit:GetPos()
 				local dist = current_pos:Dist(prev_pos) or 0 
 				local previous_dist = effect:ResolveValue("movement") or 0
-				--print("dist", dist)
-				--print("previous_dist", previous_dist)
-				--print("self", self.Parameters)
 				
 				
 				if (dist+previous_dist) >=const.SlabSizeX*3 then
@@ -115,9 +112,6 @@ DefineClass.Rat_recoil = {
 				local current_pos = unit:GetPos()
 				local dist = current_pos:Dist(prev_pos) or 0 
 				local previous_dist = effect:ResolveValue("movement") or 0
-				--print("dist", dist)
-				--print("previous_dist", previous_dist)
-				--print("self", self.Parameters)
 				
 				
 				if (dist+previous_dist) >=const.SlabSizeX*3 then

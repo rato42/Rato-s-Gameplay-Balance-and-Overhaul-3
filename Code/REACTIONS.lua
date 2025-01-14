@@ -70,6 +70,12 @@ function OnMsg.GatherCritChanceModifications(attacker, target, action_id, weapon
     data.crit_chance = data.crit_chance + crit_HEC
     -----------
 
+    ----------- Pindown (Sniping)
+    if action_id == "PinDown" then
+        data.crit_chance = data.crit_chance + (const.Combat.PindownCritPerAimLevel * aim)
+    end
+    -----------
+
     ----------- Components
     if weapon and weapon:HasComponent("critical_per_aim_scope") then
         local crit_scope_aim = 4 * aim

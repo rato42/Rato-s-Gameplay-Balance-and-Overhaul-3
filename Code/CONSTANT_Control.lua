@@ -32,6 +32,9 @@ const.Combat.CumbersomeStanceAP_StrThreshold = 80
 const.Combat.BoltActionDexFirstThreshold = 85
 const.Combat.BoltActionDexSecondThreshold = 95
 
+------ Pindown (Sniping)
+const.Combat.PindownCritPerAimLevel = 5
+
 -------------
 ----- Vanilla
 const.Combat.GrazingHitDamage = 40 --- %

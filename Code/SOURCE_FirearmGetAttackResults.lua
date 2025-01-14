@@ -83,6 +83,15 @@ function Firearm:GetAttackResults(action, attack_args)
     shot_attack_args.additional_colliders = target -- Non-units (such as mines) need to be added manually.
     shot_attack_args.require_los = nil
 
+    -----------------------------------
+    if attack_args.action_id == "PinDown" then
+        local _, max_aim = attack_args.obj:GetBaseAimLevelRange(CombatActions["PinDown"],
+                                                                attack_args.target)
+        shot_attack_args.aim = Max(shot_attack_args.aim, max_aim)
+        shot_attack_args.opportunity_attack = false
+    end
+    -----------------------------------
+
     local fired, jammed, condition, ammo_type = self:PrecalcAmmoUse(attacker, consumed_ammo,
                                                                     prediction)
     if type(fired) == "number" and num_shots > 0 then

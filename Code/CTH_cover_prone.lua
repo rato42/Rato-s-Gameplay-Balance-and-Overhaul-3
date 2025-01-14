@@ -73,7 +73,10 @@ function prone_cover()
         local melee_attack = action and action.ActionType == "Melee Attack"
         cover = not target.aim_action_id and not melee_attack and cover
 
-        if cover then
+        ------
+        local pindown = action and action.id == "PinDown"
+        ------
+        if cover and not pindown then
             local name = false
             local exposed_value = self:ResolveValue("ExposedCover")
             local full_value = self:ResolveValue("Cover")
