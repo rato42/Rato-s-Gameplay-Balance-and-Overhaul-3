@@ -476,7 +476,9 @@ function rat_combat_actions()
 
         local ap = self.ActionPoints
         if HasPerk(unit, "HawksEye") then
-            ap = CharacterEffectDefs.HawksEye:ResolveValue("pindownCostOverwrite") * const.Scale.AP
+            ap = ap -
+                     (CharacterEffectDefs.HawksEye:ResolveValue("pindownCostOverwrite") *
+                         const.Scale.AP)
         end
 
         ----------- "Aiming" cost 
@@ -664,6 +666,8 @@ function rat_combat_actions()
     end
 
     --------------Description
+    CombatActions.Overwatch.Description = T(226634284341,
+                                            "<em>Spends all AP</em>. Any targets who move or shoot in the overwatch area will provoke <GameTerm('Interrupt')> <em>attacks</em>. Accuracy is influenced by the unit's <em>Reflexes</em> (Dex + Agi) and the by weapon <em>Snapshot</em> penalty multiplier.")
 
     CombatActions.Overwatch.GetActionDescription =
         function(self, units, args)
@@ -984,8 +988,6 @@ function rat_combat_actions()
                                            "The Dual Shot attack produces a Basic Attack from each gun. Maximum <em>aim</em> level is reduced. Has a penalty based on <em>Dexterity</em>.")
     CombatActions.MGSetup.Description = T(564696256945,
                                           "Focus on a cone-shaped area, immobilizing yourself and going <em>prone</em>. You can only shoot enemies inside that cone. Accuracy is increased and enemies will provoke <em>interrupt</em> attacks with actions inside the cone (even if your AP are spent). <em>Interrupt</em> attacks have bonus accuracy.")
-    CombatActions.Overwatch.Description = T(226634284341,
-                                            "<em>Spends all AP</em>. Any targets who move or shoot in the overwatch area will provoke <GameTerm('Interrupt')> <em>attacks</em>. Accuracy is influenced by <em>Reflex</em> (Dex + Agi).")
 
     CombatActions.RunAndGun.Run = function(self, unit, ap, ...)
 
@@ -1575,7 +1577,7 @@ local t_id_table = {
     [373274572555] = "Shoots a hail of <em><bullets> bullets</em> and inflict <GameTerm('Suppressed')> even on miss when the enemy is in weapon range. Has <em>recoil</em> penalty based on <em>Strength</em>. Maximum <em>aim</em> level reduced",
     [364947777453] = "The Dual Shot attack produces a Basic Attack from each gun. Maximum <em>aim</em> level is reduced. Has a penalty based on <em>Dexterity</em>.",
     [564696256945] = "Focus on a cone-shaped area, immobilizing yourself and going <em>prone</em>. You can only shoot enemies inside that cone. Accuracy is increased and enemies will provoke <em>interrupt</em> attacks with actions inside the cone (even if your AP are spent). <em>Interrupt</em> attacks have bonus accuracy.",
-    [226634284341] = "<em>Spends all AP</em>. Any targets who move or shoot in the overwatch area will provoke <GameTerm('Interrupt')> <em>attacks</em>. Accuracy is influenced by <em>Reflex</em> (Dex + Agi).",
+    [226634284341] = "<em>Spends all AP</em>. Any targets who move or shoot in the overwatch area will provoke <GameTerm('Interrupt')> <em>attacks</em>. Accuracy is influenced by the unit's <em>Reflexes</em> (Dex + Agi) and the by weapon <em>Snapshot</em> penalty multiplier.",
     [312473917195] = "\n\nThe unit will be <em>Out of Breath</em>.",
     [801805830695] = "<newline>You will end up in Standing stance.",
     [359627666793] = "<color AmmoAPColor>Grenade loaded</color>",

@@ -34,7 +34,7 @@ function ow_cth()
         local reflex = rGetReflex(attacker)
         -------------------------------
         local value = 0
-        local base_value = max + cRound((min - max) * reflex)
+        local base_value = max + cRound((min - max) * reflex / 100.00)
 
         if g_Overwatch[attacker] and g_Overwatch[attacker].permanent then
             value = value + 10

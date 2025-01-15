@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.53 #### not released\n\nPindown rework\n---------- Need to remove exposed\n\nFixes:\nFixed some weirdness related to units in shooting stance changing orientation when in uneven terrain and prone\nUsing Prepare Weapon outside of combat will now properly display the animation and take the correct amount of time\n",
+	'last_changes', "3.53 #### not released\n\nPindown rework\n---------- Need to remove exposed\nDesert Eagle magazine size reduced to 8\n\nNew Default Firearm Noise option is 150%. The percentages can go up to 200% now. If you want the old setting, use 100%, if you want vanilla-like, use 0%.\n\nFixes:\nFixed the Lions Roar not having sound.\nFixed the Lions Roar attack AP costing 1 more than it should.\nFixed some weirdness related to units in shooting stance changing orientation when in uneven terrain and prone\nUsing Prepare Weapon outside of combat will now properly display the animation and take the correct amount of time\n",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 53,
-	'version', 11523,
+	'version', 11550,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -113,7 +113,6 @@ return PlaceObj('ModDef', {
 		"Code/CTH_pointblank.lua",
 		"Code/CTH_hipfire_and_snapshot.lua",
 		"Code/CTH_targeted_noburst.lua",
-		"Code/CharEffectCompositeDef_function.lua",
 		"Code/UTIL.lua",
 		"Code/FUNCTION_disable_unpatched_shop.lua",
 		"Code/FUNCTIONS_CombatGeneral.lua",
@@ -155,6 +154,7 @@ return PlaceObj('ModDef', {
 		"Code/SOURCE_AIGetAttackArgs.lua",
 		"Code/SOURCE_AICalcAttacksandAim.lua",
 		"Code/PATCH_OnClassesGenerate.lua",
+		"Code/CharEffectCompositeDef_function.lua",
 		"Code/PATCH_call.lua",
 		"Code/PATCH_old_ammo.lua",
 		"Code/PATCH_weapons.lua",
@@ -170,18 +170,20 @@ return PlaceObj('ModDef', {
 		"InventoryItem/M14SAW_AUTO.lua",
 	},
 	'default_options', {
+		AIWeaponStanceMul = 100,
 		AwareSight = "38 (rato's GBO default)",
 		Extra_start_ap = "0 (default for Rato's GBO)",
 		NightDetect = "-40 (Rato's Default)",
 		NightSight = "-40 (Rato's Default)",
 		UnawareSight = "18 (rato's GBO default)",
+		VanillaFreeMoveBonus = 0,
 		ai_crit_multiplier = "100 (default for Rato's GBO)",
 		ai_penal_setting = "0 (default for Rato's GBO)",
 		aim_multiplier = "100 (default for Rato's GBO)",
 		guns_hurt = "120 (rato's GBO default)",
 		marks_multiplier = "100 (default for Rato's GBO)",
 		melee_multiplier = "100 (default for Rato's GBO)",
-		noise_setting = "100 (default for Rato's GBO)",
+		noise_setting = 150,
 		ow_multiplier = "100 (default for Rato's GBO)",
 		recoil_persistent_aim_effect = "100",
 		recoil_persistent_setting = "100 (default for Rato's GBO)",
@@ -189,8 +191,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1736839909,
-	'code_hash', 5322236949506370565,
+	'saved', 1736925569,
+	'code_hash', 5561720087243286725,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

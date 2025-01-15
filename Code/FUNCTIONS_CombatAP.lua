@@ -105,7 +105,7 @@ function GetWeapon_StanceAP(unit, weapon, display)
     end
 
     if R_IsAI(unit) then
-        cost = MulDivRound(cost, const.Combat.AI_ShootingStanceAP_Mul or 100, 100)
+        cost = MulDivRound(cost, CurrentModOptions.AIWeaponStanceMul or 100, 100)
     end
 
     return cost * const.Scale.AP

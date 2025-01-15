@@ -74,7 +74,7 @@ function OnMsg.CombatActionEnd(unit)
         "ReloadAction", "DoubleToss", "Sprint"
     }
 
-    if actions_to_remove_stance[unit.action_command] then
+    if table.find(actions_to_remove_stance, unit.action_command) then
         unit:RemoveStatusEffect("shooting_stance")
     end
 

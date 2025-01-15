@@ -32,31 +32,29 @@ function OnMsg.ClassesGenerate(classdefs)
             end
             local cur_free_ap = obj.free_move_ap
             ------
-            local free_ap = Max(0, 1000 +
-                                    MulDivRound(obj.Agility - 60,
-                                                const.Scale.AP, 5))
+            local free_ap = Max(0, 1000 + MulDivRound(obj.Agility - 60, const.Scale.AP, 5))
             ------
             local data = {min = 0, max = 999, add = 0, mul = 100}
             if obj.team and obj.team.player_enemy then
-                data.mul = PercentModifyByDifficulty(
-                               GameDifficulties[Game.game_difficulty]:ResolveValue(
-                                   "freeMoveBonus"))
+                ------
+                local diff_mul =
+                    GameDifficulties[Game.game_difficulty]:ResolveValue("freeMoveBonus")
+                diff_mul = 100 +
+                               MulDivRound(diff_mul, CurrentModOptions.VanillaFreeMoveBonus or 100,
+                                           100)
+                data.mul = diff_mul
+                -----
             end
             obj:CallReactions("OnCalcFreeMove", data)
-            free_ap = MulDivRound(free_ap + data.add * const.Scale.AP, data.mul,
-                                  100)
-            free_ap = Clamp(free_ap, data.min * const.Scale.AP,
-                            data.max * const.Scale.AP)
+            free_ap = MulDivRound(free_ap + data.add * const.Scale.AP, data.mul, 100)
+            free_ap = Clamp(free_ap, data.min * const.Scale.AP, data.max * const.Scale.AP)
             if IsGameRuleActive("HeavyWounds") then
                 local wounds = obj:GetStatusEffect("Wounded")
                 if wounds and wounds.stacks >= 1 then
-                    local max_wounds = GameRuleDefs.HeavyWounds:ResolveValue(
-                                           "MaxWoundsEffect")
-                    local per_wound_percent =
-                        GameRuleDefs.HeavyWounds:ResolveValue("FreeMoveLost")
+                    local max_wounds = GameRuleDefs.HeavyWounds:ResolveValue("MaxWoundsEffect")
+                    local per_wound_percent = GameRuleDefs.HeavyWounds:ResolveValue("FreeMoveLost")
                     free_ap = Max(0, free_ap -
-                                      MulDivRound(free_ap,
-                                                  Min(wounds.stacks, max_wounds) *
+                                      MulDivRound(free_ap, Min(wounds.stacks, max_wounds) *
                                                       per_wound_percent, 100))
                 end
             end
@@ -76,12 +74,10 @@ function OnMsg.ClassesGenerate(classdefs)
         local reac = classdefs.Psycho.unit_reactions
         for i, react in ipairs(reac) do
             if react.Event == "OnFirearmAttackStart" then
-                react.Handler = function(self, target, attacker, attack_target,
-                                         action, attack_args)
+                react.Handler = function(self, target, attacker, attack_target, action, attack_args)
                     if target == attacker and
                         (action.id == "SingleShot" or action.id == "BurstFire") then
-                        if attacker:Random(100) <
-                            self:ResolveValue("procChance") then
+                        if attacker:Random(100) < self:ResolveValue("procChance") then
                             local weapon = action:GetAttackWeapons(attacker)
                             if action.id == "SingleShot" and
                                 table.find(weapon.AvailableAttacks, "BurstFire") then
@@ -92,9 +88,8 @@ function OnMsg.ClassesGenerate(classdefs)
                                 attack_args.replace_action = "AutoFire"
                                 -----
                                 attack_args.num_shots =
-                                    attacker:GetActiveWeapons()
-                                        :GetAutofireShots(
-                                            CombatActions[attack_args.replace_action]) or
+                                    attacker:GetActiveWeapons():GetAutofireShots(
+                                        CombatActions[attack_args.replace_action]) or
                                         attack_args.num_shots
                                 -----
                                 PlayVoiceResponse(attacker, "Psycho")
@@ -134,8 +129,8 @@ function OnMsg.ClassesGenerate(classdefs)
                 -- end,}
 
                 -- )
-                react.Handler = function(self, target, attacker, action,
-                                         attack_target, weapon1, weapon2, data)
+                react.Handler = function(self, target, attacker, action, attack_target, weapon1,
+                                         weapon2, data)
                     if target == attacker then
                         data.min = self:ResolveValue("minAccuracy")
                     end
@@ -166,8 +161,7 @@ function OnMsg.ClassesGenerate(classdefs)
     if classdefs.GruntyPerk.unit_reactions then
         table.insert(classdefs.GruntyPerk.unit_reactions, {
             Event = "OnFirearmAttackStart",
-            Handler = function(self, target, attacker, attack_target, action,
-                               attack_args)
+            Handler = function(self, target, attacker, attack_target, action, attack_args)
                 if target == attacker and attack_args.gruntyPerk then
                     target:AddStatusEffect("grunty_bonus")
                     attack_args.aim = 1
@@ -180,32 +174,26 @@ function OnMsg.ClassesGenerate(classdefs)
         classdefs.MartialArts.unit_reactions = {
             PlaceObj('UnitReaction', {
                 Event = "OnCalcChanceToHit",
-                Handler = function(self, target, attacker, action,
-                                   attack_target, weapon1, weapon2, data)
+                Handler = function(self, target, attacker, action, attack_target, weapon1, weapon2,
+                                   data)
                     if not (action and action.ActionType == "Melee Attack") then
                         return
                     end
 
-                    local text = T {
-                        776394275735,
-                        "Perk: <name>",
-                        name = self.DisplayName
-                    }
-                    if target == attack_target and IsKindOf(target, "Unit") and
-                        target.species ~= "Human" then
+                    local text = T {776394275735, "Perk: <name>", name = self.DisplayName}
+                    if target == attack_target and IsKindOf(target, "Unit") and target.species ~=
+                        "Human" then
                         text = T(767817302327, "Perk: Animal Reflexes")
                     end
 
                     --
                     if target == attacker and target.species ~= "Human" then
                         --
-                        ApplyCthModifier_Add(self, data,
-                                             self:ResolveValue("hit"), text)
+                        ApplyCthModifier_Add(self, data, self:ResolveValue("hit"), text)
                     end
 
                     if target == attack_target then
-                        ApplyCthModifier_Add(self, data,
-                                             -self:ResolveValue("defense"), text)
+                        ApplyCthModifier_Add(self, data, -self:ResolveValue("defense"), text)
                     end
                 end
             })

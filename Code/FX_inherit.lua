@@ -19,10 +19,10 @@ function rat_apply_inherit(rules)
             "RAT_VSK_Suppressor", "RAT_TOG_suppressor_762", "RAT_TOG_suppressor_wp",
             "SteyrS_Muzzle_def_1"
         },
-        Compensator = {"RAT_TOG_compensator"},
+        Compensator = {"RAT_TOG_compensator", "LionRoar_compensator"},
         LaserDot = {"RAT_TOG_laser_dot", "TAR21_Scope_Rflx_1"},
         UVDot = {"RAT_TOG_uv_dot"},
-        HE_Grenade = {"HE_Grenade_1"},
+        -- HE_Grenade = {"HE_Grenade_1"},
         FragGrenade = {"ShapedCharge"},
         UnderslungGrenadeLauncher = {"rat_22mmUnderslungGrenadeLauncher"},
         Warhead_Frag = {"_22m_HE"},

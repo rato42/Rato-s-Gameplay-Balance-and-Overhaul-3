@@ -23,7 +23,7 @@ const.Combat.RunAndGunMaxPenalty = -20
 const.Combat.RunAndGun_MaxDistforPenalty = 14
 
 ----- AI
-const.Combat.AI_ShootingStanceAP_Mul = 50 --- % 
+-- const.Combat.AI_ShootingStanceAP_Mul = 50 --- % Became a Mod Option
 
 ----- AP
 const.Combat.CumbersomeStanceAP_StrThreshold = 80

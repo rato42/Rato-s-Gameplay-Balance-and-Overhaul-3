@@ -121,8 +121,8 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'LROptics', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope', 'LROpticsAdvanced', 'ImprovedIronsight',
-                'PSG_DefaultScope', 'WideScope'
+                'LROptics', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope', 'LROpticsAdvanced',
+                'ImprovedIronsight', 'PSG_DefaultScope', 'WideScope'
             }
         }, {
             CanBeEmpty = false,
@@ -180,8 +180,9 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
             AvailableComponents = {
-                'BarrelLong', 'BarrelLongImproved', 'BarrelNormal', 'BarrelNormalImproved', 'BarrelShort',
-                'BarrelShortImproved', 'long_barrel_light', 'BarrelShort_Light', 'BarrelLight'
+                'BarrelLong', 'BarrelLongImproved', 'BarrelNormal', 'BarrelNormalImproved',
+                'BarrelShort', 'BarrelShortImproved', 'long_barrel_light', 'BarrelShort_Light',
+                'BarrelLight'
             }
         }, {
             CanBeEmpty = false,
@@ -194,8 +195,9 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'ImprovedIronsight', 'LROptics', 'LROpticsAdvanced', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG',
-                'ScopeCOGQuick', 'ThermalScope', 'WideScope', '_ReflexSIghtVigilance', 'PSG_DefaultScope'
+                'ImprovedIronsight', 'LROptics', 'LROpticsAdvanced', 'ReflexSight',
+                'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope', 'WideScope',
+                '_ReflexSIghtVigilance', 'PSG_DefaultScope'
             }
         }, {
             CanBeEmpty = true,
@@ -214,8 +216,12 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'Bipod',
             Modifiable = true,
             AvailableComponents = {'Bipod'}
-        },
-        {CanBeEmpty = true, SlotType = 'Under', Modifiable = true, AvailableComponents = {'TacGrip', 'VerticalGrip'}}, {
+        }, {
+            CanBeEmpty = true,
+            SlotType = 'Under',
+            Modifiable = true,
+            AvailableComponents = {'TacGrip', 'VerticalGrip'}
+        }, {
             CanBeEmpty = false,
             SlotType = 'Magazine',
             DefaultComponent = 'MagNormal',
@@ -268,8 +274,9 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
             AvailableComponents = {
-                'BarrelLong', 'BarrelLongImproved', 'BarrelNormal', 'BarrelNormalImproved', 'BarrelShort',
-                'BarrelShortImproved', 'long_barrel_light', 'BarrelLight', 'BarrelShort_Light'
+                'BarrelLong', 'BarrelLongImproved', 'BarrelNormal', 'BarrelNormalImproved',
+                'BarrelShort', 'BarrelShortImproved', 'long_barrel_light', 'BarrelLight',
+                'BarrelShort_Light'
             }
         }, {
             CanBeEmpty = false,
@@ -288,9 +295,9 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'ImprovedIronsight', 'ReflexSight', 'ReflexSightAdvanced', 'LROptics', 'LROpticsAdvanced', 'ScopeCOG',
-                'ScopeCOGQuick', 'ThermalScope', 'WideScope', '_ReflexSIghtVigilance', 'PSG_DefaultScope',
-                'UVDot_Anaconda', 'LaserDot_Anaconda'
+                'ImprovedIronsight', 'ReflexSight', 'ReflexSightAdvanced', 'LROptics',
+                'LROpticsAdvanced', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope', 'WideScope',
+                '_ReflexSIghtVigilance', 'PSG_DefaultScope', 'UVDot_Anaconda', 'LaserDot_Anaconda'
             }
         }, {
             CanBeEmpty = false,
@@ -344,7 +351,9 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'StockNormal',
             Modifiable = true,
             AvailableComponents = {'StockNormal', 'StockHeavy'}
-        }, {CanBeEmpty = false, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod'}}, {
+        },
+        {CanBeEmpty = false, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod'}},
+        {
             CanBeEmpty = true,
             SlotType = 'Muzzle',
             Modifiable = true,
@@ -361,14 +370,17 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'PSG_DefaultScope',
             Modifiable = true,
             AvailableComponents = {
-                'PSG_DefaultScope', 'LROpticsAdvanced', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG',
-                'ScopeCOGQuick', 'ThermalScope', '_ReflexSIghtVigilance', 'WideScope', 'LROptics'
+                'PSG_DefaultScope', 'LROpticsAdvanced', 'ReflexSight', 'ReflexSightAdvanced',
+                'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope', '_ReflexSIghtVigilance', 'WideScope',
+                'LROptics'
             }
         }, {
             CanBeEmpty = true,
             SlotType = 'Side',
             Modifiable = true,
-            AvailableComponents = {'FlashlightDot_PSG_M1', 'Flashlight_PSG_M1', 'LaserDot_PSG_M1', 'UVDot_PSG_M1'}
+            AvailableComponents = {
+                'FlashlightDot_PSG_M1', 'Flashlight_PSG_M1', 'LaserDot_PSG_M1', 'UVDot_PSG_M1'
+            }
         }
     }
     PSG1.OverwatchAngle = 596
@@ -467,7 +479,9 @@ function RatoGBO_WepPatch()
             SlotType = 'Barrel',
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
-            AvailableComponents = {'BarrelNormal', 'BarrelNormalImproved', 'BarrelLight', 'rpk_to762wp'}
+            AvailableComponents = {
+                'BarrelNormal', 'BarrelNormalImproved', 'BarrelLight', 'rpk_to762wp'
+            }
         }, {
             CanBeEmpty = false,
             SlotType = 'Magazine',
@@ -485,9 +499,10 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'LROptics', 'ReflexSight', 'ScopeCOG', 'ThermalScope', 'LROpticsAdvanced', 'ScopeCOGQuick',
-                'ReflexSightAdvanced', '_ReflexSIghtVigilance', 'WideScope', 'LROptics_DragunovDefault',
-                'UVDot_Anaconda', 'LaserDot_Anaconda', 'ImprovedIronsight'
+                'LROptics', 'ReflexSight', 'ScopeCOG', 'ThermalScope', 'LROpticsAdvanced',
+                'ScopeCOGQuick', 'ReflexSightAdvanced', '_ReflexSIghtVigilance', 'WideScope',
+                'LROptics_DragunovDefault', 'UVDot_Anaconda', 'LaserDot_Anaconda',
+                'ImprovedIronsight'
             }
         }, {
             CanBeEmpty = true,
@@ -547,7 +562,9 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'StockNormal',
             Modifiable = true,
             AvailableComponents = {'StockHeavy', 'StockLight', 'StockNormal'}
-        }, {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod'}}, {
+        },
+        {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod'}},
+        {
             CanBeEmpty = false,
             SlotType = 'Magazine',
             DefaultComponent = 'MagNormal',
@@ -559,10 +576,16 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'LROptics',
             Modifiable = true,
             AvailableComponents = {
-                'LROptics', 'LROpticsAdvanced', 'ReflexSight', 'ScopeCOG', 'ThermalScope', 'PSG_DefaultScope',
-                'WideScope', '_ReflexSIghtVigilance'
+                'LROptics', 'LROpticsAdvanced', 'ReflexSight', 'ScopeCOG', 'ThermalScope',
+                'PSG_DefaultScope', 'WideScope', '_ReflexSIghtVigilance'
             }
-        }, {CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'Suppressor'}}, {
+        },
+        {
+            CanBeEmpty = true,
+            SlotType = 'Muzzle',
+            Modifiable = true,
+            AvailableComponents = {'Suppressor'}
+        }, {
             CanBeEmpty = true,
             SlotType = 'Side',
             Modifiable = true,
@@ -630,29 +653,33 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'ScopeCOG', 'ScopeCOGQuick', 'LROptics', 'ThermalScope', 'ReflexSight', 'ReflexSightAdvanced',
-                'WideScope', '_ReflexSIghtVigilance', 'ImprovedIronsight'
+                'ScopeCOG', 'ScopeCOGQuick', 'LROptics', 'ThermalScope', 'ReflexSight',
+                'ReflexSightAdvanced', 'WideScope', '_ReflexSIghtVigilance', 'ImprovedIronsight'
             }
         }, {
             CanBeEmpty = true,
             SlotType = 'Muzzle',
             Modifiable = true,
-            AvailableComponents = {'Compensator', 'Suppressor', 'ImprovisedSuppressor', 'MuzzleBooster'}
+            AvailableComponents = {
+                'Compensator', 'Suppressor', 'ImprovisedSuppressor', 'MuzzleBooster'
+            }
         }, {
             CanBeEmpty = false,
             SlotType = 'Magazine',
             DefaultComponent = 'MagNormal',
             Modifiable = true,
             AvailableComponents = {'MagNormal', 'MagNormalFine', 'MagLarge', 'MagLargeFine'}
-        }, {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod'}}, {
+        },
+        {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod'}},
+        {
             CanBeEmpty = false,
             SlotType = 'Barrel',
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
             AvailableComponents = {
-                'BarrelNormal', 'BarrelNormalImproved', 'BarrelHeavy', 'BarrelLong', 'BarrelLongImproved',
-                'BarrelShort', 'BarrelShortImproved', 'long_barrel_light', 'BarrelShort_Light', 'BarrelLight',
-                'BarrelHeavyLong'
+                'BarrelNormal', 'BarrelNormalImproved', 'BarrelHeavy', 'BarrelLong',
+                'BarrelLongImproved', 'BarrelShort', 'BarrelShortImproved', 'long_barrel_light',
+                'BarrelShort_Light', 'BarrelLight', 'BarrelHeavyLong'
             }
         }, {
             CanBeEmpty = false,
@@ -719,9 +746,9 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'GewehrDefaultSight',
             Modifiable = true,
             AvailableComponents = {
-                'LROptics', 'ReflexSight', 'ScopeCOG', 'GewehrDefaultSight', 'ImprovedIronsight', 'ReflexSightAdvanced',
-                'ScopeCOGQuick', 'ThermalScope', '_ReflexSIghtVigilance', 'WideScope', 'LROpticsAdvanced',
-                'PSG_DefaultScope'
+                'LROptics', 'ReflexSight', 'ScopeCOG', 'GewehrDefaultSight', 'ImprovedIronsight',
+                'ReflexSightAdvanced', 'ScopeCOGQuick', 'ThermalScope', '_ReflexSIghtVigilance',
+                'WideScope', 'LROpticsAdvanced', 'PSG_DefaultScope'
             }
         }, {
             CanBeEmpty = true,
@@ -781,7 +808,9 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'StockNormal',
             Modifiable = true,
             AvailableComponents = {'StockHeavy', 'StockLight', 'StockNormal'}
-        }, {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod'}}, {
+        },
+        {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod'}},
+        {
             CanBeEmpty = false,
             SlotType = 'Magazine',
             DefaultComponent = 'MagNormal',
@@ -793,9 +822,9 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'LROptics_DragunovDefault',
             Modifiable = true,
             AvailableComponents = {
-                'LROptics_DragunovDefault', 'ReflexSight', 'ScopeCOG', 'ThermalScope', 'LROpticsAdvanced',
-                'ReflexSightAdvanced', 'ScopeCOGQuick', '_ReflexSIghtVigilance', 'WideScope', 'PSG_DefaultScope',
-                'LROptics'
+                'LROptics_DragunovDefault', 'ReflexSight', 'ScopeCOG', 'ThermalScope',
+                'LROpticsAdvanced', 'ReflexSightAdvanced', 'ScopeCOGQuick', '_ReflexSIghtVigilance',
+                'WideScope', 'PSG_DefaultScope', 'LROptics'
             }
         }, {
             CanBeEmpty = false,
@@ -861,16 +890,18 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'LROptics', 'LROpticsAdvanced', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick',
-                'ThermalScope', 'WideScope', '_ReflexSIghtVigilance', 'LROptics_DragunovDefault', 'ImprovedIronsight'
+                'LROptics', 'LROpticsAdvanced', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG',
+                'ScopeCOGQuick', 'ThermalScope', 'WideScope', '_ReflexSIghtVigilance',
+                'LROptics_DragunovDefault', 'ImprovedIronsight'
             }
         }, {
             CanBeEmpty = true,
             SlotType = 'Muzzle',
             Modifiable = true,
-            AvailableComponents = {'Compensator', 'MuzzleBooster', 'ImprovisedSuppressor', 'Suppressor'}
-        },
-        {
+            AvailableComponents = {
+                'Compensator', 'MuzzleBooster', 'ImprovisedSuppressor', 'Suppressor'
+            }
+        }, {
             CanBeEmpty = true,
             SlotType = 'Under',
             Modifiable = true,
@@ -880,8 +911,7 @@ function RatoGBO_WepPatch()
             SlotType = 'Side',
             Modifiable = true,
             AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot'}
-        },
-        {
+        }, {
             CanBeEmpty = true,
             SlotType = 'Barrel',
             Modifiable = true,
@@ -933,15 +963,18 @@ function RatoGBO_WepPatch()
             SlotType = 'Barrel',
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
-            AvailableComponents = {'BarrelNormal', 'long_barrel_light', 'BarrelLong', 'BarrelHeavyLong'}
+            AvailableComponents = {
+                'BarrelNormal', 'long_barrel_light', 'BarrelLong', 'BarrelHeavyLong'
+            }
         }, {
             CanBeEmpty = false,
             SlotType = 'Scope',
             DefaultComponent = 'G36_SCOPE',
             Modifiable = true,
             AvailableComponents = {
-                'G36_SCOPE', 'ThermalScope', 'ReflexSightAdvanced', 'SCOPE_G36_2', 'PSG_DefaultScope',
-                '_ReflexSIghtVigilance', 'WideScope', 'ScopeCOG', 'ScopeCOGQuick', 'LROptics', 'ImprovedIronsight'
+                'G36_SCOPE', 'ThermalScope', 'ReflexSightAdvanced', 'SCOPE_G36_2',
+                'PSG_DefaultScope', '_ReflexSIghtVigilance', 'WideScope', 'ScopeCOG',
+                'ScopeCOGQuick', 'LROptics', 'ImprovedIronsight'
             }
         }, {
             CanBeEmpty = false,
@@ -970,7 +1003,9 @@ function RatoGBO_WepPatch()
             SlotType = 'Stock',
             DefaultComponent = 'foldable_StockNormal',
             Modifiable = true,
-            AvailableComponents = {'StockHeavy', 'StockLight', 'foldable_StockNormal', 'StockFolded'}
+            AvailableComponents = {
+                'StockHeavy', 'StockLight', 'foldable_StockNormal', 'StockFolded'
+            }
         }
     }
     G36.OverwatchAngle = 1023
@@ -1025,9 +1060,9 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
             AvailableComponents = {
-                'BarrelLong', 'BarrelLongImproved', 'BarrelNormal', 'BarrelNormalImproved', 'BarrelShort',
-                'BarrelShortImproved', 'BarrelHeavyLong', 'BarrelLight', 'long_barrel_light', 'BarrelShort_Light',
-                'BarrelHeavy'
+                'BarrelLong', 'BarrelLongImproved', 'BarrelNormal', 'BarrelNormalImproved',
+                'BarrelShort', 'BarrelShortImproved', 'BarrelHeavyLong', 'BarrelLight',
+                'long_barrel_light', 'BarrelShort_Light', 'BarrelHeavy'
             }
         }, {
             CanBeEmpty = false,
@@ -1040,19 +1075,24 @@ function RatoGBO_WepPatch()
             SlotType = 'Magazine',
             DefaultComponent = 'MagNormal',
             Modifiable = true,
-            AvailableComponents = {'MagLarge_5', 'MagLargeFine_5', 'MagNormal', 'MagNormalFine', 'MagQuick'}
+            AvailableComponents = {
+                'MagLarge_5', 'MagLargeFine_5', 'MagNormal', 'MagNormalFine', 'MagQuick'
+            }
         }, {
             CanBeEmpty = true,
             SlotType = 'Under',
             Modifiable = true,
-            AvailableComponents = {'GrenadeLauncher_M14', 'TacGrip_M14', 'Bipod_Under', 'VerticalGrip_M14'}
+            AvailableComponents = {
+                'GrenadeLauncher_M14', 'TacGrip_M14', 'Bipod_Under', 'VerticalGrip_M14'
+            }
         }, {
             CanBeEmpty = false,
             SlotType = 'Muzzle',
             DefaultComponent = 'M14_Default_Muzzle',
             Modifiable = true,
             AvailableComponents = {
-                'M14_Default_Muzzle', 'Compensator', 'Suppressor', 'ImprovisedSuppressor', 'MuzzleBooster'
+                'M14_Default_Muzzle', 'Compensator', 'Suppressor', 'ImprovisedSuppressor',
+                'MuzzleBooster'
             }
         }, {
             CanBeEmpty = true,
@@ -1064,8 +1104,9 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'ImprovedIronsight', 'LROptics', 'LROpticsAdvanced', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG',
-                'ScopeCOGQuick', 'ThermalScope', 'WideScope', '_ReflexSIghtVigilance'
+                'ImprovedIronsight', 'LROptics', 'LROpticsAdvanced', 'ReflexSight',
+                'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope', 'WideScope',
+                '_ReflexSIghtVigilance'
             }
         }
     }
@@ -1119,8 +1160,9 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
             AvailableComponents = {
-                'BarrelLong', 'BarrelLongImproved', 'BarrelNormal', 'BarrelShort', 'BarrelShortImproved',
-                'BarrelHeavyLong', 'BarrelLight', 'long_barrel_light', 'BarrelShort_Light'
+                'BarrelLong', 'BarrelLongImproved', 'BarrelNormal', 'BarrelShort',
+                'BarrelShortImproved', 'BarrelHeavyLong', 'BarrelLight', 'long_barrel_light',
+                'BarrelShort_Light'
             }
         }, {
             CanBeEmpty = false,
@@ -1133,19 +1175,24 @@ function RatoGBO_WepPatch()
             SlotType = 'Magazine',
             DefaultComponent = 'MagNormal',
             Modifiable = true,
-            AvailableComponents = {'MagLarge_5', 'MagLargeFine_5', 'MagNormal', 'MagNormalFine', 'MagQuick'}
+            AvailableComponents = {
+                'MagLarge_5', 'MagLargeFine_5', 'MagNormal', 'MagNormalFine', 'MagQuick'
+            }
         }, {
             CanBeEmpty = true,
             SlotType = 'Under',
             Modifiable = true,
-            AvailableComponents = {'GrenadeLauncher_M14', 'TacGrip_M14', 'VerticalGrip_M14', 'Bipod_Under'}
+            AvailableComponents = {
+                'GrenadeLauncher_M14', 'TacGrip_M14', 'VerticalGrip_M14', 'Bipod_Under'
+            }
         }, {
             CanBeEmpty = false,
             SlotType = 'Muzzle',
             DefaultComponent = 'M14_Default_Muzzle',
             Modifiable = true,
             AvailableComponents = {
-                'M14_Default_Muzzle', 'Compensator', 'Suppressor', 'ImprovisedSuppressor', 'MuzzleBooster'
+                'M14_Default_Muzzle', 'Compensator', 'Suppressor', 'ImprovisedSuppressor',
+                'MuzzleBooster'
             }
         }, {
             CanBeEmpty = true,
@@ -1157,8 +1204,9 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'ImprovedIronsight', 'LROptics', 'LROpticsAdvanced', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG',
-                'ScopeCOGQuick', 'ThermalScope', 'WideScope', '_ReflexSIghtVigilance'
+                'ImprovedIronsight', 'LROptics', 'LROpticsAdvanced', 'ReflexSight',
+                'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope', 'WideScope',
+                '_ReflexSIghtVigilance'
             }
         }, {
             CanBeEmpty = false,
@@ -1221,8 +1269,8 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
             AvailableComponents = {
-                'BarrelLong', 'BarrelNormal', 'BarrelShort_Winchester', 'BarrelLight', 'long_barrel_light',
-                'winni_to54r'
+                'BarrelLong', 'BarrelNormal', 'BarrelShort_Winchester', 'BarrelLight',
+                'long_barrel_light', 'winni_to54r'
             }
         }, {
             CanBeEmpty = true,
@@ -1234,8 +1282,9 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'ImprovedIronsight', 'LROptics', 'LROpticsAdvanced', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG',
-                'ScopeCOGQuick', 'ThermalScope', '_ReflexSIghtVigilance', 'WideScope'
+                'ImprovedIronsight', 'LROptics', 'LROpticsAdvanced', 'ReflexSight',
+                'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope',
+                '_ReflexSIghtVigilance', 'WideScope'
             }
         }, {
             CanBeEmpty = false,
@@ -1287,7 +1336,8 @@ function RatoGBO_WepPatch()
     M16A2.Reliability = 80
     M16A2.AvailableAttacks = {"BurstFire", "SingleShot", "CancelShot"}
     M16A2.ComponentSlots = {
-        {CanBeEmpty = true, SlotType = 'Handguard', Modifiable = false, AvailableComponents = {''}}, {
+        {CanBeEmpty = true, SlotType = 'Handguard', Modifiable = false, AvailableComponents = {''}},
+        {
             CanBeEmpty = true,
             SlotType = 'Scope',
             Modifiable = true,
@@ -1498,30 +1548,36 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'DefaultIronsight_AR15',
             Modifiable = true,
             AvailableComponents = {
-                'ScopeCOG', 'LROptics', 'LROpticsAdvanced', 'ThermalScope', 'ReflexSight', 'DefaultIronsight_AR15',
-                'ImprovedIronsight_AR15', 'WideScope', '_ReflexSIghtVigilance', 'ReflexSightAdvanced'
+                'ScopeCOG', 'LROptics', 'LROpticsAdvanced', 'ThermalScope', 'ReflexSight',
+                'DefaultIronsight_AR15', 'ImprovedIronsight_AR15', 'WideScope',
+                '_ReflexSIghtVigilance', 'ReflexSightAdvanced'
             }
         }, {
             CanBeEmpty = false,
             SlotType = 'Magazine',
             DefaultComponent = 'MagNormal',
             Modifiable = true,
-            AvailableComponents = {'MagNormal', 'MagNormalFine', 'MagLarge', 'MagLargeFine', 'MagQuick'}
+            AvailableComponents = {
+                'MagNormal', 'MagNormalFine', 'MagLarge', 'MagLargeFine', 'MagQuick'
+            }
         }, {
             CanBeEmpty = false,
             SlotType = 'Barrel',
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
             AvailableComponents = {
-                'BarrelNormal', 'BarrelNormalImproved', 'BarrelShort', 'BarrelShortImproved', 'BarrelLongImproved',
-                'BarrelLight', 'long_barrel_light', 'BarrelShort_Light', 'BarrelHeavyLong', 'BarrelLong'
+                'BarrelNormal', 'BarrelNormalImproved', 'BarrelShort', 'BarrelShortImproved',
+                'BarrelLongImproved', 'BarrelLight', 'long_barrel_light', 'BarrelShort_Light',
+                'BarrelHeavyLong', 'BarrelLong'
             }
         }, {
             CanBeEmpty = false,
             SlotType = 'Stock',
             DefaultComponent = 'StockHeavy_AR_BurstOnly',
             Modifiable = true,
-            AvailableComponents = {'StockHeavy_AR_BurstOnly', 'StockLight_AR_BurstOnly', 'StockBump'}
+            AvailableComponents = {
+                'StockHeavy_AR_BurstOnly', 'StockLight_AR_BurstOnly', 'StockBump'
+            }
         }, {
             CanBeEmpty = true,
             SlotType = 'Under',
@@ -1537,7 +1593,9 @@ function RatoGBO_WepPatch()
             SlotType = 'Muzzle',
             DefaultComponent = 'Compensator',
             Modifiable = true,
-            AvailableComponents = {'Compensator', 'ImprovisedSuppressor', 'Suppressor', 'MuzzleBooster'}
+            AvailableComponents = {
+                'Compensator', 'ImprovisedSuppressor', 'Suppressor', 'MuzzleBooster'
+            }
         }
     }
     AR15.OverwatchAngle = 1130
@@ -1650,8 +1708,8 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
             AvailableComponents = {
-                'BarrelLong', 'BarrelNormal', 'BarrelShort', 'long_barrel_light', 'BarrelLight', 'BarrelShort_Light',
-                'BarrelHeavyLong'
+                'BarrelLong', 'BarrelNormal', 'BarrelShort', 'long_barrel_light', 'BarrelLight',
+                'BarrelShort_Light', 'BarrelHeavyLong'
             }
         }, {
             CanBeEmpty = false,
@@ -1665,21 +1723,24 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'Galil_Brake_Default',
             Modifiable = true,
             AvailableComponents = {
-                'Galil_Brake_Default', 'Compensator', 'Suppressor', 'ImprovisedSuppressor', 'MuzzleBooster'
+                'Galil_Brake_Default', 'Compensator', 'Suppressor', 'ImprovisedSuppressor',
+                'MuzzleBooster'
             }
         }, {
             CanBeEmpty = false,
             SlotType = 'Under',
             DefaultComponent = 'Galil_Handguard_Default',
             Modifiable = true,
-            AvailableComponents = {'GrenadeLauncher_Galil', 'Galil_Handguard_Default', 'Bipod_Galil', 'VerticalGrip'}
+            AvailableComponents = {
+                'GrenadeLauncher_Galil', 'Galil_Handguard_Default', 'Bipod_Galil', 'VerticalGrip'
+            }
         }, {
             CanBeEmpty = true,
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'LROptics', 'ReflexSight', 'ThermalScope', 'ScopeCOG', '_ReflexSIghtVigilance', 'WideScope',
-                'ReflexSightAdvanced', 'ScopeCOGQuick', 'ImprovedIronsight'
+                'LROptics', 'ReflexSight', 'ThermalScope', 'ScopeCOG', '_ReflexSIghtVigilance',
+                'WideScope', 'ReflexSightAdvanced', 'ScopeCOGQuick', 'ImprovedIronsight'
             }
         }, {
             CanBeEmpty = false,
@@ -1738,8 +1799,12 @@ function RatoGBO_WepPatch()
     AK47.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
     AK47.ComponentSlots = {
         {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod'}},
-        {CanBeEmpty = true, SlotType = 'Grenadelauncher', Modifiable = true, AvailableComponents = {'AK47_Launcher'}},
         {
+            CanBeEmpty = true,
+            SlotType = 'Grenadelauncher',
+            Modifiable = true,
+            AvailableComponents = {'AK47_Launcher'}
+        }, {
             CanBeEmpty = false,
             SlotType = 'Stock',
             DefaultComponent = 'StockNormal',
@@ -1762,8 +1827,9 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'LROptics', 'ReflexSight', 'ScopeCOG', 'ThermalScope', 'LROptics_DragunovDefault', 'WideScope',
-                'ScopeCOGQuick', 'ReflexSightAdvanced', '_ReflexSIghtVigilance', 'ImprovedIronsight'
+                'LROptics', 'ReflexSight', 'ScopeCOG', 'ThermalScope', 'LROptics_DragunovDefault',
+                'WideScope', 'ScopeCOGQuick', 'ReflexSightAdvanced', '_ReflexSIghtVigilance',
+                'ImprovedIronsight'
             }
         }, {
             CanBeEmpty = true,
@@ -1775,8 +1841,7 @@ function RatoGBO_WepPatch()
             SlotType = 'Side',
             Modifiable = true,
             AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot'}
-        },
-        {
+        }, {
             CanBeEmpty = true,
             SlotType = 'Barrel',
             Modifiable = true,
@@ -1841,8 +1906,7 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'VerticalGrip',
             Modifiable = true,
             AvailableComponents = {'VerticalGrip'}
-        },
-        {
+        }, {
             CanBeEmpty = true,
             SlotType = 'Grenadelauncher',
             Modifiable = true,
@@ -1853,14 +1917,20 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'MagNormal',
             Modifiable = true,
             AvailableComponents = {'MagLarge_7', 'MagNormal', 'MagQuick'}
-        }, {CanBeEmpty = true, SlotType = 'Mount', Modifiable = false, AvailableComponents = {'AUGMount'}}, {
+        },
+        {
+            CanBeEmpty = true,
+            SlotType = 'Mount',
+            Modifiable = false,
+            AvailableComponents = {'AUGMount'}
+        }, {
             CanBeEmpty = false,
             SlotType = 'Scope',
             DefaultComponent = 'AUGScope_Default',
             Modifiable = true,
             AvailableComponents = {
-                'LROptics', 'LROpticsAdvanced', 'ThermalScope', 'ReflexSight', 'ScopeCOG', 'AUGScope_Default',
-                '_ReflexSIghtVigilance', 'WideScope', 'ReflexSightAdvanced'
+                'LROptics', 'LROpticsAdvanced', 'ThermalScope', 'ReflexSight', 'ScopeCOG',
+                'AUGScope_Default', '_ReflexSIghtVigilance', 'WideScope', 'ReflexSightAdvanced'
             }
         }, {
             CanBeEmpty = true,
@@ -1917,8 +1987,14 @@ function RatoGBO_WepPatch()
     FAMAS.Reliability = 70
     FAMAS.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
     FAMAS.ComponentSlots = {
-        {CanBeEmpty = true, SlotType = 'Under', Modifiable = true, AvailableComponents = {'VerticalGrip'}},
-        {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod'}}, {
+        {
+            CanBeEmpty = true,
+            SlotType = 'Under',
+            Modifiable = true,
+            AvailableComponents = {'VerticalGrip'}
+        },
+        {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod'}},
+        {
             CanBeEmpty = true,
             SlotType = 'Side',
             Modifiable = true,
@@ -1928,8 +2004,8 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'LROptics', 'ReflexSight', 'ScopeCOGQuick', 'ScopeCOG', 'ThermalScope', '_ReflexSIghtVigilance',
-                'ReflexSightAdvanced', 'WideScope', 'ImprovedIronsight'
+                'LROptics', 'ReflexSight', 'ScopeCOGQuick', 'ScopeCOG', 'ThermalScope',
+                '_ReflexSIghtVigilance', 'ReflexSightAdvanced', 'WideScope', 'ImprovedIronsight'
             }
         }, {
             CanBeEmpty = false,
@@ -1999,13 +2075,17 @@ function RatoGBO_WepPatch()
             SlotType = 'Under',
             DefaultComponent = 'Handguard_Commando',
             Modifiable = true,
-            AvailableComponents = {'Handguard_Commando', 'VerticalGrip_Commando', 'GrenadeLauncher_Commando'}
+            AvailableComponents = {
+                'Handguard_Commando', 'VerticalGrip_Commando', 'GrenadeLauncher_Commando'
+            }
         }, {
             CanBeEmpty = false,
             SlotType = 'Magazine',
             DefaultComponent = 'MagNormal',
             Modifiable = true,
-            AvailableComponents = {'MagNormal', 'MagNormalFine', 'MagLarge', 'MagLargeFine', 'R_MagQuickLarge'}
+            AvailableComponents = {
+                'MagNormal', 'MagNormalFine', 'MagLarge', 'MagLargeFine', 'R_MagQuickLarge'
+            }
         }, {
             CanBeEmpty = false,
             SlotType = 'Stock',
@@ -2022,15 +2102,17 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'LROptics', 'ReflexSight', 'ScopeCOG', 'ThermalScope', 'ReflexSightAdvanced', 'ScopeCOGQuick',
-                '_ReflexSIghtVigilance', 'WideScope', 'ImprovedIronsight'
+                'LROptics', 'ReflexSight', 'ScopeCOG', 'ThermalScope', 'ReflexSightAdvanced',
+                'ScopeCOGQuick', '_ReflexSIghtVigilance', 'WideScope', 'ImprovedIronsight'
             }
         }, {
             CanBeEmpty = true,
             SlotType = 'Muzzle',
             DefaultComponent = 'Compensator',
             Modifiable = true,
-            AvailableComponents = {'Compensator', 'MuzzleBooster', 'Suppressor', 'ImprovisedSuppressor'}
+            AvailableComponents = {
+                'Compensator', 'MuzzleBooster', 'Suppressor', 'ImprovisedSuppressor'
+            }
         }
     }
     M4Commando.OverwatchAngle = 1429
@@ -2077,7 +2159,9 @@ function RatoGBO_WepPatch()
             CanBeEmpty = true,
             SlotType = 'Scope',
             Modifiable = true,
-            AvailableComponents = {'ReflexSight', 'ReflexSightAdvanced', 'ImprovedIronsight', '_ReflexSIghtVigilance'}
+            AvailableComponents = {
+                'ReflexSight', 'ReflexSightAdvanced', 'ImprovedIronsight', '_ReflexSIghtVigilance'
+            }
         }, {
             CanBeEmpty = false,
             SlotType = 'Magazine',
@@ -2090,7 +2174,13 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
             AvailableComponents = {'BarrelLong_handgun', 'BarrelNormal', 'Barrel50BMG_DesertEagle'}
-        }, {CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'Suppressor'}}, {
+        },
+        {
+            CanBeEmpty = true,
+            SlotType = 'Muzzle',
+            Modifiable = true,
+            AvailableComponents = {'Suppressor'}
+        }, {
             CanBeEmpty = true,
             SlotType = 'Side',
             Modifiable = true,
@@ -2099,7 +2189,7 @@ function RatoGBO_WepPatch()
     }
     DesertEagle.OverwatchAngle = 1936
     DesertEagle.Damage = 28
-    DesertEagle.MagazineSize = 15
+    DesertEagle.MagazineSize = 8
     DesertEagle.RepairCost = 70
     DesertEagle.RestockWeight = 40
     DesertEagle.ScrapParts = 10
@@ -2145,8 +2235,8 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
             AvailableComponents = {
-                'BarrelLong_handgun', 'BarrelNormal', 'BarrelShort_handgun', 'BarrelLight', 'long_barrel_light_handgun',
-                'BarrelShort_Light_handgun'
+                'BarrelLong_handgun', 'BarrelNormal', 'BarrelShort_handgun', 'BarrelLight',
+                'long_barrel_light_handgun', 'BarrelShort_Light_handgun'
             }
         }, {
             CanBeEmpty = false,
@@ -2154,9 +2244,9 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'BaseIronsight_Anaconda',
             Modifiable = true,
             AvailableComponents = {
-                'BaseIronsight_Anaconda', 'ImprovedIronsight', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG',
-                'ScopeCOGQuick', 'LaserDot_Anaconda', 'FlashlightDot_Anaconda', 'UVDot_Anaconda',
-                '_ReflexSIghtVigilance', 'WideScope'
+                'BaseIronsight_Anaconda', 'ImprovedIronsight', 'ReflexSight', 'ReflexSightAdvanced',
+                'ScopeCOG', 'ScopeCOGQuick', 'LaserDot_Anaconda', 'FlashlightDot_Anaconda',
+                'UVDot_Anaconda', '_ReflexSIghtVigilance', 'WideScope'
             }
         }, {
             CanBeEmpty = false,
@@ -2226,7 +2316,9 @@ function RatoGBO_WepPatch()
             SlotType = 'Magazine',
             DefaultComponent = 'MagNormal',
             Modifiable = true,
-            AvailableComponents = {'MagNormal', 'MagNormalFine', 'MagLarge', 'MagQuick', 'MagLargeFine'}
+            AvailableComponents = {
+                'MagNormal', 'MagNormalFine', 'MagLarge', 'MagQuick', 'MagLargeFine'
+            }
         }, {
             CanBeEmpty = true,
             SlotType = 'Side',
@@ -2237,15 +2329,18 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'LROptics', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope',
-                'WideScope', '_ReflexSIghtVigilance', 'LROptics_DragunovDefault', 'ImprovedIronsight'
+                'LROptics', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick',
+                'ThermalScope', 'WideScope', '_ReflexSIghtVigilance', 'LROptics_DragunovDefault',
+                'ImprovedIronsight'
             }
         }, {
             CanBeEmpty = false,
             SlotType = 'Muzzle',
             DefaultComponent = 'MuzzleBooster',
             Modifiable = true,
-            AvailableComponents = {'Compensator', 'MuzzleBooster', 'Suppressor', 'ImprovisedSuppressor'}
+            AvailableComponents = {
+                'Compensator', 'MuzzleBooster', 'Suppressor', 'ImprovisedSuppressor'
+            }
         }, {
             CanBeEmpty = false,
             SlotType = 'Stock',
@@ -2306,7 +2401,8 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
             AvailableComponents = {
-                'BarrelNormal', 'BarrelLong_handgun', 'long_barrel_light_handgun', 'BarrelLight_handgun'
+                'BarrelNormal', 'BarrelLong_handgun', 'long_barrel_light_handgun',
+                'BarrelLight_handgun'
             }
         }, {
             CanBeEmpty = false,
@@ -2336,8 +2432,8 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'LROptics', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope',
-                '_ReflexSIghtVigilance', 'WideScope', 'ImprovedIronsight'
+                'LROptics', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick',
+                'ThermalScope', '_ReflexSIghtVigilance', 'WideScope', 'ImprovedIronsight'
             }
         }, {
             CanBeEmpty = true,
@@ -2383,7 +2479,9 @@ function RatoGBO_WepPatch()
     MP5K.ShootAP = 3000
     MP5K.ReloadAP = 3000
     MP5K.Reliability = 85
-    MP5K.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "DualShot", "RunAndGun", "CancelShot"}
+    MP5K.AvailableAttacks = {
+        "BurstFire", "AutoFire", "SingleShot", "DualShot", "RunAndGun", "CancelShot"
+    }
     MP5K.ComponentSlots = {
         {
             CanBeEmpty = false,
@@ -2419,8 +2517,8 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick', '_ReflexSIghtVigilance', 'WideScope',
-                'ImprovedIronsight'
+                'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick',
+                '_ReflexSIghtVigilance', 'WideScope', 'ImprovedIronsight'
             }
         }, {
             CanBeEmpty = false,
@@ -2523,7 +2621,7 @@ function RatoGBO_WepPatch()
 
     LionRoar.Cost = 3000
     LionRoar.WeaponRange = 26
-    LionRoar.ShootAP = 4000
+    LionRoar.ShootAP = 3000
     LionRoar.ReloadAP = 3000
     LionRoar.Reliability = 80
     LionRoar.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "RunAndGun"}
@@ -2557,7 +2655,7 @@ function RatoGBO_WepPatch()
         901243090653, [[<description_hints>
  <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> OUR weapon
  <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Burst fire has 4 shots
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130128120>Limitedammocapacity]]
+ <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Limited ammo capacity]]
     }
     LionRoar.Noise = 20
     LionRoar.CritChanceScaled = 10
@@ -2590,8 +2688,8 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
             AvailableComponents = {
-                'BarrelLong_handgun', 'BarrelNormal', 'BarrelShort_handgun', 'BarrelLight', 'long_barrel_light_handgun',
-                'BarrelShort_Light_handgun'
+                'BarrelLong_handgun', 'BarrelNormal', 'BarrelShort_handgun', 'BarrelLight',
+                'long_barrel_light_handgun', 'BarrelShort_Light_handgun'
             }
         }, {
             CanBeEmpty = false,
@@ -2655,8 +2753,8 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
             AvailableComponents = {
-                'BarrelLong_handgun', 'BarrelNormal', 'BarrelShort_handgun', 'BarrelLight', 'long_barrel_light_handgun',
-                'BarrelShort_Light_handgun'
+                'BarrelLong_handgun', 'BarrelNormal', 'BarrelShort_handgun', 'BarrelLight',
+                'long_barrel_light_handgun', 'BarrelShort_Light_handgun'
             }
         }
     }
@@ -2698,7 +2796,9 @@ function RatoGBO_WepPatch()
     UZI.ShootAP = 3000
     UZI.ReloadAP = 3000
     UZI.Reliability = 75
-    UZI.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "DualShot", "RunAndGun", "CancelShot"}
+    UZI.AvailableAttacks = {
+        "BurstFire", "AutoFire", "SingleShot", "DualShot", "RunAndGun", "CancelShot"
+    }
     UZI.ComponentSlots = {
         {
             CanBeEmpty = false,
@@ -2706,8 +2806,8 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
             AvailableComponents = {
-                'BarrelNormal', 'BarrelNormalImproved', 'BarrelLong_handgun', 'BarrelLongImproved_handgun',
-                'long_barrel_light_handgun', 'BarrelLight_handgun'
+                'BarrelNormal', 'BarrelNormalImproved', 'BarrelLong_handgun',
+                'BarrelLongImproved_handgun', 'long_barrel_light_handgun', 'BarrelLight_handgun'
             }
         }, {
             CanBeEmpty = false,
@@ -2731,11 +2831,15 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'LROptics', 'ReflexSight', 'ReflexSightAdvanced', '_ReflexSIghtVigilance', 'ImprovedIronsight'
+                'LROptics', 'ReflexSight', 'ReflexSightAdvanced', '_ReflexSIghtVigilance',
+                'ImprovedIronsight'
             }
-        },
-        {CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'Compensator', 'Suppressor'}},
-        {
+        }, {
+            CanBeEmpty = true,
+            SlotType = 'Muzzle',
+            Modifiable = true,
+            AvailableComponents = {'Compensator', 'Suppressor'}
+        }, {
             CanBeEmpty = false,
             SlotType = 'Stock',
             DefaultComponent = 'StockNo',
@@ -2786,7 +2890,8 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'ReflexSight', '_ReflexSIghtVigilance', 'ReflexSightAdvanced_Glock', 'ImprovedIronsight'
+                'ReflexSight', '_ReflexSIghtVigilance', 'ReflexSightAdvanced_Glock',
+                'ImprovedIronsight'
             }
         }, {
             CanBeEmpty = true,
@@ -2804,7 +2909,9 @@ function RatoGBO_WepPatch()
             SlotType = 'Barrel',
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
-            AvailableComponents = {'BarrelLong_handgun', 'BarrelNormal', 'long_barrel_light_handgun', 'BarrelLight'}
+            AvailableComponents = {
+                'BarrelLong_handgun', 'BarrelNormal', 'long_barrel_light_handgun', 'BarrelLight'
+            }
         }, {
             CanBeEmpty = true,
             SlotType = 'Side',
@@ -2863,7 +2970,8 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'ReflexSight', '_ReflexSIghtVigilance', 'ReflexSightAdvanced_Glock', 'ImprovedIronsight'
+                'ReflexSight', '_ReflexSIghtVigilance', 'ReflexSightAdvanced_Glock',
+                'ImprovedIronsight'
             }
         }, {
             CanBeEmpty = false,
@@ -2877,9 +2985,9 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'BarrelNormal',
             Modifiable = true,
             AvailableComponents = {
-                'BarrelNormal', 'BarrelNormalImproved', 'BarrelShort_handgun', 'BarrelShortImproved_handgun',
-                'BarrelLong_handgun', 'BarrelLongImproved_handgun', 'BarrelLight', 'long_barrel_light_handgun',
-                'BarrelShort_Light_handgun'
+                'BarrelNormal', 'BarrelNormalImproved', 'BarrelShort_handgun',
+                'BarrelShortImproved_handgun', 'BarrelLong_handgun', 'BarrelLongImproved_handgun',
+                'BarrelLight', 'long_barrel_light_handgun', 'BarrelShort_Light_handgun'
             }
         }
     }
@@ -2931,14 +3039,17 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'ReflexSight', 'ReflexSightAdvanced_Glock', 'ImprovedIronsight', '_ReflexSIghtVigilance'
+                'ReflexSight', 'ReflexSightAdvanced_Glock', 'ImprovedIronsight',
+                '_ReflexSIghtVigilance'
             }
         }, {
             CanBeEmpty = true,
             SlotType = 'Muzzle',
             Modifiable = true,
             AvailableComponents = {'ImprovisedSuppressor', 'Suppressor', 'Compensator_Glock'}
-        }, {CanBeEmpty = false, SlotType = 'Handguard', Modifiable = false, AvailableComponents = {}}, {
+        },
+        {CanBeEmpty = false, SlotType = 'Handguard', Modifiable = false, AvailableComponents = {}},
+        {
             CanBeEmpty = false,
             SlotType = 'Magazine',
             DefaultComponent = 'MagNormal',
@@ -3009,14 +3120,21 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'ScopeCOG', 'LROptics', 'ReflexSight', 'ThermalScope', 'ReflexSightAdvanced', 'ImprovedIronsight'
+                'ScopeCOG', 'LROptics', 'ReflexSight', 'ThermalScope', 'ReflexSightAdvanced',
+                'ImprovedIronsight'
             }
         }, {
             CanBeEmpty = true,
             SlotType = 'Side',
             Modifiable = true,
             AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot'}
-        }, {CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'Compensator'}}
+        },
+        {
+            CanBeEmpty = true,
+            SlotType = 'Muzzle',
+            Modifiable = true,
+            AvailableComponents = {'Compensator'}
+        }
     }
     M41Shotgun.OverwatchAngle = 881
     M41Shotgun.Damage = 27
@@ -3070,7 +3188,8 @@ function RatoGBO_WepPatch()
             DefaultComponent = 'Auto5_Basic_NMag',
             Modifiable = true,
             AvailableComponents = {
-                'Auto5_Basic_LMag', 'Auto5_Basic_NMag', 'Auto5_Long_LMag', 'Auto5_Long_NMag', 'Auto5_Short_NMag'
+                'Auto5_Basic_LMag', 'Auto5_Basic_NMag', 'Auto5_Long_LMag', 'Auto5_Long_NMag',
+                'Auto5_Short_NMag'
             }
         }
     }
@@ -3177,15 +3296,22 @@ function RatoGBO_WepPatch()
             SlotType = 'Scope',
             Modifiable = true,
             AvailableComponents = {
-                'ReflexSightAdvanced', 'ReflexSight', 'ScopeCOGQuick', '_ReflexSIghtVigilance', 'ImprovedIronsight'
+                'ReflexSightAdvanced', 'ReflexSight', 'ScopeCOGQuick', '_ReflexSIghtVigilance',
+                'ImprovedIronsight'
             }
         }, {
             CanBeEmpty = true,
             SlotType = 'Side',
             Modifiable = true,
-            AvailableComponents = {'Flashlight_aa12', 'LaserDot_aa12', 'FlashlightDot_aa12', 'UVDot_aa12'}
-        },
-        {CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'Suppressor', 'Compensator'}}
+            AvailableComponents = {
+                'Flashlight_aa12', 'LaserDot_aa12', 'FlashlightDot_aa12', 'UVDot_aa12'
+            }
+        }, {
+            CanBeEmpty = true,
+            SlotType = 'Muzzle',
+            Modifiable = true,
+            AvailableComponents = {'Suppressor', 'Compensator'}
+        }
     }
     AA12.OverwatchAngle = 1001
     AA12.Damage = 25

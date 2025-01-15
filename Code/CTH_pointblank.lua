@@ -84,7 +84,7 @@ function point_blank_cth()
 end
 
 function Unit:GBO_IsPointBlankRange(target, unit_pos)
-    if not IsValid(target) then
+    if not IsValid(target) and not unit_pos then
         return false
     end
     return IsCloser(target, unit_pos or self, const.Weapons.PointBlankRange * const.SlabSizeX + 1)

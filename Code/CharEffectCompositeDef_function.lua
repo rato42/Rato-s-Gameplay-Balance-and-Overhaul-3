@@ -4,9 +4,20 @@ function presets_char_effect()
 
     ForEachPreset('CharacterEffectCompositeDef', function(p)
 
+        if p.id == "HawksEye" then
+            p.Description = T(984561732232, --[[CharacterEffectCompositeDef HawksEye Description]]
+                              "<GameTerm('PinDown')> applies <GameTerm('Exposed')> to the target.\n\n<GameTerm('PinDown')> <em>AP</em> cost is reduced by <em><pindownCostOverwrite> AP</em>.\n\nScope also makes <GameTerm('Biscuits')>.")
+            -- for _, param in ipairs(p.Parameters) do
+            --     if param.Name == 'pindownCostOverwrite' then
+            --         param.Value = 1
+            --     end
+            -- end
+        end
+
+        --------------------------------------------------------------------------------------------
+
         if p.id == 'SteadyBreathing' then
-            p.Description = T(778949186487,
-                              "Grants the ability to <em>Sprint</em> in combat.")
+            p.Description = T(778949186487, "Grants the ability to <em>Sprint</em> in combat.")
         end
 
         --------------------------------------------------------------------------------------------
@@ -30,9 +41,8 @@ function presets_char_effect()
             p.unit_reactions = {
                 PlaceObj('UnitReaction', {
                     Event = "OnModifyCTHModifier",
-                    Handler = function(self, target, id, attacker,
-                                       attack_target, action, weapon1, weapon2,
-                                       data)
+                    Handler = function(self, target, id, attacker, attack_target, action, weapon1,
+                                       weapon2, data)
                         return
                     end,
                     HandlerCode = function(self, attacker, cth_id, data)
@@ -54,9 +64,8 @@ function presets_char_effect()
             p.unit_reactions = {
                 PlaceObj('UnitReaction', {
                     Event = "OnModifyCTHModifier",
-                    Handler = function(self, target, id, attacker,
-                                       attack_target, action, weapon1, weapon2,
-                                       data)
+                    Handler = function(self, target, id, attacker, attack_target, action, weapon1,
+                                       weapon2, data)
                         return
                     end,
                     HandlerCode = function(self, attacker, cth_id, data)
