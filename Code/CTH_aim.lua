@@ -122,7 +122,7 @@ function aim_cth()
             end
 
             if opportunity_attack and HasPerk(attacker, "shooting_stance") then
-                num = 1
+                num = Max(num, 1)
             end
 
             local scale_factor = min_scale + (max_scale - min_scale) * (dex - min_dex) /
@@ -134,40 +134,30 @@ function aim_cth()
             end
             local bonus = num * min_bonus
 
+            --------------------------
             local modifyVal, compDef
-            local componentEffects = {
-                {
-                    effectKey = "FirstAimBonusModifier",
-                    valueKey = "first_aim_bonus",
-                    modifyBonus = function(min_bonus)
-                        return (min_bonus * 0.3) + 2.1
-                    end
-                }, {
-                    effectKey = "AccuracyBonusWhenAimed",
-                    valueKey = "bonus_cth",
-                    modifyBonus = function(modifyVal)
-                        return modifyVal
-                    end
-                }, {
-                    effectKey = "AccuracyBonusWhenAimed_vgrip",
-                    valueKey = "bonus_cth_v",
-                    modifyBonus = function(modifyVal)
-                        return modifyVal
-                    end,
-                    condition = function()
-                        return not w2
-                    end
-                }
-            }
 
-            -- Process each component effect
-            for _, effect in ipairs(componentEffects) do
-                modifyVal, compDef =
-                    GetComponentEffectValue(weapon1, effect.effectKey, effect.valueKey)
-                if modifyVal and (not effect.condition or effect.condition()) then
-                    bonus = bonus + effect.modifyBonus(modifyVal or min_bonus)
-                    metaText[#metaText + 1] = compDef.DisplayName
-                end
+            -- Forward Grip
+            modifyVal, compDef = GetComponentEffectValue(weapon1, "FirstAimBonusModifier",
+                                                         "first_aim_bonus")
+            if modifyVal then
+                bonus = bonus + (min_bonus * 0.3) + 2.1
+                metaText[#metaText + 1] = compDef.DisplayName
+            end
+
+            -- Improved Sight
+            modifyVal, compDef =
+                GetComponentEffectValue(weapon1, "AccuracyBonusWhenAimed", "bonus_cth")
+            if modifyVal then
+                bonus = bonus + modifyVal
+            end
+
+            ---
+            modifyVal, compDef = GetComponentEffectValue(weapon1, "AccuracyBonusWhenAimed_vgrip",
+                                                         "bonus_cth_v")
+            if modifyVal and not w2 then
+                bonus = bonus + modifyVal
+                metaText[#metaText + 1] = compDef.DisplayName
             end
 
             ---------------------------------------

@@ -18,6 +18,7 @@ const.Combat.Hipfire_MaxDistforPenalty = 26
 const.Combat.Snapshot_BasePenalty = -5 ---- -10
 const.Combat.SnapshotMaxPenalty = -30
 const.Combat.Snapshot_MaxDistforPenalty = 26
+const.Combat.MGSetupSnapshotReductionMul = 60
 -- RunAndGun
 const.Combat.RunAndGunMaxPenalty = -20
 const.Combat.RunAndGun_MaxDistforPenalty = 14

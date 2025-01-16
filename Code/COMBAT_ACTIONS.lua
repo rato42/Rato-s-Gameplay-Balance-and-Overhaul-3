@@ -1483,6 +1483,16 @@ function rat_combat_actions()
         return results, attack_args
     end
 
+    ------------TESTAR
+    CombatActions.MGPack.GetAPCost = function(self, unit, args)
+        if unit:HasStatusEffect("ManningEmplacement") or unit.RATOAI_used_mg_setup_this_turn then
+            return -1
+        end
+        self.ActionPoints = unit:GetAttackAPCost(self.action, self.weapon, self.ActionPoints)
+
+        return self.ActionPoints
+    end
+
     for _, param in ipairs(CombatActions.HundredKnives.Parameters) do
         if param.Name == 'mobile_num_shots' then
             param.Value = 3

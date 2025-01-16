@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.53 #### not released\n\nPindown rework\n---------- Need to remove exposed\nDesert Eagle magazine size reduced to 8\n\nNew Default Firearm Noise option is 150%. The percentages can go up to 200% now. If you want the old setting, use 100%, if you want vanilla-like, use 0%.\n\nFixes:\nFixed the Lions Roar not having sound.\nFixed the Lions Roar attack AP costing 1 more than it should.\nFixed some weirdness related to units in shooting stance changing orientation when in uneven terrain and prone\nUsing Prepare Weapon outside of combat will now properly display the animation and take the correct amount of time\n",
+	'last_changes', "3.53 #### not released\n\nPindown rework\n---------- Need to remove exposed\nBalance:\nSignificantly increased the reduction of Snapshot penalty when using a Setup MG\nDesert Eagle magazine size reduced to 8\n\nNew Default Firearm Noise option is 150%. The percentages can go up to 200% now. If you want the old setting, use 100%, if you want vanilla-like, use 0%.\n\nFixes:\nFixed the Lions Roar not having sound.\nFixed the Lions Roar attack AP costing 1 more than it should.\nFixed some weirdness related to units in shooting stance changing orientation when in uneven terrain and prone\nUsing Prepare Weapon outside of combat will now properly display the animation and take the correct amount of time\n",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 53,
-	'version', 11550,
+	'version', 11572,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -191,8 +191,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1736925569,
-	'code_hash', 5561720087243286725,
+	'saved', 1737001638,
+	'code_hash', -4233482145222296005,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

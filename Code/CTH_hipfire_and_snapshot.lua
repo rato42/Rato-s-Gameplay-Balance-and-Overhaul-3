@@ -192,9 +192,11 @@ function place_hipfire_cth()
 
                 snap_penal = MulDivRound(snap_penal, weapon_ref, 100) + base_penal
 
-                if (g_Overwatch[attacker] and g_Overwatch[attacker].permanent) then
+                if (g_Overwatch[attacker] and g_Overwatch[attacker].permanent) or action and
+                    action.id == "MGSetup" then
                     metaText[#metaText + 1] = T {516951375425, "MG Setup"}
-                    snap_penal = MulDivRound(snap_penal, 90, 100)
+                    snap_penal = MulDivRound(snap_penal, const.Combat.MGSetupSnapshotReductionMul,
+                                             100)
                 end
 
                 if aim == 2 then

@@ -74,6 +74,10 @@ function OnMsg.CombatActionEnd(unit)
         "ReloadAction", "DoubleToss", "Sprint"
     }
 
+    if g_Overwatch[unit] and g_Overwatch[unit].permanent then
+        return
+    end
+
     if table.find(actions_to_remove_stance, unit.action_command) then
         unit:RemoveStatusEffect("shooting_stance")
     end
