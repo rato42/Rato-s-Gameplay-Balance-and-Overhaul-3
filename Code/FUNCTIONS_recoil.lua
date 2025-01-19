@@ -1,3 +1,14 @@
+function OnMsg.ClassesGenerate()
+    AppendClass.Firearm = {
+        properties = {{id = "class_base_recoil", editor = "number", default = 100, no_edit = true}}
+    }
+
+    Pistol.class_base_recoil = 195
+    Revolver.class_base_recoil = 188
+    SubmachineGun.class_base_recoil = 130
+    MachineGun.class_base_recoil = 95
+end
+
 local function rT(id, text)
     return {id, text}
 end
@@ -71,7 +82,6 @@ function GetWepRecoil(weapon, attacker, display)
 
     local base_mul = (weapon.wep_base_recoil_mul or 100) / 100.00
 
-    ---------------This should apply only to burst/auto attacks (i guess)
     mod = mod * base_mul
 
     if IsKindOf(weapon, "BrowningM2HMG") then
@@ -84,22 +94,8 @@ function GetWepRecoil(weapon, attacker, display)
         metaText[#metaText + 1] = "Compensator"
     end
 
-    if IsKindOfClasses(weapon, "AssaultRifle") then
-        mod = mod * 1.00
-    elseif IsKindOfClasses(weapon, "SubmachineGun") then
-        mod = mod * 1.30
-        -- metaText[#metaText + 1] = "(-) SMG"
-    elseif IsKindOfClasses(weapon, "Pistol") then
-        mod = mod * 1.95
-    elseif IsKindOfClasses(weapon, "Revolver") then
-        mod = mod * 1.88
-        -- metaText[#metaText + 1] = "(-) Pistol"
-    elseif IsKindOfClasses(weapon, "MachineGun") then
-        mod = mod * 0.95
-        -- metaText[#metaText + 1] = "(+) LMG"
-    else
-        mod = mod * 1.00
-    end
+    ---- Weapon Class
+    mod = mod * (weapon.class_base_recoil / 100.00)
 
     local mech, meta_mech = GetMechanismRecoil(weapon)
 
@@ -127,9 +123,9 @@ function GetWepRecoil(weapon, attacker, display)
 
     if weapon and weapon:HasComponent("no_stock") then
         if IsKindOfClasses(weapon, "SubmachineGun") then
-            mod = mod * 1.80
+            mod = mod * 1.40
         else
-            mod = mod * 1.90
+            mod = mod * 1.70
         end
         metaText[#metaText + 1] = rT(115796595571, "(-) No Stock")
     end
@@ -367,15 +363,17 @@ function GetRecoilOther(weapon, attacker, action)
                 mod = mod * burst_delta
             end
 
-            if weapon and weapon:HasComponent("recoil_bump") then
-                mod = mod * 1.10
-                metaText[#metaText + 1] = rT(749694622664, "(-) Bump Stock")
-            end
-
             if weapon.burst_selective or weapon:HasComponent("Reduce_recoil_burst_delta") then
                 local name = type(weapon.DisplayName) == "table" and weapon.DisplayName[2] or false
                 local meta_name = name and name .. " Selective Burst" or "Selective Burst"
                 metaText[#metaText + 1] = rT(false, meta_name)
+            end
+        end
+
+        if action and (action.id == "AutoFire" or action.id == "BurstFire") then
+            if weapon and weapon:HasComponent("recoil_bump") then
+                mod = mod * 1.10
+                metaText[#metaText + 1] = rT(749694622664, "(-) Bump Stock")
             end
         end
 
@@ -638,24 +636,13 @@ function get_recoil(attacker, target, target_pos, action, weapon1, aim, num_shot
         penalty = MulDivRound(penalty, mg_mod, 100)
     end
 
-    -- if held_mg then
-    -- local hip_mod = (GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, 1)*0.8)*100
-    -- penalty = MulDivRound(penalty,Max(100, hip_mod), 100)
-    -- end
-
     local side = attacker and attacker.team and attacker.team.side or ''
 
     if not (side == 'player1' or side == 'player2') and not test then
         penalty = AIpenal_reduc(attacker, penalty, "Recoil", stacks and true or false)
     end
 
-    -- if dist <= pb_dist then
-    -- penalty = MulDivRound(penalty, 90,100)
-    -- metaText[#metaText + 1] = rT(219911149892, "Point-Blank Range")
-    -- end
-
     penalty = penalty + flat_penalty
-    -- print("last recoil penaty", penalty)
 
     if penalty == 0 then
         return 0

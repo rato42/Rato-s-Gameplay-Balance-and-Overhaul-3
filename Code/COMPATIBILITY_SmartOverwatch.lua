@@ -6,7 +6,8 @@ function OnMsg.EnterSector()
         define_getOWattacks_and_aim()
 
         already_placed = true
-        print("RAT MOD - enabling SmartOW compatibility")
+        print(
+            "RAT MOD - enabling SmartOW compatibility - redefining OW get attacks and aim function")
     end
 end
 
@@ -79,7 +80,7 @@ function smart_xtempl()
         end
     end
     xt1[1][1].comment = "ratified"
-    print("RAT MOD: changing SmartOW xTemplate to recalc UI actions")
+    print("RAT MOD: changed SmartOW xTemplate to recalc UI actions")
 end
 
 function add_recalcUI()

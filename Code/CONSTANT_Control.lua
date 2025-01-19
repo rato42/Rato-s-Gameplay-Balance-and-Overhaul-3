@@ -22,6 +22,9 @@ const.Combat.MGSetupSnapshotReductionMul = 60
 -- RunAndGun
 const.Combat.RunAndGunMaxPenalty = -20
 const.Combat.RunAndGun_MaxDistforPenalty = 14
+const.Combat.RunAndGunSnapshotHipfirePenaltyMul = 1.75
+
+const.Combat.MobileShotSnapshotHipfirePenaltyMul = 1.55
 
 ----- AI
 -- const.Combat.AI_ShootingStanceAP_Mul = 50 --- % Became a Mod Option
@@ -35,6 +38,7 @@ const.Combat.BoltActionDexSecondThreshold = 95
 
 ------ Pindown (Sniping)
 const.Combat.PindownCritPerAimLevel = 5
+const.Combat.PindownAimLevelsForAPCost = 2
 
 -------------
 ----- Vanilla

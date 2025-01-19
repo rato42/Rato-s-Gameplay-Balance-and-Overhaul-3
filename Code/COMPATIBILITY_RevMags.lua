@@ -1,7 +1,10 @@
 function OnMsg.RevisedMagPropsAddedToFirearms()
-    REV_SetupWeapon(RPK74, "AK545", "AK74Magazine", "MagNormalFine", {"MagLargeFine", "MagLarger", "MagNormalFine"})
-    REV_SetupWeapon(AK74, "AK545", "AK74Magazine", "MagNormalFine", {"MagLargeFine", "MagLarger", "MagNormalFine"})
+    REV_SetupWeapon(RPK74, "AK545", "AK74Magazine", "MagNormalFine",
+                    {"MagLargeFine", "MagLarger", "MagNormalFine"})
+    REV_SetupWeapon(AK74, "AK545", "AK74Magazine", "MagNormalFine",
+                    {"MagLargeFine", "MagLarger", "MagNormalFine"})
     REV_SetupWeapon(M14SAW_AUTO, "M14", "M14Magazine", "MagNormal", {"MagLarge", "MagNormal"})
+
 end
 
 function Rat_RevMag_compatibility()
@@ -65,7 +68,7 @@ function Rat_RevMag_changeDrumMagRPK74()
         param_bindings = false
     })
 
-    table.insert(mag_larger.Visuals, aksu_visu)
+    table.insert_unique(mag_larger.Visuals, aksu_visu)
 
 end
 
@@ -81,10 +84,31 @@ function Rat_RevMag_fixNormalMagRPK74()
     end
 end
 
-function OnMsg.ModsReloaded()
+function Rat_RevMag_fixDefaultlMagG36()
+    local mag = WeaponComponents["MagLarge"]
+
+    for i, v in pairs(mag.Visuals) do
+        if v.ApplyTo == "G36" then
+            v.Icon = 'UI/Icons/Upgrades/G36_magazine'
+            v.Entity = 'WeaponAttA_MagazineHKG36_01'
+            break
+        end
+    end
+end
+
+function GBO_ApplyRevMagCompatibility()
     if IsMod_loaded("URkxyfE") then
         Rat_RevMag_changeDrumMagRPK74()
         Rat_RevMag_fixNormalMagRPK74()
+        Rat_RevMag_fixDefaultlMagG36()
     end
+end
+
+function OnMsg.ModsReloaded()
+    GBO_ApplyRevMagCompatibility()
+end
+
+function OnMsg.DataLoaded()
+    GBO_ApplyRevMagCompatibility()
 end
 

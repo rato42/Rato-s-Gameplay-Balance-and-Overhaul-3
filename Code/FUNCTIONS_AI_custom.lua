@@ -15,6 +15,10 @@ function OnMsg.UnitEnterCombat(unit)
 end
 
 function AIpenal_reduc(attacker, value, cth_id, persistant_recoil)
+    if not attacker then
+        return value
+    end
+
     local level = attacker:GetLevel()
     if attacker.Affiliation == "Adonis" then
         level = level + 2

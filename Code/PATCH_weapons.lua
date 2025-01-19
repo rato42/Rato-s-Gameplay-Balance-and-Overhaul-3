@@ -1336,7 +1336,7 @@ function RatoGBO_WepPatch()
     M16A2.Reliability = 80
     M16A2.AvailableAttacks = {"BurstFire", "SingleShot", "CancelShot"}
     M16A2.ComponentSlots = {
-        {CanBeEmpty = true, SlotType = 'Handguard', Modifiable = false, AvailableComponents = {''}},
+        {CanBeEmpty = true, SlotType = 'Handguard', Modifiable = false, AvailableComponents = {}},
         {
             CanBeEmpty = true,
             SlotType = 'Scope',

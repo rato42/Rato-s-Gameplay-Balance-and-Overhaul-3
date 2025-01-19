@@ -52,7 +52,7 @@ DefineClass.shooting_stance = {
 			Handler = function (self, obj, id, stacks, reason)
 				local reaction_def = (self.msg_reactions or empty_table)[3]
 				if self:VerifyReaction("StatusEffectRemoved", reaction_def, obj, obj, id, stacks, reason) then
-					if id == "shooting_stance" then
+					if id == "shooting_stance"  and obj and IsKindOf(obj, "Unit") then
 					if HasPerk(obj,"Rat_recoil") then
 						obj:RemoveStatusEffect("Rat_recoil", "all")
 					end
@@ -67,7 +67,7 @@ DefineClass.shooting_stance = {
 				end
 			end,
 			HandlerCode = function (self, obj, id, stacks, reason)
-				if id == "shooting_stance" then
+				if id == "shooting_stance"  and obj and IsKindOf(obj, "Unit") then
 					if HasPerk(obj,"Rat_recoil") then
 						obj:RemoveStatusEffect("Rat_recoil", "all")
 					end

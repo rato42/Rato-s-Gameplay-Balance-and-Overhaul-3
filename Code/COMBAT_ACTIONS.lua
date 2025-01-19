@@ -1,5 +1,5 @@
 function rat_combat_actions()
-
+    --------------------------------------- SingleShot
     CombatActions.SingleShot.GetAPCost = function(self, unit, args)
         local weapon1, weapon2 = self:GetAttackWeapons(unit, args)
         if unit:OutOfAmmo(weapon2) or unit:IsWeaponJammed(weapon2) then
@@ -28,6 +28,18 @@ function rat_combat_actions()
 
         return unit:GetAttackAPCost(self, weapon1, false, args and args.aim or 0, ap_delta) +
                    ap_extra + cycling_ap or -1
+    end
+
+    CombatActions.SingleShot.GetActionResults = function(self, unit, args)
+        --------------
+        if unit.Mobile_aimed then
+            args.aim = 1
+        end
+        -------------
+        local attack_args = unit:PrepareAttackArgs(self.id, args)
+        local results = attack_args.weapon:GetAttackResults(self, attack_args)
+        return results, attack_args
+
     end
 
     CombatActions.SingleShot.GetUIState = function(self, units, args)
@@ -187,50 +199,9 @@ function rat_combat_actions()
 
     end
 
-    CombatActions.BurstFire.GetActionResults = function(self, unit, args)
-        local args = table.copy(args)
-
-        args.weapon = self:GetAttackWeapons(unit, args)
-        args.num_shots = args.num_shots or args.weapon and args.weapon:GetAutofireShots(self)
-        args.multishot = true
-        args.damage_bonus = self:ResolveValue("dmg_penalty")
-
-        -- args.cth_loss_per_shot = self:ResolveValue("cth_loss_per_shot")
-        -----------------------------------------------
-        -- local recoil = get_recoil(unit, args and args.target, self, args and args.weapon or false, args and args.aim) or 0
-
-        -- unit.recoil = recoil
-        -- if not args.prediction then
-
-        -- args.cth_loss_per_shot = recoil 
-        -- end
-
-        --------------
-
-        if unit.Mobile_aimed then
-            args.aim = 1
-        end
-
-        -----
-
-        local attack_args = unit:PrepareAttackArgs(self.id, args)
-        local results = attack_args.weapon:GetAttackResults(self, attack_args)
-        return results, attack_args
-
-    end
-
-    CombatActions.SingleShot.GetActionResults = function(self, unit, args)
-        --------------
-        if unit.Mobile_aimed then
-            args.aim = 1
-        end
-        -------------
-        local attack_args = unit:PrepareAttackArgs(self.id, args)
-        local results = attack_args.weapon:GetAttackResults(self, attack_args)
-        return results, attack_args
-
-    end
-
+    --------------------------------------------- BurstFire
+    CombatActions.BurstFire.Description = T(617859618521, --[[CombatAction BurstFire Description]]
+                                            "Shoots <em><num> bullets</em> at the target. The accuracy of each shot is reduced by <em>Recoil</em>. Critical chance is reduced.")
     CombatActions.BurstFire.GetUIState = function(self, units, args)
         local unit = units[1]
         local weapon = self:GetAttackWeapons(unit, args)
@@ -289,10 +260,38 @@ function rat_combat_actions()
 			return "disabled", AttackDisableReasons.InsufficientAmmo
 		end
 		return "enabled"
-	
-	
-	
 	end]]
+    CombatActions.BurstFire.GetActionResults = function(self, unit, args)
+        local args = table.copy(args)
+
+        args.weapon = self:GetAttackWeapons(unit, args)
+        args.num_shots = args.num_shots or args.weapon and args.weapon:GetAutofireShots(self)
+        args.multishot = true
+        args.damage_bonus = self:ResolveValue("dmg_penalty")
+
+        -- args.cth_loss_per_shot = self:ResolveValue("cth_loss_per_shot")
+        -----------------------------------------------
+        -- local recoil = get_recoil(unit, args and args.target, self, args and args.weapon or false, args and args.aim) or 0
+
+        -- unit.recoil = recoil
+        -- if not args.prediction then
+
+        -- args.cth_loss_per_shot = recoil 
+        -- end
+
+        --------------
+
+        if unit.Mobile_aimed then
+            args.aim = 1
+        end
+
+        -----
+
+        local attack_args = unit:PrepareAttackArgs(self.id, args)
+        local results = attack_args.weapon:GetAttackResults(self, attack_args)
+        return results, attack_args
+
+    end
 
     CombatActions.BurstFire.GetAPCost = function(self, unit, args)
 
@@ -313,6 +312,7 @@ function rat_combat_actions()
 
     end
 
+    ---------------------------------------------------- MGBurstFire
     CombatActions.MGBurstFire.ActionPointDelta = 1000
 
     CombatActions.MGBurstFire.GetAPCost = function(self, unit, args)
@@ -458,6 +458,7 @@ function rat_combat_actions()
     -- CombatActions.PinDown.CostBasedOnWeapon = true
     -- CombatActions.PinDown.ActionPointDelta = 3000
     CombatActions.PinDown.ActionPoints = 2000
+
     CombatActions.PinDown.GetAPCost = function(self, unit, args)
 
         local weapon = self:GetAttackWeapons(unit, args)
@@ -482,12 +483,13 @@ function rat_combat_actions()
         end
 
         ----------- "Aiming" cost 
-        local base_aim_levels = 2
-        local aim_ap = const.Scale.AP * base_aim_levels -- Get_AimCost(unit) * base_aim_levels
+
+        local aim_ap = const.Scale.AP * const.Combat.PindownAimLevelsForAPCost -- Get_AimCost(unit) * base_aim_levels
         local recoil = unit:GetStatusEffect("Rat_recoil")
         local recoil_extra_cost = 0
         if recoil then
-            recoil_extra_cost = cRoundDown(recoil:ResolveValue("aim_cost") or 0 * base_aim_levels) *
+            recoil_extra_cost = cRoundDown(recoil:ResolveValue("aim_cost") or 0 *
+                                               const.Combat.PindownAimLevelsForAPCost) *
                                     const.Scale.AP
         end
         -----------
@@ -505,6 +507,37 @@ function rat_combat_actions()
 
     end
 
+    CombatActions.PinDown.Description = T(854982151651, --[[CombatAction PinDown Description]]
+                                          "<em>Spends all AP</em>\nThe target is <em><GameTerm('Marked')></em>. At the start of next turn, shoot the target if the target is still in the line of sight. The attack will have <em>max</em> aim levels. Each aim level grants <em><bonus_crit></em> extra critical chance. This attack bypasses low cover and has reduced penalties to hit body parts.\n\nSnipe requires a clear line and sight to the target.")
+    CombatActions.PinDown.DisplayName = T(164165234891, --[[CombatAction PinDown DisplayName]]
+                                          "Snipe")
+
+    CombatActions.PinDown.GetActionDescription = function(self, units)
+        local unit = units[1]
+
+        -- local target = self:GetDefaultTarget(unit)
+        -- local _, max_aim = unit:GetBaseAimLevelRange(self, target) or 3
+        local recoil = unit:GetStatusEffect("Rat_recoil")
+
+        local descr = self.Description[2]
+        if recoil then
+            local aim_cost = recoil:ResolveValue("aim_cost") or 0
+            local extra_cost = cRoundDown(aim_cost * const.Combat.PindownAimLevelsForAPCost) -- * const.Scale.AP
+            if extra_cost > 0 then
+                descr = descr ..
+                            (TranslationTable[231988463514] or
+                                "\n\n<em>Recoil</em> is increasing the AP cost by <em>") ..
+                            extra_cost .. '</em>'
+            end
+        end
+
+        return T {
+            descr,
+            -- self.Description,
+            -- max_aim = max_aim,
+            bonus_crit = const.Combat.PindownCritPerAimLevel
+        }
+    end
     CombatActions.PinDown.GetActionResults = function(self, unit, args)
         local attack_args = unit:PrepareAttackArgs(self.id, args)
         -------- Moved the logic to FirearmGetAttackResults cause fuck this
@@ -519,28 +552,23 @@ function rat_combat_actions()
     end
     -----------------------------OW	
     CombatActions.Overwatch.GetAPCost = function(self, unit, args)
-        -- local debu = true
-        -- if debu then
-        -- print("here")
-        -- return 0, 0
 
-        -- end
-        -- print(self.ActionPoints)
         local weapon, w2 = self:GetAttackWeapons(unit, args)
         if not weapon or
             (weapon.PreparedAttackType ~= "Overwatch" and weapon.PreparedAttackType ~= "Both") then
             return -1
         end
-        local attack -- = SO_GetOverwatchAction(unit, weapon) or unit:GetDefaultAttackAction("ranged", "ungrouped")
-        -- and not R_IsAI(unit)
-        if IsMod_loaded("Msdfsds3") then -- SmartOverwatch override attack action ap
-            attack = SO_GetOverwatchAction(unit, weapon) or
-                         unit:GetDefaultAttackAction("ranged", "ungrouped")
+
+        local attack
+
+        if IsMod_loaded("Msdfsds3") or IsMod_loaded("SmartOverwatch") then -- SmartOverwatch override attack action ap
+            attack = -- not R_IsAI(unit)and 
+            SO_GetOverwatchAction(unit, weapon) or
+                unit:GetDefaultAttackAction("ranged", "ungrouped")
         else
             attack = unit:GetDefaultAttackAction("ranged", "ungrouped")
         end
 
-        -- print("ow combat acition attack id", attack.id)
         local stance = 0
         local action = self
         local param
@@ -983,7 +1011,7 @@ function rat_combat_actions()
                                              "Cheap attack that conserves ammo. Has bonus critical chance based on <em>Marksmanship</em> and <em>Dexterity</em> when <em>aimed</em>.")
     -- CombatActions.RunAndGun.Description = T(614189548956, "<em>Once per turn</em>. Move to a new position, using up to <em><DisplayMoveAP> AP</em>. Fire a number of bursts during movement toward the closest enemies. Each shot suffers increased <em>Hipfire</em> and <em>Recoil</em> accuracy penalties.")
     CombatActions.AutoFire.Description = T(373274572555,
-                                           "Shoots a hail of <em><bullets> bullets</em> and inflict <GameTerm('Suppressed')> even on miss when the enemy is in weapon range. Has <em>recoil</em> penalty based on <em>Strength</em>. Maximum <em>aim</em> level reduced")
+                                           "Shoots a hail of <em><bullets> bullets</em> and inflict <GameTerm('Suppressed')> even on miss when the enemy is in weapon range. Has <em>recoil</em> penalty based on <em>Strength</em>. Maximum <em>aim</em> level reduced. Critical chance is reduced")
     CombatActions.DualShot.Description = T(364947777453,
                                            "The Dual Shot attack produces a Basic Attack from each gun. Maximum <em>aim</em> level is reduced. Has a penalty based on <em>Dexterity</em>.")
     CombatActions.MGSetup.Description = T(564696256945,
@@ -1483,7 +1511,6 @@ function rat_combat_actions()
         return results, attack_args
     end
 
-    ------------TESTAR
     CombatActions.MGPack.GetAPCost = function(self, unit, args)
         if unit:HasStatusEffect("ManningEmplacement") or unit.RATOAI_used_mg_setup_this_turn then
             return -1
@@ -1584,7 +1611,7 @@ local t_id_table = {
     [864921833364] = "Make a longer <em>Run and Gun</em>, firing more shots. Move to a new position, using up to <em><DisplayMoveAP> AP</em> Smiley will be <em>Out of Breath</em> after use. Can't be used when <em>Out of Breath</em>.",
     [585854196899] = "Cheap attack that conserves ammo. Has bonus critical chance based on <em>Marksmanship</em> and <em>Dexterity</em> when <em>aimed</em>.",
     [614189548956] = "<em>Once per turn</em>. Move to a new position, using up to <em><DisplayMoveAP> AP</em>. Fire a number of bursts during movement toward the closest enemies. Each shot suffers increased <em>Hipfire</em> and <em>Recoil</em> accuracy penalties.",
-    [373274572555] = "Shoots a hail of <em><bullets> bullets</em> and inflict <GameTerm('Suppressed')> even on miss when the enemy is in weapon range. Has <em>recoil</em> penalty based on <em>Strength</em>. Maximum <em>aim</em> level reduced",
+    [373274572555] = "Shoots a hail of <em><bullets> bullets</em> and inflict <GameTerm('Suppressed')> even on miss when the enemy is in weapon range. Has <em>recoil</em> penalty based on <em>Strength</em>. Maximum <em>aim</em> level reduced. Critical chance is reduced.",
     [364947777453] = "The Dual Shot attack produces a Basic Attack from each gun. Maximum <em>aim</em> level is reduced. Has a penalty based on <em>Dexterity</em>.",
     [564696256945] = "Focus on a cone-shaped area, immobilizing yourself and going <em>prone</em>. You can only shoot enemies inside that cone. Accuracy is increased and enemies will provoke <em>interrupt</em> attacks with actions inside the cone (even if your AP are spent). <em>Interrupt</em> attacks have bonus accuracy.",
     [226634284341] = "<em>Spends all AP</em>. Any targets who move or shoot in the overwatch area will provoke <GameTerm('Interrupt')> <em>attacks</em>. Accuracy is influenced by the unit's <em>Reflexes</em> (Dex + Agi) and the by weapon <em>Snapshot</em> penalty multiplier.",
@@ -1596,7 +1623,13 @@ local t_id_table = {
     [891514871831] = "Reckless Assault",
     [956881287967] = "<color AmmoAPColor>Out of Breath</color>",
     [258829833148] = "\n\nBlood will be <em>Out of Breath</em>.",
-    [480046777812] = " within the set cone"
+    [480046777812] = " within the set cone",
+    [617859618521] = " Shoots <em><num> bullets</em> at the target. The accuracy of each shot is reduced by <em>Recoil</em>. Critical chance is reduced.",
+    [164165234891] = "Snipe",
+    [854982151651] = "<em>Spends all AP</em>\nThe target is <em><GameTerm('Marked')></em>. At the start of next turn, shoot the target if the target is still in the line of sight. The attack will have <max_aim> aim levels. Each aim level grants <bonus_crit> extra critical chance. This attack bypasses low cover and has reduced penalties to hit body parts.\n\nSnipe requires a clear line and sight to the target.",
+    [231988463514] = "\n\n<em>Recoil</em> is increasing the AP cost by <em>"
+
 }
 
 ratG_T_table['shooting_stance_combat_actions.lua'] = t_id_table
+

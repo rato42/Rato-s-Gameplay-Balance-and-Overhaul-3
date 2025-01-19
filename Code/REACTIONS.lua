@@ -137,14 +137,6 @@ function OnMsg.GatherCritChanceModifications(attacker, target, action_id, weapon
     data.crit_chance_breakdown = crit_chance_breakdown
 end
 
-function OnMsg.GatherCTHModifications(attacker, cth_id, action_id, target, weapon1, weapon2, data)
-    if cth_id == "SameTarget" then
-        if data.enabled then
-            data.mod_add = data.mod_add - 8
-        end
-    end
-end
-
 function OnMsg.GatherCritChanceModifications(attacker, target, action_id, weapon, data)
     local side = attacker and attacker.team and attacker.team.side or ''
     if not (side == 'player1' or side == 'player2') then

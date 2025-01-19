@@ -21,14 +21,12 @@ function place_hipfire_cth()
                 return false, 0
             end
 
-            if action.id == "AutoFire" and HasPerk(attacker, "shooting_stance") and
+            if action.id == "AutoFire" and (HasPerk(attacker, "shooting_stance") or aim > 0) and
                 not opportunity_attack then
                 return false, 0
             end
 
-            if action.id == "AutoFire" and aim > 0 and not opportunity_attack then
-                return false, 0
-            end
+            ---------------------------------------------------------------------------------------------------------
 
             local actions_that_use_snapshot_always = {"Overwatch", "MobileShot", "RunAndGun"}
 

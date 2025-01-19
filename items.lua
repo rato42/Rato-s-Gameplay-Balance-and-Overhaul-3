@@ -154,7 +154,7 @@ return {
 				Handler = function (self, obj, id, stacks, reason)
 					local reaction_def = (self.msg_reactions or empty_table)[3]
 					if self:VerifyReaction("StatusEffectRemoved", reaction_def, obj, obj, id, stacks, reason) then
-						if id == "shooting_stance" then
+						if id == "shooting_stance"  and obj and IsKindOf(obj, "Unit") then
 						if HasPerk(obj,"Rat_recoil") then
 							obj:RemoveStatusEffect("Rat_recoil", "all")
 						end
@@ -169,7 +169,7 @@ return {
 					end
 				end,
 				HandlerCode = function (self, obj, id, stacks, reason)
-					if id == "shooting_stance" then
+					if id == "shooting_stance"  and obj and IsKindOf(obj, "Unit") then
 						if HasPerk(obj,"Rat_recoil") then
 							obj:RemoveStatusEffect("Rat_recoil", "all")
 						end
@@ -946,6 +946,9 @@ return {
 	PlaceObj('ModItemCode', {
 		'name', "CONSTANT_Control",
 		'CodeFileName', "Code/CONSTANT_Control.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'CodeFileName', "Code/Script.lua",
 	}),
 	PlaceObj('ModItemCode', {
 		'name', "UPDATE_Change components",
@@ -1890,8 +1893,8 @@ return {
 	PlaceObj('ModItemOptionChoice', {
 		'name', "guns_hurt",
 		'DisplayName', "<color 64 128 196>Guns Freaking Hurt (%)</color>",
-		'Help', "Using this setting will multiply gun damage, so they can freaking hurt! (or not) I suggest trying a 20% increase, (the 120 option)",
-		'DefaultValue', "120 (rato's GBO default)",
+		'Help', "Using this setting will multiply gun damage, so they can freaking hurt! (or not) I suggest trying a 10% increase, (the 110 option)",
+		'DefaultValue', "100",
 		'ChoiceList', {
 			"70",
 			"75",
@@ -1899,11 +1902,11 @@ return {
 			"85",
 			"90",
 			"95",
-			"100 (vanilla)",
+			"100",
 			"105",
 			"110",
 			"115",
-			"120 (rato's GBO default)",
+			"120",
 			"125",
 			"130",
 			"135",
@@ -3121,8 +3124,8 @@ return {
 			}),
 			PlaceObj('WeaponComponentVisual', {
 				ApplyTo = "G36",
-				Entity = "WeaponAttA_MagazineHKG36_02",
-				Icon = "UI/Icons/Upgrades/expanded_drum_G36_magazine",
+				Entity = "WeaponAttA_MagazineHKG36_01",
+				Icon = "UI/Icons/Upgrades/G36_magazine",
 				Slot = "Magazine",
 				param_bindings = false,
 			}),
