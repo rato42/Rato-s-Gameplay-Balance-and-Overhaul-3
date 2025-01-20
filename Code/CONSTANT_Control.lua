@@ -7,7 +7,7 @@ const.Combat.Recoil_BasePenalty = 0 ----- -5
 const.Combat.Recoil_MaxPenalty = -40
 const.Combat.Recoil_MaxDistforPenalty = 22 ----- -18
 const.Combat.Recoil_StacksMultiplier = 0.35 ---- * -- for Persistant Recoil
-const.Combat.Recoil_MGSetupMul = 0.85 ---- * -- MG Setup recoil reduction
+const.Combat.Recoil_MGSetupMul = 0.80 ---- * -- MG Setup recoil reduction
 const.Combat.Recoil_RunAndGunPenalty = -15
 -------------------- Add for MG calcs here
 --- Hipfire

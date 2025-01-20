@@ -4,6 +4,11 @@ function presets_char_effect()
 
     ForEachPreset('CharacterEffectCompositeDef', function(p)
 
+        if p.id == "DanceForMe" then
+            p.Description = T(917852954786, --[[CharacterEffectCompositeDef DanceForMe Description]]
+                              "<em>Ranged</em> attack against each enemy in a <em>cone</em>, targeting their <em>Legs</em>.\n\nApplies <GameTerm('Overwatch')> in the area afterwards.\n\nManually cycling revolvers cost less AP.")
+        end
+
         if p.id == "HawksEye" then
             p.Description = T(984561732232, --[[CharacterEffectCompositeDef HawksEye Description]]
                               "<GameTerm('PinDown')> applies <GameTerm('Exposed')> to the target.\n\n<GameTerm('PinDown')> <em>AP</em> cost is reduced by <em><pindownCostOverwrite> AP</em>.\n\nScope also makes <GameTerm('Biscuits')>.")
@@ -131,7 +136,9 @@ local t_id_table = {
     [254222471844] = "Make a longer <color EmStyle>Run and Gun</color>, firing more shots. \n\nSmiley will be <color EmStyle>Out of Breath</color> for a turn after use. \n\nCan't be used when <color EmStyle>Out of Breath</color>.",
     [313423416367] = "<em>Attacks</em> the <em>closest</em> enemy with a firearm when <em>combat starts</em>, if possible. \n\nThe attack will have 1 aim level and bonus accuracy.\n\nCan't be used with Heavy Weapons.",
     [158619792866] = "<em>Unarmed attacks</em> have extra damage scaling based on <em>Dexterity</em>.\n\nImproved <em>Defense</em> against <em>Melee Attacks</em>.",
-    [778949186487] = "Grants the ability to <em>Sprint</em> in combat."
+    [778949186487] = "Grants the ability to <em>Sprint</em> in combat.",
+    [917852954786] = "<em>Ranged</em> attack against each enemy in a <em>cone</em>, targeting their <em>Legs</em>.\n\nApplies <GameTerm('Overwatch')> in the area afterwards.\n\nManually cycling revolvers cost less AP."
+
 }
 
 ratG_T_table['CharEffectCompositeDef_function.lua'] = t_id_table

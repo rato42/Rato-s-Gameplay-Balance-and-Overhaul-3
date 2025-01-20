@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.53 #### not released\n\n\n\nBalance:\n\n--------------------------\nPindown rework: renamed to Snipe\nSpends all AP. The target is Marked. At the start of next turn, shoot the target if the target is still in the line of sight. The attack will have max aim levels. Each aim level grants 5 extra critical chance. This attack bypasses low cover and has reduced penalties to hit body parts. Snipe requires a clear line and sight to the target.\nThe attack costs 4 + the cost of entering stance. The cost can be increased if you have persistant recoil, but otherwise will remain the same if you have additional max aim levels, making it synergic with high magnifiction scopes.\n--------------------------\n\nSignificantly increased the reduction of Snapshot penalty when using a Setup MG\nDesert Eagle magazine size reduced to 8\nSligthly reduced No Stock impact on recoil\nSligthly reduced Snapshot and Hipfire extra penalties for run and gun and mobile shots\nThe bonus accuracy for shooting against the same target has been restored to 10% \n\n\nOptions:\nNew Default Firearm Noise option is 150%. The percentages can go up to 200% now. If you want the old setting, use 100%, if you want vanilla-like, use 0%.\nAdded an option to modify AI vanilla extra free move related to game difficulty.\nAdded an option to modify how much AP the AI pays for shooting stance. The default now is 100% (same as player), It is recommended to lower this to 50% if you dont use Ratos Ai overhaul or other AI mods.\nDefault option for Guns Freaking Hurt is now 100\n\nFixes:\nFixed the Lions Roar not having sound.\nFixed the Lions Roar attack AP costing 1 more than it should.\nFixed some weirdness related to units in shooting stance changing orientation when in uneven terrain and prone\nUsing Prepare Weapon outside of combat will now properly display the animation and take the correct amount of time\n\nfixed a bug when trying to InterruptPreparedAttacks when shooting stance is removed.\nfixed a bug related to m16 and Bobby's Ray\nfixed a bug related to calibers noise when MoW is also active\n\nCompatibility:\nFixed Revised Mags using the wrong entity (drum mag) for the G36 default magazine\nImproved some code related to Revised Mags and Smart Overwatch compatibility\n",
+	'last_changes', "3.53\n\nBalance:\n\n--------------------------\nPindown rework: renamed to Snipe\nSpends all AP. The target is Marked. At the start of next turn, shoot the target if the target is still in the line of sight. The attack will have max aim levels. Each aim level grants 5 extra critical chance. This attack bypasses low cover and has reduced penalties to hit body parts. Snipe requires a clear line and sight to the target.\nThe attack costs 4 + the cost of entering stance. The cost can be increased if you have persistant recoil, but otherwise will remain the same if you have additional max aim levels, making it synergic with high magnifiction scopes.\n--------------------------\n\nSignificantly increased the reduction of Snapshot penalty when using a Setup MG\nMG setup is also a bit more efficient at reducing recoil\nDesert Eagle magazine size reduced to 8\nSligthly reduced No Stock impact on recoil\nSligthly reduced Snapshot and Hipfire extra penalties for run and gun and mobile shots\nThe bonus accuracy for shooting against the same target has been restored to 10% \nIncreased the base move range for Sprint action\nTex's perk reduces the cost of manually cycling revolvers by 2 ap (minimum 0)\n\n\nOptions:\nNew Default Firearm Noise option is 150%. The percentages can go up to 200% now. If you want the old setting, use 100%, if you want vanilla-like, use 0%.\nAdded an option to modify AI vanilla extra free move related to game difficulty.\nAdded an option to modify how much AP the AI pays for shooting stance. The default now is 100% (same as player), It is recommended to lower this to 50% if you dont use Ratos Ai overhaul or other AI mods.\nDefault option for Guns Freaking Hurt is now 100\n\nFixes:\nFixed the Lions Roar not having sound.\nFixed the Lions Roar attack AP costing 1 more than it should.\nFixed some weirdness related to units in shooting stance changing orientation when in uneven terrain and prone\nUsing Prepare Weapon outside of combat will now properly display the animation and take the correct amount of time\n\nfixed a bug when trying to InterruptPreparedAttacks when shooting stance is removed.\nfixed a bug related to m16 and Bobby's Ray\nfixed a bug related to calibers noise when MoW is also active\n\nsome other code improvements\n\nCompatibility:\nFixed Revised Mags using the wrong entity (drum mag) for the G36 default magazine\nImproved some code related to Revised Mags and Smart Overwatch compatibility\n",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 53,
-	'version', 11635,
+	'version', 11657,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -80,7 +80,6 @@ return PlaceObj('ModDef', {
 		"Code/AMMO_9x19.lua",
 		"Code/AMMO_9x39.lua",
 		"Code/CONSTANT_Control.lua",
-		"Code/Script.lua",
 		"Code/UPDATE_Change components.lua",
 		"Code/DESCRIPTION_HINTS_get.lua",
 		"Code/T_ID_enforcement.lua",
@@ -192,8 +191,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1737264757,
-	'code_hash', 2900595809319895916,
+	'saved', 1737343255,
+	'code_hash', 8280923016389165184,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
@@ -374,21 +373,6 @@ return PlaceObj('ModDef', {
 			'Class', "InventoryItemCompositeDef",
 			'Id', "M14SAW_AUTO",
 			'ClassDisplayName', "Inventory item",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "LootDef",
-			'Id', "RebelSoldier",
-			'ClassDisplayName', "Loot definition",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "LootDef",
-			'Id', "Ak_SKS",
-			'ClassDisplayName', "Loot definition",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "LootDef",
-			'Id', "Chimurenga",
-			'ClassDisplayName', "Loot definition",
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "LootDef",

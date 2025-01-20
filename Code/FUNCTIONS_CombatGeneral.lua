@@ -93,6 +93,12 @@ function hand_eye_crit(action_id, weapon, attacker, aim)
         return 0
     end
 
+    -- Firearm.CritScalingFactor = 100
+    -- Firearm.BustShotCritScalingFactor = 100
+    -- Firearm.SingleShotCritScalingFactor = 300
+    -- G36.BustShotCritScalingFactor = 250
+    -- SniperRifle.SingleShotCritScalingFactor = 500
+
     local single_factor = 3.0
     local not_single = 1.0
     local burst_factor = not_single

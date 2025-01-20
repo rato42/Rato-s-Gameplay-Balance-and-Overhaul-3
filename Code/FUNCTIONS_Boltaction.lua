@@ -96,40 +96,6 @@ function rat_canBolt(weapon)
     return false
 end
 
-function rat_get_manual_cyclingAP(unit, weapon, shooting)
-    local dex = 0
-    if unit then
-        dex = unit.Dexterity
-    end
-
-    local bolt_ap_manual, DASA_action_ap
-
-    if weapon:HasComponent("DASA_action_ap") then
-        DASA_action_ap = GetComponentEffectValue(weapon, "DASA_action_ap", "ap_double_action")
-        bolt_ap_manual = GetComponentEffectValue(weapon, "DASA_action_ap", "ap_manual")
-    else
-        bolt_ap_manual = GetComponentEffectValue(weapon, "bolt_action_ap", "ap_manual")
-    end
-
-    if dex >= const.Combat.BoltActionDexSecondThreshold then
-        bolt_ap_manual = bolt_ap_manual - 2
-    elseif dex >= const.Combat.BoltActionDexFirstThreshold then
-        bolt_ap_manual = bolt_ap_manual - 1
-    end
-
-    if DASA_action_ap and (bolt_ap_manual < DASA_action_ap) then
-        DASA_action_ap = bolt_ap_manual
-    end
-
-    local shooting_ap = DASA_action_ap or bolt_ap_manual
-
-    if shooting then
-        return Max(0, shooting_ap)
-    end
-
-    return Max(0, bolt_ap_manual)
-end
-
 function unbolted_text(item, text_cost)
     local text = TranslationTable[995799974699] or "UNCYCLED"
 

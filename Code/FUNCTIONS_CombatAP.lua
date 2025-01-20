@@ -57,16 +57,17 @@ function Unit:GetShootingStanceAP(target, weapon, aim, action, param)
 end
 ---------------------------------------------------------------------------------------------------
 function rat_getMobileshot_moveAP(action, unit, weapon)
-    local base_ap = 9
+    local is_sprint = (action and action.id == "Sprint")
+    local base_ap = is_sprint and 12 or 9
     local min_ap = 6
-    local weapon_multiplier = (action and action.id == "Sprint") and 1.0 or 1.5
+    local weapon_multiplier = is_sprint and 1.0 or 1.5
 
     local stanceap = 0
     if weapon and IsKindOf(weapon, "Firearm") then
 
         stanceap = (GetWeapon_StanceAP(unit, weapon) / const.Scale.AP) * weapon_multiplier
 
-        if weapon.LargeItem < 1 or weapon:HasComponent("no_stock") then
+        if (weapon.LargeItem or 0) < 1 or weapon:HasComponent("no_stock") then
             stanceap = Max(0, stanceap - 1)
         end
 
@@ -166,6 +167,47 @@ function rat_MobileAction_AP(action, unit)
 
     return cost, cost_aimed
 end
+
+function rat_get_manual_cyclingAP(unit, weapon, shooting)
+    local dex = 0
+    local tex_perk
+    if unit then
+        dex = unit.Dexterity
+        tex_perk = unit and HasPerk(unit, "DanceForMe") and weapon and IsKindOf(weapon, "Revolver")
+    end
+
+    local bolt_ap_manual, DASA_action_ap
+
+    if weapon:HasComponent("DASA_action_ap") then
+        DASA_action_ap = GetComponentEffectValue(weapon, "DASA_action_ap", "ap_double_action")
+        bolt_ap_manual = GetComponentEffectValue(weapon, "DASA_action_ap", "ap_manual")
+    else
+        bolt_ap_manual = GetComponentEffectValue(weapon, "bolt_action_ap", "ap_manual")
+    end
+
+    if dex >= const.Combat.BoltActionDexSecondThreshold then
+        bolt_ap_manual = bolt_ap_manual - 2
+    elseif dex >= const.Combat.BoltActionDexFirstThreshold then
+        bolt_ap_manual = bolt_ap_manual - 1
+    end
+
+    if tex_perk then
+        bolt_ap_manual = bolt_ap_manual - 2
+    end
+
+    if DASA_action_ap and (bolt_ap_manual < DASA_action_ap) then
+        DASA_action_ap = bolt_ap_manual
+    end
+
+    local shooting_ap = DASA_action_ap or bolt_ap_manual
+
+    if shooting then
+        return Max(0, shooting_ap)
+    end
+
+    return Max(0, bolt_ap_manual)
+end
+
 ---------------------------------------------------------------------------------------------------
 function rat_getDeltaAP(action, weapon, action_id_override)
     local base = 0

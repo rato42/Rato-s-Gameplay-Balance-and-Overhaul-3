@@ -948,9 +948,6 @@ return {
 		'CodeFileName', "Code/CONSTANT_Control.lua",
 	}),
 	PlaceObj('ModItemCode', {
-		'CodeFileName', "Code/Script.lua",
-	}),
-	PlaceObj('ModItemCode', {
 		'name', "UPDATE_Change components",
 		'CodeFileName', "Code/UPDATE_Change components.lua",
 	}),
@@ -1739,119 +1736,6 @@ return {
 		'recoil_mechanism', "Gas_Operated",
 		'rat_weigth', 5220,
 		'rat_barrel_len', 457,
-	}),
-	PlaceObj('ModItemLootDef', {
-		Comment = "enemy rebels",
-		comment = "lootdef not touched by TE",
-		group = "Enemy - Rebels",
-		id = "RebelSoldier",
-		loot = "all",
-		PlaceObj('LootEntryLootDef', {
-			loot_def = "RebelsArmor_Pants_Chest_Light_Randomized",
-		}),
-		PlaceObj('LootEntryLootDef', {
-			amount_modifier = 3000000,
-			loot_def = "Drop_762WP_Varied",
-		}),
-		PlaceObj('LootEntryLootDef', {
-			loot_def = "Ak_SKS",
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		Comment = "enemy rebels",
-		comment = "rebel_soldier_rifle",
-		group = "Default",
-		id = "Ak_SKS",
-		PlaceObj('LootEntryInventoryItem', {
-			Condition = 93,
-			RandomizeCondition = true,
-			item = "AK47",
-			stack_max = 1,
-			stack_min = 1,
-			weight = 30000,
-		}),
-		PlaceObj('LootEntryUpgradedWeapon', {
-			RandomizeCondition = true,
-			upgrades = {
-				"ReflexSight",
-			},
-			weapon = "AK47",
-			weight = 15000,
-		}),
-		PlaceObj('LootEntryUpgradedWeapon', {
-			RandomizeCondition = true,
-			upgrades = {
-				"AK47_VerticalGrip",
-			},
-			weapon = "AK47",
-			weight = 10000,
-		}),
-		PlaceObj('LootEntryUpgradedWeapon', {
-			RandomizeCondition = true,
-			upgrades = {
-				"AK47_VerticalGrip",
-				"ReflexSightAdvanced",
-				"Compensator",
-			},
-			weapon = "AK47",
-			weight = 5000,
-		}),
-	}),
-	PlaceObj('ModItemLootDef', {
-		comment = "lootdef not touched by TE",
-		id = "Chimurenga",
-		loot = "all",
-		PlaceObj('LootEntryInventoryItem', {
-			game_conditions = {
-				PlaceObj('QuestIsVariableBool', {
-					QuestId = "PantagruelDramas",
-					Vars = set({
-	YoungHearts = false,
-}),
-				}),
-			},
-			guaranteed = true,
-			item = "LionRoar",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryLootDef', {
-			game_conditions = {
-				PlaceObj('QuestIsVariableBool', {
-					QuestId = "PantagruelDramas",
-					Vars = set({
-	YoungHearts = false,
-}),
-				}),
-			},
-			loot_def = "Drop_9mm_HP",
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			game_conditions = {
-				PlaceObj('QuestIsVariableBool', {
-					QuestId = "PantagruelDramas",
-					Vars = set( "YoungHearts" ),
-				}),
-			},
-			item = "AK74",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "HeavyArmorChestplate_CeramicPlates",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "HeavyArmorHelmet_WeavePadding",
-			stack_max = 1,
-			stack_min = 1,
-		}),
-		PlaceObj('LootEntryInventoryItem', {
-			item = "KevlarLeggings",
-			stack_max = 1,
-			stack_min = 1,
-		}),
 	}),
 	PlaceObj('ModItemLootDef', {
 		Comment = "merc",
@@ -7502,6 +7386,9 @@ return {
 		group = "Stock",
 		id = "StockFolded",
 		param_bindings = {},
+		zzFoldingPair = {
+			"foldable_StockNormal",
+		},
 	}),
 	PlaceObj('ModItemWeaponComponent', {
 		Comment = "consider reducing or disabling aiming?",
@@ -15672,7 +15559,7 @@ return {
 			}),
 			PlaceObj('PresetParamNumber', {
 				'Name', "ap_manual",
-				'Value', 2,
+				'Value', 3,
 				'Tag', "<ap_manual>",
 			}),
 		},

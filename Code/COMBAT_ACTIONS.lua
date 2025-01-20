@@ -515,11 +515,10 @@ function rat_combat_actions()
     CombatActions.PinDown.GetActionDescription = function(self, units)
         local unit = units[1]
 
-        -- local target = self:GetDefaultTarget(unit)
-        -- local _, max_aim = unit:GetBaseAimLevelRange(self, target) or 3
         local recoil = unit:GetStatusEffect("Rat_recoil")
 
-        local descr = self.Description[2]
+        local descr = TranslationTable[854982151651] or
+                          "<em>Spends all AP</em>\nThe target is <em><GameTerm('Marked')></em>. At the start of next turn, shoot the target if the target is still in the line of sight. The attack will have <em>max</em> aim levels. Each aim level grants <em><bonus_crit></em> extra critical chance. This attack bypasses low cover and has reduced penalties to hit body parts.\n\nSnipe requires a clear line and sight to the target." -- self.Description[2]
         if recoil then
             local aim_cost = recoil:ResolveValue("aim_cost") or 0
             local extra_cost = cRoundDown(aim_cost * const.Combat.PindownAimLevelsForAPCost) -- * const.Scale.AP
@@ -531,12 +530,7 @@ function rat_combat_actions()
             end
         end
 
-        return T {
-            descr,
-            -- self.Description,
-            -- max_aim = max_aim,
-            bonus_crit = const.Combat.PindownCritPerAimLevel
-        }
+        return T {descr, bonus_crit = const.Combat.PindownCritPerAimLevel}
     end
     CombatActions.PinDown.GetActionResults = function(self, unit, args)
         local attack_args = unit:PrepareAttackArgs(self.id, args)

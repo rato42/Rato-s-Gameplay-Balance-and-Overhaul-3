@@ -7,7 +7,7 @@ function OnMsg.RevisedMagPropsAddedToFirearms()
 
 end
 
-function Rat_RevMag_compatibility()
+function GBO_RevMag_ChangeMagazinesClasses()
     if IsMod_loaded("URkxyfE") then
         print("RATMOD - RevMags Detected, changing mags at ClassesGenerate hook")
 
@@ -47,11 +47,14 @@ function Rat_RevMag_compatibility()
 end
 
 function OnMsg.ClassesGenerate(classdefs)
-    Rat_RevMag_compatibility()
+    GBO_RevMag_ChangeMagazinesClasses()
 end
 
 function Rat_RevMag_changeDrumMagRPK74()
     local mag_larger = WeaponComponents["MagLarger"]
+    if not mag_larger then
+        return
+    end
 
     for i, v in pairs(mag_larger.Visuals) do
         if v.ApplyTo == "AK47" then
@@ -74,6 +77,9 @@ end
 
 function Rat_RevMag_fixNormalMagRPK74()
     local mag = WeaponComponents["MagNormalFine"]
+    if not mag then
+        return
+    end
 
     for i, v in pairs(mag.Visuals) do
         if v.ApplyTo == "RPK74" then
@@ -86,6 +92,9 @@ end
 
 function Rat_RevMag_fixDefaultlMagG36()
     local mag = WeaponComponents["MagLarge"]
+    if not mag then
+        return
+    end
 
     for i, v in pairs(mag.Visuals) do
         if v.ApplyTo == "G36" then
