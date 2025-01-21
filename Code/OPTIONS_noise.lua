@@ -385,9 +385,9 @@ function rat_noise_settings(param)
                 for i, v in ipairs(item.Modifications) do
                     if v.target_prop and v.target_prop == "Noise" and caliber_map[caliber] then
                         v.mod_add = Max(0, MulDivRound(caliber_map[caliber], param, 100))
-                        if caliber == "MoW_45ACP" then
-                            print(item.Modifications)
-                        end
+                        -- if caliber == "MoW_45ACP" then
+                        --     print(item.Modifications)
+                        -- end
                         -- print(item.class, v.mod_add)
                     end
                 end

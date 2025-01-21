@@ -38,7 +38,7 @@ function OnMsg.ClassesGenerate(classdefs)
             if obj.team and obj.team.player_enemy then
                 ------
                 local diff_mul =
-                    GameDifficulties[Game.game_difficulty]:ResolveValue("freeMoveBonus")
+                    GameDifficulties[Game.game_difficulty]:ResolveValue("freeMoveBonus") or 0
                 diff_mul = 100 +
                                MulDivRound(diff_mul, CurrentModOptions.VanillaFreeMoveBonus or 100,
                                            100)
