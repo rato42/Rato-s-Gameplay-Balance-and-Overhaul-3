@@ -3,20 +3,20 @@ const.Combat.BurstFireCriticalChanceMul = 70 -- % -- Crit * Constant / 100
 
 ----- CTH
 -- Recoil
-const.Combat.Recoil_BasePenalty = 0 ----- -5
-const.Combat.Recoil_MaxPenalty = -40
-const.Combat.Recoil_MaxDistforPenalty = 22 ----- -18
+const.Combat.Recoil_BasePenalty = -5 ----- -5
+const.Combat.Recoil_MaxPenalty = -50
+const.Combat.Recoil_MaxDistforPenalty = 26 ----- -18
 const.Combat.Recoil_StacksMultiplier = 0.35 ---- * -- for Persistant Recoil
 const.Combat.Recoil_MGSetupMul = 0.80 ---- * -- MG Setup recoil reduction
 const.Combat.Recoil_RunAndGunPenalty = -15
 -------------------- Add for MG calcs here
 --- Hipfire
 const.Combat.Hipfire_BasePenalty = -10 --- - 18
-const.Combat.HipFireMaxPenalty = -60 ---- -75
+const.Combat.HipFireMaxPenalty = -65 ---- -75
 const.Combat.Hipfire_MaxDistforPenalty = 26
 -- Snapshot
 const.Combat.Snapshot_BasePenalty = -5 ---- -10
-const.Combat.SnapshotMaxPenalty = -30
+const.Combat.SnapshotMaxPenalty = -35
 const.Combat.Snapshot_MaxDistforPenalty = 26
 const.Combat.MGSetupSnapshotReductionMul = 60
 -- RunAndGun

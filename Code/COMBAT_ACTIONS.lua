@@ -767,6 +767,7 @@ function rat_combat_actions()
         end
         local cost_setup = CombatActions.MGSetup:GetAPCost(unit, args)
 
+        -- TODO: #11 change target to use args target if available first
         local target = GetCursorPos(true)
         local weapon = unit:GetActiveWeapons()
         local rotate_ap = ShootingConeAngle(unit, weapon, target)
@@ -782,21 +783,6 @@ function rat_combat_actions()
         -- cost = Max(1, cost / const.Scale.AP) 
         return cost
     end
-
-    -- CombatActions.Overwatch.GetActionIcon = function(self,units)
-
-    -- local unit = units and units[1]
-    -- if unit then
-    -- local attacks = unit:GetOverwatchAttacksAndAim()
-
-    -- if attacks < 1 then
-    -- local prepare_icon = "Mod/cfahRED/Images/shootingstancecompleto.png"
-    -- return prepare_icon
-    -- end
-
-    -- end
-    -- return self.Icon
-    -- end
 
     CombatActions.AutoFire.CostBasedOnWeapon = true
     CombatActions.AutoFire.IsAimableAttack = true
@@ -887,21 +873,12 @@ function rat_combat_actions()
         elseif self.AimType == "mobile" then
             local shots = (self:ResolveValue("mobile_num_shots") - 1) or 1
             if IsKindOf(weapon, "SubmachineGun") and weapon:HasComponent("Enable_RunAndGun") then
-                -- print("sub")
                 shots = shots + 1
             elseif IsKindOf(weapon, "AssaultRifle") then
-                -- print("ar")
                 shots = shots - 1
             end
-
-            -- if weapon:HasComponent("heavy_stock_rungun") then
-            -- shots = shots -1
-            -- end
-
             local move_ap = rat_getMobileshot_moveAP(self, unit, weapon) -- self:ResolveValue("mobile_move_ap")
-
             assert(move_ap)
-            -- self:SetParameter("DisplayMoveAP", move_ap)
             return {num_shots = shots, move_ap = move_ap * const.Scale.AP}
         elseif self.AimType == "parabola aoe" or self.AimType == "line aoe" then
             return weapon.AreaOfEffect
@@ -948,25 +925,15 @@ function rat_combat_actions()
 
         ---------------------------------
         local unit = units[1]
-        local side = unit and unit.team and unit.team.side or ''
-        -- local weapon = unit:GetActiveWeapons()
-
-        -- if not (side == 'player1' or side == 'player2') then
-        -- if weapon.R_cycling == "semi" then
-        -- return "disabled"
-        -- end
-        -- end
 
         if unit:HasStatusEffect("R_outofbreath") then
             return "disabled", T(536142745929, "<color AmmoAPColor>Out of Breath</color>")
-
         end
 
         return CombatActionGenericAttackGetUIState(self, units, args)
 
     end
 
-    -- CombatActions.RunAndGun.ActionPointDelta= 3000
     CombatActions.RunAndGun.ActionPointDelta = 3000
 
     CombatActions.RunAndGun.GetAPCost = function(self, unit, args)
@@ -992,7 +959,6 @@ function rat_combat_actions()
 
         if aimed then
             args.aim = 1
-            -- print("RNG aim", args.aim)
         end
 
         return GetMobileShotResults(self, unit, args)
