@@ -94,14 +94,11 @@ function aim_cth()
                 mobile_mul = 0.5
             end
 
-            if num >= 2 and weapon1:HasComponent("pso_dragunov_scope") then
-                local placeholder, componentdef =
-                    GetComponentEffectValue(weapon1, "pso_dragunov_scope")
+            local has_pso, pso_def = weapon1:HasComponent("pso_dragunov_scope")
+            if num >= 2 and has_pso then
                 local scope_bonus = min_bonus * 0.01
-
                 min_bonus = min_bonus + scope_bonus
-
-                metaText[#metaText + 1] = componentdef.DisplayName -- T(231236431718, "PSO-1 Scope 4x")
+                metaText[#metaText + 1] = pso_def.DisplayName -- T(231236431718, "PSO-1 Scope 4x")
             end
             if num >= 3 and weapon1:HasComponent("sniper_aim_scope") then
                 local scope_bonus = min_bonus * 0.1 + 0.7
@@ -138,26 +135,26 @@ function aim_cth()
             local modifyVal, compDef
 
             -- Forward Grip
-            modifyVal, compDef = GetComponentEffectValue(weapon1, "FirstAimBonusModifier",
-                                                         "first_aim_bonus")
+            local modifyVal, compDef = GetComponentEffectValue(weapon1, "FirstAimBonusModifier",
+                                                               "first_aim_bonus")
             if modifyVal then
                 bonus = bonus + (min_bonus * 0.3) + 2.1
                 metaText[#metaText + 1] = compDef.DisplayName
             end
 
             -- Improved Sight
-            modifyVal, compDef =
+            local modifyVal_improved_sight, compDef_improved_sight =
                 GetComponentEffectValue(weapon1, "AccuracyBonusWhenAimed", "bonus_cth")
-            if modifyVal then
-                bonus = bonus + modifyVal
+            if modifyVal_improved_sight then
+                bonus = bonus + modifyVal_improved_sight
             end
 
             ---
-            modifyVal, compDef = GetComponentEffectValue(weapon1, "AccuracyBonusWhenAimed_vgrip",
-                                                         "bonus_cth_v")
-            if modifyVal and not w2 then
-                bonus = bonus + modifyVal
-                metaText[#metaText + 1] = compDef.DisplayName
+            local modifyVal_vgrip, compDef_vgrip =
+                GetComponentEffectValue(weapon1, "AccuracyBonusWhenAimed_vgrip", "bonus_cth_v")
+            if modifyVal_vgrip and not w2 then
+                bonus = bonus + modifyVal_vgrip
+                metaText[#metaText + 1] = compDef_vgrip.DisplayName
             end
 
             ---------------------------------------
@@ -209,10 +206,8 @@ function aim_cth()
                 elseif attacker.stance == "Prone" then
                     bonus = bonus * 110.0 / 100.0
                     metaText[#metaText + 1] = T {271472323596, "Prone"}
-
                     if weapon1:HasComponent("grip_prone_penalty") then
-                        local placeholder, componentdef =
-                            GetComponentEffectValue(weapon1, "grip_prone_penalty")
+                        -- GetComponentEffectValue(weapon1, "grip_prone_penalty")
                         bonus = bonus * 90 / 100.0
                         -- local neg = TranslationTable[676119455163] or "(-) "
                         -- local meta = neg .. componentdef.DisplayName
@@ -235,11 +230,11 @@ function aim_cth()
 
             -- Heavy Stock
             if IsFullyAimedAttack(num) then
-                modifyVal, compDef = GetComponentEffectValue(weapon1, "BonusAccuracyWhenFullyAimed",
-                                                             "bonus_cth")
-                if modifyVal then
-                    bonus = bonus + modifyVal
-                    metaText[#metaText + 1] = compDef.DisplayName
+                local heavystock_modifyVal, heavystock_compDef =
+                    GetComponentEffectValue(weapon1, "BonusAccuracyWhenFullyAimed", "bonus_cth")
+                if heavystock_modifyVal then
+                    bonus = bonus + heavystock_modifyVal
+                    metaText[#metaText + 1] = heavystock_compDef.DisplayName
                 end
             end
 

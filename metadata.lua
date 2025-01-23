@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.53c\n\nEnergy levels now affect the Out of Breath status. If tired, it will last one additional turn, if exhausted, it will last 2 additional turns",
+	'last_changes', "3.53d\n\nEnergy levels now affect the Out of Breath status. If tired, it will last one additional turn, if exhausted, it will last 2 additional turns\nFixed a bug in aim CTH",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 53,
-	'version', 11714,
+	'version', 11715,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -191,8 +191,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1737444045,
-	'code_hash', -7001853319828756389,
+	'saved', 1737598424,
+	'code_hash', 2339815117832578955,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
