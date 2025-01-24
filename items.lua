@@ -1406,26 +1406,6 @@ return {
 		'comment', "bolt action",
 		'CodeFileName', "Code/SOURCE_Firearm_GetItemStatusUI and QuickReloadButton.lua",
 	}),
-	PlaceObj('ModItemFolder', {
-		'name', "AI",
-	}, {
-		PlaceObj('ModItemCode', {
-			'name', "SOURCE_AIPrecalcDamageScore",
-			'CodeFileName', "Code/SOURCE_AIPrecalcDamageScore.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "SOURCE_AICreateContext",
-			'CodeFileName', "Code/SOURCE_AICreateContext.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "SOURCE_AIGetAttackArgs",
-			'CodeFileName', "Code/SOURCE_AIGetAttackArgs.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "SOURCE_AICalcAttacksandAim",
-			'CodeFileName', "Code/SOURCE_AICalcAttacksandAim.lua",
-		}),
-		}),
 	PlaceObj('ModItemCode', {
 		'name', "PATCH_OnClassesGenerate",
 		'CodeFileName', "Code/PATCH_OnClassesGenerate.lua",

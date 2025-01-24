@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.53c \n\nsome small code changes related to AI overhaul",
+	'last_changes', "3.53e \n\nremoved leftover AI logic that could cause bugs due to load order",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 53,
-	'version', 11721,
+	'version', 11723,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -149,10 +149,6 @@ return PlaceObj('ModDef', {
 		"Code/SOURCE_UnitCanAttack.lua",
 		"Code/SOURCE_CombatActionGetAttackableEnemies.lua",
 		"Code/SOURCE_Firearm_GetItemStatusUI and QuickReloadButton.lua",
-		"Code/SOURCE_AIPrecalcDamageScore.lua",
-		"Code/SOURCE_AICreateContext.lua",
-		"Code/SOURCE_AIGetAttackArgs.lua",
-		"Code/SOURCE_AICalcAttacksandAim.lua",
 		"Code/PATCH_OnClassesGenerate.lua",
 		"Code/CharEffectCompositeDef_function.lua",
 		"Code/PATCH_call.lua",
@@ -191,8 +187,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1737708466,
-	'code_hash', -200163671789586013,
+	'saved', 1737709201,
+	'code_hash', 7715045711438725818,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
