@@ -69,7 +69,7 @@ function define_getOWattacks_and_aim()
 
         if atk_cost <= 0 then
             print("overwatch calc n attacks, attk cost is less than zero:", atk_cost, "...")
-            print("... action:", action, "weapon", weapon)
+            -- print("... action:", action, "weapon", weapon)
             return 0
         else
             attacks = 1 + (ap / atk_cost)

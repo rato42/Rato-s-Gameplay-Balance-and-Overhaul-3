@@ -185,7 +185,7 @@ function aim_cth()
             end
 
             if weapon1:HasComponent("light_stock_aim_reduce") then
-                bonus = bonus * 0.95 ----TODO: #4 rebalance the light stock    -- Max(1, MulDivRound(min_bonus, 80, 100))
+                bonus = bonus * 0.90 -- Max(1, MulDivRound(min_bonus, 80, 100))
                 metaText[#metaText + 1] = T(899433651477, "(-) Light Stock")
             end
 
