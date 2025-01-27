@@ -31,6 +31,24 @@ function OnMsg.SelectedObjChange()
     end
 end
 
+function OnMsg.UnitAnyMovementStart(unit)
+    local actions_that_remove = {
+        Move = true,
+        RunAndGun = true,
+        RecklessAssault = true,
+        MobileShot = true,
+        HundredKnives = true,
+        Sprint = true
+    }
+
+    if not actions_that_remove[unit.action_command] then
+        return
+    end
+
+    unit:RemoveStatusEffect("shooting_stance")
+
+end
+
 function OnMsg.UnitMovementDone(unit, action_id, prev_pos)
 
     local actions_that_remove = {

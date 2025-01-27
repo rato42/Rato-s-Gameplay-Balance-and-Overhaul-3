@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.53f\n\nBalance:\nMG setup will reduce snapshot penalty and recoil penalty more efficiently\nSnipe action (old pindown) now increases the weapon's effective range by 50%\nIncreased Peacemaker and Tex's Revolvers damage by 2\n\nOptions:\nThe default aware range option is now 56 tiles.\n\nOther\nsome tweaks related to AI overhaul",
+	'last_changes', "3.53g\n\nFixed bugged animation when trying to climb a stairs after using run and gun or other mobile attacks and having shooting stance.",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 53,
-	'version', 11761,
+	'version', 11763,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -189,8 +189,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1737969372,
-	'code_hash', 2379709067744615819,
+	'saved', 1738019970,
+	'code_hash', -2779876423699003090,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
