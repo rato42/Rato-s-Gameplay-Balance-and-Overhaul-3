@@ -508,7 +508,7 @@ function rat_combat_actions()
     end
 
     CombatActions.PinDown.Description = T(854982151651, --[[CombatAction PinDown Description]]
-                                          "<em>Spends all AP</em>\nThe target is <em><GameTerm('Marked')></em>. At the start of next turn, shoot the target if the target is still in the line of sight. The attack will have <em>max</em> aim levels. Each aim level grants <em><bonus_crit></em> extra critical chance. This attack bypasses low cover and has reduced penalties to hit body parts.\n\nSnipe requires a clear line and sight to the target.")
+                                          "<em>Spends all AP</em>\nThe target is <em><GameTerm('Marked')></em>. At the start of next turn, shoot the target if the target is still in the line of sight. The attack will have max aim levels. Each aim level grants <bonus_crit> extra critical chance. This attack bypasses low cover, has reduced penalties to hit body parts and <em>increases the weapon's effective range by 50%</em>.\n\nSnipe requires a clear line and sight to the target.")
     CombatActions.PinDown.DisplayName = T(164165234891, --[[CombatAction PinDown DisplayName]]
                                           "Snipe")
 
@@ -518,7 +518,7 @@ function rat_combat_actions()
         local recoil = unit:GetStatusEffect("Rat_recoil")
 
         local descr = TranslationTable[854982151651] or
-                          "<em>Spends all AP</em>\nThe target is <em><GameTerm('Marked')></em>. At the start of next turn, shoot the target if the target is still in the line of sight. The attack will have <em>max</em> aim levels. Each aim level grants <em><bonus_crit></em> extra critical chance. This attack bypasses low cover and has reduced penalties to hit body parts.\n\nSnipe requires a clear line and sight to the target." -- self.Description[2]
+                          "<em>Spends all AP</em>\nThe target is <em><GameTerm('Marked')></em>. At the start of next turn, shoot the target if the target is still in the line of sight. The attack will have max aim levels. Each aim level grants <bonus_crit> extra critical chance. This attack bypasses low cover, has reduced penalties to hit body parts and <em>increases the weapon's effective range by 50%</em>.\n\nSnipe requires a clear line and sight to the target."
         if recoil then
             local aim_cost = recoil:ResolveValue("aim_cost") or 0
             local extra_cost = cRoundDown(aim_cost * const.Combat.PindownAimLevelsForAPCost) -- * const.Scale.AP
@@ -1586,7 +1586,7 @@ local t_id_table = {
     [480046777812] = " within the set cone",
     [617859618521] = " Shoots <em><num> bullets</em> at the target. The accuracy of each shot is reduced by <em>Recoil</em>. Critical chance is reduced.",
     [164165234891] = "Snipe",
-    [854982151651] = "<em>Spends all AP</em>\nThe target is <em><GameTerm('Marked')></em>. At the start of next turn, shoot the target if the target is still in the line of sight. The attack will have <max_aim> aim levels. Each aim level grants <bonus_crit> extra critical chance. This attack bypasses low cover and has reduced penalties to hit body parts.\n\nSnipe requires a clear line and sight to the target.",
+    [854982151651] = "<em>Spends all AP</em>\nThe target is <em><GameTerm('Marked')></em>. At the start of next turn, shoot the target if the target is still in the line of sight. The attack will have max aim levels. Each aim level grants <bonus_crit> extra critical chance. This attack bypasses low cover, has reduced penalties to hit body parts and <em>increases the weapon's effective range by 50%</em>.\n\nSnipe requires a clear line and sight to the target.",
     [231988463514] = "\n\n<em>Recoil</em> is increasing the AP cost by <em>"
 
 }

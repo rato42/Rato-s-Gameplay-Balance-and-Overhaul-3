@@ -57,7 +57,7 @@ function prone_cover()
             local mul = dist * 1.00 / max_dist
 
             value = cRound(value * mul)
-            return true, value, T(904752344471, "Target Prone")
+            return true, value, T(904752344471, "Target Prone"), nil, "Prone"
         end
 
         local cover, any, coverage
@@ -143,7 +143,7 @@ function prone_cover()
             local mul = dist * 1.00 / max_dist
             value = cRound(value * mul)
 
-            return true, value, T(309253003316, "Target Crouched")
+            return true, value, T(309253003316, "Target Crouched"), nil, "Crouch"
         end
         return false, 0
     end

@@ -1,4 +1,5 @@
 function OnMsg.DataLoaded()
+    ------- CTH
     aim_cth()
     two_weaponcth()
     autofire_range()
@@ -9,11 +10,13 @@ function OnMsg.DataLoaded()
     targeted_noburst()
     point_blank_cth()
 
-    ------
+    ------ Combat Actions
     rat_combat_actions()
     rat_MGSetup_getap()
-    presets_char_effect()
+    -- change_MGSetupAction_GetAimParams()
+    ------
 
+    presets_char_effect()
     ----
     rat_change_template_boltaction()
     ------

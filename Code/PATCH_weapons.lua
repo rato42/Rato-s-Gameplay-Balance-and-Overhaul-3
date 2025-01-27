@@ -2700,7 +2700,7 @@ function RatoGBO_WepPatch()
         }
     }
     ColtPeacemaker.OverwatchAngle = 2162
-    ColtPeacemaker.Damage = 21
+    ColtPeacemaker.Damage = 23
     ColtPeacemaker.MagazineSize = 6
     ColtPeacemaker.RepairCost = 30
     ColtPeacemaker.RestockWeight = 100
@@ -2759,7 +2759,7 @@ function RatoGBO_WepPatch()
         }
     }
     TexRevolver.OverwatchAngle = 2162
-    TexRevolver.Damage = 21
+    TexRevolver.Damage = 23
     TexRevolver.MagazineSize = 6
     TexRevolver.RepairCost = 50
     TexRevolver.ScrapParts = 8

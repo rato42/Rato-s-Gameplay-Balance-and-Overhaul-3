@@ -201,11 +201,11 @@ function OnMsg.ClassesGenerate(classdefs)
     end
 
     if classdefs.AutoWeapons.unit_reactions then
-        classdefs.AutoWeapons.unit_reactions = false
+        classdefs.AutoWeapons.unit_reactions = nil
     end
 
     if classdefs.Ambidextrous.unit_reactions then
-        classdefs.Ambidextrous.unit_reactions = false
+        classdefs.Ambidextrous.unit_reactions = nil
     end
 
 end

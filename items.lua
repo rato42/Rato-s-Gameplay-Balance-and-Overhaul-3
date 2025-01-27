@@ -528,6 +528,7 @@ return {
 						local effect = unit:GetStatusEffect("Rat_recoil")
 					
 					
+					
 					local command = unit.action_command or ''
 					if command == "RunAndGun" or command == "RecklessAssault" then
 						unit:RemoveStatusEffect("Rat_recoil", "all")
@@ -536,6 +537,7 @@ return {
 					
 					
 					local current_pos = unit:GetPos()
+					if not prev_pos or not current_pos then return end
 					local dist = current_pos:Dist(prev_pos) or 0 
 					local previous_dist = effect:ResolveValue("movement") or 0
 					
@@ -551,6 +553,7 @@ return {
 					local effect = unit:GetStatusEffect("Rat_recoil")
 					
 					
+					
 					local command = unit.action_command or ''
 					if command == "RunAndGun" or command == "RecklessAssault" then
 						unit:RemoveStatusEffect("Rat_recoil", "all")
@@ -559,6 +562,7 @@ return {
 					
 					
 					local current_pos = unit:GetPos()
+					if not prev_pos or not current_pos then return end
 					local dist = current_pos:Dist(prev_pos) or 0 
 					local previous_dist = effect:ResolveValue("movement") or 0
 					
@@ -1407,6 +1411,14 @@ return {
 		'CodeFileName', "Code/SOURCE_Firearm_GetItemStatusUI and QuickReloadButton.lua",
 	}),
 	PlaceObj('ModItemCode', {
+		'name', "SOURCE_GetRangeAccuracy",
+		'CodeFileName', "Code/SOURCE_GetRangeAccuracy.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "FUNCTION_ChangeMGSetupGetAreaParams",
+		'CodeFileName', "Code/FUNCTION_ChangeMGSetupGetAreaParams.lua",
+	}),
+	PlaceObj('ModItemCode', {
 		'name', "PATCH_OnClassesGenerate",
 		'CodeFileName', "Code/PATCH_OnClassesGenerate.lua",
 	}),
@@ -1814,8 +1826,8 @@ return {
 	PlaceObj('ModItemOptionChoice', {
 		'name', "AwareSight",
 		'DisplayName', "Aware Sight Range",
-		'Help', "This option will change the vision range, important for shots at long range",
-		'DefaultValue', "38 (rato's GBO default)",
+		'Help', "This option will change the vision range, important for shots at long range.",
+		'DefaultValue', "56 (GBO Default)",
 		'ChoiceList', {
 			"4",
 			"6",
@@ -1838,7 +1850,7 @@ return {
 			"32",
 			"34",
 			"36",
-			"38 (rato's GBO default)",
+			"38",
 			"40",
 			"42",
 			"44",
@@ -1847,6 +1859,9 @@ return {
 			"50",
 			"52",
 			"54",
+			"56 (GBO Default)",
+			"58",
+			"60",
 		},
 	}),
 	PlaceObj('ModItemOptionChoice', {

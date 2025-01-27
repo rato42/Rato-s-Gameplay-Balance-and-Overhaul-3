@@ -1,4 +1,4 @@
-function place_held_mg_CTH()
+--[[function place_held_mg_CTH() 
     PlaceObj('ChanceToHitModifier', {
         CalcValue = function(self, attacker, target, body_part_def, action, weapon1, weapon2, lof,
                              aim, opportunity_attack, attacker_pos, target_pos)
@@ -52,3 +52,4 @@ end
 local t_id_table = {[753869797593] = "Held MG"}
 
 ratG_T_table['CTH_held_mg.lua'] = t_id_table
+]] 

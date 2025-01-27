@@ -79,6 +79,7 @@ DefineClass.Rat_recoil = {
 					local effect = unit:GetStatusEffect("Rat_recoil")
 				
 				
+				
 				local command = unit.action_command or ''
 				if command == "RunAndGun" or command == "RecklessAssault" then
 					unit:RemoveStatusEffect("Rat_recoil", "all")
@@ -87,6 +88,7 @@ DefineClass.Rat_recoil = {
 				
 				
 				local current_pos = unit:GetPos()
+				if not prev_pos or not current_pos then return end
 				local dist = current_pos:Dist(prev_pos) or 0 
 				local previous_dist = effect:ResolveValue("movement") or 0
 				
@@ -102,6 +104,7 @@ DefineClass.Rat_recoil = {
 				local effect = unit:GetStatusEffect("Rat_recoil")
 				
 				
+				
 				local command = unit.action_command or ''
 				if command == "RunAndGun" or command == "RecklessAssault" then
 					unit:RemoveStatusEffect("Rat_recoil", "all")
@@ -110,6 +113,7 @@ DefineClass.Rat_recoil = {
 				
 				
 				local current_pos = unit:GetPos()
+				if not prev_pos or not current_pos then return end
 				local dist = current_pos:Dist(prev_pos) or 0 
 				local previous_dist = effect:ResolveValue("movement") or 0
 				
