@@ -111,14 +111,14 @@ function weapon_components_rat()
 
     PlaceObj('WeaponComponentEffect', {
         Description = T(915008271800,
-                        "Decreased Hipfire penalty, increased Snapshot penalty, reduced Recoil penalty, decreases Point Blank range accuracy, harder to hit at melee range"),
+                        "Decreased Hipfire penalty, increased Snapshot penalty, reduced Recoil penalty, decreased Point Blank range accuracy, harder to hit at melee range"),
         group = "ChanceToHit",
         id = "longbarrel"
     })
 
     PlaceObj('WeaponComponentEffect', {
         Description = T(173836158177,
-                        "Increased Hipfire penalty, increased Snapshot penalty, increased Recoil penalty, increases Point Blank range accuracy, easier to hit at melee range"),
+                        "Increased Hipfire penalty, decreased Snapshot penalty, increased Recoil penalty, increased Point Blank range accuracy, easier to hit at melee range"),
         group = "ChanceToHit",
         id = "shortbarrel"
     })
@@ -879,8 +879,8 @@ local t_table = {
     [226367424021] = 'Harder to hit closer targets',
     [938572490156] = 'Harder to hit closer targets',
     [975264803458] = 'Decreases Accuracy bonus from Aiming',
-    [915008271800] = 'Decreased Hipfire penalty, increased Snapshot penalty, reduced Recoil penalty, decreases Point Blank range accuracy, harder to hit at melee range',
-    [173836158177] = 'Increased Hipfire penalty, increased Snapshot penalty, increased Recoil penalty, increases Point Blank range accuracy, easier to hit at melee range',
+    [915008271800] = 'Decreased Hipfire penalty, increased Snapshot penalty, reduced Recoil penalty, decreased Point Blank range accuracy, harder to hit at melee range',
+    [173836158177] = 'Increased Hipfire penalty, decreased Snapshot penalty, increased Recoil penalty, increased Point Blank range accuracy, easier to hit at melee range',
     [780091744194] = 'Has bonus damage against <em>Flanked</em> targets',
     [742720959709] = 'Recovers half <em>free move AP</em> after shooting',
     [282151114911] = '<em>Accuracy</em> penalty when not prone',

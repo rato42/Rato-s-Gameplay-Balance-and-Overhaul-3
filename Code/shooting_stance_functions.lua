@@ -103,9 +103,9 @@ end
 
 function GetShootingAngleDiff(unit, weapon, target, force)
     local cone_angle = weapon.OverwatchAngle / 2
-    local target_pos = IsValid(target) and target:GetPos()
+    local target_pos = IsValid(target) and target:GetPos() or target
     if force or Is_AimingAttack() then
-        target_pos = IsValid(target) and target:GetPos() or GetCursorPos(true) -- :SetZ(attacker_z)
+        target_pos = target_pos or GetCursorPos(true) -- :SetZ(attacker_z)
     end
 
     if not target_pos then

@@ -767,8 +767,8 @@ function rat_combat_actions()
         end
         local cost_setup = CombatActions.MGSetup:GetAPCost(unit, args)
 
-        -- TODO: #11 change target to use args target if available first
-        local target = GetCursorPos(true)
+        local target = args and args.target -- or GetCursorPos(true)
+
         local weapon = unit:GetActiveWeapons()
         local rotate_ap = ShootingConeAngle(unit, weapon, target)
 
@@ -975,7 +975,7 @@ function rat_combat_actions()
     CombatActions.DualShot.Description = T(364947777453,
                                            "The Dual Shot attack produces a Basic Attack from each gun. Maximum <em>aim</em> level is reduced. Has a penalty based on <em>Dexterity</em>.")
     CombatActions.MGSetup.Description = T(564696256945,
-                                          "Focus on a cone-shaped area, immobilizing yourself and going <em>prone</em>. You can only shoot enemies inside that cone. Accuracy is increased and enemies will provoke <em>interrupt</em> attacks with actions inside the cone (even if your AP are spent). <em>Interrupt</em> attacks have bonus accuracy.")
+                                          "Focus on a cone-shaped area, immobilizing yourself and going <em>prone</em>. You can only shoot enemies inside that cone. Accuracy is increased and enemies will provoke <em>interrupt</em> attacks with actions inside the cone (even if your AP are spent). <em>Interrupt</em> attacks have bonus accuracy. Your weapon will have increased <em>Shooting Angle</em> while you are in setup.")
 
     CombatActions.RunAndGun.Run = function(self, unit, ap, ...)
 
@@ -1573,7 +1573,7 @@ local t_id_table = {
     [614189548956] = "<em>Once per turn</em>. Move to a new position, using up to <em><DisplayMoveAP> AP</em>. Fire a number of bursts during movement toward the closest enemies. Each shot suffers increased <em>Hipfire</em> and <em>Recoil</em> accuracy penalties.",
     [373274572555] = "Shoots a hail of <em><bullets> bullets</em> and inflict <GameTerm('Suppressed')> even on miss when the enemy is in weapon range. Has <em>recoil</em> penalty based on <em>Strength</em>. Maximum <em>aim</em> level reduced. Critical chance is reduced.",
     [364947777453] = "The Dual Shot attack produces a Basic Attack from each gun. Maximum <em>aim</em> level is reduced. Has a penalty based on <em>Dexterity</em>.",
-    [564696256945] = "Focus on a cone-shaped area, immobilizing yourself and going <em>prone</em>. You can only shoot enemies inside that cone. Accuracy is increased and enemies will provoke <em>interrupt</em> attacks with actions inside the cone (even if your AP are spent). <em>Interrupt</em> attacks have bonus accuracy.",
+    [564696256945] = "Focus on a cone-shaped area, immobilizing yourself and going <em>prone</em>. You can only shoot enemies inside that cone. Accuracy is increased and enemies will provoke <em>interrupt</em> attacks with actions inside the cone (even if your AP are spent). <em>Interrupt</em> attacks have bonus accuracy. Your weapon will have increased <em>Shooting Angle</em> while you are in setup.",
     [226634284341] = "<em>Spends all AP</em>. Any targets who move or shoot in the overwatch area will provoke <GameTerm('Interrupt')> <em>attacks</em>. Accuracy is influenced by the unit's <em>Reflexes</em> (Dex + Agi) and the by weapon <em>Snapshot</em> penalty multiplier.",
     [312473917195] = "\n\nThe unit will be <em>Out of Breath</em>.",
     [801805830695] = "<newline>You will end up in Standing stance.",

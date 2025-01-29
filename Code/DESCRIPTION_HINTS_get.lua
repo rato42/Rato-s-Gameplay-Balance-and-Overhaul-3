@@ -85,14 +85,14 @@ function rat_format_hints(self)
         local unit = g_Units[self.owner] or gv_UnitData[self.owner]
 
         local ap = GetWeapon_StanceAP(unit, self, true)
-
+        local aim_cost = MulDivRound(Get_AimCost(unit), 1, const.Scale.AP)
         -- if unit then
         -- ap = Cumbersome_StanceAP(unit, self, ap)
         -- elseif self:IsCumbersome() then
         -- ap = ap +1
         -- end
 
-        return ap
+        return ap + aim_cost
 
     end
 

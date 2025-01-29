@@ -153,8 +153,10 @@ function OnMsg.CombatActionEnd(unit)
 
         local target = g_Overwatch[unit].target_pos
 
-        local attack_args = unit.ow_args_stance or false
-        unit.ow_args_stance = nil
+        local attack_args = {target = target}
+
+        -- unit.ow_args_stance or false
+        -- unit.ow_args_stance = nil
 
         unit:EnterShootingStance(target, attack_args)
 

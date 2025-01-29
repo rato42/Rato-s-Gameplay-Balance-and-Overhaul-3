@@ -27,6 +27,8 @@ const.Combat.RunAndGunSnapshotHipfirePenaltyMul = 1.75
 const.Combat.MobileShotSnapshotHipfirePenaltyMul = 1.55
 -- OW
 const.Combat.MGSetupBonusInterruptAccuracy = 15
+const.Combat.MGSetupConeMul = 120 --- MulDivRound
+const.Combat.MGSetupConeFlat = 180 --- addition
 
 ----- AI
 -- const.Combat.AI_ShootingStanceAP_Mul = 50 --- % Became a Mod Option
