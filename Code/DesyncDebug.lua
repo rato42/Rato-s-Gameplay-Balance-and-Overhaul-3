@@ -1,0 +1,1 @@
+config.DesyncPath = "AppData/logs"

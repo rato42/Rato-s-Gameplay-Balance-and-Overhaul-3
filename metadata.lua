@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.54 \n\n-------------\nThe Shooting Stance AP param in weapon description now includes the cost of aiming once, no change in gameplay costs\n-------------\n\nChanged some component params\nQuick Prism Scope no longer decreases ow angle, instead it will give 10% increase\nThe prism scope ow angle reduction is lower, only 10%\nThe reflex sights have had minor increments in their angle increasing\nExpanded magazines will no longer decrease Shooting Angle\n\nThe effect of barrels and suppressors in Angle Reduction or Increase has been reduced by about half\n\nMG setup action now increases the angle of the gun by 20% and then by a flat 180 minutes increase\n\nAll MGs range have been reduced by 4\nAll shotguns range have been increased by 2\nDouble barrel shotgun no longer costs 4 ap to attack (3 like the rest)\nFAMAS cant use Sniper optics anymore\n\nFixed a typo in short barrel component description",
+	'last_changes', "3.54a \n\nadded a log to check desync bugs",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 54,
-	'version', 11802,
+	'version', 11807,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -80,6 +80,7 @@ return PlaceObj('ModDef', {
 		"Code/AMMO_9x19.lua",
 		"Code/AMMO_9x39.lua",
 		"Code/CONSTANT_Control.lua",
+		"Code/DesyncDebug.lua",
 		"Code/UPDATE_Change components.lua",
 		"Code/DESCRIPTION_HINTS_get.lua",
 		"Code/T_ID_enforcement.lua",
@@ -189,8 +190,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1738119695,
-	'code_hash', 4484867454304724705,
+	'saved', 1738141750,
+	'code_hash', -2648826497841661924,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
