@@ -1,6 +1,6 @@
 function ow_cth()
-    local MinPenalty = 5
-    local MaxPenalty = -10
+    local MinPenalty = 0
+    local MaxPenalty = -20
 
     for _, param in ipairs(Presets.ChanceToHitModifier.Default["OpportunityAttack"].Parameters) do
         if param.Name == 'MinPenalty' then

@@ -58,8 +58,8 @@ end
 ---------------------------------------------------------------------------------------------------
 function rat_getMobileshot_moveAP(action, unit, weapon)
     local is_sprint = (action and action.id == "Sprint")
-    local base_ap = is_sprint and 12 or 9
-    local min_ap = 6
+    local base_ap = is_sprint and 10 or 9
+    local min_ap = is_sprint and 7 or 6
     local weapon_multiplier = is_sprint and 1.0 or 1.5
 
     local stanceap = 0

@@ -46,12 +46,12 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
     end
 
     if weapon and weapon:HasComponent("hipfire_dot_effect_laser") then
-        penalty = penalty * 0.85
+        penalty = penalty * 0.88
         metaText[#metaText + 1] = T(626578482223, "Laser Dot")
     end
 
     if weapon and weapon:HasComponent("hipfire_dot_effect_uv") then
-        penalty = penalty * 0.85
+        penalty = penalty * 0.88
         metaText[#metaText + 1] = T(887956959968, "UV Dot")
     end
 
@@ -64,7 +64,7 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
     if weapon and weapon:HasComponent("Vert_grip_recoil") then
         if weapon2 then
         else
-            penalty = penalty * 0.92
+            penalty = penalty * 0.95
             metaText[#metaText + 1] = T(253436571742, "Vertical Grip")
         end
     end
@@ -72,13 +72,13 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
     if weapon and weapon:HasComponent("tac_grip_hipfire") then
         if weapon2 then
         else
-            penalty = penalty * 0.88
+            penalty = penalty * 0.9
             metaText[#metaText + 1] = T(646775269862, "Foldable Grip")
         end
     end
 
     if weapon and weapon:HasComponent("hipfire_light_stock") then
-        penalty = penalty * 0.9
+        penalty = penalty * 0.92
         metaText[#metaText + 1] = T(729651784671, "Light Stock")
     end
 
@@ -157,7 +157,7 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
 
         if weapon and weapon:HasComponent("hipfire_no_stock") then
 
-            penalty = penalty * 0.85
+            penalty = penalty * 0.92
             metaText[#metaText + 1] = T(569535264469, "No Stock")
 
         end
@@ -170,7 +170,7 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
         end
 
         if weapon and weapon:HasComponent("bullpup") then
-            penalty = penalty * 0.95
+            penalty = penalty * 0.96
             metaText[#metaText + 1] = T(633298768714, "Bullpup")
         end
 
@@ -179,9 +179,9 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
             if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
                 penalty = penalty * 1.06
             elseif IsKindOf(weapon, "Revolver") then
-                penalty = penalty * 1.08
+                penalty = penalty * 1.07
             else
-                penalty = penalty * 1.11
+                penalty = penalty * 1.10
             end
 
             metaText[#metaText + 1] = T(224584566951, "(-) Extended Barrel")
@@ -192,21 +192,21 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
             if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
                 penalty = penalty * 0.94
             elseif IsKindOf(weapon, "Revolver") then
-                penalty = penalty * 0.92
+                penalty = penalty * 0.93
             else
-                penalty = penalty * 0.89
+                penalty = penalty * 0.90
             end
 
             metaText[#metaText + 1] = T(119591314866, "Short Barrel")
         end
 
         if weapon and weapon:HasComponent("hipfire_light_barrel") then
-            penalty = penalty * 0.89
+            penalty = penalty * 0.92
             metaText[#metaText + 1] = T(447116472426, "Light Barrel")
         end
 
         if weapon and weapon:HasComponent("heavy_barrel_effect") then
-            penalty = penalty * 1.11
+            penalty = penalty * 1.08
             metaText[#metaText + 1] = T(481487998456, "(-) Heavy Barrel")
         end
 

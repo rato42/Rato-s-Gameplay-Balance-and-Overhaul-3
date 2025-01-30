@@ -32,7 +32,7 @@ function place_hipfire_cth()
 
             if aim > 0 and
                 (not table.find(actions_that_use_snapshot_always, action.id) and target and
-                    attacker:GetLastAttack() == target) then
+                    attacker:GetLastAttack() == target) and not opportunity_attack then
                 return false, 0
             end
 
@@ -189,6 +189,10 @@ function place_hipfire_cth()
                 local snap_penal = Min(0, MulDivRound(dist, max_penal, max_dist))
 
                 snap_penal = MulDivRound(snap_penal, weapon_ref, 100) + base_penal
+
+                if opportunity_attack then
+                    snap_penal = MulDivRound(snap_penal, const.Combat.InterruptSnapshotPenalty, 100)
+                end
 
                 if (g_Overwatch[attacker] and g_Overwatch[attacker].permanent) or action and
                     action.id == "MGSetup" then
