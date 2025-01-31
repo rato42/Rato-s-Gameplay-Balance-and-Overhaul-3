@@ -975,8 +975,12 @@ return {
 		}),
 		}),
 	PlaceObj('ModItemCode', {
-		'name', "CONSTANT_Control",
-		'CodeFileName', "Code/CONSTANT_Control.lua",
+		'name', "CONSTANT_Main",
+		'CodeFileName', "Code/CONSTANT_Main.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "CONSTANTS_Recoil",
+		'CodeFileName', "Code/CONSTANTS_Recoil.lua",
 	}),
 	PlaceObj('ModItemCode', {
 		'name', "DesyncDebug",

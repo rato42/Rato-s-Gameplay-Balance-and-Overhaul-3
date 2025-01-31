@@ -30,6 +30,7 @@ function Unit:ApplyPersistantRecoilEffects(aim, action, weapon, attack_args)
         local effect_reset = self:GetStatusEffect("Rat_recoil")
         if effect_reset then
             self:RemoveStatusEffect("Rat_recoil", "all")
+
         end
     end
 
@@ -65,9 +66,185 @@ function Unit:ApplyPersistantRecoilEffects(aim, action, weapon, attack_args)
     effect:SetParameter("movement", 0)
 end
 
+-- function GetWepRecoil(weapon, attacker, display)
+--     local mod = 1.00
+--     local metaText = {}
+
+--     local weapon2 = false
+
+--     if attacker and not attacker.placeholder then
+--         local slot = attacker:GetEquippedWeaponSlot(weapon)
+--         local equipped_w = attacker:GetEquippedWeapons(slot)
+
+--         weapon2 = equipped_w and equipped_w[2] or false
+--     end
+
+--     ----------------weaponkind
+
+--     local base_mul = (weapon.wep_base_recoil_mul or 100) / 100.00
+
+--     mod = mod * base_mul
+
+--     if IsKindOf(weapon, "BrowningM2HMG") then
+--         -- mod = mod * 0.75
+--         metaText[#metaText + 1] = "Stationary"
+--     end
+
+--     if IsKindOf(weapon, "LionRoar") then
+--         mod = mod * 0.88
+--         metaText[#metaText + 1] = "Compensator"
+--     end
+
+--     ---- Weapon Class
+--     mod = mod * (weapon.class_base_recoil / 100.00)
+
+--     local mech, meta_mech = GetMechanismRecoil(weapon)
+
+--     if meta_mech then
+--         metaText[#metaText + 1] = rT(meta_mech)
+--     end
+
+--     mod = mod * mech
+
+--     if weapon and weapon:HasComponent("Vert_grip_recoil") then
+--         if weapon2 then
+--         else
+--             mod = mod * 0.92
+--             metaText[#metaText + 1] = rT(892823936544, "Vertical Grip")
+--         end
+--     end
+
+--     if weapon and weapon:HasComponent("tac_grip_recoil") then
+--         if weapon2 then
+--         else
+--             mod = mod * 0.97
+--             metaText[#metaText + 1] = rT(371872683581, "Foldable Grip")
+--         end
+--     end
+
+--     if weapon and weapon:HasComponent("no_stock") then
+--         if IsKindOfClasses(weapon, "SubmachineGun") then
+--             mod = mod * 1.40
+--         else
+--             mod = mod * 1.70
+--         end
+--         metaText[#metaText + 1] = rT(115796595571, "(-) No Stock")
+--     end
+
+--     local modifyVal, compDef
+
+--     if weapon and weapon:HasComponent("handguard_ext") then
+--         modifyVal, compDef = GetComponentEffectValue(weapon, "handguard_ext", "recoil_mul")
+--         mod = mod * (modifyVal / 100.00 or 1.00)
+--         -- metaText[#metaText + 1] = rT(395163141224, "Extended Handguard")
+--     end
+
+--     if weapon and weapon:HasComponent("handguard_short") then
+--         modifyVal, compDef = GetComponentEffectValue(weapon, "handguard_short", "recoil_mul")
+--         mod = mod * (modifyVal / 100.00 or 1.00)
+--         -- metaText[#metaText + 1] = rT(963983387333, "(-) Short Handguard")
+--     end
+
+--     if weapon and weapon:HasComponent("compensator_effect") then
+--         mod = mod * 0.85
+--         metaText[#metaText + 1] = rT(134618826773, "Compensator")
+--     end
+
+--     if weapon and weapon:HasComponent("recoil_booster_effect") then
+--         mod = mod * 0.95
+--         metaText[#metaText + 1] = rT(862593714174, "Recoil Booster")
+--     end
+
+--     if weapon and weapon:HasComponent("integr_muzzle_brake") then
+--         mod = mod * 0.91
+--         metaText[#metaText + 1] = rT(585361131592, "Integrated Muzzle Brake")
+--     end
+
+--     if weapon and weapon:HasComponent("compensator_effect_silencer") then
+--         mod = mod * 0.95
+--         metaText[#metaText + 1] = rT(263781558966, "Suppressor")
+--     end
+
+--     if weapon and weapon:HasComponent("compensator_effect_ugly_silencer") then
+--         mod = mod * 0.97
+--         metaText[#metaText + 1] = rT(696373868183, "Improvised Suppressor")
+--     end
+
+--     if (weapon and weapon:HasComponent("longbarrel")) or (weapon and weapon.default_long_barrel) then
+--         if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
+--             mod = mod * 0.94
+--         elseif IsKindOf(weapon, "Revolver") then
+--             mod = mod * 0.93
+--         elseif IsKindOf(weapon, "SubmachineGun") then
+--             mod = mod * 0.91
+--         else
+--             mod = mod * 0.90
+--         end
+--         metaText[#metaText + 1] = rT(894953874886, "Extended Barrel")
+--     end
+
+--     if weapon and weapon:HasComponent("shortbarrel") then
+--         if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
+--             mod = mod * 1.03
+--         elseif IsKindOf(weapon, "Revolver") then
+--             mod = mod * 1.04
+--         elseif IsKindOf(weapon, "SubmachineGun") then
+--             mod = mod * 1.09
+--         else
+--             mod = mod * 1.10
+--         end
+--         metaText[#metaText + 1] = rT(228113672715, "(-) Short Barrel")
+--     end
+
+--     if weapon and weapon:HasComponent("hipfire_light_barrel") then
+--         if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
+--             mod = mod * 1.06
+--         elseif IsKindOf(weapon, "Revolver") then
+--             mod = mod * 1.07
+--         elseif IsKindOf(weapon, "SubmachineGun") then
+--             mod = mod * 1.10
+--         else
+--             mod = mod * 1.12
+--         end
+--         metaText[#metaText + 1] = rT(826212377342, "(-) Light Barrel")
+--     end
+
+--     if weapon and weapon:HasComponent("heavy_barrel_effect") then
+--         if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
+--             mod = mod * 0.95
+--         elseif IsKindOf(weapon, "Revolver") then
+--             mod = mod * 0.94
+--         elseif IsKindOf(weapon, "SubmachineGun") then
+--             mod = mod * 0.92
+--         else
+--             mod = mod * 0.91
+--         end
+--         metaText[#metaText + 1] = rT(649749565849, "Heavy Barrel")
+--     end
+
+--     if weapon and weapon:HasComponent("stockheavy_effect_recoil") then
+--         mod = mod * 0.90
+--         metaText[#metaText + 1] = rT(779417232291, "Heavy Stock")
+--     end
+
+--     if weapon and weapon:HasComponent("stocklight_effect_recoil") then
+--         mod = mod * 1.10
+--         metaText[#metaText + 1] = rT(662981363158, "(-) Light Stock")
+--     end
+
+--     -- mod = mod --^ 0.8
+
+--     if display then
+--         return mod
+--     else
+--         return mod, metaText
+--     end
+-- end
+
 function GetWepRecoil(weapon, attacker, display)
     local mod = 1.00
     local metaText = {}
+    local recoil_components = const.Combat.Recoil.Components
 
     local weapon2 = false
 
@@ -81,20 +258,17 @@ function GetWepRecoil(weapon, attacker, display)
     ----------------weaponkind
 
     local base_mul = (weapon.wep_base_recoil_mul or 100) / 100.00
-
     mod = mod * base_mul
 
     if IsKindOf(weapon, "BrowningM2HMG") then
-        -- mod = mod * 0.75
         metaText[#metaText + 1] = "Stationary"
     end
 
     if IsKindOf(weapon, "LionRoar") then
-        mod = mod * 0.88
+        mod = mod * recoil_components.CompensatorMul
         metaText[#metaText + 1] = "Compensator"
     end
 
-    ---- Weapon Class
     mod = mod * (weapon.class_base_recoil / 100.00)
 
     local mech, meta_mech = GetMechanismRecoil(weapon)
@@ -105,133 +279,111 @@ function GetWepRecoil(weapon, attacker, display)
 
     mod = mod * mech
 
-    if weapon and weapon:HasComponent("Vert_grip_recoil") then
-        if weapon2 then
-        else
-            mod = mod * 0.92
-            metaText[#metaText + 1] = rT(892823936544, "Vertical Grip")
-        end
+    if weapon and weapon:HasComponent("Vert_grip_recoil") and not weapon2 then
+        mod = mod * recoil_components.VerticalGripMul
+        metaText[#metaText + 1] = rT(892823936544, "Vertical Grip")
     end
 
-    if weapon and weapon:HasComponent("tac_grip_recoil") then
-        if weapon2 then
-        else
-            mod = mod * 0.97
-            metaText[#metaText + 1] = rT(371872683581, "Foldable Grip")
-        end
+    if weapon and weapon:HasComponent("tac_grip_recoil") and not weapon2 then
+        mod = mod * recoil_components.FoldableGripMul
+        metaText[#metaText + 1] = rT(371872683581, "Foldable Grip")
     end
 
     if weapon and weapon:HasComponent("no_stock") then
         if IsKindOfClasses(weapon, "SubmachineGun") then
-            mod = mod * 1.40
+            mod = mod * recoil_components.NoStockMul.SubmachineGun
         else
-            mod = mod * 1.70
+            mod = mod * recoil_components.NoStockMul.Other
         end
         metaText[#metaText + 1] = rT(115796595571, "(-) No Stock")
     end
 
-    local modifyVal, compDef
-
-    if weapon and weapon:HasComponent("handguard_ext") then
-        modifyVal, compDef = GetComponentEffectValue(weapon, "handguard_ext", "recoil_mul")
-        mod = mod * (modifyVal / 100.00 or 1.00)
-        -- metaText[#metaText + 1] = rT(395163141224, "Extended Handguard")
-    end
-
-    if weapon and weapon:HasComponent("handguard_short") then
-        modifyVal, compDef = GetComponentEffectValue(weapon, "handguard_short", "recoil_mul")
-        mod = mod * (modifyVal / 100.00 or 1.00)
-        -- metaText[#metaText + 1] = rT(963983387333, "(-) Short Handguard")
-    end
-
     if weapon and weapon:HasComponent("compensator_effect") then
-        mod = mod * 0.85
+        mod = mod * recoil_components.CompensatorMul
         metaText[#metaText + 1] = rT(134618826773, "Compensator")
     end
 
     if weapon and weapon:HasComponent("recoil_booster_effect") then
-        mod = mod * 0.95
+        mod = mod * recoil_components.RecoilBoosterMul
         metaText[#metaText + 1] = rT(862593714174, "Recoil Booster")
     end
 
     if weapon and weapon:HasComponent("integr_muzzle_brake") then
-        mod = mod * 0.91
+        mod = mod * recoil_components.IntegratedMuzzleBrakeMul
         metaText[#metaText + 1] = rT(585361131592, "Integrated Muzzle Brake")
     end
 
     if weapon and weapon:HasComponent("compensator_effect_silencer") then
-        mod = mod * 0.95
+        mod = mod * recoil_components.SuppressorMul
         metaText[#metaText + 1] = rT(263781558966, "Suppressor")
     end
 
     if weapon and weapon:HasComponent("compensator_effect_ugly_silencer") then
-        mod = mod * 0.97
+        mod = mod * recoil_components.ImprovisedSuppressorMul
         metaText[#metaText + 1] = rT(696373868183, "Improvised Suppressor")
     end
 
     if (weapon and weapon:HasComponent("longbarrel")) or (weapon and weapon.default_long_barrel) then
         if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
-            mod = mod * 0.94
+            mod = mod * recoil_components.LongBarrelMul.Pistol
         elseif IsKindOf(weapon, "Revolver") then
-            mod = mod * 0.93
+            mod = mod * recoil_components.LongBarrelMul.Revolver
         elseif IsKindOf(weapon, "SubmachineGun") then
-            mod = mod * 0.91
+            mod = mod * recoil_components.LongBarrelMul.SubmachineGun
         else
-            mod = mod * 0.90
+            mod = mod * recoil_components.LongBarrelMul.Other
         end
         metaText[#metaText + 1] = rT(894953874886, "Extended Barrel")
     end
 
     if weapon and weapon:HasComponent("shortbarrel") then
         if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
-            mod = mod * 1.03
+            mod = mod * recoil_components.ShortBarrelMul.Pistol
         elseif IsKindOf(weapon, "Revolver") then
-            mod = mod * 1.04
+            mod = mod * recoil_components.ShortBarrelMul.Revolver
         elseif IsKindOf(weapon, "SubmachineGun") then
-            mod = mod * 1.09
+            mod = mod * recoil_components.ShortBarrelMul.SubmachineGun
         else
-            mod = mod * 1.10
+            mod = mod * recoil_components.ShortBarrelMul.Other
         end
         metaText[#metaText + 1] = rT(228113672715, "(-) Short Barrel")
     end
 
     if weapon and weapon:HasComponent("hipfire_light_barrel") then
         if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
-            mod = mod * 1.06
+            mod = mod * recoil_components.LightBarrelMul.Pistol
         elseif IsKindOf(weapon, "Revolver") then
-            mod = mod * 1.07
+            mod = mod * recoil_components.LightBarrelMul.Revolver
         elseif IsKindOf(weapon, "SubmachineGun") then
-            mod = mod * 1.10
+            mod = mod * recoil_components.LightBarrelMul.SubmachineGun
         else
-            mod = mod * 1.12
+            mod = mod * recoil_components.LightBarrelMul.Other
         end
         metaText[#metaText + 1] = rT(826212377342, "(-) Light Barrel")
     end
 
     if weapon and weapon:HasComponent("heavy_barrel_effect") then
         if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
-            mod = mod * 0.95
+            mod = mod * recoil_components.HeavyBarrelMul.Pistol
         elseif IsKindOf(weapon, "Revolver") then
-            mod = mod * 0.94
+            mod = mod * recoil_components.HeavyBarrelMul.Revolver
         elseif IsKindOf(weapon, "SubmachineGun") then
-            mod = mod * 0.92
+            mod = mod * recoil_components.HeavyBarrelMul.SubmachineGun
         else
-            mod = mod * 0.91
+            mod = mod * recoil_components.HeavyBarrelMul.Other
         end
         metaText[#metaText + 1] = rT(649749565849, "Heavy Barrel")
     end
 
     if weapon and weapon:HasComponent("stockheavy_effect_recoil") then
-        mod = mod * 0.90
+        mod = mod * recoil_components.HeavyStockMul
         metaText[#metaText + 1] = rT(779417232291, "Heavy Stock")
     end
 
     if weapon and weapon:HasComponent("stocklight_effect_recoil") then
-        mod = mod * 1.10
+        mod = mod * recoil_components.LightStockMul
         metaText[#metaText + 1] = rT(662981363158, "(-) Light Stock")
     end
-
-    -- mod = mod --^ 0.8
 
     if display then
         return mod
@@ -254,14 +406,33 @@ function GetCaliberStrRecoil(weapon, attacker, num_shots)
         return 1
     end
 
-    local is_below_breakpoint
-
     local adjust = 0.6
     local adjusted_breakpoint = breakpoint * adjust
     local adjusted_str = str * adjust
 
+    local function getScaleFactor(str, breakpoint)
+        local scaleFactor = 20.0
+        if str < breakpoint then
+            scaleFactor = scaleFactor +
+                              ((100 - 20) * (adjusted_breakpoint - adjusted_str) /
+                                  adjusted_breakpoint)
+        else
+            local adjustmentFactor = 20.0
+            if breakpoint < 80 then
+                adjustmentFactor = 20.0
+            elseif breakpoint < 90 then
+                adjustmentFactor = 18
+            else
+                adjustmentFactor = 12
+            end
+            scaleFactor = scaleFactor -
+                              (adjustmentFactor * (adjusted_str - adjusted_breakpoint) /
+                                  (100 - adjusted_breakpoint))
+        end
+        return scaleFactor
+    end
+
     if str < breakpoint then
-        is_below_breakpoint = true
         scaleFactor = 20.0 +
                           ((100.0 - 20.0) * (adjusted_breakpoint - adjusted_str) /
                               adjusted_breakpoint)
@@ -290,12 +461,12 @@ function GetCaliberStrRecoil(weapon, attacker, num_shots)
     str_mod_f = str_mod_f ^ 1.9
 
     if num_shots and num_shots > 1 and weapon.tracer == 1 then
-        str_mod_f = str_mod_f * 0.88
+        str_mod_f = str_mod_f * const.Combat.Recoil.Other.Tracer
         metaText[#metaText + 1] = rT(669471256347, "Tracer Rounds")
     end
 
     if weapon.ArmorPir == 1 then
-        str_mod_f = str_mod_f * 1.10
+        str_mod_f = str_mod_f * const.Combat.Recoil.Other.AP
         metaText[#metaText + 1] = rT(281796668818, "(-) AP Rounds")
     end
 
@@ -309,29 +480,31 @@ function GetRecoilOther(weapon, attacker, action)
     if action and action.id ~= "RunAndGun" then
         if attacker.stance then
             if attacker.stance == "Prone" then
-                mod = mod * 0.90
+                mod = mod * const.Combat.Recoil.Other.Prone
                 metaText[#metaText + 1] = rT(294661659116, "Prone")
                 if weapon and weapon:HasComponent("AccuracyBonusProne") then
-                    mod = mod * 0.88
+                    mod = mod * const.Combat.Recoil.Components.BipodMul
                     metaText[#metaText + 1] = rT(523692869416, "Bipod")
                 end
-
             elseif attacker.stance == "Crouch" then
-                mod = mod * 0.95
+                mod = mod * const.Combat.Recoil.Other.Crouch
                 metaText[#metaText + 1] = rT(663793494488, "Crouching")
             end
         end
     end
 
     local marks = attacker.Marksmanship
+    local min_reduction = const.Combat.Recoil_MarksmanshipMaxReduction
+    local min_stat = const.Combat.Recoil_MarksmanshipMinStat
 
-    if marks > 59 then
-        local marks_scaling = 0.77 + 0.23 * (1 - (marks - 60 * 1.00) / 40 * 1.00)
+    if marks > min_stat then
+        local marks_scaling = min_reduction + (1 - min_reduction) *
+                                  (1 - (marks - min_stat * 1.00) / (100 - min_stat) * 1.00)
         mod = mod * marks_scaling
 
         if marks == 100 then
             metaText[#metaText + 1] = rT(869135768177, "Perfect Technique")
-        elseif marks > 85 then
+        elseif marks >= 85 then
             metaText[#metaText + 1] = rT(495676736357, "High Marksmanship")
         else
             metaText[#metaText + 1] = rT(889423438892, "Marksmanship")
@@ -343,14 +516,14 @@ function GetRecoilOther(weapon, attacker, action)
     -----------------perks
     if not attacker.placeholder then
         if attacker:HasStatusEffect("TakeAim") then
-            mod = mod * 0.85
+            mod = mod * const.Combat.Recoil.Perks.TakeAimMul
             metaText[#metaText + 1] = rT(712682745289, "Perk: Recoil Management")
         end
 
         if action and
             not (action.id == "SingleShot" or action.id == "Buckshot" or action.id == "Pindown" or
                 action.id == "MobileShot") and attacker:HasStatusEffect("AutoWeapons") then
-            mod = mod * 0.82
+            mod = mod * const.Combat.Recoil.Perks.AutoWeaponsMul
             metaText[#metaText + 1] = rT(764956297274, "Perk: Auto Weapons")
 
         end
@@ -372,7 +545,7 @@ function GetRecoilOther(weapon, attacker, action)
 
         if action and (action.id == "AutoFire" or action.id == "BurstFire") then
             if weapon and weapon:HasComponent("recoil_bump") then
-                mod = mod * 1.10
+                mod = mod * const.Combat.Recoil.Components.RecoilBumpMul
                 metaText[#metaText + 1] = rT(749694622664, "(-) Bump Stock")
             end
         end
@@ -397,29 +570,29 @@ end
 
 function GetMechanismRecoil(weapon)
     local mechs = {
-        -- ["Revolver"] = 106,
-        ["Blowback"] = 105,
-        -- ["Single_Shot"] = 105,
-        ["Striker_Fired"] = 106,
-        ["Short_Recoil"] = 107,
-        ["Gas_Operated"] = 93,
-        ["Recoil_Operated"] = 94,
-        ["Roller_Delayed"] = 95
+        ["Blowback"] = 104,
+        ["Striker_Fired"] = 105,
+        ["Short_Recoil"] = 106,
+        ["Gas_Operated"] = 94,
+        ["Recoil_Operated"] = 95,
+        ["Roller_Delayed"] = 96
         -- ["Break_Action"] = 96,
         -- ["Pump_Action"] = 97,
         -- ["Bolt_Action"] = 98,
         -- ["Lever_Action"] = 99,
+        -- ["Single_Shot"] = 105,
+        -- ["Revolver"] = 106,
     }
 
     local metaTextMap = {
-        -- ["Revolver"] = "Revolver",
-        ["Blowback"] = rT(642385744896, "(-) Blowback"),
-        -- ["Single_Shot"] = "Single Shot",
         ["Striker_Fired"] = rT(132322127855, "(-) Striker Fired"),
         ["Short_Recoil"] = rT(758234761279, "(-) Short Recoil"),
         ["Gas_Operated"] = rT(226357388522, "Gas Operated"),
         ["Recoil_Operated"] = rT(756261568764, "Recoil Operated"),
-        ["Roller_Delayed"] = rT(778967917912, "Roller Delayed")
+        ["Roller_Delayed"] = rT(778967917912, "Roller Delayed"),
+        ["Blowback"] = rT(642385744896, "(-) Blowback")
+        -- ["Revolver"] = "Revolver",
+        -- ["Single_Shot"] = "Single Shot",
         -- ["Break_Action"] = "Break Action",
         -- ["Pump_Action"] = "Pump Action",
         -- ["Bolt_Action"] = "Bolt Action",

@@ -3,6 +3,9 @@ const.Combat.BurstFireCriticalChanceMul = 70 -- % -- Crit * Constant / 100
 
 ----- CTH
 -- Recoil
+const.Combat.Recoil_MarksmanshipMaxReduction = 0.77
+const.Combat.Recoil_MarksmanshipMinStat = 60
+
 const.Combat.Recoil_BasePenalty = -5 ----- -5
 const.Combat.Recoil_MaxPenalty = -77 --- -50
 const.Combat.Recoil_MaxDistforPenalty = 40 -- 26 ----- -18
