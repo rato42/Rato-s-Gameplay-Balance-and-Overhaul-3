@@ -406,31 +406,9 @@ function GetCaliberStrRecoil(weapon, attacker, num_shots)
         return 1
     end
 
-    local adjust = 0.6
+    local adjust = 0.4
     local adjusted_breakpoint = breakpoint * adjust
     local adjusted_str = str * adjust
-
-    local function getScaleFactor(str, breakpoint)
-        local scaleFactor = 20.0
-        if str < breakpoint then
-            scaleFactor = scaleFactor +
-                              ((100 - 20) * (adjusted_breakpoint - adjusted_str) /
-                                  adjusted_breakpoint)
-        else
-            local adjustmentFactor = 20.0
-            if breakpoint < 80 then
-                adjustmentFactor = 20.0
-            elseif breakpoint < 90 then
-                adjustmentFactor = 18
-            else
-                adjustmentFactor = 12
-            end
-            scaleFactor = scaleFactor -
-                              (adjustmentFactor * (adjusted_str - adjusted_breakpoint) /
-                                  (100 - adjusted_breakpoint))
-        end
-        return scaleFactor
-    end
 
     if str < breakpoint then
         scaleFactor = 20.0 +
@@ -438,25 +416,16 @@ function GetCaliberStrRecoil(weapon, attacker, num_shots)
                               adjusted_breakpoint)
         metaText[#metaText + 1] = rT(285153762692, "(-) Low Strength")
     else
-        if breakpoint < 80 then
-            scaleFactor = 20.0 -
-                              (20.0 * (adjusted_str - adjusted_breakpoint) /
-                                  (100.0 - adjusted_breakpoint))
-        elseif breakpoint < 90 then
-            scaleFactor = 20.0 -
-                              (18 * (adjusted_str - adjusted_breakpoint) /
-                                  (100.0 - adjusted_breakpoint))
-        else
-            scaleFactor = 20.0 -
-                              (12 * (adjusted_str - adjusted_breakpoint) /
-                                  (100.0 - adjusted_breakpoint))
-        end
+        scaleFactor = 20.0 -
+                          (20.0 * (adjusted_str - adjusted_breakpoint) /
+                              (100.0 - adjusted_breakpoint))
+
         metaText[#metaText + 1] = rT(988872717528, "Strength")
 
     end
 
-    breakpoint = breakpoint * modifier
-    local str_mod_f = ((scaleFactor * 2.5 * adjust) + 35.0 + breakpoint) / 100
+    local modified_breakpoint = breakpoint * modifier
+    local str_mod_f = ((scaleFactor * 2.5 * adjust) + 35.0 + modified_breakpoint) / 100
 
     str_mod_f = str_mod_f ^ 1.9
 
@@ -655,18 +624,42 @@ function GetAimMul_Recoil_byCaliber(weapon1)
     end
 end
 
+function Rat_GetROF(weapon, action_id)
+    local num_shots = 3
+    if action_id == "MGBurstFire" then
+        num_shots = weapon.long_shots
+    else
+        action_id = "BurstFire"
+        num_shots = weapon.burst_shots
+    end
+
+    local cost = (weapon.ShootAP + rat_getDeltaAP(false, weapon, action_id)) / const.Scale.AP
+
+    local shotsBoost = GetComponentEffectValue(weapon, "ExtraBurstShots", action_id)
+
+    if shotsBoost then
+        num_shots = num_shots + shotsBoost
+    end
+
+    local ROF = num_shots * 1.00 / cost
+
+    ROF = ROF + 0.25
+    ROF = (ROF - 1.00) * 0.2 + 1.00
+    return ROF
+end
+
 local stacks_multiplier = const.Combat.Recoil_StacksMultiplier
 local flat_penalty_base = const.Combat.Recoil_BasePenalty
 local param_base = const.Combat.Recoil_MaxPenalty
 
-function get_recoil(attacker, target, target_pos, action, weapon1, aim, num_shots, stacks, test,
+function get_recoil(attacker, target, target_pos, action, weapon, aim, num_shots, stacks, test,
                     test_distance, unit_command, populate_recoil, attacker_pos)
 
     if not attacker or not target then
         return 0
     end
 
-    if not IsKindOf(weapon1, "Firearm") then
+    if not IsKindOf(weapon, "Firearm") then
         return 0
     end
 
@@ -682,15 +675,12 @@ function get_recoil(attacker, target, target_pos, action, weapon1, aim, num_shot
 
     local w1, weapon2 = attacker:GetActiveWeapons()
 
-    local weapon = weapon1
     local param = param_base
     local flat_penalty = flat_penalty_base
 
     local weapon_recoil_mod, metaText_wep = GetWepRecoil(weapon, attacker, display)
     if action.id == "DualShot" then
-        weapon = weapon2
-        local weapon_recoil_mod2 = GetWepRecoil(weapon, attacker, display)
-        weapon = weapon1
+        local weapon_recoil_mod2 = GetWepRecoil(weapon2, attacker, display)
         weapon_recoil_mod = (weapon_recoil_mod + weapon_recoil_mod2) / 2
         metaText_wep = {rT(461685692199, "Average Recoil: Two Weapons")}
     end
@@ -716,9 +706,7 @@ function get_recoil(attacker, target, target_pos, action, weapon1, aim, num_shot
     str_caliber_mod, meta_text_caliber = GetCaliberStrRecoil(weapon, attacker, num_shots)
 
     if action.id == "DualShot" then
-        weapon = weapon2
-        local str_caliber_mod2 = GetCaliberStrRecoil(weapon, attacker, num_shots)
-        weapon = weapon1
+        local str_caliber_mod2 = GetCaliberStrRecoil(weapon2, attacker, num_shots)
         meta_text_caliber = {}
         str_caliber_mod = (str_caliber_mod + str_caliber_mod2) / 2
     end
@@ -792,14 +780,14 @@ function get_recoil(attacker, target, target_pos, action, weapon1, aim, num_shot
     if (action.id == "MGBurstFire" or action.id == "GrizzlyPerk") then
 
         local str = attacker.Strength
-        local mg_mod = 130
+        local mg_mod = 120
         local hip_mod = 1.0
 
         if held_mg then
             metaText[#metaText + 1] = rT(594122678151, "(-) Held MG")
             hip_mod = (GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, false, 1) * 0.5 *
                           (weapon.weigth_held_mul / 100.0))
-            mg_mod = 180 * hip_mod
+            mg_mod = 140 * hip_mod
         end
 
         if str > 49 then
@@ -810,7 +798,6 @@ function get_recoil(attacker, target, target_pos, action, weapon1, aim, num_shot
     end
 
     local side = attacker and attacker.team and attacker.team.side or ''
-
     if not (side == 'player1' or side == 'player2') and not test then
         penalty = AIpenal_reduc(attacker, penalty, "Recoil", stacks and true or false)
     end

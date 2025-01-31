@@ -55,7 +55,7 @@ function GBO_ReapplyWeaponComponents(unit)
 
     for _, weapon in ipairs(weapons) do
         local wep_version = weapon.rat_updated_in or 0
-        if wep_version < version then
+        if wep_version < version or Platform.rat then
             local components = weapon.components
 
             for slot, component_id in sorted_pairs(components) do

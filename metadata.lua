@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.55\n\n- The distance the penalties like hipfire, recoil, and snapshot reach their max value has been increased. Expect to miss more shots with these penalties at great distance.\n- Interrupt attacks will have increased snapshot penalties\n- Increased snapshot and hipfire penalties\n- Increased interrupt attacks lower penalty\n- Widescope bonus to interrupt attacks reduced from 12% to 8%, Snapshot reduction reduced from 10% to 5%\n- QuickScope snapshot reduction reduced from 10% to 5%\n- Compact Reflex snapshot reduction from 25% to 10%\n- Assalto RS snapshot reduction form 15% to 10%\n- Vigilance RS snapshot reduction from 15% to 10%\n- MachineGun Free interrupt attacks reduced from 2 to 1\n- No stock and folded stock Angle increasing effect reduced\n- No Stock and folded stock now reduce range by 6\n- Minor adjustments related to snapshot and hipfire penalties on light stock, no stock and some barrels\n- Angle changes by barrels have been adjusted again\n- Small improvements in accuracy for Run and Gun and Mobile Shot\n\n- Sprint Combat action AP increased to 2\n- Tweaked Sprint free move ap values\n\nFixes:\nFix snapshot penalty not applying to OW attacks in some cases when you were attacking the same target",
+	'last_changes', "3.56 unreleased\n\nThe progression of the recoil penalty has changed. The difference between low values and high values has been compressed a little.\nMarksmanship effect on recoil has diminished, but can start to have effect at lower values.\nThe effect of many components, both good and bad effects has been reduced a little.",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -24,8 +24,8 @@ return PlaceObj('ModDef', {
 	'id', "cfahRED",
 	'author', "rato",
 	'version_major', 3,
-	'version_minor', 55,
-	'version', 11848,
+	'version_minor', 56,
+	'version', 11879,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -81,7 +81,6 @@ return PlaceObj('ModDef', {
 		"Code/AMMO_9x39.lua",
 		"Code/CONSTANT_Main.lua",
 		"Code/CONSTANTS_Recoil.lua",
-		"Code/DesyncDebug.lua",
 		"Code/UPDATE_Change components.lua",
 		"Code/DESCRIPTION_HINTS_get.lua",
 		"Code/T_ID_enforcement.lua",
@@ -190,8 +189,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1738278476,
-	'code_hash', 2765055923558725065,
+	'saved', 1738313954,
+	'code_hash', 2845819452566950371,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

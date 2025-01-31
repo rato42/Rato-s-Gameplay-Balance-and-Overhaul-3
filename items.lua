@@ -983,10 +983,6 @@ return {
 		'CodeFileName', "Code/CONSTANTS_Recoil.lua",
 	}),
 	PlaceObj('ModItemCode', {
-		'name', "DesyncDebug",
-		'CodeFileName', "Code/DesyncDebug.lua",
-	}),
-	PlaceObj('ModItemCode', {
 		'name', "UPDATE_Change components",
 		'CodeFileName', "Code/UPDATE_Change components.lua",
 	}),

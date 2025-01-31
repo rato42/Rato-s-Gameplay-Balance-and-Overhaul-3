@@ -74,7 +74,7 @@ if FirstLoad then
 
         },
         extra_large = {
-            modifier = 2.1,
+            modifier = 1.9,
             aim_mul = 1.3,
             ["50BMG"] = {str = 90},
             ["20x82"] = {str = 90},
