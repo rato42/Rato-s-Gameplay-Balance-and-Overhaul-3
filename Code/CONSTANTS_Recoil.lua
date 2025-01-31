@@ -15,7 +15,7 @@ const.Combat.Recoil.Components = {
     FoldableGripMul = 0.99, ---0.97,
     NoStockMul = {SubmachineGun = 1.40, Other = 1.70},
     CompensatorMul = 0.93, -- 0.90,
-    RecoilBoosterMul = 0.98, -- 0.96,
+    RecoilBoosterMul = 0.99, -- 0.96,
     IntegratedMuzzleBrakeMul = 0.94, -- 0.91,
     SuppressorMul = 0.96,
     ImprovisedSuppressorMul = 0.98,
