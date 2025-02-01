@@ -5,7 +5,8 @@ function FirearmBase:GetAutofireShots(action)
     local shots = action:ResolveValue("num_shots") or 1
     --------------------------------
 
-    if action.id == "BurstFire" or action.id == "RunAndGun" or action.id == "RecklessAssault" then
+    if action.id == "BurstFire" or action.id == "RunAndGun" or action.id == "RecklessAssault" or
+        action.id == "BuckshotBurst" then
         shots = self.burst_shots or 3
     elseif action.id == "AutoFire" then
         shots = self.auto_shots or 10
@@ -21,7 +22,6 @@ function FirearmBase:GetAutofireShots(action)
     end
 
     return shots
-
 end
 
 ----ok

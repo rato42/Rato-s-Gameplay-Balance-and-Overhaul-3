@@ -1,10 +1,10 @@
 ----- Crit
 const.Combat.BurstFireCriticalChanceMul = 70 -- % -- Crit * Constant / 100
-
+---TODO: Change all my crit per aim to be per aim and then make it not affect burst fire
 ----- CTH
 -- Recoil
-const.Combat.MultishotGrazeThreshold = 15 -- 12
-const.Combat.SingleShotGrazeThreshold = 8
+const.Combat.MultishotGrazeThreshold = 18 -- 12
+const.Combat.SingleShotGrazeThreshold = 10
 const.Combat.MultishotMinCTH = 5
 
 -------------------- Add for MG calcs here

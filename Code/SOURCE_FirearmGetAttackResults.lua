@@ -226,10 +226,11 @@ function Firearm:GetAttackResults(action, attack_args)
     local sfRollOffset = 8
     local num_hits, num_misses, num_grazing = 0, 0, 0
     local shots_data = {}
-    local graze_threshold = point_blank and 6 or 3
+    -- local graze_threshold = point_blank and 6 or 3
 
     ----------------------------------------
-
+    local graze_threshold = num_shots > 1 and const.Combat.MultishotGrazeThreshold or
+                                const.Combat.SingleShotGrazeThreshold
     local aim_cth = 0
     if num_shots > 1 and not prediction then
         local weapon = attack_args.weapon or attacker:GetActiveWeapons()
@@ -245,9 +246,6 @@ function Firearm:GetAttackResults(action, attack_args)
         end
 
         shot_attack_args.cth_loss_per_shot = -recoil
-        graze_threshold = graze_threshold + const.Combat.MultishotGrazeThreshold
-    else
-        graze_threshold = graze_threshold + const.Combat.SingleShotGrazeThreshold
     end
     ----------------------------------------------------------
 

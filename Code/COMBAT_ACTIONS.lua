@@ -201,7 +201,7 @@ function rat_combat_actions()
 
     --------------------------------------------- BurstFire
     CombatActions.BurstFire.Description = T(617859618521, --[[CombatAction BurstFire Description]]
-                                            "Shoots <em><num> bullets</em> at the target. The accuracy of each shot is reduced by <em>Recoil</em>. Critical chance is reduced.")
+                                            "Shoots <em><num> bullets</em> at the target. The accuracy of each shot is reduced by <em>Recoil</em>. Critical chance is reduced.\n\nOnly the first shot will benefit from <em>Aim</em> bonus.")
     CombatActions.BurstFire.GetUIState = function(self, units, args)
         local unit = units[1]
         local weapon = self:GetAttackWeapons(unit, args)
@@ -1584,7 +1584,7 @@ local t_id_table = {
     [956881287967] = "<color AmmoAPColor>Out of Breath</color>",
     [258829833148] = "\n\nBlood will be <em>Out of Breath</em>.",
     [480046777812] = " within the set cone",
-    [617859618521] = " Shoots <em><num> bullets</em> at the target. The accuracy of each shot is reduced by <em>Recoil</em>. Critical chance is reduced.",
+    [617859618521] = "Shoots <em><num> bullets</em> at the target. The accuracy of each shot is reduced by <em>Recoil</em>. Critical chance is reduced.\n\nOnly the first shot will benefit from <em>Aim</em> bonus.",
     [164165234891] = "Snipe",
     [854982151651] = "<em>Spends all AP</em>\nThe target is <em><GameTerm('Marked')></em>. At the start of next turn, shoot the target if the target is still in the line of sight. The attack will have max aim levels. Each aim level grants <bonus_crit> extra critical chance. This attack bypasses low cover, has reduced penalties to hit body parts and <em>increases the weapon's effective range by 50%</em>.\n\nSnipe requires a clear line and sight to the target.",
     [231988463514] = "\n\n<em>Recoil</em> is increasing the AP cost by <em>"

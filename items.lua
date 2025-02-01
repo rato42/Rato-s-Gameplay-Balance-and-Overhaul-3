@@ -806,6 +806,10 @@ return {
 		'name', "_______init_globals",
 		'CodeFileName', "Code/_______init_globals.lua",
 	}),
+	PlaceObj('ModItemCode', {
+		'name', "ZULIBCalibers_GBOconfigs",
+		'CodeFileName', "Code/ZULIBCalibers_GBOconfigs.lua",
+	}),
 	PlaceObj('ModItemFolder', {
 		'name', "Ammo",
 	}, {
