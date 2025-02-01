@@ -806,6 +806,10 @@ return {
 		'name', "_______init_globals",
 		'CodeFileName', "Code/_______init_globals.lua",
 	}),
+	PlaceObj('ModItemCode', {
+		'name', "ZULIBCalibers_GBOconfigs",
+		'CodeFileName', "Code/ZULIBCalibers_GBOconfigs.lua",
+	}),
 	PlaceObj('ModItemFolder', {
 		'name', "Ammo",
 	}, {
@@ -975,10 +979,17 @@ return {
 		}),
 		}),
 	PlaceObj('ModItemCode', {
-		'name', "CONSTANT_Control",
-		'CodeFileName', "Code/CONSTANT_Control.lua",
+		'name', "CONSTANT_Main",
+		'CodeFileName', "Code/CONSTANT_Main.lua",
 	}),
 	PlaceObj('ModItemCode', {
+<<<<<<< HEAD
+=======
+		'name', "CONSTANTS_Recoil",
+		'CodeFileName', "Code/CONSTANTS_Recoil.lua",
+	}),
+	PlaceObj('ModItemCode', {
+>>>>>>> recoilrefactor
 		'name', "UPDATE_Change components",
 		'CodeFileName', "Code/UPDATE_Change components.lua",
 	}),

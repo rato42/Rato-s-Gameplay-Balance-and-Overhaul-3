@@ -1,11 +1,11 @@
 local version = 355
 
 function OnMsg.UnitEnterCombat(unit)
-    local unit_version = unit.rat_unit_updated or 0
+    -- local unit_version = unit.rat_unit_updated or 0
 
-    if IsMerc(unit) or unit_version < version then
-        GBO_ReapplyWeaponComponents(unit)
-    end
+    -- if IsMerc(unit) or unit_version < version then
+    --     GBO_ReapplyWeaponComponents(unit)
+    -- end
 end
 
 function OnMsg.UnitDataCreated(unit)
@@ -13,7 +13,7 @@ function OnMsg.UnitDataCreated(unit)
 end
 
 function OnMsg.UnitCreated(unit)
-    if not unit then
+    if not unit or not unit:IsValid() then
         return
     end
     if not unit.unitdatadef_id then
@@ -32,7 +32,7 @@ function OnMsg.UnitCreated(unit)
 end
 
 function set_unit_version_update(unit)
-    if not unit then
+    if not unit or not unit:IsValid() then
         return
     end
 
@@ -40,7 +40,7 @@ function set_unit_version_update(unit)
 end
 
 function GBO_ReapplyWeaponComponents(unit)
-    if not unit then
+    if not unit or not unit:IsValid() then
         return
     end
 
@@ -55,7 +55,7 @@ function GBO_ReapplyWeaponComponents(unit)
 
     for _, weapon in ipairs(weapons) do
         local wep_version = weapon.rat_updated_in or 0
-        if wep_version < version then
+        if wep_version < version or Platform.rat then
             local components = weapon.components
 
             for slot, component_id in sorted_pairs(components) do
@@ -208,7 +208,7 @@ function update_components(unit)
 end
 
 function change_handgun_barrel(unit)
-    if not unit then
+    if not unit or not unit:IsValid() then
         return
     end
 

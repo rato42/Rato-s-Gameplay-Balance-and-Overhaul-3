@@ -109,6 +109,7 @@ function Firearm:GetAttackResults(action, attack_args)
     else
         cth, baseCth, modifiers = attacker:CalcChanceToHit(target, cth_action, shot_attack_args)
     end
+
     local attack_results = {
         weapon = self,
         fired = fired,
@@ -225,19 +226,26 @@ function Firearm:GetAttackResults(action, attack_args)
     local sfRollOffset = 8
     local num_hits, num_misses, num_grazing = 0, 0, 0
     local shots_data = {}
-    local graze_threshold = point_blank and 6 or 3
+    -- local graze_threshold = point_blank and 6 or 3
 
     ----------------------------------------
+    local graze_threshold = num_shots > 1 and const.Combat.MultishotGrazeThreshold or
+                                const.Combat.SingleShotGrazeThreshold
+    local aim_cth = 0
     if num_shots > 1 and not prediction then
         local weapon = attack_args.weapon or attacker:GetActiveWeapons()
 
         local recoil = get_recoil(attacker, target, target_pos, action, weapon, false, num_shots) or
                            0
-        -- print("recoil", recoil)  
+
+        for i, v in ipairs(modifiers or empty_table) do
+            if v.id == "Aim" then
+                aim_cth = v.value
+                break
+            end
+        end
+
         shot_attack_args.cth_loss_per_shot = -recoil
-        graze_threshold = graze_threshold + 12
-    else
-        graze_threshold = graze_threshold + 8
     end
     ----------------------------------------------------------
 
@@ -246,7 +254,10 @@ function Firearm:GetAttackResults(action, attack_args)
         ------------- max 6 i
         local original_cth = self:GetShotChanceToHit(attack_results.chance_to_hit) or 0
         shot_cth = original_cth - shot_attack_args.cth_loss_per_shot * Min((i - 1), 6)
-        -- shot_cth = original_cth - shot_attack_args.cth_loss_per_shot * (i - 1)		
+
+        if i > 1 then
+            shot_cth = shot_cth - aim_cth
+        end
         ----------------^^
 
         shot_cth = attacker:CallReactions_Modify("OnCalcShotChanceToHit", shot_cth, attacker,
@@ -258,18 +269,9 @@ function Firearm:GetAttackResults(action, attack_args)
         end
 
         ------
-        if shot_cth < 0 then
-            shot_cth = 0
-        elseif shot_cth > 100 then
-            shot_cth = 100
-        end
-
-        local min_chance = Min(5, original_cth)
-
-        if shot_cth < min_chance then
-            shot_cth = min_chance
-        end
-
+        shot_cth = Clamp(shot_cth, 0, 100)
+        local min_chance = Min(const.Combat.MultishotMinCTH, original_cth)
+        shot_cth = Max(shot_cth, min_chance)
         --------^^
 
         if shot_attack_args.multishot then

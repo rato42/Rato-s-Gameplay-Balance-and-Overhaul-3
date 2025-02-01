@@ -24,7 +24,7 @@ if FirstLoad then
             ["7_62x25"] = {str = 52},
             -- Group 4: Magnum and Large Caliber Pistols
             ["32HRMAG"] = {str = 55},
-            ["44CAL"] = {str = 58},
+            -- ["44CAL"] = {str = 58} --- 44Special, no longer used
 
             ["44AMP"] = {str = 58}
 
@@ -38,7 +38,8 @@ if FirstLoad then
             ["4_7x33"] = {str = 60},
             ["300Blackout"] = {str = 64},
             -----
-            ["44MAG"] = {str = 70}
+            ["44MAG"] = {str = 70}, --- 44CAL now is Magnum
+            ["44CAL"] = {str = 70}
 
         },
         medium_large = {
@@ -74,7 +75,7 @@ if FirstLoad then
 
         },
         extra_large = {
-            modifier = 2.1,
+            modifier = 1.9,
             aim_mul = 1.3,
             ["50BMG"] = {str = 90},
             ["20x82"] = {str = 90},
