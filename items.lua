@@ -983,13 +983,10 @@ return {
 		'CodeFileName', "Code/CONSTANT_Main.lua",
 	}),
 	PlaceObj('ModItemCode', {
-<<<<<<< HEAD
-=======
 		'name', "CONSTANTS_Recoil",
 		'CodeFileName', "Code/CONSTANTS_Recoil.lua",
 	}),
 	PlaceObj('ModItemCode', {
->>>>>>> recoilrefactor
 		'name', "UPDATE_Change components",
 		'CodeFileName', "Code/UPDATE_Change components.lua",
 	}),
