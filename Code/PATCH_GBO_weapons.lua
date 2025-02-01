@@ -2762,8 +2762,8 @@ function RatoGBO_WepPatch()
     UZI.is_vanilla_firearm = true
     UZI.PenetrationClass = 1
 
-    ColtPeacemaker.Cost = 950
-    ColtPeacemaker.WeaponRange = 24
+    ColtPeacemaker.Cost = 1500
+    ColtPeacemaker.WeaponRange = 22
     ColtPeacemaker.ShootAP = 4000
     ColtPeacemaker.ReloadAP = 3000
     ColtPeacemaker.Reliability = 85
@@ -2787,7 +2787,7 @@ function RatoGBO_WepPatch()
         }
     }
     ColtPeacemaker.OverwatchAngle = 2162
-    ColtPeacemaker.Damage = 23
+    ColtPeacemaker.Damage = 26
     ColtPeacemaker.MagazineSize = 6
     ColtPeacemaker.RepairCost = 30
     ColtPeacemaker.RestockWeight = 100
@@ -2799,7 +2799,7 @@ function RatoGBO_WepPatch()
     }
     ColtPeacemaker.Noise = 18
     ColtPeacemaker.CritChanceScaled = 30
-    ColtPeacemaker.AimAccuracy = 6
+    ColtPeacemaker.AimAccuracy = 3
     ColtPeacemaker.Cumbersome = 0
     ColtPeacemaker.PreparedAttackType = "Overwatch"
     ColtPeacemaker.PointBlankBonus = 1
@@ -2822,7 +2822,7 @@ function RatoGBO_WepPatch()
     ColtPeacemaker.PenetrationClass = 1
 
     TexRevolver.Cost = 2000
-    TexRevolver.WeaponRange = 24
+    TexRevolver.WeaponRange = 22
     TexRevolver.ShootAP = 4000
     TexRevolver.ReloadAP = 3000
     TexRevolver.Reliability = 85
@@ -2846,7 +2846,7 @@ function RatoGBO_WepPatch()
         }
     }
     TexRevolver.OverwatchAngle = 2162
-    TexRevolver.Damage = 21
+    TexRevolver.Damage = 26
     TexRevolver.MagazineSize = 6
     TexRevolver.RepairCost = 50
     TexRevolver.ScrapParts = 8
@@ -2857,7 +2857,7 @@ function RatoGBO_WepPatch()
     }
     TexRevolver.Noise = 18
     TexRevolver.CritChanceScaled = 60
-    TexRevolver.AimAccuracy = 6
+    TexRevolver.AimAccuracy = 3
     TexRevolver.Cumbersome = 0
     TexRevolver.PreparedAttackType = "Overwatch"
     TexRevolver.PointBlankBonus = 1
