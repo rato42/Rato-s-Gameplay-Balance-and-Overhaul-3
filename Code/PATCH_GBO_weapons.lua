@@ -3103,7 +3103,7 @@ function RatoGBO_WepPatch()
     HiPower.PenetrationClass = 1
 
     M41Shotgun.Cost = 5000
-    M41Shotgun.WeaponRange = 18
+    M41Shotgun.WeaponRange = 20
     M41Shotgun.ShootAP = 3000
     M41Shotgun.ReloadAP = 4000
     M41Shotgun.Reliability = 71
@@ -3119,10 +3119,7 @@ function RatoGBO_WepPatch()
             CanBeEmpty = true,
             SlotType = 'Scope',
             Modifiable = true,
-            AvailableComponents = {
-                'ScopeCOG', 'LROptics', 'ReflexSight', 'ThermalScope', 'ReflexSightAdvanced',
-                'ImprovedIronsight'
-            }
+            AvailableComponents = {'ReflexSight', 'ReflexSightAdvanced', 'ImprovedIronsight'}
         }, {
             CanBeEmpty = true,
             SlotType = 'Side',
@@ -3171,7 +3168,7 @@ function RatoGBO_WepPatch()
     M41Shotgun.PenetrationClass = 1
 
     Auto5.Cost = 1700
-    Auto5.WeaponRange = 16
+    Auto5.WeaponRange = 18
     Auto5.ShootAP = 3000
     Auto5.ReloadAP = 4000
     Auto5.Reliability = 20
@@ -3227,7 +3224,7 @@ function RatoGBO_WepPatch()
     Auto5.PenetrationClass = 1
 
     Auto5_quest.Cost = 1200
-    Auto5_quest.WeaponRange = 16
+    Auto5_quest.WeaponRange = 18
     Auto5_quest.ShootAP = 3000
     Auto5_quest.ReloadAP = 4000
     Auto5_quest.Reliability = 20
@@ -3273,7 +3270,7 @@ function RatoGBO_WepPatch()
     Auto5_quest.PenetrationClass = 1
 
     AA12.Cost = 13200
-    AA12.WeaponRange = 14
+    AA12.WeaponRange = 18
     AA12.ShootAP = 3000
     AA12.ReloadAP = 3000
     AA12.Reliability = 80
@@ -3352,7 +3349,7 @@ function RatoGBO_WepPatch()
     AA12.PenetrationClass = 1
 
     DoubleBarrelShotgun.Cost = 1100
-    DoubleBarrelShotgun.WeaponRange = 14
+    DoubleBarrelShotgun.WeaponRange = 18
     DoubleBarrelShotgun.ShootAP = 3000
     DoubleBarrelShotgun.ReloadAP = 3000
     DoubleBarrelShotgun.Reliability = 50

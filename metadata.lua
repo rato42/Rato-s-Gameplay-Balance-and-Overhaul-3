@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.56 unreleased\n\nThe progression of the recoil penalty has changed. The difference between low values and high values has been compressed a little.\nMarksmanship effect on recoil has diminished, but can start to have effect at lower values.\nThe effect of many components, both good and bad effects has been reduced a little.",
+	'last_changes', "3.56 unreleased\n\nThe progression of the recoil penalty has changed. The difference between low values and high values has been compressed. \nMarksmanship effect on recoil has diminished, but can start to have effect at lower values.\nRecoil values overall increased.\n\nMultishot attacks will now only receive the Aim bonus on the first shot. That means the second and third bullet of a burst attack will not receive the bonus from aiming, for example. They will still suffer normal snapshot or hipfire penalties\n\nMiss to Graze chance for Multishot attacks increased.\n\nThe effect of many components, both good and bad effects has been reduced a little.\n\nGrazing damage from 40% to 30%\nCritical damage from 160% to 150%\n\nIncreased the range of all shotguns\nBenelli can no longer equip sniper scopes lol",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 56,
-	'version', 11879,
+	'version', 11896,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -189,8 +189,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1738313954,
-	'code_hash', 2845819452566950371,
+	'saved', 1738369568,
+	'code_hash', 3035690419308222839,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

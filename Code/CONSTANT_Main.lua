@@ -3,6 +3,9 @@ const.Combat.BurstFireCriticalChanceMul = 70 -- % -- Crit * Constant / 100
 
 ----- CTH
 -- Recoil
+const.Combat.MultishotGrazeThreshold = 15 -- 12
+const.Combat.SingleShotGrazeThreshold = 8
+const.Combat.MultishotMinCTH = 5
 
 -------------------- Add for MG calcs here
 --- Hipfire
@@ -42,8 +45,9 @@ const.Combat.PindownRangeMul = 150 --- MulDivRound
 
 -------------
 ----- Vanilla
-const.Combat.GrazingHitDamage = 40 --- %
+----TODO: remove light barrel extra attacks
+const.Combat.GrazingHitDamage = 30 --- %
 const.Combat.MGFreeInterruptAttacks = 1
 const.Weapons.PointBlankRange = 6 --- tiles
 const.EnvEffects.RainAimingMultiplier = 100 --- %
-const.Weapons.CriticalDamage = 60
+const.Weapons.CriticalDamage = 50

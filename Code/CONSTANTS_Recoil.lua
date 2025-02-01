@@ -6,7 +6,7 @@ const.Combat.Recoil_MarksmanshipMinStat = 50
 const.Combat.Recoil_BasePenalty = -5 ----- -5
 const.Combat.Recoil_MaxPenalty = -100 --- -50
 const.Combat.Recoil_MaxDistforPenalty = 35 -- 26 ----- -18
-const.Combat.Recoil_StacksMultiplier = 0.35 ---- * -- for Persistant Recoil
+const.Combat.Recoil_StacksMultiplier = 0.40 ---- * -- for Persistant Recoil
 const.Combat.Recoil_MGSetupMul = 0.80 ---- * -- MG Setup recoil reduction
 const.Combat.Recoil_RunAndGunPenalty = -10
 
@@ -22,7 +22,7 @@ const.Combat.Recoil.Components = {
     LongBarrelMul = {Pistol = 0.98, Revolver = 0.97, SubmachineGun = 0.94, Other = 0.92},
     ShortBarrelMul = {Pistol = 1.02, Revolver = 1.03, SubmachineGun = 1.04, Other = 1.05},
     LightBarrelMul = {Pistol = 1.02, Revolver = 1.03, SubmachineGun = 1.04, Other = 1.05},
-    HeavyBarrelMul = {Pistol = 0.99, Revolver = 0.98, SubmachineGun = 0.96, Other = 0.94},
+    HeavyBarrelMul = {Pistol = 0.98, Revolver = 0.97, SubmachineGun = 0.96, Other = 0.94},
     HeavyStockMul = 0.95,
     LightStockMul = 1.05,
     RecoilBumpMul = 1.06,
