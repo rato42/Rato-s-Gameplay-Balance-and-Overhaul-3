@@ -13,7 +13,7 @@ function OnMsg.UnitDataCreated(unit)
 end
 
 function OnMsg.UnitCreated(unit)
-    if not unit or not unit:IsValid() then
+    if not unit or not IsKindOf(unit, "Unit") or not unit:IsValid() then
         return
     end
     if not unit.unitdatadef_id then
@@ -32,7 +32,7 @@ function OnMsg.UnitCreated(unit)
 end
 
 function set_unit_version_update(unit)
-    if not unit or not unit:IsValid() then
+    if not unit or not IsKindOf(unit, "Unit") or not unit:IsValid() then
         return
     end
 
@@ -40,7 +40,7 @@ function set_unit_version_update(unit)
 end
 
 function GBO_ReapplyWeaponComponents(unit)
-    if not unit or not unit:IsValid() then
+    if not unit or not IsKindOf(unit, "Unit") or not unit:IsValid() then
         return
     end
 
@@ -208,7 +208,7 @@ function update_components(unit)
 end
 
 function change_handgun_barrel(unit)
-    if not unit or not unit:IsValid() then
+    if not unit or not IsKindOf(unit, "Unit") or not unit:IsValid() then
         return
     end
 

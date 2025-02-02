@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.56 \n\nthe ,44 Callibers have been simplified. All the weapons will use the vanilla .44, and it will represent the .44 Magnum (it will have the stats of the old 44 Magnum) this basically only affects Peacemaker and Tex's Revolvers. It will also make .44 more common to be found. Please discard your old .44 magnum if you have any, and reload your weapons. If you find chips (Code errors) in in your inventory, they are most likely the old 44 magnum\n\nThe progression of the recoil penalty has changed. The difference between low values and high values has been compressed. \nMarksmanship effect on recoil has diminished, but can start to have effect at lower values.\nRecoil values overall increased.\n\nMultishot attacks will now only receive the Aim bonus on the first shot. That means the second and third bullet of a burst attack will not receive the bonus from aiming, for example. They will still suffer normal snapshot or hipfire penalties\n\nMiss to Graze chance for Multishot attacks increased from 13 to 18.\n\nThe effect of many components, both good and bad effects has been reduced a little.\n\nGrazing damage from 40% to 30%\nCritical damage from 160% to 150%\n\nIncreased the range of all shotguns\nBenelli can no longer equip sniper scopes lol",
+	'last_changes', "3.56a \n\nSmall code improvement",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 56,
-	'version', 11928,
+	'version', 11931,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -190,8 +190,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1738403921,
-	'code_hash', 5003775155680284470,
+	'saved', 1738465912,
+	'code_hash', -5892546289868576478,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

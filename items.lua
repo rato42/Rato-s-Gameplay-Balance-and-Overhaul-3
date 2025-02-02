@@ -1596,7 +1596,7 @@ return {
 		Comment = "Sight radius (in tiles) for units aware of the target unit",
 		group = "Combat",
 		id = "AwareSightRange",
-		value = 38,
+		value = 56,
 	}),
 	PlaceObj('ModItemConstDef', {
 		Comment = "Sight radius (in tiles) for units aware of the target unit",
