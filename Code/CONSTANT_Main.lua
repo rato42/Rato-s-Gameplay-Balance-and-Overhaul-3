@@ -45,7 +45,6 @@ const.Combat.PindownRangeMul = 150 --- MulDivRound
 
 -------------
 ----- Vanilla
-----TODO: remove light barrel extra attacks
 const.Combat.GrazingHitDamage = 30 --- %
 const.Combat.MGFreeInterruptAttacks = 1
 const.Weapons.PointBlankRange = 6 --- tiles

@@ -34,11 +34,13 @@ end
 function OnMsg.UnitAnyMovementStart(unit)
     local actions_that_remove = {
         Move = true,
-        RunAndGun = true,
-        RecklessAssault = true,
-        MobileShot = true,
-        HundredKnives = true,
-        Sprint = true
+        -- RunAndGun = true,
+        -- RecklessAssault = true,
+        -- MobileShot = true,
+        -- HundredKnives = true,
+        Sprint = true,
+        InteractWith = true,
+        CombatGoto = true
     }
 
     if not actions_that_remove[unit.action_command] then
@@ -63,24 +65,6 @@ function OnMsg.UnitMovementDone(unit, action_id, prev_pos)
     if not actions_that_remove[action_id] then
         return
     end
-
-    --[[local dist = unit:GetDist(prev_pos)
-
-    local side = unit and unit.team and unit.team.side or ''
-    if not (side == 'player1' or side == 'player2') then
-        if unit:HasStatusEffect("shooting_stance") then
-            local weapon = unit:GetActiveWeapons()
-            local stance_ap = (weapon.APStance / 2) * const.Scale.AP
-
-            if dist < 2000 then
-                unit:GainAP(stance_ap)
-            elseif dist < 4700 then
-                unit:GainAP(MulDivRound(stance_ap, 50, 100))
-            elseif dist < 8200 then
-                unit:GainAP(MulDivRound(stance_ap, 25, 100))
-            end
-        end
-    end]]
 
     unit:RemoveStatusEffect("shooting_stance")
 end

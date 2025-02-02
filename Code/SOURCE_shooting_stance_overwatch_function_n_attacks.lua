@@ -63,12 +63,12 @@ function define_getOWattacks_and_aim()
 
         -- print("unboltable weapon ow atk cost", atk_cost)
         if not atk_cost then
-            print("overwatch calc n attacks, attk cost is nil")
+            print("RATMOD - overwatch calc n attacks, attk cost is nil")
             atk_cost = 0
         end
 
         if atk_cost <= 0 then
-            print("overwatch calc n attacks, attk cost is less than zero:", atk_cost, "...")
+            print("RATMOD - overwatch calc n attacks, attk cost is less than zero:", atk_cost, "...")
             -- print("... action:", action, "weapon", weapon)
             return 0
         else
