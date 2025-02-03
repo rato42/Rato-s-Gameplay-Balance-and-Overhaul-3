@@ -27,7 +27,10 @@ function rat_apply_inherit(rules)
         UnderslungGrenadeLauncher = {"rat_22mmUnderslungGrenadeLauncher"},
         Warhead_Frag = {"_22m_HE"},
         MP40 = {"VigM2_1", "PP91_1"},
-        ToG_VFX_Muzzle = {"VigM2_Barrel_def_1", "PP91_Barrel_def_1"}
+        ToG_VFX_Muzzle = {
+            "VigM2_Barrel_def_1", "PP91_Barrel_def_1", "RAT_TOG_compensator",
+            "RAT_TOG_CompensatorNoEntity"
+        }
     }
 
     -- Iterate over the data table to populate the rules

@@ -4,10 +4,8 @@ function AnimChangeHook:SetState(anim, flags, crossfade, ...)
     local shooting_stance
     if self.species == "Human" then
         shooting_stance = self:GetStatusEffect("shooting_stance")
-        if shooting_stance then
-            if anim == old_anim then
-                return
-            end
+        if shooting_stance and anim == old_anim then
+            return
         end
     end
     ---------

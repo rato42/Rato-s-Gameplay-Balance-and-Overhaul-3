@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.56b \n\nFixed ladder animation bug",
+	'last_changes', "3.56c \n\nUpdated FX inheritance",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 56,
-	'version', 11937,
+	'version', 11940,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -190,8 +190,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1738538076,
-	'code_hash', -4043590805342062723,
+	'saved', 1738561954,
+	'code_hash', 3839913251101238801,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
