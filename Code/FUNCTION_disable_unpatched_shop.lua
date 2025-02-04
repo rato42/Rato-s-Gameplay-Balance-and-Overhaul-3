@@ -17,8 +17,17 @@ function disable_unpatched_shop()
             w.CanAppearInShop = false
             item.CanAppearInShop = false
         end
+
+        disable_44mag_inshop(item, w)
     end)
 
+end
+
+function disable_44mag_inshop(item, preset)
+    if IsKindOf(item, "Ammo") and (item.Caliber == "44MAG") then
+        preset.CanAppearInShop = false
+        item.CanAppearInShop = false
+    end
 end
 
 --------------------
@@ -62,7 +71,7 @@ function IsVanillaFirearm(weapon)
         "MG42", "MG58", "RPK74", "BarretM82", "DragunovSVD", "Gewehr98", "M24Sniper", "PSG1",
         "Winchester1894", "AKSU", "M4Commando", "MP40", "MP5", "MP5K", "UZI", "AA12", "Auto5",
         "DoubleBarrelShotgun", "M41Shotgun", "Auto5_quest", "Galil_FlagHill", "LionRoar",
-        "Winchester_Quest"
+        "Winchester_Quest", "FlareHandgun"
     }
 
     for _, vanillaClass in ipairs(vanilla) do

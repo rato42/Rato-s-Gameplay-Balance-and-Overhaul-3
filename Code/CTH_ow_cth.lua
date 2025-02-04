@@ -36,7 +36,8 @@ function ow_cth()
         local value = 0
         local base_value = max + cRound((min - max) * reflex / 100.00)
 
-        if g_Overwatch[attacker] and g_Overwatch[attacker].permanent then
+        if g_Overwatch[attacker] and g_Overwatch[attacker].permanent or action and action.id ==
+            "MGSetup" then
             value = value + const.Combat.MGSetupBonusInterruptAccuracy
         end
 

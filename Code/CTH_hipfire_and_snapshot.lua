@@ -13,10 +13,6 @@ function place_hipfire_cth()
                 return false, 0
             end
 
-            if action.id == "MGSetup" then
-                return false, 0
-            end
-
             if action.id == "PinDown" then
                 return false, 0
             end
@@ -27,6 +23,10 @@ function place_hipfire_cth()
             end
 
             ---------------------------------------------------------------------------------------------------------
+
+            if action.id == "MGSetup" then
+                aim = Max(aim, 1)
+            end
 
             local actions_that_use_snapshot_always = {"Overwatch", "MobileShot", "RunAndGun"}
 

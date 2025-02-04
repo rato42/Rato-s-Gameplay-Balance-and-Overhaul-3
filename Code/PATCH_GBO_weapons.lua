@@ -1,6 +1,6 @@
 -- ========== THIS IS AN AUTOMATICALLY GENERATED FILE! ==========
 function RatoGBO_WepPatch()
-    BarretM82.Cost = 24900
+    BarretM82.Cost = 15940
     BarretM82.WeaponRange = 42
     BarretM82.ShootAP = 4000
     BarretM82.ReloadAP = 3000
@@ -36,7 +36,7 @@ function RatoGBO_WepPatch()
         }
     }
     BarretM82.OverwatchAngle = 545
-    BarretM82.Damage = 90
+    BarretM82.Damage = 70
     BarretM82.MagazineSize = 5
     BarretM82.RepairCost = 80
     BarretM82.RestockWeight = 20
@@ -70,7 +70,7 @@ function RatoGBO_WepPatch()
     BarretM82.is_vanilla_firearm = true
     BarretM82.PenetrationClass = 1
 
-    PSG1.Cost = 15900
+    PSG1.Cost = 12540
     PSG1.WeaponRange = 40
     PSG1.ShootAP = 4000
     PSG1.ReloadAP = 2000
@@ -148,7 +148,7 @@ function RatoGBO_WepPatch()
     PSG1.is_vanilla_firearm = true
     PSG1.PenetrationClass = 1
 
-    MG58.Cost = 1200
+    MG58.Cost = 720
     MG58.WeaponRange = 40
     MG58.ShootAP = 4000
     MG58.ReloadAP = 5000
@@ -199,7 +199,7 @@ function RatoGBO_WepPatch()
     MG58.is_vanilla_firearm = true
     MG58.PenetrationClass = 1
 
-    M24Sniper.Cost = 8100
+    M24Sniper.Cost = 4860
     M24Sniper.WeaponRange = 38
     M24Sniper.ShootAP = 4000
     M24Sniper.ReloadAP = 3000
@@ -280,7 +280,7 @@ function RatoGBO_WepPatch()
     M24Sniper.is_vanilla_firearm = true
     M24Sniper.PenetrationClass = 1
 
-    BrowningM2HMG.Cost = 4200
+    BrowningM2HMG.Cost = 2520
     BrowningM2HMG.WeaponRange = 38
     BrowningM2HMG.ShootAP = 4000
     BrowningM2HMG.ReloadAP = 6000
@@ -325,7 +325,7 @@ function RatoGBO_WepPatch()
     BrowningM2HMG.is_vanilla_firearm = true
     BrowningM2HMG.PenetrationClass = 1
 
-    MG42.Cost = 4200
+    MG42.Cost = 2520
     MG42.WeaponRange = 38
     MG42.ShootAP = 4000
     MG42.ReloadAP = 5000
@@ -371,7 +371,7 @@ function RatoGBO_WepPatch()
     MG42.is_vanilla_firearm = true
     MG42.PenetrationClass = 1
 
-    DragunovSVD.Cost = 12400
+    DragunovSVD.Cost = 8440
     DragunovSVD.WeaponRange = 36
     DragunovSVD.ShootAP = 4000
     DragunovSVD.ReloadAP = 3000
@@ -442,7 +442,7 @@ function RatoGBO_WepPatch()
     DragunovSVD.is_vanilla_firearm = true
     DragunovSVD.PenetrationClass = 1
 
-    Gewehr98.Cost = 2000
+    Gewehr98.Cost = 1200
     Gewehr98.WeaponRange = 36
     Gewehr98.ShootAP = 4000
     Gewehr98.ReloadAP = 3000
@@ -504,7 +504,7 @@ function RatoGBO_WepPatch()
     Gewehr98.is_vanilla_firearm = true
     Gewehr98.PenetrationClass = 1
 
-    FNMinimi.Cost = 18700
+    FNMinimi.Cost = 11220
     FNMinimi.WeaponRange = 36
     FNMinimi.ShootAP = 4000
     FNMinimi.ReloadAP = 5000
@@ -581,7 +581,7 @@ function RatoGBO_WepPatch()
     FNMinimi.is_vanilla_firearm = true
     FNMinimi.PenetrationClass = 1
 
-    HK21.Cost = 19025
+    HK21.Cost = 11415
     HK21.WeaponRange = 36
     HK21.ShootAP = 4000
     HK21.ReloadAP = 5000
@@ -675,7 +675,7 @@ function RatoGBO_WepPatch()
     HK21.is_vanilla_firearm = true
     HK21.PenetrationClass = 1
 
-    AK74.Cost = 12500
+    AK74.Cost = 7500
     AK74.WeaponRange = 36
     AK74.ShootAP = 4000
     AK74.ReloadAP = 3000
@@ -760,7 +760,7 @@ function RatoGBO_WepPatch()
     AK74.is_vanilla_firearm = true
     AK74.PenetrationClass = 1
 
-    FNFAL.Cost = 8900
+    FNFAL.Cost = 5340
     FNFAL.WeaponRange = 36
     FNFAL.ShootAP = 4000
     FNFAL.ReloadAP = 3000
@@ -863,7 +863,7 @@ function RatoGBO_WepPatch()
     FNFAL.is_vanilla_firearm = true
     FNFAL.PenetrationClass = 1
 
-    G36.Cost = 17500
+    G36.Cost = 10500
     G36.WeaponRange = 36
     G36.ShootAP = 3000
     G36.ReloadAP = 3000
@@ -958,7 +958,7 @@ function RatoGBO_WepPatch()
     G36.is_vanilla_firearm = true
     G36.PenetrationClass = 1
 
-    RPK74.Cost = 8800
+    RPK74.Cost = 5280
     RPK74.WeaponRange = 34
     RPK74.ShootAP = 4000
     RPK74.ReloadAP = 4000
@@ -1046,7 +1046,7 @@ function RatoGBO_WepPatch()
     RPK74.is_vanilla_firearm = true
     RPK74.PenetrationClass = 1
 
-    Galil_FlagHill.Cost = 13100
+    Galil_FlagHill.Cost = 7860
     Galil_FlagHill.WeaponRange = 34
     Galil_FlagHill.ShootAP = 4000
     Galil_FlagHill.ReloadAP = 3000
@@ -1115,7 +1115,7 @@ function RatoGBO_WepPatch()
     Galil_FlagHill.is_vanilla_firearm = true
     Galil_FlagHill.PenetrationClass = 1
 
-    M14SAW.Cost = 6000
+    M14SAW.Cost = 3600
     M14SAW.object_class = "AssaultRifle"
     M14SAW.WeaponRange = 34
     M14SAW.ShootAP = 4000
@@ -1215,7 +1215,7 @@ function RatoGBO_WepPatch()
     M14SAW.PenetrationClass = 1
 
     M14SAW_AUTO.SubIcon = "Mod/cfahRED/Images/m143.png"
-    M14SAW_AUTO.Cost = 7200
+    M14SAW_AUTO.Cost = 4320
     M14SAW_AUTO.object_class = "AssaultRifle"
     M14SAW_AUTO.WeaponRange = 34
     M14SAW_AUTO.ShootAP = 4000
@@ -1324,7 +1324,7 @@ function RatoGBO_WepPatch()
     M14SAW_AUTO.is_vanilla_firearm = true
     M14SAW_AUTO.PenetrationClass = 1
 
-    M16A2.Cost = 9900
+    M16A2.Cost = 5940
     M16A2.object_class = "AssaultRifle"
     M16A2.WeaponRange = 34
     M16A2.ShootAP = 4000
@@ -1415,7 +1415,7 @@ function RatoGBO_WepPatch()
     M16A2.is_vanilla_firearm = true
     M16A2.PenetrationClass = 1
 
-    Winchester1894.Cost = 3000
+    Winchester1894.Cost = 1800
     Winchester1894.object_class = "AssaultRifle"
     Winchester1894.WeaponRange = 34
     Winchester1894.ShootAP = 4000
@@ -1488,7 +1488,7 @@ function RatoGBO_WepPatch()
     Winchester1894.is_vanilla_firearm = true
     Winchester1894.PenetrationClass = 1
 
-    GoldenGun.Cost = 30000
+    GoldenGun.Cost = 18000
     GoldenGun.WeaponRange = 32
     GoldenGun.ShootAP = 4000
     GoldenGun.ReloadAP = 3000
@@ -1535,7 +1535,7 @@ function RatoGBO_WepPatch()
     GoldenGun.is_vanilla_firearm = true
     GoldenGun.PenetrationClass = 1
 
-    AR15.Cost = 8600
+    AR15.Cost = 5160
     AR15.WeaponRange = 32
     AR15.ShootAP = 4000
     AR15.ReloadAP = 3000
@@ -1632,7 +1632,7 @@ function RatoGBO_WepPatch()
     AR15.is_vanilla_firearm = true
     AR15.PenetrationClass = 1
 
-    Winchester_Quest.Cost = 3000
+    Winchester_Quest.Cost = 1800
     Winchester_Quest.object_class = "AssaultRifle"
     Winchester_Quest.WeaponRange = 32
     Winchester_Quest.ShootAP = 4000
@@ -1695,7 +1695,7 @@ function RatoGBO_WepPatch()
     Winchester_Quest.is_vanilla_firearm = true
     Winchester_Quest.PenetrationClass = 1
 
-    M4Commando.Cost = 16750
+    M4Commando.Cost = 10050
     M4Commando.WeaponRange = 30
     M4Commando.ShootAP = 3000
     M4Commando.ReloadAP = 3000
@@ -1780,7 +1780,7 @@ function RatoGBO_WepPatch()
     M4Commando.is_vanilla_firearm = true
     M4Commando.PenetrationClass = 1
 
-    AK47.Cost = 2800
+    AK47.Cost = 1680
     AK47.WeaponRange = 30
     AK47.ShootAP = 4000
     AK47.ReloadAP = 3000
@@ -1867,7 +1867,7 @@ function RatoGBO_WepPatch()
     AK47.is_vanilla_firearm = true
     AK47.PenetrationClass = 1
 
-    AUG.Cost = 10200
+    AUG.Cost = 6120
     AUG.WeaponRange = 30
     AUG.ShootAP = 4000
     AUG.ReloadAP = 3000
@@ -1969,7 +1969,7 @@ function RatoGBO_WepPatch()
     AUG.is_vanilla_firearm = true
     AUG.PenetrationClass = 1
 
-    FAMAS.Cost = 5200
+    FAMAS.Cost = 3120
     FAMAS.WeaponRange = 30
     FAMAS.ShootAP = 4000
     FAMAS.ReloadAP = 4000
@@ -2052,7 +2052,7 @@ function RatoGBO_WepPatch()
     FAMAS.is_vanilla_firearm = true
     FAMAS.PenetrationClass = 1
 
-    Galil.Cost = 13100
+    Galil.Cost = 7860
     Galil.WeaponRange = 30
     Galil.ShootAP = 4000
     Galil.ReloadAP = 3000
@@ -2148,7 +2148,7 @@ function RatoGBO_WepPatch()
     Galil.is_vanilla_firearm = true
     Galil.PenetrationClass = 1
 
-    DesertEagle.Cost = 6000
+    DesertEagle.Cost = 3600
     DesertEagle.WeaponRange = 28
     DesertEagle.ShootAP = 4000
     DesertEagle.ReloadAP = 3000
@@ -2222,7 +2222,7 @@ function RatoGBO_WepPatch()
     DesertEagle.is_vanilla_firearm = true
     DesertEagle.PenetrationClass = 1
 
-    AKSU.Cost = 7500
+    AKSU.Cost = 4500
     AKSU.WeaponRange = 26
     AKSU.ShootAP = 3000
     AKSU.ReloadAP = 3000
@@ -2312,7 +2312,7 @@ function RatoGBO_WepPatch()
     AKSU.is_vanilla_firearm = true
     AKSU.PenetrationClass = 1
 
-    LionRoar.Cost = 3000
+    LionRoar.Cost = 1800
     LionRoar.WeaponRange = 26
     LionRoar.ShootAP = 3000
     LionRoar.ReloadAP = 3000
@@ -2368,7 +2368,7 @@ function RatoGBO_WepPatch()
     LionRoar.is_vanilla_firearm = true
     LionRoar.PenetrationClass = 1
 
-    MP40.Cost = 1200
+    MP40.Cost = 720
     MP40.WeaponRange = 26
     MP40.ShootAP = 3000
     MP40.ReloadAP = 3000
@@ -2427,7 +2427,7 @@ function RatoGBO_WepPatch()
     MP40.is_vanilla_firearm = true
     MP40.PenetrationClass = 1
 
-    MP5.Cost = 3200
+    MP5.Cost = 1920
     MP5.WeaponRange = 26
     MP5.ShootAP = 3000
     MP5.ReloadAP = 3000
@@ -2519,7 +2519,7 @@ function RatoGBO_WepPatch()
     MP5.PenetrationClass = 1
 
     MP5K.Icon = "Mod/cfahRED/Images/mp5k.png"
-    MP5K.Cost = 3600
+    MP5K.Cost = 2160
     MP5K.WeaponRange = 26
     MP5K.ShootAP = 3000
     MP5K.ReloadAP = 3000
@@ -2605,7 +2605,7 @@ function RatoGBO_WepPatch()
     MP5K.is_vanilla_firearm = true
     MP5K.PenetrationClass = 1
 
-    ColtAnaconda.Cost = 4500
+    ColtAnaconda.Cost = 2700
     ColtAnaconda.WeaponRange = 26
     ColtAnaconda.ShootAP = 4000
     ColtAnaconda.ReloadAP = 3000
@@ -2675,7 +2675,7 @@ function RatoGBO_WepPatch()
     ColtAnaconda.is_vanilla_firearm = true
     ColtAnaconda.PenetrationClass = 1
 
-    UZI.Cost = 1600
+    UZI.Cost = 960
     UZI.WeaponRange = 24
     UZI.ShootAP = 3000
     UZI.ReloadAP = 3000
@@ -2762,7 +2762,7 @@ function RatoGBO_WepPatch()
     UZI.is_vanilla_firearm = true
     UZI.PenetrationClass = 1
 
-    ColtPeacemaker.Cost = 1500
+    ColtPeacemaker.Cost = 900
     ColtPeacemaker.WeaponRange = 22
     ColtPeacemaker.ShootAP = 4000
     ColtPeacemaker.ReloadAP = 3000
@@ -2821,7 +2821,7 @@ function RatoGBO_WepPatch()
     ColtPeacemaker.is_vanilla_firearm = true
     ColtPeacemaker.PenetrationClass = 1
 
-    TexRevolver.Cost = 2000
+    TexRevolver.Cost = 1200
     TexRevolver.WeaponRange = 22
     TexRevolver.ShootAP = 4000
     TexRevolver.ReloadAP = 3000
@@ -2878,7 +2878,7 @@ function RatoGBO_WepPatch()
     TexRevolver.is_vanilla_firearm = true
     TexRevolver.PenetrationClass = 1
 
-    Bereta92.Cost = 1200
+    Bereta92.Cost = 720
     Bereta92.WeaponRange = 22
     Bereta92.ShootAP = 4000
     Bereta92.ReloadAP = 3000
@@ -2953,7 +2953,7 @@ function RatoGBO_WepPatch()
     Bereta92.is_vanilla_firearm = true
     Bereta92.PenetrationClass = 1
 
-    Glock18.Cost = 2800
+    Glock18.Cost = 1680
     Glock18.WeaponRange = 22
     Glock18.ShootAP = 3000
     Glock18.ReloadAP = 3000
@@ -3030,7 +3030,7 @@ function RatoGBO_WepPatch()
     Glock18.is_vanilla_firearm = true
     Glock18.PenetrationClass = 1
 
-    HiPower.Cost = 750
+    HiPower.Cost = 450
     HiPower.WeaponRange = 22
     HiPower.ShootAP = 4000
     HiPower.ReloadAP = 3000
@@ -3102,7 +3102,7 @@ function RatoGBO_WepPatch()
     HiPower.is_vanilla_firearm = true
     HiPower.PenetrationClass = 1
 
-    M41Shotgun.Cost = 5000
+    M41Shotgun.Cost = 3000
     M41Shotgun.WeaponRange = 20
     M41Shotgun.ShootAP = 3000
     M41Shotgun.ReloadAP = 4000
@@ -3167,7 +3167,7 @@ function RatoGBO_WepPatch()
     M41Shotgun.BuckshotFalloffDamage = 50
     M41Shotgun.PenetrationClass = 1
 
-    Auto5.Cost = 1700
+    Auto5.Cost = 1020
     Auto5.WeaponRange = 18
     Auto5.ShootAP = 3000
     Auto5.ReloadAP = 4000
@@ -3223,7 +3223,7 @@ function RatoGBO_WepPatch()
     Auto5.BuckshotFalloffDamage = 50
     Auto5.PenetrationClass = 1
 
-    Auto5_quest.Cost = 1200
+    Auto5_quest.Cost = 720
     Auto5_quest.WeaponRange = 18
     Auto5_quest.ShootAP = 3000
     Auto5_quest.ReloadAP = 4000
@@ -3269,7 +3269,7 @@ function RatoGBO_WepPatch()
     Auto5_quest.BuckshotFalloffDamage = 100
     Auto5_quest.PenetrationClass = 1
 
-    AA12.Cost = 13200
+    AA12.Cost = 7920
     AA12.WeaponRange = 18
     AA12.ShootAP = 3000
     AA12.ReloadAP = 3000
@@ -3348,7 +3348,7 @@ function RatoGBO_WepPatch()
     AA12.BuckshotFalloffDamage = 50
     AA12.PenetrationClass = 1
 
-    DoubleBarrelShotgun.Cost = 1100
+    DoubleBarrelShotgun.Cost = 660
     DoubleBarrelShotgun.WeaponRange = 18
     DoubleBarrelShotgun.ShootAP = 3000
     DoubleBarrelShotgun.ReloadAP = 3000
@@ -3397,5 +3397,4 @@ function RatoGBO_WepPatch()
     DoubleBarrelShotgun.BuckshotConeAngle = 600
     DoubleBarrelShotgun.BuckshotFalloffDamage = 50
     DoubleBarrelShotgun.PenetrationClass = 1
-    FlareHandgun.is_vanilla_firearm = true
 end

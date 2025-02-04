@@ -52,7 +52,9 @@ function Unit:ShootingStanceCommand(action_id, cost_ap, args)
     self:EnterShootingStance(target)
     -- self:SetCommand("ShootingStanceIdle")
 
-    SetInGameInterfaceMode(g_Combat and "IModeCombatMovement" or "IModeExploration")
+    if not R_IsAI(self) then
+        SetInGameInterfaceMode(g_Combat and "IModeCombatMovement" or "IModeExploration")
+    end
 end
 
 --[[function Unit:ShootingStanceIdle()

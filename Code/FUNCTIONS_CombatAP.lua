@@ -1,4 +1,5 @@
 ---------------------------------------------------------------------------------------------------
+-- TODO: remove this "action" paramater
 function Unit:GetShootingStanceAP(target, weapon, aim, action, param)
     if not IsKindOf(weapon, "Firearm") then
         return 0
@@ -17,6 +18,7 @@ function Unit:GetShootingStanceAP(target, weapon, aim, action, param)
     local ap_stance = GetWeapon_StanceAP(self, weapon)
     local ap_hipfire = 0
 
+    ------(hipfire) Leftover, should be removed if not reinstated
     if aim < 1 and not (target == self:GetLastAttack()) or not target then
         ap_hipfire = GetHipfire_StanceAP(self, weapon)
     end

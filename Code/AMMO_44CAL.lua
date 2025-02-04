@@ -76,8 +76,11 @@ function GBO_44MAG_as_44CAL_Zulib()
     _44CAL_Subsonic.AppliedEffects = {}
 end
 
-OnMsg.ClassesGenerate = GBO_44MAG_as_44CAL()
-OnMsg.zCore_ClassesGenerate = GBO_44MAG_as_44CAL_Zulib()
+OnMsg.ClassesGenerate = GBO_44MAG_as_44CAL
+
+function OnMsg.zCore_ClassesGenerate()
+    GBO_44MAG_as_44CAL_Zulib()
+end
 
 -- function GBO_44CAL()
 -- 	print("GBO .44CAL .44 [Vanilla 44CAL] ...")
