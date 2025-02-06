@@ -1,3 +1,4 @@
+const.Combat.Critical = {}
 const.Combat.Critical.PrismScopeCritPerAim = 3
 const.Combat.Critical.LaserDotCritPerAim = 1
 const.Combat.Critical.PSOScopeCritOnAimed = 10
