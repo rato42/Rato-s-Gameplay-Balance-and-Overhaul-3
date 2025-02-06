@@ -1302,6 +1302,10 @@ return {
 		'CodeFileName', "Code/FUNCTIONS_recoil.lua",
 	}),
 	PlaceObj('ModItemCode', {
+		'name', "FUNCTIONS_Critical",
+		'CodeFileName', "Code/FUNCTIONS_Critical.lua",
+	}),
+	PlaceObj('ModItemCode', {
 		'name', "XTEMP_recoil",
 		'CodeFileName', "Code/XTEMP_recoil.lua",
 	}),

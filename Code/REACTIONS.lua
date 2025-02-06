@@ -1,15 +1,3 @@
-function OnMsg.UnitStanceChanged(unit)
-    local side = unit and unit.team and unit.team.side or ''
-
-    if not (side == 'player1' or side == 'player2') then
-        return
-    end
-
-    if unit.stance == 'Prone' then
-        unit:RemoveStatusEffect("shooting_stance")
-    end
-end
-
 function OnMsg.UnitSwappedWeapon(unit)
     unit:RecalcUIActions(true)
 end
@@ -45,119 +33,6 @@ function OnMsg.OnAttack(unit, action, target, results, attack_args)
 end
 
 ---------------------------------------------------
-
-function OnMsg.GatherCritChanceModifications(attacker, target, action_id, weapon, data)
-
-    if not weapon or not IsKindOf(weapon, "Firearm") or not attacker then
-        return
-    end
-
-    local aim = data.aim
-
-    -- if attacker.unit_command == "GrizzlyPerk" then
-    -- action_id == "MGBurstFire"
-    -- end
-
-    if not aim then
-        aim = 0
-    end
-
-    local crit_chance_breakdown = {base = data.crit_chance}
-
-    ----------- HEC
-    local crit_HEC = hand_eye_crit(action_id, weapon, attacker, aim) or 0
-    crit_chance_breakdown["HEC"] = crit_HEC
-    data.crit_chance = data.crit_chance + crit_HEC
-    -----------
-
-    ----------- Pindown (Sniping)
-    if action_id == "PinDown" then
-        data.crit_chance = data.crit_chance + (const.Combat.PindownCritPerAimLevel * aim)
-    end
-    -----------
-
-    ----------- Components
-    if weapon and weapon:HasComponent("critical_per_aim_scope") then
-        local crit_scope_aim = 4 * aim
-        crit_chance_breakdown["critical_per_aim_scope"] = crit_scope_aim
-        data.crit_chance = data.crit_chance + crit_scope_aim
-    end
-
-    if weapon and weapon:HasComponent("critical_per_aim_laser") then
-        local laser_aim = 1 * aim
-        laser_aim = cRound(laser_aim)
-        crit_chance_breakdown["critical_per_aim_laser"] = laser_aim
-        data.crit_chance = data.crit_chance + laser_aim
-    end
-
-    if weapon and weapon:HasComponent("pso_dragunov_scope_critical") and aim > 1 then
-        local pso_bonus = 10
-        data.crit_chance = data.crit_chance + pso_bonus
-        crit_chance_breakdown["PSO_scope"] = pso_bonus
-    end
-
-    if weapon and weapon:HasComponent("first_aim_crit") then
-        if aim and aim > 0 then
-            local first_aim_bonus = 6
-            data.crit_chance = data.crit_chance + first_aim_bonus
-            crit_chance_breakdown["first_aim_bonus"] = first_aim_bonus
-        end
-    end
-
-    if aim > 0 then
-        if data.target_spot_group and data.target_spot_group == "Head" then
-            local modifyVal, compDef = GetComponentEffectValue(weapon, "scout_scope_crit",
-                                                               "critical_head")
-            if modifyVal then
-                data.crit_chance = data.crit_chance + modifyVal
-                crit_chance_breakdown["scout_scope_crit"] = modifyVal
-            end
-        end
-
-        if data.target_spot_group and data.target_spot_group == "Torso" then
-            local modifyVal, compDef = GetComponentEffectValue(weapon, "zrak_scope_crit",
-                                                               "crit_torso")
-            if modifyVal then
-                data.crit_chance = data.crit_chance + modifyVal
-                crit_chance_breakdown["zrak_scope_crit"] = modifyVal
-            end
-        end
-    end
-    --------
-
-    ----------- Burst Critical Reduction
-    if action_id == "BurstFire" or action_id == "AutoFire" or action_id == "RunAndGun" or action_id ==
-        "MGBurstFire" or action_id == "GrizzlyPerk" or action_id == "BuckshotBurst" then
-
-        data.crit_chance = MulDivRound(data.crit_chance, const.Combat.BurstFireCriticalChanceMul,
-                                       100)
-    end
-    ----------
-
-    data.crit_chance_breakdown = crit_chance_breakdown
-end
-
-function OnMsg.GatherCritChanceModifications(attacker, target, action_id, weapon, data)
-    local side = attacker and attacker.team and attacker.team.side or ''
-    if not (side == 'player1' or side == 'player2') then
-        data.crit_chance = MulDivRound(data.crit_chance, (const.Combat.R_AI_critmul or 100), 100)
-    end
-end
-
-function OnMsg.GatherDamageModifications(attacker, target, action_id, self, mod_attack_args,
-                                         mod_hit_data, data)
-    local weapon = data.weapon
-
-    if not IsKindOf(weapon, "Firearm") then
-        return
-    end
-
-    local extra_damage = weapon.CritDamage
-    if extra_damage then
-        data.critical_damage = data.critical_damage + extra_damage
-    end
-
-end
 
 function OnMsg.GatherDamageModifications(attacker, target, action_id, self, mod_attack_args,
                                          mod_hit_data, data)
@@ -196,16 +71,6 @@ function OnMsg.GatherDamageModifications(attacker, target, action_id, self, mod_
             "Human" then
             local dex_mod = 100 + MulDivRound(attacker.Dexterity, 115, 100)
             data.base_damage = MulDivRound(data.base_damage, dex_mod, 100)
-        end
-    end
-end
-
-function OnMsg.UnitEnterCombat(unit)
-    if unit.unitdatadef_id == "Blood" then
-        if unit:HasStatusEffect("MartialArts") then
-            unit:RemoveStatusEffect("MartialArts")
-            unit:AddStatusEffect("CQCTraining")
-            ObjModified(unit)
         end
     end
 end
@@ -334,7 +199,7 @@ function OnMsg.DamageDone(attacker, target, damage)
             if not (side == 'player1' or side == 'player2') then
                 bonus = bonus + 10
             end
-            local add = -ratio + bonus + 10
+            local add = -ratio + bonus + 15
             if not Composure_RollSkillCheck(target, 100, add) then
                 target:RemoveStatusEffect("shooting_stance")
             end

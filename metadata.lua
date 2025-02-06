@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 56,
-	'version', 11954,
+	'version', 11956,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -124,6 +124,7 @@ return PlaceObj('ModDef', {
 		"Code/FUNCTIONS_custom.lua",
 		"Code/FUNCTIONS_Boltaction.lua",
 		"Code/FUNCTIONS_recoil.lua",
+		"Code/FUNCTIONS_Critical.lua",
 		"Code/XTEMP_recoil.lua",
 		"Code/FUNCTIONS_hipfire.lua",
 		"Code/FX_inherit.lua",
@@ -190,8 +191,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1738657388,
-	'code_hash', 1959038018891397276,
+	'saved', 1738816698,
+	'code_hash', 1239033846519412848,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

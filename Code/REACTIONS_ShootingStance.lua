@@ -8,6 +8,12 @@ function OnMsg.CombatActionStart(unit)
     DestroyStanceConeV(unit)
 end
 
+function OnMsg.UnitStanceChanged(unit)
+    if not R_IsAI(unit) and unit.stance == 'Prone' then
+        unit:RemoveStatusEffect("shooting_stance")
+    end
+end
+
 function OnMsg.SelectedObjChange()
     local selected = SelectedObj
     local overwatch = g_Overwatch[selected]
@@ -43,16 +49,12 @@ function OnMsg.UnitAnyMovementStart(unit)
         CombatGoto = true
     }
 
-    if not actions_that_remove[unit.action_command] then
-        return
+    if actions_that_remove[unit.action_command] then
+        unit:RemoveStatusEffect("shooting_stance")
     end
-
-    unit:RemoveStatusEffect("shooting_stance")
-
 end
 
 function OnMsg.UnitMovementDone(unit, action_id, prev_pos)
-
     local actions_that_remove = {
         Move = true,
         RunAndGun = true,
@@ -61,12 +63,9 @@ function OnMsg.UnitMovementDone(unit, action_id, prev_pos)
         HundredKnives = true,
         Sprint = true
     }
-
-    if not actions_that_remove[action_id] then
-        return
+    if actions_that_remove[action_id] then
+        unit:RemoveStatusEffect("shooting_stance")
     end
-
-    unit:RemoveStatusEffect("shooting_stance")
 end
 
 function OnMsg.CombatActionEnd(unit)
@@ -94,21 +93,11 @@ end
 function OnMsg.OnAttack(unit, action, target, results, attack_args)
 
     local weapon = attack_args.weapon or unit:GetActiveWeapons()
-
-    if not weapon or not action then
-        return
-    end
-
-    if not IsKindOf(weapon, "Firearm") then
-        return
-    end
-
-    if g_Overwatch[unit] then
+    if not weapon or not IsKindOf(weapon, "Firearm") or not action or g_Overwatch[unit] then
         return
     end
 
     local aim = attack_args.aim or 0
-
     if aim and aim > 0 or HasPerk(unit, "shooting_stance") then
         unit:EnterShootingStance(target, attack_args)
         -- unit:SetActionCommand("ShootingStanceCommand", action.id, nil, attack_args)
@@ -132,16 +121,11 @@ function OnMsg.CombatActionEnd(unit)
         end
 
         local angle = g_Overwatch[unit].angle
-        local dir = g_Overwatch[unit].dir
         unit:SetOrientationAngle(angle)
 
         local target = g_Overwatch[unit].target_pos
 
         local attack_args = {target = target}
-
-        -- unit.ow_args_stance or false
-        -- unit.ow_args_stance = nil
-
         unit:EnterShootingStance(target, attack_args)
 
         if not overwatch.permanent then
