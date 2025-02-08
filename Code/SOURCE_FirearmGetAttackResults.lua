@@ -528,6 +528,25 @@ function Firearm:GetAttackResults(action, attack_args)
             end
         end
 
+        --------------------
+        if action.id == "Buckshot" and not attack_args.prediction then
+            local buckshot_hits = self:CalcBuckshotScatter(attacker, action,
+                                                           attack_results.attack_pos, target_pos,
+                                                           shot_attack_args.buckshot_scatter_fx,
+                                                           aoe_params, attack_results)
+            attack_results.cosmetic_hits = buckshot_hits
+            for i, hit in ipairs(buckshot_hits) do
+                if not hit_data.hits then
+                    hit_data.hits = {}
+                end
+
+                hit.stray = false
+                table.insert(hit_data.hits, hit)
+            end
+            local yes
+        end
+        -------------------
+
         if shot_miss and IsValid(target) then
             for _, hit in ipairs(hit_data.hits) do
                 if hit.obj == target then
@@ -540,6 +559,7 @@ function Firearm:GetAttackResults(action, attack_args)
                 end
             end
         end
+
         self:BulletCalcDamage(hit_data)
 
         if shot_attack_args.chance_only then
@@ -615,6 +635,13 @@ function Firearm:GetAttackResults(action, attack_args)
             ammo_type = ammo_type,
             clear_attacks = hit_data.clear_attacks
         }
+        ------------
+        if attack_results.shots[i] and not attack_args.prediction then
+            DbgAddVector(attack_results.shots[i].attack_pos,
+                         attack_results.shots[i].target_pos - attack_results.shots[i].attack_pos,
+                         const.clrGreen)
+        end
+        ------------
         if hit_data.allyHit then
             if attack_results.allyHit and attack_results.allyHit ~= hit_data.allyHit then
                 attack_results.allyHit = "multiple"
@@ -655,7 +682,22 @@ function Firearm:GetAttackResults(action, attack_args)
 
     -- aoe damage
     local targetHitProjectile = target_hit
-    if aoe_params then
+
+    -------------------------
+    if action.id == "Buckshot" then
+        if not prediction then
+
+            -- self:BulletCalcDamage(buckshot_hits)
+            -- for i, hit in ipairs(buckshot_hits) do
+            --     if IsKindOf(hit.obj, "CombatObject") and not hit.obj:IsDead() then
+            --         if IsKindOf(hit.obj, "Unit") then
+            --             unit_damage[hit.obj] = (unit_damage[hit.obj] or 0) + hit.damage
+            --         end
+            --     end
+            -- end
+        end
+        -------------------------
+    elseif aoe_params then
         local damage_override = GetAoeDamageOverride(shot_attack_args, attacker, self,
                                                      shot_attack_args.damage_bonus)
         aoe_params.prediction = shot_attack_args.prediction
@@ -691,11 +733,12 @@ function Firearm:GetAttackResults(action, attack_args)
         end
 
         if not prediction and (shot_attack_args.buckshot_scatter_fx or 0) > 0 then
-            attack_results.cosmetic_hits = self:CalcBuckshotScatter(attacker, action,
-                                                                    attack_results.attack_pos,
-                                                                    target_pos,
-                                                                    shot_attack_args.buckshot_scatter_fx,
-                                                                    aoe_params)
+            -- attack_results.cosmetic_hits = self:CalcBuckshotScatter(attacker, action,
+            --                                                         attack_results.attack_pos,
+
+            --                                                         target_pos,
+            --                                                         shot_attack_args.buckshot_scatter_fx,
+            --                                                         aoe_params, attack_results)
         end
     end
 
