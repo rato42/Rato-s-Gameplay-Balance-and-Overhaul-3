@@ -340,6 +340,33 @@ function Firearm:GetAttackResults(action, attack_args)
             end
         end
 
+        --------
+
+        local point_target, point_lof
+        local color = const.clrWhite
+        if #hit_target_pts > 0 then
+            point_target, point_lof = hit_target_pts[1].target_pos, hit_target_pts[1].lof_pos1
+            color = const.clrGreen
+        elseif #miss_target_pts > 0 then
+            point_target, point_lof = miss_target_pts[1].target_pos, miss_target_pts[1].lof_pos1
+            color = const.clrRed
+        end
+        if point_target then
+            DbgAddCircle(point_target, const.SlabSizeX / 6, color)
+            DbgAddVector(point_target, attack_results.attack_pos - point_target, color)
+        end
+
+        if action.id == "Buckshot" and not attack_args.prediction then
+
+            local buckshot_hits = self:CalcBuckshotScatter(attacker, action,
+                                                           attack_results.attack_pos, point_target,
+                                                           shot_attack_args.buckshot_scatter_fx,
+                                                           aoe_params, attack_results,
+                                                           shot_attack_args)
+
+        end
+
+        -----------
         -- use old code as fallback in case all 20 tries have failed (this shouldn't really happen)	
         if (#hit_target_pts + #miss_target_pts) < (num_hits + num_misses) then
             -- assert(false, "simulated burst distribition precomputation failed, falling back to randomized miss vectors")
@@ -528,23 +555,8 @@ function Firearm:GetAttackResults(action, attack_args)
             end
         end
 
-        --------------------
-        if action.id == "Buckshot" and not attack_args.prediction then
-            local buckshot_hits = self:CalcBuckshotScatter(attacker, action,
-                                                           attack_results.attack_pos, target_pos,
-                                                           shot_attack_args.buckshot_scatter_fx,
-                                                           aoe_params, attack_results)
-            attack_results.cosmetic_hits = buckshot_hits
-            for i, hit in ipairs(buckshot_hits) do
-                if not hit_data.hits then
-                    hit_data.hits = {}
-                end
+        --------------------(74560, 182883, 18462)
 
-                hit.stray = false
-                table.insert(hit_data.hits, hit)
-            end
-            local yes
-        end
         -------------------
 
         if shot_miss and IsValid(target) then
@@ -636,11 +648,11 @@ function Firearm:GetAttackResults(action, attack_args)
             clear_attacks = hit_data.clear_attacks
         }
         ------------
-        if attack_results.shots[i] and not attack_args.prediction then
-            DbgAddVector(attack_results.shots[i].attack_pos,
-                         attack_results.shots[i].target_pos - attack_results.shots[i].attack_pos,
-                         const.clrGreen)
-        end
+        -- if attack_results.shots[i] and not attack_args.prediction then
+        --     DbgAddVector(attack_results.shots[i].attack_pos,
+        --                  attack_results.shots[i].target_pos - attack_results.shots[i].attack_pos,
+        --                  const.clrGreen)
+        -- end
         ------------
         if hit_data.allyHit then
             if attack_results.allyHit and attack_results.allyHit ~= hit_data.allyHit then
@@ -685,18 +697,7 @@ function Firearm:GetAttackResults(action, attack_args)
 
     -------------------------
     if action.id == "Buckshot" then
-        if not prediction then
-
-            -- self:BulletCalcDamage(buckshot_hits)
-            -- for i, hit in ipairs(buckshot_hits) do
-            --     if IsKindOf(hit.obj, "CombatObject") and not hit.obj:IsDead() then
-            --         if IsKindOf(hit.obj, "Unit") then
-            --             unit_damage[hit.obj] = (unit_damage[hit.obj] or 0) + hit.damage
-            --         end
-            --     end
-            -- end
-        end
-        -------------------------
+        --------------------------------------
     elseif aoe_params then
         local damage_override = GetAoeDamageOverride(shot_attack_args, attacker, self,
                                                      shot_attack_args.damage_bonus)
@@ -732,14 +733,15 @@ function Firearm:GetAttackResults(action, attack_args)
             end
         end
 
-        if not prediction and (shot_attack_args.buckshot_scatter_fx or 0) > 0 then
-            -- attack_results.cosmetic_hits = self:CalcBuckshotScatter(attacker, action,
-            --                                                         attack_results.attack_pos,
+        ----- Old vanilla
+        -- if not prediction and (shot_attack_args.buckshot_scatter_fx or 0) > 0 then
+        -- attack_results.cosmetic_hits = self:CalcBuckshotScatter(attacker, action,
+        --                                                         attack_results.attack_pos,
 
-            --                                                         target_pos,
-            --                                                         shot_attack_args.buckshot_scatter_fx,
-            --                                                         aoe_params, attack_results)
-        end
+        --                                                         target_pos,
+        --                                                         shot_attack_args.buckshot_scatter_fx,
+        --                                                         aoe_params, attack_results)
+        -- end
     end
 
     attack_results.num_hits = num_hits

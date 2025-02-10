@@ -1,24 +1,25 @@
 function Firearm:CalcBuckshotScatter(attacker, action, attack_pos, target_pos, num_vectors,
-                                     aoe_params, attack_results)
+                                     aoe_params, attack_results, shot_attack_args)
     aoe_params = aoe_params or weapon:GetAreaAttackParams(action.id, attacker, target_pos)
     local range = self.WeaponRange * const.SlabSizeX
+    ----
+    range = range * 10
+    ----
     local dir = SetLen(target_pos - attack_pos, guim)
     DbgAddCircle(target_pos, const.SlabSizeX)
     local min_offset = 35 * guic
 
     ----
-    aoe_params.cone_angle = 100
+    aoe_params.cone_angle = 300
+    -----
 
     local scatter = Max(min_offset, MulDivRound(range, sin(aoe_params.cone_angle / 2),
                                                 Max(1, cos(aoe_params.cone_angle / 2))))
 
     local var_offset = Max(0, scatter - min_offset)
     local targets = {}
-    -- target_pos = attack_pos + SetLen(dir, range)
-    target_pos = attack_results and attack_results.shots and attack_results.shots[1] and
-                     attack_results.shots[1].target_pos or target_pos
+    target_pos = attack_pos + SetLen(dir, range)
 
-    DbgAddCircle(target_pos, const.SlabSizeX / 4, const.clrGreen)
     for i = 1, num_vectors do
         local offset = RotateAxis(point(0, 0, min_offset + attacker:Random(var_offset)), dir,
                                   attacker:Random(360 * 60))
@@ -28,13 +29,17 @@ function Firearm:CalcBuckshotScatter(attacker, action, attack_pos, target_pos, n
         -- DbgAddVector(attack_pos, targets[i] - attack_pos)
     end
 
-    local lof_params = {
-        attack_pos = attack_pos,
-        obj = attacker,
-        output_collisions = true,
-        range = range + scatter + guim,
-        seed = attacker:Random()
-    }
+    local lof_params = shot_attack_args
+    -- local lof_params = {
+    --     attack_pos = attack_pos,
+    --     obj = attacker,
+    --     output_collisions = true,
+    --     range = range + scatter + guim,
+    --     seed = attacker:Random()
+    -- }
+    lof_params.seed = attacker:Random()
+    lof_params.range = range + scatter + guim
+
     local attack_data = GetLoFData(attacker, targets, lof_params)
     local hits = {}
 
