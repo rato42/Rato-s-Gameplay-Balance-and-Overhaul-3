@@ -40,26 +40,41 @@ function Firearm:CalcBuckshotScatter(attacker, action, attack_pos, target_pos, n
     lof_params.seed = attacker:Random()
     lof_params.range = range + scatter + guim
 
-    local attack_data = GetLoFData(attacker, targets, lof_params)
-    local hits = {}
+    -- local hits = {}
+    local shots_hit_data = {}
 
-    -- DbgClearVectors()
-    for i, data in ipairs(attack_data) do
-        local lof_hits = data.lof and data.lof[1] and data.lof[1].hits
-        -- DbgAddVector(data.attack_pos, data.target_pos - data.attack_pos,
-        --              #(lof_hits or "") > 0 and const.clrWhite or const.clrRed)
-        for _, hit in ipairs(lof_hits) do
-            local color = const.clrWhite
-            if (hit.obj or hit.terrain) then -- and not IsKindOf(hit.obj, "Unit") then
-                hits[#hits + 1] = hit
-                -- break
-                color = IsKindOf(hit.obj, "Unit") and const.clrCyan or color
+    for i, target in ipairs(targets) do
+        local attack_data = GetLoFData(attacker, target, lof_params)
+        local hit_data
+        if attack_data then
+            local lof_idx
+            ---- Not sure if should check for spot group
+            -- lof_idx = lof_idx or
+            -- 			  table.find(attack_data.lof, "target_spot_group",
+            -- 						 shot_attack_args.target_spot_group)
+            hit_data = attack_data.outside_attack_area_lof or attack_data.lof and
+                           attack_data.lof[lof_idx or 1]
 
-            end
-            DbgAddVector(attack_pos, hit.pos - attack_pos, color)
         end
+        self:BulletCalcDamage(hit_data)
+        table.insert(shots_hit_data, hit_data)
     end
 
-    -- return attack_data
-    return hits
+    return shots_hit_data
+
+    -- for i, data in ipairs(attack_data) do
+    --     local lof_hits = data.lof and data.lof[1] and data.lof[1].hits
+    --     for _, hit in ipairs(lof_hits) do
+    --         local color = const.clrWhite
+    --         if (hit.obj or hit.terrain) then
+    --             hits[#hits + 1] = hit
+    --             -- break
+    --             color = IsKindOf(hit.obj, "Unit") and const.clrCyan or color
+
+    --         end
+    --         DbgAddVector(attack_pos, hit.pos - attack_pos, color)
+    --     end
+    -- end
+
+    -- return hits
 end
