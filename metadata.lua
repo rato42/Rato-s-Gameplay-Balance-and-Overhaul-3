@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.56f\n\nsmall adjustments related to AI overhaul\nBack then, I increased the price of all weapons, because I felt it was too cheap. With BobbyPay's special rule, this is no longer necessary, so I decreased their cost.",
+	'last_changes', "3.57 --not released\n\nMany small tweaks related to critical chance calculation\n\nFrogLeapping cover multiplier changed from x2 to x1.5\n\nSuppressors now decrease reliability. Increased reliability decrease of improvised suppressor\n\nOut of Breath status effect now increases the AP to aim attacks\n\nAfter sprinting, the character will be sligthly harder to hit until the beginning of its next turn.\nTweaked the move ap formula for sprinting\n\nReduced a bit the penalties for running and gunning.\n",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 56,
-	'version', 11956,
+	'version', 11993,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -36,6 +36,7 @@ return PlaceObj('ModDef', {
 		"CharacterEffect/Rat_recoil.lua",
 		"CharacterEffect/R_outofbreath.lua",
 		"CharacterEffect/R_ReservedAP_stance.lua",
+		"CharacterEffect/Sprinting.lua",
 		"CharacterEffect/grunty_bonus.lua",
 		"Code/_______init_globals.lua",
 		"Code/ZULIBCalibers_GBOconfigs.lua",
@@ -191,8 +192,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1738816698,
-	'code_hash', 1239033846519412848,
+	'saved', 1739094485,
+	'code_hash', -6943906597010617979,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
@@ -247,6 +248,11 @@ return PlaceObj('ModDef', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "CharacterEffectCompositeDef",
 			'Id', "R_ReservedAP_stance",
+			'ClassDisplayName', "Character effect",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "CharacterEffectCompositeDef",
+			'Id', "Sprinting",
 			'ClassDisplayName', "Character effect",
 		}),
 		PlaceObj('ModResourcePreset', {

@@ -15,7 +15,9 @@ function Unit:Sprint(action_id, cost_ap, args)
     if self.stance ~= "Standing" then
         self:ChangeStance(action_id, 0, "Standing")
     end
-
+    ---------
+    self:AddStatusEffect("Sprinting")
+    ---------
     args.prediction = false
     NetUpdateHash("RunAndGun_0", self, args)
     -- local results = action:GetActionResults(self, args)

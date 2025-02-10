@@ -60,14 +60,14 @@ end
 ---------------------------------------------------------------------------------------------------
 function rat_getMobileshot_moveAP(action, unit, weapon)
     local is_sprint = (action and action.id == "Sprint")
-    local base_ap = is_sprint and 10 or 9
+    local base_ap = is_sprint and 8 or 9
     local min_ap = is_sprint and 7 or 6
-    local weapon_multiplier = is_sprint and 1.0 or 1.5
+    local weapon_multiplier = is_sprint and 0.5 or 1.5
 
     local stanceap = 0
     if weapon and IsKindOf(weapon, "Firearm") then
 
-        stanceap = (GetWeapon_StanceAP(unit, weapon) / const.Scale.AP) * weapon_multiplier
+        stanceap = (GetWeapon_StanceAP(unit, weapon) / const.Scale.AP)
 
         if (weapon.LargeItem or 0) < 1 or weapon:HasComponent("no_stock") then
             stanceap = Max(0, stanceap - 1)
@@ -77,6 +77,8 @@ function rat_getMobileshot_moveAP(action, unit, weapon)
             IsKindOf(weapon, "Revolver")) then
             stanceap = stanceap + 2
         end
+
+        stanceap = stanceap * weapon_multiplier
     end
 
     local agility_scaling = Max(0, (unit.Agility - 40.0) / 10.0)
