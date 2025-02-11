@@ -12,22 +12,10 @@ DefineClass.shoot_move = {
 			Handler = function (self, action, results, attack_args, combat_starting, attacker, target)
 				local reaction_def = (self.msg_reactions or empty_table)[1]
 				if self:VerifyReaction("Attack", reaction_def, attacker, action, results, attack_args, combat_starting, attacker, target) then
-					--if g_Combat then
-					--attacker:AddStatusEffect("FreeMove")
-				--elseif combat_starting then
-					--attacker:AddStatusEffect("FreeMoveOnCombatStart")
-				--end
-				
-				attacker:RemoveStatusEffect("shoot_move")
+					attacker:RemoveStatusEffect("shoot_move")
 				end
 			end,
 			HandlerCode = function (self, action, results, attack_args, combat_starting, attacker, target)
-				--if g_Combat then
-					--attacker:AddStatusEffect("FreeMove")
-				--elseif combat_starting then
-					--attacker:AddStatusEffect("FreeMoveOnCombatStart")
-				--end
-				
 				attacker:RemoveStatusEffect("shoot_move")
 			end,
 		}),
@@ -36,18 +24,7 @@ DefineClass.shoot_move = {
 		PlaceObj('UnitReaction', {
 			Event = "OnCalcFreeMove",
 			Handler = function (self, target, data)
-				data.mul = data.mul * 0.5
-				
-				--[[local weapon = target:GetActiveWeapons() or false
-				
-				if not weapon then return end
-				
-				
-				if IsKindOf(weapon, "Submachinegun") then
-					data.mul = data.mul  *0.3
-				else
-					data.mul = data.mul * 0.5
-				end]]
+				data.mul = MulDivRound(data.mul, const.Combat.ShootMoveSMGorHandgun_FreeMoveMul, 100)
 			end,
 		}),
 	},

@@ -1,7 +1,4 @@
 function presets_char_effect()
-    local bonus = 5
-    local autobonus = 100
-
     ForEachPreset('CharacterEffectCompositeDef', function(p)
 
         if p.id == "DanceForMe" then
@@ -30,7 +27,7 @@ function presets_char_effect()
             p.Description = T(771192369187, 'Improves <em>Recoil</em> control.')
             for _, param in ipairs(p.Parameters) do
                 if param.Name == 'chanceToHitBonus' then
-                    param.Value = bonus
+                    param.Value = 5 ---  not used anymore
                 end
             end
 
@@ -40,7 +37,7 @@ function presets_char_effect()
         if p.id == 'AutoWeapons' then ------------AutoWeapons
             for _, param in ipairs(p.Parameters) do
                 if param.Name == 'automatics_penalty_reduction' then
-                    param.Value = autobonus
+                    param.Value = 100 ---  not used anymore
                 end
             end
             p.unit_reactions = {

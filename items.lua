@@ -38,22 +38,10 @@ return {
 				Handler = function (self, action, results, attack_args, combat_starting, attacker, target)
 					local reaction_def = (self.msg_reactions or empty_table)[1]
 					if self:VerifyReaction("Attack", reaction_def, attacker, action, results, attack_args, combat_starting, attacker, target) then
-						--if g_Combat then
-						--attacker:AddStatusEffect("FreeMove")
-					--elseif combat_starting then
-						--attacker:AddStatusEffect("FreeMoveOnCombatStart")
-					--end
-					
-					attacker:RemoveStatusEffect("shoot_move")
+						attacker:RemoveStatusEffect("shoot_move")
 					end
 				end,
 				HandlerCode = function (self, action, results, attack_args, combat_starting, attacker, target)
-					--if g_Combat then
-						--attacker:AddStatusEffect("FreeMove")
-					--elseif combat_starting then
-						--attacker:AddStatusEffect("FreeMoveOnCombatStart")
-					--end
-					
 					attacker:RemoveStatusEffect("shoot_move")
 				end,
 				helpActor = "attacker",
@@ -64,18 +52,7 @@ return {
 			PlaceObj('UnitReaction', {
 				Event = "OnCalcFreeMove",
 				Handler = function (self, target, data)
-					data.mul = data.mul * 0.5
-					
-					--[[local weapon = target:GetActiveWeapons() or false
-					
-					if not weapon then return end
-					
-					
-					if IsKindOf(weapon, "Submachinegun") then
-						data.mul = data.mul  *0.3
-					else
-						data.mul = data.mul * 0.5
-					end]]
+					data.mul = MulDivRound(data.mul, const.Combat.ShootMoveSMGorHandgun_FreeMoveMul, 100)
 				end,
 				param_bindings = false,
 			}),
@@ -654,6 +631,11 @@ return {
 				'Value', 50,
 				'Tag', "<free_move_mul_reduction>%",
 			}),
+			PlaceObj('PresetParamNumber', {
+				'Name', "aim_cost",
+				'Value', 1,
+				'Tag', "<aim_cost>",
+			}),
 		},
 		'object_class', "StatusEffect",
 		'unit_reactions', {
@@ -689,10 +671,26 @@ return {
 				end,
 				param_bindings = false,
 			}),
+			PlaceObj('UnitReaction', {
+				Event = "OnCalcAPCost",
+				Handler = function (self, target, current_ap, action, weapon, aim)
+					local aim_level = aim
+					
+					if aim_level < 1 then
+						return
+					end
+					
+					local aim_cost = self:ResolveValue("aim_cost") 
+					local extra_cost = cRoundDown(aim_cost * aim_level) * const.Scale.AP
+					
+					return current_ap + extra_cost
+				end,
+				param_bindings = false,
+			}),
 		},
 		'Modifiers', {},
 		'DisplayName', T(373983661042, --[[ModItemCharacterEffectCompositeDef R_outofbreath DisplayName]] "Out of Breath"),
-		'Description', T(981332796704, --[[ModItemCharacterEffectCompositeDef R_outofbreath Description]] "Penalty of <color EmStyle><ap_loss></color> per stack is applied to your maximum AP. Reduces <color EmStyle>Free Move AP</color> per stack. Normally, lasts until the end of your next turn, but low energy levels can increase the duration.\n\nCurrent duration: <em><duration></em>"),
+		'Description', T(981332796704, --[[ModItemCharacterEffectCompositeDef R_outofbreath Description]] "Penalty of <color EmStyle><ap_loss></color> per stack is applied to your maximum AP. Reduces <color EmStyle>Free Move AP</color> per stack. Normally, lasts until the end of your next turn, but low energy levels can increase the duration.\n\nIncreases the AP cost of Aiming attacks.\n\nCurrent duration: <em><duration></em>"),
 		'GetDescription', function (self)
 			return self.Description
 		end,
@@ -767,6 +765,41 @@ return {
 				ObjModified(obj)
 			end
 		end,
+	}),
+	PlaceObj('ModItemCharacterEffectCompositeDef', {
+		'Id', "Sprinting",
+		'Parameters', {},
+		'object_class', "CharacterEffect",
+		'unit_reactions', {
+			PlaceObj('UnitReaction', {
+				Event = "OnCalcChanceToHit",
+				Handler = function (self, target, attacker, action, attack_target, weapon1, weapon2, data)
+					if target == attack_target then
+						ApplyCthModifier_Add(self, data, const.Combat.SprintingCTH)
+					end
+				end,
+				param_bindings = false,
+			}),
+			PlaceObj('UnitReaction', {
+				Event = "OnBeginTurn",
+				Handler = function (self, target)
+					target:RemoveStatusEffect(self.class)
+				end,
+				param_bindings = false,
+			}),
+			PlaceObj('UnitReaction', {
+				Event = "OnCombatEnd",
+				Handler = function (self, target)
+					target:RemoveStatusEffect(self.class)
+				end,
+				param_bindings = false,
+			}),
+		},
+		'DisplayName', T(889022208419, --[[ModItemCharacterEffectCompositeDef Sprinting DisplayName]] "Sprinting"),
+		'Description', T(519374788491, --[[ModItemCharacterEffectCompositeDef Sprinting Description]] "The character is sprinting and is harder to hit."),
+		'RemoveOnEndCombat', true,
+		'RemoveOnSatViewTravel', true,
+		'RemoveOnCampaignTimeAdvance', true,
 	}),
 	PlaceObj('ModItemCharacterEffectCompositeDef', {
 		'Id', "grunty_bonus",
@@ -1043,7 +1076,7 @@ return {
 			            local weapon = self:GetAttackWeapons(unit)
 			            local DisplayMoveAP = rat_getMobileshot_moveAP(self, unit, weapon)
 			            description = T(979712456456, "Rush to a new position, using up to <em>" ..
-			                                DisplayMoveAP .. " Move AP</em>.")
+			                                DisplayMoveAP .. " Move AP</em>. The unit will be sligthly harder to hit until the start of it's next turn.")
 			            local args = false
 			            local cost = self.GetAPCost(self, unit, args)
 			
@@ -3295,7 +3328,7 @@ return {
 		Parameters = {
 			PlaceObj('PresetParamNumber', {
 				'Name', "ReliabilityDecrease",
-				'Value', 10,
+				'Value', 20,
 				'Tag', "<ReliabilityDecrease>",
 			}),
 			PlaceObj('PresetParamNumber', {
@@ -3367,6 +3400,7 @@ return {
 			"flanker",
 			"compensator_effect_silencer",
 			"DecreaseOverwatchAngle",
+			"ReduceReliability",
 		},
 		Parameters = {
 			PlaceObj('PresetParamPercent', {
@@ -3383,6 +3417,11 @@ return {
 				'Name', "OverwatchAngleDecrease",
 				'Value', 97,
 				'Tag', "<OverwatchAngleDecrease>",
+			}),
+			PlaceObj('PresetParamNumber', {
+				'Name', "ReliabilityDecrease",
+				'Value', 10,
+				'Tag', "<ReliabilityDecrease>",
 			}),
 		},
 		Slot = "Muzzle",

@@ -8,7 +8,7 @@ const.Combat.Recoil.MaxPenalty = -90 --- -50
 const.Combat.Recoil.MaxDistforPenalty = 36 -- 26 ----- -18
 const.Combat.Recoil.StacksMultiplier = 0.35 ---- * -- for Persistant Recoil
 const.Combat.Recoil.MGSetupMul = 0.80 ---- * -- MG Setup recoil reduction
-const.Combat.Recoil.RunAndGunExtraPenalty = -10
+const.Combat.Recoil.RunAndGunExtraPenalty = -5
 
 const.Combat.Recoil.Components = {
     VerticalGripMul = 0.96, ---0.92, 

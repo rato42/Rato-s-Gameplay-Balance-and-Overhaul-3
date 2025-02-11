@@ -1,5 +1,20 @@
 function OnMsg.ClassesGenerate(classdefs)
 
+    if classdefs.RelentlessAdvance then
+        classdefs.RelentlessAdvance.unit_reactions = {
+
+            PlaceObj('UnitReaction', {
+                Event = "OnCalcFreeMove",
+                Handler = function(self, target, data)
+                    if target:IsUsingCover() then
+                        data.mul = MulDivRound(data.mul,
+                                               const.Combat.Perks.RelentlessAdvanceFreeMoveMul, 100)
+                    end
+                end
+            })
+        }
+    end
+
     if classdefs.SteadyBreathing then
         classdefs.SteadyBreathing.unit_reactions = {
             PlaceObj('UnitReaction', {
@@ -122,13 +137,6 @@ function OnMsg.ClassesGenerate(classdefs)
         local reac = classdefs.Spiritual.unit_reactions
         for i, react in ipairs(reac) do
             if react.Event == "OnCalcChanceToHit" then
-                -- table.remove(reac, react)
-                -- table.insert(reac, {	Event = "OnCalcChanceToHit",
-                -- Handler = function (self, target, attacker, action, attack_target, weapon1, weapon2, data)
-                -- data.min = self:ResolveValue("minAccuracy")
-                -- end,}
-
-                -- )
                 react.Handler = function(self, target, attacker, action, attack_target, weapon1,
                                          weapon2, data)
                     if target == attacker then

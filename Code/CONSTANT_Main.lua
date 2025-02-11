@@ -6,6 +6,8 @@ const.Combat.BurstFireCriticalChanceMul = 70 -- % -- Crit * Constant / 100
 const.Combat.MultishotGrazeThreshold = 18 -- 12
 const.Combat.SingleShotGrazeThreshold = 10
 const.Combat.MultishotMinCTH = 5
+-------------- Sprinting
+const.Combat.SprintingCTH = -10
 
 -------------------- Add for MG calcs here
 --- Hipfire
@@ -20,9 +22,9 @@ const.Combat.MGSetupSnapshotReductionMul = 50
 -- RunAndGun
 const.Combat.RunAndGunMaxPenalty = -15
 const.Combat.RunAndGun_MaxDistforPenalty = 14
-const.Combat.RunAndGunSnapshotHipfirePenaltyMul = 1.25
+const.Combat.RunAndGunSnapshotHipfirePenaltyMul = 1.20
 -- MobileShot
-const.Combat.MobileShotSnapshotHipfirePenaltyMul = 1.15
+const.Combat.MobileShotSnapshotHipfirePenaltyMul = 1.10
 -- OW
 const.Combat.MGSetupBonusInterruptAccuracy = 5
 const.Combat.MGSetupConeMul = 110 --- MulDivRound
@@ -33,6 +35,7 @@ const.Combat.InterruptSnapshotPenalty = 150 --- MulDivRound
 -- const.Combat.AI_ShootingStanceAP_Mul = 50 --- % Became a Mod Option
 ----- AP
 const.Combat.CumbersomeStanceAP_StrThreshold = 80
+const.Combat.ShootMoveSMGorHandgun_FreeMoveMul = 50
 
 ----- BoltAction
 const.Combat.BoltActionDexFirstThreshold = 85
@@ -42,6 +45,10 @@ const.Combat.BoltActionDexSecondThreshold = 95
 const.Combat.PindownCritPerAimLevel = 5
 const.Combat.PindownAimLevelsForAPCost = 2
 const.Combat.PindownRangeMul = 150 --- MulDivRound
+
+------Perks
+const.Combat.Perks = {}
+const.Combat.Perks.RelentlessAdvanceFreeMoveMul = 150
 
 -------------
 ----- Vanilla

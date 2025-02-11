@@ -32,7 +32,7 @@ function place_scope_pen_cth()
 
             elseif weapon1 and weapon1:HasComponent("ScopePenalty2") then
 
-                max_dist = (13 * const.SlabSizeX)
+                max_dist = (14 * const.SlabSizeX)
                 max_penalty = -40
 
                 dist = max_dist - dist
@@ -40,8 +40,8 @@ function place_scope_pen_cth()
 
             elseif weapon1 and weapon1:HasComponent("ScopePenalty1") then
 
-                max_dist = (6 * const.SlabSizeX)
-                max_penalty = -15
+                max_dist = (7 * const.SlabSizeX)
+                max_penalty = -20
 
                 dist = max_dist - dist
                 value = value + Min(0, MulDivRound(dist, max_penalty, max_dist))

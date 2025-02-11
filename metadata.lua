@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.56f\n\nsmall adjustments related to AI overhaul\nBack then, I increased the price of all weapons, because I felt it was too cheap. With BobbyPay's special rule, this is no longer necessary, so I decreased their cost.",
+	'last_changes', "",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -24,8 +24,8 @@ return PlaceObj('ModDef', {
 	'id', "cfahRED",
 	'author', "rato",
 	'version_major', 3,
-	'version_minor', 56,
-	'version', 12066,
+	'version_minor', 57,
+	'version', 11996,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -36,6 +36,7 @@ return PlaceObj('ModDef', {
 		"CharacterEffect/Rat_recoil.lua",
 		"CharacterEffect/R_outofbreath.lua",
 		"CharacterEffect/R_ReservedAP_stance.lua",
+		"CharacterEffect/Sprinting.lua",
 		"CharacterEffect/grunty_bonus.lua",
 		"Code/_______init_globals.lua",
 		"Code/ZULIBCalibers_GBOconfigs.lua",
@@ -249,6 +250,11 @@ return PlaceObj('ModDef', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "CharacterEffectCompositeDef",
 			'Id', "R_ReservedAP_stance",
+			'ClassDisplayName', "Character effect",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "CharacterEffectCompositeDef",
+			'Id', "Sprinting",
 			'ClassDisplayName', "Character effect",
 		}),
 		PlaceObj('ModResourcePreset', {
