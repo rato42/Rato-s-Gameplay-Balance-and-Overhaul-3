@@ -675,6 +675,7 @@ function Firearm:GetAttackResults(action, attack_args)
 
     ----------------------------------
     if buckshot_hits_data then
+        attack_results.buckshot_pellets = true
         local parent_shot = attack_results.shots[1]
         local shot_miss = parent_shot.miss
         local shot_cth = parent_shot.cth

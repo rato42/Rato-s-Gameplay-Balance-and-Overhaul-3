@@ -1427,6 +1427,10 @@ return {
 		'CodeFileName', "Code/SOURCE_CalcBuckshotScatter.lua",
 	}),
 	PlaceObj('ModItemCode', {
+		'name', "SOURCE_FirearmBulletFly",
+		'CodeFileName', "Code/SOURCE_FirearmBulletFly.lua",
+	}),
+	PlaceObj('ModItemCode', {
 		'name', "FUNCTION_ChangeMGSetupGetAreaParams",
 		'CodeFileName', "Code/FUNCTION_ChangeMGSetupGetAreaParams.lua",
 	}),
