@@ -1,3 +1,51 @@
+function Firearm:FireBullet(attacker, shot, threads, results, attack_args)
+    local fx_action = attack_args.fx_action or "WeaponFire"
+    NetUpdateHash("FireBullet", attacker)
+    local visual_obj = self:GetVisualObj()
+    assert(visual_obj and visual_obj:IsValidPos())
+
+    if fx_action ~= "" and attack_args.single_fx then
+        results.fx_played = results.fx_played or {}
+        if results.fx_played[fx_action] then
+            fx_action = ""
+        else
+            results.fx_played[fx_action] = true
+        end
+    end
+
+    local action_dir = shot.target_pos - shot.attack_pos
+    if action_dir:Len() > 0 then
+        action_dir = SetLen(action_dir, 4096)
+    else
+        action_dir = RotateRadius(4096, attacker:GetAngle())
+    end
+
+    if fx_action ~= "" and attacker.visible then
+        -- local fx_target = self:HasComponent("SilentShots") and "Silencer" or "Basic"
+        local fx_target = visual_obj.parts.Muzzle or visual_obj.parts.Barrel or visual_obj
+        PlayFX(fx_action, "start", visual_obj, fx_target, shot.attack_pos, action_dir)
+        -- shell eject fx
+        if shot.ammo_type then
+            PlayFX("ShellEject", "start", visual_obj, shot.ammo_type)
+        end
+    end
+    -----------------------
+    if shot.pellets then
+        local game_time = GameTime()
+        for i, pellet in ipairs(shot.pellets) do
+            CreateGameTimeThread(self.PelletFly, self, attacker, pellet.attack_pos,
+                                 pellet.stuck_pos, action_dir, const.Combat.BulletVelocity,
+                                 pellet.hits, attack_args.target, attack_args, game_time)
+        end
+    end
+    -----------------------
+    BirdsFlappingAway(visual_obj:GetVisualPos())
+    table.insert(threads,
+                 CreateGameTimeThread(self.ProjectileFly, self, attacker, shot.attack_pos,
+                                      shot.stuck_pos, action_dir, const.Combat.BulletVelocity,
+                                      shot.hits, attack_args.target, attack_args))
+end
+
 function Firearm:FirePellets(attacker, shot, threads, results, attack_args, start_time)
     local fx_action = attack_args.fx_action or "WeaponFire"
     NetUpdateHash("FireBullet", attacker)
