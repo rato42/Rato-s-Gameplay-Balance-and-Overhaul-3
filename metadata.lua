@@ -5,7 +5,6 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +24,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 57,
-	'version', 11996,
+	'version', 12012,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -194,8 +193,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1739247026,
-	'code_hash', 5510038091667463899,
+	'saved', 1739253592,
+	'code_hash', 5424610129259637963,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

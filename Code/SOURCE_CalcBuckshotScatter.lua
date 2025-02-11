@@ -54,6 +54,7 @@ function Firearm:CalcBuckshotScatter(attacker, action, attack_pos, target_pos, n
             -- 						 shot_attack_args.target_spot_group)
             hit_data = attack_data.outside_attack_area_lof or attack_data.lof and
                            attack_data.lof[lof_idx or 1]
+            -- 
 
         end
         self:BulletCalcDamage(hit_data)

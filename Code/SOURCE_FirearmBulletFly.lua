@@ -1,15 +1,4 @@
-local GBO_original_Firearm_FireBullet = Firearm.FireBullet
-
-function Firearm:FireBullet(attacker, shot, threads, results, attack_args)
-    if results.buckshot_pellets then
-        self:FirePellets(attacker, shot, threads, results, attack_args)
-    else
-        GBO_original_Firearm_FireBullet(self, attacker, shot, threads, results, attack_args)
-    end
-end
-
-function Firearm:FirePellets(attacker, shot, threads, results, attack_args, start_time,
-                             pellet_fly_time)
+function Firearm:FirePellets(attacker, shot, threads, results, attack_args, start_time)
     local fx_action = attack_args.fx_action or "WeaponFire"
     NetUpdateHash("FireBullet", attacker)
     local visual_obj = self:GetVisualObj()
@@ -41,11 +30,12 @@ function Firearm:FirePellets(attacker, shot, threads, results, attack_args, star
         end
     end
     BirdsFlappingAway(visual_obj:GetVisualPos())
+
     table.insert(threads,
+
                  CreateGameTimeThread(self.PelletFly, self, attacker, shot.attack_pos,
                                       shot.stuck_pos, action_dir, const.Combat.BulletVelocity,
-                                      shot.hits, attack_args.target, attack_args, start_time,
-                                      pellet_fly_time))
+                                      shot.hits, attack_args.target, attack_args, start_time))
 end
 
 local BulletVegetationCollisionMask = const.cmDefaultObject | const.cmActionCamera
@@ -53,7 +43,7 @@ local BulletVegetationCollisionQueryFlags = const.cqfSorted | const.cqfResultIfS
 local BulletVegetationClasses = {"Shrub", "SmallTree", "TreeTop"}
 
 function Firearm:PelletFly(attacker, start_pt, end_pt, dir, speed, hits, target, attack_args,
-                           start_time, pellet_fly_time)
+                           start_time)
     NetUpdateHash("ProjectileFly", attacker, start_pt, end_pt, dir, speed, hits)
     dir = SetLen(dir or end_pt - start_pt, 4096)
 
@@ -63,6 +53,10 @@ function Firearm:PelletFly(attacker, start_pt, end_pt, dir, speed, hits, target,
     end
 
     local projectile = PlaceObject("FXBullet")
+    ---
+    projectile:SetScale(30)
+    ---
+
     projectile.fx_actor_class = fx_actor
     projectile:SetGameFlags(const.gofAlwaysRenderable)
     projectile:SetPos(start_pt)
@@ -79,27 +73,27 @@ function Firearm:PelletFly(attacker, start_pt, end_pt, dir, speed, hits, target,
     projectile:SetPos(end_pt, fly_time)
     -- Sleep(const.Combat.BulletDelay)
 
-    local wind_last_dist
-    collision.Collide(start_pt, end_pt - start_pt, BulletVegetationCollisionQueryFlags, 0,
-                      BulletVegetationCollisionMask, function(o, _, hitX, hitY, hitZ)
-        if o:IsKindOfClasses(BulletVegetationClasses) and not table.find(hits, "obj", o) then
-            local hit = {
-                obj = o,
-                pos = point(hitX, hitY, hitZ),
-                distance = start_pt:Dist(hitX, hitY, hitZ),
-                vegetation = true
-            }
-            table.insert(hits, hit)
-            if not wind_last_dist or hit.distance - wind_last_dist >=
-                WindModifiersVegetationMinDistance then
-                PlaceWindModifierBullet(hit.pos)
-                wind_last_dist = hit.distance
-            end
-        end
-    end)
-    if wind_last_dist then
-        table.sortby_field(hits, "distance")
-    end
+    -- local wind_last_dist
+    -- collision.Collide(start_pt, end_pt - start_pt, BulletVegetationCollisionQueryFlags, 0,
+    --                   BulletVegetationCollisionMask, function(o, _, hitX, hitY, hitZ)
+    --     if o:IsKindOfClasses(BulletVegetationClasses) and not table.find(hits, "obj", o) then
+    --         local hit = {
+    --             obj = o,
+    --             pos = point(hitX, hitY, hitZ),
+    --             distance = start_pt:Dist(hitX, hitY, hitZ),
+    --             vegetation = true
+    --         }
+    --         table.insert(hits, hit)
+    --         if not wind_last_dist or hit.distance - wind_last_dist >=
+    --             WindModifiersVegetationMinDistance then
+    --             PlaceWindModifierBullet(hit.pos)
+    --             wind_last_dist = hit.distance
+    --         end
+    --     end
+    -- end)
+    -- if wind_last_dist then
+    --     table.sortby_field(hits, "distance")
+    -- end
 
     local context = {
         attacker = attacker,
@@ -110,12 +104,14 @@ function Firearm:PelletFly(attacker, start_pt, end_pt, dir, speed, hits, target,
         water_hit = false,
         fx_target = false
     }
-    local last_start_pos = start_pt
-    local last_time = 0
+
     for i, hit in ipairs(hits) do
         self:BulletHit(projectile, hit, context)
     end
-    --[[for i, hit in ipairs(hits) do
+    --[[
+	    local last_start_pos = start_pt
+    local last_time = 0
+	for i, hit in ipairs(hits) do
         local hit_time = MulDivRound(hit.pos:Dist(last_start_pos), 1000, speed)
         if hit_time > last_time then
             Sleep(hit_time - last_time)

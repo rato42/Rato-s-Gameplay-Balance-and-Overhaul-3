@@ -354,6 +354,8 @@ function Firearm:GetAttackResults(action, attack_args)
         elseif #miss_target_pts > 0 then
             point_target, point_lof = miss_target_pts[1].target_pos, miss_target_pts[1].lof_pos1
             color = const.clrRed
+        else
+            point_target = target_pos
         end
         if point_target then
             DbgAddCircle(point_target, const.SlabSizeX / 6, color)
@@ -677,9 +679,9 @@ function Firearm:GetAttackResults(action, attack_args)
     if buckshot_hits_data then
         attack_results.buckshot_pellets = true
         local parent_shot = attack_results.shots[1]
-        local shot_miss = parent_shot.miss
-        local shot_cth = parent_shot.cth
-        local out_of_range = parent_shot.out_of_range
+        local shot_miss = parent_shot and parent_shot.miss
+        local shot_cth = parent_shot and parent_shot.cth
+        local out_of_range = parent_shot and parent_shot.out_of_range
         for buck_i, hit_data in ipairs(buckshot_hits_data) do
             local i = num_shots + buck_i
             local shot_target_hit = false
@@ -752,7 +754,6 @@ function Firearm:GetAttackResults(action, attack_args)
                 ammo_type = ammo_type,
                 clear_attacks = hit_data.clear_attacks,
                 ------------+
-                --- TODO: create custom fly projectile timing for pellet
                 pellet = true
             }
             ------------
