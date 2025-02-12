@@ -5,6 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
+	'last_changes', "3.57a \n\nOut of breath effect on aim is now a reduction of aim bonus effectivness instead of an increase in aim AP\n\nSome small tweaks.",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -24,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 57,
-	'version', 12012,
+	'version', 12009,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -193,8 +194,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1739253592,
-	'code_hash', 5424610129259637963,
+	'saved', 1739330056,
+	'code_hash', 3659495720819325330,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

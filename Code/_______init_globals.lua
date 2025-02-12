@@ -2,6 +2,7 @@ if FirstLoad then
     ratG_T_table = {}
     ratG_GunsHurtOriginalDMGValues = {}
     ratG_original_UnitGetBaseAimLevelRange = Unit.GetBaseAimLevelRange
+
     ratG_recoilData = {
         small = {
             modifier = 1.0,
