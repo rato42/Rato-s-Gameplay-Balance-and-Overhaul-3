@@ -99,7 +99,7 @@ function rat_place_prepareweapon_combat_actions()
             local cost = self:GetAPCost(unit, args)
             local weapon = unit:GetActiveWeapons()
 
-            if not IsKindOf(weapon, "Firearm") then
+            if not IsKindOf(weapon, "Firearm") or IsKindOf(weapon, "HeavyWeapon") then
                 return "hidden"
             end
 
