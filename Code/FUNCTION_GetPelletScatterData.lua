@@ -1,24 +1,46 @@
-function Firearm:CalcBuckshotScatter(attacker, action, attack_pos, target_pos, num_vectors,
-                                     aoe_params, attack_results, shot_attack_args)
+local debug = true
+----- TODO: check how 2 barrel works
+function Firearm:GetPelletScatterData(attacker, action, attack_pos, target_pos, num_vectors,
+                                      aoe_params, attack_results, shot_attack_args)
     aoe_params = aoe_params or weapon:GetAreaAttackParams(action.id, attacker, target_pos)
     local range = self.WeaponRange * const.SlabSizeX
-    ----
-    range = range * 10
-    ----
     local dir = SetLen(target_pos - attack_pos, guim)
     DbgAddCircle(target_pos, const.SlabSizeX)
     local min_offset = 35 * guic
-
-    ----
-    aoe_params.cone_angle = 300
-    -----
-
     local scatter = Max(min_offset, MulDivRound(range, sin(aoe_params.cone_angle / 2),
                                                 Max(1, cos(aoe_params.cone_angle / 2))))
 
     local var_offset = Max(0, scatter - min_offset)
+
     local targets = {}
     target_pos = attack_pos + SetLen(dir, range)
+
+    --------------------------------
+    ic(aoe_params.cone_angle)
+    if debug then
+        -- Draw the cone limits using debug vectors
+        local num_debug_vectors = 12 -- Increase for smoother visualization
+
+        for i = 1, num_debug_vectors do
+            -- Calculate rotation angle (spread evenly in a full circle)
+            local angle = (360 * 60 / num_debug_vectors) * i
+
+            -- Use maximum offset (min_offset + var_offset) for outer limit
+
+            local max_offset = RotateAxis(point(0, 0, min_offset + var_offset), dir, (angle))
+
+            -- Rotate around the attack direction to create the cone edge
+
+            local pt = target_pos + max_offset
+            local test_dir = pt - attack_pos
+            local cone_edge_point = attack_pos + SetLen(test_dir, range + scatter)
+
+            -- Draw the debug vector from the attack position to the cone edge
+            DbgAddVector(attack_pos, cone_edge_point - attack_pos, const.clrWhite)
+        end
+
+    end
+    --------------------------------
 
     for i = 1, num_vectors do
         local offset = RotateAxis(point(0, 0, min_offset + attacker:Random(var_offset)), dir,
@@ -47,6 +69,20 @@ function Firearm:CalcBuckshotScatter(attacker, action, attack_pos, target_pos, n
         local attack_data = GetLoFData(attacker, target, lof_params)
         local hit_data
         if attack_data then
+            ----------
+            if debug then
+                for i, data in ipairs(attack_data) do
+                    local lof_hits = data.lof and data.lof[1] and data.lof[1].hits
+                    for _, hit in ipairs(lof_hits) do
+                        local color = const.clrCyan
+                        if (hit.obj or hit.terrain) then
+                            color = IsKindOf(hit.obj, "Unit") and const.clrRed or color
+                        end
+                        DbgAddVector(attack_pos, hit.pos - attack_pos, color)
+                    end
+                end
+            end
+            ----------
             local lof_idx
             ---- Not sure if should check for spot group
             -- lof_idx = lof_idx or
@@ -62,20 +98,6 @@ function Firearm:CalcBuckshotScatter(attacker, action, attack_pos, target_pos, n
     end
 
     return shots_hit_data
-
-    -- for i, data in ipairs(attack_data) do
-    --     local lof_hits = data.lof and data.lof[1] and data.lof[1].hits
-    --     for _, hit in ipairs(lof_hits) do
-    --         local color = const.clrWhite
-    --         if (hit.obj or hit.terrain) then
-    --             hits[#hits + 1] = hit
-    --             -- break
-    --             color = IsKindOf(hit.obj, "Unit") and const.clrCyan or color
-
-    --         end
-    --         DbgAddVector(attack_pos, hit.pos - attack_pos, color)
-    --     end
-    -- end
 
     -- return hits
 end

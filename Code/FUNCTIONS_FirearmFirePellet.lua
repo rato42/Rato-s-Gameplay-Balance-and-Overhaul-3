@@ -1,3 +1,17 @@
+local GBO_originalFirearmFireBullet = Firearm.FireBullet
+
+function Firearm:FireBullet(attacker, shot, threads, results, attack_args)
+    local pellets = shot.pellets
+    if pellets and #pellets > 0 then
+        table.insert(pellets, shot)
+        for i = 1, #pellets do
+            self:FirePellets(attacker, pellets[i], threads, results, attack_args, GameTime())
+        end
+        return
+    end
+    GBO_originalFirearmFireBullet(self, attacker, shot, threads, results, attack_args)
+end
+
 function Firearm:FirePellets(attacker, shot, threads, results, attack_args, start_time)
     local fx_action = attack_args.fx_action or "WeaponFire"
     NetUpdateHash("FireBullet", attacker)

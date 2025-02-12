@@ -1,12 +1,12 @@
 function temporary_shotgun_patch()
-    M41Shotgun.Damage = 6
-    M41Shotgun.BuckshotCone = 300
-    Auto5.Damage = 5
-    Auto5.BuckshotCone = 400
-    Auto5_quest.Damage = 5
-    Auto5_quest.BuckshotCone = 450
-    AA12.Damage = 5
-    AA12.BuckshotCone = 350
-    DoubleBarrelShotgun.Damage = 5
-    DoubleBarrelShotgun.BuckshotCone = 500
+    M41Shotgun.Damage = 4
+    M41Shotgun.BuckshotConeAngle = 220
+    Auto5.Damage = 4
+    Auto5.BuckshotConeAngle = 280
+    Auto5_quest.Damage = 4
+    Auto5_quest.BuckshotConeAngle = 280
+    AA12.Damage = 4
+    AA12.BuckshotConeAngle = 250
+    DoubleBarrelShotgun.Damage = 4
+    DoubleBarrelShotgun.BuckshotConeAngle = 280
 end
