@@ -323,7 +323,7 @@ function Firearm:GetAttackResults(action, attack_args)
 
     -- burst distribution simulation
     -----
-    local buckshot_hits_data
+    local pellets_data
     -----
 
     local precalc_shots, anyHitsTarget
@@ -357,17 +357,17 @@ function Firearm:GetAttackResults(action, attack_args)
         else
             point_target = target_pos
         end
+
         if point_target then
-            DbgAddCircle(point_target, const.SlabSizeX / 6, color)
+            -- DbgAddCircle(point_target, const.SlabSizeX / 6, color)
             -- DbgAddVector(point_target, attack_results.attack_pos - point_target, color)
         end
 
-        if action.id == "Buckshot" and not attack_args.prediction then
-            buckshot_hits_data = self:CalcBuckshotScatter(attacker, action,
-                                                          attack_results.attack_pos, point_target,
-                                                          shot_attack_args.buckshot_scatter_fx,
-                                                          aoe_params, attack_results,
-                                                          shot_attack_args)
+        if (self.NumPellets or 0) > 0 and not attack_args.prediction then
+            pellets_data = self:CalcBuckshotScatter(attacker, action, attack_results.attack_pos,
+                                                    point_target,
+                                                    shot_attack_args.buckshot_scatter_fx,
+                                                    aoe_params, attack_results, shot_attack_args)
 
         end
         -----------
@@ -676,13 +676,13 @@ function Firearm:GetAttackResults(action, attack_args)
     end
 
     ----------------------------------
-    if buckshot_hits_data then
+    if pellets_data then
         attack_results.buckshot_pellets = true
         local parent_shot = attack_results.shots[1]
         local shot_miss = parent_shot and parent_shot.miss
         local shot_cth = parent_shot and parent_shot.cth
         local out_of_range = parent_shot and parent_shot.out_of_range
-        for buck_i, hit_data in ipairs(buckshot_hits_data) do
+        for buck_i, hit_data in ipairs(pellets_data) do
             local i = num_shots + buck_i
             local shot_target_hit = false
             for _, hit in ipairs(hit_data.hits) do
@@ -811,8 +811,8 @@ function Firearm:GetAttackResults(action, attack_args)
     local targetHitProjectile = target_hit
 
     -------------------------
-    if buckshot_hits_data then
-        -- attack_results.area_hits = buckshot_hits_data[1].hits
+    if pellets_data then
+        -- attack_results.area_hits = pellets_data[1].hits
         --------------------------------------
     elseif aoe_params then
         local damage_override = GetAoeDamageOverride(shot_attack_args, attacker, self,

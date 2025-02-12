@@ -1,5 +1,6 @@
 function OnMsg.ClassesGenerate()
     RatoGBO_WepPatch()
+    temporary_shotgun_patch()
 end
 
 function OnMsg.ModsReloaded()

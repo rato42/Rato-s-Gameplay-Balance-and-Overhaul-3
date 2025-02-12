@@ -1296,6 +1296,10 @@ return {
 		'CodeFileName', "Code/UTIL.lua",
 	}),
 	PlaceObj('ModItemCode', {
+		'name', "TEMPORARY_ShotgunPatch",
+		'CodeFileName', "Code/TEMPORARY_ShotgunPatch.lua",
+	}),
+	PlaceObj('ModItemCode', {
 		'name', "FUNCTION_disable_unpatched_shop",
 		'CodeFileName', "Code/FUNCTION_disable_unpatched_shop.lua",
 	}),
@@ -1342,6 +1346,10 @@ return {
 	PlaceObj('ModItemCode', {
 		'name', "FUNCTIONS_hipfire",
 		'CodeFileName', "Code/FUNCTIONS_hipfire.lua",
+	}),
+	PlaceObj('ModItemCode', {
+		'name', "FUNCTIONS_FirearmFirePellet",
+		'CodeFileName', "Code/FUNCTIONS_FirearmFirePellet.lua",
 	}),
 	PlaceObj('ModItemCode', {
 		'name', "FX_inherit",
@@ -1457,8 +1465,8 @@ return {
 		'CodeFileName', "Code/SOURCE_CalcBuckshotScatter.lua",
 	}),
 	PlaceObj('ModItemCode', {
-		'name', "SOURCE_FirearmBulletFly",
-		'CodeFileName', "Code/SOURCE_FirearmBulletFly.lua",
+		'name', "SOURCE_UnitFirearmExecute",
+		'CodeFileName', "Code/SOURCE_UnitFirearmExecute.lua",
 	}),
 	PlaceObj('ModItemCode', {
 		'name', "FUNCTION_ChangeMGSetupGetAreaParams",
