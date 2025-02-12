@@ -71,29 +71,29 @@ function Firearm:PelletFly(attacker, start_pt, end_pt, dir, speed, hits, target,
     -- local end_time = GameTime() + fly_time
     -----
     projectile:SetPos(end_pt, fly_time)
-    -- Sleep(const.Combat.BulletDelay)
+    Sleep(const.Combat.BulletDelay)
 
-    -- local wind_last_dist
-    -- collision.Collide(start_pt, end_pt - start_pt, BulletVegetationCollisionQueryFlags, 0,
-    --                   BulletVegetationCollisionMask, function(o, _, hitX, hitY, hitZ)
-    --     if o:IsKindOfClasses(BulletVegetationClasses) and not table.find(hits, "obj", o) then
-    --         local hit = {
-    --             obj = o,
-    --             pos = point(hitX, hitY, hitZ),
-    --             distance = start_pt:Dist(hitX, hitY, hitZ),
-    --             vegetation = true
-    --         }
-    --         table.insert(hits, hit)
-    --         if not wind_last_dist or hit.distance - wind_last_dist >=
-    --             WindModifiersVegetationMinDistance then
-    --             PlaceWindModifierBullet(hit.pos)
-    --             wind_last_dist = hit.distance
-    --         end
-    --     end
-    -- end)
-    -- if wind_last_dist then
-    --     table.sortby_field(hits, "distance")
-    -- end
+    local wind_last_dist
+    collision.Collide(start_pt, end_pt - start_pt, BulletVegetationCollisionQueryFlags, 0,
+                      BulletVegetationCollisionMask, function(o, _, hitX, hitY, hitZ)
+        if o:IsKindOfClasses(BulletVegetationClasses) and not table.find(hits, "obj", o) then
+            local hit = {
+                obj = o,
+                pos = point(hitX, hitY, hitZ),
+                distance = start_pt:Dist(hitX, hitY, hitZ),
+                vegetation = true
+            }
+            table.insert(hits, hit)
+            if not wind_last_dist or hit.distance - wind_last_dist >=
+                WindModifiersVegetationMinDistance then
+                PlaceWindModifierBullet(hit.pos)
+                wind_last_dist = hit.distance
+            end
+        end
+    end)
+    if wind_last_dist then
+        table.sortby_field(hits, "distance")
+    end
 
     local context = {
         attacker = attacker,
@@ -108,10 +108,10 @@ function Firearm:PelletFly(attacker, start_pt, end_pt, dir, speed, hits, target,
     for i, hit in ipairs(hits) do
         self:BulletHit(projectile, hit, context)
     end
-    --[[
-	    local last_start_pos = start_pt
+
+    local last_start_pos = start_pt
     local last_time = 0
-	for i, hit in ipairs(hits) do
+    for i, hit in ipairs(hits) do
         local hit_time = MulDivRound(hit.pos:Dist(last_start_pos), 1000, speed)
         if hit_time > last_time then
             Sleep(hit_time - last_time)
@@ -132,7 +132,7 @@ function Firearm:PelletFly(attacker, start_pt, end_pt, dir, speed, hits, target,
     end
     if IsValid(target) and not context.target_hit then
         PlayFX("TargetMissed", "start", target)
-    end]]
+    end
     -- wait the projectile in case of no hits or long flight after the last hit
     Sleep(Max(0, end_time - GameTime()))
     PlayFX("Spawn", "end", projectile, false)

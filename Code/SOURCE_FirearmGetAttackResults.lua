@@ -688,6 +688,7 @@ function Firearm:GetAttackResults(action, attack_args)
             for _, hit in ipairs(hit_data.hits) do
                 local hit_obj = hit.obj
                 hit.pellet = true
+                hit.cosmetic = false
                 if IsKindOf(hit_obj, "Unit") and not hit_obj:IsDead() then
                     num_hits = num_hits + 1
                     if not hit_objs[hit_obj] then
@@ -737,6 +738,7 @@ function Firearm:GetAttackResults(action, attack_args)
                     table.insert_unique(killed_colliders, hit_obj)
                 end
             end
+
             target_hit = target_hit or shot_target_hit
 
             attack_results.shots[i] = {
@@ -809,7 +811,8 @@ function Firearm:GetAttackResults(action, attack_args)
     local targetHitProjectile = target_hit
 
     -------------------------
-    if action.id == "Buckshot" then
+    if buckshot_hits_data then
+        -- attack_results.area_hits = buckshot_hits_data[1].hits
         --------------------------------------
     elseif aoe_params then
         local damage_override = GetAoeDamageOverride(shot_attack_args, attacker, self,
