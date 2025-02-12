@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.57 \n\nMany small tweaks related to critical chance calculation\n\nFrogLeapping free move multiplier changed from x2 to x1.5\n\nSuppressors now decrease reliability. Increased reliability decrease of improvised suppressor\n\nOut of Breath status effect now increases the AP to aim attacks\n\nAfter sprinting, the character will be sligthly harder to hit until the beginning of its next turn.\nTweaked the move ap formula for sprinting\n\nReduced a bit the penalties for running and gunning.\n",
+	'last_changes', "3.57a \n\nOut of breath effect on aim is now a reduction of aim bonus effectivness instead of an increase in aim AP\n\nSome small tweaks.",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 57,
-	'version', 11996,
+	'version', 12008,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -192,8 +192,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1739152283,
-	'code_hash', 8128509967126368316,
+	'saved', 1739329682,
+	'code_hash', -3057491911834367979,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

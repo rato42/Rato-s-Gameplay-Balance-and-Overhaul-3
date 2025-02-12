@@ -5,6 +5,18 @@ DefineClass.R_outofbreath = {
 
 
 	object_class = "StatusEffect",
+	msg_reactions = {
+		PlaceObj('MsgReaction', {
+			Event = "GatherCTHModifications",
+			Handler = function (self, attacker, cth_id, action_id, target, weapon1, weapon2, data)
+				if cth_id == "Aim" then
+					data.mul = MulDivRound(data.mul, const.Combat.Perks.OutOfBreathAimMul, 100)
+					local meta = self.DisplayName
+					table.insert(data.meta_text or {}, meta)
+				end
+			end,
+		}),
+	},
 	unit_reactions = {
 		PlaceObj('UnitReaction', {
 			Event = "OnCalcStartTurnAP",
@@ -35,25 +47,10 @@ DefineClass.R_outofbreath = {
 				self:SetParameter("duration", duration)
 			end,
 		}),
-		PlaceObj('UnitReaction', {
-			Event = "OnCalcAPCost",
-			Handler = function (self, target, current_ap, action, weapon, aim)
-				local aim_level = aim
-				
-				if aim_level < 1 then
-					return
-				end
-				
-				local aim_cost = self:ResolveValue("aim_cost") 
-				local extra_cost = cRoundDown(aim_cost * aim_level) * const.Scale.AP
-				
-				return current_ap + extra_cost
-			end,
-		}),
 	},
 	Modifiers = {},
 	DisplayName = T(373983661042, --[[ModItemCharacterEffectCompositeDef R_outofbreath DisplayName]] "Out of Breath"),
-	Description = T(981332796704, --[[ModItemCharacterEffectCompositeDef R_outofbreath Description]] "Penalty of <color EmStyle><ap_loss></color> per stack is applied to your maximum AP. Reduces <color EmStyle>Free Move AP</color> per stack. Normally, lasts until the end of your next turn, but low energy levels can increase the duration.\n\nIncreases the AP cost of Aiming attacks.\n\nCurrent duration: <em><duration></em>"),
+	Description = T(981332796704, --[[ModItemCharacterEffectCompositeDef R_outofbreath Description]] "Penalty of <color EmStyle><ap_loss></color> per stack is applied to your maximum AP. Reduces <color EmStyle>Free Move AP</color> per stack. Normally, lasts until the end of your next turn, but low energy levels can increase the duration.\n\nDecreases the effectiveness of Aiming accuracy bonus.\n\nCurrent duration: <em><duration></em>"),
 	GetDescription = function (self)
 		return self.Description
 	end,
