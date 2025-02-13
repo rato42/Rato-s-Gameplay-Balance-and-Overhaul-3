@@ -9,7 +9,7 @@ function Firearm:GetPelletScatterData(attacker, action, attack_pos, target_pos, 
     aoe_params = aoe_params or weapon:GetAreaAttackParams(action.id, attacker, target_pos)
     local range = self.WeaponRange * const.SlabSizeX
     local dir = SetLen(target_pos - attack_pos, guim)
-    DbgAddCircle(target_pos, const.SlabSizeX)
+
     local min_offset = 35 * guic
     local scatter = Max(min_offset, MulDivRound(range, sin(aoe_params.cone_angle / 2),
                                                 Max(1, cos(aoe_params.cone_angle / 2))))
@@ -56,16 +56,20 @@ function Firearm:GetPelletScatterData(attacker, action, attack_pos, target_pos, 
         -- DbgAddVector(attack_pos, targets[i] - attack_pos)
     end
 
-    local lof_params = shot_attack_args
-    -- local lof_params = {
-    --     attack_pos = attack_pos,
-    --     obj = attacker,
-    --     output_collisions = true,
-    --     range = range + scatter + guim,
-    --     seed = attacker:Random()
-    -- }
-    lof_params.seed = attacker:Random()
-    lof_params.range = range + scatter + guim
+    -- local lof_params = shot_attack_args
+    -- lof_params.ignore_colliders = nil
+
+    -- lof_params.seed = attacker:Random()
+    -- print("h")
+    -- lof_params.range = range + scatter + guim
+
+    local lof_params = {
+        attack_pos = attack_pos,
+        obj = attacker,
+        output_collisions = true,
+        range = range + scatter + guim,
+        seed = attacker:Random()
+    }
 
     -- local hits = {}
     local shots_hit_data = {}
@@ -98,7 +102,6 @@ function Firearm:GetPelletScatterData(attacker, action, attack_pos, target_pos, 
             -- 
 
         end
-        self:BulletCalcDamage(hit_data)
         table.insert(shots_hit_data, hit_data)
     end
 

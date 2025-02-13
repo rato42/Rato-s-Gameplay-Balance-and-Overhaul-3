@@ -34,8 +34,8 @@ function AnimChangeHook:SetState(anim, flags, crossfade, ...)
         self:Reorient_ShootingStance(shooting_stance)
 
         if new_anim ~= aim_state then
-            local aim_pos = self.aim_pos_stance
-            self.aim_pos_stance = nil
+            -- local aim_pos = self.aim_pos_stance
+            -- self.aim_pos_stance = nil
             self:SetState(aim_state, const.eKeepComponentTargets)
         end
     end

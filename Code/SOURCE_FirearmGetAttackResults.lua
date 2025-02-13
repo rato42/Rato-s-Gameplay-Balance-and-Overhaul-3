@@ -640,7 +640,9 @@ function Firearm:GetAttackResults(action, attack_args)
         end
         target_hit = target_hit or shot_target_hit
         out_of_range = out_of_range and attack_data.outside_attack_area
-        attack_results.shots[i] = {
+
+        --------
+        local shot = {
             miss = shot_miss,
             cth = shot_cth,
             roll = roll,
@@ -658,6 +660,9 @@ function Firearm:GetAttackResults(action, attack_args)
             pellets = {}
             -----------------------------------------------
         }
+        ---------
+
+        attack_results.shots[i] = shot
 
         if hit_data.allyHit then
             if attack_results.allyHit and attack_results.allyHit ~= hit_data.allyHit then
@@ -673,16 +678,49 @@ function Firearm:GetAttackResults(action, attack_args)
 
         local pellet_count = (self.NumPellets or 0)
         pellet_count = action.id == "DoubleBarrel" and pellet_count * 2 or pellet_count
+        local process_pellets = pellet_count > 0 and not attack_args.prediction
 
-        if pellet_count > 0 and not attack_args.prediction then
-            attack_results.buckshot_pellets = true
+        if process_pellets then
+            attack_results.is_pellet_attack = true
+            attack_results.shots[i].main_pellet = true
             local main_hit_pos = hit_data.stuck_pos or hit_data.lof_pos2 or hit_data.target_pos
             local pellet_data = self:GetPelletScatterData(attacker, action,
                                                           attack_results.attack_pos, main_hit_pos,
                                                           (pellet_count - 1), aoe_params,
                                                           attack_results, shot_attack_args)
-            for pi, hit_data in ipairs(pellet_data) do
-                for _, hit in ipairs(hit_data.hits) do
+
+            for p_i, pellet_hit_data in ipairs(pellet_data) do
+
+                p_i = p_i + 1
+
+                ----TODO: check how the damage is being calculated in regards to bodyparts + strayshots
+                ----- strays are hardcoded -50%, grazes use the constant (-70%)
+                if IsValid(target) then
+                    for _, hit in ipairs(pellet_hit_data.hits) do
+                        if hit.obj and hit.obj == target then
+                            if shot_miss then
+                                if allow_grazing then
+                                    hit.grazing = true
+                                    hit.grazed_miss = true
+                                else
+                                    hit.stray = true
+                                end
+                            else
+                                hit.stray = false
+                            end
+                        else
+                            hit.stray = true
+                        end
+                    end
+                end
+
+                ----- So that BulletCalcDamage doesnt reset our stray definition
+                ----- GetPelletScatterData uses a point as target
+                pellet_hit_data.target = target
+
+                self:BulletCalcDamage(pellet_hit_data)
+                local pellet_target_hit = false
+                for _, hit in ipairs(pellet_hit_data.hits) do
                     local hit_obj = hit.obj
                     if IsKindOf(hit_obj, "Unit") and not hit_obj:IsDead() then
                         num_hits = num_hits + 1
@@ -707,14 +745,16 @@ function Firearm:GetAttackResults(action, attack_args)
                         end
                         unit_damage[hit_obj] = (unit_damage[hit_obj] or 0) + hit.damage
                         if hit_obj == target_unit then
-                            shot_target_hit = true
+                            -- shot_target_hit = true
+                            pellet_target_hit = true
                         end
                         if shot_attack_args.stealth_bonus_crit_chance > 0 and hit.critical then
                             hit.stealth_crit = true
                         end
                     elseif IsKindOf(hit_obj, "Trap") then
                         if hit_obj == target then
-                            shot_target_hit = true
+                            -- shot_target_hit = true
+                            pellet_target_hit = true
                         end
                     end
 
@@ -733,32 +773,34 @@ function Firearm:GetAttackResults(action, attack_args)
                         table.insert_unique(killed_colliders, hit_obj)
                     end
                 end
-                target_hit = target_hit or shot_target_hit
-                out_of_range = out_of_range and attack_data.outside_attack_area
 
-                attack_results.shots[i].pellets[pi] = {
+                -- out_of_range = out_of_range and attack_data.outside_attack_area
+
+                attack_results.shots[i].pellets[p_i] = {
                     miss = shot_miss,
                     cth = shot_cth,
                     roll = roll,
-                    attack_pos = hit_data.attack_pos,
-                    target_pos = hit_data.target_pos,
-                    stuck_pos = hit_data.stuck_pos or hit_data.lof_pos2,
+                    attack_pos = pellet_hit_data.attack_pos,
+                    target_pos = pellet_hit_data.target_pos,
+                    stuck_pos = pellet_hit_data.stuck_pos or pellet_hit_data.lof_pos2,
                     hits = {},
-                    target_hit = shot_target_hit,
+                    target_hit = pellet_target_hit, -- shot_target_hit,
                     out_of_range = attack_data.outside_attack_area,
                     shot_target = not shot_miss and target_unit,
-                    allyHit = hit_data.allyHit,
+                    allyHit = pellet_hit_data.allyHit,
                     ammo_type = ammo_type,
-                    clear_attacks = hit_data.clear_attacks
+                    clear_attacks = pellet_hit_data.clear_attacks
                 }
 
-                for _, hit in ipairs(hit_data.hits) do
+                for _, hit in ipairs(pellet_hit_data.hits) do
                     hit.direct_shot = true
                     hit.shot_idx = i
+                    -----
+                    hit.pellet_idx = p_i
+                    -----
                     hit.weapon = self
                     if hit.obj or hit.terrain then
-                        -- table.insert(attack_results, hit) -- store in attack_results to obey the convention of returning hits in the array part of the results
-                        table.insert(attack_results.shots[i].pellets[pi].hits, hit) -- also store in the shot description for convenience
+                        table.insert(attack_results.shots[i].pellets[p_i].hits, hit)
                     end
                 end
             end
@@ -770,126 +812,24 @@ function Firearm:GetAttackResults(action, attack_args)
         for _, hit in ipairs(hit_data.hits) do
             hit.direct_shot = true
             hit.shot_idx = i
+            -----
+            if process_pellets then
+                hit.pellet_idx = 1
+            end
+            -----
             hit.weapon = self
             if hit.obj or hit.terrain then
                 table.insert(attack_results, hit) -- store in attack_results to obey the convention of returning hits in the array part of the results
                 table.insert(attack_results.shots[i].hits, hit) -- also store in the shot description for convenience
             end
         end
-    end
 
-    ----------------------------------
-    --[[if pellets_data  then
-        attack_results.buckshot_pellets = true
-        local parent_shot = attack_results.shots[1]
-        local shot_miss = parent_shot and parent_shot.miss
-        local shot_cth = parent_shot and parent_shot.cth
-        local out_of_range = parent_shot and parent_shot.out_of_range
-        for buck_i, hit_data in ipairs(pellets_data) do
-            local i = num_shots + buck_i
-            local shot_target_hit = false
-            for _, hit in ipairs(hit_data.hits) do
-                local hit_obj = hit.obj
-                hit.pellet = true
-                hit.cosmetic = false
-                if IsKindOf(hit_obj, "Unit") and not hit_obj:IsDead() then
-                    num_hits = num_hits + 1
-                    if not hit_objs[hit_obj] then
-                        hit_objs[#hit_objs + 1] = hit_obj
-                        hit_objs[hit_obj] = true
-                    end
-
-                    -- if hit_obj == dmg_target and hit.grazing then
-                    -- 	stealth_kill = false
-                    -- 	shot_attack_args.stealth_kill_roll = -100
-                    -- end
-
-                    -- if stealth_kill and hit_obj == dmg_target then
-                    -- 	hit.damage = MulDivRound(target:GetTotalHitPoints(), 125, 100)
-                    -- 	hit.stealth_kill = true
-                    -- end
-
-                    total_damage = total_damage + hit.damage
-                    if not attacker:IsOnEnemySide(hit_obj) then
-                        friendly_fire_dmg = friendly_fire_dmg + hit.damage
-                    end
-                    unit_damage[hit_obj] = (unit_damage[hit_obj] or 0) + hit.damage
-                    if hit_obj == target_unit then
-                        shot_target_hit = true
-                    end
-                    if shot_attack_args.stealth_bonus_crit_chance > 0 and hit.critical then
-                        hit.stealth_crit = true
-                    end
-                elseif IsKindOf(hit_obj, "Trap") then
-                    if hit_obj == target then
-                        shot_target_hit = true
-                    end
-                end
-
-                -- presim damage tracking
-                if IsKindOf(hit_obj, "CombatObject") then
-                    local dmg_data = precalc_damage_data[hit_obj] or {}
-                    precalc_damage_data[hit_obj] = dmg_data
-                    local hp, temp_hp = hit_obj:PrecalcDamageTaken(hit.damage, dmg_data.hp,
-                                                                   dmg_data.temp_hp)
-                    dmg_data.hp = hp
-                    dmg_data.temp_hp = temp_hp
-                    if hp <= 0 then
-                        table.insert_unique(killed_colliders, hit_obj)
-                    end
-                elseif IsKindOfClasses(hit_obj, "Destroyable", "Trap") then
-                    table.insert_unique(killed_colliders, hit_obj)
-                end
-            end
-
-            target_hit = target_hit or shot_target_hit
-
-            attack_results.shots[i] = {
-                miss = shot_miss,
-                cth = shot_cth,
-                roll = roll,
-                attack_pos = hit_data.attack_pos,
-                target_pos = hit_data.target_pos,
-                stuck_pos = hit_data.stuck_pos or hit_data.lof_pos2,
-                hits = {},
-                target_hit = shot_target_hit,
-                out_of_range = out_of_range,
-                shot_target = not shot_miss and target_unit,
-                allyHit = hit_data.allyHit,
-                ammo_type = ammo_type,
-                clear_attacks = hit_data.clear_attacks,
-                ------------+
-                pellet = true
-            }
-            ------------
-            -- if attack_results.shots[i] and not attack_args.prediction then
-            --     DbgAddVector(attack_results.shots[i].attack_pos,
-            --                  attack_results.shots[i].target_pos - attack_results.shots[i].attack_pos,
-            --                  const.clrGreen)
-            -- end
-            ------------
-            if hit_data.allyHit then
-                if attack_results.allyHit and attack_results.allyHit ~= hit_data.allyHit then
-                    attack_results.allyHit = "multiple"
-                else
-                    attack_results.allyHit = hit_data.allyHit
-                end
-            end
-            attack_results.clear_attacks = attack_results.clear_attacks +
-                                               (hit_data.clear_attacks or 0)
-            for _, hit in ipairs(hit_data.hits) do
-                hit.direct_shot = true
-                hit.shot_idx = i
-                hit.weapon = self
-                if hit.obj or hit.terrain then
-                    table.insert(attack_results, hit) -- store in attack_results to obey the convention of returning hits in the array part of the results
-                    table.insert(attack_results.shots[i].hits, hit) -- also store in the shot description for convenience
-                end
-            end
-
+        --------------------------------
+        if process_pellets then
+            attack_results.shots[i].pellets[1] = shot
         end
-    end]]
-    ----------------------------------
+        --------------------------------
+    end
 
     attack_results.miss = miss
     attack_results.crit = crit
@@ -914,8 +854,7 @@ function Firearm:GetAttackResults(action, attack_args)
     local targetHitProjectile = target_hit
 
     -------------------------
-    if attack_results.buckshot_pellets then
-        -- attack_results.area_hits = pellets_data[1].hits
+    if attack_results.is_pellet_attack then
         --------------------------------------
     elseif aoe_params then
         local damage_override = GetAoeDamageOverride(shot_attack_args, attacker, self,
