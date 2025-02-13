@@ -323,7 +323,7 @@ function Firearm:GetAttackResults(action, attack_args)
 
     -- burst distribution simulation
     -----
-    local pellets_data
+    -- local pellets_data
     -----
 
     local precalc_shots, anyHitsTarget
@@ -442,6 +442,7 @@ function Firearm:GetAttackResults(action, attack_args)
     local misses
     local precalc_damage_data = {}
     local killed_colliders = {}
+
     for i = 1, num_shots do
         -- clear dead collide units
         local precalc_shot = precalc_shots and precalc_shots[i]
@@ -670,14 +671,15 @@ function Firearm:GetAttackResults(action, attack_args)
         ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        local pellet_shot = action.id == "Buckshot" or action.id == "BuckshotBurst"
+        local pellet_count = (self.NumPellets or 0)
+        pellet_count = action.id == "DoubleBarrel" and pellet_count * 2 or pellet_count
 
-        if pellet_shot and not attack_args.prediction then
+        if pellet_count > 0 and not attack_args.prediction then
             attack_results.buckshot_pellets = true
             local main_hit_pos = hit_data.stuck_pos or hit_data.lof_pos2 or hit_data.target_pos
             local pellet_data = self:GetPelletScatterData(attacker, action,
                                                           attack_results.attack_pos, main_hit_pos,
-                                                          (self.NumPellets - 1), aoe_params,
+                                                          (pellet_count - 1), aoe_params,
                                                           attack_results, shot_attack_args)
             for pi, hit_data in ipairs(pellet_data) do
                 for _, hit in ipairs(hit_data.hits) do
@@ -777,7 +779,7 @@ function Firearm:GetAttackResults(action, attack_args)
     end
 
     ----------------------------------
-    if pellets_data and false then
+    --[[if pellets_data  then
         attack_results.buckshot_pellets = true
         local parent_shot = attack_results.shots[1]
         local shot_miss = parent_shot and parent_shot.miss
@@ -886,7 +888,7 @@ function Firearm:GetAttackResults(action, attack_args)
             end
 
         end
-    end
+    end]]
     ----------------------------------
 
     attack_results.miss = miss
@@ -912,7 +914,7 @@ function Firearm:GetAttackResults(action, attack_args)
     local targetHitProjectile = target_hit
 
     -------------------------
-    if pellets_data then
+    if attack_results.buckshot_pellets then
         -- attack_results.area_hits = pellets_data[1].hits
         --------------------------------------
     elseif aoe_params then

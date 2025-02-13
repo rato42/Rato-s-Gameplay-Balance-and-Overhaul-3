@@ -55,3 +55,4 @@ const.Combat.MGFreeInterruptAttacks = 1
 const.Weapons.PointBlankRange = 6 --- tiles
 const.EnvEffects.RainAimingMultiplier = 100 --- %
 const.Weapons.CriticalDamage = 50
+const.Weapons.DoubleBarrelDamageBonus = 0 -- 50

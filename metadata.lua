@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 57,
-	'version', 12082,
+	'version', 12115,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -86,6 +86,7 @@ return PlaceObj('ModDef', {
 		"Code/FUNCTIONS_hipfire.lua",
 		"Code/XTEMP_recoil.lua",
 		"Code/TEMPORARY_ShotgunPatch.lua",
+		"Code/COMBAT_ACTIONS_ShotgunRework.lua",
 		"Code/FUNCTIONS_FirearmFirePellet.lua",
 		"Code/FUNCTION_GetPelletScatterData.lua",
 		"Code/FX_inherit.lua",
@@ -110,9 +111,9 @@ return PlaceObj('ModDef', {
 		"Code/SOURCE_FirearmGetAttackResults.lua",
 		"Code/SOURCE_GetMaxAP.lua",
 		"Code/SOURCE_UnitCanAttack.lua",
+		"Code/SOURCE_FirearmFireBullet.lua",
 		"Code/SOURCE_CombatActionGetAttackableEnemies.lua",
 		"Code/SOURCE_Firearm_GetItemStatusUI and QuickReloadButton.lua",
-		"Code/SOURCE_FirearmFireBullet.lua",
 		"Code/SOURCE_GetRangeAccuracy.lua",
 		"Code/FUNCTION_ChangeMGSetupGetAreaParams.lua",
 		"Code/WeaponProperties_Get_functions.lua",
@@ -196,8 +197,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1739345879,
-	'code_hash', -5683883669597395597,
+	'saved', 1739406893,
+	'code_hash', -3586924189726035478,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

@@ -1,17 +1,3 @@
-local GBO_originalFirearmFireBullet = Firearm.FireBullet
-
-function Firearm:FireBullet(attacker, shot, threads, results, attack_args)
-    local pellets = shot.pellets
-    if pellets and #pellets > 0 then
-        table.insert(pellets, shot)
-        for i = 1, #pellets do
-            self:FirePellets(attacker, pellets[i], threads, results, attack_args, GameTime())
-        end
-        return
-    end
-    GBO_originalFirearmFireBullet(self, attacker, shot, threads, results, attack_args)
-end
-
 function Firearm:FirePellets(attacker, shot, threads, results, attack_args, start_time)
     local fx_action = attack_args.fx_action or "WeaponFire"
     NetUpdateHash("FireBullet", attacker)
@@ -39,14 +25,14 @@ function Firearm:FirePellets(attacker, shot, threads, results, attack_args, star
         local fx_target = visual_obj.parts.Muzzle or visual_obj.parts.Barrel or visual_obj
         PlayFX(fx_action, "start", visual_obj, fx_target, shot.attack_pos, action_dir)
         -- shell eject fx
-        if shot.ammo_type then
+        if shot.ammo_type and shot.main_pellet then
             PlayFX("ShellEject", "start", visual_obj, shot.ammo_type)
         end
+
+        BirdsFlappingAway(visual_obj:GetVisualPos())
     end
-    BirdsFlappingAway(visual_obj:GetVisualPos())
 
     table.insert(threads,
-
                  CreateGameTimeThread(self.PelletFly, self, attacker, shot.attack_pos,
                                       shot.stuck_pos, action_dir, const.Combat.BulletVelocity,
                                       shot.hits, attack_args.target, attack_args, start_time))
@@ -67,9 +53,6 @@ function Firearm:PelletFly(attacker, start_pt, end_pt, dir, speed, hits, target,
     end
 
     local projectile = PlaceObject("FXBullet")
-    ---
-    projectile:SetScale(30)
-    ---
 
     projectile.fx_actor_class = fx_actor
     projectile:SetGameFlags(const.gofAlwaysRenderable)
@@ -81,7 +64,6 @@ function Firearm:PelletFly(attacker, start_pt, end_pt, dir, speed, hits, target,
     local fly_time = MulDivRound(projectile:GetDist(end_pt), 1000, speed)
     ----
     local end_time = start_time + fly_time
-    -- ic(end_time)
     -- local end_time = GameTime() + fly_time
     -----
     projectile:SetPos(end_pt, fly_time)
@@ -151,5 +133,4 @@ function Firearm:PelletFly(attacker, start_pt, end_pt, dir, speed, hits, target,
     Sleep(Max(0, end_time - GameTime()))
     PlayFX("Spawn", "end", projectile, false)
     DoneObject(projectile)
-
 end

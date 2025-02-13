@@ -642,7 +642,7 @@ return {
 			PlaceObj('MsgReaction', {
 				Event = "GatherCTHModifications",
 				Handler = function (self, attacker, cth_id, action_id, target, weapon1, weapon2, data)
-					if cth_id == "Aim" then
+					if attacker:HasStatusEffect(self.id) and cth_id == "Aim" then
 						data.mul = MulDivRound(data.mul, const.Combat.Perks.OutOfBreathAimMul, 100)
 						local meta = self.DisplayName
 						table.insert(data.meta_text or {}, meta)
@@ -1175,6 +1175,10 @@ return {
 			'CodeFileName', "Code/TEMPORARY_ShotgunPatch.lua",
 		}),
 		PlaceObj('ModItemCode', {
+			'name', "COMBAT_ACTIONS_ShotgunRework",
+			'CodeFileName', "Code/COMBAT_ACTIONS_ShotgunRework.lua",
+		}),
+		PlaceObj('ModItemCode', {
 			'name', "FUNCTIONS_FirearmFirePellet",
 			'CodeFileName', "Code/FUNCTIONS_FirearmFirePellet.lua",
 		}),
@@ -1280,6 +1284,10 @@ return {
 		'CodeFileName', "Code/SOURCE_UnitCanAttack.lua",
 	}),
 	PlaceObj('ModItemCode', {
+		'name', "SOURCE_FirearmFireBullet",
+		'CodeFileName', "Code/SOURCE_FirearmFireBullet.lua",
+	}),
+	PlaceObj('ModItemCode', {
 		'name', "SOURCE_CombatActionGetAttackableEnemies",
 		'CodeFileName', "Code/SOURCE_CombatActionGetAttackableEnemies.lua",
 	}),
@@ -1287,10 +1295,6 @@ return {
 		'name', "SOURCE_Firearm:GetItemStatusUI and QuickReloadButton",
 		'comment', "bolt action",
 		'CodeFileName', "Code/SOURCE_Firearm_GetItemStatusUI and QuickReloadButton.lua",
-	}),
-	PlaceObj('ModItemCode', {
-		'name', "SOURCE_FirearmFireBullet",
-		'CodeFileName', "Code/SOURCE_FirearmFireBullet.lua",
 	}),
 	PlaceObj('ModItemCode', {
 		'name', "SOURCE_GetRangeAccuracy",

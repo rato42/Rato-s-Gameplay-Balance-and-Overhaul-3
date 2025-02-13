@@ -1,5 +1,9 @@
-local debug = true
------ TODO: check how 2 barrel works
+local debug = false
+
+function OnMsg.ClassesGenerate()
+    Shotgun.ImpactForce = -1
+end
+
 function Firearm:GetPelletScatterData(attacker, action, attack_pos, target_pos, num_vectors,
                                       aoe_params, attack_results, shot_attack_args)
     aoe_params = aoe_params or weapon:GetAreaAttackParams(action.id, attacker, target_pos)
@@ -16,8 +20,9 @@ function Firearm:GetPelletScatterData(attacker, action, attack_pos, target_pos, 
     target_pos = attack_pos + SetLen(dir, range)
 
     --------------------------------
-    ic(aoe_params.cone_angle)
+
     if debug then
+        ic(aoe_params.cone_angle)
         -- Draw the cone limits using debug vectors
         local num_debug_vectors = 12 -- Increase for smoother visualization
 
