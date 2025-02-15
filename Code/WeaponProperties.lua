@@ -15,7 +15,7 @@ function OnMsg.ClassesGenerate()
             }
         }
     }
-    Shotgun.NumPellets = 8
+    Shotgun.NumPellets = 10
 end
 
 function fireprop()

@@ -676,16 +676,18 @@ function Firearm:GetAttackResults(action, attack_args)
         ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        local pellet_count = (self.NumPellets or 0)
-        pellet_count = action.id == "DoubleBarrel" and pellet_count * 2 or pellet_count
+        local pellet_count = self:GetNumPellets(attacker, action and action.id) or 0
+
         local process_pellets = pellet_count > 0 and not attack_args.prediction
 
         if process_pellets then
             attack_results.is_pellet_attack = true
             attack_results.shots[i].main_pellet = true
-            local main_hit_pos = hit_data.stuck_pos or hit_data.lof_pos2 or hit_data.target_pos
+            local main_pellet_target_pos = hit_data.stuck_pos or hit_data.lof_pos2 or
+                                               hit_data.target_pos
             local pellet_data = self:GetPelletScatterData(attacker, action,
-                                                          attack_results.attack_pos, main_hit_pos,
+                                                          attack_results.attack_pos,
+                                                          main_pellet_target_pos,
                                                           (pellet_count - 1), aoe_params,
                                                           attack_results, shot_attack_args)
 
@@ -693,13 +695,12 @@ function Firearm:GetAttackResults(action, attack_args)
 
                 p_i = p_i + 1
 
-                ----TODO: check how the damage is being calculated in regards to bodyparts + strayshots
-                ----- strays are hardcoded -50%, grazes use the constant (-70%)
+                ----- strays are hardcoded -50% dmg, grazes use the constant (-70% dmg)
                 if IsValid(target) then
                     for _, hit in ipairs(pellet_hit_data.hits) do
                         if hit.obj and hit.obj == target then
                             if shot_miss then
-                                if allow_grazing then
+                                if false then -- allow_grazing then
                                     hit.grazing = true
                                     hit.grazed_miss = true
                                 else
@@ -729,10 +730,10 @@ function Firearm:GetAttackResults(action, attack_args)
                             hit_objs[hit_obj] = true
                         end
 
-                        if hit_obj == dmg_target and hit.grazing then
-                            stealth_kill = false
-                            shot_attack_args.stealth_kill_roll = -100
-                        end
+                        -- if hit_obj == dmg_target and hit.grazing then
+                        --     stealth_kill = false
+                        --     shot_attack_args.stealth_kill_roll = -100
+                        -- end
 
                         -- if stealth_kill and hit_obj == dmg_target then
                         --     hit.damage = MulDivRound(target:GetTotalHitPoints(), 125, 100)

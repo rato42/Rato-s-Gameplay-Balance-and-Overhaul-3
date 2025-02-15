@@ -42,6 +42,24 @@ local BulletVegetationCollisionMask = const.cmDefaultObject | const.cmActionCame
 local BulletVegetationCollisionQueryFlags = const.cqfSorted | const.cqfResultIfStartInside
 local BulletVegetationClasses = {"Shrub", "SmallTree", "TreeTop"}
 
+local debug = Platform.developer
+local debug_table = {}
+function reset_dbgt()
+    debug_table = {}
+end
+
+function insp_dbgt()
+    Inspect(debug_table)
+end
+
+local debug_hits = {}
+function insp_hits()
+    Inspect(debug_hits)
+end
+function reset_hits()
+    debug_hits = {}
+end
+
 function Firearm:PelletFly(attacker, start_pt, end_pt, dir, speed, hits, target, attack_args,
                            start_time)
     NetUpdateHash("ProjectileFly", attacker, start_pt, end_pt, dir, speed, hits)
@@ -102,7 +120,19 @@ function Firearm:PelletFly(attacker, start_pt, end_pt, dir, speed, hits, target,
     }
 
     for i, hit in ipairs(hits) do
-        self:BulletHit(projectile, hit, context)
+        ---
+        table.insert(debug_hits, hit)
+        if debug and hit.obj and IsKindOf(hit.obj, "Unit") then
+            local unit = hit.obj
+            debug_table[unit.session_id] = debug_table[unit.session_id] or
+                                               {dmg = 0, num_hits = 0, bodypart_hits = {}}
+            debug_table[unit.session_id].dmg = debug_table[unit.session_id].dmg + hit.damage
+            debug_table[unit.session_id].num_hits = debug_table[unit.session_id].num_hits + 1
+            debug_table[unit.session_id].bodypart_hits[hit.spot_group] =
+                debug_table[unit.session_id].bodypart_hits[hit.spot_group] and
+                    debug_table[unit.session_id].bodypart_hits[hit.spot_group] + 1 or 1
+        end
+        ---
     end
 
     local last_start_pos = start_pt

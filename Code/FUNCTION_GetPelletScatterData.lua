@@ -66,19 +66,36 @@ function Firearm:GetPelletScatterData(attacker, action, attack_pos, target_pos, 
     -- print("h")
     -- lof_params.range = range + scatter + guim
 
-    local lof_params = {
+    local lof_args = {
         attack_pos = attack_pos,
         obj = attacker,
         output_collisions = true,
         range = range + scatter + guim,
-        seed = attacker:Random()
+        seed = attacker:Random(),
+        penetration_class = -1,
+        max_penetration_range = -1
     }
+    lof_args.fire_relative_point_attack = false
+    lof_args.clamp_to_target = true
+    lof_args.extend_shot_start_to_attacker = false
+    lof_args.can_hit_attacker = true
+    lof_args.ignore_los = true
+    lof_args.inside_attack_area_check = false
+    lof_args.forced_hit_on_eye_contact = false
+    lof_args.can_use_covers = false
+    lof_args.emplacement_weapon = false
+    lof_args.ignore_los = true
+    lof_args.inside_attack_area_check = false
+    lof_args.forced_hit_on_eye_contact = false
+    lof_args.prediction = false
+    lof_args.aimIK = false
+    lof_args.can_stuck_on_unit = true
 
     -- local hits = {}
     local shots_hit_data = {}
 
     for i, target in ipairs(targets) do
-        local attack_data = GetLoFData(attacker, target, lof_params)
+        local attack_data = GetLoFData(attacker, target, lof_args)
         local hit_data
         if attack_data then
             ----------

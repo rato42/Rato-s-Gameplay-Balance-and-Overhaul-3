@@ -14,14 +14,22 @@ function GBO_ChangeShotgunCombatActions()
         args.buckshot_scatter_fx = 10
         local attack_args = unit:PrepareAttackArgs(self.id, args)
         local results = attack_args.weapon:GetAttackResults(self, attack_args)
+        if not attack_args.prediction then
+            results.fired = self:ResolveValue("bullets") or 2
+        end
         return results, attack_args
     end
 
     CombatActions.DoubleBarrel.GetActionDamage = function(self, unit, target, args)
         local weapon = self:GetAttackWeapons(unit, args)
         local base = weapon and unit:GetBaseDamage(weapon) or 0
-        return MulDivRound(base, const.Weapons.ShotgunCollateralDamage *
-                               const.Weapons.DoubleBarrelDamageBonus, 10000)
+        local dmg, num_pellets, pellettext = GetPelletDamageText(unit, weapon, base, self.id)
+        if not args then
+            return T(pellettext)
+        end
+        return dmg, base, 0
+        -- return MulDivRound(base, const.Weapons.ShotgunCollateralDamage *
+        --                        const.Weapons.DoubleBarrelDamageBonus, 10000)
     end
 
     CombatActions.Buckshot.GetActionResults = function(self, unit, args)
@@ -41,12 +49,24 @@ function GBO_ChangeShotgunCombatActions()
         return results, attack_args
     end
 
+    CombatActions.Buckshot.GetActionDescription = function(self, units)
+        local unit = units[1]
+        -- local damage, _, _, params = self:GetActionDamage(unit)
+        local damage = self:GetActionDamage(unit)
+        local descr = T {self.Description}
+        descr = CombatActionsAppendFreeAimDescription(self, unit, descr)
+        return descr
+    end
     CombatActions.Buckshot.GetActionDamage = function(self, unit, target, args)
         local weapon = self:GetAttackWeapons(unit, args)
         local base = weapon and unit:GetBaseDamage(weapon) or 0
-        local aoeDamage = MulDivRound(base, const.Weapons.ShotgunCollateralDamage, 100)
 
-        return base, base, 0, {aoe_damage = aoeDamage}
+        local dmg, num_pellets, pellettext = GetPelletDamageText(unit, weapon, base, self.id)
+        if not args then
+            return T(pellettext)
+        end
+        return dmg, base, 0
+        -- return base, base, 0, {aoe_damage = aoeDamage}
     end
 
     CombatActions.BuckshotBurst.GetActionDamage = function(self, unit, target, args)
@@ -55,12 +75,33 @@ function GBO_ChangeShotgunCombatActions()
             return 0
         end
         local base = unit and unit:GetBaseDamage(weapon) or weapon.Damage
-        local aoeDamage = MulDivRound(base, const.Weapons.ShotgunCollateralDamage, 100)
-
+        -- local aoeDamage = MulDivRound(base, const.Weapons.ShotgunCollateralDamage, 100)
         local num_shots = weapon:GetAutofireShots(self)
-        local damage = num_shots * base
-        return damage, base, damage - base, {aoe_damage = aoeDamage}
+
+        local dmg, num_pellets, pellettext = GetPelletDamageText(unit, weapon, base, self.id)
+        if not args then
+            return T(num_shots .. "X" .. pellettext)
+        end
+        return num_shots * dmg, dmg, 0
     end
+end
+
+function Firearm:GetNumPellets(unit, action_id)
+    local action_id = action_id or ''
+    local pellets = self.NumPellets or 0
+    if action_id == "DoubleBarrel" then
+        pellets = pellets * 2
+    end
+    return pellets
+end
+
+function GetPelletDamageText(unit, weapon, base, action_id)
+    local pellets = weapon and weapon:GetNumPellets(unit, action_id) or 0
+    local totaldmg = base * pellets
+
+    return totaldmg, pellets,
+           totaldmg .. "<style CrosshairAPTotal><color PDABrowserTextHighlight>(" .. pellets .. "X" ..
+               base .. ")</color></style>"
 end
 
 OnMsg.DataLoaded = GBO_ChangeShotgunCombatActions
