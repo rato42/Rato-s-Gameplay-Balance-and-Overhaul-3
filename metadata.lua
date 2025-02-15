@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.57a \n\nOut of breath effect on aim is now a reduction of aim bonus effectivness instead of an increase in aim AP\n\nSome small tweaks.",
+	'last_changes', "3.58\n\n\nSavior perk reworked. It will now also grant a Inspired-like buff when a teammate is downed or dies.",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -24,8 +24,8 @@ return PlaceObj('ModDef', {
 	'id', "cfahRED",
 	'author', "rato",
 	'version_major', 3,
-	'version_minor', 57,
-	'version', 12144,
+	'version_minor', 58,
+	'version', 12189,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -38,9 +38,11 @@ return PlaceObj('ModDef', {
 		"CharacterEffect/R_ReservedAP_stance.lua",
 		"CharacterEffect/Sprinting.lua",
 		"CharacterEffect/grunty_bonus.lua",
+		"CharacterEffect/AdrenalineRush_Savior.lua",
 		"Code/_______init_globals.lua",
 		"Code/__CONSTANT_Main.lua",
 		"Code/__CONSTANTS_Recoil.lua",
+		"Code/__CONSTANTS_Caliber.lua",
 		"Code/ZULIBCalibers_GBOconfigs.lua",
 		"Code/UPDATE_Change components.lua",
 		"Code/DESCRIPTION_HINTS_get.lua",
@@ -197,8 +199,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1739428035,
-	'code_hash', -1168037291418756174,
+	'saved', 1739590988,
+	'code_hash', -782456438113400299,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
@@ -263,6 +265,11 @@ return PlaceObj('ModDef', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "CharacterEffectCompositeDef",
 			'Id', "grunty_bonus",
+			'ClassDisplayName', "Character effect",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "CharacterEffectCompositeDef",
+			'Id', "AdrenalineRush_Savior",
 			'ClassDisplayName', "Character effect",
 		}),
 		PlaceObj('ModResourcePreset', {

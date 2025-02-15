@@ -2,6 +2,23 @@ function OnMsg.UnitSwappedWeapon(unit)
     unit:RecalcUIActions(true)
 end
 
+------------ Savior Rework
+local function check_and_addSaviorAdrenalineRush(team)
+    for i, unit in ipairs(team.units or empty_table) do
+        if HasPerk(unit, "Savior") then
+            unit:AddStatusEffect("AdrenalineRush_Savior")
+        end
+    end
+end
+
+function OnMsg.UnitDied(unit)
+    check_and_addSaviorAdrenalineRush(unit.team or empty_table)
+end
+
+function OnMsg.UnitDowned(unit)
+    check_and_addSaviorAdrenalineRush(unit.team or empty_table)
+end
+---
 function OnMsg.UnitStanceChanged(unit)
 
     local attaches = unit:GetAttaches(WeaponVisualClasses)

@@ -1,6 +1,11 @@
 function presets_char_effect()
     ForEachPreset('CharacterEffectCompositeDef', function(p)
 
+        if p.id == "Savior" then
+            p.Description = T(154798321599,
+                              "Restore <em><percent(bandageBonus)></em> more <em>HP</em> when using <em>Bandage</em>.\n\nAdditionally, when an ally dies or is downed, the unit will enter an <em>Adrenaline Rush</em>, having bonus AP and Free Move.")
+        end
+
         if p.id == "DanceForMe" then
             p.Description = T(917852954786, --[[CharacterEffectCompositeDef DanceForMe Description]]
                               "<em>Ranged</em> attack against each enemy in a <em>cone</em>, targeting their <em>Legs</em>.\n\nApplies <GameTerm('Overwatch')> in the area afterwards.\n\nManually cycling revolvers cost less AP.")
@@ -134,7 +139,8 @@ local t_id_table = {
     [313423416367] = "<em>Attacks</em> the <em>closest</em> enemy with a firearm when <em>combat starts</em>, if possible. \n\nThe attack will have 1 aim level and bonus accuracy.\n\nCan't be used with Heavy Weapons.",
     [158619792866] = "<em>Unarmed attacks</em> have extra damage scaling based on <em>Dexterity</em>.\n\nImproved <em>Defense</em> against <em>Melee Attacks</em>.",
     [778949186487] = "Grants the ability to <em>Sprint</em> in combat.",
-    [917852954786] = "<em>Ranged</em> attack against each enemy in a <em>cone</em>, targeting their <em>Legs</em>.\n\nApplies <GameTerm('Overwatch')> in the area afterwards.\n\nManually cycling revolvers cost less AP."
+    [917852954786] = "<em>Ranged</em> attack against each enemy in a <em>cone</em>, targeting their <em>Legs</em>.\n\nApplies <GameTerm('Overwatch')> in the area afterwards.\n\nManually cycling revolvers cost less AP.",
+    [154798321599] = "Restore <em><percent(bandageBonus)></em> more <em>HP</em> when using <em>Bandage</em>.\n\nAdditionally, when an ally dies or is downed, the unit will enter an <em>Adrenaline Rush</em>, having bonus AP and Free Move."
 
 }
 

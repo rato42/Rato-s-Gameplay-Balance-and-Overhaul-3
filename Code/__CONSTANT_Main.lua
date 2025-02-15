@@ -47,6 +47,9 @@ const.Combat.PindownRangeMul = 150 --- MulDivRound
 const.Combat.Perks = {}
 const.Combat.Perks.RelentlessAdvanceFreeMoveMul = 150
 const.Combat.Perks.OutOfBreathAimMul = 70
+const.Combat.Perks.SaviorAdrenalineRushFreeMoveMul = 120
+const.Combat.Perks.SaviorAdrenalineRushFreeMoveBonus = 4
+const.Combat.Perks.SaviorAdrenalineRushBonusAP = 2
 
 -------------
 ----- Vanilla
