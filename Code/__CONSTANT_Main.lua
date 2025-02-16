@@ -7,7 +7,9 @@ const.Combat.SprintingCTH = -10 --- to hit sprinting target
 -- Recoil
 const.Combat.MultishotGrazeThreshold = 18 -- 12
 const.Combat.SingleShotGrazeThreshold = 10
+const.Combat.PelletShotGrazeThreshold = 22
 const.Combat.MultishotMinCTH = 5
+const.Combat.MaxShotIndexForRecoilCTHLoss = 6
 -------------------- Add for MG calcs here
 --- Hipfire
 const.Combat.Hipfire_BasePenalty = -10 --- - 18
@@ -27,7 +29,7 @@ const.Combat.MobileShotSnapshotHipfirePenaltyMul = 1.10
 -- OW
 const.Combat.MGSetupBonusInterruptAccuracy = 5
 const.Combat.MGSetupConeMul = 110 --- MulDivRound
-const.Combat.MGSetupConeFlat = 180 --- addition
+const.Combat.MGSetupConeFlat = 180 --- addition (minutes)
 const.Combat.InterruptSnapshotPenalty = 140 --- MulDivRound
 
 ----- AP

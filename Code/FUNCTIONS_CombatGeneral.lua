@@ -1,31 +1,50 @@
 ---------------------------------------------------------------------------------------------------
-function GetPBbonus(weapon)
-    local base = weapon.PBbonus_base + 2
-    local value = 0
-    local class = 0
-    local modifyVal, compDef
+function OnMsg.ClassesGenerate()
+    AppendClass.FirearmProperties = {
+        properties = {
+            {
+                category = "Caliber",
+                id = "WeaponClassPBbonus",
+                name = "WeaponClassPBbonus",
+                help = "WeaponClassPBbonus",
+                editor = "number",
+                default = 2,
+                min = -50,
+                max = 50,
+                modifiable = false
+            }, {
+                category = "Caliber",
+                id = "PBbonus_base",
+                name = "Weapon PointBlank Bonus Accuracy",
+                help = "Weapon PointBlank Bonus Accuracy, in addition to the weapon class bonus",
+                editor = "number",
+                default = 0,
+                template = true,
+                min = -50,
+                max = 50,
+                modifiable = true
+            }
+        }
+    }
+    SubmachineGun.WeaponClassPBbonus = 5
+    Pistol.WeaponClassPBbonus = 5
+    Revolver.WeaponClassPBbonus = 5
+    Shotgun.WeaponClassPBbonus = 8
+    AssaultRifle.WeaponClassPBbonus = 4
 
-    if IsKindOf(weapon, "SubmachineGun") then
-        class = 3
-    end
-    if IsKindOfClasses(weapon, "Pistol", "Revolver") or weapon.pistol_swap then
-        class = 3
-    end
-    if IsKindOf(weapon, "SniperRifle") then
-        class = 0
-    end
-    if IsKindOf(weapon, "Shotgun") then
-        class = 4
-    end
-    if IsKindOf(weapon, "AssaultRifle") then
-        class = 2
-    end
+end
+
+function GetPBbonus(weapon)
+    local base = weapon.PBbonus_base
+    local value = 0
+    local class = weapon.WeaponClassPBbonus or 0
+    local modifyVal, compDef
 
     if weapon.default_long_barrel then
         value = value - 5
     elseif IsKindOf(weapon, "Shotgun") then
         if weapon and weapon:HasComponent("shortbarrel") then
-            value = value + 7
+            value = value + 8
         elseif weapon and weapon:HasComponent("longbarrel") then
             value = value - 4
         end

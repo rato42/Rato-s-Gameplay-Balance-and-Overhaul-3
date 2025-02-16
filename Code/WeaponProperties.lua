@@ -1,23 +1,3 @@
-function OnMsg.ClassesGenerate()
-    AppendClass.FirearmProperties = {
-        properties = {
-            {
-                category = "Caliber",
-                id = "NumPellets",
-                name = "Number of Pellets",
-                help = "Pellets shot in a buckshot attack",
-                editor = "number",
-                default = 0,
-                template = true,
-                min = 0,
-                max = 50,
-                modifiable = true
-            }
-        }
-    }
-    Shotgun.NumPellets = 10
-end
-
 function fireprop()
 
     FirearmProperties.properties[#FirearmProperties.properties + 1] = {
@@ -78,19 +58,6 @@ function fireprop()
         template = false,
         min = 1,
         max = 100,
-        modifiable = true
-    }
-
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
-        -- category = "Caliber",
-        id = "PBbonus_base",
-        name = "PBbonus_base",
-        help = "PBbonus_base",
-        editor = "number",
-        default = 15,
-        template = true,
-        min = -50,
-        max = 50,
         modifiable = true
     }
 
@@ -200,19 +167,6 @@ function fireprop()
 
     FirearmProperties.properties[#FirearmProperties.properties + 1] = {
         category = "Caliber",
-        id = "slug_rat",
-        name = "AP Ammo Loaded",
-        help = "AP Ammo Loaded",
-        editor = "number",
-        default = 0,
-        template = false,
-        min = 0,
-        max = 1,
-        modifiable = true
-    }
-
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
-        category = "Caliber",
         id = "wep_base_recoil_mul",
         name = "Weapon Base Recoil Multiplier",
         help = "Weapon Base Recoil Multiplier",
@@ -234,19 +188,6 @@ function fireprop()
         template = true,
         min = 0,
         max = 1000,
-        modifiable = true
-    }
-
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
-        category = "Caliber",
-        id = "burst_recoil_delta",
-        name = "Burst Fire Recoil Delta",
-        help = "Burst Fire Recoil Delta",
-        editor = "number",
-        default = 100,
-        template = true,
-        min = 0,
-        max = 500,
         modifiable = true
     }
 

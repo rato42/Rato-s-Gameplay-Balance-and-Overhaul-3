@@ -124,8 +124,14 @@ function Firearm:PelletFly(attacker, start_pt, end_pt, dir, speed, hits, target,
         table.insert(debug_hits, hit)
         if debug and hit.obj and IsKindOf(hit.obj, "Unit") then
             local unit = hit.obj
-            debug_table[unit.session_id] = debug_table[unit.session_id] or
-                                               {dmg = 0, num_hits = 0, bodypart_hits = {}}
+            debug_table[unit.session_id] = debug_table[unit.session_id] or {
+                dmg = 0,
+                num_hits = 0,
+                bodypart_hits = {},
+                distance = attacker:GetDist(target),
+                pellet_angle = self.BuckshotConeAngle,
+                vertical_factor = self.VerticalPelletSpreadFactorMul
+            }
             debug_table[unit.session_id].dmg = debug_table[unit.session_id].dmg + hit.damage
             debug_table[unit.session_id].num_hits = debug_table[unit.session_id].num_hits + 1
             debug_table[unit.session_id].bodypart_hits[hit.spot_group] =

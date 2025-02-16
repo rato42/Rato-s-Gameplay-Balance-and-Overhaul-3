@@ -2407,10 +2407,8 @@ return {
 		'ShootAP', 4000,
 		'ReloadAP', 3000,
 		'APStance', 4,
-		'PBbonus_base', -1,
 		'wep_base_recoil_mul', 89,
 		'placeholder_recoil', 115,
-		'burst_recoil_delta', 125,
 		'auto_recoil_delta', 125,
 		'long_recoil_delta', 125,
 		'wep_base_hip_mul', 97,
@@ -2422,6 +2420,7 @@ return {
 		'recoil_mechanism', "Gas_Operated",
 		'rat_weigth', 5220,
 		'rat_barrel_len', 457,
+		'PBbonus_base', -1,
 	}),
 	PlaceObj('ModItemLootDef', {
 		Comment = "merc",
@@ -3694,71 +3693,6 @@ return {
 					'Type', "FineSteelPipe",
 				}),
 			},
-			Cost = 30,
-			DisplayName = T(499785632845, --[[ModItemWeaponComponent BarrelShortShotgun DisplayName]] "Shortened Barrel"),
-			Icon = "UI/Icons/Upgrades/galil_barrel_short",
-			ModificationDifficulty = 10,
-			ModificationEffects = {
-				"ReduceRange",
-				"IncreaseBuckshotAngle",
-				"shortbarrel",
-				"ReduceDamage",
-				"ReduceAimAccuracy",
-				"IncreaseOverwatchAngle",
-				"StanceAPdecrease",
-			},
-			Parameters = {
-				PlaceObj('PresetParamNumber', {
-					'Name', "RangeDecrease",
-					'Value', 2,
-					'Tag', "<RangeDecrease>",
-				}),
-				PlaceObj('PresetParamNumber', {
-					'Name', "BuckshotAngleIncrease",
-					'Value', 150,
-					'Tag', "<BuckshotAngleIncrease>",
-				}),
-				PlaceObj('PresetParamNumber', {
-					'Name', "DamageReduced",
-					'Value', 1,
-					'Tag', "<DamageReduced>",
-				}),
-				PlaceObj('PresetParamNumber', {
-					'Name', "OverwatchAngleIncrease",
-					'Value', 107,
-					'Tag', "<OverwatchAngleIncrease>",
-				}),
-				PlaceObj('PresetParamNumber', {
-					'Name', "APdecrease",
-					'Value', 1,
-					'Tag', "<APdecrease>",
-				}),
-			},
-			Slot = "Barrel",
-			Visuals = {
-				PlaceObj('WeaponComponentVisual', {
-					ApplyTo = "M41Shotgun",
-					Entity = "WeaponAttA_BarrelBenelli_Short",
-					Slot = "Barrel",
-					param_bindings = false,
-				}),
-				PlaceObj('WeaponComponentVisual', {
-					ApplyTo = "DoubleBarrelShotgun",
-					Entity = "WeaponAttA_BarrelDBS_Short",
-					Slot = "Barrel",
-					param_bindings = false,
-				}),
-			},
-			comment = "-------- BARRELLS",
-			id = "BarrelShortShotgun",
-		}),
-		PlaceObj('ModItemWeaponComponent', {
-			AdditionalCosts = {
-				PlaceObj('WeaponComponentCost', {
-					'Amount', 1,
-					'Type', "FineSteelPipe",
-				}),
-			},
 			Cost = 50,
 			DisplayName = T(627286028824, --[[ModItemWeaponComponent BarrelShortImproved_handgun DisplayName]] "Short Gain-Twist Barrel"),
 			Icon = "UI/Icons/Upgrades/galil_barrel_short",
@@ -4130,76 +4064,6 @@ return {
 			},
 			comment = "-------- BARRELLS",
 			id = "BarrelShort_Light",
-		}),
-		PlaceObj('ModItemWeaponComponent', {
-			AdditionalCosts = {
-				PlaceObj('WeaponComponentCost', {
-					'Amount', 1,
-					'Type', "FineSteelPipe",
-				}),
-			},
-			Comment = "consider reducing or disabling aiming?",
-			Cost = 20,
-			DisplayName = T(731483819647, --[[ModItemWeaponComponent Auto5_Short_NMag DisplayName]] "Short Barrel"),
-			Icon = "UI/Icons/Upgrades/galil_barrel_short",
-			ModificationDifficulty = 0,
-			ModificationEffects = {
-				"ReduceRange",
-				"ReduceReliability",
-				"IncreaseBuckshotAngle",
-				"shortbarrel",
-				"ReduceDamage",
-				"IncreaseOverwatchAngle",
-				"StanceAPdecrease",
-			},
-			Parameters = {
-				PlaceObj('PresetParamNumber', {
-					'Name', "ReliabilityDecrease",
-					'Value', 10,
-					'Tag', "<ReliabilityDecrease>",
-				}),
-				PlaceObj('PresetParamNumber', {
-					'Name', "BuckshotAngleIncrease",
-					'Value', 150,
-					'Tag', "<BuckshotAngleIncrease>",
-				}),
-				PlaceObj('PresetParamNumber', {
-					'Name', "DamageReduced",
-					'Value', 1,
-					'Tag', "<DamageReduced>",
-				}),
-				PlaceObj('PresetParamNumber', {
-					'Name', "RangeDecrease",
-					'Value', 2,
-					'Tag', "<RangeDecrease>",
-				}),
-				PlaceObj('PresetParamNumber', {
-					'Name', "OverwatchAngleIncrease",
-					'Value', 107,
-					'Tag', "<OverwatchAngleIncrease>",
-				}),
-				PlaceObj('PresetParamNumber', {
-					'Name', "APdecrease",
-					'Value', 1,
-					'Tag', "<APdecrease>",
-				}),
-			},
-			Slot = "Barrel",
-			Visuals = {
-				PlaceObj('WeaponComponentVisual', {
-					Entity = "WeaponAttA_BarrelAuto5_02",
-					Slot = "Barrel",
-					param_bindings = false,
-				}),
-				PlaceObj('WeaponComponentVisual', {
-					Entity = "WeaponAttA_MagazineAuto5_01",
-					Slot = "Magazine",
-					param_bindings = false,
-				}),
-			},
-			comment = "-------- BARRELLS",
-			id = "Auto5_Short_NMag",
-			param_bindings = {},
 		}),
 		PlaceObj('ModItemWeaponComponent', {
 			AdditionalCosts = {
@@ -4587,6 +4451,128 @@ return {
 					'Type', "FineSteelPipe",
 				}),
 			},
+			Comment = "consider reducing or disabling aiming?",
+			Cost = 20,
+			DisplayName = T(731483819647, --[[ModItemWeaponComponent Auto5_Short_NMag DisplayName]] "Short Barrel"),
+			Icon = "UI/Icons/Upgrades/galil_barrel_short",
+			ModificationDifficulty = 0,
+			ModificationEffects = {
+				"ReduceRange",
+				"ReduceReliability",
+				"IncreaseBuckshotAngle",
+				"shortbarrel",
+				"IncreaseOverwatchAngle",
+				"StanceAPdecrease",
+			},
+			Parameters = {
+				PlaceObj('PresetParamNumber', {
+					'Name', "ReliabilityDecrease",
+					'Value', 10,
+					'Tag', "<ReliabilityDecrease>",
+				}),
+				PlaceObj('PresetParamNumber', {
+					'Name', "BuckshotAngleIncrease",
+					'Value', 122,
+					'Tag', "<BuckshotAngleIncrease>",
+				}),
+				PlaceObj('PresetParamNumber', {
+					'Name', "RangeDecrease",
+					'Value', 2,
+					'Tag', "<RangeDecrease>",
+				}),
+				PlaceObj('PresetParamNumber', {
+					'Name', "OverwatchAngleIncrease",
+					'Value', 107,
+					'Tag', "<OverwatchAngleIncrease>",
+				}),
+				PlaceObj('PresetParamNumber', {
+					'Name', "APdecrease",
+					'Value', 1,
+					'Tag', "<APdecrease>",
+				}),
+			},
+			Slot = "Barrel",
+			Visuals = {
+				PlaceObj('WeaponComponentVisual', {
+					Entity = "WeaponAttA_BarrelAuto5_02",
+					Slot = "Barrel",
+					param_bindings = false,
+				}),
+				PlaceObj('WeaponComponentVisual', {
+					Entity = "WeaponAttA_MagazineAuto5_01",
+					Slot = "Magazine",
+					param_bindings = false,
+				}),
+			},
+			comment = "-------- BARRELLS",
+			id = "Auto5_Short_NMag",
+			param_bindings = {},
+		}),
+		PlaceObj('ModItemWeaponComponent', {
+			AdditionalCosts = {
+				PlaceObj('WeaponComponentCost', {
+					'Amount', 1,
+					'Type', "FineSteelPipe",
+				}),
+			},
+			Cost = 30,
+			DisplayName = T(499785632845, --[[ModItemWeaponComponent BarrelShortShotgun DisplayName]] "Shortened Barrel"),
+			Icon = "UI/Icons/Upgrades/galil_barrel_short",
+			ModificationDifficulty = 10,
+			ModificationEffects = {
+				"ReduceRange",
+				"IncreaseBuckshotAngle",
+				"shortbarrel",
+				"IncreaseOverwatchAngle",
+				"StanceAPdecrease",
+			},
+			Parameters = {
+				PlaceObj('PresetParamNumber', {
+					'Name', "RangeDecrease",
+					'Value', 2,
+					'Tag', "<RangeDecrease>",
+				}),
+				PlaceObj('PresetParamNumber', {
+					'Name', "BuckshotAngleIncrease",
+					'Value', 122,
+					'Tag', "<BuckshotAngleIncrease>",
+				}),
+				PlaceObj('PresetParamNumber', {
+					'Name', "OverwatchAngleIncrease",
+					'Value', 107,
+					'Tag', "<OverwatchAngleIncrease>",
+				}),
+				PlaceObj('PresetParamNumber', {
+					'Name', "APdecrease",
+					'Value', 1,
+					'Tag', "<APdecrease>",
+				}),
+			},
+			Slot = "Barrel",
+			Visuals = {
+				PlaceObj('WeaponComponentVisual', {
+					ApplyTo = "M41Shotgun",
+					Entity = "WeaponAttA_BarrelBenelli_Short",
+					Slot = "Barrel",
+					param_bindings = false,
+				}),
+				PlaceObj('WeaponComponentVisual', {
+					ApplyTo = "DoubleBarrelShotgun",
+					Entity = "WeaponAttA_BarrelDBS_Short",
+					Slot = "Barrel",
+					param_bindings = false,
+				}),
+			},
+			comment = "-------- BARRELLS",
+			id = "BarrelShortShotgun",
+		}),
+		PlaceObj('ModItemWeaponComponent', {
+			AdditionalCosts = {
+				PlaceObj('WeaponComponentCost', {
+					'Amount', 1,
+					'Type', "FineSteelPipe",
+				}),
+			},
 			Cost = 30,
 			DisplayName = T(586020270949, --[[ModItemWeaponComponent BarrelShortShotgun_Benelli DisplayName]] "Shortened Barrel"),
 			Icon = "UI/Icons/Upgrades/m1014_barrel_short",
@@ -4595,9 +4581,9 @@ return {
 				"ReduceRange",
 				"ReduceMagazineSize",
 				"shortbarrel",
-				"ReduceDamage",
 				"IncreaseOverwatchAngle",
 				"StanceAPdecrease",
+				"IncreaseBuckshotAngle",
 			},
 			Parameters = {
 				PlaceObj('PresetParamNumber', {
@@ -4612,7 +4598,7 @@ return {
 				}),
 				PlaceObj('PresetParamNumber', {
 					'Name', "BuckshotAngleIncrease",
-					'Value', 150,
+					'Value', 122,
 					'Tag', "<BuckshotAngleIncrease>",
 				}),
 				PlaceObj('PresetParamNumber', {
@@ -7796,12 +7782,11 @@ return {
 			Icon = "UI/Icons/Upgrades/galil_barrel_long",
 			ModificationDifficulty = 10,
 			ModificationEffects = {
-				"HalfRangeDmgIncrease",
 				"IncreaseRange",
-				"IncreaseDamage",
 				"longbarrel",
 				"DecreaseOverwatchAngle",
 				"StanceAPincrease",
+				"DecreaseBuckshotAngle",
 			},
 			Parameters = {
 				PlaceObj('PresetParamNumber', {
@@ -7823,6 +7808,11 @@ return {
 					'Name', "APincrease",
 					'Value', 1,
 					'Tag', "<APincrease>",
+				}),
+				PlaceObj('PresetParamPercent', {
+					'Name', "BuckshotAngleDecrease",
+					'Value', 78,
+					'Tag', "<BuckshotAngleDecrease>%",
 				}),
 			},
 			Slot = "Barrel",
@@ -7854,13 +7844,12 @@ return {
 			Icon = "UI/Icons/Upgrades/galil_barrel_long",
 			ModificationDifficulty = 20,
 			ModificationEffects = {
-				"HalfRangeDmgIncrease",
 				"IncreaseRange",
-				"IncreaseDamage",
 				"longbarrel",
 				"DecreaseOverwatchAngle",
 				"MagazineSizeMultiplier",
 				"StanceAPincrease",
+				"DecreaseBuckshotAngle",
 			},
 			Parameters = {
 				PlaceObj('PresetParamPercent', {
@@ -7887,6 +7876,11 @@ return {
 					'Name', "APincrease",
 					'Value', 1,
 					'Tag', "<APincrease>",
+				}),
+				PlaceObj('PresetParamPercent', {
+					'Name', "BuckshotAngleDecrease",
+					'Value', 78,
+					'Tag', "<BuckshotAngleDecrease>%",
 				}),
 			},
 			Slot = "Barrel",
@@ -7917,12 +7911,11 @@ return {
 			Icon = "UI/Icons/Upgrades/galil_barrel_long",
 			ModificationDifficulty = 10,
 			ModificationEffects = {
-				"HalfRangeDmgIncrease",
 				"IncreaseRange",
-				"IncreaseDamage",
 				"longbarrel",
 				"DecreaseOverwatchAngle",
 				"StanceAPincrease",
+				"DecreaseBuckshotAngle",
 			},
 			Parameters = {
 				PlaceObj('PresetParamNumber', {
@@ -7944,6 +7937,11 @@ return {
 					'Name', "APincrease",
 					'Value', 1,
 					'Tag', "<APincrease>",
+				}),
+				PlaceObj('PresetParamPercent', {
+					'Name', "BuckshotAngleDecrease",
+					'Value', 78,
+					'Tag', "<BuckshotAngleDecrease>%",
 				}),
 			},
 			Slot = "Barrel",
@@ -17853,16 +17851,17 @@ return {
 		ModificationEffects = {
 			"DecreaseBuckshotAngle",
 			"IncreaseRange",
+			"FullChokeRecoil",
 		},
 		Parameters = {
 			PlaceObj('PresetParamNumber', {
 				'Name', "RangeIncrease",
-				'Value', 4,
+				'Value', 2,
 				'Tag', "<RangeIncrease>",
 			}),
 			PlaceObj('PresetParamNumber', {
 				'Name', "BuckshotAngleDecrease",
-				'Value', 40,
+				'Value', 60,
 				'Tag', "<BuckshotAngleDecrease>",
 			}),
 		},
@@ -17871,23 +17870,29 @@ return {
 	}),
 	PlaceObj('ModItemWeaponComponent', {
 		Cost = 20,
-		DisplayName = T(125328556125, --[[ModItemWeaponComponent DuckbillChoke DisplayName]] "Duckbill Choke"),
+		DisplayName = T(141544159370, --[[ModItemWeaponComponent DuckbillChoke DisplayName]] "Duckbill Choke"),
 		Icon = "UI/Icons/Upgrades/duckbill_choke",
 		ModificationDifficulty = 0,
 		ModificationEffects = {
 			"IncreaseBuckshotAngle",
-			"ReduceRange",
+			"IncreasePointBlankAccuracyBonus",
+			"ReduceVerticalPelletSpread",
 		},
 		Parameters = {
 			PlaceObj('PresetParamNumber', {
 				'Name', "BuckshotAngleIncrease",
-				'Value', 180,
+				'Value', 220,
 				'Tag', "<BuckshotAngleIncrease>",
 			}),
 			PlaceObj('PresetParamNumber', {
-				'Name', "RangeDecrease",
-				'Value', 2,
-				'Tag', "<RangeDecrease>",
+				'Name', "PointBlankBonus",
+				'Value', 4,
+				'Tag', "<PointBlankBonus>",
+			}),
+			PlaceObj('PresetParamNumber', {
+				'Name', "VerticalSpreadReduction",
+				'Value', 50,
+				'Tag', "<VerticalSpreadReduction>",
 			}),
 		},
 		Slot = "Muzzle",

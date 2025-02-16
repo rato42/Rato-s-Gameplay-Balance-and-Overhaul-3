@@ -229,7 +229,11 @@ function Firearm:GetAttackResults(action, attack_args)
     -- local graze_threshold = point_blank and 6 or 3
 
     ----------------------------------------
-    local graze_threshold = num_shots > 1 and const.Combat.MultishotGrazeThreshold or
+    local pellet_count = self:GetNumPellets(attacker, action and action.id) or 0
+    local is_pellet_shot = pellet_count > 0 and not attack_args.prediction
+
+    local graze_threshold = is_pellet_shot and const.Combat.PelletShotGrazeThreshold or num_shots >
+                                1 and const.Combat.MultishotGrazeThreshold or
                                 const.Combat.SingleShotGrazeThreshold
     local aim_cth = 0
     if num_shots > 1 and not prediction then
@@ -253,7 +257,8 @@ function Firearm:GetAttackResults(action, attack_args)
         local shot_miss, shot_crit, shot_cth
         ------------- max 6 i
         local original_cth = self:GetShotChanceToHit(attack_results.chance_to_hit) or 0
-        shot_cth = original_cth - shot_attack_args.cth_loss_per_shot * Min((i - 1), 6)
+        shot_cth = original_cth - shot_attack_args.cth_loss_per_shot *
+                       Min((i - 1), const.Combat.MaxShotIndexForRecoilCTHLoss)
 
         if i > 1 then
             shot_cth = shot_cth - aim_cth
@@ -676,11 +681,7 @@ function Firearm:GetAttackResults(action, attack_args)
         ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        local pellet_count = self:GetNumPellets(attacker, action and action.id) or 0
-
-        local process_pellets = pellet_count > 0 and not attack_args.prediction
-
-        if process_pellets then
+        if is_pellet_shot then
             attack_results.is_pellet_attack = true
             attack_results.shots[i].main_pellet = true
             local main_pellet_target_pos = hit_data.stuck_pos or hit_data.lof_pos2 or
@@ -814,7 +815,7 @@ function Firearm:GetAttackResults(action, attack_args)
             hit.direct_shot = true
             hit.shot_idx = i
             -----
-            if process_pellets then
+            if is_pellet_shot then
                 hit.pellet_idx = 1
             end
             -----
@@ -826,7 +827,7 @@ function Firearm:GetAttackResults(action, attack_args)
         end
 
         --------------------------------
-        if process_pellets then
+        if is_pellet_shot then
             attack_results.shots[i].pellets[1] = shot
         end
         --------------------------------

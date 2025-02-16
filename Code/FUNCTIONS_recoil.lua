@@ -1,14 +1,3 @@
-function OnMsg.ClassesGenerate()
-    AppendClass.Firearm = {
-        properties = {{id = "class_base_recoil", editor = "number", default = 100, no_edit = true}}
-    }
-
-    Pistol.class_base_recoil = 195
-    Revolver.class_base_recoil = 188
-    SubmachineGun.class_base_recoil = 130
-    MachineGun.class_base_recoil = 95
-end
-
 local function rT(id, text)
     return {id, text}
 end
@@ -533,6 +522,10 @@ function GetWepRecoil(weapon, attacker, display)
             name = "stocklight_effect_recoil",
             mod = recoil_components.LightStockMul,
             text = rT(321654987321, "(-) Light Stock")
+        }, {
+            name = "FullChokeRecoil",
+            mod = recoil_components.FullChokeRecoilMul,
+            text = rT(984651387752, "(-) Full Choke")
         }
     }
     for _, comp in ipairs(components) do
@@ -1120,7 +1113,8 @@ local t_id_table = {
     [594122678151] = "(-) Held MG",
     [219911149892] = "Point-Blank Range",
     [574718433471] = "Recoil",
-    [862325237281] = "Average Recoil: Two Weapons"
+    [862325237281] = "Average Recoil: Two Weapons",
+    [984651387752] = "(-) Full Choke"
 }
 
 ratG_T_table['FUNCTIONS_recoil.lua'] = t_id_table

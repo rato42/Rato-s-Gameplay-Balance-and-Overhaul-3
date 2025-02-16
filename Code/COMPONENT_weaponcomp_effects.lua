@@ -660,6 +660,50 @@ function weapon_components_rat()
     })
 
     PlaceObj('WeaponComponentEffect', {
+        Description = T(195877439875, "Increases <em>Recoil</em> penalty"),
+        group = "FX Placeholders",
+        id = "FullChokeRecoil"
+    })
+
+    PlaceObj('WeaponComponentEffect', {
+        Description = T(674215963791, "Changes pellet spread pattern, reducing vertical spread"),
+        ModificationType = "Subtract",
+        Parameters = {
+            PlaceObj('PresetParamNumber',
+                     {'Name', "VerticalSpreadReduction", 'Tag', "<VerticalSpreadReduction>"})
+        },
+        RequiredParams = {"VerticalSpreadReduction"},
+        StatToModify = "VerticalPelletSpreadFactorMul",
+        group = "Stats",
+        id = "ReduceVerticalPelletSpread"
+    })
+
+    PlaceObj('WeaponComponentEffect', {
+        Description = T(912316475877, "Increases Point-Blank range accuracy bonus"),
+        ModificationType = "Add",
+        Parameters = {
+            PlaceObj('PresetParamNumber', {'Name', "PointBlankBonus", 'Tag', "<PointBlankBonus>"})
+        },
+        RequiredParams = {"PointBlankBonus"},
+        StatToModify = "PBbonus_base",
+        group = "Stats",
+        id = "IncreasePointBlankAccuracyBonus"
+    })
+
+    PlaceObj('WeaponComponentEffect', {
+        Description = T(156932878971, "Decreases Point-Blank range accuracy bonus"),
+        ModificationType = "Subtract",
+        Parameters = {
+            PlaceObj('PresetParamNumber',
+                     {'Name', "PointBlankPenalty", 'Tag', "<PointBlankPenalty>"})
+        },
+        RequiredParams = {"PointBlankPenalty"},
+        StatToModify = "PBbonus_base",
+        group = "Stats",
+        id = "DecreasePointBlankAccuracyBonus"
+    })
+
+    PlaceObj('WeaponComponentEffect', {
         Comment = "In aiming cth",
         Description = T(320356428271, "Grants bonus Critical Chance for aimed attacks at the torso"),
         Parameters = {
@@ -949,7 +993,11 @@ local t_table = {
     [897995963554] = 'Increases Point Blank Range accuracy bonus by 1',
     [236633317127] = 'Decreases weapon length, affecting Recoil, Snapshot, Hipfire accuracy penalties and Point Blank Range accuracy modifiers',
     [219179226706] = 'Increases weapon length, affecting Recoil, Snapshot, Hipfire accuracy penalties and Point Blank Range accuracy modifiers',
-    [864532654693] = "Changes caliber to 5.56x45mm"
+    [864532654693] = "Changes caliber to 5.56x45mm",
+    [195877439875] = "Increases <em>Recoil</em> penalty",
+    [674215963791] = "Changes pellet spread pattern, reducing vertical spread",
+    [156932878971] = "Decreases Point-Blank range accuracy bonus",
+    [912316475877] = "Increases Point-Blank range accuracy bonus"
 }
 
 ratG_T_table['COMPONENT_weaponcomp_effects.lua'] = t_table

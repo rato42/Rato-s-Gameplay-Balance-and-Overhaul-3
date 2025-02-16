@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 58,
-	'version', 12239,
+	'version', 12351,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -199,8 +199,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1739603078,
-	'code_hash', 4391934705585073573,
+	'saved', 1739699916,
+	'code_hash', 1765347260494030674,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
@@ -469,11 +469,6 @@ return PlaceObj('ModDef', {
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "WeaponComponent",
-			'Id', "BarrelShortShotgun",
-			'ClassDisplayName', "Weapon component",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "WeaponComponent",
 			'Id', "BarrelShortImproved_handgun",
 			'ClassDisplayName', "Weapon component",
 		}),
@@ -489,11 +484,6 @@ return PlaceObj('ModDef', {
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "WeaponComponent",
-			'Id', "Auto5_Short_NMag",
-			'ClassDisplayName', "Weapon component",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "WeaponComponent",
 			'Id', "BarrelShort_Light_handgun",
 			'ClassDisplayName', "Weapon component",
 		}),
@@ -505,6 +495,16 @@ return PlaceObj('ModDef', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "WeaponComponent",
 			'Id', "BarrelShort",
+			'ClassDisplayName', "Weapon component",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "WeaponComponent",
+			'Id', "Auto5_Short_NMag",
+			'ClassDisplayName', "Weapon component",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "WeaponComponent",
+			'Id', "BarrelShortShotgun",
 			'ClassDisplayName', "Weapon component",
 		}),
 		PlaceObj('ModResourcePreset', {

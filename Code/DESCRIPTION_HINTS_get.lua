@@ -96,6 +96,12 @@ function rat_format_hints(self)
 
     end
 
+    local function GeBuckangle_display(self)
+        -- return 0
+        local angle = self:GetProperty("BuckshotConeAngle") / 60.0
+        return string.format("%.2f", angle)
+    end
+
     local termList = {
         {
             TranslationTable[242435461626] or "Shooting Stance Cost: ",
@@ -125,6 +131,21 @@ function rat_format_hints(self)
             (TranslationTable[785975283217]) or " STR"
         }
     }
+
+    local shotty_terms = {
+        {TranslationTable[7195836321172] or "Number of Pellets: ", self.NumPellets or 0, ""},
+        {
+            TranslationTable[193184162359] or "Pellet Spread Angle: ",
+            GeBuckangle_display(self) or 0, "º"
+        }
+
+    }
+
+    if (self.NumPellets or 0) > 0 then
+        for i, term in ipairs(shotty_terms) do
+            table.insert(termList, term)
+        end
+    end
 
     for _, term in ipairs(termList) do
         formattedString = formattedString .. "<color PDABrowserFlavorMedium>" .. term[1] ..
@@ -159,7 +180,9 @@ local t_id_table = {
     [151451884832] = "Recoil Penalty Multiplier: ",
     [896979362710] = "Minimum Recoil Multiplier: ",
     [158466723759] = "Recommended Strength: ",
-    [785975283217] = " STR"
+    [785975283217] = " STR",
+    [719583632117] = "Number of Pellets: ",
+    [193184162359] = "Pellet Spread Angle: "
 }
 
 ratG_T_table['DESCRIPTION_HINTS_get.lua'] = t_id_table

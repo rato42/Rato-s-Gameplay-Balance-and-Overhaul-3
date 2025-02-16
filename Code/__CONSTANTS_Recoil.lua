@@ -26,7 +26,8 @@ const.Combat.Recoil.Components = {
     HeavyStockMul = 0.95,
     LightStockMul = 1.05,
     RecoilBumpMul = 1.06,
-    BipodMul = 0.85
+    BipodMul = 0.85,
+    FullChokeRecoilMul = 1.10
 }
 ----- Perks
 const.Combat.Recoil.Perks.TakeAimMul = 0.90
@@ -34,3 +35,14 @@ const.Combat.Recoil.Perks.AutoWeaponsMul = 0.90
 ----
 const.Combat.Recoil.Other = {Prone = 0.96, Crouch = 0.98, Tracer = 0.95, AP = 1.06}
 
+function OnMsg.ClassesGenerate()
+    AppendClass.Firearm = {
+        properties = {{id = "class_base_recoil", editor = "number", default = 100, no_edit = true}}
+    }
+
+    Pistol.class_base_recoil = 195
+    Revolver.class_base_recoil = 188
+    SubmachineGun.class_base_recoil = 130
+    MachineGun.class_base_recoil = 95
+    Shotgun.class_base_recoil = 90
+end

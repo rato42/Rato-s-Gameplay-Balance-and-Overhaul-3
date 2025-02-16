@@ -134,10 +134,8 @@ DefineClass.M14SAW_AUTO = {
 	ShootAP = 4000,
 	ReloadAP = 3000,
 	APStance = 4,
-	PBbonus_base = -1,
 	wep_base_recoil_mul = 89,
 	placeholder_recoil = 115,
-	burst_recoil_delta = 125,
 	auto_recoil_delta = 125,
 	long_recoil_delta = 125,
 	wep_base_hip_mul = 97,
@@ -149,5 +147,6 @@ DefineClass.M14SAW_AUTO = {
 	recoil_mechanism = "Gas_Operated",
 	rat_weigth = 5220,
 	rat_barrel_len = 457,
+	PBbonus_base = -1,
 }
 

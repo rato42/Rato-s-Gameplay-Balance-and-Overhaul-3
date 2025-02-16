@@ -1,11 +1,9 @@
 if FirstLoad then
     ratG_T_table = {}
     ratG_GunsHurtOriginalDMGValues = {}
-    ratG_original_UnitGetBaseAimLevelRange =
-        Unit.GetBaseAimLevelRange
+    ratG_original_UnitGetBaseAimLevelRange = Unit.GetBaseAimLevelRange
 
-    ratG_originalFirearmFireBullet =
-        Firearm.FireBullet
+    ratG_originalFirearmFireBullet = Firearm.FireBullet
     ratG_recoilData = {
         small = {
             modifier = 1.0,
@@ -36,7 +34,7 @@ if FirstLoad then
         medium = {
             modifier = 1.38,
             aim_mul = 0.8,
-            ["556"] = {str = 64},
+            ["556"] = {str = 65},
             -- Group 5: Assault Rifle and Intermediate Cartridges
             ["5_45x39"] = {str = 62},
             ["4_7x33"] = {str = 60},
@@ -47,7 +45,7 @@ if FirstLoad then
 
         },
         medium_large = {
-            modifier = 1.58,
+            modifier = 1.52,
             aim_mul = 0.9,
             ["9x39"] = {str = 67},
             -- Group 5: Assault Rifle and Intermediate Cartridges
@@ -62,7 +60,7 @@ if FirstLoad then
 
         },
         large = {
-            modifier = 1.78,
+            modifier = 1.72,
             aim_mul = 1.1,
             ["12gauge"] = {str = 86},
             -- Group 6: Battle Rifle and Full-Power Rifle Cartridges
