@@ -86,15 +86,6 @@ function GBO_ChangeShotgunCombatActions()
     end
 end
 
-function Firearm:GetNumPellets(unit, action_id)
-    local action_id = action_id or ''
-    local pellets = Max(1, self.NumPellets or 1)
-    if action_id == "DoubleBarrel" then
-        pellets = pellets * 2
-    end
-    return pellets
-end
-
 function GetPelletDamageText(unit, weapon, base, action_id)
     local pellets = weapon and weapon:GetNumPellets(unit, action_id) or 0
     local totaldmg = base * pellets

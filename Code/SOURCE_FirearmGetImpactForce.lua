@@ -15,7 +15,7 @@ function Firearm:GetImpactForce()
     end
 
     ---
-    if IsKindOf(self, "Shotgun") and self.NumPellets < 1 then
+    if IsSlugLoaded(self) then
         impact_force = impact_force + 3
     end
     ---

@@ -42,6 +42,19 @@ function IsSlugLoaded(weapon)
     return false
 end
 
+function Firearm:GetNumPellets(unit, action_id)
+    return 0
+end
+
+function Shotgun:GetNumPellets(unit, action_id)
+    local action_id = action_id or ''
+    local pellets = self.NumPellets or 1
+    if action_id == "DoubleBarrel" then
+        pellets = pellets * 2
+    end
+    return Max(1, pellets)
+end
+
 function Firearm:GetPelletScatterData(attacker, action, attack_pos, target_pos, num_vectors,
                                       aoe_params, attack_results, shot_attack_args)
 

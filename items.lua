@@ -1231,10 +1231,6 @@ return {
 		'name', "Shotgun Rework",
 	}, {
 		PlaceObj('ModItemCode', {
-			'name', "TEMPORARY_ShotgunPatch",
-			'CodeFileName', "Code/TEMPORARY_ShotgunPatch.lua",
-		}),
-		PlaceObj('ModItemCode', {
 			'name', "COMBAT_ACTIONS_ShotgunRework",
 			'CodeFileName', "Code/COMBAT_ACTIONS_ShotgunRework.lua",
 		}),
@@ -1243,8 +1239,8 @@ return {
 			'CodeFileName', "Code/FUNCTIONS_FirearmFirePellet.lua",
 		}),
 		PlaceObj('ModItemCode', {
-			'name', "FUNCTION_GetPelletScatterData",
-			'CodeFileName', "Code/FUNCTION_GetPelletScatterData.lua",
+			'name', "FUNCTIONS_Pellets",
+			'CodeFileName', "Code/FUNCTIONS_Pellets.lua",
 		}),
 		}),
 	PlaceObj('ModItemCode', {

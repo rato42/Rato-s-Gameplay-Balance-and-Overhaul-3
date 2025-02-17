@@ -5,7 +5,8 @@ function Unit:EnumUIActions()
 
     local main_weapon, _ = self:GetActiveWeapons()
     if g_Combat or (IsUnitPrimarySelectionCoOpAware(self) and not g_Overwatch[self]) then
-        if IsKindOf(main_weapon, "Shotgun") and main_weapon.NumPellets < 1 then
+
+        if main_weapon and IsSlugLoaded(main_weapon) then
             if table.find(actions, "BuckshotBurst") then
                 table.remove_value(actions, "BuckshotBurst")
                 table.insert_unique(actions, "BurstFire")

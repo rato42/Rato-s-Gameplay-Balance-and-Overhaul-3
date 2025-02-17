@@ -141,7 +141,7 @@ function rat_format_hints(self)
 
     }
 
-    if (self.NumPellets or 0) > 0 then
+    if (self.NumPellets or 0) > 1 then
         for i, term in ipairs(shotty_terms) do
             table.insert(termList, term)
         end
