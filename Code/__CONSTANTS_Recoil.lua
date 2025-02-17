@@ -7,7 +7,7 @@ const.Combat.Recoil.BasePenalty = -5 ----- -5
 const.Combat.Recoil.MaxPenalty = -90 --- -50
 const.Combat.Recoil.MaxDistforPenalty = 36 -- 26 ----- -18
 const.Combat.Recoil.StacksMultiplier = 0.35 ---- * -- for Persistant Recoil
-const.Combat.Recoil.MGSetupMul = 0.80 ---- * -- MG Setup recoil reduction
+const.Combat.Recoil.MGSetupMul = 0.70 ---- * -- MG Setup recoil reduction
 const.Combat.Recoil.RunAndGunExtraPenalty = -5
 
 const.Combat.Recoil.Components = {
@@ -19,7 +19,7 @@ const.Combat.Recoil.Components = {
     IntegratedMuzzleBrakeMul = 0.94, -- 0.91,
     SuppressorMul = 0.96,
     ImprovisedSuppressorMul = 0.98,
-    LongBarrelMul = {Pistol = 0.98, Revolver = 0.97, SubmachineGun = 0.94, Other = 0.92},
+    LongBarrelMul = {Pistol = 0.97, Revolver = 0.96, SubmachineGun = 0.93, Other = 0.91},
     ShortBarrelMul = {Pistol = 1.02, Revolver = 1.03, SubmachineGun = 1.04, Other = 1.05},
     LightBarrelMul = {Pistol = 1.02, Revolver = 1.03, SubmachineGun = 1.04, Other = 1.05},
     HeavyBarrelMul = {Pistol = 0.98, Revolver = 0.97, SubmachineGun = 0.96, Other = 0.94},
@@ -33,16 +33,16 @@ const.Combat.Recoil.Components = {
 const.Combat.Recoil.Perks.TakeAimMul = 0.90
 const.Combat.Recoil.Perks.AutoWeaponsMul = 0.90
 ----
-const.Combat.Recoil.Other = {Prone = 0.96, Crouch = 0.98, Tracer = 0.95, AP = 1.06}
+const.Combat.Recoil.Other = {Prone = 0.95, Crouch = 0.98, Tracer = 0.96, AP = 1.04}
 
 function OnMsg.ClassesGenerate()
-    AppendClass.Firearm = {
+    AppendClass.FirearmProperties = {
         properties = {{id = "class_base_recoil", editor = "number", default = 100, no_edit = true}}
     }
 
     Pistol.class_base_recoil = 195
     Revolver.class_base_recoil = 188
     SubmachineGun.class_base_recoil = 130
-    MachineGun.class_base_recoil = 95
+    MachineGun.class_base_recoil = 90
     Shotgun.class_base_recoil = 90
 end

@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 58,
-	'version', 12351,
+	'version', 12434,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -43,6 +43,7 @@ return PlaceObj('ModDef', {
 		"Code/__CONSTANT_Main.lua",
 		"Code/__CONSTANTS_Recoil.lua",
 		"Code/__CONSTANTS_Caliber.lua",
+		"Code/CaliberApplyParams.lua",
 		"Code/ZULIBCalibers_GBOconfigs.lua",
 		"Code/UPDATE_Change components.lua",
 		"Code/DESCRIPTION_HINTS_get.lua",
@@ -199,8 +200,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1739699916,
-	'code_hash', 1765347260494030674,
+	'saved', 1739768051,
+	'code_hash', -4499825998165980510,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

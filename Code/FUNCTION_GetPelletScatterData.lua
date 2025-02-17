@@ -44,8 +44,6 @@ function Firearm:GetPelletScatterData(attacker, action, attack_pos, target_pos, 
     local min_offset = 35 * guic
     ----
     local scatter_range = 20 * const.SlabSizeX -- range
-
-    -- aoe_params.cone_angle = aoe_params.cone_angle * 2
     local max_angle_offset = 360 * 60
     ----
     local scatter = Max(min_offset, MulDivRound(scatter_range, sin(aoe_params.cone_angle / 2),
@@ -132,7 +130,6 @@ function Firearm:GetPelletScatterData(attacker, action, attack_pos, target_pos, 
     lof_args.aimIK = false
     lof_args.can_stuck_on_unit = true
 
-    -- local hits = {}
     local shots_hit_data = {}
 
     for i, target in ipairs(targets) do
