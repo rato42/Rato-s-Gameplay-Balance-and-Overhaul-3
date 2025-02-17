@@ -9,6 +9,25 @@ function ApplyAmmoParams(class_id, class, ...)
         return PlaceObj("CaliberModification", args)
     end
 
+    local function GBO_GetNoiseValue(caliber)
+        local function extractNumberWithSignFromString(str)
+            if not str then
+                return false
+            end
+            local num = tonumber(string.match(str, "[+-]?%d+"))
+            if num then
+                return num
+            else
+                return false
+            end
+        end
+
+        local noise_setting =
+            extractNumberWithSignFromString(CurrentModOptions['noise_setting_num']) or 100
+        local caliber_noise = const.Calibers.Noise[caliber]
+        return caliber_noise and Max(0, MulDivRound(caliber_noise, noise_setting, 100))
+    end
+
     -- local function extract_suffix(caliber_string, class_caliber)
     --     return caliber_string:match("_" .. class_caliber .. "_(.+)")
     -- end
@@ -64,9 +83,16 @@ function ApplyAmmoParams(class_id, class, ...)
 
     local params = ... or {}
 
+    local icon_calibers = {"7_62x54R", "5_45x39", "5_7x28"}
+
     local class_caliber = class.Caliber
 
     if class_caliber then
+        if table.find(icon_calibers, class_caliber) then
+            class.Icon = "Mod/cfahRED/Images/" .. class_id .. ".png"
+            -- ic(class.Icon)
+        end
+
         if const.Calibers["_" .. class_caliber] then
             table.insert(params, const.Calibers["_" .. class_caliber])
         else
@@ -82,8 +108,9 @@ function ApplyAmmoParams(class_id, class, ...)
             table.insert(params, const.Calibers[ammo_type])
         end
 
-        if const.Calibers.Noise[class_caliber] then
-            table.insert(params, {Modifications = {Noise = const.Calibers.Noise[class_caliber]}})
+        local noise_value = GBO_GetNoiseValue(class_caliber)
+        if noise_value then
+            table.insert(params, {Modifications = {Noise = noise_value}})
         end
     end
 

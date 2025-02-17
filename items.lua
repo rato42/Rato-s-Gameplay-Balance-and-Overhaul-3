@@ -1357,6 +1357,10 @@ return {
 		'CodeFileName', "Code/SOURCE_Firearm_GetItemStatusUI and QuickReloadButton.lua",
 	}),
 	PlaceObj('ModItemCode', {
+		'name', "SOURCE_FirearmGetImpactForce",
+		'CodeFileName', "Code/SOURCE_FirearmGetImpactForce.lua",
+	}),
+	PlaceObj('ModItemCode', {
 		'name', "SOURCE_GetRangeAccuracy",
 		'CodeFileName', "Code/SOURCE_GetRangeAccuracy.lua",
 	}),
@@ -1477,7 +1481,7 @@ return {
 		PlaceObj('ModItemOptionNumber', {
 			'name', "noise_setting_num",
 			'DisplayName', "Firearm Noise* %",
-			'Help', "This option will multiply the calibers noise by the selected value. If set to 0, calibers wont have different Noise ranges, and the values will be close to vanilla. GBO's Default is 150. *RELOAD WEAPONS for it to take effect",
+			'Help', "This option will multiply the calibers noise by the selected value. If set to 0, calibers wont have different Noise ranges, and the values will be close to vanilla. GBO's Default is 150.  Restart after applying. *RELOAD WEAPONS for it to take effect",
 			'DefaultValue', 150,
 			'MaxValue', 201,
 			'StepSize', 10,
@@ -9618,174 +9622,6 @@ return {
 			},
 			group = "Barrel",
 			id = "BarrelLong",
-		}),
-		}),
-	PlaceObj('ModItemFolder', {
-		'name', "Ammo",
-	}, {
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_12gauge",
-			'CodeFileName', "Code/AMMO_12gauge.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_20x81",
-			'CodeFileName', "Code/AMMO_20x81.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_22LR",
-			'CodeFileName', "Code/AMMO_22LR.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_280British",
-			'CodeFileName', "Code/AMMO_280British.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_300Blackout",
-			'CodeFileName', "Code/AMMO_300Blackout.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_300WinMag",
-			'CodeFileName', "Code/AMMO_300WinMag.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_303",
-			'CodeFileName', "Code/AMMO_303.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_308Win",
-			'CodeFileName', "Code/AMMO_308Win.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_30_60",
-			'CodeFileName', "Code/AMMO_30_60.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_32ACP",
-			'CodeFileName', "Code/AMMO_32ACP.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_32HRMAG",
-			'CodeFileName', "Code/AMMO_32HRMAG.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_338_Lapua_Magnum",
-			'CodeFileName', "Code/AMMO_338_Lapua_Magnum.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_357MAG",
-			'CodeFileName', "Code/AMMO_357MAG.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_380ACP",
-			'CodeFileName', "Code/AMMO_380ACP.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_38SP",
-			'CodeFileName', "Code/AMMO_38SP.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_408_ChayTac",
-			'CodeFileName', "Code/AMMO_408_ChayTac.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_40SW",
-			'CodeFileName', "Code/AMMO_40SW.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_44AMP",
-			'CodeFileName', "Code/AMMO_44AMP.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_44CAL",
-			'CodeFileName', "Code/AMMO_44CAL.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_44MAG",
-			'CodeFileName', "Code/AMMO_44MAG.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_45ACP",
-			'CodeFileName', "Code/AMMO_45ACP.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_4_6x30",
-			'CodeFileName', "Code/AMMO_4_6x30.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_4_7x33",
-			'CodeFileName', "Code/AMMO_4_7x33.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_50AE",
-			'CodeFileName', "Code/AMMO_50AE.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_50BMG",
-			'CodeFileName', "Code/AMMO_50BMG.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_545x39",
-			'CodeFileName', "Code/AMMO_545x39.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_556x45",
-			'CodeFileName', "Code/AMMO_556x45.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_5_7x28",
-			'CodeFileName', "Code/AMMO_5_7x28.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_6_5Creedmoor",
-			'CodeFileName', "Code/AMMO_6_5Creedmoor.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_6_5Grendel",
-			'CodeFileName', "Code/AMMO_6_5Grendel.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_762x39",
-			'CodeFileName', "Code/AMMO_762x39.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_762x51",
-			'CodeFileName', "Code/AMMO_762x51.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_762x54",
-			'CodeFileName', "Code/AMMO_762x54.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_792x57",
-			'CodeFileName', "Code/AMMO_792x57.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_7_5x54",
-			'CodeFileName', "Code/AMMO_7_5x54.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_7_62x25",
-			'CodeFileName', "Code/AMMO_7_62x25.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_7_65x21",
-			'CodeFileName', "Code/AMMO_7_65x21.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_7_92x33",
-			'CodeFileName', "Code/AMMO_7_92x33.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_9x18",
-			'CodeFileName', "Code/AMMO_9x18.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_9x19",
-			'CodeFileName', "Code/AMMO_9x19.lua",
-		}),
-		PlaceObj('ModItemCode', {
-			'name', "AMMO_9x39",
-			'CodeFileName', "Code/AMMO_9x39.lua",
 		}),
 		}),
 	PlaceObj('ModItemWeaponComponent', {

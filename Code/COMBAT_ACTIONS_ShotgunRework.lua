@@ -88,7 +88,7 @@ end
 
 function Firearm:GetNumPellets(unit, action_id)
     local action_id = action_id or ''
-    local pellets = self.NumPellets or 0
+    local pellets = Max(1, self.NumPellets or 1)
     if action_id == "DoubleBarrel" then
         pellets = pellets * 2
     end

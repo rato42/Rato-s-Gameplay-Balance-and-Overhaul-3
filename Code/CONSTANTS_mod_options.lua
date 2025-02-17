@@ -86,10 +86,10 @@ function OnMsg.ApplyModOptions(id)
     const.Combat.R_ExtraAP = extractNumberWithSignFromString(CurrentModOptions['Extra_start_ap']) or
                                  1
 
-    local noise_setting = extractNumberWithSignFromString(CurrentModOptions['noise_setting_num']) or
-                              100
+    -- local noise_setting = extractNumberWithSignFromString(CurrentModOptions['noise_setting_num']) or
+    -- 100
 
-    rat_noise_settings(noise_setting)
+    -- rat_noise_settings(noise_setting)
 
 end
 

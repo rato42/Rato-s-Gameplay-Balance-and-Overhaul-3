@@ -37,7 +37,11 @@ end
 
 function Firearm:GetPelletScatterData(attacker, action, attack_pos, target_pos, num_vectors,
                                       aoe_params, attack_results, shot_attack_args)
-    aoe_params = aoe_params or weapon:GetAreaAttackParams(action.id, attacker, target_pos)
+
+    if num_vectors < 1 then
+        return {}
+    end
+    aoe_params = aoe_params or self:GetAreaAttackParams(action.id, attacker, target_pos)
     local range = self.WeaponRange * const.SlabSizeX
     local dir = SetLen(target_pos - attack_pos, guim)
 

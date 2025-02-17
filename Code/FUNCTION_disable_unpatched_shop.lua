@@ -43,13 +43,29 @@ function disable_zulib_22mm_recipes()
     end
     for i, remove in ipairs(to_remove) do
         table.remove_value(recipes, remove)
-        print("RAT MOD - removing craft recipe:", remove.item_id)
+        -- print("RAT MOD - removing craft recipe:", remove.item_id)
+    end
+end
+
+function disable_zulib_unused_calibers_recipes()
+    local recipes = g_RecipesCraftAmmo
+    local to_remove = {}
+    for i, recipe in ipairs(recipes) do
+        local class = g_Classes[recipe.item_id]
+        if class and not table.find(ratG_UsedCalibers, class.Caliber) then
+            table.insert(to_remove, recipe)
+        end
+    end
+    for i, remove in ipairs(to_remove) do
+        table.remove_value(recipes, remove)
+        -- print("RAT MOD - removing craft recipe:", remove.item_id)
     end
 end
 
 local original_SectorOperationValidateItemsToCraft = SectorOperationValidateItemsToCraft
 function SectorOperationValidateItemsToCraft(sector_id, operation_id, merc)
     disable_zulib_22mm_recipes()
+    disable_zulib_unused_calibers_recipes()
     original_SectorOperationValidateItemsToCraft(sector_id, operation_id, merc)
 end
 ---------------
