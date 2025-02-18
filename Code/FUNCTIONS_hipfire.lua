@@ -1,26 +1,3 @@
-function OnMsg.ClassesGenerate()
-    AppendClass.Firearm = {
-        properties = {
-            {id = "class_base_hipfire_mul", editor = "number", default = 100, no_edit = true},
-            {id = "class_base_snapshot_mul", editor = "number", default = 100, no_edit = true}
-        }
-    }
-
-    Pistol.class_base_hipfire_mul = 145
-    Revolver.class_base_hipfire_mul = 138
-    SubmachineGun.class_base_hipfire_mul = 120
-    Shotgun.class_base_hipfire_mul = 105
-    ---
-    Pistol.class_base_snapshot_mul = 60
-    Revolver.class_base_snapshot_mul = 60
-    SubmachineGun.class_base_snapshot_mul = 85
-    Shotgun.class_base_snapshot_mul = 115
-    SniperRifle.class_base_snapshot_mul = 135
-    AssaultRifle.class_base_snapshot_mul = 125
-    MachineGun.class_base_snapshot_mul = 135
-
-end
-
 function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
 
     local penalty = 1.00
@@ -32,7 +9,7 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
     local metaText = {}
 
     if IsKindOf(weapon, "MeleeWeapon") then
-        return 0.85
+        return const.Combat.SnapshotHipfire.MeleeWeaponMul
     end
 
     ------------Weaponclass
@@ -45,13 +22,14 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
         penalty = penalty * ((weapon.class_base_snapshot_mul or 100) / 100.00)
     end
 
+    local c_mods = const.Combat.SnapshotHipfire.Components
     if weapon and weapon:HasComponent("hipfire_dot_effect_laser") then
-        penalty = penalty * 0.88
+        penalty = penalty * c_mods.LaserMul
         metaText[#metaText + 1] = T(626578482223, "Laser Dot")
     end
 
     if weapon and weapon:HasComponent("hipfire_dot_effect_uv") then
-        penalty = penalty * 0.88
+        penalty = penalty * c_mods.LaserMul
         metaText[#metaText + 1] = T(887956959968, "UV Dot")
     end
 
@@ -64,7 +42,7 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
     if weapon and weapon:HasComponent("Vert_grip_recoil") then
         if weapon2 then
         else
-            penalty = penalty * 0.95
+            penalty = penalty * c_mods.VerticalGripMul
             metaText[#metaText + 1] = T(253436571742, "Vertical Grip")
         end
     end
@@ -72,13 +50,13 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
     if weapon and weapon:HasComponent("tac_grip_hipfire") then
         if weapon2 then
         else
-            penalty = penalty * 0.9
+            penalty = penalty * c_mods.TacticalGripMul
             metaText[#metaText + 1] = T(646775269862, "Foldable Grip")
         end
     end
 
     if weapon and weapon:HasComponent("hipfire_light_stock") then
-        penalty = penalty * 0.92
+        penalty = penalty * c_mods.LightStockMul
         metaText[#metaText + 1] = T(729651784671, "Light Stock")
     end
 
@@ -90,7 +68,7 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
     local modifyVal, compDef
 
     if aim == 0 then ------so p hipfire
-
+        c_mods = const.Combat.Hipfire.Components
         if weapon and weapon:HasComponent("handguard_short") then
             modifyVal, compDef = GetComponentEffectValue(weapon, "handguard_short", "hipfire_mul")
             local sign = "(-) "
@@ -102,17 +80,17 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
         end
 
         if weapon and weapon:HasComponent("bullpup") then
-            penalty = penalty * 1.08
+            penalty = penalty * c_mods.BullpupMul
             metaText[#metaText + 1] = T(486687677418, "(-) Bullpup")
         end
 
         if (weapon and weapon:HasComponent("longbarrel")) or (weapon and weapon.default_long_barrel) then
             if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
-                penalty = penalty * 0.94
+                penalty = penalty * c_mods.LongBarrelMul.Pistol
             elseif IsKindOf(weapon, "Revolver") then
-                penalty = penalty * 0.92
+                penalty = penalty * c_mods.LongBarrelMul.Revolver
             else
-                penalty = penalty * 0.89
+                penalty = penalty * c_mods.LongBarrelMul.Other
             end
             metaText[#metaText + 1] = T(596547733965, "Extended Barrel")
         end
@@ -120,26 +98,26 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
         if weapon and weapon:HasComponent("shortbarrel") then
 
             if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
-                penalty = penalty * 1.06
+                penalty = penalty * c_mods.ShortBarrelMul.Pistol
             elseif IsKindOf(weapon, "Revolver") then
-                penalty = penalty * 1.08
+                penalty = penalty * c_mods.ShortBarrelMul.Revolver
             else
-                penalty = penalty * 1.11
+                penalty = penalty * c_mods.ShortBarrelMul.Other
             end
 
             metaText[#metaText + 1] = T(851834144682, "(-) Short Barrel")
         end
 
         if attacker and attacker.stance == "Prone" then
-            penalty = penalty * 1.10
+            penalty = penalty * const.Combat.Hipfire.Other.Prone
             metaText[#metaText + 1] = T(828597839679, "(-) Prone")
         elseif attacker and attacker.stance == "Crouch" then
-            penalty = penalty * 1.05
+            penalty = penalty * const.Combat.Hipfire.Other.Crouch
             metaText[#metaText + 1] = T(254262498254, "(-) Crouching")
         end
 
     elseif aim > 0 then
-
+        c_mods = const.Combat.Snapshot.Components
         if weapon and weapon:HasComponent("handguard_short") then
             modifyVal, compDef = GetComponentEffectValue(weapon, "handguard_short", "snapshot_mul")
             local sign = "(-) "
@@ -151,13 +129,13 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
         end
 
         if weapon and weapon:HasComponent("drum_mag_hipfire") then
-            penalty = penalty * 1.1
+            penalty = penalty * c_mods.DrumMagMul
             metaText[#metaText + 1] = T(916663762238, "(-) Drum Mag")
         end
 
         if weapon and weapon:HasComponent("hipfire_no_stock") then
 
-            penalty = penalty * 0.92
+            penalty = penalty * c_mods.NoStockMul
             metaText[#metaText + 1] = T(569535264469, "No Stock")
 
         end
@@ -170,18 +148,18 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
         end
 
         if weapon and weapon:HasComponent("bullpup") then
-            penalty = penalty * 0.96
+            penalty = penalty * c_mods.BullpupMul
             metaText[#metaText + 1] = T(633298768714, "Bullpup")
         end
 
         if (weapon and weapon:HasComponent("longbarrel")) or (weapon and weapon.default_long_barrel) then
 
             if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
-                penalty = penalty * 1.06
+                penalty = penalty * c_mods.LongBarrelMul.Pistol
             elseif IsKindOf(weapon, "Revolver") then
-                penalty = penalty * 1.07
+                penalty = penalty * c_mods.LongBarrelMul.Revolver
             else
-                penalty = penalty * 1.10
+                penalty = penalty * c_mods.LongBarrelMul.Other
             end
 
             metaText[#metaText + 1] = T(224584566951, "(-) Extended Barrel")
@@ -190,33 +168,33 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
         if weapon and weapon:HasComponent("shortbarrel") then
 
             if IsKindOf(weapon, "Pistol") or weapon.pistol_swap then
-                penalty = penalty * 0.94
+                penalty = penalty * c_mods.ShortBarrelMul.Pistol
             elseif IsKindOf(weapon, "Revolver") then
-                penalty = penalty * 0.93
+                penalty = penalty * c_mods.ShortBarrelMul.Revolver
             else
-                penalty = penalty * 0.90
+                penalty = penalty * c_mods.ShortBarrelMul.Other
             end
 
             metaText[#metaText + 1] = T(119591314866, "Short Barrel")
         end
 
         if weapon and weapon:HasComponent("hipfire_light_barrel") then
-            penalty = penalty * 0.92
+            penalty = penalty * c_mods.LightBarrelMul
             metaText[#metaText + 1] = T(447116472426, "Light Barrel")
         end
 
         if weapon and weapon:HasComponent("heavy_barrel_effect") then
-            penalty = penalty * 1.08
+            penalty = penalty * c_mods.HeavyBarrelMul
             metaText[#metaText + 1] = T(481487998456, "(-) Heavy Barrel")
         end
 
     end
 
     if action and (action.id == "RunAndGun" or action.id == "RecklessAssault") then
-        penalty = penalty * const.Combat.RunAndGunSnapshotHipfirePenaltyMul
+        penalty = penalty * const.Combat.SnapshotHipfire.RunAndGunMul
     end
     if action and action.id == "MobileShot" then
-        penalty = penalty * const.Combat.MobileShotSnapshotHipfirePenaltyMul
+        penalty = penalty * const.Combat.SnapshotHipfire.MobileShotMul
     end
 
     if display == true then

@@ -20,7 +20,7 @@ function ins_tabuao()
 
 end
 
-local debug = true
+local debug = Platform.developer and Platform.rat
 function PelletDebugAverageValues()
 
     local num_tables = #tabuao
@@ -106,7 +106,9 @@ function Firearm:FireBullet(attacker, shot, threads, results, attack_args)
 
             self:FirePellets(attacker, pellets[i], threads, results, attack_args, GameTime())
         end
-        table.insert(tabuao, debug_table)
+        if debug then
+            table.insert(tabuao, debug_table)
+        end
         return
     end
     ratG_originalFirearmFireBullet(self, attacker, shot, threads, results, attack_args)

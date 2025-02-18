@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.58 \n\n\nBalance - \n==============================================\nShotgun Reworked:\n==============================================\nShotguns will now fire individual pellets, that are ballistically simulated and do individual damage. \nThere is no guaranteed damage in the cone as it was in vanilla.\nThis will make shotguns do a lot more damage when up close. The lower the pellet spread, the better it will perform at mid ranges. \nDuckbill choke now creates a more horizontal pellet spread.\nShotguns stats have changed,\n\n\n\nAdded Slug ammo, that changes from pellets to a single projectile, increase range and have better armor penetration. Slug ammo will take the place of the breacher shots.\nFlechette shots will now increase the number of pellets and lessen the spread, penetrate light armor, cause Bleeding.\nSaltshots will decrease range, widen the spread, have a lot of pellets, low damage and cause Innacurate and Slowed on targets.\n\n\nFeedback on balance, especially related to pellet spread angle and damage at ranges, taking all components into account, is highly appreciated.\n\n==============================================\n\nSavior perk reworked. It will now also grant a Inspired-like buff when a teammate is downed or dies.\n\nTweak on some penalties related to interrupt attacks.\nMGs will reduce recoil a bit more efficiently when setup.\n\nOther - \n\nRemoved unused calibers from crafting interface\n\nChanged some code related to caliber logic. Some icons are also changed.\nSome ammo costs were changed.",
+	'last_changes', "3.58a -- NR\n\nSmall tweaks to flechette and slug ammo\nFixed Subsonic ammo not reducing armor penetration\nFixed Quick Scope increasing and decreasing shooting angle\nFixed some Magazines decreasing shooting stance by mistake\nFixed VSK94 having no sound effect\n\nChanged some components cost/difficulty\nSligthly decreased .45ACP noise\nNo Stock range reduction from -6 to -4\n\nTweaked calibers recoil value. Calibers smaller than 5.56 will have a slight increase, while calibers bigger than 5.56 will have a slight decrease\nSligthly increased SMG base recoil\n\nSome code cleanup\nRemove an old option related to critical chance of AI",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 58,
-	'version', 12481,
+	'version', 12516,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -40,25 +40,24 @@ return PlaceObj('ModDef', {
 		"CharacterEffect/grunty_bonus.lua",
 		"CharacterEffect/AdrenalineRush_Savior.lua",
 		"Code/_______init_globals.lua",
-		"Code/__CONSTANT_Main.lua",
-		"Code/__CONSTANTS_Recoil.lua",
-		"Code/__CONSTANTS_Caliber.lua",
+		"Code/__MainParams.lua",
+		"Code/__RecoilParams.lua",
+		"Code/__CaliberParams.lua",
+		"Code/__SnapshotHipfireParams.lua",
 		"Code/CaliberApplyParams.lua",
 		"Code/ZULIBCalibers_GBOconfigs.lua",
 		"Code/UPDATE_Change components.lua",
-		"Code/DESCRIPTION_HINTS_get.lua",
 		"Code/T_ID_enforcement.lua",
 		"Code/Assign_magsize.lua",
-		"Code/OnDataLoaded_CallCTH.lua",
 		"Code/UnitDataDef_changes.lua",
 		"Code/COMBAT_ACTIONS.lua",
 		"Code/COMBAT_ACTIONS_Sprint.lua",
-		"Code/COMPATIBILITY_SmartOverwatch.lua",
-		"Code/COMPATIBILITY_DescriptiveCTH.lua",
-		"Code/COMPATIBILITY_RevMags.lua",
-		"Code/COMPATIBILITY_ZulibCalibersAttachOffset.lua",
 		"Code/FUNCTION_disable_unpatched_shop.lua",
 		"Code/TOC_ChangeEntity.lua",
+		"Code/COMPATIBILITY_SmartOverwatch.lua",
+		"Code/COMPATIBILITY_RevMags.lua",
+		"Code/COMPATIBILITY_ZulibCalibersAttachOffset.lua",
+		"Code/COMPATIBILITY_DescriptiveCTH.lua",
 		"Code/BOBBYRAY_category_pairs.lua",
 		"Code/COMPONENT_weaponcomp_effects.lua",
 		"Code/CTH_2weaponfire.lua",
@@ -118,23 +117,24 @@ return PlaceObj('ModDef', {
 		"Code/SOURCE_Firearm_GetItemStatusUI and QuickReloadButton.lua",
 		"Code/SOURCE_FirearmGetImpactForce.lua",
 		"Code/SOURCE_GetRangeAccuracy.lua",
-		"Code/FUNCTION_ChangeMGSetupGetAreaParams.lua",
+		"Code/SOURCE_ChangeMGSetupGetAreaParams.lua",
+		"Code/shooting_stance_aoesector_functions.lua",
+		"Code/shooting_stance_functions.lua",
+		"Code/shooting_stance_prepare_weapon_action.lua",
+		"Code/DESCRIPTION_HINTS_get.lua",
 		"Code/WeaponProperties_Get_functions.lua",
 		"Code/WeaponProperties.lua",
 		"Code/UnitProperties.lua",
 		"Code/PATCH_GBOComponents.lua",
+		"Code/OnDataLoaded.lua",
 		"Code/PATCH_WeaponsPresetClass.lua",
 		"Code/PATCH_GBO_weapons.lua",
 		"Code/PATCH_old_ammo.lua",
 		"Code/PATCH_call.lua",
 		"Code/PATCH_CharacterEffectPresets.lua",
 		"Code/PATCH_OnClassesGenerate.lua",
-		"Code/OPTIONS_noise.lua",
 		"Code/CONSTANTS_mod_options.lua",
 		"Code/OPTIONS_GunsHurt.lua",
-		"Code/shooting_stance_aoesector_functions.lua",
-		"Code/shooting_stance_functions.lua",
-		"Code/shooting_stance_prepare_weapon_action.lua",
 		"InventoryItem/M14SAW_AUTO.lua",
 	},
 	'default_options', {
@@ -145,7 +145,6 @@ return PlaceObj('ModDef', {
 		NightSight = "-40 (Rato's Default)",
 		UnawareSight = "18 (rato's GBO default)",
 		VanillaFreeMoveBonus = 0,
-		ai_crit_multiplier = "100 (default for Rato's GBO)",
 		ai_penal_setting = "0 (default for Rato's GBO)",
 		aim_multiplier = "100 (default for Rato's GBO)",
 		guns_hurt = "100",
@@ -159,8 +158,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1739800561,
-	'code_hash', 1519880896589848112,
+	'saved', 1739870295,
+	'code_hash', 8000249445298230047,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
@@ -239,31 +238,6 @@ return PlaceObj('ModDef', {
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "ConstDef",
-			'Id', "R_BurstFirePenalty",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "R_AutoFirePenalty",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "R_LongBurstPenalty",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "R_HeldLongBurstPenalty",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "R_HeldCumbersomePenalty",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
 			'Id', "R_AimMul",
 			'ClassDisplayName', "Constant",
 		}),
@@ -274,42 +248,12 @@ return PlaceObj('ModDef', {
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "ConstDef",
-			'Id', "R_AI_critmul",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "R_TargetedMul",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "R_MaxAimScaling",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "R_MaxTargetedScaling",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
 			'Id', "R_RecoilP",
 			'ClassDisplayName', "Constant",
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "ConstDef",
 			'Id', "R_Recoil",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "R_MinAimScaling",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "R_MinTargetedScaling",
 			'ClassDisplayName', "Constant",
 		}),
 		PlaceObj('ModResourcePreset', {
@@ -334,17 +278,17 @@ return PlaceObj('ModDef', {
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "ConstDef",
+			'Id', "R_TargetedMul",
+			'ClassDisplayName', "Constant",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "ConstDef",
 			'Id', "AwareSightRange",
 			'ClassDisplayName', "Constant",
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "ConstDef",
 			'Id', "UnawareSightRange",
-			'ClassDisplayName', "Constant",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "ConstDef",
-			'Id', "R_Round_Mul",
 			'ClassDisplayName', "Constant",
 		}),
 		PlaceObj('ModResourcePreset', {
@@ -370,11 +314,6 @@ return PlaceObj('ModDef', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "WeaponComponent",
 			'Id', "_Master_MagLarge",
-			'ClassDisplayName', "Weapon component",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "WeaponComponent",
-			'Id', "BarrelLong_handgun",
 			'ClassDisplayName', "Weapon component",
 		}),
 		PlaceObj('ModResourcePreset', {
@@ -609,6 +548,11 @@ return PlaceObj('ModDef', {
 		}),
 		PlaceObj('ModResourcePreset', {
 			'Class', "WeaponComponent",
+			'Id', "BarrelLong_handgun",
+			'ClassDisplayName', "Weapon component",
+		}),
+		PlaceObj('ModResourcePreset', {
+			'Class', "WeaponComponent",
 			'Id', "BarrelHeavyLong",
 			'ClassDisplayName', "Weapon component",
 		}),
@@ -635,11 +579,6 @@ return PlaceObj('ModDef', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "WeaponComponent",
 			'Id', "BarrelLong_AUG",
-			'ClassDisplayName', "Weapon component",
-		}),
-		PlaceObj('ModResourcePreset', {
-			'Class', "WeaponComponent",
-			'Id', "BarrelLong_jaggerMeister",
 			'ClassDisplayName', "Weapon component",
 		}),
 		PlaceObj('ModResourcePreset', {

@@ -1,19 +1,3 @@
-function OnMsg.UnitEnterCombat(unit)
-    local side = unit and unit.team and unit.team.side or ''
-
-    if not (side == 'player1' or side == 'player2') and not HasPerk(unit, "Spiritual") then
-        -- unit:AddStatusEffect("Spiritual") 
-        -- unit.spiritual_added = 1
-    end
-
-    if (side == 'player1' or side == 'player2') and HasPerk(unit, "Spiritual") then
-        if unit.spiritual and unit.spiritual_added == 1 then
-            unit:RemoveStatusEffect("Spiritual")
-            unit.spiritual_added = 0
-        end
-    end
-end
-
 function AIpenal_reduc(attacker, value, cth_id, persistant_recoil)
     if not attacker then
         return value

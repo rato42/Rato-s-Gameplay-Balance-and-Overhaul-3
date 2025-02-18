@@ -6,8 +6,8 @@ if FirstLoad then
     ratG_originalFirearmFireBullet = Firearm.FireBullet
     ratG_recoilData = {
         small = {
-            modifier = 1.0,
-            aim_mul = 0.7,
+            modifier = 1.20,
+            aim_mul = 0.8,
             -- Group 1: Small Caliber Pistols
             ["7_65x21"] = {str = 44},
             ["9x18"] = {str = 45},
@@ -32,8 +32,8 @@ if FirstLoad then
 
         },
         medium = {
-            modifier = 1.38,
-            aim_mul = 0.8,
+            modifier = 1.40,
+            aim_mul = 0.9,
             ["556"] = {str = 65},
             -- Group 5: Assault Rifle and Intermediate Cartridges
             ["5_45x39"] = {str = 62},
@@ -45,8 +45,8 @@ if FirstLoad then
 
         },
         medium_large = {
-            modifier = 1.52,
-            aim_mul = 0.9,
+            modifier = 1.50,
+            aim_mul = 1.0,
             ["9x39"] = {str = 67},
             -- Group 5: Assault Rifle and Intermediate Cartridges
             ["762WP"] = {str = 71},
@@ -60,7 +60,7 @@ if FirstLoad then
 
         },
         large = {
-            modifier = 1.72,
+            modifier = 1.55,
             aim_mul = 1.1,
             ["12gauge"] = {str = 86},
             -- Group 6: Battle Rifle and Full-Power Rifle Cartridges
@@ -77,7 +77,7 @@ if FirstLoad then
 
         },
         extra_large = {
-            modifier = 1.9,
+            modifier = 1.60,
             aim_mul = 1.3,
             ["50BMG"] = {str = 90},
             ["20x82"] = {str = 90},

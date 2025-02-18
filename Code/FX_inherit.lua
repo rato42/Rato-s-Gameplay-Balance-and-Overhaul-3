@@ -16,7 +16,7 @@ function rat_apply_inherit(rules)
         Suppressor = {
             "R_VSS_suppressor", "VSS_Barrel_def_1", "VSS_Barrel_ext_1", "RAT_TOG_suppressor",
             "RAT_VSK_Suppressor", "RAT_TOG_suppressor_762", "RAT_TOG_suppressor_wp",
-            "SteyrS_Muzzle_def_1"
+            "SteyrS_Muzzle_def_1", "VSK94_barrel_def_1"
         },
         Compensator = {"RAT_TOG_compensator", "LionRoar_compensator"},
         LaserDot = {"RAT_TOG_laser_dot", "TAR21_Scope_Rflx_1"},

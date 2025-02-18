@@ -7,7 +7,7 @@ const.Combat.Recoil.BasePenalty = -5 ----- -5
 const.Combat.Recoil.MaxPenalty = -90 --- -50
 const.Combat.Recoil.MaxDistforPenalty = 36 -- 26 ----- -18
 const.Combat.Recoil.StacksMultiplier = 0.35 ---- * -- for Persistant Recoil
-const.Combat.Recoil.MGSetupMul = 0.50 ---- * -- MG Setup recoil reduction
+const.Combat.Recoil.MGSetupMul = 0.60 ---- * -- MG Setup recoil reduction
 const.Combat.Recoil.RunAndGunExtraPenalty = -5
 
 const.Combat.Recoil.Components = {
@@ -27,7 +27,7 @@ const.Combat.Recoil.Components = {
     LightStockMul = 1.05,
     RecoilBumpMul = 1.06,
     BipodMul = 0.85,
-    FullChokeRecoilMul = 1.10
+    FullChokeRecoilMul = 1.09
 }
 ----- Perks
 const.Combat.Recoil.Perks.TakeAimMul = 0.90
@@ -42,7 +42,7 @@ function OnMsg.ClassesGenerate()
 
     Pistol.class_base_recoil = 195
     Revolver.class_base_recoil = 188
-    SubmachineGun.class_base_recoil = 130
+    SubmachineGun.class_base_recoil = 138
     MachineGun.class_base_recoil = 90
     Shotgun.class_base_recoil = 90
 end

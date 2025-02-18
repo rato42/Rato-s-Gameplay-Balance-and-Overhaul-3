@@ -131,13 +131,6 @@ function OnMsg.GatherCritChanceModifications(attacker, target, action_id, weapon
     data.crit_chance_breakdown = crit_chance_breakdown
 end
 
-function OnMsg.GatherCritChanceModifications(attacker, target, action_id, weapon, data)
-    local side = attacker and attacker.team and attacker.team.side or ''
-    if not (side == 'player1' or side == 'player2') then
-        data.crit_chance = MulDivRound(data.crit_chance, (const.Combat.R_AI_critmul or 100), 100)
-    end
-end
-
 function OnMsg.GatherDamageModifications(attacker, target, action_id, self, mod_attack_args,
                                          mod_hit_data, data)
     local weapon = data.weapon

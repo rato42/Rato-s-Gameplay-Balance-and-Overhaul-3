@@ -126,15 +126,13 @@ function place_hipfire_cth()
                 end
             end
 
-            -- print("dist", dist / const.SlabSizeX)
-
-            local max_dist = const.Combat.Hipfire_MaxDistforPenalty * const.SlabSizeX
-            local max_penal = const.Combat.HipFireMaxPenalty
+            local max_dist = const.Combat.Hipfire.MaxDistforPenalty * const.SlabSizeX
+            local max_penal = const.Combat.Hipfire.MaxPenalty
 
             local hip_penal = Min(0, MulDivRound(dist, max_penal, max_dist))
 
             local weapon_ref = reflex_s * penalty * 100
-            local base_penal1 = const.Combat.Hipfire_BasePenalty
+            local base_penal1 = const.Combat.Hipfire.BasePenalty
             local base_penal
 
             if not (side == 'player1' or side == 'player2') then
@@ -173,10 +171,10 @@ function place_hipfire_cth()
             end
 
             if aim > 0 and aim < 3 then
-                max_dist = const.Combat.Snapshot_MaxDistforPenalty * const.SlabSizeX
-                max_penal = const.Combat.SnapshotMaxPenalty
+                max_dist = const.Combat.Snapshot.MaxDistforPenalty * const.SlabSizeX
+                max_penal = const.Combat.Snapshot.MaxPenalty
 
-                base_penal1 = const.Combat.Snapshot_BasePenalty
+                base_penal1 = const.Combat.Snapshot.BasePenalty
 
                 base_penal = MulDivRound(dist, base_penal1, 16 * const.SlabSizeX)
 
@@ -191,14 +189,13 @@ function place_hipfire_cth()
                 snap_penal = MulDivRound(snap_penal, weapon_ref, 100) + base_penal
 
                 if opportunity_attack then
-                    snap_penal = MulDivRound(snap_penal, const.Combat.InterruptSnapshotPenalty, 100)
+                    snap_penal = MulDivRound(snap_penal, const.Combat.Snapshot.InterruptMul, 100)
                 end
 
                 if (g_Overwatch[attacker] and g_Overwatch[attacker].permanent) or action and
                     action.id == "MGSetup" then
                     metaText[#metaText + 1] = T {516951375425, "MG Setup"}
-                    snap_penal = MulDivRound(snap_penal, const.Combat.MGSetupSnapshotReductionMul,
-                                             100)
+                    snap_penal = MulDivRound(snap_penal, const.Combat.Snapshot.MGSetupMul, 100)
                 end
 
                 if aim == 2 then
@@ -206,7 +203,6 @@ function place_hipfire_cth()
                 end
 
                 snap_penal = snap_penal + mobile_shot_penal
-                -- print("snap_penal", snap_penal)
                 return true, snap_penal, snap_name, #metaText ~= 0 and metaText
             end
 
@@ -218,9 +214,7 @@ function place_hipfire_cth()
 
             hip_penal = hip_penal + mobile_shot_penal
 
-            -- print("hipfire", hip_penal)
             return true, hip_penal, name, #metaText ~= 0 and metaText
-
         end,
         RequireTarget = true,
         display_name = T(145534626581, "Hipshot Penalty"),

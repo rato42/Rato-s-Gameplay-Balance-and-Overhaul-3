@@ -178,18 +178,18 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
-        category = "Caliber",
-        id = "placeholder_recoil",
-        name = "placeholder_recoil",
-        help = "placeholder_recoil",
-        editor = "number",
-        default = 100,
-        template = true,
-        min = 0,
-        max = 1000,
-        modifiable = true
-    }
+    -- FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    --     category = "Caliber",
+    --     id = "placeholder_recoil",
+    --     name = "placeholder_recoil",
+    --     help = "placeholder_recoil",
+    --     editor = "number",
+    --     default = 100,
+    --     template = true,
+    --     min = 0,
+    --     max = 1000,
+    --     modifiable = true
+    -- }
 
     FirearmProperties.properties[#FirearmProperties.properties + 1] = {
         category = "Caliber",

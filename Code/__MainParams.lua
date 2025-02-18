@@ -11,26 +11,21 @@ const.Combat.PelletShotGrazeThreshold = 22
 const.Combat.MultishotMinCTH = 5
 const.Combat.MaxShotIndexForRecoilCTHLoss = 6
 -------------------- Add for MG calcs here
---- Hipfire
-const.Combat.Hipfire_BasePenalty = -10 --- - 18
-const.Combat.HipFireMaxPenalty = -123 ---- -75
-const.Combat.Hipfire_MaxDistforPenalty = 27 -- 26
--- Snapshot
-const.Combat.Snapshot_BasePenalty = -5 ---- -10
-const.Combat.SnapshotMaxPenalty = -61
-const.Combat.Snapshot_MaxDistforPenalty = 40
-const.Combat.MGSetupSnapshotReductionMul = 45
+
 -- RunAndGun
 const.Combat.RunAndGunMaxPenalty = -10
 const.Combat.RunAndGun_MaxDistforPenalty = 14
-const.Combat.RunAndGunSnapshotHipfirePenaltyMul = 1.20
--- MobileShot
-const.Combat.MobileShotSnapshotHipfirePenaltyMul = 1.10
+
 -- OW
 const.Combat.MGSetupBonusInterruptAccuracy = 5
 const.Combat.MGSetupConeMul = 110 --- MulDivRound
 const.Combat.MGSetupConeFlat = 180 --- addition (minutes)
-const.Combat.InterruptSnapshotPenalty = 140 --- MulDivRound
+
+------ old
+const.Combat.R_MinTargetedScaling = 10
+const.Combat.R_MaxTargetedScaling = 100
+const.Combat.R_MinAimScaling = 10
+const.Combat.R_MaxAimScaling = 100
 
 ----- AP
 const.Combat.CumbersomeStanceAP_StrThreshold = 80
@@ -68,3 +63,28 @@ const.Weapons.PointBlankRange = 6 --- tiles
 const.EnvEffects.RainAimingMultiplier = 100 --- %
 const.Weapons.CriticalDamage = 50
 const.Weapons.DoubleBarrelDamageBonus = 0 -- 50
+
+-- function OnMsg.ClassesGenerate()
+--      AppendClass.FirearmProperties = {
+--          {
+--              -- category = "Caliber",
+--              id = "APStance",
+--              name = "Shooting Stance AP",
+--              help = "Ap to enter Shooting Stance (not in scale)",
+--              editor = "number",
+--              default = 3,
+--              template = true,
+--              min = 0,
+--              max = 50,
+--              modifiable = true
+--          }
+--      }
+
+--      Pistol.APStance = 1
+--      Revolver.APStance = 1
+--      SubmachineGun.APStance = 3
+--      Shotgun.APStance = 3
+--      SniperRifle.APStance = 5
+--      AssaultRifle.APStance = 4
+--      MachineGun.APStance = 5
+-- end

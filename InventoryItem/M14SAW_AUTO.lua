@@ -135,7 +135,6 @@ DefineClass.M14SAW_AUTO = {
 	ReloadAP = 3000,
 	APStance = 4,
 	wep_base_recoil_mul = 89,
-	placeholder_recoil = 115,
 	auto_recoil_delta = 125,
 	long_recoil_delta = 125,
 	wep_base_hip_mul = 97,
