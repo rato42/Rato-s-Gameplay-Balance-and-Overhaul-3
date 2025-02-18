@@ -4,29 +4,17 @@ const.Calibers = {
         AdditionalHint = T({
             "<bullet_point> Improved armor penetration\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil"
         }),
-        Modifications = {
-            PenetrationClass = 2,
-            CritDamage = -20,
-            ArmorPir = 1
-        }
+        Modifications = {PenetrationClass = 2, CritDamage = -20, ArmorPir = 1}
     },
 
-    IntermediateCalsAPparams = {
-        Modifications = {
-            PenetrationClass = -1,
-            CritDamage = 10
-        }
-    },
+    IntermediateCalsAPparams = {Modifications = {PenetrationClass = -1, CritDamage = 10}},
 
     HP = {
         CostMul = 200,
         AdditionalHint = T({
             "<bullet_point> No armor penetration\n<bullet_point> High Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color> "
         }),
-        Modifications = {
-            CritDamage = 50,
-            PenetrationClass = -4
-        },
+        Modifications = {CritDamage = 50, PenetrationClass = -4},
         AppliedEffects = {"Bleeding"}
     },
 
@@ -35,11 +23,7 @@ const.Calibers = {
         AdditionalHint = T({
             "<bullet_point> Increased bonus from Aiming\n<bullet_point> Increased range\n<bullet_point> Increased Critical Chance scaling"
         }),
-        Modifications = {
-            AimAccuracy = 2,
-            WeaponRange = 2,
-            CritChanceScaled = 10
-        }
+        Modifications = {AimAccuracy = 2, WeaponRange = 2, CritChanceScaled = 10}
     },
 
     Shock = {
@@ -47,13 +31,8 @@ const.Calibers = {
         AdditionalHint = T({
             "<bullet_point> Reduced range\n<bullet_point> Greater Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color> and <color EmStyle>Exposed</color>"
         }),
-        Modifications = {
-            CritDamage = 70,
-            WeaponRange = -4
-        },
-        AppliedEffects = {
-            "Exposed", "Bleeding"
-        }
+        Modifications = {CritDamage = 70, WeaponRange = -4},
+        AppliedEffects = {"Exposed", "Bleeding"}
     },
 
     Tracer = {
@@ -62,9 +41,7 @@ const.Calibers = {
             "<bullet_point> Hit enemies are <color EmStyle>Marked</color> \n<bullet_point> Attacker and target have their positions <color EmStyle>Revealed</color>, making them easier to hit in the dark\n<bullet_point> Easier to compensate recoil in multishot attacks"
         }),
         Modifications = {tracer = 1},
-        AppliedEffects = {
-            "Marked", "Revealed_R"
-        }
+        AppliedEffects = {"Marked", "Revealed_R"}
     },
 
     Subsonic = {
@@ -74,7 +51,9 @@ const.Calibers = {
         }),
         Modifications = {
             ---- if table, first is mod_add, second is mod_mul
+
             Noise = {0, 350},
+            PenetrationClass = -1,
             AimAccuracy = -1,
             WeaponRange = -2
         }
@@ -82,12 +61,8 @@ const.Calibers = {
 
     Slug = {
         CostMul = 250,
-        DisplayName = T({
-            "12-gauge Slug"
-        }),
-        DisplayNamePlural = T({
-            "12-gauge Slugs"
-        }),
+        DisplayName = T({"12-gauge Slug"}),
+        DisplayNamePlural = T({"12-gauge Slugs"}),
         AdditionalHint = T({
             "<bullet_point> Fires a single projectile\n<bullet_point> Longer range\n<bullet_point> Improved armor penetration\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil"
         }),
@@ -96,7 +71,7 @@ const.Calibers = {
             WeaponRange = 8, -- {0, 1500},
             PenetrationClass = 1,
             NumPellets = {0, 0},
-            Damage = 29, -- {0, 5000},
+            Damage = 30, -- {0, 5000},
             ArmorPir = 1
         }
 
@@ -104,12 +79,8 @@ const.Calibers = {
 
     Flechette = {
         CostMul = 200,
-        DisplayName = T({
-            "12-gauge Flechette"
-        }),
-        DisplayNamePlural = T({
-            "12-gauge Flechettes"
-        }),
+        DisplayName = T({"12-gauge Flechette"}),
+        DisplayNamePlural = T({"12-gauge Flechettes"}),
         AdditionalHint = T({
             "<bullet_point> Longer range\n<bullet_point> Fires more pellets\n<bullet_point> Tighter pellet spread\n<bullet_point> Less damage\n<bullet_point> Penetrates Light Armor\n<bullet_point> Greatly decreased Critical Damage\n<bullet_point> Inflicts <color EmStyle>Bleeding</color>"
         }),
@@ -134,132 +105,50 @@ const.Calibers = {
             PenetrationClass = -4,
             Damage = {0, 100},
             WeaponRange = -4,
-            BuckshotConeAngle = {
-                0, 2500
-            },
+            BuckshotConeAngle = {0, 2500},
             NumPellets = {0, 4000}
         },
-        AppliedEffects = {
-            "Inaccurate", "Slowed"
-        }
+        AppliedEffects = {"Inaccurate", "Slowed"}
     },
 
-    Buckshot = {
-        AdditionalHint = T({""})
-    },
+    Buckshot = {AdditionalHint = T({""})},
 
-    HE = {
-        CostMul = 200,
-        Modifications = {
-            CritChance = 50,
-            PenetrationClass = -4
-        }
-    },
+    HE = {CostMul = 200, Modifications = {CritChance = 50, PenetrationClass = -4}},
 
-    Incendiary = {
-        CostMul = 200,
-        AppliedEffects = {
-            "Exposed", "Burning"
-        }
-    },
+    Incendiary = {CostMul = 200, AppliedEffects = {"Exposed", "Burning"}},
 
-    SLAP = {
-        CostMul = 250,
-        Modifications = {
-            CritChance = 15,
-            PenetrationClass = 5
-        }
-    },
+    SLAP = {CostMul = 250, Modifications = {CritChance = 15, PenetrationClass = 5}},
 
     ---------------------------------------------- Calibers
 
-    _9mm = {
-        Cost = 50,
-        Modifications = {
-            PenetrationClass = 0
-        }
-    },
-    _9x18 = {
-        Cost = 35,
-        Modifications = {
-            PenetrationClass = 0,
-            CritDamage = -2,
-            CritChance = -2
-        }
-    },
-    _380ACP = {
-        Cost = 40,
-        Modifications = {
-            PenetrationClass = 0,
-            CritDamage = -2
-        }
-    },
-    _45ACP = {
-        Cost = 65,
-        Modifications = {
-            PenetrationClass = 0,
-            CritDamage = 2,
-            CritChance = 1
-        }
-    },
+    _9mm = {Cost = 50, Modifications = {PenetrationClass = 0}},
+    _9x18 = {Cost = 35, Modifications = {PenetrationClass = 0, CritDamage = -2, CritChance = -2}},
+    _380ACP = {Cost = 40, Modifications = {PenetrationClass = 0, CritDamage = -2}},
+    _45ACP = {Cost = 65, Modifications = {PenetrationClass = 0, CritDamage = 2, CritChance = 1}},
 
-    _44CAL = {
-        Cost = 75,
-        Modifications = {
-            PenetrationClass = 1
-        }
-    },
+    _44CAL = {Cost = 75, Modifications = {PenetrationClass = 1}},
 
-    _5_7x28 = {
-        Cost = 180,
-        Modifications = {
-            PenetrationClass = 1,
-            CritChance = 1,
-            CritDamage = -1
-        }
-    },
+    _5_7x28 = {Cost = 180, Modifications = {PenetrationClass = 1, CritChance = 1, CritDamage = -1}},
 
     _5_45x39 = {
         Description = T({
             "5.45x39 mm ammo for Soviet Assault Rifles, SMGs and Machine Guns.\n\n<bullet_point> Tumbling effects increase Critical Chance"
         }),
         Cost = 150,
-        Modifications = {
-            CritChance = 15,
-            PenetrationClass = 2
-        }
+        Modifications = {CritChance = 15, PenetrationClass = 2}
     },
     _556 = {
         Description = T({
             "5.56 Ammo for Assault Rifles, SMGs, and Machine Guns.\n\n<bullet_point> Fragmentation effects increase Critical Damage"
         }),
         Cost = 170,
-        Modifications = {
-            CritDamage = 30,
-            PenetrationClass = 2
-        }
+        Modifications = {CritDamage = 30, PenetrationClass = 2}
     },
 
-    ["_30-60"] = {
-        Cost = 100,
-        Modifications = {
-            PenetrationClass = 2
-        }
-    },
-    _308Win = {
-        Cost = 110,
-        Modifications = {
-            PenetrationClass = 2,
-            CritDamage = 10
-        }
-    },
+    ["_30-60"] = {Cost = 100, Modifications = {PenetrationClass = 2}},
+    _308Win = {Cost = 110, Modifications = {PenetrationClass = 2, CritDamage = 10}},
 
-    _762WP = {
-        Cost = 90,
-        Modifications = {
-            PenetrationClass = 1
-        }
-    },
+    _762WP = {Cost = 90, Modifications = {PenetrationClass = 1}},
     -- TODO: change the 9x39 noise reduction to come from the ammo instead of being on the weapon itself
     _9x39 = {
         Cost = 200,
@@ -268,53 +157,14 @@ const.Calibers = {
             -- Noise = 13
         }
     },
-    _7_92x33 = {
-        Cost = 70,
-        Modifications = {
-            PenetrationClass = 2,
-            CritChance = -2
-        }
-    },
-    _762NATO = {
-        Cost = 180,
-        Modifications = {
-            PenetrationClass = 2
-        }
-    },
-    _7_62x54R = {
-        Cost = 170,
-        Modifications = {
-            PenetrationClass = 2
-        }
-    },
-    _50AE = {
-        cost = 175,
-        Modifications = {
-            PenetrationClass = 2,
-            CritChance = 2,
-            CritDamage = 4
-        }
-    },
+    _7_92x33 = {Cost = 70, Modifications = {PenetrationClass = 2, CritChance = -2}},
+    _762NATO = {Cost = 180, Modifications = {PenetrationClass = 2}},
+    _7_62x54R = {Cost = 170, Modifications = {PenetrationClass = 2}},
+    _50AE = {cost = 175, Modifications = {PenetrationClass = 2, CritChance = 2, CritDamage = 4}},
 
-    _7_92x57 = {
-        Cost = 80,
-        Modifications = {
-            PenetrationClass = 2,
-            CritDamage = -5
-        }
-    },
-    _12gauge = {
-        Cost = 90,
-        Modifications = {
-            PenetrationClass = 0
-        }
-    },
-    _50BMG = {
-        Cost = 350,
-        Modifications = {
-            PenetrationClass = 3
-        }
-    },
+    _7_92x57 = {Cost = 80, Modifications = {PenetrationClass = 2, CritDamage = -5}},
+    _12gauge = {Cost = 90, Modifications = {PenetrationClass = 0}},
+    _50BMG = {Cost = 350, Modifications = {PenetrationClass = 3}},
 
     Noise = {
         -- vanilla

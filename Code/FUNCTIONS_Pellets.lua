@@ -1,10 +1,6 @@
 local debug = false
 
 function OnMsg.ClassesGenerate()
-    Shotgun.ImpactForce = -1
-end
-
-function OnMsg.ClassesGenerate()
     AppendClass.FirearmProperties = {
         properties = {
             {
@@ -33,6 +29,7 @@ function OnMsg.ClassesGenerate()
         }
     }
     Shotgun.NumPellets = 10
+    Shotgun.ImpactForce = -1
 end
 
 function IsSlugLoaded(weapon)
@@ -110,7 +107,7 @@ function Firearm:GetPelletScatterData(attacker, action, attack_pos, target_pos, 
         local theta = attacker:Random(max_angle_offset)
         local radius = min_offset + attacker:Random(var_offset)
         targets[i] = generate_pos(theta, radius, dir, attack_pos, range)
-        DbgAddVector(attack_pos, targets[i] - attack_pos, const.clrCyan)
+        -- DbgAddVector(attack_pos, targets[i] - attack_pos, const.clrCyan)
     end
 
     if debug then
@@ -188,8 +185,6 @@ function Firearm:GetPelletScatterData(attacker, action, attack_pos, target_pos, 
     end
 
     return shots_hit_data
-
-    -- return hits
 end
 
 ---- Distance was 8 tiles / DoubleBarrelshotgun 

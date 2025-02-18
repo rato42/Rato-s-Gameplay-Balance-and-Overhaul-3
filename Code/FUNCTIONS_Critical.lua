@@ -1,11 +1,4 @@
-const.Combat.Critical = {}
-const.Combat.Critical.PrismScopeCritPerAim = 3 -- 4
-const.Combat.Critical.LaserDotCritPerAim = 1
-const.Combat.Critical.PSOScopeCritOnAimed = 10
-const.Combat.Critical.FirstAimCrit = 6
-
 ---TODO: change the perk per aim
-
 function hand_eye_crit(action_id, weapon, attacker, aim)
     if not action_id then
         return 0

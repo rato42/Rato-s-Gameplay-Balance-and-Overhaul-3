@@ -121,7 +121,9 @@ function Firearm:PelletFly(attacker, start_pt, end_pt, dir, speed, hits, target,
 
     for i, hit in ipairs(hits) do
         ---
-        table.insert(debug_hits, hit)
+        if debug then
+            table.insert(debug_hits, hit)
+        end
         if debug and hit.obj and IsKindOf(hit.obj, "Unit") then
             local unit = hit.obj
             debug_table[unit.session_id] = debug_table[unit.session_id] or {

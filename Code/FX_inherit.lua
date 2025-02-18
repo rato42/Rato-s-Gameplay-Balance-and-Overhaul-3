@@ -1,5 +1,4 @@
 function OnMsg.GetCustomFXInheritActorRules(rules)
-    -- ApplyEffectToActor(rules)
     rat_apply_inherit(rules)
 end
 

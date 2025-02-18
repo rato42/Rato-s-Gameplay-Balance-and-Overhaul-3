@@ -53,6 +53,13 @@ const.Combat.Perks.SaviorAdrenalineRushFreeMoveMul = 120
 const.Combat.Perks.SaviorAdrenalineRushFreeMoveBonus = 4
 const.Combat.Perks.SaviorAdrenalineRushBonusAP = 2
 
+----- Critical
+const.Combat.Critical = {}
+const.Combat.Critical.PrismScopeCritPerAim = 3 -- 4
+const.Combat.Critical.LaserDotCritPerAim = 1
+const.Combat.Critical.PSOScopeCritOnAimed = 10
+const.Combat.Critical.FirstAimCrit = 6
+
 -------------
 ----- Vanilla
 const.Combat.GrazingHitDamage = 30 --- %
