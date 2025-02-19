@@ -39,6 +39,8 @@ function set_unit_version_update(unit)
     unit.rat_unit_updated = version
 end
 
+local force_reapply = Platform.rat and false
+
 function GBO_ReapplyWeaponComponents(unit)
     if not unit or not IsKindOf(unit, "Unit") or not unit:IsValid() then
         return
@@ -55,7 +57,7 @@ function GBO_ReapplyWeaponComponents(unit)
 
     for _, weapon in ipairs(weapons) do
         local wep_version = weapon.rat_updated_in or 0
-        if wep_version < version or Platform.rat then
+        if wep_version < version or force_reapply then
             local components = weapon.components
 
             for slot, component_id in sorted_pairs(components) do

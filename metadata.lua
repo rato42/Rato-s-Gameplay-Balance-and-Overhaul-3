@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.58a -- NR\n\nSmall tweaks to flechette and slug ammo\nFixed Subsonic ammo not reducing armor penetration\nFixed Quick Scope increasing and decreasing shooting angle\nFixed some Magazines decreasing shooting stance by mistake\nFixed VSK94 having no sound effect\n\nChanged some components cost/difficulty\nSligthly decreased .45ACP noise\nNo Stock range reduction from -6 to -4\n\nTweaked calibers recoil value. Calibers smaller than 5.56 will have a slight increase, while calibers bigger than 5.56 will have a slight decrease\nSligthly increased SMG base recoil\n\nSome code cleanup\nRemove an old option related to critical chance of AI",
+	'last_changes', "3.58a \n\nSmall tweaks to flechette and slug ammo\nFixed Subsonic ammo not reducing armor penetration\nFixed Quick Scope increasing and decreasing shooting angle\nFixed some Magazines decreasing shooting stance by mistake\nFixed VSK94 having no sound effect\n\nChanged some components cost/difficulty\nSligthly decreased .45ACP noise\nNo Stock range reduction from -6 to -4\nRevised many components related to hipfire/snapshot penalty. Their effect will be smaller.\nRun And Gun or other mobile attacks now can only be aimed. \n\nTweaked calibers recoil value. Calibers smaller than 5.56 will have a slight increase, while calibers bigger than 5.56 will have a slight decrease\nSligthly increased SMG base recoil\n\nSome code cleanup\nRemove an old option related to critical chance of AI",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 58,
-	'version', 12516,
+	'version', 12518,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -158,8 +158,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1739870295,
-	'code_hash', 8000249445298230047,
+	'saved', 1739926889,
+	'code_hash', 3768765362267711243,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

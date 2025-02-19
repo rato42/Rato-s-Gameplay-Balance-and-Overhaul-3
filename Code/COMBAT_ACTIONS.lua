@@ -939,11 +939,11 @@ function rat_combat_actions()
     CombatActions.RunAndGun.GetAPCost = function(self, unit, args)
         local cost, cost_aimed = rat_MobileAction_AP(self, unit)
 
-        if unit:UIHasAP(cost_aimed, self.id) then
-            return cost_aimed, true
-        end
+        -- if unit:UIHasAP(cost_aimed, self.id) then
+        return cost_aimed, true
+        -- end
 
-        return cost, false
+        -- return cost, false
     end
 
     CombatActions.RunAndGun.GetActionResults = function(self, unit, args)
@@ -1074,11 +1074,11 @@ function rat_combat_actions()
 
         local cost, cost_aimed = rat_MobileAction_AP(self, unit)
 
-        if unit:UIHasAP(cost_aimed, self.id) then
-            return cost_aimed, true
-        end
+        -- if unit:UIHasAP(cost_aimed, self.id) then
+        return cost_aimed, true
+        -- end
 
-        return cost, false
+        -- return cost, false
     end
 
     CombatActions.MobileShot.GetActionResults = function(self, unit, args)
