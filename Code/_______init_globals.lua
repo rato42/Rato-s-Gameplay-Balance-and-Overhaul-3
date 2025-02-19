@@ -39,6 +39,7 @@ if FirstLoad then
             ["5_45x39"] = {str = 62},
             ["4_7x33"] = {str = 60},
             ["300Blackout"] = {str = 64},
+            ["9x39"] = {str = 66},
             -----
             ["44MAG"] = {str = 70}, --- 44CAL now is Magnum
             ["44CAL"] = {str = 70}
@@ -47,7 +48,7 @@ if FirstLoad then
         medium_large = {
             modifier = 1.50,
             aim_mul = 1.0,
-            ["9x39"] = {str = 67},
+
             -- Group 5: Assault Rifle and Intermediate Cartridges
             ["762WP"] = {str = 71},
             ["7_92x33"] = {str = 72},

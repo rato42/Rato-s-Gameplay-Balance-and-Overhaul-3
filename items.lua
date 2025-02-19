@@ -643,7 +643,7 @@ return {
 				Event = "GatherCTHModifications",
 				Handler = function (self, attacker, cth_id, action_id, target, weapon1, weapon2, data)
 					if attacker:HasStatusEffect(self.id) and cth_id == "Aim" then
-						data.mul = MulDivRound(data.mul, const.Combat.Perks.OutOfBreathAimMul, 100)
+						data.mod_mul = MulDivRound(data.mod_mul or 100, const.Combat.Perks.OutOfBreathAimMul, 100)
 						local meta = self.DisplayName
 						table.insert(data.meta_text or {}, meta)
 					end
@@ -2893,7 +2893,7 @@ return {
 		Tags = set( "CloseQuarters", "Intimate", "Precision", "Strategic", "Tactical" ),
 		Visuals = {
 			PlaceObj('WeaponComponentVisual', {
-				Entity = "WeaponAttA_Muzzle_03",
+				Entity = "WeaponAttA_BoosterNATO",
 				Slot = "Muzzle",
 				param_bindings = false,
 			}),

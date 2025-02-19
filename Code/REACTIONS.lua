@@ -5,7 +5,7 @@ end
 ------------ Savior Rework
 local function check_and_addSaviorAdrenalineRush(team)
     for i, unit in ipairs(team.units or empty_table) do
-        if HasPerk(unit, "Savior") then
+        if not (unit:IsDowned() or unit:IsDead()) and HasPerk(unit, "Savior") then
             unit:AddStatusEffect("AdrenalineRush_Savior")
         end
     end

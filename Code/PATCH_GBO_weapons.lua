@@ -1243,7 +1243,7 @@ function RatoGBO_WepPatch()
     FNFAL.WeaponRange = 36
     FNFAL.ShootAP = 4000
     FNFAL.ReloadAP = 3000
-    FNFAL.Reliability = 56
+    FNFAL.Reliability = 65
     FNFAL.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
     FNFAL.ComponentSlots = {
         {
