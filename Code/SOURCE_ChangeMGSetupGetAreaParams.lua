@@ -1,5 +1,4 @@
 local GBO_originalFirearmGetAreaAttackParams = Firearm.GetAreaAttackParams
----local mg_mul = 70
 
 function Firearm:GetAreaAttackParams(action_id, attacker, target_pos, step_pos, stance)
     local params = GBO_originalFirearmGetAreaAttackParams(self, action_id, attacker, target_pos,
@@ -15,21 +14,18 @@ function Firearm:GetAreaAttackParams(action_id, attacker, target_pos, step_pos, 
     return params
 end
 
--- function change_MGSetupAction_GetAimParams()
---     CombatActions.MGSetup.GetAimParams = function(self, unit, weapon)
---         local params = weapon:GetAreaAttackParams(self.id, unit)
---         ----------------
---         -- if params.cone_angle and params.cone_angle > 0 then
---         --     params.cone_angle = MulDivRound(params.cone_angle, const.Combat.MGSetupConeMul, 100)
---         -- end
+function Firearm:GetOverwatchConeParam(param)
+    if param == "Angle" then
+        return self.OverwatchAngle
+    elseif param == "MinRange" then
+        -- return IsKindOfClasses(self, "Shotgun", "MachineGun") and self.WeaponRange or 2
+        return 2
+    elseif param == "MaxRange" then
+        -- return IsKindOfClasses(self, "Shotgun", "MachineGun") and self.WeaponRange or
+        --           MulDivRound(self.WeaponRange, 75, 100)
+        return IsKindOfClasses(self, "MachineGun") and self.WeaponRange or
+                   MulDivRound(self.WeaponRange, 75, 100)
+    end
+    assert(false, string.format("unknown Overwatch parameter '%s'", param))
+end
 
---         ----
---         -- params.min_range = MulDivRound(self:GetMinAimRange(unit, weapon), mg_mul, 100)
---         -- params.max_range = MulDivRound(self:GetMaxAimRange(unit, weapon), mg_mul, 100)
---         ----
---         params.min_range = self:GetMinAimRange(unit, weapon)
---         params.max_range = self:GetMaxAimRange(unit, weapon)
---         assert(params.max_range >= params.min_range)
---         return params
---     end
--- end

@@ -928,150 +928,180 @@ return {
 		'name', "UnitDataDef_changes",
 		'CodeFileName', "Code/UnitDataDef_changes.lua",
 	}),
-	PlaceObj('ModItemCode', {
-		'name', "COMBAT_ACTIONS",
-		'CodeFileName', "Code/COMBAT_ACTIONS.lua",
-	}),
-	PlaceObj('ModItemCode', {
-		'name', "COMBAT_ACTIONS_Sprint",
-		'CodeFileName', "Code/COMBAT_ACTIONS_Sprint.lua",
-	}),
-	PlaceObj('ModItemCombatAction', {
-		ActionCamera = true,
-		ActionPoints = 2000,
-		ActionType = "Melee Attack",
-		AimType = "mobile",
-		Description = "",
-		DisplayName = T(496598327198, --[[ModItemCombatAction Sprint DisplayName]] "Sprint"),
-		GetActionDamage = function (self, unit, target, args)
-			            return T("")
-		end,
-		GetActionDescription = function (self, units)
-			            local description = self.Description
-			            local unit = units and units[1]
-			            if not unit then
-			                return self:GetActionDisplayName()
-			            end
-			            ----------------
-			
-			            local weapon = self:GetAttackWeapons(unit)
-			            local DisplayMoveAP = rat_getMobileshot_moveAP(self, unit, weapon)
-			            description = T(979712456456, "Rush to a new position, using up to <em>" ..
-			                                DisplayMoveAP .. " Move AP</em>. The unit will be sligthly harder to hit until the start of it's next turn.")
-			            local args = false
-			            local cost = self.GetAPCost(self, unit, args)
-			
-			            description = description ..
-			                              T(966648741688, "\n\nThe unit will be <em>Out of Breath</em>.")
-			            -------
-			
-			            -- local damage, base, bonus = self:GetActionDamage(unit)
-			            return T {
-			                description
-			                -- damage = damage,
-			                -- basedamage = base,
-			                -- bonusdamage = bonus,
-			            }
-		end,
-		GetActionDisplayName = function (self, units)
-			            local name = self.DisplayName
-			            if (name or "") == "" then
-			                name = Untranslated(self.id)
-			            end
-			            return name
-		end,
-		GetActionResults = function (self, unit, args)
-			            return GetMobileShotResults(self, unit, args)
-		end,
-		GetAimParams = function (self, unit, weapon)
-			
-			            local move_ap = rat_getMobileshot_moveAP(self, unit, weapon) -- self:ResolveValue("mobile_move_ap")
-			            assert(move_ap)
-			
-			            return {num_shots = 0, move_ap = move_ap * const.Scale.AP}
-		end,
-		GetAnyTarget = function (self, units)
-			            return {}
-		end,
-		GetAttackWeapons = function (self, unit, args)
-			            if args and args.weapon then
-			                return args.weapon
-			            end
-			            local weapon = unit:GetActiveWeapons() or unit:GetActiveWeapons("UnarmedWeapon")
-			
-			            return weapon -- make sure to return only 1 weapon, the attack doesn't use 2
-		end,
-		GetTargets = function (self, units)
-			            -- return CombatActionGetAttackableEnemies(self, units and units[1])
-			            return {}
-		end,
-		GetUIState = function (self, units, args)
-			
-			            local unit = units[1]
-			            if g_Combat then
-			                if unit:HasStatusEffect("StationedMachineGun") then
-			                    return "hidden"
-			                elseif unit:HasStatusEffect("ManningEmplacement") then
-			                    return "hidden"
-			                elseif unit:HasPreparedAttack() then
-			                    return "hidden"
-			                end
-			            else
-			                return "hidden", AttackDisableReasons.CombatOnly
-			            end
-			
-			            if not HasPerk(unit, "SteadyBreathing") then
-			                return 'hidden'
-			            end
-			
-			            if args then
-			                local cost = self:GetAPCost(unit, args)
-			                if cost < 0 then
-			                    return "hidden"
-			                end
-			                if not unit:UIHasAP(cost, self.id) then
-			                    return "disabled", GetUnitNoApReason(unit)
-			                end
-			            end
-			
-			            if unit:GetBandageTarget() or unit:IsBeingBandaged() then
-			                return "hidden"
-			            end
-			
-			            ----
-			            if unit:HasStatusEffect("R_outofbreath") then
-			                return "disabled", T(545341281514, "<color AmmoAPColor>Out of Breath</color>")
-			            end
-			            -------
-			            return "enabled"
-		end,
-		Icon = "Mod/cfahRED/Images/sprint2.png",
-		IdDefault = "Sprintdefault",
-		IsAimableAttack = false,
-		KeybindingSortId = "2371",
-		MultiSelectBehavior = "first",
-		Parameters = {
-			PlaceObj('PresetParamNumber', {
-				'Name', "mobile_move_ap",
-				'Value', 8,
-				'Tag', "<mobile_move_ap>",
-			}),
-			PlaceObj('PresetParamNumber', {
-				'Name', "cooldown",
-				'Tag', "<cooldown>",
-			}),
-		},
-		RequireState = "any",
-		Run = function (self, unit, ap, ...)
-			            unit:SetActionCommand("Sprint", self.id, ap, ...)
-		end,
-		SortKey = 10,
-		UIBegin = function (self, units, args)
-			            CombatActionAttackStart(self, units, args, "IModeCombatSprint")
-		end,
-		group = "Default",
-		id = "Sprint",
-	}),
+	PlaceObj('ModItemFolder', {
+		'name', "CombatActions",
+	}, {
+		PlaceObj('ModItemCombatAction', {
+			ActionCamera = true,
+			ActionPoints = 2000,
+			ActionType = "Melee Attack",
+			AimType = "mobile",
+			Description = "",
+			DisplayName = T(496598327198, --[[ModItemCombatAction Sprint DisplayName]] "Sprint"),
+			GetActionDamage = function (self, unit, target, args)
+				            return T("")
+			end,
+			GetActionDescription = function (self, units)
+				            local description = self.Description
+				            local unit = units and units[1]
+				            if not unit then
+				                return self:GetActionDisplayName()
+				            end
+				            ----------------
+				
+				            local weapon = self:GetAttackWeapons(unit)
+				            local DisplayMoveAP = rat_getMobileshot_moveAP(self, unit, weapon)
+				            description = T(979712456456, "Rush to a new position, using up to <em>" ..
+				                                DisplayMoveAP .. " Move AP</em>. The unit will be sligthly harder to hit until the start of it's next turn.")
+				            local args = false
+				            local cost = self.GetAPCost(self, unit, args)
+				
+				            description = description ..
+				                              T(966648741688, "\n\nThe unit will be <em>Out of Breath</em>.")
+				            -------
+				
+				            -- local damage, base, bonus = self:GetActionDamage(unit)
+				            return T {
+				                description
+				                -- damage = damage,
+				                -- basedamage = base,
+				                -- bonusdamage = bonus,
+				            }
+			end,
+			GetActionDisplayName = function (self, units)
+				            local name = self.DisplayName
+				            if (name or "") == "" then
+				                name = Untranslated(self.id)
+				            end
+				            return name
+			end,
+			GetActionResults = function (self, unit, args)
+				            return GetMobileShotResults(self, unit, args)
+			end,
+			GetAimParams = function (self, unit, weapon)
+				
+				            local move_ap = rat_getMobileshot_moveAP(self, unit, weapon) -- self:ResolveValue("mobile_move_ap")
+				            assert(move_ap)
+				
+				            return {num_shots = 0, move_ap = move_ap * const.Scale.AP}
+			end,
+			GetAnyTarget = function (self, units)
+				            return {}
+			end,
+			GetAttackWeapons = function (self, unit, args)
+				            if args and args.weapon then
+				                return args.weapon
+				            end
+				            local weapon = unit:GetActiveWeapons() or unit:GetActiveWeapons("UnarmedWeapon")
+				
+				            return weapon -- make sure to return only 1 weapon, the attack doesn't use 2
+			end,
+			GetTargets = function (self, units)
+				            -- return CombatActionGetAttackableEnemies(self, units and units[1])
+				            return {}
+			end,
+			GetUIState = function (self, units, args)
+				
+				            local unit = units[1]
+				            if g_Combat then
+				                if unit:HasStatusEffect("StationedMachineGun") then
+				                    return "hidden"
+				                elseif unit:HasStatusEffect("ManningEmplacement") then
+				                    return "hidden"
+				                elseif unit:HasPreparedAttack() then
+				                    return "hidden"
+				                end
+				            else
+				                return "hidden", AttackDisableReasons.CombatOnly
+				            end
+				
+				            if not HasPerk(unit, "SteadyBreathing") then
+				                return 'hidden'
+				            end
+				
+				            if args then
+				                local cost = self:GetAPCost(unit, args)
+				                if cost < 0 then
+				                    return "hidden"
+				                end
+				                if not unit:UIHasAP(cost, self.id) then
+				                    return "disabled", GetUnitNoApReason(unit)
+				                end
+				            end
+				
+				            if unit:GetBandageTarget() or unit:IsBeingBandaged() then
+				                return "hidden"
+				            end
+				
+				            ----
+				            if unit:HasStatusEffect("R_outofbreath") then
+				                return "disabled", T(545341281514, "<color AmmoAPColor>Out of Breath</color>")
+				            end
+				            -------
+				            return "enabled"
+			end,
+			Icon = "Mod/cfahRED/Images/sprint2.png",
+			IdDefault = "Sprintdefault",
+			IsAimableAttack = false,
+			KeybindingSortId = "2371",
+			MultiSelectBehavior = "first",
+			Parameters = {
+				PlaceObj('PresetParamNumber', {
+					'Name', "mobile_move_ap",
+					'Value', 8,
+					'Tag', "<mobile_move_ap>",
+				}),
+				PlaceObj('PresetParamNumber', {
+					'Name', "cooldown",
+					'Tag', "<cooldown>",
+				}),
+			},
+			RequireState = "any",
+			Run = function (self, unit, ap, ...)
+				            unit:SetActionCommand("Sprint", self.id, ap, ...)
+			end,
+			SortKey = 10,
+			UIBegin = function (self, units, args)
+				            CombatActionAttackStart(self, units, args, "IModeCombatSprint")
+			end,
+			group = "Default",
+			id = "Sprint",
+		}),
+		PlaceObj('ModItemCode', {
+			'name', "COMBAT_ACTIONS_ShotgunRework",
+			'CodeFileName', "Code/COMBAT_ACTIONS_ShotgunRework.lua",
+		}),
+		PlaceObj('ModItemCode', {
+			'name', "COMBAT_ACTIONS_Sprint",
+			'CodeFileName', "Code/COMBAT_ACTIONS_Sprint.lua",
+		}),
+		PlaceObj('ModItemCode', {
+			'name', "COMBAT_ACTIONS",
+			'CodeFileName', "Code/COMBAT_ACTIONS.lua",
+		}),
+		PlaceObj('ModItemCode', {
+			'name', "SOURCE_ChangeMGSetupGetAreaParams",
+			'CodeFileName', "Code/SOURCE_ChangeMGSetupGetAreaParams.lua",
+		}),
+		PlaceObj('ModItemCode', {
+			'name', "SOURCE_CombatActionGenericAttackGetUIState",
+			'CodeFileName', "Code/SOURCE_CombatActionGenericAttackGetUIState.lua",
+		}),
+		PlaceObj('ModItemCode', {
+			'name', "SOURCE_unitEnumUIactions",
+			'comment', "no-stock run and gun",
+			'CodeFileName', "Code/SOURCE_unitEnumUIactions.lua",
+		}),
+		PlaceObj('ModItemCode', {
+			'name', "SOURCE_IsOverwatchAction",
+			'CodeFileName', "Code/SOURCE_IsOverwatchAction.lua",
+		}),
+		PlaceObj('ModItemCode', {
+			'name', "SOURCE_R_GetAreaAttackParams",
+			'comment', "custom source function, not override",
+			'CodeFileName', "Code/SOURCE_R_GetAreaAttackParams.lua",
+		}),
+		}),
 	PlaceObj('ModItemFolder', {
 		'name', "Compatibility",
 	}, {
@@ -1231,10 +1261,6 @@ return {
 		'name', "Shotgun Rework",
 	}, {
 		PlaceObj('ModItemCode', {
-			'name', "COMBAT_ACTIONS_ShotgunRework",
-			'CodeFileName', "Code/COMBAT_ACTIONS_ShotgunRework.lua",
-		}),
-		PlaceObj('ModItemCode', {
 			'name', "FUNCTIONS_FirearmFirePellet",
 			'CodeFileName', "Code/FUNCTIONS_FirearmFirePellet.lua",
 		}),
@@ -1271,15 +1297,6 @@ return {
 	PlaceObj('ModItemCode', {
 		'name', "SOURCE_IModeCombatAreaAim_UpdateTarget",
 		'CodeFileName', "Code/SOURCE_IModeCombatAreaAim_UpdateTarget.lua",
-	}),
-	PlaceObj('ModItemCode', {
-		'name', "SOURCE_IsOverwatchAction",
-		'CodeFileName', "Code/SOURCE_IsOverwatchAction.lua",
-	}),
-	PlaceObj('ModItemCode', {
-		'name', "SOURCE_R_GetAreaAttackParams",
-		'comment', "custom source function, not override",
-		'CodeFileName', "Code/SOURCE_R_GetAreaAttackParams.lua",
 	}),
 	PlaceObj('ModItemCode', {
 		'name', "SOURCE_SwapWeapon",
@@ -1322,11 +1339,6 @@ return {
 		'CodeFileName', "Code/SOURCE_stealth_calc.lua",
 	}),
 	PlaceObj('ModItemCode', {
-		'name', "SOURCE_unitEnumUIactions",
-		'comment', "no-stock run and gun",
-		'CodeFileName', "Code/SOURCE_unitEnumUIactions.lua",
-	}),
-	PlaceObj('ModItemCode', {
 		'name', "SOURCE_FirearmGetAttackResults",
 		'comment', "---------------------- the holy grail ------------------------",
 		'CodeFileName', "Code/SOURCE_FirearmGetAttackResults.lua",
@@ -1344,10 +1356,6 @@ return {
 		'CodeFileName', "Code/SOURCE_FirearmFireBullet.lua",
 	}),
 	PlaceObj('ModItemCode', {
-		'name', "SOURCE_CombatActionGetAttackableEnemies",
-		'CodeFileName', "Code/SOURCE_CombatActionGetAttackableEnemies.lua",
-	}),
-	PlaceObj('ModItemCode', {
 		'name', "SOURCE_Firearm:GetItemStatusUI and QuickReloadButton",
 		'comment', "bolt action",
 		'CodeFileName', "Code/SOURCE_Firearm_GetItemStatusUI and QuickReloadButton.lua",
@@ -1359,10 +1367,6 @@ return {
 	PlaceObj('ModItemCode', {
 		'name', "SOURCE_GetRangeAccuracy",
 		'CodeFileName', "Code/SOURCE_GetRangeAccuracy.lua",
-	}),
-	PlaceObj('ModItemCode', {
-		'name', "SOURCE_ChangeMGSetupGetAreaParams",
-		'CodeFileName', "Code/SOURCE_ChangeMGSetupGetAreaParams.lua",
 	}),
 	PlaceObj('ModItemCode', {
 		'name', "shooting_stance_aoesector_functions",
@@ -10269,7 +10273,6 @@ return {
 		ModificationDifficulty = 0,
 		ModificationEffects = {
 			"ReduceReloadAP",
-			"DecreaseOverwatchAngle",
 			"MagazineSizeMultiplier",
 		},
 		Parameters = {

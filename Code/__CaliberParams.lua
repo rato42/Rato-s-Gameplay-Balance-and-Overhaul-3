@@ -91,16 +91,17 @@ const.Calibers = {
             "12-gauge Slugs"
         }),
         AdditionalHint = T({
-            "<bullet_point> Fires a single projectile\n<bullet_point> Longer range\n<bullet_point> Improved armor penetration\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil"
+            "<bullet_point> Fires a single projectile\n<bullet_point> Longer range\n<bullet_point> Improved armor penetration\n<bullet_point>Knocks down target\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil"
         }),
         Modifications = {
             CritDamage = -20,
             WeaponRange = 8, -- {0, 1500},
             PenetrationClass = 1,
             NumPellets = {0, 0},
-            Damage = 30, -- {0, 5000},
+            Damage = 31, -- {0, 5000},
             ArmorPir = 1
-        }
+        },
+        AppliedEffects = {"KnockDown"}
 
     },
 

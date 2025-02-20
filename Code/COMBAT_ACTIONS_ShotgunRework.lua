@@ -84,6 +84,7 @@ function GBO_ChangeShotgunCombatActions()
         end
         return num_shots * dmg, dmg, 0
     end
+
 end
 
 function GetPelletDamageText(unit, weapon, base, action_id)

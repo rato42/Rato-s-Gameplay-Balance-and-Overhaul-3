@@ -22,7 +22,8 @@ function AISignatureAction:MatchUnit(unit)
         -- local weapon = unit:GetActiveWeapons()
 
         if attack_type == "BurstFire" or attack_type == "AutoFire" or attack_type == "RunAndGun" or
-            attack_type == "MobileShot" then
+            attack_type == "MobileShot" or attack_type == "Buckshot" or attack_type ==
+            "BuckshotBurst" then
             if actions[attack_type] ~= nil then
                 local ui_status = actions[attack_type]
                 if ui_status and ui_status == "Hidden" then

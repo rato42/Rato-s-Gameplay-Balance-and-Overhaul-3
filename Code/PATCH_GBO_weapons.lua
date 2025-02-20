@@ -5,7 +5,9 @@ function RatoGBO_WepPatch()
     AA12.ShootAP = 3000
     AA12.ReloadAP = 3000
     AA12.Reliability = 80
-    AA12.AvailableAttacks = {"BuckshotBurst", "Buckshot", "CancelShotCone"}
+    AA12.AvailableAttacks = {
+        "BuckshotBurst", "Buckshot", "CancelShotCone", "BurstFire", "SingleShot", "CancelShot"
+    }
     AA12.ComponentSlots = {
         {
             CanBeEmpty = false,
@@ -545,7 +547,7 @@ function RatoGBO_WepPatch()
     Auto5.ShootAP = 3000
     Auto5.ReloadAP = 4000
     Auto5.Reliability = 20
-    Auto5.AvailableAttacks = {"Buckshot", "CancelShotCone"}
+    Auto5.AvailableAttacks = {"Buckshot", "CancelShotCone", "SingleShot", "CancelShot"}
     Auto5.ComponentSlots = {
         {
             CanBeEmpty = true,
@@ -601,7 +603,7 @@ function RatoGBO_WepPatch()
     Auto5_quest.ShootAP = 3000
     Auto5_quest.ReloadAP = 5000
     Auto5_quest.Reliability = 20
-    Auto5_quest.AvailableAttacks = {"BuckshotBurst"}
+    Auto5_quest.AvailableAttacks = {"BuckshotBurst", "BurstFire"}
     Auto5_quest.ComponentSlots = {
         {
             CanBeEmpty = false,
@@ -1040,7 +1042,9 @@ function RatoGBO_WepPatch()
     DoubleBarrelShotgun.ShootAP = 3000
     DoubleBarrelShotgun.ReloadAP = 4000
     DoubleBarrelShotgun.Reliability = 50
-    DoubleBarrelShotgun.AvailableAttacks = {"Buckshot", "DoubleBarrel", "CancelShotCone"}
+    DoubleBarrelShotgun.AvailableAttacks = {
+        "Buckshot", "DoubleBarrel", "CancelShotCone", "SingleShot", "CancelShot"
+    }
     DoubleBarrelShotgun.ComponentSlots = {
         {
             CanBeEmpty = false,
@@ -2473,7 +2477,7 @@ function RatoGBO_WepPatch()
     M41Shotgun.ShootAP = 3000
     M41Shotgun.ReloadAP = 5000
     M41Shotgun.Reliability = 71
-    M41Shotgun.AvailableAttacks = {"Buckshot", "CancelShotCone"}
+    M41Shotgun.AvailableAttacks = {"Buckshot", "CancelShotCone", "SingleShot", "CancelShot"}
     M41Shotgun.ComponentSlots = {
         {
             CanBeEmpty = false,

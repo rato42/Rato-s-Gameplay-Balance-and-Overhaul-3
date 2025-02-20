@@ -33,7 +33,7 @@ function OnMsg.ClassesGenerate()
 end
 
 function IsSlugLoaded(weapon)
-    if IsKindOf(weapon, "Shotgun") and weapon.NumPellets < 1 then
+    if weapon and IsKindOf(weapon, "Shotgun") and weapon.NumPellets < 1 then
         return true
     end
     return false
@@ -46,10 +46,11 @@ end
 function Shotgun:GetNumPellets(unit, action_id)
     local action_id = action_id or ''
     local pellets = self.NumPellets or 1
-    if action_id == "DoubleBarrel" then
-        pellets = pellets * 2
-    end
-    return Max(1, pellets)
+    pellets = Max(1, pellets)
+    local action = action_id and CombatActions[action_id]
+    local mul = action and action:ResolveValue("bullets") or 1
+    pellets = pellets * mul
+    return pellets
 end
 
 function Firearm:GetPelletScatterData(attacker, action, attack_pos, target_pos, num_vectors,

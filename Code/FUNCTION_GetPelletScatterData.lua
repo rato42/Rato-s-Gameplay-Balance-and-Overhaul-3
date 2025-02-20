@@ -1,47 +1,5 @@
 local debug = false
 
-function OnMsg.ClassesGenerate()
-    Shotgun.ImpactForce = -1
-end
-
-function OnMsg.ClassesGenerate()
-    AppendClass.FirearmProperties = {
-        properties = {
-            {
-                category = "Caliber",
-                id = "NumPellets",
-                name = "Number of Pellets",
-                help = "Pellets shot in a buckshot attack",
-                editor = "number",
-                default = 0,
-                template = true,
-                min = 0,
-                max = 50,
-                modifiable = true
-            }, {
-                category = "Caliber",
-                id = "VerticalPelletSpreadFactorMul",
-                name = "VerticalPelletSpreadFactorMul",
-                help = "VerticalPelletSpreadFactorMul",
-                editor = "number",
-                default = 100,
-                template = true,
-                min = 0,
-                max = 200,
-                modifiable = true
-            }
-        }
-    }
-    Shotgun.NumPellets = 10
-end
-
-function IsSlugLoaded(weapon)
-    if IsKindOf(weapon, "Shotgun") and weapon.NumPellets < 1 then
-        return true
-    end
-    return false
-end
-
 function Firearm:GetPelletScatterData(attacker, action, attack_pos, target_pos, num_vectors,
                                       aoe_params, attack_results, shot_attack_args)
 
