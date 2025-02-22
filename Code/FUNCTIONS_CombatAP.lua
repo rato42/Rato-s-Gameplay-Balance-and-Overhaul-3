@@ -230,24 +230,10 @@ function rat_getDeltaAP(action, weapon, action_id_override)
     end
 
     if action_id == "SingleShot" then
-        if IsKindOfClasses(weapon, "SubmachineGun") then
-            base = base + 1000
-        end
-        if IsKindOf(weapon, "Glock18") or IsKindOf(weapon, "B93R_1") or IsKindOf(weapon, "G36") or
-            IsKindOf(weapon, "B93RR_1") then
-            base = base + 1000
-        end
-        if IsKindOf(weapon, "AN94_1") then
-            base = base + 2000
-        end
+        base = base + (weapon.SingleShotCustomDeltaAP or 0) * const.Scale.AP
+
     elseif action_id == "AutoFire" then
-        if IsKindOf(weapon, "AN94_1") then
-            base = base + 1000
-        elseif IsKindOf(weapon, "Glock18") then
-            base = base + 1000
-        elseif IsKindOf(weapon, "G36") then
-            base = base + 1000
-        end
+        base = base + (weapon.AutoFireCustomDeltaAP or 0) * const.Scale.AP
     end
 
     return base

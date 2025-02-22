@@ -1,9 +1,11 @@
 if FirstLoad then
     ratG_T_table = {}
     ratG_GunsHurtOriginalDMGValues = {}
-    ratG_original_UnitGetBaseAimLevelRange = Unit.GetBaseAimLevelRange
+    ratG_original_UnitGetBaseAimLevelRange =
+        Unit.GetBaseAimLevelRange
 
-    ratG_originalFirearmFireBullet = Firearm.FireBullet
+    ratG_originalFirearmFireBullet =
+        Firearm.FireBullet
     ratG_recoilData = {
         small = {
             modifier = 1.20,
@@ -73,7 +75,9 @@ if FirstLoad then
             ["7_62x54R"] = {str = 81},
             ["7_92x57"] = {str = 79},
             -- Group 7: Precision and Long-Range Rifle Cartridges
-            ["6_5Creedmoor"] = {str = 75},
+            ["6_5Creedmoor"] = {
+                str = 75
+            },
             ["6_5Grendel"] = {str = 74}
 
         },
@@ -84,14 +88,21 @@ if FirstLoad then
             ["20x82"] = {str = 90},
             -- Group 7: Precision and Long-Range Rifle Cartridges
             ["300WinMag"] = {str = 84},
-            ["338_Lapua_Magnum"] = {str = 86},
+            ["338_Lapua_Magnum"] = {
+                str = 86
+            },
             ["408_ChayTac"] = {str = 88}
         }
     }
 
     ----- If other mods compatible with GBO want to use different calibers, just insert the caliber on this table
     ratG_UsedCalibers = {
-        "9mm", "9x39", "380ACP", "7_92x57", "762WP", "9x18", "44CAL", "556", "12gauge", "308Win",
-        "30-60", "5_7x28", "50AE", "5_45x39", "7_92x33", "50BMG", "7_62x54R", "762NATO", "45ACP"
+        "9mm", "9x39", "380ACP",
+        "7_92x57", "762WP", "9x18",
+        "44CAL", "556", "12gauge",
+        "308Win", "30-60", "5_7x28",
+        "50AE", "5_45x39", "7_92x33",
+        "50BMG", "7_62x54R", "762NATO",
+        "45ACP", "4_7x33"
     }
 end

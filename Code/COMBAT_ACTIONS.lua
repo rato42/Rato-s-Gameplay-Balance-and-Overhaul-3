@@ -1,4 +1,20 @@
 function rat_combat_actions()
+    CombatActions.BurstFire.ActionPointDelta = 0
+    CombatActions.SingleShot.ActionPointDelta = -2000
+    CombatActions.AutoFire.ActionPointDelta = 4000
+    CombatActions.MGBurstFire.ActionPointDelta = 1000
+
+    CombatActions.Buckshot.ActionPointDelta = -1000
+    CombatActions.BuckshotBurst.ActionPointDelta = 1000
+
+    CombatActions.DualShot.ActionPointDelta = 0
+
+    CombatActions.RunAndGun.ActionPointDelta = 3000
+    CombatActions.MobileShot.ActionPointDelta = 0 -- 1000
+    CombatActions.RecklessAssault.ActionPointDelta = 3000
+    CombatActions.HundredKnives.ActionPointDelta = 3000
+
+    CombatActions.PinDown.ActionPoints = 2000
     --------------------------------------- SingleShot
     CombatActions.SingleShot.GetAPCost = function(self, unit, args)
         local weapon1, weapon2 = self:GetAttackWeapons(unit, args)
@@ -136,7 +152,6 @@ function rat_combat_actions()
         -- return self.ActionPoints
     end
 
-    CombatActions.DualShot.ActionPointDelta = 0
     CombatActions.DualShot.GetAPCost = function(self, unit, args)
 
         local weapon1, weapon2 = self:GetAttackWeapons(unit, args)
@@ -313,7 +328,6 @@ function rat_combat_actions()
     end
 
     ---------------------------------------------------- MGBurstFire
-    CombatActions.MGBurstFire.ActionPointDelta = 1000
 
     CombatActions.MGBurstFire.GetAPCost = function(self, unit, args)
 
@@ -351,7 +365,6 @@ function rat_combat_actions()
         return self.ActionPoints
     end
 
-    CombatActions.BuckshotBurst.ActionPointDelta = 2000
     CombatActions.BuckshotBurst.GetAPCost = function(self, unit, args)
 
         local weapon1, weapon2 = self:GetAttackWeapons(unit, args)
@@ -371,24 +384,6 @@ function rat_combat_actions()
         return (unit:GetAttackAPCost(self, weapon1, false, args and args.aim or 0) + ap_extra +
                    ap_delta) or -1
     end
-
-    -- CombatActions.Buckshot.GetActionResults = function (self, unit, args)
-    -- local args = table.copy(args)
-    -- if not args.target_spot_group then
-    -- args.num_shots = 0
-    -- end
-    -- args.aoe_action_id = self.id
-    -- args.fx_action = "WeaponBuckshot"
-    -- args.aoe_fx_action = "WeaponBuckshot"
-    -- args.single_fx = true
-    -- args.aoe_damage_type = "percent"
-    -- args.aoe_damage_value = const.Weapons.ShotgunCollateralDamage
-    -- args.buckshot_scatter_fx = 10
-    -- local attack_args = unit:PrepareAttackArgs(self.id, args)
-    -- print("bkuc att args", attack_args)
-    -- local results = attack_args.weapon:GetAttackResults(self, attack_args)
-    -- return results, attack_args
-    -- end
 
     CombatActions.Buckshot.GetAPCost = function(self, unit, args)
 
@@ -456,8 +451,6 @@ function rat_combat_actions()
     end
 
     -- CombatActions.PinDown.CostBasedOnWeapon = true
-    -- CombatActions.PinDown.ActionPointDelta = 3000
-    CombatActions.PinDown.ActionPoints = 2000
 
     CombatActions.PinDown.GetAPCost = function(self, unit, args)
 
@@ -786,7 +779,6 @@ function rat_combat_actions()
 
     CombatActions.AutoFire.CostBasedOnWeapon = true
     CombatActions.AutoFire.IsAimableAttack = true
-    CombatActions.AutoFire.ActionPointDelta = 4000
 
     CombatActions.Attack.GetUIState = function(self, units, args)
         local unit = units[1]
@@ -934,8 +926,6 @@ function rat_combat_actions()
 
     end
 
-    CombatActions.RunAndGun.ActionPointDelta = 3000
-
     CombatActions.RunAndGun.GetAPCost = function(self, unit, args)
         local cost, cost_aimed = rat_MobileAction_AP(self, unit)
 
@@ -1061,7 +1051,6 @@ function rat_combat_actions()
 
     end
 
-    CombatActions.MobileShot.ActionPointDelta = 0 -- 1000
     CombatActions.MobileShot.GetAPCost = function(self, unit, args)
 
         -- local weapon = self:GetAttackWeapons(unit)
@@ -1226,7 +1215,6 @@ function rat_combat_actions()
 
         end
 
-    CombatActions.RecklessAssault.ActionPointDelta = 3000
     CombatActions.RecklessAssault.GetAPCost = function(self, unit, args)
 
         local cost, cost_aimed = rat_MobileAction_AP(self, unit)
@@ -1252,7 +1240,6 @@ function rat_combat_actions()
 
     end
 
-    CombatActions.HundredKnives.ActionPointDelta = 3000
     CombatActions.HundredKnives.GetAPCost = function(self, unit, args)
         local weapon = self:GetAttackWeapons(unit, args)
         local cost = unit:GetAttackAPCost(self, self:GetAttackWeapons(unit, args), unit.ActionPoint)
@@ -1337,9 +1324,6 @@ function rat_combat_actions()
 
         return 0
     end
-
-    CombatActions.BurstFire.ActionPointDelta = 0
-    CombatActions.SingleShot.ActionPointDelta = -2000
 
     CombatActions.RunAndGun.GetActionDamage = function(self, unit, target, args)
         local weapon = self:GetAttackWeapons(unit, args)

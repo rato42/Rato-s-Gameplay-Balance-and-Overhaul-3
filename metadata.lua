@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.58c \n\nfixed some issues related to UI and Slug Attacks\nfixed some other magazines that were removing shooting angle\n\nShotguns Overwatch cone now will not force max range\nMG setup cone now will not force max range\n\nSlugs now knockdown targets\nIncreased slug bonus damage by 1\n",
+	'last_changes', "3.58d\n\nfixed mp40 having a 62 rounds expanded magazine\nfixed shotgun attacks AP when using slugs ",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,7 +25,7 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 58,
-	'version', 12568,
+	'version', 12573,
 	'lua_revision', 233360,
 	'saved_with_revision', 350233,
 	'code', {
@@ -158,8 +158,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1740046496,
-	'code_hash', -757544744915359264,
+	'saved', 1740235376,
+	'code_hash', 6947988660512788792,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",

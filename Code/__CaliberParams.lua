@@ -91,7 +91,7 @@ const.Calibers = {
             "12-gauge Slugs"
         }),
         AdditionalHint = T({
-            "<bullet_point> Fires a single projectile\n<bullet_point> Longer range\n<bullet_point> Improved armor penetration\n<bullet_point>Knocks down target\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil"
+            "<bullet_point> Fires a single projectile\n<bullet_point> Longer range\n<bullet_point> Improved armor penetration\n<bullet_point> Knocks down target\n<bullet_point> Decreased Critical Damage\n<bullet_point> Increased recoil"
         }),
         Modifications = {
             CritDamage = -20,
@@ -240,6 +240,14 @@ const.Calibers = {
         Modifications = {
             CritDamage = 30,
             PenetrationClass = 2
+        }
+    },
+
+    _4_7x33 = {
+        Cost = 250,
+        Modifications = {
+            PenetrationClass = 2,
+            CritDamage = -15
         }
     },
 

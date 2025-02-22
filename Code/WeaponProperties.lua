@@ -1,6 +1,42 @@
+function OnMsg.ClassesGenerate()
+
+    AppendClass.FirearmProperties = {
+        properties = {
+            {
+                -- category = "Caliber",
+                id = "SingleShotCustomDeltaAP",
+                name = "SingleShotCustomDelta AP",
+                help = "(not in scale)",
+                editor = "number",
+                default = 0,
+                template = true,
+                min = -50,
+                max = 50,
+                modifiable = true
+            }, {
+                -- category = "Caliber",
+                id = "AutoFireCustomDeltaAP",
+                name = "AutoFireCustomDelta AP",
+                help = "(not in scale)",
+                editor = "number",
+                default = 0,
+                template = true,
+                min = -50,
+                max = 50,
+                modifiable = true
+            }
+
+        }
+    }
+
+    SubmachineGun.SingleShotCustomDeltaAP =
+        1
+end
+
 function fireprop()
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         -- category = "Caliber",
         id = "APStance",
         name = "Shooting Stance AP",
@@ -13,7 +49,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         -- category = "Caliber",
         id = "APStance_display",
         name = "Shooting Stance AP",
@@ -26,7 +63,8 @@ function fireprop()
         modifiable = false
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         -- category = "Caliber",
         id = "description_hints",
         name = "description_hints",
@@ -37,7 +75,8 @@ function fireprop()
         modifiable = false
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         -- category = "Caliber",
         id = "default_long_barrel",
         name = "Default long barrel",
@@ -48,7 +87,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         -- category = "Caliber",
         id = "STR_RECOIL",
         name = "STR_RECOIL",
@@ -61,7 +101,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         -- category = "Caliber",
         id = "PBbonus_display",
         name = "PBbonus_display",
@@ -74,7 +115,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "Recoil_mul",
         name = "Recoil_mul",
@@ -87,7 +129,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "angle_display",
         name = "Shooting Angle in Degrees",
@@ -100,7 +143,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "CritDamage",
         name = "Extra Critical Damage",
@@ -113,7 +157,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "Hipfire_mul", -----Display
         name = "hipfire_mul",
@@ -126,7 +171,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "Snapshot_mul", -----Display
         name = "snapshot_mul",
@@ -139,7 +185,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "tracer",
         name = "Tracer Ammo Loaded",
@@ -152,7 +199,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "ArmorPir",
         name = "AP Ammo Loaded",
@@ -165,7 +213,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "wep_base_recoil_mul",
         name = "Weapon Base Recoil Multiplier",
@@ -191,7 +240,8 @@ function fireprop()
     --     modifiable = true
     -- }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "burst_selective",
         name = "Selective Burst Fire",
@@ -202,7 +252,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "auto_recoil_delta",
         name = "Autofire Recoil Delta",
@@ -215,7 +266,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "long_recoil_delta",
         name = "Long Burst Recoil Delta",
@@ -228,7 +280,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "wep_base_hip_mul",
         name = "Weapon Base Hipfire Multiplier",
@@ -241,7 +294,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "wep_base_snapshot_mul",
         name = "Weapon Base Snapshot Multiplier",
@@ -254,7 +308,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "burst_shots",
         name = "Number of Burst Shots",
@@ -267,7 +322,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "auto_shots",
         name = "Number of Auto Fire Shots",
@@ -280,7 +336,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "long_shots",
         name = "Number of Long Burst Shots",
@@ -293,7 +350,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "unwieldy_weapon",
         name = "Unwieldy Weapon",
@@ -304,7 +362,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         category = "Caliber",
         id = "weigth_held_mul",
         name = "Penalty Multiplier for Held MG fire",
@@ -317,7 +376,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         -- category = "Caliber",
         id = "pistol_swap",
         name = "Pistol-like free swap",
@@ -328,7 +388,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
 
         id = "rat_scope_block",
         name = "Scope Block Folding Stock",
@@ -361,7 +422,8 @@ function fireprop()
 		modifiable = true
     }]]
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         -- category = "Caliber",
         id = "Rat_swap_ap",
         name = "Swap AP",
@@ -374,7 +436,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         -- category = "Caliber",
         id = "unbolted",
         name = "unbolted",
@@ -385,7 +448,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         -- category = "Caliber",
         id = "is_vanilla_firearm",
         name = "Vanilla Firearm",
@@ -396,7 +460,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         -- category = "Caliber",
         id = "is_tog_patched",
         name = "Ratmod: TOG patched Firearm",
@@ -407,7 +472,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         -- category = "Caliber",
         id = "rat_updated_in",
         name = "rat_updated_in",
@@ -420,7 +486,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         id = "Rat_cycling",
         name = "Cycling Mechanism",
         help = "Cycling Mechanism",
@@ -431,7 +498,8 @@ function fireprop()
         template = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         id = "recoil_mechanism",
         name = "Mechanism",
         help = "Mechanism",
@@ -442,7 +510,8 @@ function fireprop()
         template = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         -- category = "Caliber",
         id = "rat_weigth",
         name = "Weight (g)",
@@ -455,7 +524,8 @@ function fireprop()
         modifiable = true
     }
 
-    FirearmProperties.properties[#FirearmProperties.properties + 1] = {
+    FirearmProperties.properties[#FirearmProperties.properties +
+        1] = {
         -- category = "Caliber",
         id = "rat_barrel_len",
         name = "Barrel Length (mm)",
