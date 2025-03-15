@@ -19,7 +19,7 @@ function Firearm:GetOverwatchConeParam(param)
         return self.OverwatchAngle
     elseif param == "MinRange" then
         -- return IsKindOfClasses(self, "Shotgun", "MachineGun") and self.WeaponRange or 2
-        return 2
+        return IsKindOfClasses(self, "BrowningM2HMG") and self.WeaponRange or 2
     elseif param == "MaxRange" then
         -- return IsKindOfClasses(self, "Shotgun", "MachineGun") and self.WeaponRange or
         --           MulDivRound(self.WeaponRange, 75, 100)

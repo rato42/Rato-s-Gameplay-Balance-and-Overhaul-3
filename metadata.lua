@@ -5,7 +5,7 @@ return PlaceObj('ModDef', {
 	'external_links', {
 		"https://www.buymeacoffee.com/rato_modder",
 	},
-	'last_changes', "3.58d\n\nfixed mp40 having a 62 rounds expanded magazine\nfixed shotgun attacks AP when using slugs ",
+	'last_changes', "3.58e\n\nfixed stationary MGs having bugged cones",
 	'SpellCheck', true,
 	'dependencies', {
 		PlaceObj('ModDependency', {
@@ -25,9 +25,9 @@ return PlaceObj('ModDef', {
 	'author', "rato",
 	'version_major', 3,
 	'version_minor', 58,
-	'version', 12573,
+	'version', 12574,
 	'lua_revision', 233360,
-	'saved_with_revision', 350233,
+	'saved_with_revision', 366685,
 	'code', {
 		"CharacterEffect/shoot_move.lua",
 		"CharacterEffect/shooting_stance.lua",
@@ -158,8 +158,8 @@ return PlaceObj('ModDef', {
 		targeted_multiplier = "100 (default for Rato's GBO)",
 	},
 	'has_data', true,
-	'saved', 1740235376,
-	'code_hash', 6947988660512788792,
+	'saved', 1742079074,
+	'code_hash', 8644857863477163501,
 	'affected_resources', {
 		PlaceObj('ModResourcePreset', {
 			'Class', "XTemplate",
