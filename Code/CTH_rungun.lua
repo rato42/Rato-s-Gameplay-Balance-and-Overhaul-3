@@ -60,8 +60,9 @@ function Rat_SeesFromStep(mod_id, attacker, target, attacker_pos)
         local pos = attacker_pos:IsValidZ() and attacker_pos or attacker_pos:SetTerrainZ()
         return CheckLOS(target, pos, sight) and true or false
     end
-    ---- inside a combat action his sight is frozen at where the action started (Visibility.lua:1110)
-    if g_VisibilityUpdateSuspendReasons[attacker] then
+    ---- sight is frozen while either side is inside a combat action (Visibility.lua:1110): his own,
+    ---- or the move/shot of the target that provoked this interrupt (overwatch, pin down)
+    if g_VisibilityUpdateSuspendReasons[attacker] or g_VisibilityUpdateSuspendReasons[target] then
         return CheckLOS(target, attacker, sight) and true or false
     end
     return false
