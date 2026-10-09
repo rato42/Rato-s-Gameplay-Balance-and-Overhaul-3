@@ -178,6 +178,7 @@ return PlaceObj('ModDef', {
 		"Code/FEATURE_NoRevealMemory.lua",
 		"Code/FIX_NoVisibilityReload.lua",
 		"Code/FEATURE_StepOutGate.lua",
+		"Code/FEATURE_OverwatchHoldFire.lua",
 		"InventoryItem/M14SAW_AUTO.lua",
 	},
 	'default_options', {
