@@ -47,7 +47,6 @@ const.Combat.MGSetupConeMul = 110 --- MulDivRound
 const.Combat.MGSetupConeFlat = 180 --- addition (minutes)
 const.Combat.OWMinDelta = 20
 const.Combat.OWMaxDelta = -10
-const.Combat.OWMinCTH = 6 -- aCTH: overwatch holds fire below this and waits for a better tile
 
 ------ old
 const.Combat.R_MinTargetedScaling = 10
