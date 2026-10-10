@@ -5362,7 +5362,7 @@ return {
 				}),
 				PlaceObj('PresetParamNumber', {
 					'Name', "CritPerAimIncrease",
-					'Value', 320,
+					'Value', 240,
 					'Tag', "<CritPerAimIncrease>",
 				}),
 			},

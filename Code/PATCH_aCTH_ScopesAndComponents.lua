@@ -138,7 +138,7 @@ A.ScopeTraits = {
                     MaxAimActionsIncrease = 1,
                     snap_mul_inc = 125, -- 110
                     aim_level_threshold = 4,
-                    threshold_bonus_aim_acc = scale_aim(3)
+                    threshold_bonus_aim_acc = scale_aim(4) -- 3: lost to the ACOG at every aim level
                 },
                 effects = {
                     ScopeFloorReduction = true,
@@ -194,7 +194,8 @@ A.ScopeTraits = {
                 params = {
                     MaxAimActionsIncrease = 1,
                     snap_mul_reduc = 95,
-                    first_aim_bonus_acc = 12--scale_aim(2)
+                    first_aim_bonus_acc = 8,
+                    bonus_cth_interrupt = 12 -- interrupts are bumped to aim 1: keeps them even after the first-aim cut
                 },
                 effects = {
                     IncreaseMaxAimActions = true,
