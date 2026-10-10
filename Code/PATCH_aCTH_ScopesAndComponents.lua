@@ -31,7 +31,7 @@ A.ComponentEffectsAimBonus = {
 ---- separacao que sobrava era o numero de niveis de mira. Medido no processo vivo (M24 @40 tiles,
 ---- mira cheia): 6x 70 -> 81, 4x 62 -> 64. So morde de verdade na ampliacao alta com alcance
 ---- longo, que e exatamente onde a ampliacao deve pagar.
----- Per-magnification value lives in each Scope trait as `floor_mul` (absent = 100).
+---- Per-magnification value: `floor_reduc` of the ScopeFloorReduction effect, under each Scope trait's aCTH mode.
 
 ---- Miras: o `bonus_cth` autorado no componente vira multiplicador de cone, aplicado uma vez com
 ---- aim >= 1 ou required aim. Cada entrada daqui e um componente independente -- 
@@ -72,16 +72,17 @@ A.ScopeTraits = {
         overwrite = true,
         effects = {"IncreaseMaxAimActions", "IncreaseRange", "ScopePenalty3"},
         params = {RangeIncrease = 16},
-        floor_mul = 74,
         modes = {
             aCTH = {
                 params = {
+                    floor_reduc = 26,
                     MaxAimActionsIncrease = 3,
                     snap_mul_inc = 160, -- 140
                     aim_level_threshold = 6,
                     threshold_bonus_aim_acc = scale_aim(5)
                 },
                 effects = {
+                    ScopeFloorReduction = true,
                     ScopeAimThresholdBonus = true,
                     IncreaseMaxAimActions = true,
                     IncreaseSnapshotMul = true,
@@ -100,16 +101,17 @@ A.ScopeTraits = {
         overwrite = true,
         effects = {"IncreaseRange", "ScopePenalty2"},
         params = {RangeIncrease = 10},
-        floor_mul = 84,
         modes = {
             aCTH = {
                 params = {
+                    floor_reduc = 16,
                     MaxAimActionsIncrease = 2,
                     snap_mul_inc = 140, -- 125
                     aim_level_threshold = 5,
                     threshold_bonus_aim_acc = scale_aim(5)
                 },
                 effects = {
+                    ScopeFloorReduction = true,
                     ScopeAimThresholdBonus = true,
                     IncreaseMaxAimActions = true,
                     IncreaseSnapshotMul = true,
@@ -129,16 +131,17 @@ A.ScopeTraits = {
         overwrite = true,
         effects = {"IncreaseAimAccuracy", "IncreaseRange", "ScopePenalty1"},
         params = {AimAccuracyIncrease = 2},
-        floor_mul = 94,
         modes = {
             aCTH = {
                 params = {
+                    floor_reduc = 6,
                     MaxAimActionsIncrease = 1,
                     snap_mul_inc = 125, -- 110
                     aim_level_threshold = 4,
                     threshold_bonus_aim_acc = scale_aim(3)
                 },
                 effects = {
+                    ScopeFloorReduction = true,
                     ScopeAimThresholdBonus = true,
                     BonusAccuracyWhenFullyAimed = false,
                     IncreaseMaxAimActions = true,
@@ -158,16 +161,17 @@ A.ScopeTraits = {
         overwrite = true,
         effects = {"FirstAimBonusModifier", "IncreaseAimAccuracy", "IncreaseRange", "ScopePenalty1", "scope_snapshot"},
         params = {AimAccuracyIncrease = 2, OverwatchAngle = 110, RangeIncrease = 6, first_aim_bonus_acc = 3, snap_reduc = 5},
-        floor_mul = 94,
         modes = {
             aCTH = {
                 params = {
+                    floor_reduc = 6,
                     MaxAimActionsIncrease = 1,
                     --aim_level_threshold = 4,
                     -- threshold_bonus_aim_acc = scale_aim(2),
                     first_aim_bonus_acc = 18--scale_aim(3)
                 },
                 effects = {
+                    ScopeFloorReduction = true,
                     ScopeAimThresholdBonus = false,
                     IncreaseMaxAimActions = true,
                     scope_snapshot = false,
@@ -211,14 +215,16 @@ A.ScopeTraits = {
         overwrite = true,
         effects = {"IncreaseRange"},
         params = {RangeIncrease = 4},
-        floor_mul = 98,
         modes = {
             aCTH = {
-                params = {MaxAimActionsIncrease = 1,
+                params = {
+                    floor_reduc = 2,
+                    MaxAimActionsIncrease = 1,
 			        	aim_level_threshold = 4,
                     	threshold_bonus_aim_acc = scale_aim(2),
 				},
                 effects = {
+                    ScopeFloorReduction = true,
 					ScopeAimThresholdBonus = true,
                     IncreaseMaxAimActions = true,
                     IncreaseRange = false,
@@ -238,7 +244,6 @@ A.ScopeTraits = {
         overwrite = true,
         effects = {"AccuracyBonusWhenAimed", "reflex_sight_close_range", "DecreaseSnapshotMul"},
 		--params = {bonus_cth = x, snap_mul_reduc = 85, Close_bonus},
-        floor_mul = 100, -- explicit: stops Rat_ScopeFloorMul scanning other components
         modes = {
             aCTH = {
                 params = {bonus_cth = 10, snap_mul_reduc = 90},
@@ -286,7 +291,6 @@ A.ScopeTraits = {
     ["Scope.Ironsight"] = {
         overwrite = true,
         effects = {"AccuracyBonusWhenAimed"},
-        floor_mul = 100,
         modes = {
             aCTH = {
                 params = {bonus_cth = 3},

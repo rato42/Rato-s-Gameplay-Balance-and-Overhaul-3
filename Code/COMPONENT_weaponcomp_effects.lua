@@ -853,6 +853,25 @@ function weapon_components_rat()
     })
 
     PlaceObj('WeaponComponentEffect', {
+        Comment = "aCTH: cone floor multiplier, read by Rat_ScopeFloorMul",
+        Description = T(714390625118,
+                        "Improves long range <em>Accuracy</em> at high aim levels by reducing the minimum spread by <floor_reduc>%"),
+        Parameters = {
+            PlaceObj(
+                'PresetParamNumber', {
+                    'Name',
+                    "floor_reduc",
+                    'Value', 0, 'Tag',
+                    "<floor_reduc>"
+                })
+        },
+
+        RequiredParams = {"floor_reduc"},
+        group = "Aiming",
+        id = "ScopeFloorReduction"
+    })
+
+    PlaceObj('WeaponComponentEffect', {
         Comment = "In OpportunityAttack Cth Modifier",
         Description = T(299071168122,
                         "Increases Accuracy for Interrupt attacks by <bonus_cth_interrupt>%"),
@@ -1449,6 +1468,7 @@ local t_table = {
     [685331648680] = 'Increases max aim level by <MaxAimActionsIncrease>',
     [832057249458] = 'Increases aim accuracy in <em>close range</em> by <Close_bonus>%',
     [244679400091] = 'Reduces <em>Snapshot Penalty</em> by <snap_reduc>%',
+    [714390625118] = 'Improves long range <em>Accuracy</em> at high aim levels by reducing the minimum spread by <floor_reduc>%',
     [299071168122] = 'Increases Accuracy for Interrupt attacks by <bonus_cth_interrupt>%',
     [355372332150] = 'Increases Accuracy for aimed attacks by <bonus_cth>%',
     [210060101900] = 'Increases Accuracy for aimed attacks by <bonus_cth_v>%',

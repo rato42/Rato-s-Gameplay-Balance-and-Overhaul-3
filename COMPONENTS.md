@@ -34,7 +34,7 @@ Later beats earlier. Within the mode layers the order is `GBO_ComposeModeLayers(
 | --- | --- | --- |
 | `GBO_COMP_TRAITS` | code table | qualities several components share (`Barrel.Long`) |
 | `GBO_BASE_RECIPES` | code table | one component's whole identity; auto-registers as the trait `Base.<id>` and auto-binds its namesake |
-| `A.ScopeTraits` + `A.ScopeTraitOf` | code table | what each *magnification* does, as `overwrite` traits `Scope.<tier>` (aCTH-only, plus `floor_mul`), and the code-side id → tier binding |
+| `A.ScopeTraits` + `A.ScopeTraitOf` | code table | what each *magnification* does, as `overwrite` traits `Scope.<tier>` (aCTH-only; the floor reduction is the `ScopeFloorReduction` effect), and the code-side id → tier binding |
 | `GBO_ComponentTraits` etc. | editor property | which traits this component has, and how it deviates |
 | `GBO_Override*` (flat) | editor property | **what this component is**: the identity that used to be a base recipe. Applied before the tier, so a magnification can drop from it what does not fit the mode |
 | `GBO_OverrideModes` | editor property | **how it deviates** in one CTH mode. Applied last, beats everything |

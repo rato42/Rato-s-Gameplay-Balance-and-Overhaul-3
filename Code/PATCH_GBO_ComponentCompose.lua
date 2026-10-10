@@ -1022,9 +1022,6 @@ for tname, recipe in pairs(const.Combat.Aperture.ScopeTraits or empty_table) do
     GBO_COMP_TRAITS[tname] = recipe
 end
 
----- Component id -> its Scope trait name, rebuilt by every compose; read by Rat_ScopeFloorMul.
-GBO_COMPONENT_SCOPE = {}
-
 ---- Toda receita base vira o traco "Base.<id>", e o componente de mesmo nome passa a declarar esse
 ---- traco por padrao. Assim um scope sem nada autorado continua sendo ele mesmo, e quem quiser
 ---- compor por cima e so listar mais tracos na propriedade.
@@ -1450,10 +1447,8 @@ end
 function GBO_ApplyComponentCompose()
     local n = 0
     local layers = GBO_ComposeModeLayers()
-    GBO_COMPONENT_SCOPE = {}
     for id, comp in sorted_pairs(WeaponComponents or empty_table) do
         local list = traits_of(id, comp)
-        GBO_COMPONENT_SCOPE[id] = scope_in(list)
         if not list then
             ---- sem tracos o compositor nem toca no componente, entao o override seria um no-op
             if has_override(override_of(id, comp)) then

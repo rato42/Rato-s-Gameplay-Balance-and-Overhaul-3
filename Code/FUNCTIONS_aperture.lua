@@ -503,23 +503,14 @@ function Rat_ApertureHandlingMul(weapon, attacker, action)
     return handling, meta
 end
 
----- Ampliacao da optica montada -> multiplicador do PISO (`floor_mul` do traco Scope). Le o traco
----- pelo id do componente ou pelo ancestral GBO (variantes ToG apontam para o componente base).
+---- Ampliacao da optica montada -> multiplicador do PISO, pelo efeito ScopeFloorReduction que os
+---- tracos Scope emitem em aCTH.
 function Rat_ScopeFloorMul(weapon)
-    local traits = P().ScopeTraits
-    if not traits or not IsKindOf(weapon, "Firearm") or not weapon.components then
+    if not IsKindOf(weapon, "Firearm") then
         return 100
     end
-    local scopes = GBO_COMPONENT_SCOPE or empty_table
-    for _, cid in sorted_pairs(weapon.components) do
-        local comp = WeaponComponents[cid]
-        local tname = comp and (scopes[cid] or scopes[comp.GBO_ComponentAncestor or ""])
-        local mul = tname and traits[tname].floor_mul
-        if mul then
-            return mul
-        end
-    end
-    return 100
+    local reduc = GetComponentEffectValue(weapon, "ScopeFloorReduction", "floor_reduc")
+    return 100 - Clamp(reduc or 0, 0, 99)
 end
 
 ---- Piso mecanico do cone, derivado do WeaponRange -- a ASSINTOTA do tiro mirado. Opticas nao dao
