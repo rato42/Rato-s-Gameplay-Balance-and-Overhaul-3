@@ -3804,9 +3804,9 @@ return {
 					},
 					'Params', {
 						PlaceObj('PresetParamNumber', {
-							'Name', "threshold_bonus_aim_acc",
-							'Value', 30,
-							'Tag', "<threshold_bonus_aim_acc>",
+							'Name', "floor_reduc",
+							'Value', 34,
+							'Tag', "<floor_reduc>",
 						}),
 						PlaceObj('PresetParamNumber', {
 							'Name', "snap_mul_inc",
