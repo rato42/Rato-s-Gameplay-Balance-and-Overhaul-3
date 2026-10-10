@@ -346,7 +346,7 @@ function Rat_ConeFactors(data)
     end
     if parts.floor then
         ---- em grupo (2.5 sigma), mesma escala da linha Aperture
-        meta[#meta + 1] = T {825069487351, "Range floor <f>'",
+        meta[#meta + 1] = T {431907726583, "Minimum spread <f>'",
                              f = MulDivRound(parts.floor, a.CrosshairSigmaMul or 250, 100)}
     end
 
@@ -421,7 +421,7 @@ function Rat_ConeMetaText(data)
         end
         if parts.floor then
             ---- em grupo (2.5 sigma), mesma escala da linha Aperture
-            meta[#meta + 1] = T {825069487351, "Range floor <f>'",
+            meta[#meta + 1] = T {431907726583, "Minimum spread <f>'",
                                  f = MulDivRound(parts.floor, a.CrosshairSigmaMul or 250, 100)}
         end
     end
@@ -497,7 +497,7 @@ local t_id_table = {
     [837465019283] = "Snapshot",
     [604815927340] = "Total",
     [603847265139] = "Aim x<n> (<pct> per level)",
-    [825069487351] = "Range floor <f>'",
+    [431907726583] = "Minimum spread <f>'",
     [714038265194] = "Modifiers <pct>",
     [402715896331] = "No exposed silhouette",
     [574718433471] = "Recoil",
