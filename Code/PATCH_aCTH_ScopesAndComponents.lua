@@ -155,8 +155,8 @@ A.ScopeTraits = {
             }
         }
     },
-    ---- 2x de aquisicao rapida (ACOG/WideScope): trocam o piso e a mira alta pelo snapshot. O
-    ---- `snap_reduc` positivo autorado no componente e mantido -- o perfil nao o sobrescreve.
+    ---- Quick 2x (ACOG): no snapshot penalty like the other scopes, but no reduction either -- that
+    ---- belongs to the reflexes. First-aim bonus kept below the reflex's aim 1-2 edge.
     ["Scope._2xQuick"] = {
         overwrite = true,
         effects = {"FirstAimBonusModifier", "IncreaseAimAccuracy", "IncreaseRange", "ScopePenalty1", "scope_snapshot"},
@@ -168,7 +168,7 @@ A.ScopeTraits = {
                     MaxAimActionsIncrease = 1,
                     --aim_level_threshold = 4,
                     -- threshold_bonus_aim_acc = scale_aim(2),
-                    first_aim_bonus_acc = 18--scale_aim(3)
+                    first_aim_bonus_acc = 12 -- 18 tied the reflex at aim 1
                 },
                 effects = {
                     ScopeFloorReduction = true,
@@ -237,8 +237,8 @@ A.ScopeTraits = {
             }
         }
     },
-    ---- bonus_cth 10 -> 12: a reflex e a opcao BARATA (sem nivel de mira extra, sem AP de entrada),
-    ---- entao precisa ser a melhor no aim 1-3 ou a 2x rapida a domina sem custar nada a mais.
+    ---- Reflexes own the snapshot: lowest snapshot mul of any optic, so they lead at aim 1-2, where
+    ---- the step still applies (AimStepMaxLevel). No extra aim level; scopes win from aim 3 up.
 --TODO: old cth has missing params and effects here
     ["Scope.Reflex"] = {
         overwrite = true,
@@ -246,7 +246,7 @@ A.ScopeTraits = {
 		--params = {bonus_cth = x, snap_mul_reduc = 85, Close_bonus},
         modes = {
             aCTH = {
-                params = {bonus_cth = 10, snap_mul_reduc = 90},
+                params = {bonus_cth = 10, snap_mul_reduc = 75},
                 effects = {
                     AccuracyBonusWhenAimed = true,
                     reflex_sight_close_range = false,
@@ -262,7 +262,7 @@ A.ScopeTraits = {
         params = {Close_bonus = 5, bonus_cth = 3, snap_mul_reduc = 90},
         modes = {
             aCTH = {
-                params = {bonus_cth = 10, snap_mul_reduc = 90},
+                params = {bonus_cth = 10, snap_mul_reduc = 75},
                 effects = {
                     AccuracyBonusWhenAimed = true,
                     reflex_sight_close_range = false,
@@ -278,7 +278,7 @@ A.ScopeTraits = {
         params = {Close_bonus = 5, OverwatchAngle = 125, RangeIncrease = 4, bonus_cth = 3, bonus_cth_interrupt = 10, snap_reduc = 10},
         modes = {
             aCTH = {
-                params = {bonus_cth = 8, snap_mul_reduc = 85},
+                params = {bonus_cth = 8, snap_mul_reduc = 70},
                 effects = {
                     AccuracyBonusWhenAimed = true,
                     reflex_sight_close_range = false,
