@@ -91,8 +91,9 @@ local HintChartRefLabel = ratT(file_str, 731590264422, "Dashed: <name>")
 local HintChartMainLabel = ratT(file_str, 731590264423, "Solid: <name>")
 local HintChartModdedName = ratT(file_str, 731590264428, "With changes")
 local HintChartCurrentName = ratT(file_str, 731590264429, "Current")
-local HintRecoilTitle = ratT(file_str, 731590264432, "Expected hits")
-local HintRecoilSubtitle = ratT(file_str, 731590264433, "<mode>, <num> rounds, standing target")
+local HintRecoilTitle = ratT(file_str, 731590264437, "Recoil")
+local HintRecoilSubtitle = ratT(file_str, 731590264438, "<mode>: hit chance vs the 1st round, unaimed")
+local HintRecoilRoundLabel = ratT(file_str, 731590264436, "Rd <num>")
 local HintChartColors = {RGB(214, 82, 62), RGB(232, 156, 60), RGB(226, 210, 90), RGB(130, 200, 110),
                          RGB(90, 190, 200), RGB(150, 140, 230), RGB(220, 220, 220)}
 
@@ -194,11 +195,6 @@ local function HintChartDraw(win)
         UIL.DrawLine(point(left, y), point(right, y), grid)
         if pct % 50 == 0 then
             local str = pct .. "%"
-            ---- the hits chart plots % of the rounds; label it in rounds
-            if win.rat_y_max then
-                local tenths = MulDivRound(win.rat_y_max * pct, 10, 100)
-                str = tenths % 10 == 0 and tostring(tenths / 10) or string.format("%d.%d", tenths / 10, tenths % 10)
-            end
             text(str, left - 4 - UIL.MeasureText(str, font), y - fh / 2, label)
         end
     end
@@ -218,7 +214,8 @@ local function HintChartDraw(win)
 
     local x = left
     for i = 1, #curves do
-        local str = i == 1 and _InternalTranslate(HintChartHipLabel) or _InternalTranslate(T{HintChartAimLabel, num = i - 1})
+        local str = win.rat_legend and _InternalTranslate(win.rat_legend[i]) or
+                        i == 1 and _InternalTranslate(HintChartHipLabel) or _InternalTranslate(T{HintChartAimLabel, num = i - 1})
         x = x + text(str, x, bottom + fh + 4, HintChartColors[Min(i, #HintChartColors)]) + 10
     end
     if ref then
@@ -355,6 +352,7 @@ local function HintRecoilOffsets(prof, shots)
     return per_shot
 end
 
+---- one curve per round after the first: its CTH as % of round 1's, so the gun's base accuracy divides out
 local function HintRecoilCurves(weapon, owner)
     local action, shots = HintRecoilAttack(weapon)
     if not action or (shots or 0) < 2 then
@@ -366,40 +364,46 @@ local function HintRecoilCurves(weapon, owner)
     if not prof then
         return
     end
-    ---- the walks ignore aim, so one set serves every aim level and distance
     local offsets = HintRecoilOffsets(prof, shots)
-    local bipod_mul = HintChartBipodMul(shooter, weapon)
+    ---- one cone: the ratio still leans on its width (a tight cone loses more to the same drift)
+    local sigma = Max(1, MulDivRound(Rat_GetAperture(weapon, shooter, action, 0), HintChartBipodMul(shooter, weapon), 100))
     local curves = {stance = shooter.stance, action = action, shots = shots}
-    for aim = 0, weapon.MaxAimActions or 3 do
-        local sigma = Max(1, MulDivRound(Rat_GetAperture(weapon, shooter, action, aim), bipod_mul, 100))
-        local pts = {}
-        for d = 0, HintChartTiles do
-            local theta = Rat_ThetaTarget(d * const.SlabSizeX, a.Silhouette.Standing)
-            local hits = 0
-            for _, buckets in ipairs(offsets) do
+    for i = 2, shots do
+        curves[i - 1] = {}
+    end
+    for d = 0, HintChartTiles do
+        local theta = Rat_ThetaTarget(d * const.SlabSizeX, a.Silhouette.Standing)
+        ---- unclamped permil: at range both rounds sit on MinCTH and the ratio would read 100%
+        local first = Rat_RayleighCTH(theta, sigma, true)
+        for i = 2, shots do
+            local pts = curves[i - 1]
+            ---- below 2% the LUT is too coarse to divide; the ratio has flattened by then anyway
+            if first < 20 and d > 0 then
+                pts[d + 1] = pts[d]
+            else
                 local sum = 0
-                for _, r in ipairs(buckets) do
-                    sum = sum + Rat_RiceCTH(theta, sigma, r)
+                for _, r in ipairs(offsets[i]) do
+                    sum = sum + Rat_RiceCTH(theta, sigma, r, true)
                 end
-                hits = hits + Clamp(MulDivRound(sum, 1, #buckets), a.MinCTH, a.MaxCTH)
+                pts[d + 1] = Clamp(MulDivRound(sum, 100, #offsets[i] * Max(1, first)), 0, 100)
             end
-            ---- plotted as % of the rounds fired; the axis labels convert back to rounds
-            pts[d + 1] = MulDivRound(hits, 1, shots)
         end
-        curves[#curves + 1] = pts
     end
     return curves
 end
 
----- fills a chart window with expected hits; false when the gun has no automatic fire
+---- fills a chart window with the recoil ratios; false when the gun has no automatic fire
 local function HintRecoilSetup(win, weapon, owner)
     local curves = HintChartable(weapon) and HintRecoilCurves(weapon, owner)
     if not curves then
         return false
     end
-    win.rat_curves, win.rat_y_max = curves, curves.shots
+    win.rat_curves, win.rat_legend = curves, {}
+    for i = 2, curves.shots do
+        win.rat_legend[i - 1] = T{HintRecoilRoundLabel, num = i}
+    end
     win.rat_title = HintRecoilTitle
-    win.rat_subtitle = T{HintRecoilSubtitle, mode = curves.action.DisplayName, num = curves.shots}
+    win.rat_subtitle = T{HintRecoilSubtitle, mode = curves.action.DisplayName}
     return true
 end
 
