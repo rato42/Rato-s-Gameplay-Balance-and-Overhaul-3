@@ -321,8 +321,8 @@ local HintAutoCritLabel = ratT(file_str, 318826540121, "Autofire Critical Chance
 local HintBurstRecoilLabel = ratT(file_str, 318826540123, "Selective Burst Recoil Penalty")
 local HintAutoRecoilLabel = ratT(file_str, 318826540122, "Autofire Recoil Penalty")
 local HintLongRecoilLabel = ratT(file_str, 318826540124, "Long Burst Recoil Penalty")
-local HintHandlingStandLabel = ratT(file_str, 318826540125, "Standing Penalty")
-local HintHandlingCrouchLabel = ratT(file_str, 318826540126, "Crouched Penalty")
+local HintHandlingStandLabel = ratT(file_str, 318826540125, "Standing Acc. Penalty")
+local HintHandlingCrouchLabel = ratT(file_str, 318826540126, "Crouched Acc. Penalty")
 ---- keyed without underscores: recoil_mechanism spells "Bolt_Action", Rat_cycling "BoltAction"
 local HintMechanismNames = {
     GasOperated = ratT(file_str, 541468575245, "Gas Operated"),
