@@ -434,7 +434,10 @@ function Rat_HandlingPoints(weapon)
         end
     end
     for id, p in pairs(a.HandlingComponentPoints) do
-        if weapon:HasComponent(id) then
+        ---- keys are effect ids or component ids; HasComponent only knows effects
+        local comp = WeaponComponents[id]
+        local has = comp and weapon.components[comp.Slot] == id or not comp and weapon:HasComponent(id)
+        if has then
             points = points + p
         end
     end

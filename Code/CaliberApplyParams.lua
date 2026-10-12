@@ -343,6 +343,23 @@ function FirearmBase:SetWeaponComponent(...)
     Rat_RebuildBallistics(self)
 end
 
+---- vanilla body; the warning now names the caller and flags component ids passed as effects
+function FirearmBase:HasComponent(id)
+    if not WeaponComponentEffects[id] then
+        print("Unknown weapon component effect", id,
+            WeaponComponents[id] and "(this is a component id, not an effect)" or "",
+            "| called from", GetCallLine(2), "<-", GetCallLine(3))
+    end
+    for slot_id, component_id in pairs(self.components) do
+        local def = WeaponComponents[component_id]
+        local effects = def and def.ModificationEffects or empty_table
+        if table.find(effects, id) then
+            return true, def
+        end
+    end
+    return false
+end
+
 local place_inventory_item = PlaceInventoryItem
 
 ---- a loaded save replays applied_modifiers, including an old rat_ballistics value
