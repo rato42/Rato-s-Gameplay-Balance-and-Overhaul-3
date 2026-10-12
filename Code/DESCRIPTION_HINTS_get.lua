@@ -83,6 +83,100 @@ local function HintAimText(v, acth)
     return string.format("%d.%d", v / 10, v % 10)
 end
 
+---- Accuracy chart: CTH vs a standing target by distance, one curve per aim level
+local HintChartTiles = 30
+local HintChartHipLabel = ratT(file_str, 731590264418, "Hip")
+local HintChartAimLabel = ratT(file_str, 731590264419, "Aim <num>")
+local HintChartTitle = ratT(file_str, 731590264420, "Hit chance vs standing target, by tiles")
+local HintChartColors = {RGB(214, 82, 62), RGB(232, 156, 60), RGB(226, 210, 90), RGB(130, 200, 110),
+                         RGB(90, 190, 200), RGB(150, 140, 230), RGB(220, 220, 220)}
+
+---- stand-in shooter: UnitData has no GetActiveWeapons, and a fixed stance keeps guns comparable
+local function HintChartShooter(weapon, owner)
+    local src = owner or HintFullStats
+    local s = {placeholder = false, stance = "Standing"}
+    for _, k in ipairs{"Marksmanship", "Dexterity", "Agility", "Strength", "Wisdom", "Explosives"} do
+        s[k] = src[k] or 100
+    end
+    s.GetActiveWeapons = function() return weapon end
+    s.IsMerc = function() return true end
+    s.GetLevel = function() return 1 end
+    s.GetStatusEffect = function(_, id) return owner and owner.GetStatusEffect and owner:GetStatusEffect(id) end
+    s.HasStatusEffect = function(_, id) return owner and owner.HasStatusEffect and owner:HasStatusEffect(id) end
+    return s
+end
+
+local function HintChartCurves(weapon, owner)
+    local a = const.Combat.Aperture
+    local shooter = HintChartShooter(weapon, owner)
+    local curves = {}
+    for aim = 0, weapon.MaxAimActions or 3 do
+        local sigma = Rat_GetAperture(weapon, shooter, nil, aim)
+        local pts = {}
+        for d = 0, HintChartTiles do
+            local theta = Rat_ThetaTarget(d * const.SlabSizeX, a.Silhouette.Standing)
+            pts[d + 1] = Clamp(Rat_RayleighCTH(theta, sigma), a.MinCTH, a.MaxCTH)
+        end
+        curves[#curves + 1] = pts
+    end
+    return curves
+end
+
+local function HintChartDraw(win)
+    local curves = win.rat_curves
+    if not curves then
+        return
+    end
+    local font = TextStyles.PDABrowserTitleSmall:GetFontIdHeightBaseline(win.scale:y())
+    local grid, label = RGB(62, 66, 62), RGB(150, 150, 150)
+    local x0, y0 = win.content_box:minxyz()
+    local cw, ch = win.content_box:sizexyz()
+    local lw, fh = UIL.MeasureText("100%", font)
+    local left, right = x0 + lw + 6, x0 + cw - 6
+    local top, bottom = y0 + fh + 6, y0 + ch - 2 * fh - 8
+    local w, h = right - left, bottom - top
+    local px = Max(2, MulDivRound(win.scale:x(), 3, 1000))
+    local function text(str, x, y, color)
+        local tw, th = UIL.MeasureText(str, font)
+        UIL.StretchText(str, box(x, y, x + tw, y + th), font, color)
+        return tw
+    end
+
+    text(_InternalTranslate(HintChartTitle), x0, y0, label)
+    for pct = 0, 100, 25 do
+        local y = bottom - MulDivRound(h, pct, 100)
+        UIL.DrawLine(point(left, y), point(right, y), grid)
+        if pct % 50 == 0 then
+            local str = pct .. "%"
+            text(str, left - 4 - UIL.MeasureText(str, font), y - fh / 2, label)
+        end
+    end
+    for d = 0, HintChartTiles, 10 do
+        local x = left + MulDivRound(w, d, HintChartTiles)
+        UIL.DrawLine(point(x, top), point(x, bottom), grid)
+        local str = tostring(d)
+        text(str, x - UIL.MeasureText(str, font) / 2, bottom + 2, label)
+    end
+
+    for i, pts in ipairs(curves) do
+        local color = HintChartColors[Min(i, #HintChartColors)]
+        local prev
+        for d, cth in ipairs(pts) do
+            local pt = point(left + MulDivRound(w, d - 1, HintChartTiles), bottom - MulDivRound(h, cth, 100))
+            if prev then
+                UIL.DrawLineAntialised(px, prev, pt, color)
+            end
+            prev = pt
+        end
+    end
+
+    local x = left
+    for i = 1, #curves do
+        local str = i == 1 and _InternalTranslate(HintChartHipLabel) or _InternalTranslate(T{HintChartAimLabel, num = i - 1})
+        x = x + text(str, x, bottom + fh + 4, HintChartColors[Min(i, #HintChartColors)]) + 10
+    end
+end
+
 ---- mirrors ChangeWeapon.GetAPCost for this gun alone, in displayed AP
 local function HintSwapAP(weapon)
     if IsKindOf(weapon, "HeavyWeapon") then
@@ -644,6 +738,39 @@ function Rat_PatchWeaponRollover()
                         r[1]:SetNameText(r[2])
                         r[1]:SetValueText(r[3] and Untranslated(r[4]()) or "")
                     end
+                end,
+            }),
+        }))
+        old = table.find(path[2], "Id", "idRatAccChart")
+        if old then
+            table.remove(path[2], old)
+        end
+        table.insert(path[2], PlaceObj("XTemplateWindow", {
+            "__class", "XContextWindow",
+            "Id", "idRatAccChart",
+            "Margins", box(0, 8, 0, 0),
+            "MinHeight", 170,
+            "MaxHeight", 170,
+            "FoldWhenHidden", true,
+        }, {
+            PlaceObj("XTemplateFunc", {
+                "name", "Open(self)",
+                "func", function(self)
+                    XContextWindow.Open(self)
+                    local weapon = ResolvePropObj(self.context)
+                    if not IsACHTActive() or not IsKindOf(weapon, "Firearm") or IsKindOf(weapon, "HeavyWeapon") then
+                        self:SetVisible(false)
+                        return
+                    end
+                    local owner = weapon.owner and (not gv_SatelliteView and g_Units[weapon.owner] or gv_UnitData[weapon.owner])
+                    ---- computed once here; DrawContent runs every frame
+                    self.rat_curves = HintChartCurves(weapon, owner)
+                end,
+            }),
+            PlaceObj("XTemplateFunc", {
+                "name", "DrawContent(self, clip_box)",
+                "func", function(self, clip_box)
+                    HintChartDraw(self)
                 end,
             }),
         }))
