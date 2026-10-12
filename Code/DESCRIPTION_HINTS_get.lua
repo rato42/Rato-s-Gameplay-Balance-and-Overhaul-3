@@ -186,7 +186,22 @@ local function HintChartDraw(win)
         return tw
     end
 
-    text(_InternalTranslate(win.rat_title or HintChartTitle), x0, y0, label)
+    if win.rat_tabs then
+        ---- clickable titles; boxes kept for OnMouseButtonDown
+        local x, gap = x0, UIL.MeasureText("  |  ", font)
+        win.rat_tab_boxes = {}
+        for i, t in ipairs(win.rat_tabs) do
+            local str = _InternalTranslate(t)
+            local tw = text(str, x, y0, i == win.rat_tab and RGB(220, 220, 220) or RGB(105, 108, 112))
+            win.rat_tab_boxes[i] = box(x, y0, x + tw, y0 + fh)
+            if i < #win.rat_tabs then
+                text("|", x + tw + gap / 2 - UIL.MeasureText("|", font) / 2, y0, grid)
+            end
+            x = x + tw + gap
+        end
+    else
+        text(_InternalTranslate(win.rat_title or HintChartTitle), x0, y0, label)
+    end
     text(_InternalTranslate(win.rat_subtitle or HintChartSubtitle), x0, y0 + fh, label, small)
     local stance = _InternalTranslate(HintChartStanceLabels[curves.stance])
     text(stance, x0 + cw - UIL.MeasureText(stance, font), y0, RGB(220, 220, 220))
@@ -256,38 +271,6 @@ end
 
 local function HintChartable(weapon)
     return IsKindOf(weapon, "Firearm") and not IsKindOf(weapon, "HeavyWeapon")
-end
-
----- Shift-compare: own panel right of both rollovers, hovered gun solid and equipped gun dashed
-local function HintCompareChart(dlg)
-    local list, item = dlg.compare_wnd[#dlg.compare_wnd], dlg.compare_wnd.item
-    if not IsACHTActive() or not list or not HintChartable(item) then
-        return
-    end
-    local ref
-    for _, o in ipairs(dlg.compare_wnd.other or empty_table) do
-        ref = ref or HintChartable(o) and o
-    end
-    if not ref then
-        return
-    end
-    ---- same frame as RolloverInventoryWeaponBase
-    local panel = XWindow:new({
-        Margins = box(10, 0, 0, 0),
-        Padding = box(6, 6, 6, 6),
-        VAlign = "top",
-        MinWidth = 350,
-        MaxWidth = 350,
-        Background = RGBA(52, 55, 61, 255),
-        BackgroundRectGlowSize = 2,
-        BackgroundRectGlowColor = RGBA(32, 35, 47, 255),
-    }, list)
-    local chart = XWindow:new({MinHeight = 290, MaxHeight = 290}, panel)
-    chart.DrawContent = HintChartDraw
-    local unit = GetInventoryUnit()
-    chart.rat_curves, chart.rat_ref_curves = HintChartCurves(item, unit), HintChartCurves(ref, unit)
-    chart.rat_name, chart.rat_ref_name = item.DisplayName, ref.DisplayName
-    panel:Open()
 end
 
 local function HintSameComponents(a, b)
@@ -375,6 +358,69 @@ local function HintRecoilSetup(win, weapon, owner)
     return true
 end
 
+---- Shift-compare: own panel right of both rollovers, hovered gun solid and equipped gun dashed
+local function HintCompareChart(dlg)
+    local list, item = dlg.compare_wnd[#dlg.compare_wnd], dlg.compare_wnd.item
+    if not IsACHTActive() or not list or not HintChartable(item) then
+        return
+    end
+    local ref
+    for _, o in ipairs(dlg.compare_wnd.other or empty_table) do
+        ref = ref or HintChartable(o) and o
+    end
+    if not ref then
+        return
+    end
+    ---- same frame as RolloverInventoryWeaponBase
+    local panel = XWindow:new({
+        Margins = box(10, 0, 0, 0),
+        Padding = box(6, 6, 6, 6),
+        VAlign = "top",
+        MinWidth = 350,
+        MaxWidth = 350,
+        Background = RGBA(52, 55, 61, 255),
+        BackgroundRectGlowSize = 2,
+        BackgroundRectGlowColor = RGBA(32, 35, 47, 255),
+        LayoutMethod = "VList",
+        LayoutVSpacing = 10,
+    }, list)
+    local unit = GetInventoryUnit()
+    local function chart()
+        local win = XWindow:new({MinHeight = 290, MaxHeight = 290}, panel)
+        win.DrawContent = HintChartDraw
+        win.rat_name, win.rat_ref_name = item.DisplayName, ref.DisplayName
+        return win
+    end
+    local acc = chart()
+    acc.rat_curves, acc.rat_ref_curves = HintChartCurves(item, unit), HintChartCurves(ref, unit)
+    ---- recoil below when the hovered gun has automatic fire; dashed only if the other one does too
+    local recoil = HintRecoilCurves(item, unit) and chart()
+    if recoil then
+        HintRecoilSetup(recoil, item, unit)
+        recoil.rat_ref_curves = HintRecoilCurves(ref, unit)
+        recoil.rat_reserve_ref = true
+    end
+    panel:Open()
+end
+
+---- modify dialog tab, kept across openings: 1 hit chance, 2 recoil
+local HintModChartTab = 1
+
+---- fills the modify chart for the active tab; recoil only exists on guns with automatic fire
+local function HintModChartFill(win, clone, real, owner)
+    local differ = not HintSameComponents(clone, real)
+    win.rat_tabs = HintRecoilAttack(clone) and {HintChartTitle, HintRecoilTitle} or nil
+    win.rat_tab = win.rat_tabs and HintModChartTab or 1
+    win.rat_title, win.rat_subtitle, win.rat_legend = nil, nil, nil
+    if win.rat_tab == 2 then
+        HintRecoilSetup(win, clone, owner)
+        win.rat_ref_curves = differ and HintRecoilCurves(real, owner) or nil
+    else
+        win.rat_curves = HintChartCurves(clone, owner)
+        win.rat_ref_curves = differ and HintChartCurves(real, owner) or nil
+    end
+end
+
 ---- modify dialog: the clone (hovered/placed parts) solid, the real gun dashed once they differ
 local function HintModifyChart()
     return PlaceObj("XTemplateWindow", {
@@ -387,8 +433,22 @@ local function HintModifyChart()
         "MinHeight", 330,
         "MaxHeight", 330,
         "FoldWhenHidden", true,
+        "HandleMouse", true,
         "Background", RGBA(32, 35, 47, 215),
     }, {
+        PlaceObj("XTemplateFunc", {
+            "name", "OnMouseButtonDown(self, pos, button)",
+            "func", function(self, pos, button)
+                for i, b in ipairs(button == "L" and self.rat_tab_boxes or empty_table) do
+                    if i ~= self.rat_tab and pos:x() >= b:minx() and pos:x() <= b:maxx() and
+                        pos:y() >= b:miny() and pos:y() <= b:maxy() then
+                        HintModChartTab = i
+                        self:UpdateValue()
+                        return "break"
+                    end
+                end
+            end,
+        }),
         PlaceObj("XTemplateFunc", {
             "name", "Open(self)",
             "func", function(self)
@@ -408,8 +468,7 @@ local function HintModifyChart()
                 end
                 local id = dlg.context.owner
                 local owner = id and (g_Units[id] or gv_UnitData[id])
-                self.rat_curves = HintChartCurves(clone, owner)
-                self.rat_ref_curves = not HintSameComponents(clone, real) and HintChartCurves(real, owner) or nil
+                HintModChartFill(self, clone, real, owner)
                 ---- the Solid/Dashed row keeps its space so hovering a part never resizes the plot
                 self.rat_reserve_ref = true
                 self.rat_name, self.rat_ref_name = HintChartModdedName, HintChartCurrentName
