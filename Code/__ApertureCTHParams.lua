@@ -197,6 +197,15 @@ A.HandlingAttrImpact = 30
 A.HandlingAttrLowAt = 70
 A.HandlingAttrLowMeta = T(273969979692, "(-) Low Hand-Eye Coordination")
 
+---- TEMPORARY: pre-points handling (HandlingBaseMul x PB bonus, Hand-Eye neutral at 70), for comparison.
+---- The sheet dropped HandlingBaseMul, so the old per-gun values live here; anything missing was 100.
+A.HandlingLegacy = true
+A.HandlingLegacyBaseMul = {
+	BarretM82 = 113, DragunovSVD = 103, FNMinimi = 104, Gewehr98 = 110, HK21 = 108, HK23ECamo_1 = 104,
+	HK23E_1 = 104, M24Sniper = 104, M76_1 = 101, MG42 = 113, MG58 = 113, Mosin_1 = 106, PKM_1 = 108,
+	PSG1 = 113, SSG69_1 = 110,
+}
+
 ---- Standing widens the cone for a heavy gun, same weigth_held_mul ladder as the recoil weight
 ---- penalty (RecoilHeldPivot). LIGHT by default -- LOWER slope than recoil on purpose, this is
 ---- aim, not muzzle control -- and it only bites past the pivot, so most guns pay nothing.

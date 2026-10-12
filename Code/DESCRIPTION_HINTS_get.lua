@@ -44,7 +44,11 @@ local function HintPB(weapon, unit)
     return MulDivRound(pb, scale, 100)
 end
 
+---- TEMPORARY legacy mode: 10000 - multiplier in basis points, so higher stays better for the bar
 local function HintHandling(weapon, unit)
+    if const.Combat.Aperture.HandlingLegacy then
+        return 10000 - Rat_HandlingBaseMul(weapon, unit)
+    end
     return (Rat_HandlingEffectivePoints(weapon, unit))
 end
 
@@ -362,6 +366,13 @@ local function HintHundredths(v)
     local sign = v < 0 and "-" or ""
     v = abs(v)
     return string.format("%s%d.%02d", sign, v / 100, v % 100)
+end
+
+local function HintHandlingText(v)
+    if const.Combat.Aperture.HandlingLegacy then
+        return HintHundredths(MulDivRound(10000 - v, 1, 100)) .. "X"
+    end
+    return v
 end
 
 ---- value in the panel's value style, units muted like vanilla's " AP"
@@ -944,9 +955,10 @@ function GBO_GetDescriptionHints(self)
 		},
 	    angularCTHActive and {
 	        id = "PointBlankRangeAccuracy",
-	        TranslationTable[547203918664] or "Handling: ",
-	        handling, "",
-	        base = owner and HintHandling(self),
+	        const.Combat.Aperture.HandlingLegacy and (TranslationTable[184329577856] or "Handling Penalty Multiplier: ") or
+	            (TranslationTable[547203918664] or "Handling: "),
+	        HintHandlingText(handling), "",
+	        base = owner and HintHandlingText(HintHandling(self)),
 	        bar = "Handling", bar_v = handling, bar_ref = owner and HintHandling(self),
 	    } or {
 	        id = "PointBlankRangeAccuracy",
@@ -1083,6 +1095,7 @@ local t_id_table = {
     [719583632117] = "Number of Pellets: ",
     [193184162359] = "Pellet Spread Angle: ",
 	[547203918664] = "Handling: ",
+	[184329577856] = "Handling Penalty Multiplier: ",
 	[219437987174] = "Aim accuracy: ",
 	[638215904417] = "Rate of Fire: ",
 	[529418307726] = "Barrel Length: ",

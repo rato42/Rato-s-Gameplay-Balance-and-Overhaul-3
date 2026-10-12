@@ -472,8 +472,33 @@ end
 
 ---- MANEJO -> multiplicador da abertura base, em CENTESIMOS de % (10000 = x1). MENOR = melhor.
 ---- Basis points so the whole points shown are exactly the ones applied (1 point = 0.67%).
+---- TEMPORARY (A.HandlingLegacy): the pre-points multiplier, in basis points like the current one
+local function Rat_HandlingLegacyMul(weapon, attacker)
+    local a = P()
+    if not IsKindOf(weapon, "FirearmProperties") then
+        return 10000
+    end
+    local pb = GetPBbonus(weapon) or 0
+    local handling = MulDivRound(a.HandlingLegacyBaseMul[weapon.class] or 100, 100 - MulDivRound(80, pb, 100), 100)
+    handling = Clamp(handling, a.HandlingMin, a.HandlingMax)
+    local meta
+    if attacker and handling ~= 100 then
+        local hec = rGetHandEyeCoordination(attacker)
+        local skill = MulDivRound(20, Clamp(hec - 70, -30, 30), 30)
+        local dev = handling - 100
+        handling = 100 + MulDivRound(dev, 100 + (dev < 0 and skill or -skill), 100)
+        if hec < a.HandlingAttrLowAt then
+            meta = {a.HandlingAttrLowMeta}
+        end
+    end
+    return handling * 100, meta
+end
+
 function Rat_HandlingBaseMul(weapon, attacker)
     local a = P()
+    if a.HandlingLegacy then
+        return Rat_HandlingLegacyMul(weapon, attacker)
+    end
     local pts, meta = Rat_HandlingEffectivePoints(weapon, attacker)
     return 10000 - MulDivRound(pts, a.HandlingPointPct, a.HandlingPointsPerAim), meta
 end
