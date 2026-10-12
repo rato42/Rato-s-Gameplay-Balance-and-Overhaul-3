@@ -772,11 +772,11 @@ end
 ---- Abertura -> CTH
 ---------------------------------------------------------------------------------------------------
 
----- P = 1 - exp(-k^2 / 2), k = theta/sigma. LUT interpolada, em porcento (`permil` true: em permil).
-function Rat_RayleighCTH(theta, sigma, permil)
+---- P = 1 - exp(-k^2 / 2), k = theta/sigma. LUT interpolada, em porcento.
+function Rat_RayleighCTH(theta, sigma)
     local a = P()
     if not sigma or sigma < 1 then
-        return permil and 1000 or 100
+        return 100
     end
 
     local k1000 = MulDivRound(theta, 1000, sigma)
@@ -785,15 +785,15 @@ function Rat_RayleighCTH(theta, sigma, permil)
     local last = #a.Rayleigh
 
     if idx >= last then
-        return permil and 1000 or 100
+        return 100
     end
 
     local lo = a.Rayleigh[idx]
     local hi = a.Rayleigh[idx + 1]
     local frac = k1000 - idx * step
-    local pm = lo + MulDivRound(hi - lo, frac, step)
+    local permil = lo + MulDivRound(hi - lo, frac, step)
 
-    return permil and pm or MulDivRound(pm, 100, 1000)
+    return MulDivRound(permil, 100, 1000)
 end
 
 ---- Massa normal entre o centro e `x`, em permil (0..500). LUT interpolada, um eixo so.
@@ -1047,15 +1047,15 @@ end
 ---- Rayleigh e o caso mu = 0 e continua sendo o caminho do tiro 1 -- bit a bit, para que nenhum
 ---- numero ja tunado se mexa. Com mu > 0 a nuvem vira anel e so a LUT 2D acerta a curva.
 ---------------------------------------------------------------------------------------------------
-function Rat_RiceCTH(theta, sigma, mu, permil)
+function Rat_RiceCTH(theta, sigma, mu)
     ---- mu < 0 = cano passou do alvo (supercompensacao); o que conta e a DISTANCIA ao centro
     mu = mu and abs(mu) or 0
     if mu <= 0 then
-        return Rat_RayleighCTH(theta, sigma, permil)
+        return Rat_RayleighCTH(theta, sigma)
     end
     local a = P()
     if not sigma or sigma < 1 then
-        return permil and 1000 or 100
+        return 100
     end
 
     local tbl = a.OffsetCircle
@@ -1075,9 +1075,9 @@ function Rat_RiceCTH(theta, sigma, mu, permil)
         return r[ki] + MulDivRound(r[ki + 1] - r[ki], kf, kstep)
     end
     local lo, hi = at(mi), at(mi + 1)
-    local pm = lo + MulDivRound(hi - lo, mf, mstep)
+    local permil = lo + MulDivRound(hi - lo, mf, mstep)
 
-    return permil and pm or MulDivRound(pm, 100, 1000)
+    return MulDivRound(permil, 100, 1000)
 end
 
 ---- Inversa da LUT: k*1000 que produz exatamente `cth`. Nao depende de theta -- e o que permite
