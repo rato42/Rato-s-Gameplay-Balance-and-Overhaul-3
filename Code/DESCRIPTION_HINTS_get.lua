@@ -89,6 +89,8 @@ local HintChartTitle = ratT(file_str, 731590264420, "Hit chance")
 local HintChartSubtitle = ratT(file_str, 731590264427, "standing target")
 local HintChartRefLabel = ratT(file_str, 731590264422, "Dashed: <name>")
 local HintChartMainLabel = ratT(file_str, 731590264423, "Solid: <name>")
+local HintChartModdedName = ratT(file_str, 731590264428, "With changes")
+local HintChartCurrentName = ratT(file_str, 731590264429, "Current")
 local HintChartColors = {RGB(214, 82, 62), RGB(232, 156, 60), RGB(226, 210, 90), RGB(130, 200, 110),
                          RGB(90, 190, 200), RGB(150, 140, 230), RGB(220, 220, 220)}
 
@@ -273,6 +275,69 @@ local function HintCompareChart(dlg)
     chart.rat_curves, chart.rat_ref_curves = HintChartCurves(item, unit), HintChartCurves(ref, unit)
     chart.rat_name, chart.rat_ref_name = item.DisplayName, ref.DisplayName
     panel:Open()
+end
+
+local function HintSameComponents(a, b)
+    for slot, id in pairs(a.components) do
+        if (b.components[slot] or "") ~= (id or "") then
+            return false
+        end
+    end
+    for slot, id in pairs(b.components) do
+        if (a.components[slot] or "") ~= (id or "") then
+            return false
+        end
+    end
+    return true
+end
+
+---- modify dialog: the clone (hovered/placed parts) solid, the real gun dashed once they differ
+local function HintModifyChart()
+    return PlaceObj("XTemplateWindow", {
+        "Id", "idRatModChart",
+        "Margins", box(0, 15, 0, 0),
+        "Padding", box(8, 6, 8, 6),
+        "HAlign", "right",
+        "MinWidth", 450,
+        "MaxWidth", 450,
+        "MinHeight", 260,
+        "MaxHeight", 260,
+        "FoldWhenHidden", true,
+        "Background", RGBA(32, 35, 47, 215),
+    }, {
+        PlaceObj("XTemplateFunc", {
+            "name", "Open(self)",
+            "func", function(self)
+                XWindow.Open(self)
+                ---- idWeaponProps respawns after the dialog's own UpdateWeaponProps call
+                self:UpdateValue()
+            end,
+        }),
+        PlaceObj("XTemplateFunc", {
+            "name", "UpdateValue(self, anyModified)",
+            "func", function(self, anyModified)
+                local dlg = self:ResolveId("node"):ResolveId("node")
+                local clone, real = dlg and dlg.weaponClone, dlg and dlg.context and dlg.context.weapon
+                if not IsACHTActive() or not HintChartable(clone) or not real then
+                    self:SetVisible(false)
+                    return
+                end
+                local id = dlg.context.owner
+                local owner = id and (g_Units[id] or gv_UnitData[id])
+                self.rat_curves = HintChartCurves(clone, owner)
+                self.rat_ref_curves = not HintSameComponents(clone, real) and HintChartCurves(real, owner) or nil
+                self.rat_name, self.rat_ref_name = HintChartModdedName, HintChartCurrentName
+                self:SetVisible(true)
+                self:Invalidate()
+            end,
+        }),
+        PlaceObj("XTemplateFunc", {
+            "name", "DrawContent(self, clip_box)",
+            "func", function(self, clip_box)
+                HintChartDraw(self)
+            end,
+        }),
+    })
 end
 
 ---- mirrors ChangeWeapon.GetAPCost for this gun alone, in displayed AP
@@ -906,6 +971,19 @@ function Rat_PatchWeaponRollover()
             XText.Open(self)
             self:SetText(GetArmorClassUIText(Rat_DisplayPenetrationClass(self.context)))
         end)
+    end
+    ---- accuracy chart above the component effects, which shrink to make room
+    path = FindXtByProp(XTemplates.ModifyWeaponDlg, "comment", "extra stat stuff")
+    if path then
+        local list = path[2]
+        local old = table.find(list, "Id", "idRatModChart")
+        if old then
+            table.remove(list, old)
+        end
+        table.insert(list, table.find(list, path[1]), HintModifyChart())
+        path[1].ScaleModifier = point(750, 750)
+        path[1].Margins = box(0, 10, 0, 0)
+        path[1].MinWidth, path[1].MaxWidth = 600, 600
     end
 end
 
