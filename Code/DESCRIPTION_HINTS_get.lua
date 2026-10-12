@@ -51,7 +51,15 @@ local function HintHandlingFromMul(mul)
 end
 
 local function HintHandling(weapon, unit)
-    return HintHandlingFromMul(Rat_HandlingBaseMul(weapon, unit))
+    return (Rat_HandlingEffectivePoints(weapon, unit))
+end
+
+---- one decimal, so the compressed Hand-Eye scaling stays visible
+local function HintHandlingText(v)
+    v = MulDivRound(v, 1, 10)
+    local sign = v < 0 and "-" or ""
+    v = abs(v)
+    return v % 10 == 0 and string.format("%s%d", sign, v / 10) or string.format("%s%d.%d", sign, v / 10, v % 10)
 end
 
 ---- per-aim-level bonus in hundredths. Classic mirrors CTH_aim.lua; aCTH mirrors Rat_ApertureAimDecay,
@@ -623,7 +631,7 @@ function Rat_PatchWeaponRollover()
                             local loss, relief = HintHandlingFromMul(base) - pts(raw), pts(pen) - pts(raw)
                             local extra = relief == 0 and string.format(" (-%d)", MulDivRound(loss, 1, 100)) or
                                               string.format(" (-%d +%d STR)", MulDivRound(loss, 1, 100), MulDivRound(relief, 1, 100))
-                            return HintAimText(pts(pen), true) .. extra
+                            return HintHandlingText(pts(pen)) .. extra
                         end}
                     end
                     for _, r in ipairs{
@@ -721,8 +729,8 @@ function GBO_GetDescriptionHints(self)
 	    angularCTHActive and {
 	        id = "PointBlankRangeAccuracy",
 	        TranslationTable[547203918664] or "Handling: ",
-	        HintAimText(handling, true), "",
-	        base = owner and HintAimText(HintHandling(self), true),
+	        HintHandlingText(handling), "",
+	        base = owner and HintHandlingText(HintHandling(self)),
 	        bar = "Handling", bar_v = handling, bar_ref = owner and HintHandling(self),
 	    } or {
 	        id = "PointBlankRangeAccuracy",

@@ -444,33 +444,38 @@ function Rat_HandlingPoints(weapon)
     return points
 end
 
----- MANEJO -> multiplicador da abertura base. MENOR = melhor.
----- Gun + Hand-Eye only, no stance: the tooltip and the bar scan read this part alone.
-function Rat_HandlingBaseMul(weapon, attacker)
+---- Points after the clamp and Hand-Eye, in hundredths; higher = better. Gun + merc only, no stance.
+function Rat_HandlingEffectivePoints(weapon, attacker)
     local a = P()
     if not IsKindOf(weapon, "FirearmProperties") then
-        return 100
+        return 0
     end
-	local handling = 100 - MulDivRound(Rat_HandlingPoints(weapon), a.HandlingPointPct, 100 * a.HandlingPointsPerAim)
-    ---- the weapon's OWN quality is capped here, same as before this penalty existed. The standing
-    ---- malus applies AFTER, uncapped -- a weapon already sitting at the ceiling (Barrett:
-    ---- 141 pre-clamp) would otherwise absorb the whole penalty into the clamp and show the meta
-    ---- tag with zero actual effect, same as AimStep's hipfire/snapshot excess a few steps down.
-    handling = Clamp(handling, a.HandlingMin or 60, a.HandlingMax or 140)
+    ---- the weapon's OWN quality is capped here; the standing malus applies AFTER, uncapped, so a gun
+    ---- already at the ceiling (Barrett) cannot absorb it into the clamp.
+    local per_mul = 10000 * a.HandlingPointsPerAim
+    local pts = Clamp(Rat_HandlingPoints(weapon) * 100, -MulDivRound(a.HandlingMax - 100, per_mul, a.HandlingPointPct),
+                      MulDivRound(100 - a.HandlingMin, per_mul, a.HandlingPointPct))
 
     local meta
     local impact = a.HandlingAttrImpact or 0
-    if attacker and impact ~= 0 and handling ~= 100 then
+    if attacker and impact ~= 0 and pts ~= 0 then
         local hec = rGetHandEyeCoordination(attacker)
         local loss = MulDivRound(impact, 100 - Clamp(hec, 0, 100), 100)
         ---- below HEC 100 a bonus shrinks and a penalty grows by the same %
-        local dev = handling - 100
-        handling = 100 + MulDivRound(dev, 100 + (dev < 0 and -loss or loss), 100)
+        pts = MulDivRound(pts, 100 + (pts > 0 and -loss or loss), 100)
         if hec < a.HandlingAttrLowAt then
             meta = {a.HandlingAttrLowMeta}
         end
     end
-    return handling, meta
+    return pts, meta
+end
+
+---- MANEJO -> multiplicador da abertura base. MENOR = melhor.
+---- Gun + Hand-Eye only, no stance: the tooltip and the bar scan read this part alone.
+function Rat_HandlingBaseMul(weapon, attacker)
+    local a = P()
+    local pts, meta = Rat_HandlingEffectivePoints(weapon, attacker)
+    return 100 - MulDivRound(pts, a.HandlingPointPct, 10000 * a.HandlingPointsPerAim), meta
 end
 
 ---- Not-prone malus in % for `stance` (same weigth_held_mul ladder as RecoilHeldPivot). Without an
