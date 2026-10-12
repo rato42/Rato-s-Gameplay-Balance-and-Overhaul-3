@@ -94,6 +94,10 @@ local HintChartCurrentName = ratT(file_str, 731590264429, "Current")
 local HintRecoilTitle = ratT(file_str, 731590264437, "Recoil")
 local HintRecoilSubtitle = ratT(file_str, 731590264439, "<mode>: hit chance if the 1st round always hits")
 local HintRecoilRoundLabel = ratT(file_str, 731590264436, "Rd <num>")
+local HintAimedTitle = ratT(file_str, 731590264440, "Aimed burst")
+local HintAimedSubtitle = ratT(file_str, 731590264441, "<mode>, Aim <num>: hit chance of each round")
+local HintAimedLevel = 3
+local HintAimedBuckets = 8
 local HintChartColors = {RGB(214, 82, 62), RGB(232, 156, 60), RGB(226, 210, 90), RGB(130, 200, 110),
                          RGB(90, 190, 200), RGB(150, 140, 230), RGB(220, 220, 220)}
 
@@ -186,7 +190,25 @@ local function HintChartDraw(win)
         return tw
     end
 
-    text(_InternalTranslate(win.rat_title or HintChartTitle), x0, y0, label)
+    if win.rat_tabs then
+        ---- clickable titles: active lit, hovered highlighted; boxes kept for the mouse handlers
+        local x, gap = x0, UIL.MeasureText("    ", font)
+        win.rat_tab_boxes = {}
+        for i, t in ipairs(win.rat_tabs) do
+            local str = _InternalTranslate(t)
+            local tw = UIL.MeasureText(str, font)
+            local b = box(x - 4, y0 - 2, x + tw + 4, y0 + fh)
+            win.rat_tab_boxes[i] = b
+            local active, hover = i == win.rat_tab, i == win.rat_tab_hover
+            if active or hover then
+                UIL.DrawSolidRect(b, RGBA(255, 255, 255, hover and 30 or 14))
+            end
+            text(str, x, y0, active and RGB(220, 220, 220) or hover and RGB(255, 222, 120) or RGB(110, 113, 118))
+            x = x + tw + gap
+        end
+    else
+        text(_InternalTranslate(win.rat_title or HintChartTitle), x0, y0, label)
+    end
     text(_InternalTranslate(win.rat_subtitle or HintChartSubtitle), x0, y0 + fh, label, small)
     if not win.rat_hide_stance then
         local stance = _InternalTranslate(HintChartStanceLabels[curves.stance])
@@ -302,7 +324,8 @@ local function HintRecoilAttack(weapon)
     return action, action and weapon:GetAutofireShots(action)
 end
 
-local function HintRecoilCurves(weapon, owner, stance)
+---- `aimed`: every round's real CTH at Aim 3 (cone included); otherwise rounds 2+ with no cone
+local function HintRecoilCurves(weapon, owner, stance, aimed)
     local action, shots = HintRecoilAttack(weapon)
     if not action or (shots or 0) < 2 then
         return
@@ -328,6 +351,38 @@ local function HintRecoilCurves(weapon, owner, stance)
         end
     end
     local curves = {stance = shooter.stance, action = action, shots = shots}
+    if aimed then
+        local aim = Min(HintAimedLevel, weapon.MaxAimActions or HintAimedLevel)
+        local sigma = Max(1, MulDivRound(Rat_GetAperture(weapon, shooter, action, aim), HintChartBipodMul(shooter, weapon), 100))
+        curves.aim = aim
+        ---- CTH is smooth in the offset: sorted bucket means stand in for the samples at a fraction of the Rice calls
+        local size = HintRecoilSamples / HintAimedBuckets
+        for i = 1, shots do
+            local list, buckets = offs[i], {}
+            table.sort(list)
+            for k = 0, HintAimedBuckets - 1 do
+                local sum = 0
+                for j = 1, size do
+                    sum = sum + list[k * size + j]
+                end
+                buckets[k + 1] = MulDivRound(sum, 1, size)
+            end
+            ---- an unmoved muzzle (round 1) needs one evaluation, not eight
+            offs[i] = buckets[1] == buckets[#buckets] and {buckets[1]} or buckets
+            curves[i] = {}
+        end
+        for d = 0, HintChartTiles do
+            local theta = Rat_ThetaTarget(d * const.SlabSizeX, a.Silhouette.Standing)
+            for i = 1, shots do
+                local sum = 0
+                for _, r in ipairs(offs[i]) do
+                    sum = sum + Rat_RiceCTH(theta, sigma, r)
+                end
+                curves[i][d + 1] = Clamp(MulDivRound(sum, 1, #offs[i]), a.MinCTH, a.MaxCTH)
+            end
+        end
+        return curves
+    end
     for i = 2, shots do
         curves[i - 1] = {}
     end
@@ -345,17 +400,19 @@ local function HintRecoilCurves(weapon, owner, stance)
 end
 
 ---- fills a chart window with the recoil curves; false when the gun has no automatic fire
-local function HintRecoilSetup(win, weapon, owner, stance)
-    local curves = HintChartable(weapon) and HintRecoilCurves(weapon, owner, stance)
+local function HintRecoilSetup(win, weapon, owner, stance, aimed)
+    local curves = HintChartable(weapon) and HintRecoilCurves(weapon, owner, stance, aimed)
     if not curves then
         return false
     end
+    local first = aimed and 1 or 2
     win.rat_curves, win.rat_legend = curves, {}
-    for i = 2, curves.shots do
-        win.rat_legend[i - 1] = T{HintRecoilRoundLabel, num = i}
+    for i = first, curves.shots do
+        win.rat_legend[i - first + 1] = T{HintRecoilRoundLabel, num = i}
     end
-    win.rat_title = HintRecoilTitle
-    win.rat_subtitle = T{HintRecoilSubtitle, mode = curves.action.DisplayName}
+    win.rat_title = aimed and HintAimedTitle or HintRecoilTitle
+    win.rat_subtitle = aimed and T{HintAimedSubtitle, mode = curves.action.DisplayName, num = curves.aim}
+                           or T{HintRecoilSubtitle, mode = curves.action.DisplayName}
     return true
 end
 
@@ -406,6 +463,8 @@ end
 
 ---- modify dialog stance, kept across openings; nil follows the owner
 local HintModChartStance
+---- modify dialog recoil tab, kept across openings: 1 recoil alone, 2 aimed burst
+local HintModRecoilTab = 1
 
 local function HintBoxHas(b, pos)
     return b and pos:x() >= b:minx() and pos:x() <= b:maxx() and pos:y() >= b:miny() and pos:y() <= b:maxy()
@@ -464,9 +523,19 @@ local function HintModifyChart(id, recoil, height)
         PlaceObj("XTemplateFunc", {
             "name", "OnMouseButtonDown(self, pos, button)",
             "func", function(self, pos, button)
-                if button == "L" and self.rat_stance_menu and HintBoxHas(self.rat_stance_box, pos) then
+                if button ~= "L" then
+                    return
+                end
+                if self.rat_stance_menu and HintBoxHas(self.rat_stance_box, pos) then
                     HintStanceMenu(self, self:ResolveId("node"):ResolveId("node"))
                     return "break"
+                end
+                for i, b in ipairs(self.rat_tabs and self.rat_tab_boxes or empty_table) do
+                    if i ~= self.rat_tab and HintBoxHas(b, pos) then
+                        HintModRecoilTab = i
+                        self:UpdateValue()
+                        return "break"
+                    end
                 end
             end,
         }),
@@ -474,8 +543,12 @@ local function HintModifyChart(id, recoil, height)
             "name", "OnMousePos(self, pos)",
             "func", function(self, pos)
                 local hover = self.rat_stance_menu and HintBoxHas(self.rat_stance_box, pos) or false
-                if hover ~= self.rat_stance_hover then
-                    self.rat_stance_hover = hover
+                local tab = false
+                for i, b in ipairs(self.rat_tabs and self.rat_tab_boxes or empty_table) do
+                    tab = tab or i ~= self.rat_tab and HintBoxHas(b, pos) and i
+                end
+                if hover ~= self.rat_stance_hover or tab ~= self.rat_tab_hover then
+                    self.rat_stance_hover, self.rat_tab_hover = hover, tab
                     self:Invalidate()
                 end
             end,
@@ -483,8 +556,8 @@ local function HintModifyChart(id, recoil, height)
         PlaceObj("XTemplateFunc", {
             "name", "OnMouseLeft(self, pos, child)",
             "func", function(self, pos, child)
-                if self.rat_stance_hover then
-                    self.rat_stance_hover = false
+                if self.rat_stance_hover or self.rat_tab_hover then
+                    self.rat_stance_hover, self.rat_tab_hover = false, false
                     self:Invalidate()
                 end
             end,
@@ -511,8 +584,10 @@ local function HintModifyChart(id, recoil, height)
                 local differ = not HintSameComponents(clone, real)
                 local stance = HintModChartStance
                 if recoil then
-                    HintRecoilSetup(self, clone, owner, stance)
-                    self.rat_ref_curves = differ and HintRecoilCurves(real, owner, stance) or nil
+                    local aimed = HintModRecoilTab == 2
+                    self.rat_tabs, self.rat_tab = {HintRecoilTitle, HintAimedTitle}, HintModRecoilTab
+                    HintRecoilSetup(self, clone, owner, stance, aimed)
+                    self.rat_ref_curves = differ and HintRecoilCurves(real, owner, stance, aimed) or nil
                     ---- one stance control for both charts, on the top one
                     self.rat_hide_stance = true
                 else
@@ -902,6 +977,9 @@ end
 
 local WeaponRolloverWidth = 470
 
+---- our ToggleOptions wrapper, so a second patch run does not wrap it again
+local HintToggleOptions
+
 ---- the shop grid's PEN column reads the empty gun too
 local BobbyRayStoreGetStats_Firearm_vanilla = BobbyRayStoreGetStats_Firearm
 function BobbyRayStoreGetStats_Firearm(item)
@@ -1199,6 +1277,22 @@ function Rat_PatchWeaponRollover()
     end
     ---- part popup: stay between the stat bars and the charts; when too wide, cover the bars, never the charts
     local popup = XTemplates.WeaponModChoicePopup and XTemplates.WeaponModChoicePopup[1]
+    ---- long part lists (scopes) wrap into a grid narrow enough to stay off the charts. Tons of Components
+    ---- also wraps them (1100 wide, from its own ToggleOptions); patching here runs after every mod's code
+    if WeaponComponentWindowClass.ToggleOptions ~= HintToggleOptions then
+        local base = WeaponComponentWindowClass.ToggleOptions
+        HintToggleOptions = function(self, ...)
+            base(self, ...)
+            local popup = self:ResolveId("node").idChoicePopup
+            local list = popup and rawget(popup, "idList")
+            if list then
+                list:SetLayoutMethod("HWrap")
+                list:SetLayoutVSpacing(10)
+                list:SetMaxWidth(560)
+            end
+        end
+        WeaponComponentWindowClass.ToggleOptions = HintToggleOptions
+    end
     if popup then
         ---- the popup has no GetSafeAreaBox of its own to replace
         if not table.find(popup, "name", "GetSafeAreaBox(self)") then
