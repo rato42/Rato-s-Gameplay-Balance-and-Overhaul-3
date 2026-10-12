@@ -85,16 +85,23 @@ end
 local HintChartTiles = 30
 local HintChartHipLabel = ratT(file_str, 731590264418, "Hip")
 local HintChartAimLabel = ratT(file_str, 731590264419, "Aim <num>")
-local HintChartTitle = ratT(file_str, 731590264420, "Hit chance vs standing target, by tiles")
+local HintChartTitle = ratT(file_str, 731590264420, "Hit chance, standing target")
 local HintChartRefLabel = ratT(file_str, 731590264422, "Dashed: <name>")
 local HintChartMainLabel = ratT(file_str, 731590264423, "Solid: <name>")
 local HintChartColors = {RGB(214, 82, 62), RGB(232, 156, 60), RGB(226, 210, 90), RGB(130, 200, 110),
                          RGB(90, 190, 200), RGB(150, 140, 230), RGB(220, 220, 220)}
 
----- stand-in shooter: UnitData has no GetActiveWeapons, and a fixed stance keeps guns comparable
+local HintChartStanceLabels = {
+    Standing = ratT(file_str, 731590264424, "Shooting standing"),
+    Crouch = ratT(file_str, 731590264425, "Shooting crouched"),
+    Prone = ratT(file_str, 731590264426, "Shooting prone"),
+}
+
+---- stand-in shooter: UnitData has no GetActiveWeapons (nor a stance), so it and no owner chart standing
 local function HintChartShooter(weapon, owner)
     local src = owner or HintFullStats
-    local s = {placeholder = false, stance = "Standing"}
+    local stance = owner and HintChartStanceLabels[owner.stance] and owner.stance or "Standing"
+    local s = {placeholder = false, stance = stance}
     for _, k in ipairs{"Marksmanship", "Dexterity", "Agility", "Strength", "Wisdom", "Explosives"} do
         s[k] = src[k] or 100
     end
@@ -109,9 +116,12 @@ end
 local function HintChartCurves(weapon, owner)
     local a = const.Combat.Aperture
     local shooter = HintChartShooter(weapon, owner)
-    local curves = {}
+    ---- the bipod is a residual on the cone in CalcChanceToHit, not part of the aperture
+    local _, bipod = Presets.ChanceToHitModifier.Default.Bipod:CalcValue(shooter, nil, nil, nil, weapon)
+    local bipod_mul = Rat_ConeMulForPoints(bipod or 0)
+    local curves = {stance = shooter.stance}
     for aim = 0, weapon.MaxAimActions or 3 do
-        local sigma = Rat_GetAperture(weapon, shooter, nil, aim)
+        local sigma = MulDivRound(Rat_GetAperture(weapon, shooter, nil, aim), bipod_mul, 100)
         local pts = {}
         for d = 0, HintChartTiles do
             local theta = Rat_ThetaTarget(d * const.SlabSizeX, a.Silhouette.Standing)
@@ -161,6 +171,8 @@ local function HintChartDraw(win)
     end
 
     text(_InternalTranslate(HintChartTitle), x0, y0, label)
+    local stance = _InternalTranslate(HintChartStanceLabels[curves.stance])
+    text(stance, x0 + cw - UIL.MeasureText(stance, font), y0, RGB(220, 220, 220))
     for pct = 0, 100, 25 do
         local y = bottom - MulDivRound(h, pct, 100)
         UIL.DrawLine(point(left, y), point(right, y), grid)
