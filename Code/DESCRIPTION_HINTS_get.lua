@@ -267,7 +267,7 @@ local function HintCompareChart(dlg)
         BackgroundRectGlowSize = 2,
         BackgroundRectGlowColor = RGBA(32, 35, 47, 255),
     }, list)
-    local chart = XWindow:new({MinHeight = 190, MaxHeight = 190}, panel)
+    local chart = XWindow:new({MinHeight = 290, MaxHeight = 290}, panel)
     chart.DrawContent = HintChartDraw
     local unit = GetInventoryUnit()
     chart.rat_curves, chart.rat_ref_curves = HintChartCurves(item, unit), HintChartCurves(ref, unit)
@@ -846,7 +846,7 @@ function Rat_PatchWeaponRollover()
         if old then
             table.remove(path[2], old)
         end
-        table.insert(path[2], HintChartWindow("idRatAccChart", 170, box(0, 8, 0, 0), function(self)
+        table.insert(path[2], HintChartWindow("idRatAccChart", 260, box(0, 8, 0, 0), function(self)
             local weapon = ResolvePropObj(self.context)
             if not HintChartable(weapon) then
                 return false
