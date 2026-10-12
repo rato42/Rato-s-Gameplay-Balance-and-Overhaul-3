@@ -104,9 +104,9 @@ local HintChartStanceLabels = {
 }
 
 ---- stand-in shooter: UnitData has no GetActiveWeapons (nor a stance), so it and no owner chart standing
-local function HintChartShooter(weapon, owner)
+local function HintChartShooter(weapon, owner, stance)
     local src = owner or HintFullStats
-    local stance = owner and HintChartStanceLabels[owner.stance] and owner.stance or "Standing"
+    stance = stance or owner and HintChartStanceLabels[owner.stance] and owner.stance or "Standing"
     local s = {placeholder = false, stance = stance}
     for _, k in ipairs{"Marksmanship", "Dexterity", "Agility", "Strength", "Wisdom", "Explosives"} do
         s[k] = src[k] or 100
@@ -128,9 +128,9 @@ local function HintChartBipodMul(shooter, weapon)
     return Rat_ConeMulForPoints(bipod or 0)
 end
 
-local function HintChartCurves(weapon, owner)
+local function HintChartCurves(weapon, owner, stance)
     local a = const.Combat.Aperture
-    local shooter = HintChartShooter(weapon, owner)
+    local shooter = HintChartShooter(weapon, owner, stance)
     local bipod_mul = HintChartBipodMul(shooter, weapon)
     local curves = {stance = shooter.stance}
     for aim = 0, weapon.MaxAimActions or 3 do
@@ -186,25 +186,26 @@ local function HintChartDraw(win)
         return tw
     end
 
-    if win.rat_tabs then
-        ---- clickable titles; boxes kept for OnMouseButtonDown
-        local x, gap = x0, UIL.MeasureText("  |  ", font)
-        win.rat_tab_boxes = {}
-        for i, t in ipairs(win.rat_tabs) do
-            local str = _InternalTranslate(t)
-            local tw = text(str, x, y0, i == win.rat_tab and RGB(220, 220, 220) or RGB(105, 108, 112))
-            win.rat_tab_boxes[i] = box(x, y0, x + tw, y0 + fh)
-            if i < #win.rat_tabs then
-                text("|", x + tw + gap / 2 - UIL.MeasureText("|", font) / 2, y0, grid)
-            end
-            x = x + tw + gap
-        end
-    else
-        text(_InternalTranslate(win.rat_title or HintChartTitle), x0, y0, label)
-    end
+    text(_InternalTranslate(win.rat_title or HintChartTitle), x0, y0, label)
     text(_InternalTranslate(win.rat_subtitle or HintChartSubtitle), x0, y0 + fh, label, small)
-    local stance = _InternalTranslate(HintChartStanceLabels[curves.stance])
-    text(stance, x0 + cw - UIL.MeasureText(stance, font), y0, RGB(220, 220, 220))
+    if not win.rat_hide_stance then
+        local stance = _InternalTranslate(HintChartStanceLabels[curves.stance])
+        local sw = UIL.MeasureText(stance, font)
+        if win.rat_stance_menu then
+            ---- dropdown: chevron, and a highlight on hover so it reads as clickable
+            local s = fh / 4
+            local sx = x0 + cw - sw - 3 * s
+            win.rat_stance_box = box(sx - 4, y0 - 2, x0 + cw + 2, y0 + fh + 2)
+            local color = win.rat_stance_hover and RGB(255, 222, 120) or RGB(220, 220, 220)
+            UIL.DrawSolidRect(win.rat_stance_box, win.rat_stance_hover and RGBA(255, 255, 255, 30) or RGBA(255, 255, 255, 10))
+            text(stance, sx, y0, color)
+            local cx, cy = x0 + cw - s, y0 + fh / 2
+            UIL.DrawLineAntialised(px, point(cx - s, cy - s / 2), point(cx, cy + s / 2), color)
+            UIL.DrawLineAntialised(px, point(cx, cy + s / 2), point(cx + s, cy - s / 2), color)
+        else
+            text(stance, x0 + cw - sw, y0, RGB(220, 220, 220))
+        end
+    end
     for pct = 0, 100, 25 do
         local y = bottom - MulDivRound(h, pct, 100)
         UIL.DrawLine(point(left, y), point(right, y), grid)
@@ -301,13 +302,13 @@ local function HintRecoilAttack(weapon)
     return action, action and weapon:GetAutofireShots(action)
 end
 
-local function HintRecoilCurves(weapon, owner)
+local function HintRecoilCurves(weapon, owner, stance)
     local action, shots = HintRecoilAttack(weapon)
     if not action or (shots or 0) < 2 then
         return
     end
     local a = const.Combat.Aperture
-    local shooter = HintChartShooter(weapon, owner)
+    local shooter = HintChartShooter(weapon, owner, stance)
     local prof = Rat_RecoilProfile(shooter, action, weapon, shots)
     if not prof then
         return
@@ -344,8 +345,8 @@ local function HintRecoilCurves(weapon, owner)
 end
 
 ---- fills a chart window with the recoil curves; false when the gun has no automatic fire
-local function HintRecoilSetup(win, weapon, owner)
-    local curves = HintChartable(weapon) and HintRecoilCurves(weapon, owner)
+local function HintRecoilSetup(win, weapon, owner, stance)
+    local curves = HintChartable(weapon) and HintRecoilCurves(weapon, owner, stance)
     if not curves then
         return false
     end
@@ -403,35 +404,59 @@ local function HintCompareChart(dlg)
     panel:Open()
 end
 
----- modify dialog tab, kept across openings: 1 hit chance, 2 recoil
-local HintModChartTab = 1
+---- modify dialog stance, kept across openings; nil follows the owner
+local HintModChartStance
 
----- fills the modify chart for the active tab; recoil only exists on guns with automatic fire
-local function HintModChartFill(win, clone, real, owner)
-    local differ = not HintSameComponents(clone, real)
-    win.rat_tabs = HintRecoilAttack(clone) and {HintChartTitle, HintRecoilTitle} or nil
-    win.rat_tab = win.rat_tabs and HintModChartTab or 1
-    win.rat_title, win.rat_subtitle, win.rat_legend = nil, nil, nil
-    if win.rat_tab == 2 then
-        HintRecoilSetup(win, clone, owner)
-        win.rat_ref_curves = differ and HintRecoilCurves(real, owner) or nil
-    else
-        win.rat_curves = HintChartCurves(clone, owner)
-        win.rat_ref_curves = differ and HintChartCurves(real, owner) or nil
-    end
+local function HintBoxHas(b, pos)
+    return b and pos:x() >= b:minx() and pos:x() <= b:maxx() and pos:y() >= b:miny() and pos:y() <= b:maxy()
 end
 
----- modify dialog: the clone (hovered/placed parts) solid, the real gun dashed once they differ
-local function HintModifyChart()
+local function HintStanceMenu(win, dlg)
+    local popup = XPopup:new({
+        AnchorType = "drop-right",
+        Background = RGBA(32, 35, 47, 245),
+        ---- a focused XControl draws these instead, and their defaults are light
+        FocusedBackground = RGBA(32, 35, 47, 245),
+        BorderWidth = 1,
+        BorderColor = RGB(90, 94, 100),
+        FocusedBorderColor = RGB(90, 94, 100),
+        Padding = box(2, 2, 2, 2),
+        LayoutMethod = "VList",
+    }, dlg)
+    popup:SetZOrder(1000)
+    popup:SetAnchor(win.rat_stance_box)
+    for _, stance in ipairs{"Standing", "Crouch", "Prone"} do
+        XTextButton:new({
+            Text = HintChartStanceLabels[stance],
+            Translate = true,
+            TextStyle = "PDABrowserTitleSmall",
+            Padding = box(10, 4, 10, 4),
+            Background = RGBA(0, 0, 0, 0),
+            FocusedBackground = RGBA(0, 0, 0, 0),
+            RolloverBackground = RGBA(255, 255, 255, 35),
+            PressedBackground = RGBA(255, 255, 255, 60),
+            OnPress = function()
+                HintModChartStance = stance
+                popup:Close()
+                dlg:UpdateWeaponProps()
+            end,
+        }, popup)
+    end
+    popup:Open()
+    popup:SetFocus()
+end
+
+---- modify dialog charts: the clone (hovered/placed parts) solid, the real gun dashed once they differ
+local function HintModifyChart(id, recoil, height)
     return PlaceObj("XTemplateWindow", {
-        "Id", "idRatModChart",
-        "Margins", box(0, 10, 0, 0),
+        "Id", id,
+        "Margins", box(0, 8, 0, 0),
         "Padding", box(8, 6, 8, 6),
         "HAlign", "right",
         "MinWidth", 480,
         "MaxWidth", 480,
-        "MinHeight", 330,
-        "MaxHeight", 330,
+        "MinHeight", height,
+        "MaxHeight", height,
         "FoldWhenHidden", true,
         "HandleMouse", true,
         "Background", RGBA(32, 35, 47, 215),
@@ -439,13 +464,28 @@ local function HintModifyChart()
         PlaceObj("XTemplateFunc", {
             "name", "OnMouseButtonDown(self, pos, button)",
             "func", function(self, pos, button)
-                for i, b in ipairs(button == "L" and self.rat_tab_boxes or empty_table) do
-                    if i ~= self.rat_tab and pos:x() >= b:minx() and pos:x() <= b:maxx() and
-                        pos:y() >= b:miny() and pos:y() <= b:maxy() then
-                        HintModChartTab = i
-                        self:UpdateValue()
-                        return "break"
-                    end
+                if button == "L" and self.rat_stance_menu and HintBoxHas(self.rat_stance_box, pos) then
+                    HintStanceMenu(self, self:ResolveId("node"):ResolveId("node"))
+                    return "break"
+                end
+            end,
+        }),
+        PlaceObj("XTemplateFunc", {
+            "name", "OnMousePos(self, pos)",
+            "func", function(self, pos)
+                local hover = self.rat_stance_menu and HintBoxHas(self.rat_stance_box, pos) or false
+                if hover ~= self.rat_stance_hover then
+                    self.rat_stance_hover = hover
+                    self:Invalidate()
+                end
+            end,
+        }),
+        PlaceObj("XTemplateFunc", {
+            "name", "OnMouseLeft(self, pos, child)",
+            "func", function(self, pos, child)
+                if self.rat_stance_hover then
+                    self.rat_stance_hover = false
+                    self:Invalidate()
                 end
             end,
         }),
@@ -462,13 +502,24 @@ local function HintModifyChart()
             "func", function(self, anyModified)
                 local dlg = self:ResolveId("node"):ResolveId("node")
                 local clone, real = dlg and dlg.weaponClone, dlg and dlg.context and dlg.context.weapon
-                if not IsACHTActive() or not HintChartable(clone) or not real then
+                if not IsACHTActive() or not HintChartable(clone) or not real or recoil and not HintRecoilAttack(clone) then
                     self:SetVisible(false)
                     return
                 end
                 local id = dlg.context.owner
                 local owner = id and (g_Units[id] or gv_UnitData[id])
-                HintModChartFill(self, clone, real, owner)
+                local differ = not HintSameComponents(clone, real)
+                local stance = HintModChartStance
+                if recoil then
+                    HintRecoilSetup(self, clone, owner, stance)
+                    self.rat_ref_curves = differ and HintRecoilCurves(real, owner, stance) or nil
+                    ---- one stance control for both charts, on the top one
+                    self.rat_hide_stance = true
+                else
+                    self.rat_curves = HintChartCurves(clone, owner, stance)
+                    self.rat_ref_curves = differ and HintChartCurves(real, owner, stance) or nil
+                    self.rat_stance_menu = true
+                end
                 ---- the Solid/Dashed row keeps its space so hovering a part never resizes the plot
                 self.rat_reserve_ref = true
                 self.rat_name, self.rat_ref_name = HintChartModdedName, HintChartCurrentName
@@ -1126,18 +1177,49 @@ function Rat_PatchWeaponRollover()
             self:SetText(GetArmorClassUIText(Rat_DisplayPenetrationClass(self.context)))
         end)
     end
-    ---- accuracy chart above the component effects, which shrink to make room
+    ---- both charts replace the combined component effects text (the part popup still describes each part)
     path = FindXtByProp(XTemplates.ModifyWeaponDlg, "comment", "extra stat stuff")
     if path then
         local list = path[2]
-        local old = table.find(list, "Id", "idRatModChart")
-        if old then
-            table.remove(list, old)
+        for _, id in ipairs{"idRatModChart", "idRatModRecoil"} do
+            local old = table.find(list, "Id", id)
+            if old then
+                table.remove(list, old)
+            end
         end
-        table.insert(list, table.find(list, path[1]), HintModifyChart())
-        path[1].ScaleModifier = point(680, 680)
-        path[1].Margins = box(0, 8, 0, 0)
-        path[1].MinWidth, path[1].MaxWidth = 700, 700
+        local at = table.find(list, path[1])
+        table.insert(list, at, HintModifyChart("idRatModRecoil", true, 245))
+        table.insert(list, at, HintModifyChart("idRatModChart", false, 245))
+        path[1].__condition = function() return false end
+    end
+    ---- the left column's stat bars bound the part popup (see GetSafeAreaBox below)
+    path = FindXtByProp(XTemplates.ModifyWeaponDlg, "MaxWidth", 500)
+    if path then
+        path[2].Id = "idRatLeftInfo"
+    end
+    ---- part popup: stay between the stat bars and the charts; when too wide, cover the bars, never the charts
+    local popup = XTemplates.WeaponModChoicePopup and XTemplates.WeaponModChoicePopup[1]
+    if popup then
+        ---- the popup has no GetSafeAreaBox of its own to replace
+        if not table.find(popup, "name", "GetSafeAreaBox(self)") then
+            table.insert(popup, PlaceObj("XTemplateFunc", {"name", "GetSafeAreaBox(self)"}))
+        end
+        SetTemplateFunc(popup, "GetSafeAreaBox(self)", function(self)
+            local x1, y1, x2, y2 = GetSafeAreaBox()
+            local cab = GetDialog("ModifyWeaponDlg")
+            local dlg = cab and rawget(cab, "idModifyDialog")
+            local props = dlg and rawget(dlg, "idWeaponProps")
+            local chart = props and rawget(props, "idRatModChart")
+            local info = dlg and rawget(dlg, "idRatLeftInfo")
+            local gap = MulDivRound(20, self.scale:x(), 1000)
+            if chart and chart:GetVisible() then
+                x2 = Min(x2, chart.box:minx() - gap)
+            end
+            if info then
+                x1 = Max(x1, info.box:maxx() + gap)
+            end
+            return x1, y1, x2, y2
+        end)
     end
 end
 
