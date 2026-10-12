@@ -89,8 +89,6 @@ local HintChartTitle = ratT(file_str, 731590264420, "Hit chance")
 local HintChartSubtitle = ratT(file_str, 731590264427, "standing target")
 local HintChartRefLabel = ratT(file_str, 731590264422, "Dashed: <name>")
 local HintChartMainLabel = ratT(file_str, 731590264423, "Solid: <name>")
----- compare shading: who leads at full aim, hovered gun vs equipped gun
-local HintChartLeadMain, HintChartLeadRef = RGBA(90, 140, 255, 90), RGBA(235, 100, 190, 90)
 local HintChartColors = {RGB(214, 82, 62), RGB(232, 156, 60), RGB(226, 210, 90), RGB(130, 200, 110),
                          RGB(90, 190, 200), RGB(150, 140, 230), RGB(220, 220, 220)}
 
@@ -153,23 +151,6 @@ local function HintChartLines(curves, left, bottom, w, h, px, dim)
     end
 end
 
----- fills the gap between two curves column by column, in the colour of the higher one
-local function HintChartShade(main, ref, left, bottom, w, h)
-    local function y_at(pts, x)
-        local pos = MulDivRound(x - left, HintChartTiles * 1000, w)
-        local i = Min(pos / 1000, HintChartTiles - 1)
-        local y1 = bottom - MulDivRound(h, pts[i + 1], 100)
-        local y2 = bottom - MulDivRound(h, pts[i + 2], 100)
-        return y1 + MulDivRound(y2 - y1, pos - i * 1000, 1000)
-    end
-    for x = left, left + w - 1 do
-        local ym, yr = y_at(main, x), y_at(ref, x)
-        if ym ~= yr then
-            UIL.DrawSolidRect(box(x, Min(ym, yr), x + 1, Max(ym, yr)), ym < yr and HintChartLeadMain or HintChartLeadRef)
-        end
-    end
-end
-
 local function HintChartDraw(win)
     local curves, ref = win.rat_curves, win.rat_ref_curves
     if not curves then
@@ -213,7 +194,6 @@ local function HintChartDraw(win)
     end
 
     if ref then
-        HintChartShade(curves[#curves], ref[#ref], left, bottom, w, h)
         HintChartLines(ref, left, bottom, w, h, px, true)
     end
     HintChartLines(curves, left, bottom, w, h, px)
@@ -225,9 +205,8 @@ local function HintChartDraw(win)
     end
     if ref then
         local y = bottom + 2 * fh + 6
-        ---- names take the shading colours, so the fill reads as "this gun leads here"
-        x = left + text(_InternalTranslate(T{HintChartMainLabel, name = win.rat_name}), left, y, RGB(120, 165, 255)) + 14
-        text(_InternalTranslate(T{HintChartRefLabel, name = win.rat_ref_name}), x, y, RGB(240, 130, 205))
+        x = left + text(_InternalTranslate(T{HintChartMainLabel, name = win.rat_name}), left, y, label) + 14
+        text(_InternalTranslate(T{HintChartRefLabel, name = win.rat_ref_name}), x, y, label)
     end
 end
 
