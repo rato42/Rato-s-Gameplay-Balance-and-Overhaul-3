@@ -444,7 +444,7 @@ function Rat_HandlingPoints(weapon)
     return points
 end
 
----- Points after the clamp and Hand-Eye, in hundredths; higher = better. Gun + merc only, no stance.
+---- Whole points after the clamp and Hand-Eye; higher = better. Gun + merc only, no stance.
 function Rat_HandlingEffectivePoints(weapon, attacker)
     local a = P()
     if not IsKindOf(weapon, "FirearmProperties") then
@@ -452,8 +452,8 @@ function Rat_HandlingEffectivePoints(weapon, attacker)
     end
     ---- the weapon's OWN quality is capped here; the standing malus applies AFTER, uncapped, so a gun
     ---- already at the ceiling (Barrett) cannot absorb it into the clamp.
-    local per_mul = 10000 * a.HandlingPointsPerAim
-    local pts = Clamp(Rat_HandlingPoints(weapon) * 100, -MulDivRound(a.HandlingMax - 100, per_mul, a.HandlingPointPct),
+    local per_mul = 100 * a.HandlingPointsPerAim
+    local pts = Clamp(Rat_HandlingPoints(weapon), -MulDivRound(a.HandlingMax - 100, per_mul, a.HandlingPointPct),
                       MulDivRound(100 - a.HandlingMin, per_mul, a.HandlingPointPct))
 
     local meta
@@ -470,12 +470,12 @@ function Rat_HandlingEffectivePoints(weapon, attacker)
     return pts, meta
 end
 
----- MANEJO -> multiplicador da abertura base. MENOR = melhor.
----- Gun + Hand-Eye only, no stance: the tooltip and the bar scan read this part alone.
+---- MANEJO -> multiplicador da abertura base, em CENTESIMOS de % (10000 = x1). MENOR = melhor.
+---- Basis points so the whole points shown are exactly the ones applied (1 point = 0.67%).
 function Rat_HandlingBaseMul(weapon, attacker)
     local a = P()
     local pts, meta = Rat_HandlingEffectivePoints(weapon, attacker)
-    return 100 - MulDivRound(pts, a.HandlingPointPct, 10000 * a.HandlingPointsPerAim), meta
+    return 10000 - MulDivRound(pts, a.HandlingPointPct, a.HandlingPointsPerAim), meta
 end
 
 ---- Not-prone malus in % for `stance` (same weigth_held_mul ladder as RecoilHeldPivot). Without an
@@ -589,8 +589,8 @@ function Rat_GetAperture(weapon, attacker, action, aim, opportunity_attack)
     --- 1. manejo da arma (o antigo Point Blank Accuracy). Multiplica sigma_0, entao o efeito
     ---    decai a cada nivel de mira em vez de ser um desconto fixo no cone final.
     local base_mul, handling_meta = Rat_ApertureHandlingMul(weapon, attacker, action)
-    if base_mul ~= 100 then
-        s = MulDivRound(s, base_mul, 100)
+    if base_mul ~= 10000 then
+        s = MulDivRound(s, base_mul, 10000)
     end
     for _, v in ipairs(handling_meta or empty_table) do
         meta[#meta + 1] = v
@@ -725,7 +725,7 @@ function Rat_GetAperture(weapon, attacker, action, aim, opportunity_attack)
 
     return Max(1, s), meta, {
         base = a.Base,
-        base_mul = base_mul,
+        base_mul = MulDivRound(base_mul, 1, 100),
         ---- Rat_ConeFactors reads this to explain the Handling row (sub); Rat_ConeMetaText never
         ---- reaches parts at all for its OWN flat list, so this is ALSO kept in top-level `meta`
         ---- above for that path -- same dual representation Hipfire/Snapshot already use.

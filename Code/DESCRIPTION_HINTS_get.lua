@@ -44,22 +44,14 @@ local function HintPB(weapon, unit)
     return MulDivRound(pb, scale, 100)
 end
 
----- handling multiplier back to points, in hundredths like HintAim
+---- handling multiplier (basis points) back to whole points
 local function HintHandlingFromMul(mul)
     local a = const.Combat.Aperture
-    return MulDivRound(100 - mul, 10000 * a.HandlingPointsPerAim, a.HandlingPointPct)
+    return MulDivRound(10000 - mul, a.HandlingPointsPerAim, a.HandlingPointPct)
 end
 
 local function HintHandling(weapon, unit)
     return (Rat_HandlingEffectivePoints(weapon, unit))
-end
-
----- one decimal, so the compressed Hand-Eye scaling stays visible
-local function HintHandlingText(v)
-    v = MulDivRound(v, 1, 10)
-    local sign = v < 0 and "-" or ""
-    v = abs(v)
-    return v % 10 == 0 and string.format("%s%d", sign, v / 10) or string.format("%s%d.%d", sign, v / 10, v % 10)
 end
 
 ---- per-aim-level bonus in hundredths. Classic mirrors CTH_aim.lua; aCTH mirrors Rat_ApertureAimDecay,
@@ -629,9 +621,9 @@ function Rat_PatchWeaponRollover()
                             local base = Rat_HandlingBaseMul(weapon, owner)
                             local function pts(p) return HintHandlingFromMul(MulDivRound(base, 100 + p, 100)) end
                             local loss, relief = HintHandlingFromMul(base) - pts(raw), pts(pen) - pts(raw)
-                            local extra = relief == 0 and string.format(" (-%d)", MulDivRound(loss, 1, 100)) or
-                                              string.format(" (-%d +%d STR)", MulDivRound(loss, 1, 100), MulDivRound(relief, 1, 100))
-                            return HintHandlingText(pts(pen)) .. extra
+                            local extra = relief == 0 and string.format(" (-%d)", loss) or
+                                              string.format(" (-%d +%d STR)", loss, relief)
+                            return pts(pen) .. extra
                         end}
                     end
                     for _, r in ipairs{
@@ -729,8 +721,8 @@ function GBO_GetDescriptionHints(self)
 	    angularCTHActive and {
 	        id = "PointBlankRangeAccuracy",
 	        TranslationTable[547203918664] or "Handling: ",
-	        HintHandlingText(handling), "",
-	        base = owner and HintHandlingText(HintHandling(self)),
+	        handling, "",
+	        base = owner and HintHandling(self),
 	        bar = "Handling", bar_v = handling, bar_ref = owner and HintHandling(self),
 	    } or {
 	        id = "PointBlankRangeAccuracy",
