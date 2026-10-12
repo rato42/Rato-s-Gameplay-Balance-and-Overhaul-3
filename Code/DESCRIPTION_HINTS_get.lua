@@ -85,7 +85,8 @@ end
 local HintChartTiles = 30
 local HintChartHipLabel = ratT(file_str, 731590264418, "Hip")
 local HintChartAimLabel = ratT(file_str, 731590264419, "Aim <num>")
-local HintChartTitle = ratT(file_str, 731590264420, "Hit chance, standing target")
+local HintChartTitle = ratT(file_str, 731590264420, "Hit chance")
+local HintChartSubtitle = ratT(file_str, 731590264427, "standing target")
 local HintChartRefLabel = ratT(file_str, 731590264422, "Dashed: <name>")
 local HintChartMainLabel = ratT(file_str, 731590264423, "Solid: <name>")
 local HintChartColors = {RGB(214, 82, 62), RGB(232, 156, 60), RGB(226, 210, 90), RGB(130, 200, 110),
@@ -156,21 +157,25 @@ local function HintChartDraw(win)
         return
     end
     local font = TextStyles.PDABrowserTitleSmall:GetFontIdHeightBaseline(win.scale:y())
+    local small = TextStyles.InventoryRolloverPropSmall:GetFontIdHeightBaseline(win.scale:y())
+    local _, sh = UIL.MeasureText("Ag", small)
     local grid, label = RGB(62, 66, 62), RGB(150, 150, 150)
     local x0, y0 = win.content_box:minxyz()
     local cw, ch = win.content_box:sizexyz()
     local lw, fh = UIL.MeasureText("100%", font)
     local left, right = x0 + lw + 6, x0 + cw - 6
-    local top, bottom = y0 + fh + 6, y0 + ch - (ref and 3 or 2) * fh - 8
+    local top, bottom = y0 + fh + sh + 6, y0 + ch - (ref and 3 or 2) * fh - 8
     local w, h = right - left, bottom - top
     local px = Max(2, MulDivRound(win.scale:x(), 3, 1000))
-    local function text(str, x, y, color)
-        local tw, th = UIL.MeasureText(str, font)
-        UIL.StretchText(str, box(x, y, x + tw, y + th), font, color)
+    local function text(str, x, y, color, f)
+        f = f or font
+        local tw, th = UIL.MeasureText(str, f)
+        UIL.StretchText(str, box(x, y, x + tw, y + th), f, color)
         return tw
     end
 
     text(_InternalTranslate(HintChartTitle), x0, y0, label)
+    text(_InternalTranslate(HintChartSubtitle), x0, y0 + fh, label, small)
     local stance = _InternalTranslate(HintChartStanceLabels[curves.stance])
     text(stance, x0 + cw - UIL.MeasureText(stance, font), y0, RGB(220, 220, 220))
     for pct = 0, 100, 25 do
