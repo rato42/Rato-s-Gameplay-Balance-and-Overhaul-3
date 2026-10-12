@@ -417,20 +417,38 @@ function Rat_ApertureAimDecay(weapon, attacker, level, optics)
     return final_decay, meta
 end
 
----- MANEJO -> multiplicador da abertura base. GetPBbonus ja soma classe + arma + componentes
----- (cano, bullpup, grips, handguard), entao todo componente que dava Point Blank Accuracy passa
----- a dar manejo sem nenhum trabalho por componente. MENOR = melhor.
+---- Handling points of the gun plus its components; higher = better.
+function Rat_HandlingPoints(weapon)
+    local a = P()
+    local points = weapon.Handling or 0
+    if not IsKindOf(weapon, "Firearm") then
+        return points
+    end
+    if not weapon.default_long_barrel then
+        for _, row in ipairs(a.HandlingBarrelPoints) do
+            if not row.class or IsKindOf(weapon, row.class) then
+                points = points + (weapon:HasComponent("shortbarrel") and row.shortbarrel or
+                                      weapon:HasComponent("longbarrel") and row.longbarrel or 0)
+                break
+            end
+        end
+    end
+    for id, p in pairs(a.HandlingComponentPoints) do
+        if weapon:HasComponent(id) then
+            points = points + p
+        end
+    end
+    return points
+end
+
+---- MANEJO -> multiplicador da abertura base. MENOR = melhor.
 ---- Gun + Hand-Eye only, no stance: the tooltip and the bar scan read this part alone.
 function Rat_HandlingBaseMul(weapon, attacker)
     local a = P()
-    if not IsKindOf(weapon, "FirearmProperties") or not GetPBbonus then
+    if not IsKindOf(weapon, "FirearmProperties") then
         return 100
     end
-    local pb = GetPBbonus(weapon) or 0
-
-	local handling = a.HandlingUseBaseMul and weapon.HandlingBaseMul or 100
-	local pb_handling = pb == 0 and 100 or 100 - MulDivRound(a.PBHandlingScale or 100, pb, 100)
-	handling = MulDivRound(handling, pb_handling, 100)
+	local handling = 100 - MulDivRound(Rat_HandlingPoints(weapon), a.HandlingPointPct, 100)
     ---- the weapon's OWN quality is capped here, same as before this penalty existed. The standing
     ---- malus applies AFTER, uncapped -- a weapon already sitting at the ceiling (Barrett:
     ---- 141 pre-clamp) would otherwise absorb the whole penalty into the clamp and show the meta

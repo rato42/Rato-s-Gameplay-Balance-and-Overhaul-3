@@ -44,6 +44,15 @@ local function HintPB(weapon, unit)
     return MulDivRound(pb, scale, 100)
 end
 
+---- handling multiplier back to points, in hundredths like HintAim
+local function HintHandlingFromMul(mul)
+    return MulDivRound(100 - mul, 10000, const.Combat.Aperture.HandlingPointPct)
+end
+
+local function HintHandling(weapon, unit)
+    return HintHandlingFromMul(Rat_HandlingBaseMul(weapon, unit))
+end
+
 ---- per-aim-level bonus in hundredths. Classic mirrors CTH_aim.lua; aCTH mirrors Rat_ApertureAimDecay,
 ---- whose closing is proportional to AimAccuracy x Hand-Eye while A.DecayBase is 0
 local function HintAim(weapon, unit, acth)
@@ -119,8 +128,8 @@ local HintAutoCritLabel = ratT(file_str, 318826540121, "Autofire Critical Chance
 local HintBurstRecoilLabel = ratT(file_str, 318826540123, "Selective Burst Recoil Penalty")
 local HintAutoRecoilLabel = ratT(file_str, 318826540122, "Autofire Recoil Penalty")
 local HintLongRecoilLabel = ratT(file_str, 318826540124, "Long Burst Recoil Penalty")
-local HintHandlingStandLabel = ratT(file_str, 318826540125, "Handling Penalty, Standing")
-local HintHandlingCrouchLabel = ratT(file_str, 318826540126, "Handling Penalty, Crouched")
+local HintHandlingStandLabel = ratT(file_str, 318826540125, "Handling, Standing")
+local HintHandlingCrouchLabel = ratT(file_str, 318826540126, "Handling, Crouched")
 ---- keyed without underscores: recoil_mechanism spells "Bolt_Action", Rat_cycling "BoltAction"
 local HintMechanismNames = {
     GasOperated = ratT(file_str, 541468575245, "Gas Operated"),
@@ -227,7 +236,7 @@ local HintBarRows = {
     CritDamage = {ammo = function(w, ammo) return HintAmmoProp(w.CritDamage, ammo, "CritDamage") end},
     AimAccuracy = {value = function(w, unit) return HintAim(w, unit, IsACHTActive()) end},
     PB = {value = HintPB},
-    Handling = {lower = true, value = Rat_HandlingBaseMul},
+    Handling = {value = HintHandling},
     Hipfire = {lower = true, value = function(w, unit) return HintHipSnap(w, 0, unit, IsACHTActive()) end},
     Snapshot = {lower = true, value = function(w, unit) return HintHipSnap(w, 1, unit, IsACHTActive()) end},
     Recoil = {lower = true, value = HintRecoil},
@@ -608,9 +617,12 @@ function Rat_PatchWeaponRollover()
                         return {win, label, IsACHTActive() and Rat_HandlingNotPronePen(weapon, nil, stance) > 0, function()
                             local raw = Rat_HandlingNotPronePen(weapon, nil, stance)
                             local pen = owner and Rat_HandlingNotPronePen(weapon, owner, stance) or raw
-                            local extra = pen == raw and string.format(" (+%d%%)", raw) or
-                                              string.format(" (+%d%% -%d%% STR)", raw, raw - pen)
-                            return HintMulText(MulDivRound(Rat_HandlingBaseMul(weapon, owner), 100 + pen, 100), extra)
+                            local base = Rat_HandlingBaseMul(weapon, owner)
+                            local function pts(p) return HintHandlingFromMul(MulDivRound(base, 100 + p, 100)) end
+                            local loss, relief = HintHandlingFromMul(base) - pts(raw), pts(pen) - pts(raw)
+                            local extra = relief == 0 and string.format(" (-%d)", MulDivRound(loss, 1, 100)) or
+                                              string.format(" (-%d +%d STR)", MulDivRound(loss, 1, 100), MulDivRound(relief, 1, 100))
+                            return HintAimText(pts(pen), true) .. extra
                         end}
                     end
                     for _, r in ipairs{
@@ -655,7 +667,7 @@ function GBO_GetDescriptionHints(self)
     local stance_ap, crit_per_aim, recoil = HintStanceAP(self, owner), HintCritPerAim(self, owner), HintRecoil(self, owner)
     local hip, snap = HintHipSnap(self, 0, owner, angularCTHActive), HintHipSnap(self, 1, owner, angularCTHActive)
     local pb = HintPB(self, classic_owner)
-    local handling = Rat_HandlingBaseMul(self, owner)
+    local handling = HintHandling(self, owner)
     local aim = HintAim(self, owner, angularCTHActive)
     local aim_ref = owner and HintAim(self, nil, angularCTHActive)
 
@@ -707,11 +719,10 @@ function GBO_GetDescriptionHints(self)
 		},
 	    angularCTHActive and {
 	        id = "PointBlankRangeAccuracy",
-	        TranslationTable[184329577856] or "Handling Penalty Multiplier: ",
-			---- em aCTH o manejo e multiplicador de cone: mesma leitura de hipfire/snapshot/recoil, MENOR = melhor
-	        HintHundredths(handling), "X",
-	        base = owner and HintHundredths(Rat_HandlingBaseMul(self)),
-	        bar = "Handling", bar_v = handling, bar_ref = owner and Rat_HandlingBaseMul(self),
+	        TranslationTable[547203918664] or "Handling: ",
+	        HintAimText(handling, true), "",
+	        base = owner and HintAimText(HintHandling(self), true),
+	        bar = "Handling", bar_v = handling, bar_ref = owner and HintHandling(self),
 	    } or {
 	        id = "PointBlankRangeAccuracy",
 	        TranslationTable[651371401489] or "Point Blank Range Accuracy: ",
@@ -846,7 +857,7 @@ local t_id_table = {
     [785975283217] = " STR",
     [719583632117] = "Number of Pellets: ",
     [193184162359] = "Pellet Spread Angle: ",
-	[184329577856] = "Handling Penalty Multiplier: ",
+	[547203918664] = "Handling: ",
 	[219437987174] = "Aim accuracy: ",
 	[638215904417] = "Rate of Fire: ",
 	[529418307726] = "Barrel Length: ",

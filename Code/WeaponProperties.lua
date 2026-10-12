@@ -37,9 +37,20 @@ function OnMsg.ClassesGenerate()
                 modifiable = true
 			}, {
 				category = "GBO_aCTH",
+                id = "Handling",
+                name = "Handling",
+                help = "Handling points, higher is better. 1 point ~ 1 AimAccuracy at full aim on a typical rifle; worth more on unaimed shots",
+                editor = "number",
+                default = 0,
+                template = true,
+                min = -50,
+                max = 50,
+                modifiable = true
+			}, {
+				category = "GBO_aCTH",
                 id = "HandlingBaseMul",
                 name = "HandlingBaseMul",
-                help = "",
+                help = "Unused: replaced by Handling. Kept because items.lua handling effects still target it",
                 editor = "number",
                 default = 100,
                 template = true,

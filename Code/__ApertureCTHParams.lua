@@ -159,17 +159,33 @@ A.ConeRefCTH = 50
 
 
 ---------------------------------------------------------------------------------------------------
----- MANEJO. O antigo Point Blank Accuracy (GetPBbonus, que ja soma classe + arma + componentes)
----- vira multiplicador da abertura BASE -- nao residual sobre o cone final.
-----   HandlingMul = 100 - HandlingScale * GetPBbonus / 100
+---- MANEJO. Weapon.Handling + component points, decoupled from the classic PB bonus, scale the BASE
+---- aperture: HandlingMul = 100 - HandlingPointPct * points / 100.
 ---- Entrar em sigma_0 e o que da a forma pretendida: o ganho e multiplicado pelo decay a cada
 ---- nivel, entao manejo decide o tiro rapido e SOME quando o cone converge no piso. Como residual
 ---- final seria um % fixo em todo nivel e a arma longa nunca ultrapassaria a curta.
+---- 200: 1 point ~ 1 AimAccuracy at full aim (sweep 2026-10-12, HEC 80: AR 2.1, SMG 1.2, pistol 0.9, sniper 3.5)
 --------------------------------------------------------------------------------------------------
-A.PBHandlingScale = 80--150
+A.HandlingPointPct = 200
 A.HandlingMin = 60
 A.HandlingMax = 160
-A.HandlingUseBaseMul = true
+
+---- Barrel points by class, first match; guns with default_long_barrel ignore barrel parts (classic PB rule).
+A.HandlingBarrelPoints = {
+	{class = "Shotgun", shortbarrel = 3, longbarrel = -2},
+	{class = "SubmachineGun", shortbarrel = 3, longbarrel = -2},
+	{class = "Pistol", shortbarrel = 2, longbarrel = -1},
+	{class = "Revolver", shortbarrel = 2, longbarrel = -1},
+	{shortbarrel = 2, longbarrel = -2},
+}
+A.HandlingComponentPoints = {
+	tac_grip_PB = 2,
+	vigneron_folded_PB = 1,
+	bullpup = 2,
+	handguard_ext = -1,
+	handguard_short = 1,
+	DuckbillChoke = 2,
+}
 
 ---- Hand-Eye scales the handling DEVIATION from 100, never the multiplier: the sign survives, so a
 ---- bad-handling gun never beats a good one whatever the merc. HEC pivot +- span -> +-impact %.

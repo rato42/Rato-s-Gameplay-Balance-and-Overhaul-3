@@ -1488,15 +1488,15 @@ local t_table = {
     [912316475877] = "Increases Point-Blank range accuracy bonus",
     [645613895578] = "Increases weapon condition degradation",
 	[999879465877] = "Grants <em>Accuracy</em> bonus when prone",
-    [621889104903] = "Bullpup design, decreases <em>Handling</em> penalty and increases Shooting Angle",
-    [986565498973] = "Decreased Hipfire penalty, increased Snapshot penalty, reduced Recoil penalty, increased <em>Handling</em> penalty, harder to hit at melee range",
-    [729906022611] = "Increased Hipfire penalty, decreased Snapshot penalty, increased Recoil penalty, decreased <em>Handling</em> penalty, easier to hit at melee range",
+    [621889104903] = "Bullpup design, increases <em>Handling</em> and Shooting Angle",
+    [986565498973] = "Decreased Hipfire penalty, increased Snapshot penalty, reduced Recoil penalty, decreased <em>Handling</em>, harder to hit at melee range",
+    [729906022611] = "Increased Hipfire penalty, decreased Snapshot penalty, increased Recoil penalty, increased <em>Handling</em>, easier to hit at melee range",
     [174091519276] = "Slightly decreased <em>Handling</em> penalty",
-    [791929867524] = "Decreases <em>Handling</em> penalty",
-    [695014801114] = "Increases <em>Handling</em> penalty",
-    [169244869056] = "Slightly decreases <em>Handling</em> penalty",
-    [588843192458] = "Decreases weapon length, affecting Recoil, Snapshot, Hipfire accuracy and <em>Handling</em> penalties",
-    [700413725434] = "Increases weapon length, affecting Recoil, Snapshot, Hipfire accuracy and <em>Handling</em> penalties"
+    [791929867524] = "Increases <em>Handling</em>",
+    [695014801114] = "Decreases <em>Handling</em>",
+    [169244869056] = "Slightly increases <em>Handling</em>",
+    [588843192458] = "Decreases weapon length, affecting Recoil, Snapshot, Hipfire accuracy penalties and <em>Handling</em>",
+    [700413725434] = "Increases weapon length, affecting Recoil, Snapshot, Hipfire accuracy penalties and <em>Handling</em>"
 }
 
 ratG_T_table['COMPONENT_weaponcomp_effects.lua'] =
