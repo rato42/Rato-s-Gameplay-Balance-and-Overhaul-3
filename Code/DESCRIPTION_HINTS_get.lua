@@ -44,12 +44,6 @@ local function HintPB(weapon, unit)
     return MulDivRound(pb, scale, 100)
 end
 
----- handling multiplier (basis points) back to whole points
-local function HintHandlingFromMul(mul)
-    local a = const.Combat.Aperture
-    return MulDivRound(10000 - mul, a.HandlingPointsPerAim, a.HandlingPointPct)
-end
-
 local function HintHandling(weapon, unit)
     return (Rat_HandlingEffectivePoints(weapon, unit))
 end
@@ -306,8 +300,8 @@ local HintAutoCritLabel = ratT(file_str, 318826540121, "Autofire Critical Chance
 local HintBurstRecoilLabel = ratT(file_str, 318826540123, "Selective Burst Recoil Penalty")
 local HintAutoRecoilLabel = ratT(file_str, 318826540122, "Autofire Recoil Penalty")
 local HintLongRecoilLabel = ratT(file_str, 318826540124, "Long Burst Recoil Penalty")
-local HintHandlingStandLabel = ratT(file_str, 318826540125, "Handling, Standing")
-local HintHandlingCrouchLabel = ratT(file_str, 318826540126, "Handling, Crouched")
+local HintHandlingStandLabel = ratT(file_str, 318826540125, "Not Prone, Standing")
+local HintHandlingCrouchLabel = ratT(file_str, 318826540126, "Not Prone, Crouched")
 ---- keyed without underscores: recoil_mechanism spells "Bolt_Action", Rat_cycling "BoltAction"
 local HintMechanismNames = {
     GasOperated = ratT(file_str, 541468575245, "Gas Operated"),
@@ -790,17 +784,13 @@ function Rat_PatchWeaponRollover()
                                                string.format(" (%+d%%)", delta - 100))
                         end}
                     end
-                    ---- shown when the gun has a raw not-prone malus; the value carries the owner's Strength relief
+                    ---- shown when the gun has a raw not-prone malus: % added to the cone, after the owner's Strength relief
                     local function handling_row(win, label, stance)
                         return {win, label, IsACHTActive() and Rat_HandlingNotPronePen(weapon, nil, stance) > 0, function()
                             local raw = Rat_HandlingNotPronePen(weapon, nil, stance)
                             local pen = owner and Rat_HandlingNotPronePen(weapon, owner, stance) or raw
-                            local base = Rat_HandlingBaseMul(weapon, owner)
-                            local function pts(p) return HintHandlingFromMul(MulDivRound(base, 100 + p, 100)) end
-                            local loss, relief = HintHandlingFromMul(base) - pts(raw), pts(pen) - pts(raw)
-                            local extra = relief == 0 and string.format(" (-%d)", loss) or
-                                              string.format(" (-%d +%d STR)", loss, relief)
-                            return pts(pen) .. extra
+                            local extra = pen == raw and "" or string.format(" (+%d%% -%d%% STR)", raw, raw - pen)
+                            return string.format("+%d%%", pen) .. extra
                         end}
                     end
                     for _, r in ipairs{
