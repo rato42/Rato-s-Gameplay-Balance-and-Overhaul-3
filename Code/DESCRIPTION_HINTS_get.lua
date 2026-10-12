@@ -88,6 +88,7 @@ local HintChartTiles = 30
 local HintChartHipLabel = ratT(file_str, 731590264418, "Hip")
 local HintChartAimLabel = ratT(file_str, 731590264419, "Aim <num>")
 local HintChartTitle = ratT(file_str, 731590264420, "Hit chance vs standing target, by tiles")
+local HintChartRefLabel = ratT(file_str, 731590264422, "Dashed: <name>")
 local HintChartColors = {RGB(214, 82, 62), RGB(232, 156, 60), RGB(226, 210, 90), RGB(130, 200, 110),
                          RGB(90, 190, 200), RGB(150, 140, 230), RGB(220, 220, 220)}
 
@@ -122,8 +123,26 @@ local function HintChartCurves(weapon, owner)
     return curves
 end
 
+local function HintChartLines(curves, left, bottom, w, h, px, dim)
+    for i, pts in ipairs(curves) do
+        local color = HintChartColors[Min(i, #HintChartColors)]
+        if dim then
+            color = InterpolateRGB(color, RGB(30, 32, 30), 35, 100)
+        end
+        local prev
+        for d, cth in ipairs(pts) do
+            local pt = point(left + MulDivRound(w, d - 1, HintChartTiles), bottom - MulDivRound(h, cth, 100))
+            ---- the reference gun is dashed: every other one-tile segment
+            if prev and not (dim and d % 2 == 1) then
+                UIL.DrawLineAntialised(px, prev, pt, color)
+            end
+            prev = pt
+        end
+    end
+end
+
 local function HintChartDraw(win)
-    local curves = win.rat_curves
+    local curves, ref = win.rat_curves, win.rat_ref_curves
     if not curves then
         return
     end
@@ -133,7 +152,7 @@ local function HintChartDraw(win)
     local cw, ch = win.content_box:sizexyz()
     local lw, fh = UIL.MeasureText("100%", font)
     local left, right = x0 + lw + 6, x0 + cw - 6
-    local top, bottom = y0 + fh + 6, y0 + ch - 2 * fh - 8
+    local top, bottom = y0 + fh + 6, y0 + ch - (ref and 3 or 2) * fh - 8
     local w, h = right - left, bottom - top
     local px = Max(2, MulDivRound(win.scale:x(), 3, 1000))
     local function text(str, x, y, color)
@@ -158,23 +177,52 @@ local function HintChartDraw(win)
         text(str, x - UIL.MeasureText(str, font) / 2, bottom + 2, label)
     end
 
-    for i, pts in ipairs(curves) do
-        local color = HintChartColors[Min(i, #HintChartColors)]
-        local prev
-        for d, cth in ipairs(pts) do
-            local pt = point(left + MulDivRound(w, d - 1, HintChartTiles), bottom - MulDivRound(h, cth, 100))
-            if prev then
-                UIL.DrawLineAntialised(px, prev, pt, color)
-            end
-            prev = pt
-        end
+    if ref then
+        HintChartLines(ref, left, bottom, w, h, px, true)
     end
+    HintChartLines(curves, left, bottom, w, h, px)
 
     local x = left
     for i = 1, #curves do
         local str = i == 1 and _InternalTranslate(HintChartHipLabel) or _InternalTranslate(T{HintChartAimLabel, num = i - 1})
         x = x + text(str, x, bottom + fh + 4, HintChartColors[Min(i, #HintChartColors)]) + 10
     end
+    if ref then
+        text(_InternalTranslate(T{HintChartRefLabel, name = win.rat_ref_name}), left, bottom + 2 * fh + 6, label)
+    end
+end
+
+---- chart window; `setup(self)` fills rat_curves (and rat_ref_curves) or returns false to hide
+local function HintChartWindow(id, height, margins, setup)
+    return PlaceObj("XTemplateWindow", {
+        "__class", "XContextWindow",
+        "Id", id,
+        "Margins", margins,
+        "MinHeight", height,
+        "MaxHeight", height,
+        "FoldWhenHidden", true,
+    }, {
+        PlaceObj("XTemplateFunc", {
+            "name", "Open(self)",
+            "func", function(self)
+                XContextWindow.Open(self)
+                ---- computed once here; DrawContent runs every frame
+                if not IsACHTActive() or not setup(self) then
+                    self:SetVisible(false)
+                end
+            end,
+        }),
+        PlaceObj("XTemplateFunc", {
+            "name", "DrawContent(self, clip_box)",
+            "func", function(self, clip_box)
+                HintChartDraw(self)
+            end,
+        }),
+    })
+end
+
+local function HintChartable(weapon)
+    return IsKindOf(weapon, "Firearm") and not IsKindOf(weapon, "HeavyWeapon")
 end
 
 ---- mirrors ChangeWeapon.GetAPCost for this gun alone, in displayed AP
@@ -745,36 +793,38 @@ function Rat_PatchWeaponRollover()
         if old then
             table.remove(path[2], old)
         end
-        table.insert(path[2], PlaceObj("XTemplateWindow", {
-            "__class", "XContextWindow",
-            "Id", "idRatAccChart",
-            "Margins", box(0, 8, 0, 0),
-            "MinHeight", 170,
-            "MaxHeight", 170,
-            "FoldWhenHidden", true,
-        }, {
-            PlaceObj("XTemplateFunc", {
-                "name", "Open(self)",
-                "func", function(self)
-                    XContextWindow.Open(self)
-                    local weapon = ResolvePropObj(self.context)
-                    if not IsACHTActive() or not IsKindOf(weapon, "Firearm") or IsKindOf(weapon, "HeavyWeapon") then
-                        self:SetVisible(false)
-                        return
-                    end
-                    local owner = weapon.owner and (not gv_SatelliteView and g_Units[weapon.owner] or gv_UnitData[weapon.owner])
-                    ---- computed once here; DrawContent runs every frame
-                    self.rat_curves = HintChartCurves(weapon, owner)
-                end,
-            }),
-            PlaceObj("XTemplateFunc", {
-                "name", "DrawContent(self, clip_box)",
-                "func", function(self, clip_box)
-                    HintChartDraw(self)
-                end,
-            }),
-        }))
+        table.insert(path[2], HintChartWindow("idRatAccChart", 170, box(0, 8, 0, 0), function(self)
+            local weapon = ResolvePropObj(self.context)
+            if not HintChartable(weapon) then
+                return false
+            end
+            local owner = weapon.owner and (not gv_SatelliteView and g_Units[weapon.owner] or gv_UnitData[weapon.owner])
+            self.rat_curves = HintChartCurves(weapon, owner)
+            return true
+        end))
     end
+    ---- Shift-compare: the hovered gun's rollover overlays the equipped gun, faded, for the inventory's merc
+    local root = XTemplates.RolloverInventoryWeaponBase[1]
+    local old = table.find(root, "Id", "idRatCompareChart")
+    if old then
+        table.remove(root, old)
+    end
+    table.insert(root, HintChartWindow("idRatCompareChart", 190, box(8, 6, 8, 8), function(self)
+        local ctx = self.context
+        local other = type(ctx) == "table" and rawget(ctx, "other")
+        local weapon, ref = ResolvePropObj(ctx)
+        for _, o in ipairs(other or empty_table) do
+            ref = ref or HintChartable(o) and o
+        end
+        if not ref or not HintChartable(weapon) then
+            return false
+        end
+        local unit = GetInventoryUnit()
+        self.rat_curves = HintChartCurves(weapon, unit)
+        self.rat_ref_curves = HintChartCurves(ref, unit)
+        self.rat_ref_name = ref.DisplayName
+        return true
+    end))
     path = FindXtByProp(XTemplates.ModifyWeaponDlg, "Id", "idValue")
     if path then
         SetTemplateFunc(path[1], "Open(self)", function(self)
