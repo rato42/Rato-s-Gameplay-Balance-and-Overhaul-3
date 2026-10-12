@@ -166,7 +166,7 @@ local function HintChartDraw(win)
     local cw, ch = win.content_box:sizexyz()
     local lw, fh = UIL.MeasureText("100%", font)
     local left, right = x0 + lw + 6, x0 + cw - 6
-    local top, bottom = y0 + fh + sh + 6, y0 + ch - (ref and 3 or 2) * fh - 8
+    local top, bottom = y0 + fh + sh + 6, y0 + ch - ((ref or win.rat_reserve_ref) and 3 or 2) * fh - 8
     local w, h = right - left, bottom - top
     local px = Max(2, MulDivRound(win.scale:x(), 3, 1000))
     local function text(str, x, y, color, f)
@@ -295,13 +295,13 @@ end
 local function HintModifyChart()
     return PlaceObj("XTemplateWindow", {
         "Id", "idRatModChart",
-        "Margins", box(0, 15, 0, 0),
+        "Margins", box(0, 10, 0, 0),
         "Padding", box(8, 6, 8, 6),
         "HAlign", "right",
-        "MinWidth", 450,
-        "MaxWidth", 450,
-        "MinHeight", 260,
-        "MaxHeight", 260,
+        "MinWidth", 480,
+        "MaxWidth", 480,
+        "MinHeight", 330,
+        "MaxHeight", 330,
         "FoldWhenHidden", true,
         "Background", RGBA(32, 35, 47, 215),
     }, {
@@ -326,6 +326,8 @@ local function HintModifyChart()
                 local owner = id and (g_Units[id] or gv_UnitData[id])
                 self.rat_curves = HintChartCurves(clone, owner)
                 self.rat_ref_curves = not HintSameComponents(clone, real) and HintChartCurves(real, owner) or nil
+                ---- the Solid/Dashed row keeps its space so hovering a part never resizes the plot
+                self.rat_reserve_ref = true
                 self.rat_name, self.rat_ref_name = HintChartModdedName, HintChartCurrentName
                 self:SetVisible(true)
                 self:Invalidate()
@@ -981,9 +983,9 @@ function Rat_PatchWeaponRollover()
             table.remove(list, old)
         end
         table.insert(list, table.find(list, path[1]), HintModifyChart())
-        path[1].ScaleModifier = point(750, 750)
-        path[1].Margins = box(0, 10, 0, 0)
-        path[1].MinWidth, path[1].MaxWidth = 600, 600
+        path[1].ScaleModifier = point(680, 680)
+        path[1].Margins = box(0, 8, 0, 0)
+        path[1].MinWidth, path[1].MaxWidth = 700, 700
     end
 end
 
