@@ -91,6 +91,8 @@ local HintChartRefLabel = ratT(file_str, 731590264422, "Dashed: <name>")
 local HintChartMainLabel = ratT(file_str, 731590264423, "Solid: <name>")
 local HintChartModdedName = ratT(file_str, 731590264428, "With changes")
 local HintChartCurrentName = ratT(file_str, 731590264429, "Current")
+local HintRecoilTitle = ratT(file_str, 731590264430, "Hit chance per shot")
+local HintRecoilSubtitle = ratT(file_str, 731590264431, "<mode>, standing target at <num> tiles")
 local HintChartColors = {RGB(214, 82, 62), RGB(232, 156, 60), RGB(226, 210, 90), RGB(130, 200, 110),
                          RGB(90, 190, 200), RGB(150, 140, 230), RGB(220, 220, 220)}
 
@@ -109,6 +111,9 @@ local function HintChartShooter(weapon, owner)
         s[k] = src[k] or 100
     end
     s.GetActiveWeapons = function() return weapon end
+    ---- the recoil chain reads these for dual wield; the chart is always the gun alone
+    s.GetEquippedWeaponSlot = function() return false end
+    s.GetEquippedWeapons = function() return {weapon} end
     s.IsMerc = function() return true end
     s.GetLevel = function() return 1 end
     s.GetStatusEffect = function(_, id) return owner and owner.GetStatusEffect and owner:GetStatusEffect(id) end
@@ -116,12 +121,16 @@ local function HintChartShooter(weapon, owner)
     return s
 end
 
+---- the bipod is a residual on the cone in CalcChanceToHit, not part of the aperture
+local function HintChartBipodMul(shooter, weapon)
+    local _, bipod = Presets.ChanceToHitModifier.Default.Bipod:CalcValue(shooter, nil, nil, nil, weapon)
+    return Rat_ConeMulForPoints(bipod or 0)
+end
+
 local function HintChartCurves(weapon, owner)
     local a = const.Combat.Aperture
     local shooter = HintChartShooter(weapon, owner)
-    ---- the bipod is a residual on the cone in CalcChanceToHit, not part of the aperture
-    local _, bipod = Presets.ChanceToHitModifier.Default.Bipod:CalcValue(shooter, nil, nil, nil, weapon)
-    local bipod_mul = Rat_ConeMulForPoints(bipod or 0)
+    local bipod_mul = HintChartBipodMul(shooter, weapon)
     local curves = {stance = shooter.stance}
     for aim = 0, weapon.MaxAimActions or 3 do
         local sigma = MulDivRound(Rat_GetAperture(weapon, shooter, nil, aim), bipod_mul, 100)
@@ -141,9 +150,9 @@ local function HintChartLines(curves, left, bottom, w, h, px, dim)
         if dim then
             color = InterpolateRGB(color, RGB(30, 32, 30), 35, 100)
         end
-        local prev
+        local prev, span = nil, Max(1, #pts - 1)
         for d, cth in ipairs(pts) do
-            local pt = point(left + MulDivRound(w, d - 1, HintChartTiles), bottom - MulDivRound(h, cth, 100))
+            local pt = point(left + MulDivRound(w, d - 1, span), bottom - MulDivRound(h, cth, 100))
             ---- the reference gun is dashed: every other one-tile segment
             if prev and not (dim and d % 2 == 1) then
                 UIL.DrawLineAntialised(px, prev, pt, color)
@@ -176,8 +185,8 @@ local function HintChartDraw(win)
         return tw
     end
 
-    text(_InternalTranslate(HintChartTitle), x0, y0, label)
-    text(_InternalTranslate(HintChartSubtitle), x0, y0 + fh, label, small)
+    text(_InternalTranslate(win.rat_title or HintChartTitle), x0, y0, label)
+    text(_InternalTranslate(win.rat_subtitle or HintChartSubtitle), x0, y0 + fh, label, small)
     local stance = _InternalTranslate(HintChartStanceLabels[curves.stance])
     text(stance, x0 + cw - UIL.MeasureText(stance, font), y0, RGB(220, 220, 220))
     for pct = 0, 100, 25 do
@@ -188,10 +197,12 @@ local function HintChartDraw(win)
             text(str, left - 4 - UIL.MeasureText(str, font), y - fh / 2, label)
         end
     end
-    for d = 0, HintChartTiles, 10 do
-        local x = left + MulDivRound(w, d, HintChartTiles)
+    ---- x is tiles from 0, or shots from 1 on the recoil chart
+    local span, step, base = Max(1, #curves[1] - 1), win.rat_x_step or 10, win.rat_x_base or 0
+    for d = 0, span, step do
+        local x = left + MulDivRound(w, d, span)
         UIL.DrawLine(point(x, top), point(x, bottom), grid)
-        local str = tostring(d)
+        local str = tostring(d + base)
         text(str, x - UIL.MeasureText(str, font) / 2, bottom + 2, label)
     end
 
@@ -288,6 +299,74 @@ local function HintSameComponents(a, b)
             return false
         end
     end
+    return true
+end
+
+---- Recoil chart: CTH of each shot of an autofire string at a fixed distance, one curve per aim level
+local HintRecoilShots = 10
+local HintRecoilTiles = 10
+local HintRecoilSamples = 48
+
+---- the gun's automatic attack (variable autofire, else a selectable burst) and its shot count
+local function HintRecoilAttack(weapon)
+    if Rat_HasVariableAuto(weapon) then
+        return CombatActions[Rat_AutoAttackId(weapon)], HintRecoilShots
+    end
+    if Rat_HasSelectiveBurst(weapon) and table.find(weapon.AvailableAttacks or empty_table, "BurstFire") then
+        local action = CombatActions.BurstFire
+        return action, weapon:GetAutofireShots(action)
+    end
+end
+
+local function HintRecoilCurves(weapon, owner)
+    local action, shots = HintRecoilAttack(weapon)
+    if not action or (shots or 0) < 2 then
+        return
+    end
+    local a = const.Combat.Aperture
+    local shooter = HintChartShooter(weapon, owner)
+    local prof = Rat_RecoilProfile(shooter, action, weapon, shots)
+    if not prof then
+        return
+    end
+    ---- Rat_EstimateBurst per aim would rerun the walks: they ignore aim, so one set serves all levels
+    local rnd = BraidRandomCreate(a.RecoilEstimateSeed or 1)
+    local st, offs = Rat_RecoilState(), {}
+    for _ = 1, HintRecoilSamples do
+        st.px, st.py, st.vx, st.vy, st.cx, st.cy = 0, 0, 0, 0, 0, 0
+        for _ = 1, shots do
+            local _, _, r = Rat_RecoilPoint(st)
+            offs[#offs + 1] = r
+            Rat_RecoilStep(prof, st, rnd)
+        end
+    end
+    local theta = Rat_ThetaTarget(HintRecoilTiles * const.SlabSizeX, a.Silhouette.Standing)
+    local bipod_mul = HintChartBipodMul(shooter, weapon)
+    local curves = {stance = shooter.stance, action = action, shots = shots}
+    for aim = 0, weapon.MaxAimActions or 3 do
+        local sigma = Max(1, MulDivRound(Rat_GetAperture(weapon, shooter, action, aim), bipod_mul, 100))
+        local pts = {}
+        for i = 1, shots do
+            local sum = 0
+            for s = 0, HintRecoilSamples - 1 do
+                sum = sum + Rat_RiceCTH(theta, sigma, offs[s * shots + i])
+            end
+            pts[i] = Clamp(MulDivRound(sum, 1, HintRecoilSamples), a.MinCTH, a.MaxCTH)
+        end
+        curves[#curves + 1] = pts
+    end
+    return curves
+end
+
+---- fills a chart window with the recoil ladder; false when the gun has no automatic fire
+local function HintRecoilSetup(win, weapon, owner)
+    local curves = HintChartable(weapon) and HintRecoilCurves(weapon, owner)
+    if not curves then
+        return false
+    end
+    win.rat_curves, win.rat_x_step, win.rat_x_base = curves, curves.shots > 5 and 3 or 1, 1
+    win.rat_title = HintRecoilTitle
+    win.rat_subtitle = T{HintRecoilSubtitle, mode = curves.action.DisplayName, num = HintRecoilTiles}
     return true
 end
 
@@ -921,6 +1000,15 @@ function Rat_PatchWeaponRollover()
             local owner = weapon.owner and (not gv_SatelliteView and g_Units[weapon.owner] or gv_UnitData[weapon.owner])
             self.rat_curves = HintChartCurves(weapon, owner)
             return true
+        end))
+        old = table.find(path[2], "Id", "idRatRecoilChart")
+        if old then
+            table.remove(path[2], old)
+        end
+        table.insert(path[2], HintChartWindow("idRatRecoilChart", 260, box(0, 8, 0, 0), function(self)
+            local weapon = ResolvePropObj(self.context)
+            local owner = weapon.owner and (not gv_SatelliteView and g_Units[weapon.owner] or gv_UnitData[weapon.owner])
+            return HintRecoilSetup(self, weapon, owner)
         end))
     end
     path = FindXtByProp(XTemplates.Inventory, "name", "OpenCompare(self, item_wnd, item)")
