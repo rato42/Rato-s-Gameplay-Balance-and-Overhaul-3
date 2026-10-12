@@ -321,8 +321,8 @@ local HintAutoCritLabel = ratT(file_str, 318826540121, "Autofire Critical Chance
 local HintBurstRecoilLabel = ratT(file_str, 318826540123, "Selective Burst Recoil Penalty")
 local HintAutoRecoilLabel = ratT(file_str, 318826540122, "Autofire Recoil Penalty")
 local HintLongRecoilLabel = ratT(file_str, 318826540124, "Long Burst Recoil Penalty")
-local HintHandlingStandLabel = ratT(file_str, 318826540125, "Not Prone, Standing")
-local HintHandlingCrouchLabel = ratT(file_str, 318826540126, "Not Prone, Crouched")
+local HintHandlingStandLabel = ratT(file_str, 318826540125, "Standing Penalty")
+local HintHandlingCrouchLabel = ratT(file_str, 318826540126, "Crouched Penalty")
 ---- keyed without underscores: recoil_mechanism spells "Bolt_Action", Rat_cycling "BoltAction"
 local HintMechanismNames = {
     GasOperated = ratT(file_str, 541468575245, "Gas Operated"),
@@ -812,13 +812,13 @@ function Rat_PatchWeaponRollover()
                                                string.format(" (%+d%%)", delta - 100))
                         end}
                     end
-                    ---- shown when the gun has a raw not-prone malus: % added to the cone, after the owner's Strength relief
+                    ---- shown when the gun has a raw not-prone malus: cone multiplier after the owner's Strength, raw one faded
                     local function handling_row(win, label, stance)
                         return {win, label, IsACHTActive() and Rat_HandlingNotPronePen(weapon, nil, stance) > 0, function()
                             local raw = Rat_HandlingNotPronePen(weapon, nil, stance)
                             local pen = owner and Rat_HandlingNotPronePen(weapon, owner, stance) or raw
-                            local extra = pen == raw and "" or string.format(" (+%d%% -%d%% STR)", raw, raw - pen)
-                            return string.format("+%d%%", pen) .. extra
+                            local base = pen == raw and "" or "<color PDABrowserFlavor> (" .. HintHundredths(100 + raw) .. "x)</color>"
+                            return "<color PDABrowserTextHighlight>" .. HintHundredths(100 + pen) .. "</color>x" .. base
                         end}
                     end
                     for _, r in ipairs{
