@@ -89,6 +89,7 @@ local HintChartHipLabel = ratT(file_str, 731590264418, "Hip")
 local HintChartAimLabel = ratT(file_str, 731590264419, "Aim <num>")
 local HintChartTitle = ratT(file_str, 731590264420, "Hit chance vs standing target, by tiles")
 local HintChartRefLabel = ratT(file_str, 731590264422, "Dashed: <name>")
+local HintChartMainLabel = ratT(file_str, 731590264423, "Solid: <name>")
 local HintChartColors = {RGB(214, 82, 62), RGB(232, 156, 60), RGB(226, 210, 90), RGB(130, 200, 110),
                          RGB(90, 190, 200), RGB(150, 140, 230), RGB(220, 220, 220)}
 
@@ -188,7 +189,9 @@ local function HintChartDraw(win)
         x = x + text(str, x, bottom + fh + 4, HintChartColors[Min(i, #HintChartColors)]) + 10
     end
     if ref then
-        text(_InternalTranslate(T{HintChartRefLabel, name = win.rat_ref_name}), left, bottom + 2 * fh + 6, label)
+        local y = bottom + 2 * fh + 6
+        x = left + text(_InternalTranslate(T{HintChartMainLabel, name = win.rat_name}), left, y, label) + 14
+        text(_InternalTranslate(T{HintChartRefLabel, name = win.rat_ref_name}), x, y, label)
     end
 end
 
@@ -223,6 +226,38 @@ end
 
 local function HintChartable(weapon)
     return IsKindOf(weapon, "Firearm") and not IsKindOf(weapon, "HeavyWeapon")
+end
+
+---- Shift-compare: own panel right of both rollovers, hovered gun solid and equipped gun dashed
+local function HintCompareChart(dlg)
+    local list, item = dlg.compare_wnd[#dlg.compare_wnd], dlg.compare_wnd.item
+    if not IsACHTActive() or not list or not HintChartable(item) then
+        return
+    end
+    local ref
+    for _, o in ipairs(dlg.compare_wnd.other or empty_table) do
+        ref = ref or HintChartable(o) and o
+    end
+    if not ref then
+        return
+    end
+    ---- same frame as RolloverInventoryWeaponBase
+    local panel = XWindow:new({
+        Margins = box(10, 0, 0, 0),
+        Padding = box(6, 6, 6, 6),
+        VAlign = "top",
+        MinWidth = 350,
+        MaxWidth = 350,
+        Background = RGBA(52, 55, 61, 255),
+        BackgroundRectGlowSize = 2,
+        BackgroundRectGlowColor = RGBA(32, 35, 47, 255),
+    }, list)
+    local chart = XWindow:new({MinHeight = 190, MaxHeight = 190}, panel)
+    chart.DrawContent = HintChartDraw
+    local unit = GetInventoryUnit()
+    chart.rat_curves, chart.rat_ref_curves = HintChartCurves(item, unit), HintChartCurves(ref, unit)
+    chart.rat_name, chart.rat_ref_name = item.DisplayName, ref.DisplayName
+    panel:Open()
 end
 
 ---- mirrors ChangeWeapon.GetAPCost for this gun alone, in displayed AP
@@ -803,28 +838,22 @@ function Rat_PatchWeaponRollover()
             return true
         end))
     end
-    ---- Shift-compare: the hovered gun's rollover overlays the equipped gun, faded, for the inventory's merc
-    local root = XTemplates.RolloverInventoryWeaponBase[1]
-    local old = table.find(root, "Id", "idRatCompareChart")
-    if old then
-        table.remove(root, old)
+    path = FindXtByProp(XTemplates.Inventory, "name", "OpenCompare(self, item_wnd, item)")
+    if path then
+        local node = path[1]
+        ---- kept on the node so a Lua reload doesn't wrap the wrapper
+        node.rat_vanilla_func = node.rat_vanilla_func or node.func
+        local vanilla = node.rat_vanilla_func
+        node.func = function(self, item_wnd, item)
+            local ok = vanilla(self, item_wnd, item)
+            if ok then
+                HintCompareChart(self)
+            end
+            return ok
+        end
     end
-    table.insert(root, HintChartWindow("idRatCompareChart", 190, box(8, 6, 8, 8), function(self)
-        local ctx = self.context
-        local other = type(ctx) == "table" and rawget(ctx, "other")
-        local weapon, ref = ResolvePropObj(ctx)
-        for _, o in ipairs(other or empty_table) do
-            ref = ref or HintChartable(o) and o
-        end
-        if not ref or not HintChartable(weapon) then
-            return false
-        end
-        local unit = GetInventoryUnit()
-        self.rat_curves = HintChartCurves(weapon, unit)
-        self.rat_ref_curves = HintChartCurves(ref, unit)
-        self.rat_ref_name = ref.DisplayName
-        return true
-    end))
+    ---- More Info starts open; Insert hides it
+    g_RolloverShowMoreInfo = true
     path = FindXtByProp(XTemplates.ModifyWeaponDlg, "Id", "idValue")
     if path then
         SetTemplateFunc(path[1], "Open(self)", function(self)
