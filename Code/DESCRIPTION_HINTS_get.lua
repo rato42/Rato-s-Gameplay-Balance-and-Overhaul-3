@@ -91,8 +91,8 @@ local HintChartRefLabel = ratT(file_str, 731590264422, "Dashed: <name>")
 local HintChartMainLabel = ratT(file_str, 731590264423, "Solid: <name>")
 local HintChartModdedName = ratT(file_str, 731590264428, "With changes")
 local HintChartCurrentName = ratT(file_str, 731590264429, "Current")
-local HintRecoilTitle = ratT(file_str, 731590264430, "Hit chance per shot")
-local HintRecoilSubtitle = ratT(file_str, 731590264431, "<mode>, standing target at <num> tiles")
+local HintRecoilTitle = ratT(file_str, 731590264432, "Expected hits")
+local HintRecoilSubtitle = ratT(file_str, 731590264433, "<mode>, <num> rounds, standing target")
 local HintChartColors = {RGB(214, 82, 62), RGB(232, 156, 60), RGB(226, 210, 90), RGB(130, 200, 110),
                          RGB(90, 190, 200), RGB(150, 140, 230), RGB(220, 220, 220)}
 
@@ -194,6 +194,11 @@ local function HintChartDraw(win)
         UIL.DrawLine(point(left, y), point(right, y), grid)
         if pct % 50 == 0 then
             local str = pct .. "%"
+            ---- the hits chart plots % of the rounds; label it in rounds
+            if win.rat_y_max then
+                local tenths = MulDivRound(win.rat_y_max * pct, 10, 100)
+                str = tenths % 10 == 0 and tostring(tenths / 10) or string.format("%d.%d", tenths / 10, tenths % 10)
+            end
             text(str, left - 4 - UIL.MeasureText(str, font), y - fh / 2, label)
         end
     end
@@ -302,20 +307,52 @@ local function HintSameComponents(a, b)
     return true
 end
 
----- Recoil chart: CTH of each shot of an autofire string at a fixed distance, one curve per aim level
-local HintRecoilShots = 10
-local HintRecoilTiles = 10
+---- Recoil chart: expected hits of the default autofire string by distance, one curve per aim level
 local HintRecoilSamples = 48
+local HintRecoilBuckets = 8
 
----- the gun's automatic attack (variable autofire, else a selectable burst) and its shot count
+---- the gun's automatic attack (variable autofire, else a selectable burst) at its default length
 local function HintRecoilAttack(weapon)
+    local action
     if Rat_HasVariableAuto(weapon) then
-        return CombatActions[Rat_AutoAttackId(weapon)], HintRecoilShots
+        action = CombatActions[Rat_AutoAttackId(weapon)]
+    elseif Rat_HasSelectiveBurst(weapon) and table.find(weapon.AvailableAttacks or empty_table, "BurstFire") then
+        action = CombatActions.BurstFire
     end
-    if Rat_HasSelectiveBurst(weapon) and table.find(weapon.AvailableAttacks or empty_table, "BurstFire") then
-        local action = CombatActions.BurstFire
-        return action, weapon:GetAutofireShots(action)
+    return action, action and weapon:GetAutofireShots(action)
+end
+
+---- per shot, the muzzle offsets of every simulated string, sorted and averaged into buckets
+local function HintRecoilOffsets(prof, shots)
+    local rnd = BraidRandomCreate(const.Combat.Aperture.RecoilEstimateSeed or 1)
+    local st, per_shot = Rat_RecoilState(), {}
+    for i = 1, shots do
+        per_shot[i] = {}
     end
+    for _ = 1, HintRecoilSamples do
+        st.px, st.py, st.vx, st.vy, st.cx, st.cy = 0, 0, 0, 0, 0, 0
+        for i = 1, shots do
+            local _, _, r = Rat_RecoilPoint(st)
+            table.insert(per_shot[i], r)
+            Rat_RecoilStep(prof, st, rnd)
+        end
+    end
+    ---- CTH is smooth in the offset, so bucket means stand in for the samples at 1/6 the Rice calls
+    local size = HintRecoilSamples / HintRecoilBuckets
+    for i, list in ipairs(per_shot) do
+        table.sort(list)
+        local buckets = {}
+        for b = 0, HintRecoilBuckets - 1 do
+            local sum = 0
+            for k = 1, size do
+                sum = sum + list[b * size + k]
+            end
+            buckets[b + 1] = MulDivRound(sum, 1, size)
+        end
+        ---- an unmoved muzzle (shot 1) needs one evaluation, not eight
+        per_shot[i] = buckets[1] == buckets[#buckets] and {buckets[1]} or buckets
+    end
+    return per_shot
 end
 
 local function HintRecoilCurves(weapon, owner)
@@ -329,44 +366,40 @@ local function HintRecoilCurves(weapon, owner)
     if not prof then
         return
     end
-    ---- Rat_EstimateBurst per aim would rerun the walks: they ignore aim, so one set serves all levels
-    local rnd = BraidRandomCreate(a.RecoilEstimateSeed or 1)
-    local st, offs = Rat_RecoilState(), {}
-    for _ = 1, HintRecoilSamples do
-        st.px, st.py, st.vx, st.vy, st.cx, st.cy = 0, 0, 0, 0, 0, 0
-        for _ = 1, shots do
-            local _, _, r = Rat_RecoilPoint(st)
-            offs[#offs + 1] = r
-            Rat_RecoilStep(prof, st, rnd)
-        end
-    end
-    local theta = Rat_ThetaTarget(HintRecoilTiles * const.SlabSizeX, a.Silhouette.Standing)
+    ---- the walks ignore aim, so one set serves every aim level and distance
+    local offsets = HintRecoilOffsets(prof, shots)
     local bipod_mul = HintChartBipodMul(shooter, weapon)
     local curves = {stance = shooter.stance, action = action, shots = shots}
     for aim = 0, weapon.MaxAimActions or 3 do
         local sigma = Max(1, MulDivRound(Rat_GetAperture(weapon, shooter, action, aim), bipod_mul, 100))
         local pts = {}
-        for i = 1, shots do
-            local sum = 0
-            for s = 0, HintRecoilSamples - 1 do
-                sum = sum + Rat_RiceCTH(theta, sigma, offs[s * shots + i])
+        for d = 0, HintChartTiles do
+            local theta = Rat_ThetaTarget(d * const.SlabSizeX, a.Silhouette.Standing)
+            local hits = 0
+            for _, buckets in ipairs(offsets) do
+                local sum = 0
+                for _, r in ipairs(buckets) do
+                    sum = sum + Rat_RiceCTH(theta, sigma, r)
+                end
+                hits = hits + Clamp(MulDivRound(sum, 1, #buckets), a.MinCTH, a.MaxCTH)
             end
-            pts[i] = Clamp(MulDivRound(sum, 1, HintRecoilSamples), a.MinCTH, a.MaxCTH)
+            ---- plotted as % of the rounds fired; the axis labels convert back to rounds
+            pts[d + 1] = MulDivRound(hits, 1, shots)
         end
         curves[#curves + 1] = pts
     end
     return curves
 end
 
----- fills a chart window with the recoil ladder; false when the gun has no automatic fire
+---- fills a chart window with expected hits; false when the gun has no automatic fire
 local function HintRecoilSetup(win, weapon, owner)
     local curves = HintChartable(weapon) and HintRecoilCurves(weapon, owner)
     if not curves then
         return false
     end
-    win.rat_curves, win.rat_x_step, win.rat_x_base = curves, curves.shots > 5 and 3 or 1, 1
+    win.rat_curves, win.rat_y_max = curves, curves.shots
     win.rat_title = HintRecoilTitle
-    win.rat_subtitle = T{HintRecoilSubtitle, mode = curves.action.DisplayName, num = HintRecoilTiles}
+    win.rat_subtitle = T{HintRecoilSubtitle, mode = curves.action.DisplayName, num = curves.shots}
     return true
 end
 
