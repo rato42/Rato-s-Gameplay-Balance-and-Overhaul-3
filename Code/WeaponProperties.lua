@@ -39,12 +39,12 @@ function OnMsg.ClassesGenerate()
 				category = "GBO_aCTH",
                 id = "Handling",
                 name = "Handling",
-                help = "Handling points, higher is better. 1 point ~ 1 AimAccuracy at full aim on a typical rifle; worth more on unaimed shots",
+                help = "Handling points, higher is better. 3 points ~ 1 AimAccuracy at aim 3 on a typical rifle; worth more on unaimed shots",
                 editor = "number",
                 default = 0,
                 template = true,
-                min = -50,
-                max = 50,
+                min = -150,
+                max = 150,
                 modifiable = true
 			}, {
 				category = "GBO_aCTH",

@@ -451,7 +451,7 @@ function Rat_HandlingBaseMul(weapon, attacker)
     if not IsKindOf(weapon, "FirearmProperties") then
         return 100
     end
-	local handling = 100 - MulDivRound(Rat_HandlingPoints(weapon), a.HandlingPointPct, 100)
+	local handling = 100 - MulDivRound(Rat_HandlingPoints(weapon), a.HandlingPointPct, 100 * a.HandlingPointsPerAim)
     ---- the weapon's OWN quality is capped here, same as before this penalty existed. The standing
     ---- malus applies AFTER, uncapped -- a weapon already sitting at the ceiling (Barrett:
     ---- 141 pre-clamp) would otherwise absorb the whole penalty into the clamp and show the meta
@@ -462,15 +462,12 @@ function Rat_HandlingBaseMul(weapon, attacker)
     local impact = a.HandlingAttrImpact or 0
     if attacker and impact ~= 0 and handling ~= 100 then
         local hec = rGetHandEyeCoordination(attacker)
-        local pivot, span = a.HandlingAttrPivot or 70, a.HandlingAttrSpan or 30
-        local skill = MulDivRound(impact, Clamp(hec - pivot, -span, span), span)
-        ---- good merc grows a bonus and shrinks a penalty
+        local loss = MulDivRound(impact, 100 - Clamp(hec, 0, 100), 100)
+        ---- below HEC 100 a bonus shrinks and a penalty grows by the same %
         local dev = handling - 100
-        handling = 100 + MulDivRound(dev, 100 + (dev < 0 and skill or -skill), 100)
-        if hec < pivot then
+        handling = 100 + MulDivRound(dev, 100 + (dev < 0 and -loss or loss), 100)
+        if hec < a.HandlingAttrLowAt then
             meta = {a.HandlingAttrLowMeta}
-        elseif hec >= (a.HandlingAttrHighAt or 85) then
-            meta = {a.HandlingAttrHighMeta}
         end
     end
     return handling, meta

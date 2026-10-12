@@ -160,42 +160,42 @@ A.ConeRefCTH = 50
 
 ---------------------------------------------------------------------------------------------------
 ---- MANEJO. Weapon.Handling + component points, decoupled from the classic PB bonus, scale the BASE
----- aperture: HandlingMul = 100 - HandlingPointPct * points / 100.
+---- aperture: HandlingMul = 100 - HandlingPointPct * points / (100 * HandlingPointsPerAim).
 ---- Entrar em sigma_0 e o que da a forma pretendida: o ganho e multiplicado pelo decay a cada
 ---- nivel, entao manejo decide o tiro rapido e SOME quando o cone converge no piso. Como residual
 ---- final seria um % fixo em todo nivel e a arma longa nunca ultrapassaria a curta.
----- 200: 1 point ~ 1 AimAccuracy at aim 3 on irons (sweep 2026-10-12, HEC 80: AR 2.0, SMG 1.2, pistol 0.9, sniper 2.8)
+---- 1 AimAccuracy ~ 2% at aim 3 on irons (sweep 2026-10-12, HEC 80: AR 2.0, SMG 1.2, pistol 0.9, sniper 2.8)
+---- 3 points per AimAccuracy: one point ~ one aim level of 1 AimAccuracy (0.76 / 0.67 / 0.58% per level)
 --------------------------------------------------------------------------------------------------
 A.HandlingPointPct = 200
+A.HandlingPointsPerAim = 3
 A.HandlingMin = 60
 A.HandlingMax = 160
 
 ---- Barrel points by class, first match; guns with default_long_barrel ignore barrel parts (classic PB rule).
 A.HandlingBarrelPoints = {
-	{class = "Shotgun", shortbarrel = 3, longbarrel = -2},
-	{class = "SubmachineGun", shortbarrel = 3, longbarrel = -2},
-	{class = "Pistol", shortbarrel = 2, longbarrel = -1},
-	{class = "Revolver", shortbarrel = 2, longbarrel = -1},
-	{shortbarrel = 2, longbarrel = -2},
+	{class = "Shotgun", shortbarrel = 10, longbarrel = -5},
+	{class = "SubmachineGun", shortbarrel = 8, longbarrel = -5},
+	{class = "Pistol", shortbarrel = 6, longbarrel = -4},
+	{class = "Revolver", shortbarrel = 7, longbarrel = -4},
+	{shortbarrel = 7, longbarrel = -7},
 }
+---- keyed by component EFFECT id, which is what HasComponent matches
 A.HandlingComponentPoints = {
-	tac_grip_PB = 2,
+	tac_grip_PB = 5,
 	vigneron_folded_PB = 1,
-	bullpup = 2,
-	handguard_ext = -1,
-	handguard_short = 1,
-	DuckbillChoke = 2,
+	bullpup = 6,
+	handguard_ext = -4,
+	handguard_short = 2,
+	IncreasePointBlankAccuracyBonus = 5, -- Duckbill Choke
 }
 
 ---- Hand-Eye scales the handling DEVIATION from 100, never the multiplier: the sign survives, so a
----- bad-handling gun never beats a good one whatever the merc. HEC pivot +- span -> +-impact %.
----- Live spread (2026-10-04): p10 86, median 94, p90 107; at 20 a ~4-point gap is the crossover.
-A.HandlingAttrImpact = 20
-A.HandlingAttrPivot = 70
-A.HandlingAttrSpan = 30
+---- bad-handling gun never beats a good one whatever the merc. HEC 100 gets the nominal value.
+---- Each HEC point below 100 loses Impact/100 % of a bonus and adds as much to a penalty (30: HEC 70 -> 91% / 109%).
+A.HandlingAttrImpact = 30
+A.HandlingAttrLowAt = 70
 A.HandlingAttrLowMeta = T(273969979692, "(-) Low Hand-Eye Coordination")
-A.HandlingAttrHighMeta = T(699324351174, "High Hand-Eye Coordination")
-A.HandlingAttrHighAt = 85
 
 ---- Standing widens the cone for a heavy gun, same weigth_held_mul ladder as the recoil weight
 ---- penalty (RecoilHeldPivot). LIGHT by default -- LOWER slope than recoil on purpose, this is

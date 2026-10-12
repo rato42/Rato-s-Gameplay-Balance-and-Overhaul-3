@@ -46,7 +46,8 @@ end
 
 ---- handling multiplier back to points, in hundredths like HintAim
 local function HintHandlingFromMul(mul)
-    return MulDivRound(100 - mul, 10000, const.Combat.Aperture.HandlingPointPct)
+    local a = const.Combat.Aperture
+    return MulDivRound(100 - mul, 10000 * a.HandlingPointsPerAim, a.HandlingPointPct)
 end
 
 local function HintHandling(weapon, unit)
