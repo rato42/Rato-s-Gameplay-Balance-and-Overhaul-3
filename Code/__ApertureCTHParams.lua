@@ -164,7 +164,7 @@ A.ConeRefCTH = 50
 ---- Entrar em sigma_0 e o que da a forma pretendida: o ganho e multiplicado pelo decay a cada
 ---- nivel, entao manejo decide o tiro rapido e SOME quando o cone converge no piso. Como residual
 ---- final seria um % fixo em todo nivel e a arma longa nunca ultrapassaria a curta.
----- 200: 1 point ~ 1 AimAccuracy at full aim (sweep 2026-10-12, HEC 80: AR 2.1, SMG 1.2, pistol 0.9, sniper 3.5)
+---- 200: 1 point ~ 1 AimAccuracy at aim 3 on irons (sweep 2026-10-12, HEC 80: AR 2.0, SMG 1.2, pistol 0.9, sniper 2.8)
 --------------------------------------------------------------------------------------------------
 A.HandlingPointPct = 200
 A.HandlingMin = 60
