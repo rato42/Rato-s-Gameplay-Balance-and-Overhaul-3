@@ -1171,7 +1171,8 @@ function Rat_PatchWeaponRollover()
                             local raw = Rat_HandlingNotPronePen(weapon, nil, stance)
                             local pen = owner and Rat_HandlingNotPronePen(weapon, owner, stance) or raw
                             local base = pen == raw and "" or "<color PDABrowserFlavor> (" .. HintHundredths(100 + raw) .. "x)</color>"
-                            return "<color PDABrowserTextHighlight>" .. HintHundredths(100 + pen) .. "</color>x" .. base
+                            return "<color PDABrowserTextHighlight>" .. HintHundredths(100 + pen) .. "</color>" ..
+                                       "<style PDABrowserTitleSmall>x" .. base .. "</style>"
                         end}
                     end
                     for _, r in ipairs{
