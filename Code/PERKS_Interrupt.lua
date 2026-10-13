@@ -49,6 +49,8 @@ local function KillzoneResetReaction()
     })
 end
 
+RAT_BEATEN_ZONE_ICON = "Mod/cfahRED/Images/perk_BeatenZone.png"
+
 function Rat_BeatenZoneTexts()
     local file_str = "PERKS_Interrupt.lua"
     return ratT(file_str, 483920175320, "Beaten Zone"),
@@ -105,6 +107,7 @@ function OnMsg.ClassesGenerate(classdefs)
             end
         })
         bz.DisplayName, bz.Description = Rat_BeatenZoneTexts()
+        bz.Icon = RAT_BEATEN_ZONE_ICON
     end
 end
 

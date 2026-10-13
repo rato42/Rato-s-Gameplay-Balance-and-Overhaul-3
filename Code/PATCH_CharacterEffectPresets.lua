@@ -75,6 +75,7 @@ function presets_char_effect()
 
         if p.id == "CollateralDamage" then
             p.DisplayName, p.Description = Rat_BeatenZoneTexts()
+            p.Icon = RAT_BEATEN_ZONE_ICON
         end
 
         --------------------------------------------------------------------------------------------
