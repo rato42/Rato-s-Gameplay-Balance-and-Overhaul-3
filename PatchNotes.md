@@ -114,6 +114,11 @@ Weapons now have a state called critical chance per aim, which scales per merc h
 
 -- UI Improvements -- 
 The UI section that displays Recoil, Snapshot etc was reworked. The displayed number is the effective value for the merc, while the grey number afterwards displays the weapon base value. Additionally, now there is a visual display in form of a bar. Green and red show the merc stats impact on the value.
+-- Perks --
+- Opportunistic Killer: no longer enables crits on interrupt attacks. Instead, grants 1 extra overwatch attack. Still reloads automatically after overwatch
+- Killzone: no longer grants a bonus attack on interrupts. Overwatch attacks against the first enemy each turn have 3 aim levels, the second 2, the rest 1. Enables crits on interrupt attacks
+- Collateral Damage renamed to Beaten Zone: same as Killzone, but for MG Setup interrupt attacks. No longer has bonus damage against enemies in cover. Bonus damage against objects was kept
+
 -- -- -- -- -- -- -- -- -- 
 ```
 
