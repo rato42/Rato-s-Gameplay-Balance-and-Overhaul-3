@@ -3,6 +3,8 @@ const.Scale.AP = 100
 const.Combat.R_VanillaAPRaw = 1000
 -- Heavy Weapons perk: shooting stance discount for MGs/heavy weapons, in displayed AP.
 const.Combat.HeavyWeaponsStanceReduction = 5
+-- Carried MG attacks, in displayed AP; the Heavy Weapons perk's attack discount cancels it.
+const.Combat.MGAttackAPSurcharge = 10
 
 -- n AP of the vanilla economy (APStance, bolt cycling, aim level) -> raw. Numbers already in displayed AP use n * const.Scale.AP.
 function R_VanillaAP(n)

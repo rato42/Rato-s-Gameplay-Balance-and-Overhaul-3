@@ -154,6 +154,11 @@ function Unit:GetAttackAPCost(action, weapon, action_ap_cost, aim, delta)
 
     local ap = action_ap_cost or weapon.AttackAP or weapon.ShootAP or 0
     ap = ap + delta
+    ---- before the reactions, so the Heavy Weapons perk discount lands on it; emplacements excluded
+    if IsKindOf(weapon, "MachineGun") and not weapon.emplacement_weapon and action and
+        action.ActionType == "Ranged Attack" then
+        ap = ap + const.Combat.MGAttackAPSurcharge * const.Scale.AP
+    end
     ap = self:CallReactions_Modify("OnCalcAPCost", ap, action, weapon, aim)
 
     if IsKindOf(weapon, "HeavyWeapon") then
