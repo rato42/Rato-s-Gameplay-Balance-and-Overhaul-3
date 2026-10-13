@@ -706,8 +706,8 @@ function weapon_components_rat()
     })
 
     PlaceObj('WeaponComponentEffect', {
-        Description = T(498214252783,
-                        "Increased cost to rotate weapon when prone"),
+        Description = T(640528193774,
+                        "Higher <em>Stance AP</em> and cost to rotate weapon when prone"),
         group = "FX Placeholders",
         id = "rotate_ap_bipod"
     })
@@ -1459,7 +1459,7 @@ local t_table = {
     [905040013361] = 'Reduced <em>Snapshot</em> accuracy <em>penalty</em>',
     [949818133594] = 'Light Barrel, reduced <em>Snapshot</em> accuracy <em>penalty</em>, increased <em>Recoil</em> penalty',
     [983043466921] = 'Heavy Barrel, reduced <em>Recoil</em> penalty, increased <em>Snapshot</em> accuracy <em>penalty</em>',
-    [498214252783] = 'Increased cost to rotate weapon when prone',
+    [640528193774] = 'Higher <em>Stance AP</em> and cost to rotate weapon when prone',
     [879653741676] = 'Enables <em>Burst Fire</em> attack mode, except on interrupt attacks',
     [958768643867] = 'Decreased accuracy in <em>Full Auto</em> and <em>Burst Fire</em> attacks',
     [849532998072] = 'Decreases number of attacks when using the <em>Run and Gun</em> action',

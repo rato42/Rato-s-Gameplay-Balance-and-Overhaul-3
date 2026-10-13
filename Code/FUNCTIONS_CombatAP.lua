@@ -160,7 +160,7 @@ function GetWeapon_StanceAP(unit, weapon, display)
     end
 
     ---- deploying and settling the bipod is part of getting on the gun
-    if unit and unit.stance == "Prone" and weapon:HasComponent("RecoilControlWhenProne") then
+    if unit and unit.stance == "Prone" and weapon:HasComponent("rotate_ap_bipod") then
         raw = raw + const.Combat.BipodProneStanceAP * const.Scale.AP
     end
 
