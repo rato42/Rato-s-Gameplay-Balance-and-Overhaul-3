@@ -14,15 +14,16 @@ from scipy import ndimage
 
 SIZE = 68
 S = 8
-W = SIZE * S
+PAD = 10        # drawing room around the 68-unit layout, so nothing is clipped before the fit
+MARGIN = 1.0    # final gap between the outline and the icon edge
+W = (SIZE + 2 * PAD) * S
 
 GOLD = ((236, 206, 138), (124, 94, 44))   # top, bottom of the fill gradient
-OLIVE = ((150, 150, 112), (72, 74, 52))
 OUTLINE = (6, 5, 3)
 
 
 def P(x, y):
-    return (x * S, y * S)
+    return ((x + PAD) * S, (y + PAD) * S)
 
 
 def rot(points, ang_deg, origin, offset):
@@ -156,7 +157,7 @@ def main(out_path):
 
     rgb = np.zeros((W, W, 3))
     rgb[gold_mask] = shade(gold_mask, GOLD)[gold_mask]
-    rgb[gun_mask] = shade(gun_mask, OLIVE)[gun_mask]
+    rgb[gun_mask] = shade(gun_mask, GOLD)[gun_mask]
     dots = zone_dots() & gold_mask
     rgb[dots] = rgb[dots] * 0.35
 
@@ -167,11 +168,18 @@ def main(out_path):
     rgb[outline | sep] = OUTLINE
     alpha = (shape | outline).astype(float) * 255
 
-    img = Image.fromarray(np.dstack([rgb, alpha]).astype(np.uint8), "RGBA")
-    # premultiply before the downsample so the outline does not bleed into transparent pixels
-    pre = np.array(img).astype(float)
-    pre[..., :3] *= pre[..., 3:4] / 255
-    small = Image.fromarray(pre.astype(np.uint8), "RGBA").resize((SIZE, SIZE), Image.LANCZOS)
+    # premultiply so the outline does not bleed into transparent pixels when resampled
+    pre = np.dstack([rgb * alpha[..., None] / 255, alpha])
+    ys, xs = np.nonzero(alpha)
+    pre = pre[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
+    # scale the drawing to fill the icon and center it
+    box = (SIZE - 2 * MARGIN) * S
+    k = box / max(pre.shape[:2])
+    h, w = round(pre.shape[0] * k), round(pre.shape[1] * k)
+    fitted = Image.fromarray(pre.astype(np.uint8), "RGBA").resize((w, h), Image.LANCZOS)
+    big = Image.new("RGBA", (SIZE * S, SIZE * S), (0, 0, 0, 0))
+    big.paste(fitted, ((SIZE * S - w) // 2, (SIZE * S - h) // 2))
+    small = big.resize((SIZE, SIZE), Image.LANCZOS)
     s = np.array(small).astype(float)
     a = s[..., 3:4]
     s[..., :3] = np.where(a > 0, s[..., :3] * 255 / np.maximum(a, 1), 0)
