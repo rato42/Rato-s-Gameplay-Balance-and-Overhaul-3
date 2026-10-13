@@ -173,12 +173,36 @@ GBO_VanillaGetWeaponModifyProperties = vanilla_modify_props
 local ModifyBarMaxShootAPVanilla = 10
 local ModifyBarMaxAimAccuracyACTH = 70
 
+---- the attack priced like the action bar (RPM, length, perks); the class template used for the
+---- bar's base value is not an instance, so it keeps the live price shifted by its ShootAP difference
+local function modify_attack_ap(item, action, unit, x)
+	x = x or item
+	if x ~= item and x == g_Classes[x.class] then
+		return (action:GetAPCost(unit, {weapon = item}) + (x.ShootAP or 0) - (item.ShootAP or 0)) / const.Scale.AP
+	end
+	return action:GetAPCost(unit, {weapon = x}) / const.Scale.AP
+end
+
 function GetWeaponModifyProperties(item)
 	local statList = vanilla_modify_props(item)
 	local aim_bind = Presets.WeaponPropertyDef.Default.AimAccuracy.bind_to
+	local dlg = GetDialog("ModifyWeaponDlg")
+	local owner = dlg and dlg.idModifyDialog and dlg.idModifyDialog.context.owner
+	local unit = g_Units[owner or false] or SelectedObj
 	for _, stat in ipairs(statList) do
 		if stat.id == "ShootAP" then
 			stat.max = R_VanillaAP(ModifyBarMaxShootAPVanilla) / const.Scale.AP
+			local action = IsKindOf(item, "Firearm") and CombatActions[item:GetBaseAttack(false, "force")]
+			if IsKindOf(unit, "Unit") and action and action:GetAPCost(unit, {weapon = item}) > 0 then
+				stat.GetShootAP = function(it)
+					return modify_attack_ap(item, action, unit, it)
+				end
+				if Rat_IsVariableAuto(action) then
+					stat.display_name = T {310685041358, "Attack Cost (<Name>)", Name = T {396207518843,
+						"<action> (<num> rounds)", action = action.DisplayName,
+						num = Rat_AutoPricedShots(action, item)}}
+				end
+			end
 		elseif stat.bind_to == aim_bind and IsACHTActive() then
 			stat.max = ModifyBarMaxAimAccuracyACTH
 		end
