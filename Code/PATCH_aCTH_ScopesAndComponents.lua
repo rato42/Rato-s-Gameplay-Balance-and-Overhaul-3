@@ -155,8 +155,8 @@ A.ScopeTraits = {
             }
         }
     },
-    ---- Quick 2x (ACOG): no snapshot penalty like the other scopes, but no reduction either -- that
-    ---- belongs to the reflexes. First-aim bonus kept below the reflex's aim 1-2 edge.
+    ---- Quick 2x (Quick Prism): no snapshot penalty like the other scopes, but no reduction either -- that
+    ---- belongs to the reflexes. Full aim one AP cheaper instead of the 2x's threshold bonus.
     ["Scope._2xQuick"] = {
         overwrite = true,
         effects = {"FirstAimBonusModifier", "IncreaseAimAccuracy", "IncreaseRange", "ScopePenalty1", "scope_snapshot"},
@@ -168,7 +168,6 @@ A.ScopeTraits = {
                     MaxAimActionsIncrease = 1,
                     --aim_level_threshold = 4,
                     -- threshold_bonus_aim_acc = scale_aim(2),
-                    first_aim_bonus_acc = 12 -- 18 tied the reflex at aim 1
                 },
                 effects = {
                     ScopeFloorReduction = true,
@@ -180,7 +179,8 @@ A.ScopeTraits = {
                     ScopePenalty3 = false,
                     IncreaseRange = false,
                     IncreaseAimAccuracy = false,
-                    FirstAimBonusModifier = true
+                    FirstAimBonusModifier = false,
+                    QuickFullAim = true
                 }
             }
         }

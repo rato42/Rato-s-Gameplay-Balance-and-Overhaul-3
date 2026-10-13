@@ -159,6 +159,11 @@ function Unit:GetAttackAPCost(action, weapon, action_ap_cost, aim, delta)
     if IsKindOf(weapon, "HeavyWeapon") then
     elseif IsKindOf(weapon, "Firearm") or IsKindOf(weapon, "Grenade") or IsKindOf(weapon, "MeleeWeapon") then
         ap = ap + aim * aimCost
+        ---- DualShot caps max below the weapon's own top level; cheap checks before HasComponent (AI hot path)
+        if aim >= 2 and min + aim == max and max >= (weapon.MaxAimActions or 0) and IsKindOf(weapon, "Firearm")
+            and weapon:HasComponent("QuickFullAim") then
+            ap = ap - aimCost
+        end
     else
         ap = -1
     end
