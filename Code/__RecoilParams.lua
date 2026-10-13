@@ -45,6 +45,6 @@ function OnMsg.ClassesGenerate()
     Pistol.class_base_recoil = 195
     Revolver.class_base_recoil = 188
     SubmachineGun.class_base_recoil = 138
-    MachineGun.class_base_recoil = 95
+    MachineGun.class_base_recoil = 75
     Shotgun.class_base_recoil = 90
 end
