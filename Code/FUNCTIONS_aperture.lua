@@ -602,6 +602,20 @@ function Rat_StepAttrMul(attacker, action, aim, opportunity_attack)
     return Max(0, 100 - MulDivRound(impact, stat - (a.StepAttrPivot or 50), 50)), key
 end
 
+---- interrupt from a set-up MG or emplacement, or the MGSetup / MGRotate preview of one
+function Rat_IsMGSetupInterrupt(attacker, action, opportunity_attack)
+    if not opportunity_attack or not attacker or attacker.placeholder then
+        return false
+    end
+    if action and (action.id == "MGSetup" or action.id == "MGRotate") then
+        return true
+    end
+    local overwatch = g_Overwatch[attacker]
+    return overwatch and overwatch.permanent and
+               (attacker:HasStatusEffect("StationedMachineGun") or
+                   attacker:HasStatusEffect("ManningEmplacement")) and true or false
+end
+
 ---- Retorna sigma e a lista de contribuicoes (para a UI mostrar em minutos de cone,
 ---- no lugar da lista aditiva de pontos percentuais que o modelo antigo exibia).
 function Rat_GetAperture(weapon, attacker, action, aim, opportunity_attack)
@@ -705,6 +719,11 @@ function Rat_GetAperture(weapon, attacker, action, aim, opportunity_attack)
             if cqc then
                 excess = MulDivRound(excess, 100 - a.CQCStepReduc, 100)
             end
+            local mg_setup = (a.MGSetupInterruptStepMul or 100) ~= 100 and
+                                 Rat_IsMGSetupInterrupt(attacker, action, opportunity_attack)
+            if mg_setup then
+                excess = MulDivRound(excess, a.MGSetupInterruptStepMul, 100)
+            end
             step = 100 + excess
 
 			local original_s_debug = s
@@ -717,6 +736,9 @@ function Rat_GetAperture(weapon, attacker, action, aim, opportunity_attack)
             end
             if cqc then
                 meta[#meta + 1] = cqc.DisplayName
+            end
+            if mg_setup then
+                meta[#meta + 1] = CombatActions.MGSetup.DisplayName
             end
             if step_meta then
                 meta[#meta + 1] = step_meta[1]

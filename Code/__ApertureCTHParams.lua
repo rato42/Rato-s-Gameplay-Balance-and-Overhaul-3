@@ -122,6 +122,9 @@ A.AimStep = {
 A.AimStepMaxLevel = 2 --- acima disso a arma esta encostada: alargamento 100
 ---- CQC Training: % of the hipfire/snapshot excess removed. Calibrated against AutoWeapons.
 A.CQCStepReduc = 30
+---- Set-up MG / emplacement interrupt (and the MGSetup / MGRotate preview): % of the snapshot excess
+---- kept. Classic gave these 49-60% of a regular interrupt's penalty over 10-34 tiles.
+A.MGSetupInterruptStepMul = 55
 ---- Attribute on the step excess, like classic: excess x (100 - Impact*(stat - Pivot)/50). 0 disables.
 ---- Impact 35 / Pivot 50 = classic's x1.35 at stat 0, x0.65 at 100. Stat is Reflexes, or Strength
 ---- for hipfired autofire-type attacks (see Rat_StepAttrMul).
