@@ -1,7 +1,15 @@
 ---- Opportunistic Killer: +Overwatch attacks and the vanilla auto-reload, no interrupt crits.
----- Killzone: Overwatch/MG interrupt aim ladders by distinct target per turn, crits enabled, no double attacks.
+---- Killzone (Overwatch) / Beaten Zone (ex Collateral Damage, MG setup): interrupt aim ladders by distinct target per turn, crits enabled.
 
 GameVar("gv_Rat_KillzoneTargets", function() return {} end)
+
+local function IsMGSetUp(unit)
+    return unit:HasStatusEffect("StationedMachineGun") or unit:HasStatusEffect("ManningEmplacement")
+end
+
+local function KillzonePerk(unit)
+    return IsMGSetUp(unit) and "CollateralDamage" or "Killzone"
+end
 
 local function KillzoneTargetRank(attacker, target)
     local ranks = gv_Rat_KillzoneTargets[attacker.session_id]
@@ -19,7 +27,7 @@ local function KillzoneTargetRank(attacker, target)
 end
 
 function Rat_KillzoneAim(attacker, target, aim, action)
-    if not HasPerk(attacker, "Killzone") or not IsKindOf(target, "Unit") then
+    if not HasPerk(attacker, KillzonePerk(attacker)) or not IsKindOf(target, "Unit") then
         return aim
     end
     local ladder = const.Combat.Perks.KillzoneAimByTarget
@@ -30,6 +38,31 @@ end
 
 function OnMsg.CombatEnd()
     gv_Rat_KillzoneTargets = {}
+end
+
+local function KillzoneReactions(perk_id)
+    return {
+        PlaceObj('UnitReaction', {
+            Event = "OnCalcCritChance",
+            Handler = function(self, target, attacker, attack_target, action, weapon, data)
+                if target == attacker and KillzonePerk(attacker) == perk_id then
+                    data.opportunity_attack = false
+                end
+            end
+        }),
+        PlaceObj('UnitReaction', {
+            Event = "OnBeginTurn",
+            Handler = function(self, target)
+                gv_Rat_KillzoneTargets[target.session_id] = nil
+            end
+        })
+    }
+end
+
+function Rat_BeatenZoneTexts()
+    local file_str = "PERKS_Interrupt.lua"
+    return ratT(file_str, 483920175320, "Beaten Zone"),
+           ratT(file_str, 483920175321, "<em>Machine Gun</em> <GameTerm('Interrupt')> attacks in <em>Setup</em> against the <em>first</em> enemy each turn have <em>3 aim levels</em>, against the <em>second</em> <em>2 aim levels</em>.\n\nEnables <GameTerm('Crits')> with these attacks.")
 end
 
 function OnMsg.ClassesGenerate(classdefs)
@@ -50,24 +83,14 @@ function OnMsg.ClassesGenerate(classdefs)
         ok.unit_reactions = reactions
     end
 
-    local kz = classdefs.Killzone
-    if kz then
-        kz.unit_reactions = {
-            PlaceObj('UnitReaction', {
-                Event = "OnCalcCritChance",
-                Handler = function(self, target, attacker, attack_target, action, weapon, data)
-                    if target == attacker then
-                        data.opportunity_attack = false
-                    end
-                end
-            }),
-            PlaceObj('UnitReaction', {
-                Event = "OnBeginTurn",
-                Handler = function(self, target)
-                    gv_Rat_KillzoneTargets[target.session_id] = nil
-                end
-            })
-        }
+    if classdefs.Killzone then
+        classdefs.Killzone.unit_reactions = KillzoneReactions("Killzone")
+    end
+
+    local bz = classdefs.CollateralDamage
+    if bz then
+        bz.unit_reactions = KillzoneReactions("CollateralDamage")
+        bz.DisplayName, bz.Description = Rat_BeatenZoneTexts()
     end
 end
 

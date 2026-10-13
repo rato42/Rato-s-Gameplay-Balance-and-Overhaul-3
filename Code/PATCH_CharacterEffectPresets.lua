@@ -70,7 +70,14 @@ function presets_char_effect()
         end
 
         if p.id == "Killzone" then
-            p.Description = ratT(file_str, 483920175319, "<GameTerm('Overwatch')> and <em>Machine Gun</em> <GameTerm('Interrupt')> attacks against the <em>first</em> enemy each turn have <em>3 aim levels</em>, against the <em>second</em> <em>2 aim levels</em>.\n\nEnables <GameTerm('Crits')> with <GameTerm('Interrupt')> attacks.")
+            p.Description = ratT(file_str, 483920175319, "<GameTerm('Overwatch')> attacks against the <em>first</em> enemy each turn have <em>3 aim levels</em>, against the <em>second</em> <em>2 aim levels</em>.\n\nEnables <GameTerm('Crits')> with <GameTerm('Interrupt')> attacks, except from a <em>Machine Gun Setup</em>.")
+        end
+
+        if p.id == "CollateralDamage" then
+            p.DisplayName, p.Description = Rat_BeatenZoneTexts()
+            ---- Weapon.lua reads objectDamageMod directly, outside the perk's reactions
+            GBO_ChangeParamAndUpdateCache(p, "enemyDamageMod", 0)
+            GBO_ChangeParamAndUpdateCache(p, "objectDamageMod", 0)
         end
 
         --------------------------------------------------------------------------------------------
