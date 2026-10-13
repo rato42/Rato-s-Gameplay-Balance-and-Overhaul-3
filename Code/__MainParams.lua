@@ -81,6 +81,8 @@ const.Combat.Perks.OutOfBreathAimMul = 70
 const.Combat.Perks.SaviorAdrenalineRushFreeMoveMul = 120
 const.Combat.Perks.SaviorAdrenalineRushFreeMoveBonus = R_VanillaAPToDisplay(4)
 const.Combat.Perks.SaviorAdrenalineRushBonusAP = R_VanillaAPToDisplay(2)
+const.Combat.Perks.OpportunisticKillerBonusAttacks = 1
+const.Combat.Perks.KillzoneAimByTarget = {3, 2, 1} -- aim per distinct target this turn; last entry repeats
 
 ----- Critical
 const.Combat.Critical = {}

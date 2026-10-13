@@ -1742,6 +1742,10 @@ return {
 			'CodeFileName', "Code/PATCH_OnClassesGenerate.lua",
 		}),
 		PlaceObj('ModItemCode', {
+			'name', "PERKS_Interrupt",
+			'CodeFileName', "Code/PERKS_Interrupt.lua",
+		}),
+		PlaceObj('ModItemCode', {
 			'name', "APPEND_CLASS_WeaponComponent",
 			'CodeFileName', "Code/APPEND_CLASS_WeaponComponent.lua",
 		}),

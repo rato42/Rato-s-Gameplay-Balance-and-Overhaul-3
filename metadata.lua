@@ -169,6 +169,7 @@ return PlaceObj('ModDef', {
 		"Code/PATCH_call.lua",
 		"Code/PATCH_CharacterEffectPresets.lua",
 		"Code/PATCH_OnClassesGenerate.lua",
+		"Code/PERKS_Interrupt.lua",
 		"Code/APPEND_CLASS_WeaponComponent.lua",
 		"Code/CONSTANTS_mod_options.lua",
 		"Code/OPTIONS_GunsHurt.lua",

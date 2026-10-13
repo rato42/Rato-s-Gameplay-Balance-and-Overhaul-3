@@ -65,6 +65,15 @@ function presets_char_effect()
         end
 
         --------------------------------------------------------------------------------------------
+        if p.id == "OpportunisticKiller" then
+            p.Description = ratT(file_str, 483920175318, "Gain an <em>extra attack</em> when using <GameTerm('Overwatch')>.\n\n<em>Automatic reload</em> if <GameTerm('Overwatch')> was used last turn.")
+        end
+
+        if p.id == "Killzone" then
+            p.Description = ratT(file_str, 483920175319, "<GameTerm('Overwatch')> and <em>Machine Gun</em> <GameTerm('Interrupt')> attacks against the <em>first</em> enemy each turn have <em>3 aim levels</em>, against the <em>second</em> <em>2 aim levels</em>.\n\nEnables <GameTerm('Crits')> with <GameTerm('Interrupt')> attacks.")
+        end
+
+        --------------------------------------------------------------------------------------------
         if p.id == "Psycho" then
             p.Description = ratT(file_str, 483920175317, "Can decide to use a more vicious attack than the one selected: a <em>Single Shot</em> becomes a burst, and <em>Auto Fire</em> fires up to twice as many rounds at no extra <em>AP</em>.\n\nMore likely to <em>overrun the trigger</em> in <em>Auto Fire</em>.\n\nAdditional <em>conversation options</em>.")
         end
