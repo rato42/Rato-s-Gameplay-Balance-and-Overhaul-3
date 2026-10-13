@@ -211,7 +211,6 @@ A.ScopeTraits = {
             }
         }
     },
---TODO: Should the ZF scope have different params from the aug scope?
     ["Scope._1dot5x"] = {
         overwrite = true,
         effects = {"IncreaseRange"},
@@ -234,6 +233,35 @@ A.ScopeTraits = {
                     ScopePenalty2 = false,
                     ScopePenalty3 = false,
 					AccuracyBonusWhenAimed = false
+                }
+            }
+        }
+    },
+    ---- Budget 4x (ZF 4 on the STG44 / G43): early-game optic, half the 4x floor cut, lighter snapshot and close-range costs.
+    ["Scope._4xZF"] = {
+        overwrite = true,
+        effects = {"IncreaseRange"},
+        params = {RangeIncrease = 4},
+        modes = {
+            aCTH = {
+                params = {
+                    floor_reduc = 8,
+                    MaxAimActionsIncrease = 2,
+                    snap_mul_inc = 110,
+                    aim_level_threshold = 5,
+                    threshold_bonus_aim_acc = scale_aim(4)
+                },
+                effects = {
+                    ScopeFloorReduction = true,
+                    ScopeAimThresholdBonus = true,
+                    IncreaseMaxAimActions = true,
+                    IncreaseSnapshotMul = true,
+                    ScopePenalty1 = true,
+                    ScopePenalty2 = false,
+                    ScopePenalty3 = false,
+                    IncreaseRange = false,
+                    IncreaseAimAccuracy = false,
+                    AccuracyBonusWhenAimed = false
                 }
             }
         }
@@ -343,7 +371,7 @@ A.ScopeTraitOf = {
     ["_Master_PSO-1M2_Scope_TOG"] = "Scope._4x",
     _Master_SteyrS_Scope_TOG = "Scope._4x",
     _Master_m76_scope_TOG = "Scope._4x",
-    _Master_GW43_Scope_TOG = "Scope._1dot5x",
+    _Master_GW43_Scope_TOG = "Scope._4xZF",
     _Master_G11_Scope_1 = "Scope._1dot5x",
     TAR21_Scope_Rflx_1 = "Scope.Reflex" -- TAR21_1
 
