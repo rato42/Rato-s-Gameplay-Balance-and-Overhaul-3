@@ -60,6 +60,7 @@ return PlaceObj('ModDef', {
 		"Code/COMBAT_ACTIONS_Sprint.lua",
 		"Code/FEATURE_BlindRunAndGun.lua",
 		"Code/COMBAT_ACTIONS.lua",
+		"Code/FEATURE_MGFireModes.lua",
 		"Code/FEATURE_VariableAutofire.lua",
 		"Code/FEATURE_AutofireCadence.lua",
 		"Code/COMBAT_ACTIONS_BulletHell.lua",

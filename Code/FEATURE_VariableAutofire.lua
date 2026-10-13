@@ -14,7 +14,7 @@ end
 ---- no full auto means burst is the only automatic mode, so it stays
 function Rat_HasSelectiveBurst(weapon)
     return weapon.BurstSelective or weapon:HasComponent("Enable_BurstFire") or
-               not weapon:CanAutofire()
+               not Rat_HasVariableAuto(weapon)
 end
 
 ---- attack that RunAndGun and the AI use for a short burst with this weapon
@@ -271,6 +271,8 @@ function Rat_ApplyVariableAutofire()
     auto.GetActionDamage = variable_damage
     mg.GetActionDamage = variable_damage
     mg.GetUIState = variable_ui_state
+    ---- folds MG Autofire into the Single / Burst firing-mode toggle
+    mg.FiringModeMember = "Attack"
 
     ---- one autofire per weapon: MGBurstFire keeps its identity, AutoFire yields to it
     auto.GetUIState = function(self, units, args)

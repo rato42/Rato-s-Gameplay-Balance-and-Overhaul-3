@@ -1260,6 +1260,10 @@ return {
 			'CodeFileName', "Code/COMBAT_ACTIONS.lua",
 		}),
 		PlaceObj('ModItemCode', {
+			'name', "FEATURE_MGFireModes",
+			'CodeFileName', "Code/FEATURE_MGFireModes.lua",
+		}),
+		PlaceObj('ModItemCode', {
 			'name', "FEATURE_VariableAutofire",
 			'CodeFileName', "Code/FEATURE_VariableAutofire.lua",
 		}),
