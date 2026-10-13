@@ -151,7 +151,8 @@ end
 
 local function HintChartLines(curves, left, bottom, w, h, px, dim)
     for i, pts in ipairs(curves) do
-        local color = HintChartColors[Min(i, #HintChartColors)]
+        ---- curves.first: the round the first curve plots, so round N keeps one color across charts
+        local color = HintChartColors[Min(i + (curves.first or 1) - 1, #HintChartColors)]
         if dim then
             color = InterpolateRGB(color, RGB(30, 32, 30), 35, 100)
         end
@@ -254,7 +255,7 @@ local function HintChartDraw(win)
     for i = 1, #curves do
         local str = win.rat_legend and _InternalTranslate(win.rat_legend[i]) or
                         i == 1 and _InternalTranslate(HintChartHipLabel) or _InternalTranslate(T{HintChartAimLabel, num = i - 1})
-        x = x + text(str, x, bottom + fh + 4, HintChartColors[Min(i, #HintChartColors)]) + 10
+        x = x + text(str, x, bottom + fh + 4, HintChartColors[Min(i + (curves.first or 1) - 1, #HintChartColors)]) + 10
     end
     if ref then
         local y = bottom + 2 * fh + 6
@@ -394,6 +395,7 @@ local function HintRecoilCurves(weapon, owner, stance, aimed)
         end
         return curves
     end
+    curves.first = 2
     for i = 2, shots do
         curves[i - 1] = {}
     end
@@ -416,7 +418,7 @@ local function HintRecoilSetup(win, weapon, owner, stance, aimed)
     if not curves then
         return false
     end
-    local first = aimed and 1 or 2
+    local first = curves.first or 1
     win.rat_curves, win.rat_legend = curves, {}
     for i = first, curves.shots do
         win.rat_legend[i - first + 1] = T{HintRecoilRoundLabel, num = i}
