@@ -188,6 +188,11 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
             metaText[#metaText + 1] = T(481487998456, "(-) Heavy Barrel")
         end
 
+        if weapon and weapon:HasComponent("stockheavy_effect_recoil") then
+            penalty = penalty * c_mods.HeavyStockMul
+            metaText[#metaText + 1] = T(604318227590, "(-) Heavy Stock")
+        end
+
     end
 
     if action and (action.id == "RunAndGun" or action.id == "RecklessAssault") then
@@ -224,7 +229,8 @@ local t_id_table = {
     [224584566951] = "(-) Extended Barrel",
     [119591314866] = "Short Barrel",
     [447116472426] = "Light Barrel",
-    [481487998456] = "(-) Heavy Barrel"
+    [481487998456] = "(-) Heavy Barrel",
+    [604318227590] = "(-) Heavy Stock"
 }
 
 ratG_T_table['FUNCTIONS_hipfire.lua'] = t_id_table

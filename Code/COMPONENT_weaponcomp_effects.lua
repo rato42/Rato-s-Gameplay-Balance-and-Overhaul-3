@@ -553,7 +553,7 @@ function weapon_components_rat()
 
     PlaceObj('WeaponComponentEffect', {
         Description = T(203713773863,
-                        "Reduced <em>recoil penalty</em>"),
+                        "Reduced <em>recoil penalty</em>, increased <em>Snapshot</em> accuracy <em>penalty</em>"),
         group = "FX Placeholders",
         id = "stockheavy_effect_recoil"
     })
@@ -1439,7 +1439,7 @@ local t_table = {
     [400216040089] = 'Decreases <em>Shooting Angle</em>',
     [601041780492] = 'Increases <em>Shooting Angle</em>',
     [558731788097] = 'Increased <em>recoil penalty</em>',
-    [203713773863] = 'Reduced <em>recoil penalty</em>',
+    [203713773863] = 'Reduced <em>recoil penalty</em>, increased <em>Snapshot</em> accuracy <em>penalty</em>',
     [796931242458] = 'Significantly reduced penalty to <em>target body parts</em> with attacks with 4+ aim levels',
     [725526889720] = 'Grants bonus Critical Chance per aim level',
     [353562872144] = 'Grants bonus Accuracy to attacks with 3+ aim levels - bonus is based on <em>Weapon Aim Accuracy</em>',
