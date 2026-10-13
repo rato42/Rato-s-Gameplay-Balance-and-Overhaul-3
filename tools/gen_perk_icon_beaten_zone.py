@@ -13,7 +13,7 @@ from PIL import Image, ImageDraw
 from scipy import ndimage
 
 SIZE = 68
-S = 8
+S = 12
 PAD = 10        # drawing room around the 68-unit layout, so nothing is clipped before the fit
 MARGIN = 1.0    # final gap between the outline and the icon edge
 W = (SIZE + 2 * PAD) * S
@@ -61,7 +61,6 @@ def draw_gun(d):
         [(0, -3.2), (3, -3.6), (11, -2.6), (11, 2.4), (5, 4.4), (0, 5.6)],   # stock
         [(11, -3.4), (24, -3.4), (24, 2.8), (11, 2.8)],                      # receiver
         [(13, -5.4), (22, -5.4), (23.5, -3.4), (12, -3.4)],                  # feed cover
-        [(14.5, 2.8), (20.5, 2.8), (20, 8.0), (15, 8.0)],                    # ammo box
         [(21.5, 2.4), (24.6, 2.4), (23.6, 8.2), (20.6, 8.2)],                # pistol grip
         [(24, -2.6), (31, -2.6), (31, 1.8), (24, 1.8)],                      # gas cylinder / handguard
         [(31, -1.6), (41, -1.6), (41, 1.0), (31, 1.0)],                      # barrel
@@ -71,7 +70,7 @@ def draw_gun(d):
         d.polygon(gun(poly), fill=255)
     hinge = gun_point(33.0, 1.0)
     for foot in BIPOD_FEET:
-        d.line([P(*hinge), P(*gun_point(*foot))], fill=255, width=int(1.9 * S))
+        dash(d, [hinge, gun_point(*foot)], 1.9)
     return gun_point(44.0, -0.3)
 
 
@@ -88,7 +87,7 @@ def bezier(p0, p1, p2, p3, n=400):
 ZONE_X = (46.0, 67.0)
 ZONE_Y = 60.0
 ZONE_RY = 2.4
-DASH, GAP = 4.2, 2.6
+DASH, GAP = 3.2, 4.4  # gap must clear the round caps plus both outlines
 
 
 def draw_cone(d, muzzle):
@@ -96,7 +95,7 @@ def draw_cone(d, muzzle):
     # drag-like cubic: leaves along (barrel + spread), falls steeply onto the zone
     for spread, reach, ctrl2, end_x in ARCS:
         a = math.radians(GUN_ANGLE + spread)
-        x0, y0 = muzzle[0] + 1.5 * math.cos(a), muzzle[1] + 1.5 * math.sin(a)
+        x0, y0 = muzzle[0] + 3.5 * math.cos(a), muzzle[1] + 3.5 * math.sin(a)
         ctrl1 = (x0 + reach * math.cos(a), y0 + reach * math.sin(a))
         pts = bezier((x0, y0), ctrl1, ctrl2, (end_x, ZONE_Y - 1.2))
         travelled, on = 0.0, True
@@ -106,10 +105,16 @@ def draw_cone(d, muzzle):
             seg.append(b)
             if travelled >= (DASH if on else GAP):
                 if on:
-                    d.line([P(*q) for q in seg], fill=255, width=int(2.0 * S), joint="curve")
+                    dash(d, seg)
                 travelled, on, seg = 0.0, not on, [b]
         if on and len(seg) > 1:
-            d.line([P(*q) for q in seg], fill=255, width=int(2.0 * S), joint="curve")
+            dash(d, seg)
+
+
+def dash(d, seg, w=2.0):
+    d.line([P(*q) for q in seg], fill=255, width=int(w * S), joint="curve")
+    for x, y in (seg[0], seg[-1]):
+        d.ellipse([P(x - w / 2, y - w / 2), P(x + w / 2, y + w / 2)], fill=255)
 
 
 def draw_zone(d):
@@ -162,9 +167,10 @@ def main(out_path):
     rgb[dots] = rgb[dots] * 0.35
 
     shape = gun_mask | gold_mask
-    outline = ndimage.binary_dilation(shape, iterations=int(1.4 * S)) & ~shape
+    # euclidean distances give round outlines; binary_dilation steps them into octagons
+    outline = (ndimage.distance_transform_edt(~shape) <= 1.4 * S) & ~shape
     # gap between the gun and the cone so the two read as separate objects
-    sep = ndimage.binary_dilation(gun_mask, iterations=int(0.9 * S)) & gold_mask
+    sep = (ndimage.distance_transform_edt(~gun_mask) <= 0.9 * S) & gold_mask
     rgb[outline | sep] = OUTLINE
     alpha = (shape | outline).astype(float) * 255
 
@@ -176,10 +182,10 @@ def main(out_path):
     box = (SIZE - 2 * MARGIN) * S
     k = box / max(pre.shape[:2])
     h, w = round(pre.shape[0] * k), round(pre.shape[1] * k)
-    fitted = Image.fromarray(pre.astype(np.uint8), "RGBA").resize((w, h), Image.LANCZOS)
+    fitted = Image.fromarray(pre.astype(np.uint8), "RGBA").resize((w, h), Image.BICUBIC)
     big = Image.new("RGBA", (SIZE * S, SIZE * S), (0, 0, 0, 0))
     big.paste(fitted, ((SIZE * S - w) // 2, (SIZE * S - h) // 2))
-    small = big.resize((SIZE, SIZE), Image.LANCZOS)
+    small = big.resize((SIZE, SIZE), Image.BOX)  # area average: no ringing on the outline
     s = np.array(small).astype(float)
     a = s[..., 3:4]
     s[..., :3] = np.where(a > 0, s[..., :3] * 255 / np.maximum(a, 1), 0)
