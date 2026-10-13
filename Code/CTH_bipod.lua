@@ -3,7 +3,8 @@ function bipod_standing()
     Presets.ChanceToHitModifier.Default["Bipod"].CalcValue =
         function(self, attacker, target, body_part_def, action, weapon1, weapon2, lof, aim, opportunity_attack,
                  attacker_pos, target_pos)
-            if not weapon1 or attacker.stance ~= "Prone" then
+            ---- aCTH: the braced bipod works on the cone (A.BipodProneFloorMul, AimDecayMuls.BipodProne)
+            if not weapon1 or attacker.stance ~= "Prone" or IsACHTActive(weapon1, action, attacker) then
                 return false, 0
             end
             local value = GetComponentEffectValue(weapon1, "AccuracyBonusProne", "bonus_cth")

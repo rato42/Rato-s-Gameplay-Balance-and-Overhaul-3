@@ -32,6 +32,9 @@ A.Base = A.BaseFactor * 100 / A.SkillMin--75 --57
 
 ---- Piso mecanico do cone. Derivado do WeaponRange: silhueta de alvo em pe no alcance maximo x este %.
 A.FloorPct = 60--45 --130 --55
+
+---- braced bipod (AccuracyBonusProne, prone): floor mul, stacks with the scope's
+A.BipodProneFloorMul = 80
 ----------------------------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------------------------
@@ -92,6 +95,8 @@ A.AimDecayMuls = {
 	         meta = T {271472323596, "Prone"}},
 	ProneGripPenalty = {mul = 105, stance = "Prone", component = "grip_prone_penalty",
 	                    meta = T {856431894569, "(-) Grip while prone"}},
+	---- braced bipod; replaces the flat prone CTH bonus in aCTH
+	BipodProne = {mul = 90, stance = "Prone", component = "AccuracyBonusProne"},
 	TacGripHinge = {mul = 103, component = "tac_grip_hinge",
 	                cond = function(weapon, attacker) return not attacker or attacker.stance ~= "Prone" end},
 	---- stocks live in A.ComponentEffectsAimBonus: light flat, no/folded a mul on AimAccuracy

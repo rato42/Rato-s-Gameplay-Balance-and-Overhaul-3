@@ -568,7 +568,7 @@ end
 ---- Piso mecanico do cone, derivado do WeaponRange -- a ASSINTOTA do tiro mirado. Opticas nao dao
 ---- mais WeaponRange; a "cereja" delas entra aqui, so no piso, entao e invisivel com pouca mira
 ---- (no aim 0 o cone e ~10x o piso) e vale tudo com mira cheia. Canos longos continuam pelo range.
-function Rat_ApertureFloor(weapon, action)
+function Rat_ApertureFloor(weapon, action, attacker)
     local a = P()
     local range = (weapon and weapon.WeaponRange) or 20
     ---- Snipe: same PindownRangeMul the old CTH fed GetRangeAccuracy, here on the asymptote
@@ -578,7 +578,11 @@ function Rat_ApertureFloor(weapon, action)
     local floor_dist = range * const.SlabSizeX
     local theta = Rat_ThetaTarget(floor_dist, a.Silhouette.Standing)
     local floor = MulDivRound(theta, a.FloorPct, 100)
-    return Max(1, MulDivRound(floor, Rat_ScopeFloorMul(weapon), 100))
+    floor = MulDivRound(floor, Rat_ScopeFloorMul(weapon), 100)
+    if attacker and attacker.stance == "Prone" and IsKindOf(weapon, "Firearm") and weapon:HasComponent("AccuracyBonusProne") then
+        floor = MulDivRound(floor, a.BipodProneFloorMul or 100, 100)
+    end
+    return Max(1, floor)
 end
 
 ---------------------------------------------------------------------------------------------------
@@ -664,7 +668,7 @@ function Rat_GetAperture(weapon, attacker, action, aim, opportunity_attack)
 
     --- 4. cada nivel de mira FECHA o cone, em direcao ao piso da arma
     local comps, metaTextComps = GetApertureAimComponentEffects(weapon, attacker, action)
-    local floor = Rat_ApertureFloor(weapon, action)
+    local floor = Rat_ApertureFloor(weapon, action, attacker)
     ---- escada de decay: com limiar de optica cada nivel fecha um tanto diferente. Guardada
     ---- inteira para o overlay enumerar nivel a nivel (ver Rat_ConeFactors).
     local ladder = {}
