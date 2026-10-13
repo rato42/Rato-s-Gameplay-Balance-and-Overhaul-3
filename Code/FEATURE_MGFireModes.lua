@@ -36,6 +36,7 @@ end
 ---- FEATURE_VariableAutofire.lua, which wraps this function.
 function Unit:RecalcUIActions(force)
 	local actions
+	local attacks_first
 	
 	if self:GetBandageTarget() then
 		actions = { "StopBandaging" }
@@ -44,10 +45,12 @@ function Unit:RecalcUIActions(force)
 		local action = self:GetDefaultAttackAction()
 		actions[#actions + 1] = action.id
 		-- GBO: a set-up MG lists every fire mode, so the firing-mode toggle can form
+		attacks_first = {[action.id] = true}
 		if self:HasStatusEffect("StationedMachineGun") then
 			local weapon = self:GetActiveWeapons()
 			for _, id in ipairs(IsKindOf(weapon, "Firearm") and weapon.AvailableAttacks or empty_table) do
 				table.insert_unique(actions, id)
+				attacks_first[id] = true
 			end
 		end
 		ForEachPresetInGroup("CombatAction", "MachineGun", function(def)
@@ -73,10 +76,13 @@ function Unit:RecalcUIActions(force)
 	self.ui_actions = ui_actions
 
 	if actions then
+		-- GBO: set up, the attacks lead the bar (the MachineGun group shares their SortKey 0)
 		table.sort(actions, function(a, b)
 			local actionA = CombatActions[a]
 			local actionB = CombatActions[b]
-			return actionA.SortKey < actionB.SortKey
+			local keyA = attacks_first and attacks_first[a] and -1 or actionA.SortKey
+			local keyB = attacks_first and attacks_first[b] and -1 or actionB.SortKey
+			return keyA < keyB
 		end)
 
 		-- First pass, find actions which combine into firing modes.

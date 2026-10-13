@@ -273,6 +273,7 @@ function Rat_ApplyVariableAutofire()
     mg.GetUIState = variable_ui_state
     ---- folds MG Autofire into the Single / Burst firing-mode toggle
     mg.FiringModeMember = "Attack"
+    mg.IconFiringMode = auto.IconFiringMode
 
     ---- one autofire per weapon: MGBurstFire keeps its identity, AutoFire yields to it
     auto.GetUIState = function(self, units, args)
@@ -556,7 +557,13 @@ end
 local GBO_OriginalResolveDefaultFiringModeAction = Unit.ResolveDefaultFiringModeAction
 local rat_fm_units = {}
 local rat_fm_hidden = {}
-function Unit:ResolveDefaultFiringModeAction(firingMode, ui, sync)
+---- MG crosshair order: selective burst first, then MG Autofire, then single
+local mg_fm_rank = {BurstFire = 1, MGBurstFire = 2, SingleShot = 3}
+local function mg_fm_order(a, b)
+    return (mg_fm_rank[a.id] or 4) < (mg_fm_rank[b.id] or 4)
+end
+
+local function resolve_visible_firing_modes(self, firingMode, ui, sync)
     local id, actions = GBO_OriginalResolveDefaultFiringModeAction(self, firingMode, ui, sync)
     if not actions or #actions < 2 then
         return id, actions
@@ -579,4 +586,12 @@ function Unit:ResolveDefaultFiringModeAction(firingMode, ui, sync)
         end
     end
     return id or actions[1].id, actions
+end
+
+function Unit:ResolveDefaultFiringModeAction(firingMode, ui, sync)
+    local id, actions = resolve_visible_firing_modes(self, firingMode, ui, sync)
+    if actions and #actions > 1 and table.find(actions, "id", "MGBurstFire") then
+        table.sort(actions, mg_fm_order)
+    end
+    return id, actions
 end
