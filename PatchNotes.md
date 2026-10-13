@@ -117,7 +117,7 @@ The UI section that displays Recoil, Snapshot etc was reworked. The displayed nu
 -- Perks --
 - Opportunistic Killer: no longer enables crits on interrupt attacks. Instead, grants 1 extra overwatch attack. Still reloads automatically after overwatch
 - Killzone: no longer grants a bonus attack on interrupts. Overwatch attacks against the first enemy each turn have 3 aim levels, the second 2, the rest 1. Enables crits on interrupt attacks
-- Collateral Damage renamed to Beaten Zone: same as Killzone, but for MG Setup interrupt attacks. No longer has bonus damage against enemies in cover. Bonus damage against objects was kept
+- Collateral Damage renamed to Beaten Zone: same aim levels as Killzone, but for MG Setup interrupt attacks (no crits). No longer has bonus damage against enemies in cover. Bonus damage against objects was kept
 
 -- -- -- -- -- -- -- -- -- 
 ```

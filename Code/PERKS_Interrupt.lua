@@ -1,5 +1,5 @@
 ---- Opportunistic Killer: +Overwatch attacks and the vanilla auto-reload, no interrupt crits.
----- Killzone (Overwatch) / Beaten Zone (ex Collateral Damage, MG setup): interrupt aim ladders by distinct target per turn, crits enabled; Beaten Zone keeps object damage.
+---- Killzone (Overwatch) / Beaten Zone (ex Collateral Damage, MG setup): interrupt aim ladders by distinct target per turn; Killzone enables crits, Beaten Zone keeps object damage.
 
 GameVar("gv_Rat_KillzoneTargets", function() return {} end)
 
@@ -40,29 +40,19 @@ function OnMsg.CombatEnd()
     gv_Rat_KillzoneTargets = {}
 end
 
-local function KillzoneReactions(perk_id)
-    return {
-        PlaceObj('UnitReaction', {
-            Event = "OnCalcCritChance",
-            Handler = function(self, target, attacker, attack_target, action, weapon, data)
-                if target == attacker and KillzonePerk(attacker) == perk_id then
-                    data.opportunity_attack = false
-                end
-            end
-        }),
-        PlaceObj('UnitReaction', {
-            Event = "OnBeginTurn",
-            Handler = function(self, target)
-                gv_Rat_KillzoneTargets[target.session_id] = nil
-            end
-        })
-    }
+local function KillzoneResetReaction()
+    return PlaceObj('UnitReaction', {
+        Event = "OnBeginTurn",
+        Handler = function(self, target)
+            gv_Rat_KillzoneTargets[target.session_id] = nil
+        end
+    })
 end
 
 function Rat_BeatenZoneTexts()
     local file_str = "PERKS_Interrupt.lua"
     return ratT(file_str, 483920175320, "Beaten Zone"),
-           ratT(file_str, 483920175321, "<em>Machine Gun</em> <GameTerm('Interrupt')> attacks in <em>Setup</em> against the <em>first</em> enemy each turn have <em>3 aim levels</em>, against the <em>second</em> <em>2 aim levels</em>.\n\nEnables <GameTerm('Crits')> with these attacks.\n\nDeal <em><percent(objectDamageMod)> Damage</em> to objects with <em>Heavy Weapons</em> and <em>Machine Guns</em>.")
+           ratT(file_str, 483920175321, "<em>Machine Gun</em> <GameTerm('Interrupt')> attacks in <em>Setup</em> against the <em>first</em> enemy each turn have <em>3 aim levels</em>, against the <em>second</em> <em>2 aim levels</em>.\n\nDeal <em><percent(objectDamageMod)> Damage</em> to objects with <em>Heavy Weapons</em> and <em>Machine Guns</em>.")
 end
 
 function OnMsg.ClassesGenerate(classdefs)
@@ -84,12 +74,22 @@ function OnMsg.ClassesGenerate(classdefs)
     end
 
     if classdefs.Killzone then
-        classdefs.Killzone.unit_reactions = KillzoneReactions("Killzone")
+        classdefs.Killzone.unit_reactions = {
+            KillzoneResetReaction(),
+            PlaceObj('UnitReaction', {
+                Event = "OnCalcCritChance",
+                Handler = function(self, target, attacker, attack_target, action, weapon, data)
+                    if target == attacker and not IsMGSetUp(attacker) then
+                        data.opportunity_attack = false
+                    end
+                end
+            })
+        }
     end
 
     local bz = classdefs.CollateralDamage
     if bz then
-        bz.unit_reactions = KillzoneReactions("CollateralDamage")
+        bz.unit_reactions = {KillzoneResetReaction()}
         ---- vanilla object branch; Weapon.lua:296 adds objectDamageMod on its own path too
         bz.unit_reactions[#bz.unit_reactions + 1] = PlaceObj('UnitReaction', {
             Event = "OnCalcDamageAndEffects",
