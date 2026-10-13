@@ -75,9 +75,6 @@ function presets_char_effect()
 
         if p.id == "CollateralDamage" then
             p.DisplayName, p.Description = Rat_BeatenZoneTexts()
-            ---- Weapon.lua reads objectDamageMod directly, outside the perk's reactions
-            GBO_ChangeParamAndUpdateCache(p, "enemyDamageMod", 0)
-            GBO_ChangeParamAndUpdateCache(p, "objectDamageMod", 0)
         end
 
         --------------------------------------------------------------------------------------------

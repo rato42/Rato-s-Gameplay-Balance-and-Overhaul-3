@@ -1,5 +1,5 @@
 ---- Opportunistic Killer: +Overwatch attacks and the vanilla auto-reload, no interrupt crits.
----- Killzone (Overwatch) / Beaten Zone (ex Collateral Damage, MG setup): interrupt aim ladders by distinct target per turn, crits enabled.
+---- Killzone (Overwatch) / Beaten Zone (ex Collateral Damage, MG setup): interrupt aim ladders by distinct target per turn, crits enabled; Beaten Zone keeps object damage.
 
 GameVar("gv_Rat_KillzoneTargets", function() return {} end)
 
@@ -62,7 +62,7 @@ end
 function Rat_BeatenZoneTexts()
     local file_str = "PERKS_Interrupt.lua"
     return ratT(file_str, 483920175320, "Beaten Zone"),
-           ratT(file_str, 483920175321, "<em>Machine Gun</em> <GameTerm('Interrupt')> attacks in <em>Setup</em> against the <em>first</em> enemy each turn have <em>3 aim levels</em>, against the <em>second</em> <em>2 aim levels</em>.\n\nEnables <GameTerm('Crits')> with these attacks.")
+           ratT(file_str, 483920175321, "<em>Machine Gun</em> <GameTerm('Interrupt')> attacks in <em>Setup</em> against the <em>first</em> enemy each turn have <em>3 aim levels</em>, against the <em>second</em> <em>2 aim levels</em>.\n\nEnables <GameTerm('Crits')> with these attacks.\n\nDeal <em><percent(objectDamageMod)> Damage</em> to objects with <em>Heavy Weapons</em> and <em>Machine Guns</em>.")
 end
 
 function OnMsg.ClassesGenerate(classdefs)
@@ -90,6 +90,20 @@ function OnMsg.ClassesGenerate(classdefs)
     local bz = classdefs.CollateralDamage
     if bz then
         bz.unit_reactions = KillzoneReactions("CollateralDamage")
+        ---- vanilla object branch; Weapon.lua:296 adds objectDamageMod on its own path too
+        bz.unit_reactions[#bz.unit_reactions + 1] = PlaceObj('UnitReaction', {
+            Event = "OnCalcDamageAndEffects",
+            Handler = function(self, target, attacker, attack_target, action, weapon, attack_args, hit, data)
+                if attacker ~= target or IsKindOf(attack_target, "Unit") or
+                    not IsKindOf(attack_target, "CombatObject") or
+                    not IsKindOfClasses(weapon, "HeavyWeapon", "MachineGun") then
+                    return
+                end
+                local bonus = self:ResolveValue("objectDamageMod")
+                data.base_damage = MulDivRound(data.base_damage, 100 + bonus, 100)
+                data.breakdown[#data.breakdown + 1] = {name = self.DisplayName, value = bonus}
+            end
+        })
         bz.DisplayName, bz.Description = Rat_BeatenZoneTexts()
     end
 end
