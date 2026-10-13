@@ -153,9 +153,10 @@ function GetWeapon_StanceAP(unit, weapon, display)
     local modifyVal = GetComponentEffectValue(weapon, "stance_ap_inc_STR", "StanceIncreaseSTR")
     if modifyVal then
         local str_min = GetComponentEffectValue(weapon, "stance_ap_inc_STR", "STR_threshold")
-        if not unit or unit.Strength < str_min then
-            raw = raw + modifyVal * const.Scale.AP
+        if unit and unit.Strength >= str_min then
+            modifyVal = MulDivRound(modifyVal, 1, 2)
         end
+        raw = raw + modifyVal * const.Scale.AP
     end
 
 	if IsKindOfClasses(weapon, "MachineGun", "HeavyWeapon") and HasPerk(unit, "HeavyWeaponsTraining") then
