@@ -263,10 +263,21 @@ local function HintChartDraw(win)
     end
 end
 
+---- declared so the debug build's PropertyObject member assert accepts the chart state
+DefineClass.RatHintChart = {
+    __parents = {"XWindow"},
+    rat_curves = false, rat_ref_curves = false, rat_legend = false,
+    rat_name = false, rat_ref_name = false, rat_title = false, rat_subtitle = false,
+    rat_reserve_ref = false, rat_x_base = false, rat_x_step = false,
+    rat_stance_menu = false, rat_stance_box = false, rat_stance_hover = false, rat_hide_stance = false,
+    rat_tabs = false, rat_tab = false, rat_tab_boxes = false, rat_tab_hover = false,
+}
+DefineClass.RatHintContextChart = {__parents = {"XContextWindow", "RatHintChart"}}
+
 ---- chart window; `setup(self)` fills rat_curves (and rat_ref_curves) or returns false to hide
 local function HintChartWindow(id, height, margins, setup)
     return PlaceObj("XTemplateWindow", {
-        "__class", "XContextWindow",
+        "__class", "RatHintContextChart",
         "Id", id,
         "Margins", margins,
         "MinHeight", height,
@@ -444,7 +455,7 @@ local function HintCompareChart(dlg)
     }, list)
     local unit = GetInventoryUnit()
     local function chart()
-        local win = XWindow:new({MinHeight = 290, MaxHeight = 290}, panel)
+        local win = RatHintChart:new({MinHeight = 290, MaxHeight = 290}, panel)
         win.DrawContent = HintChartDraw
         win.rat_name, win.rat_ref_name = item.DisplayName, ref.DisplayName
         return win
@@ -508,6 +519,7 @@ end
 ---- modify dialog charts: the clone (hovered/placed parts) solid, the real gun dashed once they differ
 local function HintModifyChart(id, recoil, height)
     return PlaceObj("XTemplateWindow", {
+        "__class", "RatHintChart",
         "Id", id,
         "Margins", box(0, 8, 0, 0),
         "Padding", box(8, 6, 8, 6),
