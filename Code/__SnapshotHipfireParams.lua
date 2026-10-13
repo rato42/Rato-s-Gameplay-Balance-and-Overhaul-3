@@ -50,7 +50,8 @@ const.Combat.Snapshot.Components = {
     ShortBarrelMul = {Pistol = 0.92, Revolver = 0.93, Other = 0.90},
     LightBarrelMul = 0.90, -- {Pistol = 1.02, Revolver = 1.03, Other = 0.92},
     HeavyBarrelMul = 1.10, -- {Pistol = 0.98, Revolver = 0.97, Other = 0.94},
-    HeavyStockMul = 1.10
+    HeavyStockMul = 1.10,
+    BipodUnbracedMul = 1.15 -- bipod off the ground: a heavier front end swings slower
 }
 
 function OnMsg.ClassesGenerate()

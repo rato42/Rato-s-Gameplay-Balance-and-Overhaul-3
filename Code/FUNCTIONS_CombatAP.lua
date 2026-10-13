@@ -159,6 +159,11 @@ function GetWeapon_StanceAP(unit, weapon, display)
         raw = raw + modifyVal * const.Scale.AP
     end
 
+    ---- deploying and settling the bipod is part of getting on the gun
+    if unit and unit.stance == "Prone" and weapon:HasComponent("RecoilControlWhenProne") then
+        raw = raw + const.Combat.BipodProneStanceAP * const.Scale.AP
+    end
+
 	if IsKindOfClasses(weapon, "MachineGun", "HeavyWeapon") and HasPerk(unit, "HeavyWeaponsTraining") then
     	local effect = unit:GetStatusEffect("HeavyWeaponsTraining")
     	---- own value: the perk's ap_cost_reduction also drives vanilla's attack AP discount

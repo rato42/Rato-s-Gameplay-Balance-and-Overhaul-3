@@ -103,8 +103,17 @@ function GetAimPos_ShootingStance(effect)
     return x and point(x, y, z)
 end
 
+---- the free shooting cone; a bipod off the ground narrows it
+function Rat_ShootingAngle(unit, weapon)
+    local angle = weapon.OverwatchAngle
+    if Rat_BipodUnbraced(unit, weapon) then
+        angle = MulDivRound(angle, const.Combat.BipodUnbracedAngleMul, 100)
+    end
+    return angle
+end
+
 function GetShootingAngleDiff(unit, weapon, target, force)
-    local cone_angle = weapon.OverwatchAngle / 2
+    local cone_angle = Rat_ShootingAngle(unit, weapon) / 2
     local target_pos = IsValid(target) and target:GetPos() or target
     if force or Is_AimingAttack() then
         target_pos = target_pos or GetCursorPos(true) -- :SetZ(attacker_z)
@@ -139,7 +148,7 @@ function ShootingConeAngle(unit, weapon, target)
         return 0
     end
 
-    local half = weapon.OverwatchAngle / 2
+    local half = Rat_ShootingAngle(unit, weapon) / 2
     local angle = abs(unit:AngleToPoint(target_pos))
     local cost = Rat_RotateAPFromAngle(angle, half)
 
@@ -196,7 +205,7 @@ function CreateStanceConeV(unit, weapon)
         unit:SetProperty("target_dist", meta.default)
     end
 
-    local cone_angle = weapon.OverwatchAngle
+    local cone_angle = Rat_ShootingAngle(unit, weapon)
 
     local min_aim_range = weapon:GetOverwatchConeParam("MinRange") * const.SlabSizeX
 

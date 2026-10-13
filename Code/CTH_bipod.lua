@@ -1,27 +1,17 @@
+---- Prone only, like vanilla; off the ground a bipod costs snapshot and shooting angle instead.
 function bipod_standing()
-    local penalty = -5
-
     Presets.ChanceToHitModifier.Default["Bipod"].CalcValue =
         function(self, attacker, target, body_part_def, action, weapon1, weapon2, lof, aim, opportunity_attack,
                  attacker_pos, target_pos)
-            if not weapon1 then
+            if not weapon1 or attacker.stance ~= "Prone" then
                 return false, 0
             end
-
-            if attacker.stance ~= "Prone" then
-                local _, compDef = GetComponentEffectValue(weapon1, "bipod_penalty", "bonus_cth")
-                if compDef then
-                    local value = penalty
-                    if value == 0 then
-                        return false, 0
-                    end
-                    return not not value, value
-                end
-            end
-
             local value = GetComponentEffectValue(weapon1, "AccuracyBonusProne", "bonus_cth")
-
             return not not value, value
         end
 end
 
+---- a bipod hanging off the front, not braced on the ground
+function Rat_BipodUnbraced(unit, weapon)
+    return unit and unit.stance ~= "Prone" and IsKindOf(weapon, "Firearm") and weapon:HasComponent("bipod_penalty") or false
+end

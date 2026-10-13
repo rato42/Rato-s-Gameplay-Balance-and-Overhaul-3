@@ -196,8 +196,8 @@ function weapon_components_rat()
     })
 
     PlaceObj('WeaponComponentEffect', {
-        Description = T(282151114911,
-                        "<em>Accuracy</em> penalty when not prone"),
+        Description = T(518263907441,
+                        "Worse <em>Snapshot</em> and narrower <em>Shooting Angle</em> when not prone"),
         group = "FX Placeholders",
         id = "bipod_penalty"
     })
@@ -1421,7 +1421,7 @@ local t_table = {
     [173836158177] = 'Increased Hipfire penalty, decreased Snapshot penalty, increased Recoil penalty, increased Point Blank range accuracy, easier to hit at melee range',
     [780091744194] = 'Has bonus damage against <em>Flanked</em> targets',
     [742720959709] = 'Recovers half <em>free move AP</em> after shooting',
-    [282151114911] = '<em>Accuracy</em> penalty when not prone',
+    [518263907441] = 'Worse <em>Snapshot</em> and narrower <em>Shooting Angle</em> when not prone',
     [153429703325] = 'Minor <em>Accuracy</em> penalty',
     [629687776924] = 'Damaged reduced by <DamageReduced>',
     [624517971084] = 'Decreased <em>Recoil</em> penalty when using the <em>Burst Fire</em> attack mode',

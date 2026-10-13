@@ -57,6 +57,8 @@ const.Combat.R_MaxAimScaling = 100
 
 ----- AP
 const.Combat.CumbersomeStanceAP_StrThreshold = 80
+-- shooting angle (%) of a gun whose bipod is not braced, i.e. not prone
+const.Combat.BipodUnbracedAngleMul = 90
 const.Combat.ShootMoveSMGorHandgun_FreeMoveMul = 50
 
 ----- BoltAction

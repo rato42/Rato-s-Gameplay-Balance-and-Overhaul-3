@@ -193,6 +193,11 @@ function GetWeaponHipfireOrSnapshotMul(weapon, attacker, action, display, aim)
             metaText[#metaText + 1] = T(604318227590, "(-) Heavy Stock")
         end
 
+        if Rat_BipodUnbraced(attacker, weapon) then
+            penalty = penalty * c_mods.BipodUnbracedMul
+            metaText[#metaText + 1] = T(371904625518, "(-) Bipod")
+        end
+
     end
 
     if action and (action.id == "RunAndGun" or action.id == "RecklessAssault") then
@@ -230,7 +235,8 @@ local t_id_table = {
     [119591314866] = "Short Barrel",
     [447116472426] = "Light Barrel",
     [481487998456] = "(-) Heavy Barrel",
-    [604318227590] = "(-) Heavy Stock"
+    [604318227590] = "(-) Heavy Stock",
+    [371904625518] = "(-) Bipod"
 }
 
 ratG_T_table['FUNCTIONS_hipfire.lua'] = t_id_table
