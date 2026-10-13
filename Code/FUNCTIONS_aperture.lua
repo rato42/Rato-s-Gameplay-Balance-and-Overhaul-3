@@ -534,6 +534,10 @@ function Rat_ApertureHandlingMul(weapon, attacker, action)
         local pen, low_str = Rat_HandlingNotPronePen(weapon, attacker, attacker.stance)
         if pen > 0 then
             handling = MulDivRound(handling, 100 + pen, 100)
+            ---- legacy rounded this step to whole percent
+            if a.HandlingLegacy then
+                handling = MulDivRound(handling, 1, 100) * 100
+            end
             ---- rotulo pela postura que cobrou, nao "Standing" fixo: agachado tambem paga
             local tag = (a.HandlingHeldStanceMeta or empty_table)[attacker.stance]
             if tag then
