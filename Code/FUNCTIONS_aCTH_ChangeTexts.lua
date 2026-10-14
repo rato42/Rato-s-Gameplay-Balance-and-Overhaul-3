@@ -28,6 +28,10 @@ local acth_text_swaps = {
     {"WeaponComponentEffects", "handguard_ext", "Description",
         ratT(file_str,219179226706, "Increases weapon length, affecting Recoil, Snapshot, Hipfire accuracy penalties and Point Blank Range accuracy modifiers"),
         ratT(file_str,700413725434, "Increases weapon length, affecting Recoil, Snapshot, Hipfire accuracy penalties and <em>Handling</em>")},
+    ---- prone bipod works on the cone (A.BipodProneFloorMul, AimDecayMuls.BipodProne), not a flat bonus
+    {"WeaponComponentEffects", "AccuracyBonusProne", "Description",
+        ratT(file_str,999879465877, "Grants <em>Accuracy</em> bonus when prone"),
+        ratT(file_str,418390572136, "When <em>prone</em>, each <em>Aim</em> level grants more <em>Accuracy</em> and the effective range increases")},
 
     {"CombatActions", "BurstFire", "Description",
         ratT(file_str,617859618521, "Shoots <em><num> bullets</em> at the target. The accuracy of each shot is reduced by <em>Recoil</em>. Critical chance is reduced.\n\nOnly the first shot will benefit from <em>Aim</em> bonus."),
