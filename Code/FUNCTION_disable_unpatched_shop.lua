@@ -98,7 +98,16 @@ function IsVanillaFirearm(weapon)
     return false
 end
 
----- the balanced weapon set; is_vanilla_firearm is inherited by ToG subclasses of vanilla guns (WA2000_1)
+---- the balanced weapon set
 function Rat_IsLiveFirearm(weapon)
     return IsKindOf(weapon, "Firearm") and (weapon.is_tog_patched or IsVanillaFirearm(weapon))
+end
+
+---- class build copies the vanilla parent's is_vanilla_firearm into unpatched ToG subclasses (WA2000_1, CAWS_1)
+function OnMsg.ClassesBuilt()
+    ClassDescendantsList("Firearm", function(name, cls)
+        if cls.is_vanilla_firearm and not IsVanillaFirearm(cls) then
+            cls.is_vanilla_firearm = false
+        end
+    end)
 end
