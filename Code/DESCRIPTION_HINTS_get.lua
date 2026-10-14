@@ -98,6 +98,14 @@ local HintAimedTitle = ratT(file_str, 731590264440, "Aimed burst")
 local HintAimedSubtitle = ratT(file_str, 731590264441, "<mode>, Aim <num>: hit chance of each round")
 local HintAimedLevel = 3
 local HintAimedBuckets = 8
+local HintRecoilBurstLabel = ratT(file_str, 731590264442, "Burst")
+local HintRecoilAutoLabel = ratT(file_str, 731590264443, "Auto")
+local HintRecoilShotsLabel = ratT(file_str, 731590264444, "<num> rds")
+---- the legend fits about ten round labels
+local HintRecoilMaxShots = 10
+---- recoil chart attack, shared by every chart and kept across openings; nil length = the gun's default
+local HintRecoilMode = "burst"
+local HintRecoilAutoShots
 local HintChartColors = {RGB(214, 82, 62), RGB(232, 156, 60), RGB(226, 210, 90), RGB(130, 200, 110),
                          RGB(90, 190, 200), RGB(150, 140, 230), RGB(220, 220, 220)}
 
@@ -228,6 +236,27 @@ local function HintChartDraw(win)
         else
             text(stance, x0 + cw - sw, y0, RGB(220, 220, 220))
         end
+    elseif win.rat_controls then
+        ---- right-aligned buttons: active lit, hovered highlighted, disabled dim; entries with no key are labels
+        local gap = UIL.MeasureText("  ", font)
+        local x = x0 + cw
+        win.rat_control_boxes = {}
+        for i = #win.rat_controls, 1, -1 do
+            local c = win.rat_controls[i]
+            local str = _InternalTranslate(c.text)
+            local tw = UIL.MeasureText(str, font)
+            x = x - tw
+            local live = c.key and not c.disabled
+            local hover = live and i == win.rat_control_hover
+            if live then
+                local b = box(x - 4, y0 - 2, x + tw + 4, y0 + fh)
+                win.rat_control_boxes[i] = b
+                UIL.DrawSolidRect(b, RGBA(255, 255, 255, hover and 30 or c.active and 14 or 6))
+            end
+            local lit = c.active or not c.key or (live and c.active == nil)
+            text(str, x, y0, hover and RGB(255, 222, 120) or lit and RGB(220, 220, 220) or RGB(110, 113, 118))
+            x = x - gap
+        end
     end
     for pct = 0, 100, 25 do
         local y = bottom - MulDivRound(h, pct, 100)
@@ -272,6 +301,7 @@ DefineClass.RatHintChart = {
     rat_reserve_ref = false, rat_x_base = false, rat_x_step = false,
     rat_stance_menu = false, rat_stance_box = false, rat_stance_hover = false, rat_hide_stance = false,
     rat_tabs = false, rat_tab = false, rat_tab_boxes = false, rat_tab_hover = false,
+    rat_controls = false, rat_control_boxes = false, rat_control_hover = false, rat_recoil_shots = false,
 }
 DefineClass.RatHintContextChart = {__parents = {"XContextWindow", "RatHintChart"}}
 
@@ -325,15 +355,24 @@ end
 ---- Recoil chart: with no dispersion (round 1 always hits), the share of strings whose later rounds still land
 local HintRecoilSamples = 96
 
----- the gun's automatic attack (variable autofire, else a selectable burst) at its default length
+---- the automatic modes this gun shows: selective burst (COMBAT_ACTIONS.lua UI gate), variable autofire
+local function HintRecoilModes(weapon)
+    local burst = table.find(weapon.AvailableAttacks or empty_table, "BurstFire") and Rat_HasSelectiveBurst(weapon) and
+                      not (IsKindOf(weapon, "AR15") and not weapon:HasComponent("Enable_BurstFire"))
+    return burst and true or false, Rat_HasVariableAuto(weapon) and true or false
+end
+
+---- the chosen mode, else the other one; autofire at the chosen string length
 local function HintRecoilAttack(weapon)
-    local action
-    if Rat_HasVariableAuto(weapon) then
-        action = CombatActions[Rat_AutoAttackId(weapon)]
-    elseif Rat_HasSelectiveBurst(weapon) and table.find(weapon.AvailableAttacks or empty_table, "BurstFire") then
-        action = CombatActions.BurstFire
+    local burst, auto = HintRecoilModes(weapon)
+    if burst and (HintRecoilMode == "burst" or not auto) then
+        local action = CombatActions.BurstFire
+        return action, weapon:GetAutofireShots(action)
+    elseif auto then
+        local id = Rat_AutoAttackId(weapon)
+        local n = Clamp(HintRecoilAutoShots or weapon:GetAutofireShots(CombatActions[id]), 2, HintRecoilMaxShots)
+        return Rat_AutoFireView(n, id), n
     end
-    return action, action and weapon:GetAutofireShots(action)
 end
 
 ---- `aimed`: every round's real CTH at Aim 3 (cone included); otherwise rounds 2+ with no cone
@@ -518,6 +557,32 @@ local function HintStanceMenu(win, dlg)
     popup:SetFocus()
 end
 
+---- recoil chart header: the mode switch when the gun has both, and the string length on autofire
+local function HintRecoilControls(weapon)
+    local burst, auto = HintRecoilModes(weapon)
+    local action, shots = HintRecoilAttack(weapon)
+    local is_auto = action and action.id ~= "BurstFire"
+    local list = {}
+    if burst and auto then
+        list[#list + 1] = {text = HintRecoilBurstLabel, key = "burst", active = not is_auto}
+        list[#list + 1] = {text = HintRecoilAutoLabel, key = "auto", active = is_auto}
+    end
+    if is_auto then
+        list[#list + 1] = {text = Untranslated("-"), key = "less", disabled = shots <= 2}
+        list[#list + 1] = {text = T{HintRecoilShotsLabel, num = shots}}
+        list[#list + 1] = {text = Untranslated("+"), key = "more", disabled = shots >= HintRecoilMaxShots}
+    end
+    return #list > 0 and list or false, shots
+end
+
+local function HintRecoilControlPress(key, shots)
+    if key == "burst" or key == "auto" then
+        HintRecoilMode = key
+    elseif key == "less" or key == "more" then
+        HintRecoilAutoShots = Clamp(shots + (key == "more" and 1 or -1), 2, HintRecoilMaxShots)
+    end
+end
+
 ---- modify dialog charts: the clone (hovered/placed parts) solid, the real gun dashed once they differ
 local function HintModifyChart(id, recoil, height)
     return PlaceObj("XTemplateWindow", {
@@ -551,18 +616,28 @@ local function HintModifyChart(id, recoil, height)
                         return "break"
                     end
                 end
+                for i, b in pairs(self.rat_controls and self.rat_control_boxes or empty_table) do
+                    if HintBoxHas(b, pos) then
+                        HintRecoilControlPress(self.rat_controls[i].key, self.rat_recoil_shots)
+                        self:UpdateValue()
+                        return "break"
+                    end
+                end
             end,
         }),
         PlaceObj("XTemplateFunc", {
             "name", "OnMousePos(self, pos)",
             "func", function(self, pos)
                 local hover = self.rat_stance_menu and HintBoxHas(self.rat_stance_box, pos) or false
-                local tab = false
+                local tab, control = false, false
                 for i, b in ipairs(self.rat_tabs and self.rat_tab_boxes or empty_table) do
                     tab = tab or i ~= self.rat_tab and HintBoxHas(b, pos) and i
                 end
-                if hover ~= self.rat_stance_hover or tab ~= self.rat_tab_hover then
-                    self.rat_stance_hover, self.rat_tab_hover = hover, tab
+                for i, b in pairs(self.rat_controls and self.rat_control_boxes or empty_table) do
+                    control = control or HintBoxHas(b, pos) and i
+                end
+                if hover ~= self.rat_stance_hover or tab ~= self.rat_tab_hover or control ~= self.rat_control_hover then
+                    self.rat_stance_hover, self.rat_tab_hover, self.rat_control_hover = hover, tab, control
                     self:Invalidate()
                 end
             end,
@@ -570,8 +645,8 @@ local function HintModifyChart(id, recoil, height)
         PlaceObj("XTemplateFunc", {
             "name", "OnMouseLeft(self, pos, child)",
             "func", function(self, pos, child)
-                if self.rat_stance_hover or self.rat_tab_hover then
-                    self.rat_stance_hover, self.rat_tab_hover = false, false
+                if self.rat_stance_hover or self.rat_tab_hover or self.rat_control_hover then
+                    self.rat_stance_hover, self.rat_tab_hover, self.rat_control_hover = false, false, false
                     self:Invalidate()
                 end
             end,
@@ -600,6 +675,7 @@ local function HintModifyChart(id, recoil, height)
                 if recoil then
                     local aimed = HintModRecoilTab == 2
                     self.rat_tabs, self.rat_tab = {HintRecoilTitle, HintAimedTitle}, HintModRecoilTab
+                    self.rat_controls, self.rat_recoil_shots = HintRecoilControls(clone)
                     HintRecoilSetup(self, clone, owner, stance, aimed)
                     self.rat_ref_curves = differ and HintRecoilCurves(real, owner, stance, aimed) or nil
                     ---- one stance control for both charts, on the top one
