@@ -35,6 +35,8 @@ CheatAddItem("itemid")
 
 - Bobby's Ray ammo distribution was improved
 
+- Inventory now display accuracy and recoil graphs for weapons.
+
 -- Caliber damage re-escaled --
 Big calibers (7.62 and the like) have had increased damage (and recoil)
 Barrel length and caliber now determines the damage of the weapon. Some calibers have length cap at which they do not increase damage anymore. Extended and short barrels dynamically change the damage now (tho mostly little changed)
@@ -50,7 +52,7 @@ Barrel length and caliber now determines the damage of the weapon. Some calibers
 you no longer see the enemy in your screen if no merc has vision of it (no visibility memory). Can be disabled on mod options.
 Changed mobile attacks targeting aquisition, so now you can try to use it even if no target is in view but you presume there is a target. The merc will shoot if an enemy is revealed
 
-- NEW MECHANIC: Redesigned reliability mechanics. The value will now govern the chance of jamming instead of condition degradation by shot. The formula was changed, high reliability weapons will be able to perform even when in lower condition. Suppressors now increase condition degradation rate.
+- Redesigned reliability mechanics. The reliability value will now govern the chance of jamming instead of condition degradation by shot. The formula was changed, high reliability weapons will be able to perform even when in lower condition. Suppressors now increase condition degradation rate. MGs have less condition degradation per shot.
 
 
 -- New Mechanic: Autofire with variable bullet count --

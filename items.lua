@@ -10680,14 +10680,14 @@ return {
 		Icon = "Mod/cfahRED/Images/folded2 2.png",
 		ModificationDifficulty = 10,
 		ModificationEffects = {
-			"Enable_RunAndGun",
-			"ReduceAimAccuracy",
-			"ReduceRange",
-			"StanceAPdecrease",
-			"hipfire_no_stock",
 			"no_stock",
-			"zzStockEquipped",
+			"StanceAPdecrease",
 			"IncreaseOverwatchAngle",
+			"hipfire_no_stock",
+			"Enable_RunAndGun",
+			"zzStockEquipped",
+			"ReduceRange",
+			"MultiplyAimAccuracy",
 		},
 		Parameters = {
 			PlaceObj('PresetParamNumber', {
@@ -10699,6 +10699,11 @@ return {
 				'Name', "AimAccuracyDecrease",
 				'Value', 3,
 				'Tag', "<AimAccuracyDecrease>",
+			}),
+			PlaceObj('PresetParamNumber', {
+				'Name', "AimAccuracyMul",
+				'Value', 65,
+				'Tag', "<AimAccuracyMul>",
 			}),
 			PlaceObj('PresetParamNumber', {
 				'Name', "OverwatchAngleIncrease",

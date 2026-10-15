@@ -99,6 +99,7 @@ function OnMsg.ClassesGenerate()
 
 
     SubmachineGun.SingleShotCustomDeltaAP = 10
+	MachineGun.ConditionDegradationRate = 92
 
 end
 
