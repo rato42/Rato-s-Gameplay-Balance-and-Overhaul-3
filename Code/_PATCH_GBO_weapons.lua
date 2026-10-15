@@ -10,67 +10,266 @@ end
 
 function RatoTOG_Patch()
 	print("Running RatoTOG_Patch...")
-	SSG69_1.is_tog_patched = true
-	SSG69_1.is_vanilla_firearm = false
-	SSG69_1.DisplayName = Untranslated([[SSG 69]])
-	SSG69_1.object_class = "SniperRifle"
-	SSG69_1.ItemType = "Sniper"
-	SSG69_1.Cost = 6560
-	SSG69_1.Damage = 33
-	SSG69_1.ObjDamageMod = 100
-	SSG69_1.CritChance = 0
-	SSG69_1.CritPerAim = 700
-	SSG69_1.BurstCritMul = 60
-	SSG69_1.CritChanceScaled = 20
-	storeProps(SSG69_1, "AimAccuracy", 55, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(SSG69_1, "AimAccuracy", 7, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(SSG69_1, "WeaponRange", 46, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(SSG69_1, "WeaponRange", 36, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	SSG69_1.PBbonus_base = -4
-	SSG69_1.Handling = -18
-	SSG69_1.PenetrationClass = 1
-	SSG69_1.ShootAP = 4000
-	SSG69_1.ReloadAP = 3000
-	SSG69_1.APStance = 35
-	SSG69_1.OverwatchAngle = 847
-	SSG69_1.MagazineSize = 5
-	SSG69_1.Cumbersome = 0
-	SSG69_1.Noise = 20
-	SSG69_1.PointBlankBonus = 1
-	SSG69_1.PreparedAttackType = "Both"
-	SSG69_1.AvailableAttacks = {"SingleShot", "CancelShot"}
-	SSG69_1.Rat_swap_ap = 30
-	SSG69_1.BurstSelective = false
-	SSG69_1.wep_base_recoil_mul = 83
-	SSG69_1.weigth_held_mul = 130
-	SSG69_1.wep_base_snapshot_mul = 115
-	SSG69_1.wep_base_hip_mul = 90
-	SSG69_1.recoil_mechanism = "Bolt_Action"
-	SSG69_1.Rat_cycling = "BoltAction"
-	SSG69_1.rat_scope_block = false
-	SSG69_1.pistol_swap = false
-	SSG69_1.default_long_barrel = false
-	SSG69_1.unwieldy_weapon = false
-	SSG69_1.rat_barrel_len = 650
-	SSG69_1.rat_weigth = 4300
-	SSG69_1.Weight = 4300
-	SSG69_1.ScrapParts = 8
-	SSG69_1.RepairCost = 80
-	SSG69_1.Reliability = 95
-	SSG69_1.LargeItem = 1
-	SSG69_1.HandSlot = "TwoHanded"
-	SSG69_1.AdditionalHint = T( 787968005557, [[<description_hints>]] )
-	SSG69_1.ComponentSlots = {{CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'SSG69_Scope_1', 'ScopeCOGQuick', 'ScopeCOG', 'WideScope', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'SSG69_Barrel_def_1', Modifiable = true, AvailableComponents = {'SSG69_Barrel_def_1', 'SSG69_Barrel_ext_1', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'ToG_VFX_Muzzle', Modifiable = true, AvailableComponents = {'ToG_VFX_Muzzle', 'AUGCompensator_01', 'ImprovisedSuppressor', 'RAT_TOG_suppressor', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'SSG69_Mag_def_1', Modifiable = true, AvailableComponents = {'SSG69_Mag_def_1', 'SSG69_Mag_ext_1', }}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'Bolt_action', Modifiable = true, AvailableComponents = {'Bolt_action', }}}
-	SSG69_1.Valuable = 0
-	SSG69_1.CanAppearInShop = true
-	SSG69_1.CanAppearUsed = true
-	SSG69_1.Tier = 2
-	SSG69_1.MaxStock = 2
-	SSG69_1.RestockWeight = 50
-	SSG69_1.CategoryPair = "Rifles"
-	SSG69_1.fxClass = "PSG1"
-	SSG69_1.Description = T(393371357000, [[<style PerkststsBold ><scale 700>The SSG 69 is a bolt-action sniper rifle that serves as the standard sniper rifle for the Austrian Army.<newline><newline>Designed as a sniper system to replace the SSG 98k sniper rifle (modified and accurized surplus Karabiner 98k rifles) and adopted in 1969 (hence the designation), it was ahead of its time with the use of synthetics like the stock, trigger guard, and magazines and cold hammer-forged barrels for durability.<newline><newline>Aside from being the Austrian Army's standard issue sniper rifle, it is also used by several law enforcement organizations. For its era and weight, it is extremely accurate and several international competitions have been won using an SSG-69 with accuracy being sub 0.15 mrad<newline><newline>The choice for a synthetic stock was remarkable, as other sniper rifles at the time were still using wood stocks.<newline><newline><style MMOptionEntry>Made in Austria<image Mod/HXzCpFa/Icons/Flags/Austria.png 1600>]])
-	SSG69_1.PenetrationClass = 1
+	PKM_1.is_tog_patched = true
+	PKM_1.is_vanilla_firearm = false
+	PKM_1.DisplayName = Untranslated([[PKM]])
+	PKM_1.object_class = "RPK74"
+	PKM_1.ItemType = "MachineGun"
+	PKM_1.Cost = 7200
+	PKM_1.Damage = 32
+	PKM_1.ObjDamageMod = 100
+	PKM_1.CritChance = 0
+	PKM_1.CritPerAim = 200
+	PKM_1.BurstCritMul = 60
+	PKM_1.CritChanceScaled = 10
+	storeProps(PKM_1, "AimAccuracy", 31, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(PKM_1, "AimAccuracy", 2, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(PKM_1, "WeaponRange", 32, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(PKM_1, "WeaponRange", 42, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	PKM_1.PBbonus_base = -4
+	PKM_1.Handling = -15
+	PKM_1.HandlingNotProneMul = 200
+	PKM_1.PenetrationClass = 1
+	PKM_1.ShootAP = 4000
+	PKM_1.ReloadAP = 5000
+	PKM_1.APStance = 42
+	PKM_1.OverwatchAngle = 583
+	PKM_1.MagazineSize = 100
+	PKM_1.Cumbersome = 1
+	PKM_1.Noise = 20
+	PKM_1.PointBlankBonus = 1
+	PKM_1.PreparedAttackType = "Machine Gun"
+	PKM_1.AvailableAttacks = {"MGBurstFire", "BurstFire", "SingleShot", "CancelShot"}
+	PKM_1.long_shots = 4
+	PKM_1.auto_shots = 4
+	PKM_1.RPM = 650
+	PKM_1.BurstSelective = false
+	PKM_1.AutoFireOnly = true
+	PKM_1.wep_base_recoil_mul = 88
+	PKM_1.weigth_held_mul = 157
+	PKM_1.wep_base_snapshot_mul = 127
+	PKM_1.recoil_mechanism = "Gas_Operated"
+	PKM_1.Rat_cycling = "Auto"
+	PKM_1.rat_scope_block = false
+	PKM_1.pistol_swap = false
+	PKM_1.default_long_barrel = false
+	PKM_1.unwieldy_weapon = false
+	PKM_1.rat_barrel_len = 658
+	PKM_1.rat_weigth = 8000
+	PKM_1.Weight = 8000
+	PKM_1.RepairCost = 80
+	PKM_1.Reliability = 84
+	PKM_1.LargeItem = 1
+	PKM_1.HandSlot = "TwoHanded"
+	PKM_1.AdditionalHint = T( 921786310095, [[<description_hints>]] )
+	PKM_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'BarrelNormalImproved', 'R_TOG_light_barrel', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = false, AvailableComponents = {'MagNormal', 'MagNormalFine', 'MagQuick', 'MagLarge', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'LROptics', 'ReflexSight', 'ScopeCOG', 'ThermalScope', 'LROpticsAdvanced', 'ScopeCOGQuick', 'ReflexSightAdvanced', 'WideScope', '_ReflexSIghtVigilance', }}, {DefaultComponent = 'RAT_TOG_compensator', CanBeEmpty = false, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'RAT_TOG_compensator' }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = false, AvailableComponents = {'StockNormal', }}, {CanBeEmpty = false, SlotType = 'Bipod', DefaultComponent = 'PKM_Bipod_Fold_1', Modifiable = true, AvailableComponents = {'PKM_Bipod_Fold_1', }}}
+	PKM_1.Valuable = 0
+	PKM_1.CanAppearInShop = true
+	PKM_1.CanAppearUsed = true
+	PKM_1.Tier = 1
+	PKM_1.MaxStock = 3
+	PKM_1.RestockWeight = 40
+	PKM_1.CategoryPair = "MachineGuns"
+	PKM_1.Description = T(389126554458, [[<style PerkststsBold ><scale 600>The PKM is a belt-fed general-purpose machine gun, chambered for the 7.62×54mmR rimmed cartridge.<newline><newline>Designed in the Soviet Union and currently in production in Russia, the original PK machine gun was introduced in 1961 and the improved PKM variant was introduced in 1969.<newline><newline>Unlike the AKM and RPK the PK machine gun series is an open bolt design, which improves heat management during automatic fire compared to closed bolt designs and helps avoiding the dangerous phenomenon known as "cook-off"<newline><newline><style ConversationChoiceNormalRollover ><scale  900>Designed by Mikhail Kalashnikov<newline><image Mod/KKh3Yhf/Images/KalashnikovM_icon(mil.ru).png 1000><newline><style MMOptionEntry>Made in Russia <image UI/Icons/Flags/f_russia.dds 1600>]])
+	PKM_1.PenetrationClass = 1
+
+
+	HK23E_1.is_tog_patched = true
+	HK23E_1.is_vanilla_firearm = false
+	HK23E_1.DisplayName = Untranslated([[HK23E]])
+	HK23E_1.object_class = "MachineGun"
+	HK23E_1.Cost = 10950
+	HK23E_1.Damage = 27
+	HK23E_1.ObjDamageMod = 100
+	HK23E_1.CritChance = 0
+	HK23E_1.CritPerAim = 200
+	HK23E_1.BurstCritMul = 60
+	HK23E_1.CritChanceScaled = 10
+	storeProps(HK23E_1, "AimAccuracy", 31, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(HK23E_1, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(HK23E_1, "WeaponRange", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(HK23E_1, "WeaponRange", 32, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	HK23E_1.PBbonus_base = -1
+	HK23E_1.Handling = -5
+	HK23E_1.HandlingNotProneMul = 180
+	HK23E_1.PenetrationClass = 1
+	HK23E_1.ShootAP = 4000
+	HK23E_1.ReloadAP = 5000
+	HK23E_1.APStance = 42
+	HK23E_1.OverwatchAngle = 736
+	HK23E_1.MagazineSize = 100
+	HK23E_1.Cumbersome = 1
+	HK23E_1.Noise = 20
+	HK23E_1.PointBlankBonus = 1
+	HK23E_1.PreparedAttackType = "Machine Gun"
+	HK23E_1.AvailableAttacks = {"MGBurstFire", "BurstFire", "SingleShot", "CancelShot"}
+	HK23E_1.Rat_swap_ap = 30
+	HK23E_1.long_shots = 5
+	HK23E_1.auto_shots = 5
+	HK23E_1.RPM = 800
+	HK23E_1.BurstSelective = true
+	HK23E_1.burst_recoil_delta = 95
+	HK23E_1.wep_base_recoil_mul = 85
+	HK23E_1.weigth_held_mul = 162
+	HK23E_1.wep_base_snapshot_mul = 128
+	HK23E_1.wep_base_hip_mul = 97
+	HK23E_1.recoil_mechanism = "Roller_Delayed"
+	HK23E_1.Rat_cycling = "Auto"
+	HK23E_1.rat_scope_block = false
+	HK23E_1.pistol_swap = false
+	HK23E_1.default_long_barrel = false
+	HK23E_1.unwieldy_weapon = false
+	HK23E_1.rat_barrel_len = 450
+	HK23E_1.rat_weigth = 8750
+	HK23E_1.Weight = 8750
+	HK23E_1.ScrapParts = 16
+	HK23E_1.RepairCost = 80
+	HK23E_1.Reliability = 76
+	HK23E_1.LargeItem = 1
+	HK23E_1.HandSlot = "TwoHanded"
+	HK23E_1.AdditionalHint = T( 390378831477, [[<description_hints>]] )
+	HK23E_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'hk23e_barrel_def_1', Modifiable = true, AvailableComponents = {'hk23e_barrel_shrt_1', 'hk23e_barrel_def_1', 'hk23e_barrel_ext_1', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'hk23e_muzzle_1', Modifiable = true, AvailableComponents = {'hk23e_muzzle_1', 'MuzzleBooster', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'RAT_TOG_Reflex', 'RAT_TOG_ACOG', 'RAT_TOG_compactRS', 'RAT_TOG_Prism', 'RAT_TOG_vigilanceRS', 'RAT_TOG_thermal', 'RAT_TOG_WideScope', 'RAT_TOG_LRoptics', 'RAT_TOG_PSGScope', 'RAT_TOG_LRoptics_advanced', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = false, AvailableComponents = {}}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'hk23e_stock_def_1', Modifiable = true, AvailableComponents = {'hk23e_stock_hvy_1', 'hk23e_stock_def_1', 'hk23e_stock_erg_1', }}, {CanBeEmpty = false, SlotType = 'Bipod', DefaultComponent = 'hk23e_bipod_fld_1', Modifiable = true, AvailableComponents = {'hk23e_bipod_fld_1', }}, {CanBeEmpty = true, SlotType = 'Under', Modifiable = false, AvailableComponents = {}}, {CanBeEmpty = false, SlotType = 'Mountside', DefaultComponent = 'hk23e_siderail_1', Modifiable = true, AvailableComponents = {'hk23e_siderail_1', }}, {CanBeEmpty = false, SlotType = 'Mountfront', DefaultComponent = 'hk23e_handle_fld_1', Modifiable = false, AvailableComponents = {'hk23e_handle_fld_1', 'hk23e_handle_unfld_1', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'hk23e_mag_1', Modifiable = true, AvailableComponents = {'hk23e_mag_1', }}}
+	HK23E_1.Valuable = 1
+	HK23E_1.CanAppearInShop = true
+	HK23E_1.CanAppearUsed = true
+	HK23E_1.Tier = 3
+	HK23E_1.MaxStock = 1
+	HK23E_1.RestockWeight = 35
+	HK23E_1.CategoryPair = "MachineGuns"
+	HK23E_1.Description = T(946262450526, [[<style PerkststsBold ><scale 600>The HK23 is a West German 5.56×45mm NATO light machine gun.<newline><newline>The HK23 was developed in 1972. The purpose of this gun was to compete with various small calibre guns of the time. The main purpose of the gun was to export to foreign markets instead of special development for the German Bundeswehr and German law enforcement agencies. Ten years later, in order to participate in the U.S. military's automatic class weapon campaign, the HK23E participated in the election under the name of XM262, but eventually lost to the M249 SAW<newline><newline>Although the 5.56 NATO HK23E didn't enjoy the same level widespread success as its big brother in 7.62mm NATO - similar to the HK33 vs. the G3 - it did see service with multiple countries, and a few of them are still around in the hands of private collectors as well.<newline><newline><style MMOptionEntry>Made in Germany <image UI/Icons/Flags/f_germany.dds 1600>]])
+	HK23E_1.PenetrationClass = 1
+
+
+	HK23ECamo_1.is_tog_patched = true
+	HK23ECamo_1.is_vanilla_firearm = false
+	HK23ECamo_1.DisplayName = Untranslated([[HK23E]])
+	HK23ECamo_1.object_class = "MachineGun"
+	HK23ECamo_1.Cost = 10950
+	HK23ECamo_1.Damage = 27
+	HK23ECamo_1.ObjDamageMod = 100
+	HK23ECamo_1.CritChance = 0
+	HK23ECamo_1.CritPerAim = 200
+	HK23ECamo_1.BurstCritMul = 60
+	HK23ECamo_1.CritChanceScaled = 10
+	storeProps(HK23ECamo_1, "AimAccuracy", 31, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(HK23ECamo_1, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(HK23ECamo_1, "WeaponRange", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(HK23ECamo_1, "WeaponRange", 32, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	HK23ECamo_1.PBbonus_base = -1
+	HK23ECamo_1.Handling = -5
+	HK23ECamo_1.HandlingNotProneMul = 180
+	HK23ECamo_1.PenetrationClass = 1
+	HK23ECamo_1.ShootAP = 4000
+	HK23ECamo_1.ReloadAP = 5000
+	HK23ECamo_1.APStance = 42
+	HK23ECamo_1.OverwatchAngle = 736
+	HK23ECamo_1.MagazineSize = 100
+	HK23ECamo_1.Cumbersome = 1
+	HK23ECamo_1.Noise = 20
+	HK23ECamo_1.PointBlankBonus = 1
+	HK23ECamo_1.PreparedAttackType = "Machine Gun"
+	HK23ECamo_1.AvailableAttacks = {"MGBurstFire", "BurstFire", "SingleShot", "CancelShot"}
+	HK23ECamo_1.Rat_swap_ap = 30
+	HK23ECamo_1.long_shots = 5
+	HK23ECamo_1.auto_shots = 5
+	HK23ECamo_1.RPM = 800
+	HK23ECamo_1.BurstSelective = true
+	HK23ECamo_1.burst_recoil_delta = 95
+	HK23ECamo_1.wep_base_recoil_mul = 85
+	HK23ECamo_1.weigth_held_mul = 162
+	HK23ECamo_1.wep_base_snapshot_mul = 128
+	HK23ECamo_1.wep_base_hip_mul = 97
+	HK23ECamo_1.recoil_mechanism = "Roller_Delayed"
+	HK23ECamo_1.Rat_cycling = "Auto"
+	HK23ECamo_1.rat_scope_block = false
+	HK23ECamo_1.pistol_swap = false
+	HK23ECamo_1.default_long_barrel = false
+	HK23ECamo_1.unwieldy_weapon = false
+	HK23ECamo_1.rat_barrel_len = 450
+	HK23ECamo_1.rat_weigth = 8750
+	HK23ECamo_1.Weight = 8750
+	HK23ECamo_1.ScrapParts = 16
+	HK23ECamo_1.RepairCost = 80
+	HK23ECamo_1.Reliability = 76
+	HK23ECamo_1.LargeItem = 1
+	HK23ECamo_1.HandSlot = "TwoHanded"
+	HK23ECamo_1.AdditionalHint = T( 230948710696, [[<description_hints>]] )
+	HK23ECamo_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'hk23e_barrel_def_1', Modifiable = true, AvailableComponents = {'hk23e_barrel_shrt_1', 'hk23e_barrel_def_1', 'hk23e_barrel_ext_1', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'hk23e_muzzle_1', Modifiable = true, AvailableComponents = {'hk23e_muzzle_1', 'MuzzleBooster'}}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'RAT_TOG_Reflex', 'RAT_TOG_ACOG', 'RAT_TOG_compactRS', 'RAT_TOG_Prism', 'RAT_TOG_vigilanceRS', 'RAT_TOG_thermal', 'RAT_TOG_WideScope', 'RAT_TOG_LRoptics', 'RAT_TOG_PSGScope', 'RAT_TOG_LRoptics_advanced', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = false, AvailableComponents = {}}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'hk23e_stock_def_1', Modifiable = true, AvailableComponents = {'hk23e_stock_hvy_1', 'hk23e_stock_def_1', 'hk23e_stock_erg_1', }}, {CanBeEmpty = false, SlotType = 'Bipod', DefaultComponent = 'hk23e_bipod_fld_1', Modifiable = true, AvailableComponents = {'hk23e_bipod_fld_1', }}, {CanBeEmpty = true, SlotType = 'Under', Modifiable = false, AvailableComponents = {}}, {CanBeEmpty = false, SlotType = 'Mountside', DefaultComponent = 'hk23e_siderail_1', Modifiable = true, AvailableComponents = {'hk23e_siderail_1', }}, {CanBeEmpty = false, SlotType = 'Mountfront', DefaultComponent = 'hk23e_handle_fld_1', Modifiable = false, AvailableComponents = {'hk23e_handle_fld_1', 'hk23e_handle_unfld_1', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'hk23e_mag_1', Modifiable = true, AvailableComponents = {'hk23e_mag_1', }}}
+	HK23ECamo_1.Valuable = 1
+	HK23ECamo_1.CanAppearInShop = false
+	HK23ECamo_1.CanAppearUsed = true
+	HK23ECamo_1.Tier = 3
+	HK23ECamo_1.MaxStock = 1
+	HK23ECamo_1.RestockWeight = 30
+	HK23ECamo_1.CategoryPair = "MachineGuns"
+	HK23ECamo_1.Description = T(483613388445, [[<style PerkststsBold ><scale 600>The HK23 is a West German 5.56×45mm NATO light machine gun.<newline><newline>The HK23 was developed in 1972. The purpose of this gun was to compete with various small calibre guns of the time. The main purpose of the gun was to export to foreign markets instead of special development for the German Bundeswehr and German law enforcement agencies. Ten years later, in order to participate in the U.S. military's automatic class weapon campaign, the HK23E participated in the election under the name of XM262, but eventually lost to the M249 SAW<newline><newline>Although the 5.56 NATO HK23E didn't enjoy the same level widespread success as its big brother in 7.62mm NATO - similar to the HK33 vs. the G3 - it did see service with multiple countries, and a few of them are still around in the hands of private collectors as well.<newline><newline><style MMOptionEntry>Made in Germany <image UI/Icons/Flags/f_germany.dds 1600>]])
+	HK23ECamo_1.PenetrationClass = 1
+
+
+	RPD_1.is_tog_patched = true
+	RPD_1.is_vanilla_firearm = false
+	RPD_1.DisplayName = Untranslated([[RPD]])
+	RPD_1.object_class = "MachineGun"
+	RPD_1.Cost = 3240
+	RPD_1.Damage = 27
+	RPD_1.ObjDamageMod = 100
+	RPD_1.CritChance = 0
+	RPD_1.CritPerAim = 200
+	RPD_1.BurstCritMul = 60
+	RPD_1.CritChanceScaled = 10
+	storeProps(RPD_1, "AimAccuracy", 24, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(RPD_1, "AimAccuracy", 2, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(RPD_1, "WeaponRange", 28, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(RPD_1, "WeaponRange", 34, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	RPD_1.PBbonus_base = -2
+	RPD_1.Handling = 0
+	RPD_1.HandlingNotProneMul = 150
+	RPD_1.PenetrationClass = 1
+	RPD_1.ShootAP = 4000
+	RPD_1.ReloadAP = 5000
+	RPD_1.APStance = 40
+	RPD_1.OverwatchAngle = 632
+	RPD_1.MagazineSize = 100
+	RPD_1.Cumbersome = 0
+	RPD_1.Noise = 22
+	RPD_1.PointBlankBonus = 1
+	RPD_1.PreparedAttackType = "Machine Gun"
+	RPD_1.AvailableAttacks = {"MGBurstFire", "BurstFire", "SingleShot", "CancelShot"}
+	RPD_1.Rat_swap_ap = 30
+	RPD_1.long_shots = 4
+	RPD_1.auto_shots = 4
+	RPD_1.RPM = 650
+	RPD_1.BurstSelective = false
+	RPD_1.AutoFireOnly = true
+	RPD_1.wep_base_recoil_mul = 95
+	RPD_1.weigth_held_mul = 153
+	RPD_1.wep_base_snapshot_mul = 115
+	RPD_1.wep_base_hip_mul = 92
+	RPD_1.recoil_mechanism = "Gas_Operated"
+	RPD_1.Rat_cycling = "Auto"
+	RPD_1.rat_scope_block = false
+	RPD_1.pistol_swap = false
+	RPD_1.default_long_barrel = false
+	RPD_1.unwieldy_weapon = false
+	RPD_1.rat_barrel_len = 520
+	RPD_1.rat_weigth = 7500
+	RPD_1.Weight = 7500
+	RPD_1.ScrapParts = 16
+	RPD_1.RepairCost = 80
+	RPD_1.Reliability = 84
+	RPD_1.LargeItem = 1
+	RPD_1.HandSlot = "TwoHanded"
+	RPD_1.AdditionalHint = T( 862873342222, [[<description_hints>]] )
+	RPD_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Bipod', DefaultComponent = 'RPD_bipod_fld_1', Modifiable = true, AvailableComponents = {'RPD_bipod_fld_1', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'RPD_barrel_def_1', Modifiable = true, AvailableComponents = {'RPD_barrel_def_1', 'R_TOG_light_barrel', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'RPD_mag_def_1', Modifiable = true, AvailableComponents = {'RPD_mag_def_1', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'RPD_ironsight_1', Modifiable = true, AvailableComponents = {'LROptics', 'ReflexSight', 'ScopeCOG', 'LROpticsAdvanced', 'ScopeCOGQuick', 'ReflexSightAdvanced', 'RPD_ironsight_1', 'WideScope', '_ReflexSIghtVigilance', 'ThermalScope', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'ToG_VFX_Muzzle', Modifiable = true, AvailableComponents = {'ToG_VFX_Muzzle', 'RAT_TOG_compensator', 'RAT_TOG_suppressor', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'RPD_stock_def_1', Modifiable = false, AvailableComponents = {'RPD_stock_def_1', }}}
+	RPD_1.Valuable = 0
+	RPD_1.CanAppearInShop = true
+	RPD_1.CanAppearUsed = true
+	RPD_1.Tier = 1
+	RPD_1.MaxStock = 2
+	RPD_1.RestockWeight = 80
+	RPD_1.CategoryPair = "MachineGuns"
+	RPD_1.Description = T(283294446635, [[<style PerkststsBold ><scale 600>The RPD is a 7.62x39mm light machine gun developed in the Soviet Union<newline><newline>It was created as a replacement for the DP machine gun chambered for the 7.62×54mmR round. It is a precursor of most squad automatic weapons. It was succeeded in Soviet service by the RPK.<newline><newline>Work on the weapon commenced in 1943. Three prominent Soviet engineers were asked to submit their own designs: Vasily Degtyaryov, Sergei Simonov and Alexei Sudayev. Among the completed prototypes prepared for evaluation, the Degtyaryov design proved superior and was accepted into service with the Soviet armed forces<newline><newline>After the introduction of the Kalashnikov-pattern support weapons, such as the RPK and PK machine guns in the 1960s, the RPD was withdrawn from most first-tier units of the former Warsaw Pact. However, the RPD remains in active service in many African and Asian nations<newline><newline><style MMOptionEntry>Made in Russia <image UI/Icons/Flags/f_russia.dds 1600>]])
+	RPD_1.PenetrationClass = 1
 
 
 	G3A3_1.is_tog_patched = true
@@ -93,7 +292,7 @@ function RatoTOG_Patch()
 	G3A3_1.PenetrationClass = 1
 	G3A3_1.ShootAP = 4000
 	G3A3_1.ReloadAP = 3000
-	G3A3_1.APStance = 37
+	G3A3_1.APStance = 33
 	G3A3_1.OverwatchAngle = 1106
 	G3A3_1.MagazineSize = 20
 	G3A3_1.Cumbersome = 0
@@ -156,7 +355,7 @@ function RatoTOG_Patch()
 	G3A3Green_1.PenetrationClass = 1
 	G3A3Green_1.ShootAP = 4000
 	G3A3Green_1.ReloadAP = 3000
-	G3A3Green_1.APStance = 37
+	G3A3Green_1.APStance = 33
 	G3A3Green_1.OverwatchAngle = 1106
 	G3A3Green_1.MagazineSize = 20
 	G3A3Green_1.Cumbersome = 0
@@ -199,6 +398,71 @@ function RatoTOG_Patch()
 	G3A3Green_1.PenetrationClass = 1
 
 
+	M1Garand_2.is_tog_patched = true
+	M1Garand_2.is_vanilla_firearm = false
+	M1Garand_2.DisplayName = Untranslated([[M1 Garand]])
+	M1Garand_2.object_class = "AssaultRifle"
+	M1Garand_2.__parents[1] = "AssaultRifle"
+	M1Garand_2.ItemType = "AssaultRifle"
+	M1Garand_2.Cost = 3200
+	M1Garand_2.Damage = 30
+	M1Garand_2.ObjDamageMod = 100
+	M1Garand_2.CritChance = 0
+	M1Garand_2.CritPerAim = 200
+	M1Garand_2.BurstCritMul = 60
+	M1Garand_2.CritChanceScaled = 10
+	storeProps(M1Garand_2, "AimAccuracy", 35, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M1Garand_2, "AimAccuracy", 5, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M1Garand_2, "WeaponRange", 32, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M1Garand_2, "WeaponRange", 34, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	M1Garand_2.PBbonus_base = -3
+	M1Garand_2.Handling = -5
+	M1Garand_2.PenetrationClass = 1
+	M1Garand_2.ShootAP = 4000
+	M1Garand_2.ReloadAP = 3000
+	M1Garand_2.APStance = 33
+	M1Garand_2.OverwatchAngle = 820
+	M1Garand_2.MagazineSize = 8
+	M1Garand_2.Cumbersome = 0
+	M1Garand_2.Noise = 22
+	M1Garand_2.PointBlankBonus = 1
+	M1Garand_2.PreparedAttackType = "Overwatch"
+	M1Garand_2.AvailableAttacks = {"SingleShot", "CancelShot"}
+	M1Garand_2.Rat_swap_ap = 30
+	M1Garand_2.BurstSelective = false
+	M1Garand_2.wep_base_recoil_mul = 90
+	M1Garand_2.weigth_held_mul = 132
+	M1Garand_2.wep_base_snapshot_mul = 117
+	M1Garand_2.wep_base_hip_mul = 92
+	M1Garand_2.recoil_mechanism = "Gas_Operated"
+	M1Garand_2.Rat_cycling = "SemiAuto"
+	M1Garand_2.rat_scope_block = false
+	M1Garand_2.pistol_swap = false
+	M1Garand_2.default_long_barrel = true
+	M1Garand_2.unwieldy_weapon = false
+	M1Garand_2.rat_barrel_len = 610
+	M1Garand_2.rat_weigth = 4500
+	M1Garand_2.Weight = 4500
+	M1Garand_2.ScrapParts = 9
+	M1Garand_2.RepairCost = 80
+	M1Garand_2.Reliability = 78
+	M1Garand_2.LargeItem = 1
+	M1Garand_2.HandSlot = "TwoHanded"
+	M1Garand_2.AdditionalHint = T( 297407062004, [[<description_hints>]] )
+	M1Garand_2.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'ToG_VFX_Muzzle', Modifiable = true, AvailableComponents = {'Compensator', 'RAT_TOG_suppressor_762', 'ToG_VFX_Muzzle', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'ImprovedIronsight', Modifiable = true, AvailableComponents = {'ImprovedIronsight', }}}
+	M1Garand_2.Valuable = 0
+	M1Garand_2.CanAppearInShop = true
+	M1Garand_2.CanAppearUsed = true
+	M1Garand_2.Tier = 1
+	M1Garand_2.MaxStock = 4
+	M1Garand_2.RestockWeight = 90
+	M1Garand_2.CategoryPair = "AssaultRifles"
+	M1Garand_2.Icon = "Mod/Dau6w/Images/M1Garand_icon.png"
+	M1Garand_2.fxClass = "Gewehr98"
+	M1Garand_2.Description = T(757423265427, [[<style PerkststsBold ><scale 600>The M1 Garand or M1 rifle is a semi-automatic rifle that was the service rifle of the U.S. Army during World War II and the Korean War.<newline><newline>The rifle is chambered for the .30-06 Springfield cartridge and is named after its Canadian-American designer, John Garand. It was the first standard-issue autoloading rifle for the United States. By most accounts, the M1 rifle performed well. General George S. Patton called it "the greatest battle implement ever devised".<newline><newline>The M1 replaced the bolt-action M1903 Springfield as the U.S. service rifle in 1936, and was itself replaced by the selective-fire M14 rifle on March 26, 1958.<newline><newline><style MMOptionEntry>Made in USA <image UI/Icons/Flags/f_usa.dds 1600>]])
+	M1Garand_2.PenetrationClass = 1
+
+
 	SteyrScout_1.is_tog_patched = true
 	SteyrScout_1.is_vanilla_firearm = false
 	SteyrScout_1.DisplayName = Untranslated([[Scout Tactical Elite]])
@@ -219,7 +483,7 @@ function RatoTOG_Patch()
 	SteyrScout_1.PenetrationClass = 1
 	SteyrScout_1.ShootAP = 4000
 	SteyrScout_1.ReloadAP = 3000
-	SteyrScout_1.APStance = 35
+	SteyrScout_1.APStance = 30
 	SteyrScout_1.OverwatchAngle = 970
 	SteyrScout_1.MagazineSize = 5
 	SteyrScout_1.Cumbersome = 0
@@ -262,6 +526,380 @@ function RatoTOG_Patch()
 	SteyrScout_1.PenetrationClass = 1
 
 
+	Mosin_1.is_tog_patched = true
+	Mosin_1.is_vanilla_firearm = false
+	Mosin_1.DisplayName = Untranslated([[Mosin M1938 Carbine]])
+	Mosin_1.object_class = "SniperRifle"
+	Mosin_1.ItemType = "Sniper"
+	Mosin_1.Cost = 2100
+	Mosin_1.Damage = 33
+	Mosin_1.ObjDamageMod = 100
+	Mosin_1.CritChance = 0
+	Mosin_1.CritPerAim = 800
+	Mosin_1.BurstCritMul = 60
+	Mosin_1.CritChanceScaled = 30
+	storeProps(Mosin_1, "AimAccuracy", 41, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Mosin_1, "AimAccuracy", 6, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Mosin_1, "WeaponRange", 38, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Mosin_1, "WeaponRange", 34, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	Mosin_1.PBbonus_base = 6
+	Mosin_1.Handling = 1
+	Mosin_1.PenetrationClass = 1
+	Mosin_1.ShootAP = 4000
+	Mosin_1.ReloadAP = 3000
+	Mosin_1.APStance = 30
+	Mosin_1.OverwatchAngle = 1091
+	Mosin_1.MagazineSize = 8
+	Mosin_1.Cumbersome = 0
+	Mosin_1.Noise = 22
+	Mosin_1.PointBlankBonus = 1
+	Mosin_1.PreparedAttackType = "Both"
+	Mosin_1.AvailableAttacks = {"SingleShot", "CancelShot"}
+	Mosin_1.Rat_swap_ap = 30
+	Mosin_1.BurstSelective = false
+	Mosin_1.wep_base_recoil_mul = 90
+	Mosin_1.weigth_held_mul = 128
+	Mosin_1.wep_base_snapshot_mul = 109
+	Mosin_1.wep_base_hip_mul = 94
+	Mosin_1.recoil_mechanism = "Bolt_Action"
+	Mosin_1.Rat_cycling = "BoltAction"
+	Mosin_1.rat_scope_block = false
+	Mosin_1.pistol_swap = false
+	Mosin_1.default_long_barrel = false
+	Mosin_1.unwieldy_weapon = false
+	Mosin_1.rat_barrel_len = 520
+	Mosin_1.ScrapParts = 9
+	Mosin_1.RepairCost = 80
+	Mosin_1.Reliability = 96
+	Mosin_1.LargeItem = 1
+	Mosin_1.HandSlot = "TwoHanded"
+	Mosin_1.AdditionalHint = T( 471813286018, [[<description_hints>]] )
+	Mosin_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'Mosin_Scope_iron_1', Modifiable = true, AvailableComponents = {'Mosin_Scope_iron_1', 'ReflexSightAdvanced', 'ReflexSight', '_ReflexSIghtVigilance', 'LROptics', 'ScopeCOGQuick', 'WideScope', 'LROpticsAdvanced', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'Mosin_Barrel_def_1', Modifiable = true, AvailableComponents = {'Mosin_Barrel_def_1', 'Mosin_Barrel_long_1', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'ToG_VFX_Muzzle', Modifiable = true, AvailableComponents = {'ToG_VFX_Muzzle', 'ImprovisedSuppressor', 'Suppressor', }}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'Bolt_action', Modifiable = true, AvailableComponents = {'Bolt_action', }}}
+	Mosin_1.Valuable = 0
+	Mosin_1.CanAppearInShop = true
+	Mosin_1.CanAppearUsed = true
+	Mosin_1.Tier = 1
+	Mosin_1.MaxStock = 4
+	Mosin_1.RestockWeight = 100
+	Mosin_1.CategoryPair = "Rifles"
+	Mosin_1.fxClass = "Gewehr98"
+	Mosin_1.Description = T(913798103123, [[<style PerkststsBold ><scale 600>The Mosin-Nagant is a five-shot, bolt-action, internal magazine-fed military rifle. Known officially as the 3-line rifle M1891 and informally in Russia and the former Soviet Union as Mosin's rifle.<newline><newline>It is primarily found chambered for its original 7.62×54mmR cartridge. Developed from 1882 to 1891, it was used by the armed forces of the Russian Empire, the Soviet Union and various other states. It is one of the most mass-produced military bolt-action rifles in history, with over 37 million units produced since 1891. In spite of its age, it has been used in various conflicts around the world up to the present day.<newline><newline>Large numbers of Mosin-Nagants were captured by German and Austro-Hungarian forces in WW1 and saw service with the rear-echelon forces of both armies, and also with the Imperial German Navy.<newline><newline><style ConversationChoiceNormalRollover ><scale  900>Designed by Mosin & Nagant <newline><image Mod/KKh3Yhf/Images/designers/Mosin_Mosin.png 1200><image Mod/KKh3Yhf/Images/designers/Mosin_Nagant.png 1000><newline><style MMOptionEntry>Made in Russia <image UI/Icons/Flags/f_russia.dds 1600>]])
+	Mosin_1.PenetrationClass = 1
+
+
+	SSG69_1.is_tog_patched = true
+	SSG69_1.is_vanilla_firearm = false
+	SSG69_1.DisplayName = Untranslated([[SSG 69]])
+	SSG69_1.object_class = "SniperRifle"
+	SSG69_1.ItemType = "Sniper"
+	SSG69_1.Cost = 6560
+	SSG69_1.Damage = 33
+	SSG69_1.ObjDamageMod = 100
+	SSG69_1.CritChance = 0
+	SSG69_1.CritPerAim = 700
+	SSG69_1.BurstCritMul = 60
+	SSG69_1.CritChanceScaled = 20
+	storeProps(SSG69_1, "AimAccuracy", 55, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(SSG69_1, "AimAccuracy", 7, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(SSG69_1, "WeaponRange", 46, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(SSG69_1, "WeaponRange", 36, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	SSG69_1.PBbonus_base = -4
+	SSG69_1.Handling = -18
+	SSG69_1.PenetrationClass = 1
+	SSG69_1.ShootAP = 4000
+	SSG69_1.ReloadAP = 3000
+	SSG69_1.APStance = 30
+	SSG69_1.OverwatchAngle = 847
+	SSG69_1.MagazineSize = 5
+	SSG69_1.Cumbersome = 0
+	SSG69_1.Noise = 20
+	SSG69_1.PointBlankBonus = 1
+	SSG69_1.PreparedAttackType = "Both"
+	SSG69_1.AvailableAttacks = {"SingleShot", "CancelShot"}
+	SSG69_1.Rat_swap_ap = 30
+	SSG69_1.BurstSelective = false
+	SSG69_1.wep_base_recoil_mul = 83
+	SSG69_1.weigth_held_mul = 130
+	SSG69_1.wep_base_snapshot_mul = 115
+	SSG69_1.wep_base_hip_mul = 90
+	SSG69_1.recoil_mechanism = "Bolt_Action"
+	SSG69_1.Rat_cycling = "BoltAction"
+	SSG69_1.rat_scope_block = false
+	SSG69_1.pistol_swap = false
+	SSG69_1.default_long_barrel = false
+	SSG69_1.unwieldy_weapon = false
+	SSG69_1.rat_barrel_len = 650
+	SSG69_1.rat_weigth = 4300
+	SSG69_1.Weight = 4300
+	SSG69_1.ScrapParts = 8
+	SSG69_1.RepairCost = 80
+	SSG69_1.Reliability = 95
+	SSG69_1.LargeItem = 1
+	SSG69_1.HandSlot = "TwoHanded"
+	SSG69_1.AdditionalHint = T( 787968005557, [[<description_hints>]] )
+	SSG69_1.ComponentSlots = {{CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'SSG69_Scope_1', 'ScopeCOGQuick', 'ScopeCOG', 'WideScope', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'SSG69_Barrel_def_1', Modifiable = true, AvailableComponents = {'SSG69_Barrel_def_1', 'SSG69_Barrel_ext_1', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'ToG_VFX_Muzzle', Modifiable = true, AvailableComponents = {'ToG_VFX_Muzzle', 'AUGCompensator_01', 'ImprovisedSuppressor', 'RAT_TOG_suppressor', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'SSG69_Mag_def_1', Modifiable = true, AvailableComponents = {'SSG69_Mag_def_1', 'SSG69_Mag_ext_1', }}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'Bolt_action', Modifiable = true, AvailableComponents = {'Bolt_action', }}}
+	SSG69_1.Valuable = 0
+	SSG69_1.CanAppearInShop = true
+	SSG69_1.CanAppearUsed = true
+	SSG69_1.Tier = 2
+	SSG69_1.MaxStock = 2
+	SSG69_1.RestockWeight = 50
+	SSG69_1.CategoryPair = "Rifles"
+	SSG69_1.fxClass = "PSG1"
+	SSG69_1.Description = T(393371357000, [[<style PerkststsBold ><scale 700>The SSG 69 is a bolt-action sniper rifle that serves as the standard sniper rifle for the Austrian Army.<newline><newline>Designed as a sniper system to replace the SSG 98k sniper rifle (modified and accurized surplus Karabiner 98k rifles) and adopted in 1969 (hence the designation), it was ahead of its time with the use of synthetics like the stock, trigger guard, and magazines and cold hammer-forged barrels for durability.<newline><newline>Aside from being the Austrian Army's standard issue sniper rifle, it is also used by several law enforcement organizations. For its era and weight, it is extremely accurate and several international competitions have been won using an SSG-69 with accuracy being sub 0.15 mrad<newline><newline>The choice for a synthetic stock was remarkable, as other sniper rifles at the time were still using wood stocks.<newline><newline><style MMOptionEntry>Made in Austria<image Mod/HXzCpFa/Icons/Flags/Austria.png 1600>]])
+	SSG69_1.PenetrationClass = 1
+
+
+	M76_1.is_tog_patched = true
+	M76_1.is_vanilla_firearm = false
+	M76_1.DisplayName = Untranslated([[M76]])
+	M76_1.object_class = "SniperRifle"
+	M76_1.Cost = 3900
+	M76_1.Damage = 32
+	M76_1.ObjDamageMod = 100
+	M76_1.CritChance = 0
+	M76_1.CritPerAim = 600
+	M76_1.BurstCritMul = 60
+	M76_1.CritChanceScaled = 20
+	storeProps(M76_1, "AimAccuracy", 44, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M76_1, "AimAccuracy", 6, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M76_1, "WeaponRange", 40, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M76_1, "WeaponRange", 38, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	M76_1.PBbonus_base = -3
+	M76_1.Handling = -3
+	M76_1.PenetrationClass = 1
+	M76_1.ShootAP = 4000
+	M76_1.ReloadAP = 3000
+	M76_1.APStance = 30
+	M76_1.OverwatchAngle = 833
+	M76_1.MagazineSize = 10
+	M76_1.Cumbersome = 0
+	M76_1.Noise = 28
+	M76_1.PointBlankBonus = 1
+	M76_1.PreparedAttackType = "Both"
+	M76_1.AvailableAttacks = {"SingleShot", "CancelShot"}
+	M76_1.Rat_swap_ap = 30
+	M76_1.BurstSelective = false
+	M76_1.wep_base_recoil_mul = 82
+	M76_1.weigth_held_mul = 132
+	M76_1.wep_base_snapshot_mul = 116
+	M76_1.wep_base_hip_mul = 89
+	M76_1.recoil_mechanism = "Gas_Operated"
+	M76_1.Rat_cycling = "SemiAuto"
+	M76_1.rat_scope_block = false
+	M76_1.pistol_swap = false
+	M76_1.default_long_barrel = false
+	M76_1.unwieldy_weapon = false
+	M76_1.rat_barrel_len = 550
+	M76_1.rat_weigth = 4500
+	M76_1.Weight = 4500
+	M76_1.ScrapParts = 14
+	M76_1.RepairCost = 70
+	M76_1.Reliability = 80
+	M76_1.LargeItem = 1
+	M76_1.HandSlot = "TwoHanded"
+	M76_1.AdditionalHint = T( 542588930667, [[<description_hints>]] )
+	M76_1.ComponentSlots = {
+  {
+  SlotType = 'Stock',
+  DefaultComponent = 'm76_stock_def_1',
+  CanBeEmpty = false,
+  Modifiable = false,
+  AvailableComponents = {'m76_stock_def_1'}
+  },
+  {
+  SlotType = 'Magazine',
+  DefaultComponent = 'm76_mag_def_1',
+  CanBeEmpty = false,
+  Modifiable = true,
+  AvailableComponents = {'m76_mag_def_1'}
+  },
+  {
+  SlotType = 'Muzzle',
+  DefaultComponent = 'ToG_VFX_Muzzle',
+  CanBeEmpty = false,
+  Modifiable = true,
+  AvailableComponents = {
+  'ImprovisedSuppressor',
+  'RAT_TOG_suppressor',
+  'RAT_TOG_compensator',
+  'ToG_VFX_Muzzle'
+  }
+  },
+  {
+  SlotType = 'Scope',
+  DefaultComponent = 'ImprovedIronsight',
+  CanBeEmpty = false,
+  Modifiable = true,
+  AvailableComponents = {
+  'RAT_TOG_Reflex_rpk_mount',
+  'RAT_TOG_ACOG_rpk_mount',
+  'RAT_TOG_compactRS_rpk_mount',
+  'RAT_TOG_Prism_rpk_mount',
+  'RAT_TOG_vigilanceRS_rpk_mount',
+  'RAT_TOG_thermal_rpk_mount',
+  'RAT_TOG_WideScope_rpk_mount',
+  'RAT_TOG_LRoptics_rpk_mount',
+  'm76_scope_1',
+  'RAT_TOG_LRoptics_advanced_rpk_mount',
+  'ImprovedIronsight'
+  }
+  },
+  {
+  SlotType = 'Barrel',
+  DefaultComponent = 'm76_barrel_def_1',
+  CanBeEmpty = false,
+  Modifiable = true,
+  AvailableComponents = {
+  'm76_barrel_def_1',
+  'm76_barrel_ext_1'
+  }
+  }
+ }
+	M76_1.Valuable = 0
+	M76_1.CanAppearInShop = true
+	M76_1.CanAppearUsed = true
+	M76_1.Tier = 2
+	M76_1.MaxStock = 3
+	M76_1.RestockWeight = 100
+	M76_1.CategoryPair = "Rifles"
+	M76_1.Description = T(979114916169, [[<style PerkststsBold ><scale 600>The M76 is a military semi-automatic designated marksman rifle released in the mid-1970s<newline><newline>The M76 is similar in concept to the Russian Dragunov SVD sniper/designated marksman rifle; a semi-automatic rifle using a full-power cartridge from a 10-round magazine. However, the M76 is closer to the AK-47/RPK design and the unlicensed M70 AK-derivative than the Dragunov SVD. Rather than being a Dragunov clone, it looks more like a lengthened AK-47 with a heavier barrel, an impression strengthened by the separate stock and pistol grip rather than the Dragunov's thumbhole combination stock<newline><newline>The typical telescopic sight used is a ZRAK ON-M76 scope. The reticle illumination of the ZRAK M76 is provided by (radioactive) tritium. The tritium light source has to be replaced every 8-12 years, since it gradually loses its brightness due to radioactive decay.<newline><newline><style MMOptionEntry>Made in Yugoslavia <image Mod/KKh3Yhf/Images/Yugoslavia.png 1600>]])
+	M76_1.PenetrationClass = 1
+
+
+	AN94_1.is_tog_patched = true
+	AN94_1.is_vanilla_firearm = false
+	AN94_1.DisplayName = Untranslated([[AN-94]])
+	AN94_1.object_class = "AssaultRifle"
+	AN94_1.Cost = 12340
+	AN94_1.Damage = 25
+	AN94_1.ObjDamageMod = 100
+	AN94_1.CritChance = 0
+	AN94_1.CritPerAim = 500
+	AN94_1.BurstCritMul = 75
+	AN94_1.CritChanceScaled = 20
+	storeProps(AN94_1, "AimAccuracy", 41, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AN94_1, "AimAccuracy", 6, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AN94_1, "WeaponRange", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AN94_1, "WeaponRange", 36, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	AN94_1.PBbonus_base = 3
+	AN94_1.Handling = 8
+	AN94_1.PenetrationClass = 1
+	AN94_1.ShootAP = 2000
+	AN94_1.ReloadAP = 3000
+	AN94_1.APStance = 30
+	AN94_1.OverwatchAngle = 1118
+	AN94_1.MagazineSize = 30
+	AN94_1.Cumbersome = 0
+	AN94_1.Noise = 20
+	AN94_1.PointBlankBonus = 1
+	AN94_1.PreparedAttackType = "Overwatch"
+	AN94_1.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
+	AN94_1.Rat_swap_ap = 30
+	AN94_1.burst_shots = 2
+	AN94_1.RPM = 600
+	AN94_1.BurstRPM = 1800
+	AN94_1.BurstSelective = true
+	AN94_1.AutoFireCustomDeltaAP = 10
+	AN94_1.SingleShotCustomDeltaAP = 20
+	AN94_1.hyperburst = 85
+	AN94_1.burst_recoil_delta = 5
+	AN94_1.long_recoil_delta = 85
+	AN94_1.auto_recoil_delta = 85
+	AN94_1.wep_base_recoil_mul = 95
+	AN94_1.weigth_held_mul = 127
+	AN94_1.wep_base_snapshot_mul = 101
+	AN94_1.wep_base_hip_mul = 95
+	AN94_1.recoil_mechanism = "Gas_Operated"
+	AN94_1.Rat_cycling = "Auto"
+	AN94_1.rat_scope_block = false
+	AN94_1.pistol_swap = false
+	AN94_1.default_long_barrel = false
+	AN94_1.unwieldy_weapon = false
+	AN94_1.rat_barrel_len = 414
+	AN94_1.rat_weigth = 3850
+	AN94_1.Weight = 3850
+	AN94_1.ScrapParts = 10
+	AN94_1.RepairCost = 30
+	AN94_1.Reliability = 66
+	AN94_1.LargeItem = 1
+	AN94_1.HandSlot = "TwoHanded"
+	AN94_1.AdditionalHint = T( 418962743486, [[<description_hints>
+<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Unique 2 shot burst function at 1800 rounds per minute]] )
+	AN94_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'AN94_Stock_def_1', Modifiable = true, AvailableComponents = {'AN94_Stock_def_1', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'AN94_Mag_def_1', Modifiable = true, AvailableComponents = {'AN94_Mag_def_1', 'AN94_Mag_ext_1', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'ImprovedIronsight', Modifiable = true, AvailableComponents = {'LROptics_DragunovDefault', 'ImprovedIronsight', 'RAT_TOG_Reflex', 'RAT_TOG_compactRS', 'RAT_TOG_vigilanceRS', 'RAT_TOG_ACOG', 'RAT_TOG_Prism', 'RAT_TOG_LRoptics', 'RAT_TOG_WideScope', 'RAT_TOG_thermal', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'RAT_TOG_compensator', Modifiable = true, AvailableComponents = {'RAT_TOG_compensator', }}, {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'AN94_Bip_def_1', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'AN94_Barrel_def_1', Modifiable = false, AvailableComponents = {'AN94_Barrel_def_1', }}}
+	AN94_1.Valuable = 1
+	AN94_1.CanAppearInShop = true
+	AN94_1.CanAppearUsed = true
+	AN94_1.Tier = 3
+	AN94_1.MaxStock = 1
+	AN94_1.RestockWeight = 25
+	AN94_1.CategoryPair = "AssaultRifles"
+	AN94_1.Icon = "Mod/Dau6w/Images/AN94_icon.png"
+	AN94_1.Description = T(260761277742, [[<style PerkststsBold ><scale 600>The AN-94 is a Russian assault rifle designed as a potential replacement to the AK-74<newline><newline>It offers a unique two-shot burst function at a stated 1800 rounds per minute, increasing hit probability under the most adverse combat conditions.<newline><newline>Due to its complex design and expense, it failed to fill its intended role as a replacement for the AK-74, but it is in limited use as a special purpose weapon.<newline><newline><style MMOptionEntry>Made in Russia <image UI/Icons/Flags/f_russia.dds 1600>]])
+	AN94_1.PenetrationClass = 1
+
+
+	RK95_1.is_tog_patched = true
+	RK95_1.is_vanilla_firearm = false
+	RK95_1.DisplayName = Untranslated([[RK-95]])
+	RK95_1.object_class = "AssaultRifle"
+	RK95_1.Cost = 5000
+	RK95_1.Damage = 28
+	RK95_1.ObjDamageMod = 100
+	RK95_1.CritChance = 0
+	RK95_1.CritPerAim = 300
+	RK95_1.BurstCritMul = 60
+	RK95_1.CritChanceScaled = 20
+	storeProps(RK95_1, "AimAccuracy", 34, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(RK95_1, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(RK95_1, "WeaponRange", 28, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(RK95_1, "WeaponRange", 32, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	RK95_1.PBbonus_base = 3
+	RK95_1.Handling = 8
+	RK95_1.PenetrationClass = 1
+	RK95_1.ShootAP = 4000
+	RK95_1.ReloadAP = 3000
+	RK95_1.APStance = 30
+	RK95_1.OverwatchAngle = 1111
+	RK95_1.MagazineSize = 30
+	RK95_1.Cumbersome = 0
+	RK95_1.Noise = 20
+	RK95_1.PointBlankBonus = 1
+	RK95_1.PreparedAttackType = "Overwatch"
+	RK95_1.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
+	RK95_1.Rat_swap_ap = 30
+	RK95_1.RPM = 650
+	RK95_1.BurstSelective = false
+	RK95_1.wep_base_recoil_mul = 95
+	RK95_1.weigth_held_mul = 129
+	RK95_1.wep_base_snapshot_mul = 102
+	RK95_1.recoil_mechanism = "Gas_Operated"
+	RK95_1.Rat_cycling = "Auto"
+	RK95_1.rat_scope_block = false
+	RK95_1.pistol_swap = false
+	RK95_1.default_long_barrel = false
+	RK95_1.unwieldy_weapon = false
+	RK95_1.rat_barrel_len = 406
+	RK95_1.rat_weigth = 4100
+	RK95_1.Weight = 4100
+	RK95_1.ScrapParts = 10
+	RK95_1.RepairCost = 15
+	RK95_1.Reliability = 86
+	RK95_1.LargeItem = 1
+	RK95_1.HandSlot = "TwoHanded"
+	RK95_1.AdditionalHint = T( 266083134551, [[<description_hints>]] )
+	RK95_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'RK95_Stock_def_1', Modifiable = true, AvailableComponents = {'RK95_Stock_def_1', 'RK95_Stock_shrt_1' }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'RK95_Mag_def_1', Modifiable = true, AvailableComponents = {'RK95_Mag_def_1', 'RK95_Mag_ext_1', }}, {CanBeEmpty = false, SlotType = 'Handguard', DefaultComponent = 'RK95_Handguard_def_1', Modifiable = false, AvailableComponents = {'RK95_Handguard_shrt_1', 'RK95_Handguard_def_1', 'RK95_Handguard_ext_1', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'RK95_Irons_1', Modifiable = true, AvailableComponents = {'RAT_TOG_Reflex', 'RAT_TOG_ACOG', 'RAT_TOG_compactRS', 'RAT_TOG_Prism', 'RAT_TOG_vigilanceRS', 'RAT_TOG_thermal', 'RAT_TOG_WideScope', 'RAT_TOG_LRoptics', 'RAT_TOG_LRoptics_advanced', 'RK95_Irons_1', }}, {CanBeEmpty = true, SlotType = 'Muzzle', DefaultComponent = 'RK95_Muzzle_def_1', Modifiable = true, AvailableComponents = {'RK95_Muzzle_def_1', 'MuzzleBooster', 'RAT_TOG_suppressor', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'RK95_Barrel_def_1', Modifiable = true, AvailableComponents = {'RK95_Barrel_shrt_1', 'RK95_Barrel_def_1', 'RK95_Barrel_ext_1', }}}
+	RK95_1.Valuable = 0
+	RK95_1.CanAppearInShop = true
+	RK95_1.CanAppearUsed = true
+	RK95_1.Tier = 2
+	RK95_1.MaxStock = 3
+	RK95_1.RestockWeight = 60
+	RK95_1.CategoryPair = "AssaultRifles"
+	RK95_1.Description = T(296496696034, [[<style PerkststsBold ><scale 600>The RK 95 TP is a 7.62×39mm Finnish assault rifle adopted in relatively small numbers by the Finnish Defence Forces in the 1990s.<newline><newline>The rifle was developed in the late 1980s in response to a requirement to replace the 7.62mm RK 62 service rifle. Between 1988 and 1990, the M90 prototype was developed, which was a substantially upgraded variant of the RK 62.<newline><newline>After undergoing further testing and implementing several changes (among them, the selector mechanism was reverted to the familiar RK 62 configuration) the rifle was introduced into service with the Finnish Army as the 7.62 RK 95 TP. Deliveries to the Finnish started in 1995 and ended at 1997 with further orders ceasing in 1998.<newline><newline><style MMOptionEntry>Made in Finland <image Mod/HXzCpFa/Icons/Flags/Finland.png 1600>]])
+	RK95_1.PenetrationClass = 1
+
+
 	AR10std.is_tog_patched = true
 	AR10std.is_vanilla_firearm = false
 	AR10std.DisplayName = Untranslated([[AR-10]])
@@ -282,7 +920,7 @@ function RatoTOG_Patch()
 	AR10std.PenetrationClass = 1
 	AR10std.ShootAP = 4000
 	AR10std.ReloadAP = 3000
-	AR10std.APStance = 35
+	AR10std.APStance = 30
 	AR10std.OverwatchAngle = 1014
 	AR10std.MagazineSize = 20
 	AR10std.Cumbersome = 0
@@ -402,449 +1040,6 @@ function RatoTOG_Patch()
 	AR10std.PenetrationClass = 1
 
 
-	Mosin_1.is_tog_patched = true
-	Mosin_1.is_vanilla_firearm = false
-	Mosin_1.DisplayName = Untranslated([[Mosin M1938 Carbine]])
-	Mosin_1.object_class = "SniperRifle"
-	Mosin_1.ItemType = "Sniper"
-	Mosin_1.Cost = 2100
-	Mosin_1.Damage = 33
-	Mosin_1.ObjDamageMod = 100
-	Mosin_1.CritChance = 0
-	Mosin_1.CritPerAim = 800
-	Mosin_1.BurstCritMul = 60
-	Mosin_1.CritChanceScaled = 30
-	storeProps(Mosin_1, "AimAccuracy", 41, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Mosin_1, "AimAccuracy", 6, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Mosin_1, "WeaponRange", 38, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Mosin_1, "WeaponRange", 34, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	Mosin_1.PBbonus_base = 6
-	Mosin_1.Handling = 1
-	Mosin_1.PenetrationClass = 1
-	Mosin_1.ShootAP = 4000
-	Mosin_1.ReloadAP = 3000
-	Mosin_1.APStance = 35
-	Mosin_1.OverwatchAngle = 1091
-	Mosin_1.MagazineSize = 8
-	Mosin_1.Cumbersome = 0
-	Mosin_1.Noise = 22
-	Mosin_1.PointBlankBonus = 1
-	Mosin_1.PreparedAttackType = "Both"
-	Mosin_1.AvailableAttacks = {"SingleShot", "CancelShot"}
-	Mosin_1.Rat_swap_ap = 30
-	Mosin_1.BurstSelective = false
-	Mosin_1.wep_base_recoil_mul = 90
-	Mosin_1.weigth_held_mul = 128
-	Mosin_1.wep_base_snapshot_mul = 109
-	Mosin_1.wep_base_hip_mul = 94
-	Mosin_1.recoil_mechanism = "Bolt_Action"
-	Mosin_1.Rat_cycling = "BoltAction"
-	Mosin_1.rat_scope_block = false
-	Mosin_1.pistol_swap = false
-	Mosin_1.default_long_barrel = false
-	Mosin_1.unwieldy_weapon = false
-	Mosin_1.rat_barrel_len = 520
-	Mosin_1.ScrapParts = 9
-	Mosin_1.RepairCost = 80
-	Mosin_1.Reliability = 96
-	Mosin_1.LargeItem = 1
-	Mosin_1.HandSlot = "TwoHanded"
-	Mosin_1.AdditionalHint = T( 471813286018, [[<description_hints>]] )
-	Mosin_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'Mosin_Scope_iron_1', Modifiable = true, AvailableComponents = {'Mosin_Scope_iron_1', 'ReflexSightAdvanced', 'ReflexSight', '_ReflexSIghtVigilance', 'LROptics', 'ScopeCOGQuick', 'WideScope', 'LROpticsAdvanced', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'Mosin_Barrel_def_1', Modifiable = true, AvailableComponents = {'Mosin_Barrel_def_1', 'Mosin_Barrel_long_1', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'ToG_VFX_Muzzle', Modifiable = true, AvailableComponents = {'ToG_VFX_Muzzle', 'ImprovisedSuppressor', 'Suppressor', }}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'Bolt_action', Modifiable = true, AvailableComponents = {'Bolt_action', }}}
-	Mosin_1.Valuable = 0
-	Mosin_1.CanAppearInShop = true
-	Mosin_1.CanAppearUsed = true
-	Mosin_1.Tier = 1
-	Mosin_1.MaxStock = 4
-	Mosin_1.RestockWeight = 100
-	Mosin_1.CategoryPair = "Rifles"
-	Mosin_1.fxClass = "Gewehr98"
-	Mosin_1.Description = T(913798103123, [[<style PerkststsBold ><scale 600>The Mosin-Nagant is a five-shot, bolt-action, internal magazine-fed military rifle. Known officially as the 3-line rifle M1891 and informally in Russia and the former Soviet Union as Mosin's rifle.<newline><newline>It is primarily found chambered for its original 7.62×54mmR cartridge. Developed from 1882 to 1891, it was used by the armed forces of the Russian Empire, the Soviet Union and various other states. It is one of the most mass-produced military bolt-action rifles in history, with over 37 million units produced since 1891. In spite of its age, it has been used in various conflicts around the world up to the present day.<newline><newline>Large numbers of Mosin-Nagants were captured by German and Austro-Hungarian forces in WW1 and saw service with the rear-echelon forces of both armies, and also with the Imperial German Navy.<newline><newline><style ConversationChoiceNormalRollover ><scale  900>Designed by Mosin & Nagant <newline><image Mod/KKh3Yhf/Images/designers/Mosin_Mosin.png 1200><image Mod/KKh3Yhf/Images/designers/Mosin_Nagant.png 1000><newline><style MMOptionEntry>Made in Russia <image UI/Icons/Flags/f_russia.dds 1600>]])
-	Mosin_1.PenetrationClass = 1
-
-
-	Gewehr43_1.is_tog_patched = true
-	Gewehr43_1.is_vanilla_firearm = false
-	Gewehr43_1.DisplayName = Untranslated([[Gewehr 43]])
-	Gewehr43_1.object_class = "AssaultRifle"
-	Gewehr43_1.ItemType = "AssaultRifle"
-	Gewehr43_1.Cost = 1700
-	Gewehr43_1.Damage = 31
-	Gewehr43_1.ObjDamageMod = 100
-	Gewehr43_1.CritChance = 0
-	Gewehr43_1.CritPerAim = 200
-	Gewehr43_1.BurstCritMul = 60
-	Gewehr43_1.CritChanceScaled = 10
-	storeProps(Gewehr43_1, "AimAccuracy", 33, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Gewehr43_1, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Gewehr43_1, "WeaponRange", 34, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Gewehr43_1, "WeaponRange", 34, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	Gewehr43_1.PBbonus_base = -1
-	Gewehr43_1.Handling = 1
-	Gewehr43_1.PenetrationClass = 1
-	Gewehr43_1.ShootAP = 4000
-	Gewehr43_1.ReloadAP = 4000
-	Gewehr43_1.APStance = 34
-	Gewehr43_1.OverwatchAngle = 959
-	Gewehr43_1.MagazineSize = 10
-	Gewehr43_1.Cumbersome = 0
-	Gewehr43_1.Noise = 22
-	Gewehr43_1.PointBlankBonus = 1
-	Gewehr43_1.PreparedAttackType = "Both"
-	Gewehr43_1.AvailableAttacks = {"SingleShot", "CancelShot"}
-	Gewehr43_1.Rat_swap_ap = 30
-	Gewehr43_1.BurstSelective = false
-	Gewehr43_1.wep_base_recoil_mul = 92
-	Gewehr43_1.weigth_held_mul = 125
-	Gewehr43_1.wep_base_snapshot_mul = 110
-	Gewehr43_1.wep_base_hip_mul = 92
-	Gewehr43_1.recoil_mechanism = "Gas_Operated"
-	Gewehr43_1.Rat_cycling = "SemiAuto"
-	Gewehr43_1.rat_scope_block = false
-	Gewehr43_1.pistol_swap = false
-	Gewehr43_1.default_long_barrel = false
-	Gewehr43_1.unwieldy_weapon = false
-	Gewehr43_1.rat_barrel_len = 550
-	Gewehr43_1.rat_weigth = 3600
-	Gewehr43_1.Weight = 3600
-	Gewehr43_1.ScrapParts = 8
-	Gewehr43_1.RepairCost = 80
-	Gewehr43_1.Reliability = 71
-	Gewehr43_1.LargeItem = 1
-	Gewehr43_1.HandSlot = "TwoHanded"
-	Gewehr43_1.AdditionalHint = T( 538484376797, [[<description_hints>]] )
-	Gewehr43_1.ComponentSlots = {{CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'GW43_Scope_1', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'G43_Barrel_def_1', Modifiable = false, AvailableComponents = {'G43_Barrel_def_1', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'ToG_VFX_Muzzle', Modifiable = true, AvailableComponents = {'ImprovisedSuppressor', 'ToG_VFX_Muzzle', 'RAT_TOG_compensator', 'RAT_TOG_suppressor', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'G43_Mag_def_1', Modifiable = true, AvailableComponents = {'G43_Mag_def_1', 'G43_Mag_ext_1', }}}
-	Gewehr43_1.Valuable = 0
-	Gewehr43_1.CanAppearInShop = true
-	Gewehr43_1.CanAppearUsed = true
-	Gewehr43_1.Tier = 1
-	Gewehr43_1.MaxStock = 3
-	Gewehr43_1.RestockWeight = 40
-	Gewehr43_1.CategoryPair = "AssaultRifles"
-	Gewehr43_1.Icon = "Mod/Dau6w/Images/G43_icon.png"
-	Gewehr43_1.fxClass = "PSG1"
-	Gewehr43_1.Description = T(314229886535, [[<style PerkststsBold ><scale 700>The Gewehr 43 or Karabiner 43 is a semi-automatic rifle developed by Germany during World War II.<newline><newline>In 1941, Germany invaded the Soviet Union as part of Operation Barbarossa. Just prior to the opening of hostilities the Soviet Red Army had started re-arming its infantry, complementing its older bolt-action rifles with the new semi-automatic SVT-38s and SVT-40s. This was a shock to the Germans, who ramped up their own semi-automatic rifle development efforts significantly.<newline><newline>The Gewehr 43 was put into production in October 1943 and followed in 1944 by the Karabiner 43 (K43), which was identical to the G43 in every way except for the letter stamped on the side.<newline><newline>It was manufactured using innovative mass-production techniques, with production amounting to just over 400,000 between 1943 and 1945.<newline><newline><style MMOptionEntry>Made in Germany <image UI/Icons/Flags/f_germany.dds 1600>]])
-	Gewehr43_1.PenetrationClass = 1
-
-
-	M76_1.is_tog_patched = true
-	M76_1.is_vanilla_firearm = false
-	M76_1.DisplayName = Untranslated([[M76]])
-	M76_1.object_class = "SniperRifle"
-	M76_1.Cost = 3900
-	M76_1.Damage = 32
-	M76_1.ObjDamageMod = 100
-	M76_1.CritChance = 0
-	M76_1.CritPerAim = 600
-	M76_1.BurstCritMul = 60
-	M76_1.CritChanceScaled = 20
-	storeProps(M76_1, "AimAccuracy", 44, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M76_1, "AimAccuracy", 6, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M76_1, "WeaponRange", 40, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M76_1, "WeaponRange", 38, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	M76_1.PBbonus_base = -3
-	M76_1.Handling = -3
-	M76_1.PenetrationClass = 1
-	M76_1.ShootAP = 4000
-	M76_1.ReloadAP = 3000
-	M76_1.APStance = 35
-	M76_1.OverwatchAngle = 833
-	M76_1.MagazineSize = 10
-	M76_1.Cumbersome = 0
-	M76_1.Noise = 28
-	M76_1.PointBlankBonus = 1
-	M76_1.PreparedAttackType = "Both"
-	M76_1.AvailableAttacks = {"SingleShot", "CancelShot"}
-	M76_1.Rat_swap_ap = 30
-	M76_1.BurstSelective = false
-	M76_1.wep_base_recoil_mul = 82
-	M76_1.weigth_held_mul = 132
-	M76_1.wep_base_snapshot_mul = 116
-	M76_1.wep_base_hip_mul = 89
-	M76_1.recoil_mechanism = "Gas_Operated"
-	M76_1.Rat_cycling = "SemiAuto"
-	M76_1.rat_scope_block = false
-	M76_1.pistol_swap = false
-	M76_1.default_long_barrel = false
-	M76_1.unwieldy_weapon = false
-	M76_1.rat_barrel_len = 550
-	M76_1.rat_weigth = 4500
-	M76_1.Weight = 4500
-	M76_1.ScrapParts = 14
-	M76_1.RepairCost = 70
-	M76_1.Reliability = 80
-	M76_1.LargeItem = 1
-	M76_1.HandSlot = "TwoHanded"
-	M76_1.AdditionalHint = T( 542588930667, [[<description_hints>]] )
-	M76_1.ComponentSlots = {
-  {
-  SlotType = 'Stock',
-  DefaultComponent = 'm76_stock_def_1',
-  CanBeEmpty = false,
-  Modifiable = false,
-  AvailableComponents = {'m76_stock_def_1'}
-  },
-  {
-  SlotType = 'Magazine',
-  DefaultComponent = 'm76_mag_def_1',
-  CanBeEmpty = false,
-  Modifiable = true,
-  AvailableComponents = {'m76_mag_def_1'}
-  },
-  {
-  SlotType = 'Muzzle',
-  DefaultComponent = 'ToG_VFX_Muzzle',
-  CanBeEmpty = false,
-  Modifiable = true,
-  AvailableComponents = {
-  'ImprovisedSuppressor',
-  'RAT_TOG_suppressor',
-  'RAT_TOG_compensator',
-  'ToG_VFX_Muzzle'
-  }
-  },
-  {
-  SlotType = 'Scope',
-  DefaultComponent = 'ImprovedIronsight',
-  CanBeEmpty = false,
-  Modifiable = true,
-  AvailableComponents = {
-  'RAT_TOG_Reflex_rpk_mount',
-  'RAT_TOG_ACOG_rpk_mount',
-  'RAT_TOG_compactRS_rpk_mount',
-  'RAT_TOG_Prism_rpk_mount',
-  'RAT_TOG_vigilanceRS_rpk_mount',
-  'RAT_TOG_thermal_rpk_mount',
-  'RAT_TOG_WideScope_rpk_mount',
-  'RAT_TOG_LRoptics_rpk_mount',
-  'm76_scope_1',
-  'RAT_TOG_LRoptics_advanced_rpk_mount',
-  'ImprovedIronsight'
-  }
-  },
-  {
-  SlotType = 'Barrel',
-  DefaultComponent = 'm76_barrel_def_1',
-  CanBeEmpty = false,
-  Modifiable = true,
-  AvailableComponents = {
-  'm76_barrel_def_1',
-  'm76_barrel_ext_1'
-  }
-  }
- }
-	M76_1.Valuable = 0
-	M76_1.CanAppearInShop = true
-	M76_1.CanAppearUsed = true
-	M76_1.Tier = 2
-	M76_1.MaxStock = 3
-	M76_1.RestockWeight = 100
-	M76_1.CategoryPair = "Rifles"
-	M76_1.Description = T(979114916169, [[<style PerkststsBold ><scale 600>The M76 is a military semi-automatic designated marksman rifle released in the mid-1970s<newline><newline>The M76 is similar in concept to the Russian Dragunov SVD sniper/designated marksman rifle; a semi-automatic rifle using a full-power cartridge from a 10-round magazine. However, the M76 is closer to the AK-47/RPK design and the unlicensed M70 AK-derivative than the Dragunov SVD. Rather than being a Dragunov clone, it looks more like a lengthened AK-47 with a heavier barrel, an impression strengthened by the separate stock and pistol grip rather than the Dragunov's thumbhole combination stock<newline><newline>The typical telescopic sight used is a ZRAK ON-M76 scope. The reticle illumination of the ZRAK M76 is provided by (radioactive) tritium. The tritium light source has to be replaced every 8-12 years, since it gradually loses its brightness due to radioactive decay.<newline><newline><style MMOptionEntry>Made in Yugoslavia <image Mod/KKh3Yhf/Images/Yugoslavia.png 1600>]])
-	M76_1.PenetrationClass = 1
-
-
-	PKM_1.is_tog_patched = true
-	PKM_1.is_vanilla_firearm = false
-	PKM_1.DisplayName = Untranslated([[PKM]])
-	PKM_1.object_class = "RPK74"
-	PKM_1.ItemType = "MachineGun"
-	PKM_1.Cost = 7200
-	PKM_1.Damage = 32
-	PKM_1.ObjDamageMod = 100
-	PKM_1.CritChance = 0
-	PKM_1.CritPerAim = 200
-	PKM_1.BurstCritMul = 60
-	PKM_1.CritChanceScaled = 10
-	storeProps(PKM_1, "AimAccuracy", 31, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(PKM_1, "AimAccuracy", 2, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(PKM_1, "WeaponRange", 32, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(PKM_1, "WeaponRange", 42, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	PKM_1.PBbonus_base = -4
-	PKM_1.Handling = -15
-	PKM_1.HandlingNotProneMul = 200
-	PKM_1.PenetrationClass = 1
-	PKM_1.ShootAP = 4000
-	PKM_1.ReloadAP = 5000
-	PKM_1.APStance = 42
-	PKM_1.OverwatchAngle = 583
-	PKM_1.MagazineSize = 100
-	PKM_1.Cumbersome = 1
-	PKM_1.Noise = 20
-	PKM_1.PointBlankBonus = 1
-	PKM_1.PreparedAttackType = "Machine Gun"
-	PKM_1.AvailableAttacks = {"MGBurstFire", "BurstFire", "SingleShot", "CancelShot"}
-	PKM_1.long_shots = 4
-	PKM_1.auto_shots = 4
-	PKM_1.RPM = 650
-	PKM_1.BurstSelective = false
-	PKM_1.AutoFireOnly = true
-	PKM_1.wep_base_recoil_mul = 88
-	PKM_1.weigth_held_mul = 157
-	PKM_1.wep_base_snapshot_mul = 127
-	PKM_1.recoil_mechanism = "Gas_Operated"
-	PKM_1.Rat_cycling = "Auto"
-	PKM_1.rat_scope_block = false
-	PKM_1.pistol_swap = false
-	PKM_1.default_long_barrel = false
-	PKM_1.unwieldy_weapon = false
-	PKM_1.rat_barrel_len = 658
-	PKM_1.rat_weigth = 8000
-	PKM_1.Weight = 8000
-	PKM_1.RepairCost = 80
-	PKM_1.Reliability = 84
-	PKM_1.LargeItem = 1
-	PKM_1.HandSlot = "TwoHanded"
-	PKM_1.AdditionalHint = T( 921786310095, [[<description_hints>]] )
-	PKM_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'BarrelNormalImproved', 'R_TOG_light_barrel', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = false, AvailableComponents = {'MagNormal', 'MagNormalFine', 'MagQuick', 'MagLarge', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'LROptics', 'ReflexSight', 'ScopeCOG', 'ThermalScope', 'LROpticsAdvanced', 'ScopeCOGQuick', 'ReflexSightAdvanced', 'WideScope', '_ReflexSIghtVigilance', }}, {DefaultComponent = 'RAT_TOG_compensator', CanBeEmpty = false, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'RAT_TOG_compensator' }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = false, AvailableComponents = {'StockNormal', }}, {CanBeEmpty = false, SlotType = 'Bipod', DefaultComponent = 'PKM_Bipod_Fold_1', Modifiable = true, AvailableComponents = {'PKM_Bipod_Fold_1', }}}
-	PKM_1.Valuable = 0
-	PKM_1.CanAppearInShop = true
-	PKM_1.CanAppearUsed = true
-	PKM_1.Tier = 1
-	PKM_1.MaxStock = 3
-	PKM_1.RestockWeight = 40
-	PKM_1.CategoryPair = "MachineGuns"
-	PKM_1.Description = T(389126554458, [[<style PerkststsBold ><scale 600>The PKM is a belt-fed general-purpose machine gun, chambered for the 7.62×54mmR rimmed cartridge.<newline><newline>Designed in the Soviet Union and currently in production in Russia, the original PK machine gun was introduced in 1961 and the improved PKM variant was introduced in 1969.<newline><newline>Unlike the AKM and RPK the PK machine gun series is an open bolt design, which improves heat management during automatic fire compared to closed bolt designs and helps avoiding the dangerous phenomenon known as "cook-off"<newline><newline><style ConversationChoiceNormalRollover ><scale  900>Designed by Mikhail Kalashnikov<newline><image Mod/KKh3Yhf/Images/KalashnikovM_icon(mil.ru).png 1000><newline><style MMOptionEntry>Made in Russia <image UI/Icons/Flags/f_russia.dds 1600>]])
-	PKM_1.PenetrationClass = 1
-
-
-	M1Garand_2.is_tog_patched = true
-	M1Garand_2.is_vanilla_firearm = false
-	M1Garand_2.DisplayName = Untranslated([[M1 Garand]])
-	M1Garand_2.object_class = "AssaultRifle"
-	M1Garand_2.__parents[1] = "AssaultRifle"
-	M1Garand_2.ItemType = "AssaultRifle"
-	M1Garand_2.Cost = 3200
-	M1Garand_2.Damage = 30
-	M1Garand_2.ObjDamageMod = 100
-	M1Garand_2.CritChance = 0
-	M1Garand_2.CritPerAim = 200
-	M1Garand_2.BurstCritMul = 60
-	M1Garand_2.CritChanceScaled = 10
-	storeProps(M1Garand_2, "AimAccuracy", 35, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M1Garand_2, "AimAccuracy", 5, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M1Garand_2, "WeaponRange", 32, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M1Garand_2, "WeaponRange", 34, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	M1Garand_2.PBbonus_base = -3
-	M1Garand_2.Handling = -5
-	M1Garand_2.PenetrationClass = 1
-	M1Garand_2.ShootAP = 4000
-	M1Garand_2.ReloadAP = 3000
-	M1Garand_2.APStance = 37
-	M1Garand_2.OverwatchAngle = 820
-	M1Garand_2.MagazineSize = 8
-	M1Garand_2.Cumbersome = 0
-	M1Garand_2.Noise = 22
-	M1Garand_2.PointBlankBonus = 1
-	M1Garand_2.PreparedAttackType = "Overwatch"
-	M1Garand_2.AvailableAttacks = {"SingleShot", "CancelShot"}
-	M1Garand_2.Rat_swap_ap = 30
-	M1Garand_2.BurstSelective = false
-	M1Garand_2.wep_base_recoil_mul = 90
-	M1Garand_2.weigth_held_mul = 132
-	M1Garand_2.wep_base_snapshot_mul = 117
-	M1Garand_2.wep_base_hip_mul = 92
-	M1Garand_2.recoil_mechanism = "Gas_Operated"
-	M1Garand_2.Rat_cycling = "SemiAuto"
-	M1Garand_2.rat_scope_block = false
-	M1Garand_2.pistol_swap = false
-	M1Garand_2.default_long_barrel = true
-	M1Garand_2.unwieldy_weapon = false
-	M1Garand_2.rat_barrel_len = 610
-	M1Garand_2.rat_weigth = 4500
-	M1Garand_2.Weight = 4500
-	M1Garand_2.ScrapParts = 9
-	M1Garand_2.RepairCost = 80
-	M1Garand_2.Reliability = 78
-	M1Garand_2.LargeItem = 1
-	M1Garand_2.HandSlot = "TwoHanded"
-	M1Garand_2.AdditionalHint = T( 297407062004, [[<description_hints>]] )
-	M1Garand_2.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'ToG_VFX_Muzzle', Modifiable = true, AvailableComponents = {'Compensator', 'RAT_TOG_suppressor_762', 'ToG_VFX_Muzzle', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'ImprovedIronsight', Modifiable = true, AvailableComponents = {'ImprovedIronsight', }}}
-	M1Garand_2.Valuable = 0
-	M1Garand_2.CanAppearInShop = true
-	M1Garand_2.CanAppearUsed = true
-	M1Garand_2.Tier = 1
-	M1Garand_2.MaxStock = 4
-	M1Garand_2.RestockWeight = 90
-	M1Garand_2.CategoryPair = "AssaultRifles"
-	M1Garand_2.Icon = "Mod/Dau6w/Images/M1Garand_icon.png"
-	M1Garand_2.fxClass = "Gewehr98"
-	M1Garand_2.Description = T(757423265427, [[<style PerkststsBold ><scale 600>The M1 Garand or M1 rifle is a semi-automatic rifle that was the service rifle of the U.S. Army during World War II and the Korean War.<newline><newline>The rifle is chambered for the .30-06 Springfield cartridge and is named after its Canadian-American designer, John Garand. It was the first standard-issue autoloading rifle for the United States. By most accounts, the M1 rifle performed well. General George S. Patton called it "the greatest battle implement ever devised".<newline><newline>The M1 replaced the bolt-action M1903 Springfield as the U.S. service rifle in 1936, and was itself replaced by the selective-fire M14 rifle on March 26, 1958.<newline><newline><style MMOptionEntry>Made in USA <image UI/Icons/Flags/f_usa.dds 1600>]])
-	M1Garand_2.PenetrationClass = 1
-
-
-	AN94_1.is_tog_patched = true
-	AN94_1.is_vanilla_firearm = false
-	AN94_1.DisplayName = Untranslated([[AN-94]])
-	AN94_1.object_class = "AssaultRifle"
-	AN94_1.Cost = 12340
-	AN94_1.Damage = 25
-	AN94_1.ObjDamageMod = 100
-	AN94_1.CritChance = 0
-	AN94_1.CritPerAim = 600
-	AN94_1.BurstCritMul = 75
-	AN94_1.CritChanceScaled = 20
-	storeProps(AN94_1, "AimAccuracy", 41, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AN94_1, "AimAccuracy", 6, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AN94_1, "WeaponRange", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AN94_1, "WeaponRange", 36, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	AN94_1.PBbonus_base = 3
-	AN94_1.Handling = 8
-	AN94_1.PenetrationClass = 1
-	AN94_1.ShootAP = 2000
-	AN94_1.ReloadAP = 3000
-	AN94_1.APStance = 35
-	AN94_1.OverwatchAngle = 1118
-	AN94_1.MagazineSize = 30
-	AN94_1.Cumbersome = 0
-	AN94_1.Noise = 20
-	AN94_1.PointBlankBonus = 1
-	AN94_1.PreparedAttackType = "Overwatch"
-	AN94_1.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
-	AN94_1.Rat_swap_ap = 30
-	AN94_1.burst_shots = 2
-	AN94_1.RPM = 600
-	AN94_1.BurstRPM = 1800
-	AN94_1.BurstSelective = true
-	AN94_1.AutoFireCustomDeltaAP = 10
-	AN94_1.SingleShotCustomDeltaAP = 20
-	AN94_1.hyperburst = 85
-	AN94_1.burst_recoil_delta = 5
-	AN94_1.long_recoil_delta = 85
-	AN94_1.auto_recoil_delta = 85
-	AN94_1.wep_base_recoil_mul = 95
-	AN94_1.weigth_held_mul = 127
-	AN94_1.wep_base_snapshot_mul = 101
-	AN94_1.wep_base_hip_mul = 95
-	AN94_1.recoil_mechanism = "Gas_Operated"
-	AN94_1.Rat_cycling = "Auto"
-	AN94_1.rat_scope_block = false
-	AN94_1.pistol_swap = false
-	AN94_1.default_long_barrel = false
-	AN94_1.unwieldy_weapon = false
-	AN94_1.rat_barrel_len = 414
-	AN94_1.rat_weigth = 3850
-	AN94_1.Weight = 3850
-	AN94_1.ScrapParts = 10
-	AN94_1.RepairCost = 30
-	AN94_1.Reliability = 66
-	AN94_1.LargeItem = 1
-	AN94_1.HandSlot = "TwoHanded"
-	AN94_1.AdditionalHint = T( 418962743486, [[<description_hints>
-<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Unique 2 shot burst function at 1800 rounds per minute]] )
-	AN94_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'AN94_Stock_def_1', Modifiable = true, AvailableComponents = {'AN94_Stock_def_1', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'AN94_Mag_def_1', Modifiable = true, AvailableComponents = {'AN94_Mag_def_1', 'AN94_Mag_ext_1', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'ImprovedIronsight', Modifiable = true, AvailableComponents = {'LROptics_DragunovDefault', 'ImprovedIronsight', 'RAT_TOG_Reflex', 'RAT_TOG_compactRS', 'RAT_TOG_vigilanceRS', 'RAT_TOG_ACOG', 'RAT_TOG_Prism', 'RAT_TOG_LRoptics', 'RAT_TOG_WideScope', 'RAT_TOG_thermal', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'RAT_TOG_compensator', Modifiable = true, AvailableComponents = {'RAT_TOG_compensator', }}, {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'AN94_Bip_def_1', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'AN94_Barrel_def_1', Modifiable = false, AvailableComponents = {'AN94_Barrel_def_1', }}}
-	AN94_1.Valuable = 1
-	AN94_1.CanAppearInShop = true
-	AN94_1.CanAppearUsed = true
-	AN94_1.Tier = 3
-	AN94_1.MaxStock = 1
-	AN94_1.RestockWeight = 25
-	AN94_1.CategoryPair = "AssaultRifles"
-	AN94_1.Icon = "Mod/Dau6w/Images/AN94_icon.png"
-	AN94_1.Description = T(260761277742, [[<style PerkststsBold ><scale 600>The AN-94 is a Russian assault rifle designed as a potential replacement to the AK-74<newline><newline>It offers a unique two-shot burst function at a stated 1800 rounds per minute, increasing hit probability under the most adverse combat conditions.<newline><newline>Due to its complex design and expense, it failed to fill its intended role as a replacement for the AK-74, but it is in limited use as a special purpose weapon.<newline><newline><style MMOptionEntry>Made in Russia <image UI/Icons/Flags/f_russia.dds 1600>]])
-	AN94_1.PenetrationClass = 1
-
-
 	HK33A2_1.is_tog_patched = true
 	HK33A2_1.is_vanilla_firearm = false
 	HK33A2_1.DisplayName = Untranslated([[HK33A2]])
@@ -865,7 +1060,7 @@ function RatoTOG_Patch()
 	HK33A2_1.PenetrationClass = 1
 	HK33A2_1.ShootAP = 4000
 	HK33A2_1.ReloadAP = 3000
-	HK33A2_1.APStance = 35
+	HK33A2_1.APStance = 30
 	HK33A2_1.OverwatchAngle = 1119
 	HK33A2_1.MagazineSize = 10
 	HK33A2_1.Cumbersome = 0
@@ -929,7 +1124,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	Papovka2SKS_1.PenetrationClass = 1
 	Papovka2SKS_1.ShootAP = 4000
 	Papovka2SKS_1.ReloadAP = 3000
-	Papovka2SKS_1.APStance = 35
+	Papovka2SKS_1.APStance = 30
 	Papovka2SKS_1.OverwatchAngle = 876
 	Papovka2SKS_1.MagazineSize = 10
 	Papovka2SKS_1.Cumbersome = 0
@@ -1087,7 +1282,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	PapovkaSKS_1.PenetrationClass = 1
 	PapovkaSKS_1.ShootAP = 4000
 	PapovkaSKS_1.ReloadAP = 3000
-	PapovkaSKS_1.APStance = 35
+	PapovkaSKS_1.APStance = 30
 	PapovkaSKS_1.OverwatchAngle = 876
 	PapovkaSKS_1.MagazineSize = 10
 	PapovkaSKS_1.Cumbersome = 0
@@ -1245,7 +1440,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	SKS_1.PenetrationClass = 1
 	SKS_1.ShootAP = 4000
 	SKS_1.ReloadAP = 3000
-	SKS_1.APStance = 35
+	SKS_1.APStance = 30
 	SKS_1.OverwatchAngle = 973
 	SKS_1.MagazineSize = 10
 	SKS_1.Cumbersome = 0
@@ -1307,7 +1502,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	M70_1.PenetrationClass = 1
 	M70_1.ShootAP = 4000
 	M70_1.ReloadAP = 3000
-	M70_1.APStance = 35
+	M70_1.APStance = 30
 	M70_1.OverwatchAngle = 1068
 	M70_1.MagazineSize = 30
 	M70_1.Cumbersome = 0
@@ -1349,136 +1544,364 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	M70_1.PenetrationClass = 1
 
 
-	HK23E_1.is_tog_patched = true
-	HK23E_1.is_vanilla_firearm = false
-	HK23E_1.DisplayName = Untranslated([[HK23E]])
-	HK23E_1.object_class = "MachineGun"
-	HK23E_1.Cost = 10950
-	HK23E_1.Damage = 27
-	HK23E_1.ObjDamageMod = 100
-	HK23E_1.CritChance = 0
-	HK23E_1.CritPerAim = 200
-	HK23E_1.BurstCritMul = 60
-	HK23E_1.CritChanceScaled = 10
-	storeProps(HK23E_1, "AimAccuracy", 31, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(HK23E_1, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(HK23E_1, "WeaponRange", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(HK23E_1, "WeaponRange", 32, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	HK23E_1.PBbonus_base = -1
-	HK23E_1.Handling = -5
-	HK23E_1.HandlingNotProneMul = 180
-	HK23E_1.PenetrationClass = 1
-	HK23E_1.ShootAP = 4000
-	HK23E_1.ReloadAP = 5000
-	HK23E_1.APStance = 42
-	HK23E_1.OverwatchAngle = 736
-	HK23E_1.MagazineSize = 100
-	HK23E_1.Cumbersome = 1
-	HK23E_1.Noise = 20
-	HK23E_1.PointBlankBonus = 1
-	HK23E_1.PreparedAttackType = "Machine Gun"
-	HK23E_1.AvailableAttacks = {"MGBurstFire", "BurstFire", "SingleShot", "CancelShot"}
-	HK23E_1.Rat_swap_ap = 30
-	HK23E_1.long_shots = 5
-	HK23E_1.auto_shots = 5
-	HK23E_1.RPM = 800
-	HK23E_1.BurstSelective = true
-	HK23E_1.burst_recoil_delta = 95
-	HK23E_1.wep_base_recoil_mul = 85
-	HK23E_1.weigth_held_mul = 162
-	HK23E_1.wep_base_snapshot_mul = 128
-	HK23E_1.wep_base_hip_mul = 97
-	HK23E_1.recoil_mechanism = "Roller_Delayed"
-	HK23E_1.Rat_cycling = "Auto"
-	HK23E_1.rat_scope_block = false
-	HK23E_1.pistol_swap = false
-	HK23E_1.default_long_barrel = false
-	HK23E_1.unwieldy_weapon = false
-	HK23E_1.rat_barrel_len = 450
-	HK23E_1.rat_weigth = 8750
-	HK23E_1.Weight = 8750
-	HK23E_1.ScrapParts = 16
-	HK23E_1.RepairCost = 80
-	HK23E_1.Reliability = 76
-	HK23E_1.LargeItem = 1
-	HK23E_1.HandSlot = "TwoHanded"
-	HK23E_1.AdditionalHint = T( 390378831477, [[<description_hints>]] )
-	HK23E_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'hk23e_barrel_def_1', Modifiable = true, AvailableComponents = {'hk23e_barrel_shrt_1', 'hk23e_barrel_def_1', 'hk23e_barrel_ext_1', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'hk23e_muzzle_1', Modifiable = true, AvailableComponents = {'hk23e_muzzle_1', 'MuzzleBooster', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'RAT_TOG_Reflex', 'RAT_TOG_ACOG', 'RAT_TOG_compactRS', 'RAT_TOG_Prism', 'RAT_TOG_vigilanceRS', 'RAT_TOG_thermal', 'RAT_TOG_WideScope', 'RAT_TOG_LRoptics', 'RAT_TOG_PSGScope', 'RAT_TOG_LRoptics_advanced', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = false, AvailableComponents = {}}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'hk23e_stock_def_1', Modifiable = true, AvailableComponents = {'hk23e_stock_hvy_1', 'hk23e_stock_def_1', 'hk23e_stock_erg_1', }}, {CanBeEmpty = false, SlotType = 'Bipod', DefaultComponent = 'hk23e_bipod_fld_1', Modifiable = true, AvailableComponents = {'hk23e_bipod_fld_1', }}, {CanBeEmpty = true, SlotType = 'Under', Modifiable = false, AvailableComponents = {}}, {CanBeEmpty = false, SlotType = 'Mountside', DefaultComponent = 'hk23e_siderail_1', Modifiable = true, AvailableComponents = {'hk23e_siderail_1', }}, {CanBeEmpty = false, SlotType = 'Mountfront', DefaultComponent = 'hk23e_handle_fld_1', Modifiable = false, AvailableComponents = {'hk23e_handle_fld_1', 'hk23e_handle_unfld_1', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'hk23e_mag_1', Modifiable = true, AvailableComponents = {'hk23e_mag_1', }}}
-	HK23E_1.Valuable = 1
-	HK23E_1.CanAppearInShop = true
-	HK23E_1.CanAppearUsed = true
-	HK23E_1.Tier = 3
-	HK23E_1.MaxStock = 1
-	HK23E_1.RestockWeight = 35
-	HK23E_1.CategoryPair = "MachineGuns"
-	HK23E_1.Description = T(946262450526, [[<style PerkststsBold ><scale 600>The HK23 is a West German 5.56×45mm NATO light machine gun.<newline><newline>The HK23 was developed in 1972. The purpose of this gun was to compete with various small calibre guns of the time. The main purpose of the gun was to export to foreign markets instead of special development for the German Bundeswehr and German law enforcement agencies. Ten years later, in order to participate in the U.S. military's automatic class weapon campaign, the HK23E participated in the election under the name of XM262, but eventually lost to the M249 SAW<newline><newline>Although the 5.56 NATO HK23E didn't enjoy the same level widespread success as its big brother in 7.62mm NATO - similar to the HK33 vs. the G3 - it did see service with multiple countries, and a few of them are still around in the hands of private collectors as well.<newline><newline><style MMOptionEntry>Made in Germany <image UI/Icons/Flags/f_germany.dds 1600>]])
-	HK23E_1.PenetrationClass = 1
+	STG44R_1.is_tog_patched = true
+	STG44R_1.is_vanilla_firearm = false
+	STG44R_1.DisplayName = Untranslated([[Sturmgewehr 44]])
+	STG44R_1.object_class = "AssaultRifle"
+	STG44R_1.ItemType = "AssaultRifle"
+	STG44R_1.Cost = 1600
+	STG44R_1.Damage = 26
+	STG44R_1.ObjDamageMod = 100
+	STG44R_1.CritChance = 0
+	STG44R_1.CritPerAim = 200
+	STG44R_1.BurstCritMul = 60
+	STG44R_1.CritChanceScaled = 10
+	storeProps(STG44R_1, "AimAccuracy", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(STG44R_1, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(STG44R_1, "WeaponRange", 28, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(STG44R_1, "WeaponRange", 32, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	STG44R_1.PBbonus_base = 2
+	STG44R_1.Handling = 7
+	STG44R_1.PenetrationClass = 1
+	STG44R_1.ShootAP = 4000
+	STG44R_1.ReloadAP = 3000
+	STG44R_1.APStance = 30
+	STG44R_1.OverwatchAngle = 1025
+	STG44R_1.MagazineSize = 30
+	STG44R_1.Cumbersome = 0
+	STG44R_1.Noise = 20
+	STG44R_1.PointBlankBonus = 1
+	STG44R_1.PreparedAttackType = "Overwatch"
+	STG44R_1.AvailableAttacks = {"BurstFire", "SingleShot", "AutoFire", "CancelShot"}
+	STG44R_1.Rat_swap_ap = 30
+	STG44R_1.RPM = 550
+	STG44R_1.BurstSelective = false
+	STG44R_1.wep_base_recoil_mul = 90
+	STG44R_1.weigth_held_mul = 135
+	STG44R_1.wep_base_snapshot_mul = 106
+	STG44R_1.wep_base_hip_mul = 99
+	STG44R_1.recoil_mechanism = "Gas_Operated"
+	STG44R_1.Rat_cycling = "Auto"
+	STG44R_1.rat_scope_block = false
+	STG44R_1.pistol_swap = false
+	STG44R_1.default_long_barrel = false
+	STG44R_1.unwieldy_weapon = false
+	STG44R_1.rat_barrel_len = 425
+	STG44R_1.rat_weigth = 5000
+	STG44R_1.Weight = 5000
+	STG44R_1.ScrapParts = 10
+	STG44R_1.RepairCost = 80
+	STG44R_1.Reliability = 72
+	STG44R_1.LargeItem = 1
+	STG44R_1.HandSlot = "TwoHanded"
+	STG44R_1.AdditionalHint = T( 587956002848, [[<description_hints>
+<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> A relic of war]] )
+	STG44R_1.ComponentSlots = {
+  {
+  SlotType = 'Muzzle',
+  DefaultComponent = 'ToG_VFX_Muzzle',
+  CanBeEmpty = false,
+  Modifiable = true,
+  AvailableComponents = {
+  'Compensator',
+  'ToG_VFX_Muzzle'
+  }
+  },
+  {
+  SlotType = 'Magazine',
+  DefaultComponent = 'STG44_Mag_def_1',
+  CanBeEmpty = false,
+  Modifiable = true,
+  AvailableComponents = {'STG44_Mag_def_1'}
+  },
+  {
+  SlotType = 'Barrel',
+  DefaultComponent = 'STG44_Barrel_def_1',
+  CanBeEmpty = false,
+  Modifiable = false,
+  AvailableComponents = {'STG44_Barrel_def_1'}
+  },
+  {
+  SlotType = 'Stock',
+  DefaultComponent = 'STG44_Stock_def_1',
+  CanBeEmpty = false,
+  Modifiable = false,
+  AvailableComponents = {'STG44_Stock_def_1'}
+  },
+  {
+  SlotType = 'Scope',
+  CanBeEmpty = true,
+  Modifiable = true,
+  AvailableComponents = {'GW43_Scope_1'}
+  }
+ }
+	STG44R_1.Valuable = 0
+	STG44R_1.CanAppearInShop = true
+	STG44R_1.CanAppearUsed = true
+	STG44R_1.Tier = 1
+	STG44R_1.MaxStock = 1
+	STG44R_1.RestockWeight = 40
+	STG44R_1.CategoryPair = "AssaultRifles"
+	STG44R_1.Icon = "Mod/Dau6w/Images/STG44_icon.png"
+	STG44R_1.fxClass = "AK47"
+	STG44R_1.Description = T(484150379917, [[<style PerkststsBold ><scale 500>The StG 44 (abbreviation of Sturmgewehr 44, "assault rifle 44") is a German assault rifle developed during World War II by Hugo Schmeisser.<newline><newline>Countries to use the StG 44 after World War II included Czechoslovakia (although it was not officially adopted) and Yugoslavia, where units such as the 63rd Paratroop Battalion were equipped with it until the 1980s, when the rifles were ultimately transferred to Territorial Defense reserves or sold to friendly regimes in the Middle East and Africa. France adopted captured StG 44 for colonial Foreign Legion units.<newline><newline>The StG 44 was the first assault rifle to be accepted into widespread service and put into mass production. At the end of the war, Hugo Schmeisser claimed that 424,000 StG 44 rifles were built between June 1943 and April 1945<newline><newline><style MMOptionEntry>Made in Germany <image UI/Icons/Flags/f_germany.dds 1600>]])
+	STG44R_1.PenetrationClass = 1
 
 
-	HK23ECamo_1.is_tog_patched = true
-	HK23ECamo_1.is_vanilla_firearm = false
-	HK23ECamo_1.DisplayName = Untranslated([[HK23E]])
-	HK23ECamo_1.object_class = "MachineGun"
-	HK23ECamo_1.Cost = 10950
-	HK23ECamo_1.Damage = 27
-	HK23ECamo_1.ObjDamageMod = 100
-	HK23ECamo_1.CritChance = 0
-	HK23ECamo_1.CritPerAim = 200
-	HK23ECamo_1.BurstCritMul = 60
-	HK23ECamo_1.CritChanceScaled = 10
-	storeProps(HK23ECamo_1, "AimAccuracy", 31, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(HK23ECamo_1, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(HK23ECamo_1, "WeaponRange", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(HK23ECamo_1, "WeaponRange", 32, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	HK23ECamo_1.PBbonus_base = -1
-	HK23ECamo_1.Handling = -5
-	HK23ECamo_1.HandlingNotProneMul = 180
-	HK23ECamo_1.PenetrationClass = 1
-	HK23ECamo_1.ShootAP = 4000
-	HK23ECamo_1.ReloadAP = 5000
-	HK23ECamo_1.APStance = 42
-	HK23ECamo_1.OverwatchAngle = 736
-	HK23ECamo_1.MagazineSize = 100
-	HK23ECamo_1.Cumbersome = 1
-	HK23ECamo_1.Noise = 20
-	HK23ECamo_1.PointBlankBonus = 1
-	HK23ECamo_1.PreparedAttackType = "Machine Gun"
-	HK23ECamo_1.AvailableAttacks = {"MGBurstFire", "BurstFire", "SingleShot", "CancelShot"}
-	HK23ECamo_1.Rat_swap_ap = 30
-	HK23ECamo_1.long_shots = 5
-	HK23ECamo_1.auto_shots = 5
-	HK23ECamo_1.RPM = 800
-	HK23ECamo_1.BurstSelective = true
-	HK23ECamo_1.burst_recoil_delta = 95
-	HK23ECamo_1.wep_base_recoil_mul = 85
-	HK23ECamo_1.weigth_held_mul = 162
-	HK23ECamo_1.wep_base_snapshot_mul = 128
-	HK23ECamo_1.wep_base_hip_mul = 97
-	HK23ECamo_1.recoil_mechanism = "Roller_Delayed"
-	HK23ECamo_1.Rat_cycling = "Auto"
-	HK23ECamo_1.rat_scope_block = false
-	HK23ECamo_1.pistol_swap = false
-	HK23ECamo_1.default_long_barrel = false
-	HK23ECamo_1.unwieldy_weapon = false
-	HK23ECamo_1.rat_barrel_len = 450
-	HK23ECamo_1.rat_weigth = 8750
-	HK23ECamo_1.Weight = 8750
-	HK23ECamo_1.ScrapParts = 16
-	HK23ECamo_1.RepairCost = 80
-	HK23ECamo_1.Reliability = 76
-	HK23ECamo_1.LargeItem = 1
-	HK23ECamo_1.HandSlot = "TwoHanded"
-	HK23ECamo_1.AdditionalHint = T( 230948710696, [[<description_hints>]] )
-	HK23ECamo_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'hk23e_barrel_def_1', Modifiable = true, AvailableComponents = {'hk23e_barrel_shrt_1', 'hk23e_barrel_def_1', 'hk23e_barrel_ext_1', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'hk23e_muzzle_1', Modifiable = true, AvailableComponents = {'hk23e_muzzle_1', 'MuzzleBooster'}}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'RAT_TOG_Reflex', 'RAT_TOG_ACOG', 'RAT_TOG_compactRS', 'RAT_TOG_Prism', 'RAT_TOG_vigilanceRS', 'RAT_TOG_thermal', 'RAT_TOG_WideScope', 'RAT_TOG_LRoptics', 'RAT_TOG_PSGScope', 'RAT_TOG_LRoptics_advanced', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = false, AvailableComponents = {}}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'hk23e_stock_def_1', Modifiable = true, AvailableComponents = {'hk23e_stock_hvy_1', 'hk23e_stock_def_1', 'hk23e_stock_erg_1', }}, {CanBeEmpty = false, SlotType = 'Bipod', DefaultComponent = 'hk23e_bipod_fld_1', Modifiable = true, AvailableComponents = {'hk23e_bipod_fld_1', }}, {CanBeEmpty = true, SlotType = 'Under', Modifiable = false, AvailableComponents = {}}, {CanBeEmpty = false, SlotType = 'Mountside', DefaultComponent = 'hk23e_siderail_1', Modifiable = true, AvailableComponents = {'hk23e_siderail_1', }}, {CanBeEmpty = false, SlotType = 'Mountfront', DefaultComponent = 'hk23e_handle_fld_1', Modifiable = false, AvailableComponents = {'hk23e_handle_fld_1', 'hk23e_handle_unfld_1', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'hk23e_mag_1', Modifiable = true, AvailableComponents = {'hk23e_mag_1', }}}
-	HK23ECamo_1.Valuable = 1
-	HK23ECamo_1.CanAppearInShop = false
-	HK23ECamo_1.CanAppearUsed = true
-	HK23ECamo_1.Tier = 3
-	HK23ECamo_1.MaxStock = 1
-	HK23ECamo_1.RestockWeight = 30
-	HK23ECamo_1.CategoryPair = "MachineGuns"
-	HK23ECamo_1.Description = T(483613388445, [[<style PerkststsBold ><scale 600>The HK23 is a West German 5.56×45mm NATO light machine gun.<newline><newline>The HK23 was developed in 1972. The purpose of this gun was to compete with various small calibre guns of the time. The main purpose of the gun was to export to foreign markets instead of special development for the German Bundeswehr and German law enforcement agencies. Ten years later, in order to participate in the U.S. military's automatic class weapon campaign, the HK23E participated in the election under the name of XM262, but eventually lost to the M249 SAW<newline><newline>Although the 5.56 NATO HK23E didn't enjoy the same level widespread success as its big brother in 7.62mm NATO - similar to the HK33 vs. the G3 - it did see service with multiple countries, and a few of them are still around in the hands of private collectors as well.<newline><newline><style MMOptionEntry>Made in Germany <image UI/Icons/Flags/f_germany.dds 1600>]])
-	HK23ECamo_1.PenetrationClass = 1
+	RK62_1.is_tog_patched = true
+	RK62_1.is_vanilla_firearm = false
+	RK62_1.DisplayName = Untranslated([[RK-62]])
+	RK62_1.object_class = "AssaultRifle"
+	RK62_1.Cost = 3400
+	RK62_1.Damage = 28
+	RK62_1.ObjDamageMod = 100
+	RK62_1.CritChance = 0
+	RK62_1.CritPerAim = 200
+	RK62_1.BurstCritMul = 60
+	RK62_1.CritChanceScaled = 10
+	storeProps(RK62_1, "AimAccuracy", 31, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(RK62_1, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(RK62_1, "WeaponRange", 28, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(RK62_1, "WeaponRange", 30, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	RK62_1.PBbonus_base = 3
+	RK62_1.Handling = 8
+	RK62_1.PenetrationClass = 1
+	RK62_1.ShootAP = 4000
+	RK62_1.ReloadAP = 3000
+	RK62_1.APStance = 30
+	RK62_1.OverwatchAngle = 1139
+	RK62_1.MagazineSize = 30
+	RK62_1.Cumbersome = 0
+	RK62_1.Noise = 20
+	RK62_1.PointBlankBonus = 1
+	RK62_1.PreparedAttackType = "Overwatch"
+	RK62_1.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
+	RK62_1.Rat_swap_ap = 30
+	RK62_1.RPM = 700
+	RK62_1.BurstSelective = false
+	RK62_1.wep_base_recoil_mul = 101
+	RK62_1.weigth_held_mul = 126
+	RK62_1.recoil_mechanism = "Gas_Operated"
+	RK62_1.Rat_cycling = "Auto"
+	RK62_1.rat_scope_block = false
+	RK62_1.pistol_swap = false
+	RK62_1.default_long_barrel = false
+	RK62_1.unwieldy_weapon = false
+	RK62_1.rat_barrel_len = 406
+	RK62_1.rat_weigth = 3700
+	RK62_1.Weight = 3700
+	RK62_1.ScrapParts = 12
+	RK62_1.RepairCost = 25
+	RK62_1.Reliability = 86
+	RK62_1.LargeItem = 1
+	RK62_1.HandSlot = "TwoHanded"
+	RK62_1.AdditionalHint = T( 347255431158, [[<description_hints>]] )
+	RK62_1.ComponentSlots = {
+  {
+  SlotType = 'Stock',
+  DefaultComponent = 'RK62_Stock_def_1',
+  CanBeEmpty = false,
+  Modifiable = false,
+  AvailableComponents = {'RK62_Stock_def_1'}
+  },
+  {
+  SlotType = 'Magazine',
+  DefaultComponent = 'RK62_Mag_def_1',
+  CanBeEmpty = false,
+  Modifiable = true,
+  AvailableComponents = {
+  'RK62_Mag_def_1',
+  'RK62_Mag_ext_1'
+  }
+  },
+  {
+  SlotType = 'Handguard',
+  DefaultComponent = 'RK62_Handguard_def_1',
+  CanBeEmpty = false,
+  Modifiable = false,
+  AvailableComponents = {
+  'RK62_Handguard_shrt_1',
+  'RK62_Handguard_def_1',
+  'RK62_Handguard_ext_1'
+  }
+  },
+  {
+  SlotType = 'Scope',
+  DefaultComponent = 'RK62_Irons_1',
+  CanBeEmpty = false,
+  Modifiable = true,
+  AvailableComponents = {
+  'RAT_TOG_Reflex',
+  'RAT_TOG_ACOG',
+  'RAT_TOG_compactRS',
+  'RAT_TOG_Prism',
+  'RAT_TOG_vigilanceRS',
+  'RAT_TOG_thermal',
+  'RAT_TOG_WideScope',
+  'RAT_TOG_LRoptics',
+  'RAT_TOG_LRoptics_advanced',
+  'RK62_Irons_1'
+  }
+  },
+  {
+  SlotType = 'Muzzle',
+  DefaultComponent = 'RK62_Muzzle_def_1',
+  CanBeEmpty = false,
+  Modifiable = true,
+  AvailableComponents = {
+  'RK62_Muzzle_def_1',
+  'MuzzleBooster',
+  'RAT_TOG_suppressor'
+  }
+  },
+  {
+  SlotType = 'Barrel',
+  DefaultComponent = 'RK62_Barrel_def_1',
+  CanBeEmpty = false,
+  Modifiable = true,
+  AvailableComponents = {
+  'RK62_Barrel_shrt_1',
+  'RK62_Barrel_def_1',
+  'RK62_Barrel_ext_1'
+  }
+  }
+ }
+	RK62_1.Valuable = 0
+	RK62_1.CanAppearInShop = true
+	RK62_1.CanAppearUsed = true
+	RK62_1.Tier = 1
+	RK62_1.MaxStock = 2
+	RK62_1.RestockWeight = 40
+	RK62_1.CategoryPair = "AssaultRifles"
+	RK62_1.Description = T(164668406560, [[<style PerkststsBold ><scale 600>The RK 62 officially 7.62 RK 62, is the standard issue infantry weapon of the Finnish Defence Forces.<newline><newline>Lauri Oksanen designed the RK 62 between 1957 and 1962, based on the Polish licensed version of the Soviet AK-47 design. The RK 62 uses the same 7.62×39mm cartridge as the AK-47. It is considered a high-quality variant of the AK-47, with a unique design that includes a three-pronged flash suppressor and a groove for a specially designed knife bayonet that can be used alone as a combat knife.<newline><newline>The RK 62 has several improvements over most AK variants, including the metallurgical quality of the receiver and barrel. The most significant improvement is in the sights: while most AK variants have the rear sight mounted on top of the gas piston housing on top of the receiver, in the RK 62, it is mounted on the rear of the receiver cover with tritium illuminated night-sights. The sight radius is doubled, enhancing accuracy along with the hammer-forged match CM barrel.<newline><newline><style MMOptionEntry>Made in Finland <image Mod/HXzCpFa/Icons/Flags/Finland.png 1600>]])
+	RK62_1.PenetrationClass = 1
+
+
+	Gewehr43_1.is_tog_patched = true
+	Gewehr43_1.is_vanilla_firearm = false
+	Gewehr43_1.DisplayName = Untranslated([[Gewehr 43]])
+	Gewehr43_1.object_class = "AssaultRifle"
+	Gewehr43_1.ItemType = "AssaultRifle"
+	Gewehr43_1.Cost = 1700
+	Gewehr43_1.Damage = 31
+	Gewehr43_1.ObjDamageMod = 100
+	Gewehr43_1.CritChance = 0
+	Gewehr43_1.CritPerAim = 200
+	Gewehr43_1.BurstCritMul = 60
+	Gewehr43_1.CritChanceScaled = 10
+	storeProps(Gewehr43_1, "AimAccuracy", 33, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Gewehr43_1, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Gewehr43_1, "WeaponRange", 34, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Gewehr43_1, "WeaponRange", 34, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	Gewehr43_1.PBbonus_base = -1
+	Gewehr43_1.Handling = 1
+	Gewehr43_1.PenetrationClass = 1
+	Gewehr43_1.ShootAP = 4000
+	Gewehr43_1.ReloadAP = 4000
+	Gewehr43_1.APStance = 30
+	Gewehr43_1.OverwatchAngle = 959
+	Gewehr43_1.MagazineSize = 10
+	Gewehr43_1.Cumbersome = 0
+	Gewehr43_1.Noise = 22
+	Gewehr43_1.PointBlankBonus = 1
+	Gewehr43_1.PreparedAttackType = "Both"
+	Gewehr43_1.AvailableAttacks = {"SingleShot", "CancelShot"}
+	Gewehr43_1.Rat_swap_ap = 30
+	Gewehr43_1.BurstSelective = false
+	Gewehr43_1.wep_base_recoil_mul = 92
+	Gewehr43_1.weigth_held_mul = 125
+	Gewehr43_1.wep_base_snapshot_mul = 110
+	Gewehr43_1.wep_base_hip_mul = 92
+	Gewehr43_1.recoil_mechanism = "Gas_Operated"
+	Gewehr43_1.Rat_cycling = "SemiAuto"
+	Gewehr43_1.rat_scope_block = false
+	Gewehr43_1.pistol_swap = false
+	Gewehr43_1.default_long_barrel = false
+	Gewehr43_1.unwieldy_weapon = false
+	Gewehr43_1.rat_barrel_len = 550
+	Gewehr43_1.rat_weigth = 3600
+	Gewehr43_1.Weight = 3600
+	Gewehr43_1.ScrapParts = 8
+	Gewehr43_1.RepairCost = 80
+	Gewehr43_1.Reliability = 71
+	Gewehr43_1.LargeItem = 1
+	Gewehr43_1.HandSlot = "TwoHanded"
+	Gewehr43_1.AdditionalHint = T( 538484376797, [[<description_hints>]] )
+	Gewehr43_1.ComponentSlots = {{CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'GW43_Scope_1', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'G43_Barrel_def_1', Modifiable = false, AvailableComponents = {'G43_Barrel_def_1', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'ToG_VFX_Muzzle', Modifiable = true, AvailableComponents = {'ImprovisedSuppressor', 'ToG_VFX_Muzzle', 'RAT_TOG_compensator', 'RAT_TOG_suppressor', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'G43_Mag_def_1', Modifiable = true, AvailableComponents = {'G43_Mag_def_1', 'G43_Mag_ext_1', }}}
+	Gewehr43_1.Valuable = 0
+	Gewehr43_1.CanAppearInShop = true
+	Gewehr43_1.CanAppearUsed = true
+	Gewehr43_1.Tier = 1
+	Gewehr43_1.MaxStock = 3
+	Gewehr43_1.RestockWeight = 40
+	Gewehr43_1.CategoryPair = "AssaultRifles"
+	Gewehr43_1.Icon = "Mod/Dau6w/Images/G43_icon.png"
+	Gewehr43_1.fxClass = "PSG1"
+	Gewehr43_1.Description = T(314229886535, [[<style PerkststsBold ><scale 700>The Gewehr 43 or Karabiner 43 is a semi-automatic rifle developed by Germany during World War II.<newline><newline>In 1941, Germany invaded the Soviet Union as part of Operation Barbarossa. Just prior to the opening of hostilities the Soviet Red Army had started re-arming its infantry, complementing its older bolt-action rifles with the new semi-automatic SVT-38s and SVT-40s. This was a shock to the Germans, who ramped up their own semi-automatic rifle development efforts significantly.<newline><newline>The Gewehr 43 was put into production in October 1943 and followed in 1944 by the Karabiner 43 (K43), which was identical to the G43 in every way except for the letter stamped on the side.<newline><newline>It was manufactured using innovative mass-production techniques, with production amounting to just over 400,000 between 1943 and 1945.<newline><newline><style MMOptionEntry>Made in Germany <image UI/Icons/Flags/f_germany.dds 1600>]])
+	Gewehr43_1.PenetrationClass = 1
+
+
+	Delisle_1.is_tog_patched = true
+	Delisle_1.is_vanilla_firearm = false
+	Delisle_1.DisplayName = Untranslated([[De Lisle]])
+	Delisle_1.object_class = "SniperRifle"
+	Delisle_1.ItemType = "Sniper"
+	Delisle_1.Cost = 3000
+	Delisle_1.Damage = 23
+	Delisle_1.ObjDamageMod = 100
+	Delisle_1.CritChance = 0
+	Delisle_1.CritPerAim = 700
+	Delisle_1.BurstCritMul = 60
+	Delisle_1.CritChanceScaled = 20
+	storeProps(Delisle_1, "AimAccuracy", 35, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Delisle_1, "AimAccuracy", 5, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Delisle_1, "WeaponRange", 24, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Delisle_1, "WeaponRange", 32, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	Delisle_1.PBbonus_base = 5
+	Delisle_1.Handling = 8
+	Delisle_1.HandlingNotProneMul = 100
+	Delisle_1.PenetrationClass = 1
+	Delisle_1.ShootAP = 4000
+	Delisle_1.ReloadAP = 3000
+	Delisle_1.APStance = 30
+	Delisle_1.OverwatchAngle = 1360
+	Delisle_1.MagazineSize = 7
+	Delisle_1.Cumbersome = 0
+	Delisle_1.Noise = 20
+	Delisle_1.PointBlankBonus = 1
+	Delisle_1.PreparedAttackType = "Both"
+	Delisle_1.AvailableAttacks = {"SingleShot", "CancelShot"}
+	Delisle_1.Rat_swap_ap = 30
+	Delisle_1.BurstSelective = false
+	Delisle_1.wep_base_recoil_mul = 112
+	Delisle_1.weigth_held_mul = 128
+	Delisle_1.wep_base_snapshot_mul = 89
+	Delisle_1.wep_base_hip_mul = 110
+	Delisle_1.recoil_mechanism = "Bolt_Action"
+	Delisle_1.Rat_cycling = "BoltAction"
+	Delisle_1.rat_scope_block = false
+	Delisle_1.pistol_swap = false
+	Delisle_1.default_long_barrel = false
+	Delisle_1.unwieldy_weapon = false
+	Delisle_1.rat_barrel_len = 220
+	Delisle_1.ScrapParts = 8
+	Delisle_1.RepairCost = 70
+	Delisle_1.Reliability = 94
+	Delisle_1.LargeItem = 1
+	Delisle_1.HandSlot = "TwoHanded"
+	Delisle_1.AdditionalHint = T( 528620989138, [[<description_hints>]] )
+	Delisle_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'RAT_TOG_suppressor', Modifiable = false, AvailableComponents = {'RAT_TOG_suppressor', }}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'Bolt_action', Modifiable = true, AvailableComponents = {'Bolt_action', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'stealth_ironsight_confidante', Modifiable = true, AvailableComponents = {'stealth_ironsight_confidante', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'DeLisle_stock_def_1', Modifiable = true, AvailableComponents = {'DeLisle_stock_def_1', 'DeLisle_stock_erg_1', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'DeLisle_barrel_def_1', Modifiable = false, AvailableComponents = {'DeLisle_barrel_def_1', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'DeLisle_mag_def_1', Modifiable = false, AvailableComponents = {'DeLisle_mag_def_1', }}}
+	Delisle_1.Valuable = 0
+	Delisle_1.CanAppearInShop = true
+	Delisle_1.CanAppearUsed = true
+	Delisle_1.Tier = 1
+	Delisle_1.MaxStock = 1
+	Delisle_1.RestockWeight = 20
+	Delisle_1.CategoryPair = "Rifles"
+	Delisle_1.fxClass = "AK47"
+	Delisle_1.Description = T(616470478099, [[<style PerkststsBold ><scale 550>De Lisle Commando carbine was a British firearm used during World War II that was designed with an integrated suppressor. That, combined with its use of subsonic ammunition, made it extremely quiet in action, possibly one of the quietest firearms ever made.<newline><newline>The weapon was designed as a private venture by William Godfray de Lisle (known as Godfray), an engineer who worked for the Air Ministry. In 1943, he approached Major Sir Malcolm Campbell with his prototype<newline><newline>Subsequent official firing tests recorded the De Lisle produced 85.5 dB of noise when fired. As a comparison, modern testing on a selection of handguns has shown that they produce 156 to 168 dB when firing without a suppressor, and 117 to 140 dB when firing with one fitted. The De Lisle's quietness was found to be comparable to the British Welrod pistol<newline><newline>A number of De Lisles were shipped to the Far East and used during the Burma Campaign. The De Lisle would also be used during the Korean War and the Malayan Emergency. It has been claimed the weapon was also used by the Special Air Service during the Northern Irish Troubles.
+<newline><newline><style MMOptionEntry>Made in England <image UI/Icons/Flags/f_england.dds 1600>]])
+	Delisle_1.PenetrationClass = 1
 
 
 	Type56A_1.is_tog_patched = true
@@ -1503,7 +1926,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	Type56A_1.PenetrationClass = 1
 	Type56A_1.ShootAP = 4000
 	Type56A_1.ReloadAP = 3000
-	Type56A_1.APStance = 33
+	Type56A_1.APStance = 28
 	Type56A_1.OverwatchAngle = 994
 	Type56A_1.MagazineSize = 10
 	Type56A_1.Cumbersome = 0
@@ -1650,7 +2073,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	Type56B_1.PenetrationClass = 1
 	Type56B_1.ShootAP = 4000
 	Type56B_1.ReloadAP = 3000
-	Type56B_1.APStance = 33
+	Type56B_1.APStance = 28
 	Type56B_1.OverwatchAngle = 994
 	Type56B_1.MagazineSize = 10
 	Type56B_1.Cumbersome = 0
@@ -1797,7 +2220,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	Type56C_1.PenetrationClass = 1
 	Type56C_1.ShootAP = 4000
 	Type56C_1.ReloadAP = 3000
-	Type56C_1.APStance = 33
+	Type56C_1.APStance = 28
 	Type56C_1.OverwatchAngle = 994
 	Type56C_1.MagazineSize = 10
 	Type56C_1.Cumbersome = 0
@@ -1944,7 +2367,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	Type56D_1.PenetrationClass = 1
 	Type56D_1.ShootAP = 4000
 	Type56D_1.ReloadAP = 3000
-	Type56D_1.APStance = 33
+	Type56D_1.APStance = 28
 	Type56D_1.OverwatchAngle = 994
 	Type56D_1.MagazineSize = 10
 	Type56D_1.Cumbersome = 0
@@ -2070,366 +2493,6 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	Type56D_1.PenetrationClass = 1
 
 
-	STG44R_1.is_tog_patched = true
-	STG44R_1.is_vanilla_firearm = false
-	STG44R_1.DisplayName = Untranslated([[Sturmgewehr 44]])
-	STG44R_1.object_class = "AssaultRifle"
-	STG44R_1.ItemType = "AssaultRifle"
-	STG44R_1.Cost = 1600
-	STG44R_1.Damage = 26
-	STG44R_1.ObjDamageMod = 100
-	STG44R_1.CritChance = 0
-	STG44R_1.CritPerAim = 200
-	STG44R_1.BurstCritMul = 60
-	STG44R_1.CritChanceScaled = 10
-	storeProps(STG44R_1, "AimAccuracy", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(STG44R_1, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(STG44R_1, "WeaponRange", 28, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(STG44R_1, "WeaponRange", 32, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	STG44R_1.PBbonus_base = 2
-	STG44R_1.Handling = 7
-	STG44R_1.PenetrationClass = 1
-	STG44R_1.ShootAP = 4000
-	STG44R_1.ReloadAP = 3000
-	STG44R_1.APStance = 35
-	STG44R_1.OverwatchAngle = 1025
-	STG44R_1.MagazineSize = 30
-	STG44R_1.Cumbersome = 0
-	STG44R_1.Noise = 20
-	STG44R_1.PointBlankBonus = 1
-	STG44R_1.PreparedAttackType = "Overwatch"
-	STG44R_1.AvailableAttacks = {"BurstFire", "SingleShot", "AutoFire", "CancelShot"}
-	STG44R_1.Rat_swap_ap = 30
-	STG44R_1.RPM = 550
-	STG44R_1.BurstSelective = false
-	STG44R_1.wep_base_recoil_mul = 90
-	STG44R_1.weigth_held_mul = 135
-	STG44R_1.wep_base_snapshot_mul = 106
-	STG44R_1.wep_base_hip_mul = 99
-	STG44R_1.recoil_mechanism = "Gas_Operated"
-	STG44R_1.Rat_cycling = "Auto"
-	STG44R_1.rat_scope_block = false
-	STG44R_1.pistol_swap = false
-	STG44R_1.default_long_barrel = false
-	STG44R_1.unwieldy_weapon = false
-	STG44R_1.rat_barrel_len = 425
-	STG44R_1.rat_weigth = 5000
-	STG44R_1.Weight = 5000
-	STG44R_1.ScrapParts = 10
-	STG44R_1.RepairCost = 80
-	STG44R_1.Reliability = 72
-	STG44R_1.LargeItem = 1
-	STG44R_1.HandSlot = "TwoHanded"
-	STG44R_1.AdditionalHint = T( 587956002848, [[<description_hints>
-<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> A relic of war]] )
-	STG44R_1.ComponentSlots = {
-  {
-  SlotType = 'Muzzle',
-  DefaultComponent = 'ToG_VFX_Muzzle',
-  CanBeEmpty = false,
-  Modifiable = true,
-  AvailableComponents = {
-  'Compensator',
-  'ToG_VFX_Muzzle'
-  }
-  },
-  {
-  SlotType = 'Magazine',
-  DefaultComponent = 'STG44_Mag_def_1',
-  CanBeEmpty = false,
-  Modifiable = true,
-  AvailableComponents = {'STG44_Mag_def_1'}
-  },
-  {
-  SlotType = 'Barrel',
-  DefaultComponent = 'STG44_Barrel_def_1',
-  CanBeEmpty = false,
-  Modifiable = false,
-  AvailableComponents = {'STG44_Barrel_def_1'}
-  },
-  {
-  SlotType = 'Stock',
-  DefaultComponent = 'STG44_Stock_def_1',
-  CanBeEmpty = false,
-  Modifiable = false,
-  AvailableComponents = {'STG44_Stock_def_1'}
-  },
-  {
-  SlotType = 'Scope',
-  CanBeEmpty = true,
-  Modifiable = true,
-  AvailableComponents = {'GW43_Scope_1'}
-  }
- }
-	STG44R_1.Valuable = 0
-	STG44R_1.CanAppearInShop = true
-	STG44R_1.CanAppearUsed = true
-	STG44R_1.Tier = 1
-	STG44R_1.MaxStock = 1
-	STG44R_1.RestockWeight = 40
-	STG44R_1.CategoryPair = "AssaultRifles"
-	STG44R_1.Icon = "Mod/Dau6w/Images/STG44_icon.png"
-	STG44R_1.fxClass = "AK47"
-	STG44R_1.Description = T(484150379917, [[<style PerkststsBold ><scale 500>The StG 44 (abbreviation of Sturmgewehr 44, "assault rifle 44") is a German assault rifle developed during World War II by Hugo Schmeisser.<newline><newline>Countries to use the StG 44 after World War II included Czechoslovakia (although it was not officially adopted) and Yugoslavia, where units such as the 63rd Paratroop Battalion were equipped with it until the 1980s, when the rifles were ultimately transferred to Territorial Defense reserves or sold to friendly regimes in the Middle East and Africa. France adopted captured StG 44 for colonial Foreign Legion units.<newline><newline>The StG 44 was the first assault rifle to be accepted into widespread service and put into mass production. At the end of the war, Hugo Schmeisser claimed that 424,000 StG 44 rifles were built between June 1943 and April 1945<newline><newline><style MMOptionEntry>Made in Germany <image UI/Icons/Flags/f_germany.dds 1600>]])
-	STG44R_1.PenetrationClass = 1
-
-
-	RK95_1.is_tog_patched = true
-	RK95_1.is_vanilla_firearm = false
-	RK95_1.DisplayName = Untranslated([[RK-95]])
-	RK95_1.object_class = "AssaultRifle"
-	RK95_1.Cost = 5000
-	RK95_1.Damage = 28
-	RK95_1.ObjDamageMod = 100
-	RK95_1.CritChance = 0
-	RK95_1.CritPerAim = 300
-	RK95_1.BurstCritMul = 60
-	RK95_1.CritChanceScaled = 20
-	storeProps(RK95_1, "AimAccuracy", 34, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(RK95_1, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(RK95_1, "WeaponRange", 28, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(RK95_1, "WeaponRange", 32, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	RK95_1.PBbonus_base = 3
-	RK95_1.Handling = 8
-	RK95_1.PenetrationClass = 1
-	RK95_1.ShootAP = 4000
-	RK95_1.ReloadAP = 3000
-	RK95_1.APStance = 35
-	RK95_1.OverwatchAngle = 1111
-	RK95_1.MagazineSize = 30
-	RK95_1.Cumbersome = 0
-	RK95_1.Noise = 20
-	RK95_1.PointBlankBonus = 1
-	RK95_1.PreparedAttackType = "Overwatch"
-	RK95_1.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
-	RK95_1.Rat_swap_ap = 30
-	RK95_1.RPM = 650
-	RK95_1.BurstSelective = false
-	RK95_1.wep_base_recoil_mul = 95
-	RK95_1.weigth_held_mul = 129
-	RK95_1.wep_base_snapshot_mul = 102
-	RK95_1.recoil_mechanism = "Gas_Operated"
-	RK95_1.Rat_cycling = "Auto"
-	RK95_1.rat_scope_block = false
-	RK95_1.pistol_swap = false
-	RK95_1.default_long_barrel = false
-	RK95_1.unwieldy_weapon = false
-	RK95_1.rat_barrel_len = 406
-	RK95_1.rat_weigth = 4100
-	RK95_1.Weight = 4100
-	RK95_1.ScrapParts = 10
-	RK95_1.RepairCost = 15
-	RK95_1.Reliability = 86
-	RK95_1.LargeItem = 1
-	RK95_1.HandSlot = "TwoHanded"
-	RK95_1.AdditionalHint = T( 266083134551, [[<description_hints>]] )
-	RK95_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'RK95_Stock_def_1', Modifiable = true, AvailableComponents = {'RK95_Stock_def_1', 'RK95_Stock_shrt_1' }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'RK95_Mag_def_1', Modifiable = true, AvailableComponents = {'RK95_Mag_def_1', 'RK95_Mag_ext_1', }}, {CanBeEmpty = false, SlotType = 'Handguard', DefaultComponent = 'RK95_Handguard_def_1', Modifiable = false, AvailableComponents = {'RK95_Handguard_shrt_1', 'RK95_Handguard_def_1', 'RK95_Handguard_ext_1', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'RK95_Irons_1', Modifiable = true, AvailableComponents = {'RAT_TOG_Reflex', 'RAT_TOG_ACOG', 'RAT_TOG_compactRS', 'RAT_TOG_Prism', 'RAT_TOG_vigilanceRS', 'RAT_TOG_thermal', 'RAT_TOG_WideScope', 'RAT_TOG_LRoptics', 'RAT_TOG_LRoptics_advanced', 'RK95_Irons_1', }}, {CanBeEmpty = true, SlotType = 'Muzzle', DefaultComponent = 'RK95_Muzzle_def_1', Modifiable = true, AvailableComponents = {'RK95_Muzzle_def_1', 'MuzzleBooster', 'RAT_TOG_suppressor', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'RK95_Barrel_def_1', Modifiable = true, AvailableComponents = {'RK95_Barrel_shrt_1', 'RK95_Barrel_def_1', 'RK95_Barrel_ext_1', }}}
-	RK95_1.Valuable = 0
-	RK95_1.CanAppearInShop = true
-	RK95_1.CanAppearUsed = true
-	RK95_1.Tier = 2
-	RK95_1.MaxStock = 3
-	RK95_1.RestockWeight = 60
-	RK95_1.CategoryPair = "AssaultRifles"
-	RK95_1.Description = T(296496696034, [[<style PerkststsBold ><scale 600>The RK 95 TP is a 7.62×39mm Finnish assault rifle adopted in relatively small numbers by the Finnish Defence Forces in the 1990s.<newline><newline>The rifle was developed in the late 1980s in response to a requirement to replace the 7.62mm RK 62 service rifle. Between 1988 and 1990, the M90 prototype was developed, which was a substantially upgraded variant of the RK 62.<newline><newline>After undergoing further testing and implementing several changes (among them, the selector mechanism was reverted to the familiar RK 62 configuration) the rifle was introduced into service with the Finnish Army as the 7.62 RK 95 TP. Deliveries to the Finnish started in 1995 and ended at 1997 with further orders ceasing in 1998.<newline><newline><style MMOptionEntry>Made in Finland <image Mod/HXzCpFa/Icons/Flags/Finland.png 1600>]])
-	RK95_1.PenetrationClass = 1
-
-
-	RK62_1.is_tog_patched = true
-	RK62_1.is_vanilla_firearm = false
-	RK62_1.DisplayName = Untranslated([[RK-62]])
-	RK62_1.object_class = "AssaultRifle"
-	RK62_1.Cost = 3400
-	RK62_1.Damage = 28
-	RK62_1.ObjDamageMod = 100
-	RK62_1.CritChance = 0
-	RK62_1.CritPerAim = 200
-	RK62_1.BurstCritMul = 60
-	RK62_1.CritChanceScaled = 10
-	storeProps(RK62_1, "AimAccuracy", 31, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(RK62_1, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(RK62_1, "WeaponRange", 28, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(RK62_1, "WeaponRange", 30, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	RK62_1.PBbonus_base = 3
-	RK62_1.Handling = 8
-	RK62_1.PenetrationClass = 1
-	RK62_1.ShootAP = 4000
-	RK62_1.ReloadAP = 3000
-	RK62_1.APStance = 35
-	RK62_1.OverwatchAngle = 1139
-	RK62_1.MagazineSize = 30
-	RK62_1.Cumbersome = 0
-	RK62_1.Noise = 20
-	RK62_1.PointBlankBonus = 1
-	RK62_1.PreparedAttackType = "Overwatch"
-	RK62_1.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
-	RK62_1.Rat_swap_ap = 30
-	RK62_1.RPM = 700
-	RK62_1.BurstSelective = false
-	RK62_1.wep_base_recoil_mul = 101
-	RK62_1.weigth_held_mul = 126
-	RK62_1.recoil_mechanism = "Gas_Operated"
-	RK62_1.Rat_cycling = "Auto"
-	RK62_1.rat_scope_block = false
-	RK62_1.pistol_swap = false
-	RK62_1.default_long_barrel = false
-	RK62_1.unwieldy_weapon = false
-	RK62_1.rat_barrel_len = 406
-	RK62_1.rat_weigth = 3700
-	RK62_1.Weight = 3700
-	RK62_1.ScrapParts = 12
-	RK62_1.RepairCost = 25
-	RK62_1.Reliability = 86
-	RK62_1.LargeItem = 1
-	RK62_1.HandSlot = "TwoHanded"
-	RK62_1.AdditionalHint = T( 347255431158, [[<description_hints>]] )
-	RK62_1.ComponentSlots = {
-  {
-  SlotType = 'Stock',
-  DefaultComponent = 'RK62_Stock_def_1',
-  CanBeEmpty = false,
-  Modifiable = false,
-  AvailableComponents = {'RK62_Stock_def_1'}
-  },
-  {
-  SlotType = 'Magazine',
-  DefaultComponent = 'RK62_Mag_def_1',
-  CanBeEmpty = false,
-  Modifiable = true,
-  AvailableComponents = {
-  'RK62_Mag_def_1',
-  'RK62_Mag_ext_1'
-  }
-  },
-  {
-  SlotType = 'Handguard',
-  DefaultComponent = 'RK62_Handguard_def_1',
-  CanBeEmpty = false,
-  Modifiable = false,
-  AvailableComponents = {
-  'RK62_Handguard_shrt_1',
-  'RK62_Handguard_def_1',
-  'RK62_Handguard_ext_1'
-  }
-  },
-  {
-  SlotType = 'Scope',
-  DefaultComponent = 'RK62_Irons_1',
-  CanBeEmpty = false,
-  Modifiable = true,
-  AvailableComponents = {
-  'RAT_TOG_Reflex',
-  'RAT_TOG_ACOG',
-  'RAT_TOG_compactRS',
-  'RAT_TOG_Prism',
-  'RAT_TOG_vigilanceRS',
-  'RAT_TOG_thermal',
-  'RAT_TOG_WideScope',
-  'RAT_TOG_LRoptics',
-  'RAT_TOG_LRoptics_advanced',
-  'RK62_Irons_1'
-  }
-  },
-  {
-  SlotType = 'Muzzle',
-  DefaultComponent = 'RK62_Muzzle_def_1',
-  CanBeEmpty = false,
-  Modifiable = true,
-  AvailableComponents = {
-  'RK62_Muzzle_def_1',
-  'MuzzleBooster',
-  'RAT_TOG_suppressor'
-  }
-  },
-  {
-  SlotType = 'Barrel',
-  DefaultComponent = 'RK62_Barrel_def_1',
-  CanBeEmpty = false,
-  Modifiable = true,
-  AvailableComponents = {
-  'RK62_Barrel_shrt_1',
-  'RK62_Barrel_def_1',
-  'RK62_Barrel_ext_1'
-  }
-  }
- }
-	RK62_1.Valuable = 0
-	RK62_1.CanAppearInShop = true
-	RK62_1.CanAppearUsed = true
-	RK62_1.Tier = 1
-	RK62_1.MaxStock = 2
-	RK62_1.RestockWeight = 40
-	RK62_1.CategoryPair = "AssaultRifles"
-	RK62_1.Description = T(164668406560, [[<style PerkststsBold ><scale 600>The RK 62 officially 7.62 RK 62, is the standard issue infantry weapon of the Finnish Defence Forces.<newline><newline>Lauri Oksanen designed the RK 62 between 1957 and 1962, based on the Polish licensed version of the Soviet AK-47 design. The RK 62 uses the same 7.62×39mm cartridge as the AK-47. It is considered a high-quality variant of the AK-47, with a unique design that includes a three-pronged flash suppressor and a groove for a specially designed knife bayonet that can be used alone as a combat knife.<newline><newline>The RK 62 has several improvements over most AK variants, including the metallurgical quality of the receiver and barrel. The most significant improvement is in the sights: while most AK variants have the rear sight mounted on top of the gas piston housing on top of the receiver, in the RK 62, it is mounted on the rear of the receiver cover with tritium illuminated night-sights. The sight radius is doubled, enhancing accuracy along with the hammer-forged match CM barrel.<newline><newline><style MMOptionEntry>Made in Finland <image Mod/HXzCpFa/Icons/Flags/Finland.png 1600>]])
-	RK62_1.PenetrationClass = 1
-
-
-	RPD_1.is_tog_patched = true
-	RPD_1.is_vanilla_firearm = false
-	RPD_1.DisplayName = Untranslated([[RPD]])
-	RPD_1.object_class = "MachineGun"
-	RPD_1.Cost = 3240
-	RPD_1.Damage = 27
-	RPD_1.ObjDamageMod = 100
-	RPD_1.CritChance = 0
-	RPD_1.CritPerAim = 200
-	RPD_1.BurstCritMul = 60
-	RPD_1.CritChanceScaled = 10
-	storeProps(RPD_1, "AimAccuracy", 24, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(RPD_1, "AimAccuracy", 2, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(RPD_1, "WeaponRange", 28, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(RPD_1, "WeaponRange", 34, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	RPD_1.PBbonus_base = -2
-	RPD_1.Handling = 0
-	RPD_1.HandlingNotProneMul = 150
-	RPD_1.PenetrationClass = 1
-	RPD_1.ShootAP = 4000
-	RPD_1.ReloadAP = 5000
-	RPD_1.APStance = 40
-	RPD_1.OverwatchAngle = 632
-	RPD_1.MagazineSize = 100
-	RPD_1.Cumbersome = 0
-	RPD_1.Noise = 22
-	RPD_1.PointBlankBonus = 1
-	RPD_1.PreparedAttackType = "Machine Gun"
-	RPD_1.AvailableAttacks = {"MGBurstFire", "BurstFire", "SingleShot", "CancelShot"}
-	RPD_1.Rat_swap_ap = 30
-	RPD_1.long_shots = 4
-	RPD_1.auto_shots = 4
-	RPD_1.RPM = 650
-	RPD_1.BurstSelective = false
-	RPD_1.AutoFireOnly = true
-	RPD_1.wep_base_recoil_mul = 95
-	RPD_1.weigth_held_mul = 153
-	RPD_1.wep_base_snapshot_mul = 115
-	RPD_1.wep_base_hip_mul = 92
-	RPD_1.recoil_mechanism = "Gas_Operated"
-	RPD_1.Rat_cycling = "Auto"
-	RPD_1.rat_scope_block = false
-	RPD_1.pistol_swap = false
-	RPD_1.default_long_barrel = false
-	RPD_1.unwieldy_weapon = false
-	RPD_1.rat_barrel_len = 520
-	RPD_1.rat_weigth = 7500
-	RPD_1.Weight = 7500
-	RPD_1.ScrapParts = 16
-	RPD_1.RepairCost = 80
-	RPD_1.Reliability = 84
-	RPD_1.LargeItem = 1
-	RPD_1.HandSlot = "TwoHanded"
-	RPD_1.AdditionalHint = T( 862873342222, [[<description_hints>]] )
-	RPD_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Bipod', DefaultComponent = 'RPD_bipod_fld_1', Modifiable = true, AvailableComponents = {'RPD_bipod_fld_1', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'RPD_barrel_def_1', Modifiable = true, AvailableComponents = {'RPD_barrel_def_1', 'R_TOG_light_barrel', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'RPD_mag_def_1', Modifiable = true, AvailableComponents = {'RPD_mag_def_1', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'RPD_ironsight_1', Modifiable = true, AvailableComponents = {'LROptics', 'ReflexSight', 'ScopeCOG', 'LROpticsAdvanced', 'ScopeCOGQuick', 'ReflexSightAdvanced', 'RPD_ironsight_1', 'WideScope', '_ReflexSIghtVigilance', 'ThermalScope', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'ToG_VFX_Muzzle', Modifiable = true, AvailableComponents = {'ToG_VFX_Muzzle', 'RAT_TOG_compensator', 'RAT_TOG_suppressor', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'RPD_stock_def_1', Modifiable = false, AvailableComponents = {'RPD_stock_def_1', }}}
-	RPD_1.Valuable = 0
-	RPD_1.CanAppearInShop = true
-	RPD_1.CanAppearUsed = true
-	RPD_1.Tier = 1
-	RPD_1.MaxStock = 2
-	RPD_1.RestockWeight = 80
-	RPD_1.CategoryPair = "MachineGuns"
-	RPD_1.Description = T(283294446635, [[<style PerkststsBold ><scale 600>The RPD is a 7.62x39mm light machine gun developed in the Soviet Union<newline><newline>It was created as a replacement for the DP machine gun chambered for the 7.62×54mmR round. It is a precursor of most squad automatic weapons. It was succeeded in Soviet service by the RPK.<newline><newline>Work on the weapon commenced in 1943. Three prominent Soviet engineers were asked to submit their own designs: Vasily Degtyaryov, Sergei Simonov and Alexei Sudayev. Among the completed prototypes prepared for evaluation, the Degtyaryov design proved superior and was accepted into service with the Soviet armed forces<newline><newline>After the introduction of the Kalashnikov-pattern support weapons, such as the RPK and PK machine guns in the 1960s, the RPD was withdrawn from most first-tier units of the former Warsaw Pact. However, the RPD remains in active service in many African and Asian nations<newline><newline><style MMOptionEntry>Made in Russia <image UI/Icons/Flags/f_russia.dds 1600>]])
-	RPD_1.PenetrationClass = 1
-
-
 	TAR21_1.is_tog_patched = true
 	TAR21_1.is_vanilla_firearm = false
 	TAR21_1.DisplayName = Untranslated([[TAR-21]])
@@ -2450,7 +2513,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	TAR21_1.PenetrationClass = 1
 	TAR21_1.ShootAP = 4000
 	TAR21_1.ReloadAP = 4000
-	TAR21_1.APStance = 30
+	TAR21_1.APStance = 25
 	TAR21_1.OverwatchAngle = 1080
 	TAR21_1.MagazineSize = 30
 	TAR21_1.Cumbersome = 0
@@ -2512,7 +2575,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	A91_2.PenetrationClass = 1
 	A91_2.ShootAP = 4000
 	A91_2.ReloadAP = 3000
-	A91_2.APStance = 30
+	A91_2.APStance = 25
 	A91_2.OverwatchAngle = 1232
 	A91_2.MagazineSize = 30
 	A91_2.Cumbersome = 0
@@ -2567,7 +2630,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	G11_1.PenetrationClass = 1
 	G11_1.ShootAP = 3000
 	G11_1.ReloadAP = 2000
-	G11_1.APStance = 30
+	G11_1.APStance = 25
 	G11_1.OverwatchAngle = 965
 	G11_1.MagazineSize = 45
 	G11_1.Cumbersome = 0
@@ -2635,7 +2698,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	HK53_1.PenetrationClass = 1
 	HK53_1.ShootAP = 3000
 	HK53_1.ReloadAP = 3000
-	HK53_1.APStance = 27
+	HK53_1.APStance = 22
 	HK53_1.OverwatchAngle = 1488
 	HK53_1.MagazineSize = 10
 	HK53_1.Cumbersome = 0
@@ -2699,7 +2762,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	VSS_1.PenetrationClass = 1
 	VSS_1.ShootAP = 4000
 	VSS_1.ReloadAP = 2000
-	VSS_1.APStance = 25
+	VSS_1.APStance = 20
 	VSS_1.OverwatchAngle = 1465
 	VSS_1.MagazineSize = 10
 	VSS_1.Cumbersome = 0
@@ -2747,196 +2810,6 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	VSS_1.PenetrationClass = 1
 
 
-	Delisle_1.is_tog_patched = true
-	Delisle_1.is_vanilla_firearm = false
-	Delisle_1.DisplayName = Untranslated([[De Lisle]])
-	Delisle_1.object_class = "SniperRifle"
-	Delisle_1.ItemType = "Sniper"
-	Delisle_1.Cost = 3000
-	Delisle_1.Damage = 23
-	Delisle_1.ObjDamageMod = 100
-	Delisle_1.CritChance = 0
-	Delisle_1.CritPerAim = 700
-	Delisle_1.BurstCritMul = 60
-	Delisle_1.CritChanceScaled = 20
-	storeProps(Delisle_1, "AimAccuracy", 35, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Delisle_1, "AimAccuracy", 5, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Delisle_1, "WeaponRange", 24, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Delisle_1, "WeaponRange", 32, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	Delisle_1.PBbonus_base = 5
-	Delisle_1.Handling = 8
-	Delisle_1.HandlingNotProneMul = 100
-	Delisle_1.PenetrationClass = 1
-	Delisle_1.ShootAP = 4000
-	Delisle_1.ReloadAP = 3000
-	Delisle_1.APStance = 33
-	Delisle_1.OverwatchAngle = 1360
-	Delisle_1.MagazineSize = 7
-	Delisle_1.Cumbersome = 0
-	Delisle_1.Noise = 20
-	Delisle_1.PointBlankBonus = 1
-	Delisle_1.PreparedAttackType = "Both"
-	Delisle_1.AvailableAttacks = {"SingleShot", "CancelShot"}
-	Delisle_1.Rat_swap_ap = 30
-	Delisle_1.BurstSelective = false
-	Delisle_1.wep_base_recoil_mul = 112
-	Delisle_1.weigth_held_mul = 128
-	Delisle_1.wep_base_snapshot_mul = 89
-	Delisle_1.wep_base_hip_mul = 110
-	Delisle_1.recoil_mechanism = "Bolt_Action"
-	Delisle_1.Rat_cycling = "BoltAction"
-	Delisle_1.rat_scope_block = false
-	Delisle_1.pistol_swap = false
-	Delisle_1.default_long_barrel = false
-	Delisle_1.unwieldy_weapon = false
-	Delisle_1.rat_barrel_len = 220
-	Delisle_1.ScrapParts = 8
-	Delisle_1.RepairCost = 70
-	Delisle_1.Reliability = 94
-	Delisle_1.LargeItem = 1
-	Delisle_1.HandSlot = "TwoHanded"
-	Delisle_1.AdditionalHint = T( 528620989138, [[<description_hints>]] )
-	Delisle_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'RAT_TOG_suppressor', Modifiable = false, AvailableComponents = {'RAT_TOG_suppressor', }}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'Bolt_action', Modifiable = true, AvailableComponents = {'Bolt_action', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'stealth_ironsight_confidante', Modifiable = true, AvailableComponents = {'stealth_ironsight_confidante', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'DeLisle_stock_def_1', Modifiable = true, AvailableComponents = {'DeLisle_stock_def_1', 'DeLisle_stock_erg_1', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'DeLisle_barrel_def_1', Modifiable = false, AvailableComponents = {'DeLisle_barrel_def_1', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'DeLisle_mag_def_1', Modifiable = false, AvailableComponents = {'DeLisle_mag_def_1', }}}
-	Delisle_1.Valuable = 0
-	Delisle_1.CanAppearInShop = true
-	Delisle_1.CanAppearUsed = true
-	Delisle_1.Tier = 1
-	Delisle_1.MaxStock = 1
-	Delisle_1.RestockWeight = 20
-	Delisle_1.CategoryPair = "Rifles"
-	Delisle_1.fxClass = "AK47"
-	Delisle_1.Description = T(616470478099, [[<style PerkststsBold ><scale 550>De Lisle Commando carbine was a British firearm used during World War II that was designed with an integrated suppressor. That, combined with its use of subsonic ammunition, made it extremely quiet in action, possibly one of the quietest firearms ever made.<newline><newline>The weapon was designed as a private venture by William Godfray de Lisle (known as Godfray), an engineer who worked for the Air Ministry. In 1943, he approached Major Sir Malcolm Campbell with his prototype<newline><newline>Subsequent official firing tests recorded the De Lisle produced 85.5 dB of noise when fired. As a comparison, modern testing on a selection of handguns has shown that they produce 156 to 168 dB when firing without a suppressor, and 117 to 140 dB when firing with one fitted. The De Lisle's quietness was found to be comparable to the British Welrod pistol<newline><newline>A number of De Lisles were shipped to the Far East and used during the Burma Campaign. The De Lisle would also be used during the Korean War and the Malayan Emergency. It has been claimed the weapon was also used by the Special Air Service during the Northern Irish Troubles.
-<newline><newline><style MMOptionEntry>Made in England <image UI/Icons/Flags/f_england.dds 1600>]])
-	Delisle_1.PenetrationClass = 1
-
-
-	PP91_1.is_tog_patched = true
-	PP91_1.is_vanilla_firearm = false
-	PP91_1.DisplayName = Untranslated([[PP-91]])
-	PP91_1.object_class = "SubmachineGun"
-	PP91_1.Cost = 1850
-	PP91_1.Damage = 16
-	PP91_1.ObjDamageMod = 100
-	PP91_1.CritPerAim = 200
-	PP91_1.BurstCritMul = 60
-	PP91_1.CritChanceScaled = 10
-	storeProps(PP91_1, "AimAccuracy", 18, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(PP91_1, "AimAccuracy", 2, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(PP91_1, "WeaponRange", 22, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(PP91_1, "WeaponRange", 24, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	PP91_1.PBbonus_base = 11
-	PP91_1.Handling = 19
-	PP91_1.PenetrationClass = 1
-	PP91_1.ShootAP = 3000
-	PP91_1.ReloadAP = 3000
-	PP91_1.APStance = 18
-	PP91_1.OverwatchAngle = 1528
-	PP91_1.MagazineSize = 20
-	PP91_1.Cumbersome = 0
-	PP91_1.Noise = 20
-	PP91_1.PointBlankBonus = 1
-	PP91_1.PreparedAttackType = "Overwatch"
-	PP91_1.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "RunAndGun", "CancelShot"}
-	PP91_1.Rat_swap_ap = 10
-	PP91_1.RPM = 900
-	PP91_1.BurstSelective = false
-	PP91_1.wep_base_recoil_mul = 121
-	PP91_1.weigth_held_mul = 117
-	PP91_1.wep_base_snapshot_mul = 80
-	PP91_1.wep_base_hip_mul = 112
-	PP91_1.recoil_mechanism = "Blowback"
-	PP91_1.Rat_cycling = "Auto"
-	PP91_1.rat_scope_block = true
-	PP91_1.pistol_swap = false
-	PP91_1.default_long_barrel = false
-	PP91_1.unwieldy_weapon = false
-	PP91_1.rat_barrel_len = 120
-	PP91_1.rat_weigth = 2500
-	PP91_1.Weight = 2500
-	PP91_1.ScrapParts = 10
-	PP91_1.RepairCost = 50
-	PP91_1.Reliability = 75
-	PP91_1.LargeItem = 0
-	PP91_1.HandSlot = "OneHanded"
-	PP91_1.AdditionalHint = T( 183411732483, [[<description_hints>]] )
-	PP91_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'PP91_Barrel_def_1', Modifiable = false, AvailableComponents = {'PP91_Barrel_def_1', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'PP91_Mag_def_1', Modifiable = true, AvailableComponents = {'PP91_Mag_def_1', 'PP91_Mag_ext_1', }}, {CanBeEmpty = false, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'Compensator', 'MuzzleBooster', 'Suppressor', 'ImprovisedSuppressor', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'PP91_Stock_fld_1', Modifiable = true, AvailableComponents = {'PP91_Stock_fld_1', 'PP91_Stock_unfld_1', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'RAT_TOG_ACOG', 'RAT_TOG_WideScope', 'RAT_TOG_Reflex', 'RAT_TOG_compactRS', 'RAT_TOG_vigilanceRS', }}}
-	PP91_1.Valuable = 0
-	PP91_1.CanAppearInShop = true
-	PP91_1.CanAppearUsed = true
-	PP91_1.Tier = 1
-	PP91_1.MaxStock = 3
-	PP91_1.RestockWeight = 60
-	PP91_1.CategoryPair = "SubmachineGuns"
-	PP91_1.Description = T(112464140424, [[<style PerkststsBold ><scale 600>The PP-91 Kedr is a 9mm machine pistol developed from a prototype from the 1970s and since 1994 adopted by the Russian Ministry of Internal Affairs.<newline><newline>It is blowback operated and fires from a closed bolt, allowing for more accurate shooting than would be possible from an open bolt design. Ammunition is fed from a double column box magazine and it is supplied with folding shoulder stock.<newline><newline>Despite the small caliber of the round it uses, the notable advantages of the PP-91 are its compact size and the weight of only 1.5 kg, making it very easy to carry, and can be fired effectively by only one hand. The safety/selector lever is located on the right hand side and allows for semi-automatic single shots and fully automatic fire at the rate of 800 rounds per minute. The effective range of the PP-91 is between 50-100m<newline><newline><style MMOptionEntry>Made in Russia <image UI/Icons/Flags/f_russia.dds 1600>]])
-	PP91_1.PenetrationClass = 1
-
-
-	P90_2.is_tog_patched = true
-	P90_2.is_vanilla_firearm = false
-	P90_2.DisplayName = Untranslated([[P90]])
-	P90_2.object_class = "SubmachineGun"
-	P90_2.ItemType = "SMG"
-	P90_2.Cost = 6540
-	P90_2.Damage = 17
-	P90_2.ObjDamageMod = 100
-	P90_2.CritChance = 0
-	P90_2.CritPerAim = 200
-	P90_2.BurstCritMul = 60
-	P90_2.CritChanceScaled = 10
-	storeProps(P90_2, "AimAccuracy", 24, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(P90_2, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(P90_2, "WeaponRange", 22, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(P90_2, "WeaponRange", 26, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	P90_2.PBbonus_base = 9
-	P90_2.Handling = 17
-	P90_2.PenetrationClass = 1
-	P90_2.ShootAP = 3000
-	P90_2.ReloadAP = 5000
-	P90_2.APStance = 20
-	P90_2.OverwatchAngle = 1363
-	P90_2.MagazineSize = 50
-	P90_2.Cumbersome = 0
-	P90_2.Noise = 20
-	P90_2.PointBlankBonus = 1
-	P90_2.PreparedAttackType = "Overwatch"
-	P90_2.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "RunAndGun", "CancelShot"}
-	P90_2.auto_shots = 4
-	P90_2.RPM = 900
-	P90_2.BurstSelective = false
-	P90_2.wep_base_recoil_mul = 113
-	P90_2.weigth_held_mul = 122
-	P90_2.wep_base_snapshot_mul = 88
-	P90_2.wep_base_hip_mul = 108
-	P90_2.recoil_mechanism = "Blowback"
-	P90_2.Rat_cycling = "Auto"
-	P90_2.rat_scope_block = false
-	P90_2.pistol_swap = false
-	P90_2.default_long_barrel = false
-	P90_2.unwieldy_weapon = false
-	P90_2.rat_barrel_len = 260
-	P90_2.rat_weigth = 3200
-	P90_2.Weight = 3200
-	P90_2.ScrapParts = 15
-	P90_2.RepairCost = 80
-	P90_2.Reliability = 77
-	P90_2.LargeItem = 1
-	P90_2.HandSlot = "TwoHanded"
-	P90_2.AdditionalHint = T( 157356398627, [[<description_hints>]] )
-	P90_2.ComponentSlots = {{CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'ReflexSight', 'ReflexSightAdvanced', 'LROptics', 'ScopeCOGQuick', 'ScopeCOG', '_ReflexSIghtVigilance', 'WideScope', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'ToG_Comp_AR_Barrel_Long_1_SMG', 'ToG_Comp_AR_Barrel_Long_2_SMG', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'ToG_VFX_Muzzle', Modifiable = false, AvailableComponents = {'ToG_VFX_Muzzle'}}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'bullup', Modifiable = false, AvailableComponents = {'bullup', }}}
-	P90_2.Valuable = 0
-	P90_2.CanAppearInShop = true
-	P90_2.CanAppearUsed = true
-	P90_2.Tier = 2
-	P90_2.MaxStock = 2
-	P90_2.RestockWeight = 50
-	P90_2.CategoryPair = "SubmachineGuns"
-	P90_2.Icon = "Mod/Dau6w/Images/P90_icon.png"
-	P90_2.fxClass = "MP5K"
-	P90_2.Description = T(788185092104, [[<style PerkststsBold ><scale 600>The P90 is a submachine gun chambered for the 5.7×28mm cartridge, also classified as a personal defense weapon. Created in response to NATO requests for a replacement for 9×19mm Parabellum firearms, the P90 was designed as a compact but powerful firearm for vehicle crews, operators of crew-served weapons, support personnel, special forces, and counter-terrorist groups.
-<newline><newline><style MMOptionEntry>Made in Belgium]])
-	P90_2.PenetrationClass = 1
-
-
 	VSK94_1.is_tog_patched = true
 	VSK94_1.is_vanilla_firearm = false
 	VSK94_1.DisplayName = Untranslated([[VSK94]])
@@ -2957,7 +2830,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	VSK94_1.PenetrationClass = 1
 	VSK94_1.ShootAP = 4000
 	VSK94_1.ReloadAP = 3000
-	VSK94_1.APStance = 25
+	VSK94_1.APStance = 20
 	VSK94_1.OverwatchAngle = 1335
 	VSK94_1.MagazineSize = 20
 	VSK94_1.Cumbersome = 0
@@ -3022,7 +2895,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	StenMK2_1.PenetrationClass = 1
 	StenMK2_1.ShootAP = 3000
 	StenMK2_1.ReloadAP = 3000
-	StenMK2_1.APStance = 25
+	StenMK2_1.APStance = 20
 	StenMK2_1.OverwatchAngle = 1426
 	StenMK2_1.MagazineSize = 32
 	StenMK2_1.Cumbersome = 0
@@ -3083,7 +2956,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	VigM2_1.PenetrationClass = 1
 	VigM2_1.ShootAP = 3000
 	VigM2_1.ReloadAP = 3000
-	VigM2_1.APStance = 24
+	VigM2_1.APStance = 19
 	VigM2_1.OverwatchAngle = 1463
 	VigM2_1.MagazineSize = 32
 	VigM2_1.Cumbersome = 0
@@ -3126,6 +2999,200 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	VigM2_1.PenetrationClass = 1
 
 
+	UMP_1.is_tog_patched = true
+	UMP_1.is_vanilla_firearm = false
+	UMP_1.DisplayName = Untranslated([[UMP]])
+	UMP_1.object_class = "SubmachineGun"
+	UMP_1.ItemType = "SMG"
+	UMP_1.Cost = 3200
+	UMP_1.Damage = 22
+	UMP_1.ObjDamageMod = 100
+	UMP_1.CritChance = 0
+	UMP_1.CritPerAim = 200
+	UMP_1.BurstCritMul = 60
+	UMP_1.CritChanceScaled = 10
+	storeProps(UMP_1, "AimAccuracy", 23, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(UMP_1, "AimAccuracy", 2, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(UMP_1, "WeaponRange", 18, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(UMP_1, "WeaponRange", 24, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	UMP_1.PBbonus_base = 9
+	UMP_1.Handling = 17
+	UMP_1.PenetrationClass = 1
+	UMP_1.ShootAP = 3000
+	UMP_1.ReloadAP = 3000
+	UMP_1.APStance = 18
+	UMP_1.OverwatchAngle = 1456
+	UMP_1.MagazineSize = 25
+	UMP_1.Cumbersome = 0
+	UMP_1.Noise = 20
+	UMP_1.PointBlankBonus = 1
+	UMP_1.PreparedAttackType = "Overwatch"
+	UMP_1.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "RunAndGun", "CancelShot"}
+	UMP_1.RPM = 600
+	UMP_1.BurstSelective = false
+	UMP_1.wep_base_recoil_mul = 117
+	UMP_1.weigth_held_mul = 117
+	UMP_1.wep_base_snapshot_mul = 84
+	UMP_1.wep_base_hip_mul = 109
+	UMP_1.recoil_mechanism = "Blowback"
+	UMP_1.Rat_cycling = "Auto"
+	UMP_1.rat_scope_block = false
+	UMP_1.pistol_swap = false
+	UMP_1.default_long_barrel = false
+	UMP_1.unwieldy_weapon = false
+	UMP_1.rat_barrel_len = 200
+	UMP_1.rat_weigth = 2500
+	UMP_1.Weight = 2500
+	UMP_1.ScrapParts = 15
+	UMP_1.RepairCost = 80
+	UMP_1.Reliability = 78
+	UMP_1.LargeItem = 1
+	UMP_1.HandSlot = "TwoHanded"
+	UMP_1.AdditionalHint = T( 863330837058, [[<description_hints>]] )
+	UMP_1.ComponentSlots = {{CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'RAT_TOG_suppressor_762', 'ImprovisedSuppressor', 'MuzzleBooster', 'RAT_TOG_compensator', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'ReflexSight', 'ReflexSightAdvanced', 'LROptics', '_ReflexSIghtVigilance', 'ScopeCOGQuick', 'ScopeCOG', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockLight', Modifiable = true, AvailableComponents = {'StockLight', }}}
+	UMP_1.Valuable = 0
+	UMP_1.CanAppearInShop = true
+	UMP_1.CanAppearUsed = true
+	UMP_1.Tier = 2
+	UMP_1.MaxStock = 2
+	UMP_1.RestockWeight = 50
+	UMP_1.CategoryPair = "SubmachineGuns"
+	UMP_1.Icon = "Mod/Dau6w/Images/UMP_icon.png"
+	UMP_1.fxClass = "MP5K"
+	UMP_1.Description = T(919036161362, [[<style PerkststsBold ><scale 600>The UMP (Universale Maschinenpistole, German for "Universal Machine Pistol") is a submachine, developed the as a lighter and cheaper successor to the MP5, though both remain in production.
+<newline>
+The UMP has been adopted for use by various countries including Brazil, Canada, and the United States.<newline><newline>A small number of UMPs chambered in .45 ACP were officially purchased by the 5th Special Forces Group of the United States Army Special Forces, with some of the weapons seeing limited service in the early years of the Iraqi insurgency, making them one of the more popular submachine guns being deployed by the U.S. military personnel in recent conflicts around the world.
+<newline><newline><style MMOptionEntry>Made in Germany <image UI/Icons/Flags/f_germany.dds 1600>]])
+	UMP_1.PenetrationClass = 1
+
+
+	P90_2.is_tog_patched = true
+	P90_2.is_vanilla_firearm = false
+	P90_2.DisplayName = Untranslated([[P90]])
+	P90_2.object_class = "SubmachineGun"
+	P90_2.ItemType = "SMG"
+	P90_2.Cost = 6540
+	P90_2.Damage = 17
+	P90_2.ObjDamageMod = 100
+	P90_2.CritChance = 0
+	P90_2.CritPerAim = 200
+	P90_2.BurstCritMul = 60
+	P90_2.CritChanceScaled = 10
+	storeProps(P90_2, "AimAccuracy", 24, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(P90_2, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(P90_2, "WeaponRange", 22, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(P90_2, "WeaponRange", 26, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	P90_2.PBbonus_base = 9
+	P90_2.Handling = 17
+	P90_2.PenetrationClass = 1
+	P90_2.ShootAP = 3000
+	P90_2.ReloadAP = 5000
+	P90_2.APStance = 15
+	P90_2.OverwatchAngle = 1363
+	P90_2.MagazineSize = 50
+	P90_2.Cumbersome = 0
+	P90_2.Noise = 20
+	P90_2.PointBlankBonus = 1
+	P90_2.PreparedAttackType = "Overwatch"
+	P90_2.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "RunAndGun", "CancelShot"}
+	P90_2.auto_shots = 4
+	P90_2.RPM = 900
+	P90_2.BurstSelective = false
+	P90_2.wep_base_recoil_mul = 113
+	P90_2.weigth_held_mul = 122
+	P90_2.wep_base_snapshot_mul = 88
+	P90_2.wep_base_hip_mul = 108
+	P90_2.recoil_mechanism = "Blowback"
+	P90_2.Rat_cycling = "Auto"
+	P90_2.rat_scope_block = false
+	P90_2.pistol_swap = false
+	P90_2.default_long_barrel = false
+	P90_2.unwieldy_weapon = false
+	P90_2.rat_barrel_len = 260
+	P90_2.rat_weigth = 3200
+	P90_2.Weight = 3200
+	P90_2.ScrapParts = 15
+	P90_2.RepairCost = 80
+	P90_2.Reliability = 77
+	P90_2.LargeItem = 1
+	P90_2.HandSlot = "TwoHanded"
+	P90_2.AdditionalHint = T( 157356398627, [[<description_hints>]] )
+	P90_2.ComponentSlots = {{CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'ReflexSight', 'ReflexSightAdvanced', 'LROptics', 'ScopeCOGQuick', 'ScopeCOG', '_ReflexSIghtVigilance', 'WideScope', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'ToG_Comp_AR_Barrel_Long_1_SMG', 'ToG_Comp_AR_Barrel_Long_2_SMG', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'ToG_VFX_Muzzle', Modifiable = false, AvailableComponents = {'ToG_VFX_Muzzle'}}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'bullup', Modifiable = false, AvailableComponents = {'bullup', }}}
+	P90_2.Valuable = 0
+	P90_2.CanAppearInShop = true
+	P90_2.CanAppearUsed = true
+	P90_2.Tier = 2
+	P90_2.MaxStock = 2
+	P90_2.RestockWeight = 50
+	P90_2.CategoryPair = "SubmachineGuns"
+	P90_2.Icon = "Mod/Dau6w/Images/P90_icon.png"
+	P90_2.fxClass = "MP5K"
+	P90_2.Description = T(788185092104, [[<style PerkststsBold ><scale 600>The P90 is a submachine gun chambered for the 5.7×28mm cartridge, also classified as a personal defense weapon. Created in response to NATO requests for a replacement for 9×19mm Parabellum firearms, the P90 was designed as a compact but powerful firearm for vehicle crews, operators of crew-served weapons, support personnel, special forces, and counter-terrorist groups.
+<newline><newline><style MMOptionEntry>Made in Belgium]])
+	P90_2.PenetrationClass = 1
+
+
+	PP91_1.is_tog_patched = true
+	PP91_1.is_vanilla_firearm = false
+	PP91_1.DisplayName = Untranslated([[PP-91]])
+	PP91_1.object_class = "SubmachineGun"
+	PP91_1.Cost = 1850
+	PP91_1.Damage = 16
+	PP91_1.ObjDamageMod = 100
+	PP91_1.CritPerAim = 200
+	PP91_1.BurstCritMul = 60
+	PP91_1.CritChanceScaled = 10
+	storeProps(PP91_1, "AimAccuracy", 18, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(PP91_1, "AimAccuracy", 2, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(PP91_1, "WeaponRange", 22, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(PP91_1, "WeaponRange", 24, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	PP91_1.PBbonus_base = 11
+	PP91_1.Handling = 19
+	PP91_1.PenetrationClass = 1
+	PP91_1.ShootAP = 3000
+	PP91_1.ReloadAP = 3000
+	PP91_1.APStance = 14
+	PP91_1.OverwatchAngle = 1528
+	PP91_1.MagazineSize = 20
+	PP91_1.Cumbersome = 0
+	PP91_1.Noise = 20
+	PP91_1.PointBlankBonus = 1
+	PP91_1.PreparedAttackType = "Overwatch"
+	PP91_1.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "RunAndGun", "CancelShot"}
+	PP91_1.Rat_swap_ap = 10
+	PP91_1.RPM = 900
+	PP91_1.BurstSelective = false
+	PP91_1.wep_base_recoil_mul = 121
+	PP91_1.weigth_held_mul = 117
+	PP91_1.wep_base_snapshot_mul = 80
+	PP91_1.wep_base_hip_mul = 112
+	PP91_1.recoil_mechanism = "Blowback"
+	PP91_1.Rat_cycling = "Auto"
+	PP91_1.rat_scope_block = true
+	PP91_1.pistol_swap = false
+	PP91_1.default_long_barrel = false
+	PP91_1.unwieldy_weapon = false
+	PP91_1.rat_barrel_len = 120
+	PP91_1.rat_weigth = 2500
+	PP91_1.Weight = 2500
+	PP91_1.ScrapParts = 10
+	PP91_1.RepairCost = 50
+	PP91_1.Reliability = 75
+	PP91_1.LargeItem = 0
+	PP91_1.HandSlot = "OneHanded"
+	PP91_1.AdditionalHint = T( 183411732483, [[<description_hints>]] )
+	PP91_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'PP91_Barrel_def_1', Modifiable = false, AvailableComponents = {'PP91_Barrel_def_1', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'PP91_Mag_def_1', Modifiable = true, AvailableComponents = {'PP91_Mag_def_1', 'PP91_Mag_ext_1', }}, {CanBeEmpty = false, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'Compensator', 'MuzzleBooster', 'Suppressor', 'ImprovisedSuppressor', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'PP91_Stock_fld_1', Modifiable = true, AvailableComponents = {'PP91_Stock_fld_1', 'PP91_Stock_unfld_1', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'RAT_TOG_ACOG', 'RAT_TOG_WideScope', 'RAT_TOG_Reflex', 'RAT_TOG_compactRS', 'RAT_TOG_vigilanceRS', }}}
+	PP91_1.Valuable = 0
+	PP91_1.CanAppearInShop = true
+	PP91_1.CanAppearUsed = true
+	PP91_1.Tier = 1
+	PP91_1.MaxStock = 3
+	PP91_1.RestockWeight = 60
+	PP91_1.CategoryPair = "SubmachineGuns"
+	PP91_1.Description = T(112464140424, [[<style PerkststsBold ><scale 600>The PP-91 Kedr is a 9mm machine pistol developed from a prototype from the 1970s and since 1994 adopted by the Russian Ministry of Internal Affairs.<newline><newline>It is blowback operated and fires from a closed bolt, allowing for more accurate shooting than would be possible from an open bolt design. Ammunition is fed from a double column box magazine and it is supplied with folding shoulder stock.<newline><newline>Despite the small caliber of the round it uses, the notable advantages of the PP-91 are its compact size and the weight of only 1.5 kg, making it very easy to carry, and can be fired effectively by only one hand. The safety/selector lever is located on the right hand side and allows for semi-automatic single shots and fully automatic fire at the rate of 800 rounds per minute. The effective range of the PP-91 is between 50-100m<newline><newline><style MMOptionEntry>Made in Russia <image UI/Icons/Flags/f_russia.dds 1600>]])
+	PP91_1.PenetrationClass = 1
+
+
 	MAC11_1.is_tog_patched = true
 	MAC11_1.is_vanilla_firearm = false
 	MAC11_1.DisplayName = Untranslated([[M11]])
@@ -3146,7 +3213,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	MAC11_1.PenetrationClass = 1
 	MAC11_1.ShootAP = 3000
 	MAC11_1.ReloadAP = 3000
-	MAC11_1.APStance = 18
+	MAC11_1.APStance = 14
 	MAC11_1.OverwatchAngle = 1532
 	MAC11_1.MagazineSize = 32
 	MAC11_1.Cumbersome = 0
@@ -3209,7 +3276,7 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	MicroUZI_1.PenetrationClass = 1
 	MicroUZI_1.ShootAP = 3000
 	MicroUZI_1.ReloadAP = 3000
-	MicroUZI_1.APStance = 18
+	MicroUZI_1.APStance = 14
 	MicroUZI_1.OverwatchAngle = 1547
 	MicroUZI_1.MagazineSize = 20
 	MicroUZI_1.Cumbersome = 0
@@ -3253,135 +3320,67 @@ The HK33 series of rifles were adopted by the Brazilian Air Force (Força Aérea
 	MicroUZI_1.PenetrationClass = 1
 
 
-	UMP_1.is_tog_patched = true
-	UMP_1.is_vanilla_firearm = false
-	UMP_1.DisplayName = Untranslated([[UMP]])
-	UMP_1.object_class = "SubmachineGun"
-	UMP_1.ItemType = "SMG"
-	UMP_1.Cost = 3200
-	UMP_1.Damage = 22
-	UMP_1.ObjDamageMod = 100
-	UMP_1.CritChance = 0
-	UMP_1.CritPerAim = 200
-	UMP_1.BurstCritMul = 60
-	UMP_1.CritChanceScaled = 10
-	storeProps(UMP_1, "AimAccuracy", 23, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(UMP_1, "AimAccuracy", 2, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(UMP_1, "WeaponRange", 18, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(UMP_1, "WeaponRange", 24, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	UMP_1.PBbonus_base = 9
-	UMP_1.Handling = 17
-	UMP_1.PenetrationClass = 1
-	UMP_1.ShootAP = 3000
-	UMP_1.ReloadAP = 3000
-	UMP_1.APStance = 22
-	UMP_1.OverwatchAngle = 1456
-	UMP_1.MagazineSize = 25
-	UMP_1.Cumbersome = 0
-	UMP_1.Noise = 20
-	UMP_1.PointBlankBonus = 1
-	UMP_1.PreparedAttackType = "Overwatch"
-	UMP_1.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "RunAndGun", "CancelShot"}
-	UMP_1.RPM = 600
-	UMP_1.BurstSelective = false
-	UMP_1.wep_base_recoil_mul = 117
-	UMP_1.weigth_held_mul = 117
-	UMP_1.wep_base_snapshot_mul = 84
-	UMP_1.wep_base_hip_mul = 109
-	UMP_1.recoil_mechanism = "Blowback"
-	UMP_1.Rat_cycling = "Auto"
-	UMP_1.rat_scope_block = false
-	UMP_1.pistol_swap = false
-	UMP_1.default_long_barrel = false
-	UMP_1.unwieldy_weapon = false
-	UMP_1.rat_barrel_len = 200
-	UMP_1.rat_weigth = 2500
-	UMP_1.Weight = 2500
-	UMP_1.ScrapParts = 15
-	UMP_1.RepairCost = 80
-	UMP_1.Reliability = 78
-	UMP_1.LargeItem = 1
-	UMP_1.HandSlot = "TwoHanded"
-	UMP_1.AdditionalHint = T( 863330837058, [[<description_hints>]] )
-	UMP_1.ComponentSlots = {{CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'RAT_TOG_suppressor_762', 'ImprovisedSuppressor', 'MuzzleBooster', 'RAT_TOG_compensator', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'ReflexSight', 'ReflexSightAdvanced', 'LROptics', '_ReflexSIghtVigilance', 'ScopeCOGQuick', 'ScopeCOG', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockLight', Modifiable = true, AvailableComponents = {'StockLight', }}}
-	UMP_1.Valuable = 0
-	UMP_1.CanAppearInShop = true
-	UMP_1.CanAppearUsed = true
-	UMP_1.Tier = 2
-	UMP_1.MaxStock = 2
-	UMP_1.RestockWeight = 50
-	UMP_1.CategoryPair = "SubmachineGuns"
-	UMP_1.Icon = "Mod/Dau6w/Images/UMP_icon.png"
-	UMP_1.fxClass = "MP5K"
-	UMP_1.Description = T(919036161362, [[<style PerkststsBold ><scale 600>The UMP (Universale Maschinenpistole, German for "Universal Machine Pistol") is a submachine, developed the as a lighter and cheaper successor to the MP5, though both remain in production.
-<newline>
-The UMP has been adopted for use by various countries including Brazil, Canada, and the United States.<newline><newline>A small number of UMPs chambered in .45 ACP were officially purchased by the 5th Special Forces Group of the United States Army Special Forces, with some of the weapons seeing limited service in the early years of the Iraqi insurgency, making them one of the more popular submachine guns being deployed by the U.S. military personnel in recent conflicts around the world.
-<newline><newline><style MMOptionEntry>Made in Germany <image UI/Icons/Flags/f_germany.dds 1600>]])
-	UMP_1.PenetrationClass = 1
-
-
-	Glock17_1.is_tog_patched = true
-	Glock17_1.is_vanilla_firearm = false
-	Glock17_1.DisplayName = Untranslated([[Glock 17]])
-	Glock17_1.object_class = "Pistol"
-	Glock17_1.Cost = 570
-	Glock17_1.Damage = 16
-	Glock17_1.ObjDamageMod = 100
-	Glock17_1.CritChance = 0
-	Glock17_1.CritPerAim = 200
-	Glock17_1.BurstCritMul = 60
-	Glock17_1.CritChanceScaled = 10
-	storeProps(Glock17_1, "AimAccuracy", 11, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Glock17_1, "AimAccuracy", 2, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Glock17_1, "WeaponRange", 16, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Glock17_1, "WeaponRange", 22, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	Glock17_1.PBbonus_base = 14
-	Glock17_1.Handling = 23
-	Glock17_1.PenetrationClass = 1
-	Glock17_1.ShootAP = 4000
-	Glock17_1.ReloadAP = 3000
-	Glock17_1.APStance = 4
-	Glock17_1.OverwatchAngle = 2245
-	Glock17_1.MagazineSize = 15
-	Glock17_1.Cumbersome = 0
-	Glock17_1.Noise = 18
-	Glock17_1.PointBlankBonus = 1
-	Glock17_1.PreparedAttackType = "Overwatch"
-	Glock17_1.AvailableAttacks = {"SingleShot", "DualShot", "CancelShot", "MobileShot"}
-	Glock17_1.Rat_swap_ap = 10
-	Glock17_1.BurstSelective = false
-	Glock17_1.wep_base_recoil_mul = 119
-	Glock17_1.weigth_held_mul = 104
-	Glock17_1.wep_base_snapshot_mul = 70
-	Glock17_1.wep_base_hip_mul = 116
-	Glock17_1.recoil_mechanism = "Striker_Fired"
-	Glock17_1.Rat_cycling = "SemiAuto"
-	Glock17_1.rat_scope_block = false
-	Glock17_1.pistol_swap = false
-	Glock17_1.default_long_barrel = false
-	Glock17_1.unwieldy_weapon = false
-	Glock17_1.rat_barrel_len = 114
-	Glock17_1.rat_weigth = 650
-	Glock17_1.Weight = 650
-	Glock17_1.ScrapParts = 6
-	Glock17_1.RepairCost = 70
-	Glock17_1.Reliability = 80
-	Glock17_1.LargeItem = 0
-	Glock17_1.HandSlot = "OneHanded"
-	Glock17_1.AdditionalHint = T( 246679208709, [[<description_hints>
-<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Swapping to this weapon is free, as long it is not dual-wielded]] )
-	Glock17_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'ToG_VFX_Muzzle', Modifiable = true, AvailableComponents = {'ImprovisedSuppressor', 'Suppressor', 'ToG_VFX_Muzzle', 'Compensator_Glock', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'ToG_Comp_Pstl_defmag_1', Modifiable = true, AvailableComponents = {'ToG_Comp_Pstl_defmag_1', 'ToG_Comp_Pstl_finemag_1', 'ToG_Comp_Pstl_expmag_1', 'ToG_Comp_Pstl_ergmag_1', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'RAT_TOG_Reflex_pistol', 'RAT_TOG_compactRS', 'ImprovedIronsight', 'RAT_TOG_vigilanceRS', 'RAT_TOG_uv_dot', 'RAT_TOG_laser_dot', }}}
-	Glock17_1.Valuable = 0
-	Glock17_1.CanAppearInShop = true
-	Glock17_1.CanAppearUsed = true
-	Glock17_1.Tier = 1
-	Glock17_1.MaxStock = 4
-	Glock17_1.RestockWeight = 100
-	Glock17_1.CategoryPair = "Handguns"
-	Glock17_1.Icon = "Mod/Dau6w/Images/Glock17_icon.png"
-	Glock17_1.fxClass = "Glock18"
-	Glock17_1.Description = T(442902725085, [[<style PerkststsBold ><scale 700>The Glock 17 is a short recoil-operated, locked-breech semi-automatic pistol that uses a modified Browning cam-lock system adapted from the Hi-Power pistol.<newline><newline>The handgun was adopted into service with the Austrian military and law enforcement in 1982 as the Pistole 80, with an initial order for 25,000 guns. The Glock 17 outperformed eight different pistols from five other established manufacturers<newline><newline>In 1985, after joint Norwegian and Swedish trials from 1983 to 1985, the Glock 17 was accepted into service as the P80 in Norway, and in 1988 as the Pistol 88 in Sweden, where it surpassed all prior NATO durability standards. As a result, the Glock 17 became a standard NATO-classified sidearm<newline><newline><style MMOptionEntry>Made in Austria<image Mod/HXzCpFa/Icons/Flags/Austria.png 1600>]])
-	Glock17_1.PenetrationClass = 1
+	M1911_1.is_tog_patched = true
+	M1911_1.is_vanilla_firearm = false
+	M1911_1.DisplayName = Untranslated([[1911]])
+	M1911_1.object_class = "Pistol"
+	M1911_1.Cost = 2100
+	M1911_1.Damage = 22
+	M1911_1.ObjDamageMod = 100
+	M1911_1.CritChance = 0
+	M1911_1.CritPerAim = 300
+	M1911_1.BurstCritMul = 60
+	M1911_1.CritChanceScaled = 10
+	storeProps(M1911_1, "AimAccuracy", 16, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M1911_1, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M1911_1, "WeaponRange", 14, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M1911_1, "WeaponRange", 22, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	M1911_1.PBbonus_base = 12
+	M1911_1.Handling = 20
+	M1911_1.PenetrationClass = 1
+	M1911_1.ShootAP = 4000
+	M1911_1.ReloadAP = 3000
+	M1911_1.APStance = 7
+	M1911_1.OverwatchAngle = 2183
+	M1911_1.MagazineSize = 7
+	M1911_1.Cumbersome = 0
+	M1911_1.Noise = 20
+	M1911_1.PointBlankBonus = 1
+	M1911_1.PreparedAttackType = "Overwatch"
+	M1911_1.AvailableAttacks = {"SingleShot", "DualShot", "CancelShot", "MobileShot"}
+	M1911_1.Rat_swap_ap = 10
+	M1911_1.BurstSelective = false
+	M1911_1.wep_base_recoil_mul = 111
+	M1911_1.weigth_held_mul = 107
+	M1911_1.wep_base_snapshot_mul = 72
+	M1911_1.wep_base_hip_mul = 115
+	M1911_1.recoil_mechanism = "Short_Recoil"
+	M1911_1.Rat_cycling = "SemiAuto"
+	M1911_1.rat_scope_block = false
+	M1911_1.pistol_swap = false
+	M1911_1.default_long_barrel = false
+	M1911_1.unwieldy_weapon = false
+	M1911_1.rat_barrel_len = 127
+	M1911_1.rat_weigth = 1100
+	M1911_1.Weight = 1100
+	M1911_1.ScrapParts = 7
+	M1911_1.RepairCost = 70
+	M1911_1.Reliability = 78
+	M1911_1.LargeItem = 0
+	M1911_1.HandSlot = "OneHanded"
+	M1911_1.AdditionalHint = T( 566181481232, [[<description_hints>]] )
+	M1911_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'ToG_VFX_Muzzle', Modifiable = true, AvailableComponents = {'RAT_TOG_suppressor', 'Compensator', 'ToG_VFX_Muzzle', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'M1911_Mag_def_1', Modifiable = true, AvailableComponents = {'M1911_Mag_def_1', 'M1911_Mag_ext_1', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'M1911_Barrel_def_1', Modifiable = true, AvailableComponents = {'M1911_Barrel_def_1', 'M1911_Barrel_ext_1', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'RAT_TOG_compactRS', 'RAT_TOG_vigilanceRS', 'RAT_TOG_uv_dot', 'RAT_TOG_laser_dot', }}}
+	M1911_1.Valuable = 0
+	M1911_1.CanAppearInShop = true
+	M1911_1.CanAppearUsed = true
+	M1911_1.Tier = 1
+	M1911_1.MaxStock = 3
+	M1911_1.RestockWeight = 60
+	M1911_1.CategoryPair = "Handguns"
+	M1911_1.fxClass = "HiPower"
+	M1911_1.Description = T(120228027438, [[<style PerkststsBold ><scale 600>The 1911 is a single-action, recoil-operated, semi-automatic pistol chambered for the .45 ACP cartridge.<newline><newline>The pistol's formal U.S. military designation as of 1940 was , "1911" for the original model adopted March 1911, and "1911A1" for the improved 1911 model which entered service in 1926. 
+<newline><newline><style MMOptionEntry>Made in USA <image UI/Icons/Flags/f_usa.dds 1600>]])
+	M1911_1.PenetrationClass = 1
 
 
 	P08_1.is_tog_patched = true
@@ -3404,7 +3403,7 @@ The UMP has been adopted for use by various countries including Brazil, Canada, 
 	P08_1.PenetrationClass = 1
 	P08_1.ShootAP = 4000
 	P08_1.ReloadAP = 4000
-	P08_1.APStance = 5
+	P08_1.APStance = 7
 	P08_1.OverwatchAngle = 2221
 	P08_1.MagazineSize = 8
 	P08_1.Cumbersome = 0
@@ -3468,7 +3467,7 @@ The UMP has been adopted for use by various countries including Brazil, Canada, 
 	VikingMP446_1.PenetrationClass = 1
 	VikingMP446_1.ShootAP = 4000
 	VikingMP446_1.ReloadAP = 3000
-	VikingMP446_1.APStance = 5
+	VikingMP446_1.APStance = 7
 	VikingMP446_1.OverwatchAngle = 2166
 	VikingMP446_1.MagazineSize = 10
 	VikingMP446_1.Cumbersome = 0
@@ -3509,69 +3508,6 @@ The UMP has been adopted for use by various countries including Brazil, Canada, 
 	VikingMP446_1.PenetrationClass = 1
 
 
-	USP_1.is_tog_patched = true
-	USP_1.is_vanilla_firearm = false
-	USP_1.DisplayName = Untranslated([[USP]])
-	USP_1.object_class = "Pistol"
-	USP_1.Cost = 950
-	USP_1.Damage = 17
-	USP_1.ObjDamageMod = 100
-	USP_1.CritChance = 0
-	USP_1.CritPerAim = 300
-	USP_1.BurstCritMul = 60
-	USP_1.CritChanceScaled = 20
-	storeProps(USP_1, "AimAccuracy", 12, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(USP_1, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(USP_1, "WeaponRange", 16, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(USP_1, "WeaponRange", 22, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	USP_1.PBbonus_base = 13
-	USP_1.Handling = 22
-	USP_1.PenetrationClass = 1
-	USP_1.ShootAP = 4000
-	USP_1.ReloadAP = 3000
-	USP_1.APStance = 4
-	USP_1.OverwatchAngle = 2165
-	USP_1.MagazineSize = 15
-	USP_1.Cumbersome = 0
-	USP_1.Noise = 18
-	USP_1.PointBlankBonus = 1
-	USP_1.PreparedAttackType = "Overwatch"
-	USP_1.AvailableAttacks = {"SingleShot", "DualShot", "CancelShot", "MobileShot"}
-	USP_1.Rat_swap_ap = 10
-	USP_1.BurstSelective = false
-	USP_1.wep_base_recoil_mul = 116
-	USP_1.weigth_held_mul = 105
-	USP_1.wep_base_snapshot_mul = 69
-	USP_1.wep_base_hip_mul = 116
-	USP_1.recoil_mechanism = "Short_Recoil"
-	USP_1.Rat_cycling = "SemiAuto"
-	USP_1.rat_scope_block = false
-	USP_1.pistol_swap = false
-	USP_1.default_long_barrel = false
-	USP_1.unwieldy_weapon = false
-	USP_1.rat_barrel_len = 108
-	USP_1.rat_weigth = 700
-	USP_1.Weight = 700
-	USP_1.ScrapParts = 6
-	USP_1.RepairCost = 70
-	USP_1.Reliability = 80
-	USP_1.LargeItem = 0
-	USP_1.HandSlot = "OneHanded"
-	USP_1.AdditionalHint = T( 928500227524, [[<description_hints>
-<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Swapping to this weapon is free, as long it is not dual-wielded.]] )
-	USP_1.ComponentSlots = {{CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'ImprovisedSuppressor', 'Suppressor', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'uspr_mag_def_1', Modifiable = true, AvailableComponents = {'uspr_mag_def_1', 'uspr_mag_ext_1', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'ToG_Comp_Pstl_Barrel_Long', 'ToG_Comp_Pstl_Barrel_Long_1', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'RAT_TOG_Reflex_pistol', 'RAT_TOG_compactRS', 'ImprovedIronsight', 'RAT_TOG_vigilanceRS', 'RAT_TOG_uv_dot', 'RAT_TOG_laser_dot', }}}
-	USP_1.Valuable = 0
-	USP_1.CanAppearInShop = true
-	USP_1.CanAppearUsed = true
-	USP_1.Tier = 1
-	USP_1.MaxStock = 3
-	USP_1.RestockWeight = 80
-	USP_1.CategoryPair = "Handguns"
-	USP_1.Icon = "Mod/Dau6w/Images/USP_icon.png"
-	USP_1.Description = T(313263970388, [[<style PerkststsBold ><scale 700>The USP (Universelle Selbstladepistole or "universal self-loading pistol") is a semi-automatic pistol developed in Germany as a replacement for the P7 series of handguns.<newline><newline>Design work on a new family of pistols commenced in September 1989, focused primarily on the United States commercial and law enforcement markets. USP prototypes participated in rigorous testing in the Offensive Handgun Weapon System (OHWS) program requested by the U.S. Special Operations Command (USSOCOM), which would later result in the Mk 23<newline><newline>One of the distinguishing features of the USP is the mechanical recoil reduction system. It consists of a short additional spring located within the main recoil spring on the breech end of the recoil spring assembly. Designed primarily to reduce wear on the pistol's components, the system also lowers the peak recoil forces felt by the shooter.<newline><newline><style MMOptionEntry>Made in Germany <image UI/Icons/Flags/f_germany.dds 1600>]])
-	USP_1.PenetrationClass = 1
-
-
 	B93RR_1.is_tog_patched = true
 	B93RR_1.is_vanilla_firearm = false
 	B93RR_1.DisplayName = Untranslated([[93R]])
@@ -3594,7 +3530,7 @@ The UMP has been adopted for use by various countries including Brazil, Canada, 
 	B93RR_1.PenetrationClass = 1
 	B93RR_1.ShootAP = 3000
 	B93RR_1.ReloadAP = 4000
-	B93RR_1.APStance = 5
+	B93RR_1.APStance = 7
 	B93RR_1.OverwatchAngle = 2180
 	B93RR_1.MagazineSize = 20
 	B93RR_1.Cumbersome = 0
@@ -3642,67 +3578,131 @@ The UMP has been adopted for use by various countries including Brazil, Canada, 
 	B93RR_1.PenetrationClass = 1
 
 
-	M1911_1.is_tog_patched = true
-	M1911_1.is_vanilla_firearm = false
-	M1911_1.DisplayName = Untranslated([[1911]])
-	M1911_1.object_class = "Pistol"
-	M1911_1.Cost = 2100
-	M1911_1.Damage = 22
-	M1911_1.ObjDamageMod = 100
-	M1911_1.CritChance = 0
-	M1911_1.CritPerAim = 300
-	M1911_1.BurstCritMul = 60
-	M1911_1.CritChanceScaled = 10
-	storeProps(M1911_1, "AimAccuracy", 16, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M1911_1, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M1911_1, "WeaponRange", 14, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M1911_1, "WeaponRange", 22, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	M1911_1.PBbonus_base = 12
-	M1911_1.Handling = 20
-	M1911_1.PenetrationClass = 1
-	M1911_1.ShootAP = 4000
-	M1911_1.ReloadAP = 3000
-	M1911_1.APStance = 5
-	M1911_1.OverwatchAngle = 2183
-	M1911_1.MagazineSize = 7
-	M1911_1.Cumbersome = 0
-	M1911_1.Noise = 20
-	M1911_1.PointBlankBonus = 1
-	M1911_1.PreparedAttackType = "Overwatch"
-	M1911_1.AvailableAttacks = {"SingleShot", "DualShot", "CancelShot", "MobileShot"}
-	M1911_1.Rat_swap_ap = 10
-	M1911_1.BurstSelective = false
-	M1911_1.wep_base_recoil_mul = 111
-	M1911_1.weigth_held_mul = 107
-	M1911_1.wep_base_snapshot_mul = 72
-	M1911_1.wep_base_hip_mul = 115
-	M1911_1.recoil_mechanism = "Short_Recoil"
-	M1911_1.Rat_cycling = "SemiAuto"
-	M1911_1.rat_scope_block = false
-	M1911_1.pistol_swap = false
-	M1911_1.default_long_barrel = false
-	M1911_1.unwieldy_weapon = false
-	M1911_1.rat_barrel_len = 127
-	M1911_1.rat_weigth = 1100
-	M1911_1.Weight = 1100
-	M1911_1.ScrapParts = 7
-	M1911_1.RepairCost = 70
-	M1911_1.Reliability = 78
-	M1911_1.LargeItem = 0
-	M1911_1.HandSlot = "OneHanded"
-	M1911_1.AdditionalHint = T( 566181481232, [[<description_hints>]] )
-	M1911_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'ToG_VFX_Muzzle', Modifiable = true, AvailableComponents = {'RAT_TOG_suppressor', 'Compensator', 'ToG_VFX_Muzzle', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'M1911_Mag_def_1', Modifiable = true, AvailableComponents = {'M1911_Mag_def_1', 'M1911_Mag_ext_1', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'M1911_Barrel_def_1', Modifiable = true, AvailableComponents = {'M1911_Barrel_def_1', 'M1911_Barrel_ext_1', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'RAT_TOG_compactRS', 'RAT_TOG_vigilanceRS', 'RAT_TOG_uv_dot', 'RAT_TOG_laser_dot', }}}
-	M1911_1.Valuable = 0
-	M1911_1.CanAppearInShop = true
-	M1911_1.CanAppearUsed = true
-	M1911_1.Tier = 1
-	M1911_1.MaxStock = 3
-	M1911_1.RestockWeight = 60
-	M1911_1.CategoryPair = "Handguns"
-	M1911_1.fxClass = "HiPower"
-	M1911_1.Description = T(120228027438, [[<style PerkststsBold ><scale 600>The 1911 is a single-action, recoil-operated, semi-automatic pistol chambered for the .45 ACP cartridge.<newline><newline>The pistol's formal U.S. military designation as of 1940 was , "1911" for the original model adopted March 1911, and "1911A1" for the improved 1911 model which entered service in 1926. 
-<newline><newline><style MMOptionEntry>Made in USA <image UI/Icons/Flags/f_usa.dds 1600>]])
-	M1911_1.PenetrationClass = 1
+	USP_1.is_tog_patched = true
+	USP_1.is_vanilla_firearm = false
+	USP_1.DisplayName = Untranslated([[USP]])
+	USP_1.object_class = "Pistol"
+	USP_1.Cost = 950
+	USP_1.Damage = 17
+	USP_1.ObjDamageMod = 100
+	USP_1.CritChance = 0
+	USP_1.CritPerAim = 300
+	USP_1.BurstCritMul = 60
+	USP_1.CritChanceScaled = 20
+	storeProps(USP_1, "AimAccuracy", 12, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(USP_1, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(USP_1, "WeaponRange", 16, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(USP_1, "WeaponRange", 22, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	USP_1.PBbonus_base = 13
+	USP_1.Handling = 22
+	USP_1.PenetrationClass = 1
+	USP_1.ShootAP = 4000
+	USP_1.ReloadAP = 3000
+	USP_1.APStance = 6
+	USP_1.OverwatchAngle = 2165
+	USP_1.MagazineSize = 15
+	USP_1.Cumbersome = 0
+	USP_1.Noise = 18
+	USP_1.PointBlankBonus = 1
+	USP_1.PreparedAttackType = "Overwatch"
+	USP_1.AvailableAttacks = {"SingleShot", "DualShot", "CancelShot", "MobileShot"}
+	USP_1.Rat_swap_ap = 10
+	USP_1.BurstSelective = false
+	USP_1.wep_base_recoil_mul = 116
+	USP_1.weigth_held_mul = 105
+	USP_1.wep_base_snapshot_mul = 69
+	USP_1.wep_base_hip_mul = 116
+	USP_1.recoil_mechanism = "Short_Recoil"
+	USP_1.Rat_cycling = "SemiAuto"
+	USP_1.rat_scope_block = false
+	USP_1.pistol_swap = false
+	USP_1.default_long_barrel = false
+	USP_1.unwieldy_weapon = false
+	USP_1.rat_barrel_len = 108
+	USP_1.rat_weigth = 700
+	USP_1.Weight = 700
+	USP_1.ScrapParts = 6
+	USP_1.RepairCost = 70
+	USP_1.Reliability = 80
+	USP_1.LargeItem = 0
+	USP_1.HandSlot = "OneHanded"
+	USP_1.AdditionalHint = T( 928500227524, [[<description_hints>
+<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Swapping to this weapon is free, as long it is not dual-wielded.]] )
+	USP_1.ComponentSlots = {{CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'ImprovisedSuppressor', 'Suppressor', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'uspr_mag_def_1', Modifiable = true, AvailableComponents = {'uspr_mag_def_1', 'uspr_mag_ext_1', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'ToG_Comp_Pstl_Barrel_Long', 'ToG_Comp_Pstl_Barrel_Long_1', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'RAT_TOG_Reflex_pistol', 'RAT_TOG_compactRS', 'ImprovedIronsight', 'RAT_TOG_vigilanceRS', 'RAT_TOG_uv_dot', 'RAT_TOG_laser_dot', }}}
+	USP_1.Valuable = 0
+	USP_1.CanAppearInShop = true
+	USP_1.CanAppearUsed = true
+	USP_1.Tier = 1
+	USP_1.MaxStock = 3
+	USP_1.RestockWeight = 80
+	USP_1.CategoryPair = "Handguns"
+	USP_1.Icon = "Mod/Dau6w/Images/USP_icon.png"
+	USP_1.Description = T(313263970388, [[<style PerkststsBold ><scale 700>The USP (Universelle Selbstladepistole or "universal self-loading pistol") is a semi-automatic pistol developed in Germany as a replacement for the P7 series of handguns.<newline><newline>Design work on a new family of pistols commenced in September 1989, focused primarily on the United States commercial and law enforcement markets. USP prototypes participated in rigorous testing in the Offensive Handgun Weapon System (OHWS) program requested by the U.S. Special Operations Command (USSOCOM), which would later result in the Mk 23<newline><newline>One of the distinguishing features of the USP is the mechanical recoil reduction system. It consists of a short additional spring located within the main recoil spring on the breech end of the recoil spring assembly. Designed primarily to reduce wear on the pistol's components, the system also lowers the peak recoil forces felt by the shooter.<newline><newline><style MMOptionEntry>Made in Germany <image UI/Icons/Flags/f_germany.dds 1600>]])
+	USP_1.PenetrationClass = 1
+
+
+	Glock17_1.is_tog_patched = true
+	Glock17_1.is_vanilla_firearm = false
+	Glock17_1.DisplayName = Untranslated([[Glock 17]])
+	Glock17_1.object_class = "Pistol"
+	Glock17_1.Cost = 570
+	Glock17_1.Damage = 16
+	Glock17_1.ObjDamageMod = 100
+	Glock17_1.CritChance = 0
+	Glock17_1.CritPerAim = 200
+	Glock17_1.BurstCritMul = 60
+	Glock17_1.CritChanceScaled = 10
+	storeProps(Glock17_1, "AimAccuracy", 11, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Glock17_1, "AimAccuracy", 2, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Glock17_1, "WeaponRange", 16, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Glock17_1, "WeaponRange", 22, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	Glock17_1.PBbonus_base = 14
+	Glock17_1.Handling = 23
+	Glock17_1.PenetrationClass = 1
+	Glock17_1.ShootAP = 4000
+	Glock17_1.ReloadAP = 3000
+	Glock17_1.APStance = 6
+	Glock17_1.OverwatchAngle = 2245
+	Glock17_1.MagazineSize = 15
+	Glock17_1.Cumbersome = 0
+	Glock17_1.Noise = 18
+	Glock17_1.PointBlankBonus = 1
+	Glock17_1.PreparedAttackType = "Overwatch"
+	Glock17_1.AvailableAttacks = {"SingleShot", "DualShot", "CancelShot", "MobileShot"}
+	Glock17_1.Rat_swap_ap = 10
+	Glock17_1.BurstSelective = false
+	Glock17_1.wep_base_recoil_mul = 119
+	Glock17_1.weigth_held_mul = 104
+	Glock17_1.wep_base_snapshot_mul = 70
+	Glock17_1.wep_base_hip_mul = 116
+	Glock17_1.recoil_mechanism = "Striker_Fired"
+	Glock17_1.Rat_cycling = "SemiAuto"
+	Glock17_1.rat_scope_block = false
+	Glock17_1.pistol_swap = false
+	Glock17_1.default_long_barrel = false
+	Glock17_1.unwieldy_weapon = false
+	Glock17_1.rat_barrel_len = 114
+	Glock17_1.rat_weigth = 650
+	Glock17_1.Weight = 650
+	Glock17_1.ScrapParts = 6
+	Glock17_1.RepairCost = 70
+	Glock17_1.Reliability = 80
+	Glock17_1.LargeItem = 0
+	Glock17_1.HandSlot = "OneHanded"
+	Glock17_1.AdditionalHint = T( 246679208709, [[<description_hints>
+<image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Swapping to this weapon is free, as long it is not dual-wielded]] )
+	Glock17_1.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'ToG_VFX_Muzzle', Modifiable = true, AvailableComponents = {'ImprovisedSuppressor', 'Suppressor', 'ToG_VFX_Muzzle', 'Compensator_Glock', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'ToG_Comp_Pstl_defmag_1', Modifiable = true, AvailableComponents = {'ToG_Comp_Pstl_defmag_1', 'ToG_Comp_Pstl_finemag_1', 'ToG_Comp_Pstl_expmag_1', 'ToG_Comp_Pstl_ergmag_1', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'RAT_TOG_Reflex_pistol', 'RAT_TOG_compactRS', 'ImprovedIronsight', 'RAT_TOG_vigilanceRS', 'RAT_TOG_uv_dot', 'RAT_TOG_laser_dot', }}}
+	Glock17_1.Valuable = 0
+	Glock17_1.CanAppearInShop = true
+	Glock17_1.CanAppearUsed = true
+	Glock17_1.Tier = 1
+	Glock17_1.MaxStock = 4
+	Glock17_1.RestockWeight = 100
+	Glock17_1.CategoryPair = "Handguns"
+	Glock17_1.Icon = "Mod/Dau6w/Images/Glock17_icon.png"
+	Glock17_1.fxClass = "Glock18"
+	Glock17_1.Description = T(442902725085, [[<style PerkststsBold ><scale 700>The Glock 17 is a short recoil-operated, locked-breech semi-automatic pistol that uses a modified Browning cam-lock system adapted from the Hi-Power pistol.<newline><newline>The handgun was adopted into service with the Austrian military and law enforcement in 1982 as the Pistole 80, with an initial order for 25,000 guns. The Glock 17 outperformed eight different pistols from five other established manufacturers<newline><newline>In 1985, after joint Norwegian and Swedish trials from 1983 to 1985, the Glock 17 was accepted into service as the P80 in Norway, and in 1988 as the Pistol 88 in Sweden, where it surpassed all prior NATO durability standards. As a result, the Glock 17 became a standard NATO-classified sidearm<newline><newline><style MMOptionEntry>Made in Austria<image Mod/HXzCpFa/Icons/Flags/Austria.png 1600>]])
+	Glock17_1.PenetrationClass = 1
 
 
 	M79SAW_1.is_tog_patched = true
@@ -3897,50 +3897,102 @@ function RatoGBO_WepPatch()
 	BarretM82.PenetrationClass = 1
 
 
-	M24Sniper.is_vanilla_firearm = true
-	M24Sniper.Cost = 8600
-	M24Sniper.Damage = 32
-	M24Sniper.CritPerAim = 1000
-	M24Sniper.BurstCritMul = 60
-	M24Sniper.CritChanceScaled = 30
-	storeProps(M24Sniper, "AimAccuracy", 56, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M24Sniper, "AimAccuracy", 9, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M24Sniper, "WeaponRange", 48, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M24Sniper, "WeaponRange", 38, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	M24Sniper.PBbonus_base = -3
-	M24Sniper.Handling = -13
-	M24Sniper.ShootAP = 4000
-	M24Sniper.ReloadAP = 3000
-	M24Sniper.APStance = 37
-	M24Sniper.OverwatchAngle = 772
-	M24Sniper.MagazineSize = 5
-	M24Sniper.Cumbersome = 0
-	M24Sniper.Noise = 22
-	M24Sniper.PointBlankBonus = 1
-	M24Sniper.PreparedAttackType = "Both"
-	M24Sniper.AvailableAttacks = {"SingleShot", "CancelShot"}
-	M24Sniper.Rat_swap_ap = 30
-	M24Sniper.wep_base_recoil_mul = 88
-	M24Sniper.weigth_held_mul = 137
-	M24Sniper.wep_base_snapshot_mul = 119
-	M24Sniper.wep_base_hip_mul = 89
-	M24Sniper.recoil_mechanism = "Bolt_Action"
-	M24Sniper.Rat_cycling = "BoltAction"
-	M24Sniper.default_long_barrel = true
-	M24Sniper.rat_barrel_len = 610
-	M24Sniper.rat_weigth = 5200
-	M24Sniper.Weight = 5200
-	M24Sniper.ScrapParts = 14
-	M24Sniper.RepairCost = 80
-	M24Sniper.Reliability = 95
-	M24Sniper.AdditionalHint = T{713886804400,[[<description_hints>]]}
-	M24Sniper.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = true, AvailableComponents = {'StockHeavy', 'StockLight', 'StockNormal', }}, {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagLarge', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'LROptics', Modifiable = true, AvailableComponents = {'LROptics', 'LROpticsAdvanced', 'ReflexSight', 'ScopeCOG', 'ThermalScope', 'PSG_DefaultScope', 'WideScope', '_ReflexSIghtVigilance', }}, {CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'Suppressor', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'Bolt_action', Modifiable = true, AvailableComponents = {'Bolt_action', }}}
-	M24Sniper.CanAppearInShop = true
-	M24Sniper.Tier = 2
-	M24Sniper.MaxStock = 2
-	M24Sniper.RestockWeight = 30
-	M24Sniper.CategoryPair = "Rifles"
-	M24Sniper.PenetrationClass = 1
+	MG58.is_vanilla_firearm = true
+	MG58.Cost = 3000
+	MG58.Damage = 32
+	MG58.CritPerAim = 200
+	MG58.BurstCritMul = 60
+	MG58.CritChanceScaled = 10
+	storeProps(MG58, "AimAccuracy", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(MG58, "AimAccuracy", 2, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(MG58, "WeaponRange", 32, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(MG58, "WeaponRange", 40, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	MG58.PBbonus_base = -3
+	MG58.Handling = -21
+	MG58.HandlingNotProneMul = 250
+	MG58.ShootAP = 4000
+	MG58.ReloadAP = 5000
+	MG58.APStance = 45
+	MG58.OverwatchAngle = 571
+	MG58.MagazineSize = 50
+	MG58.Cumbersome = 1
+	MG58.Noise = 22
+	MG58.PointBlankBonus = 1
+	MG58.PreparedAttackType = "Machine Gun"
+	MG58.AvailableAttacks = {"MGBurstFire", "BurstFire", "SingleShot", "CancelShot"}
+	MG58.Rat_swap_ap = 30
+	MG58.long_shots = 7
+	MG58.auto_shots = 6
+	MG58.RPM = 1500
+	MG58.AutoFireOnly = true
+	MG58.wep_base_recoil_mul = 82
+	MG58.weigth_held_mul = 182
+	MG58.wep_base_snapshot_mul = 138
+	MG58.wep_base_hip_mul = 92
+	MG58.recoil_mechanism = "Gas_Operated"
+	MG58.Rat_cycling = "Auto"
+	MG58.rat_barrel_len = 550
+	MG58.rat_weigth = 11600
+	MG58.Weight = 11600
+	MG58.ScrapParts = 12
+	MG58.RepairCost = 80
+	MG58.Reliability = 84
+	MG58.AdditionalHint = T{240845249658,[[<description_hints>]]}
+	MG58.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Bipod', DefaultComponent = 'Bipod_MG42', Modifiable = false, AvailableComponents = {'Bipod_MG42', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'ImprovedIronsight', Modifiable = false, AvailableComponents = {'ImprovedIronsight', }}}
+	MG58.Valuable = 1
+	MG58.Tier = 1
+	MG58.PenetrationClass = 1
+
+
+	MG42.is_vanilla_firearm = true
+	MG42.Cost = 2520
+	MG42.Damage = 30
+	MG42.CritPerAim = 200
+	MG42.BurstCritMul = 60
+	MG42.CritChanceScaled = 10
+	storeProps(MG42, "AimAccuracy", 27, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(MG42, "AimAccuracy", 2, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(MG42, "WeaponRange", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(MG42, "WeaponRange", 38, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	MG42.PBbonus_base = -4
+	MG42.Handling = -22
+	MG42.HandlingNotProneMul = 250
+	MG42.ShootAP = 4000
+	MG42.ReloadAP = 5000
+	MG42.APStance = 45
+	MG42.OverwatchAngle = 571
+	MG42.MagazineSize = 50
+	MG42.Cumbersome = 1
+	MG42.Noise = 22
+	MG42.PointBlankBonus = 1
+	MG42.PreparedAttackType = "Machine Gun"
+	MG42.AvailableAttacks = {"MGBurstFire", "BurstFire", "SingleShot", "CancelShot"}
+	MG42.Rat_swap_ap = 30
+	MG42.long_shots = 6
+	MG42.auto_shots = 6
+	MG42.RPM = 1200
+	MG42.AutoFireOnly = true
+	MG42.wep_base_recoil_mul = 82
+	MG42.weigth_held_mul = 182
+	MG42.wep_base_snapshot_mul = 138
+	MG42.wep_base_hip_mul = 92
+	MG42.recoil_mechanism = "Short_Recoil"
+	MG42.Rat_cycling = "Auto"
+	MG42.rat_barrel_len = 550
+	MG42.rat_weigth = 11600
+	MG42.Weight = 11600
+	MG42.ScrapParts = 12
+	MG42.RepairCost = 80
+	MG42.Reliability = 78
+	MG42.AdditionalHint = T{386845693893,[[<description_hints>]]}
+	MG42.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Bipod', DefaultComponent = 'Bipod_MG42', Modifiable = false, AvailableComponents = {'Bipod_MG42', }}}
+	MG42.CanAppearInShop = true
+	MG42.CanAppearUsed = true
+	MG42.Tier = 1
+	MG42.MaxStock = 1
+	MG42.RestockWeight = 80
+	MG42.CategoryPair = "MachineGuns"
+	MG42.PenetrationClass = 1
 
 
 	PSG1.is_vanilla_firearm = true
@@ -3989,191 +4041,6 @@ function RatoGBO_WepPatch()
 	PSG1.RestockWeight = 30
 	PSG1.CategoryPair = "Rifles"
 	PSG1.PenetrationClass = 1
-
-
-	FNFAL.is_vanilla_firearm = true
-	FNFAL.Cost = 5340
-	FNFAL.Damage = 32
-	FNFAL.CritPerAim = 200
-	FNFAL.BurstCritMul = 60
-	FNFAL.CritChanceScaled = 10
-	storeProps(FNFAL, "AimAccuracy", 37, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(FNFAL, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(FNFAL, "WeaponRange", 42, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(FNFAL, "WeaponRange", 36, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	FNFAL.PBbonus_base = -2
-	FNFAL.Handling = 2
-	FNFAL.ShootAP = 4000
-	FNFAL.ReloadAP = 3000
-	FNFAL.APStance = 37
-	FNFAL.OverwatchAngle = 1021
-	FNFAL.MagazineSize = 20
-	FNFAL.Cumbersome = 0
-	FNFAL.Noise = 22
-	FNFAL.PointBlankBonus = 1
-	FNFAL.PreparedAttackType = "Overwatch"
-	FNFAL.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
-	FNFAL.Rat_swap_ap = 30
-	FNFAL.RPM = 650
-	FNFAL.wep_base_recoil_mul = 95
-	FNFAL.weigth_held_mul = 132
-	FNFAL.wep_base_snapshot_mul = 106
-	FNFAL.wep_base_hip_mul = 93
-	FNFAL.recoil_mechanism = "Gas_Operated"
-	FNFAL.Rat_cycling = "Auto"
-	FNFAL.rat_barrel_len = 533
-	FNFAL.rat_weigth = 4600
-	FNFAL.Weight = 4600
-	FNFAL.ScrapParts = 10
-	FNFAL.RepairCost = 80
-	FNFAL.Reliability = 72
-	FNFAL.AdditionalHint = T{634047228362,[[<description_hints>]]}
-	FNFAL.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Handguard', DefaultComponent = 'FNFAL_Handguard', Modifiable = false, AvailableComponents = {'FNFAL_Handguard', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'ScopeCOG', 'ScopeCOGQuick', 'LROptics', 'ThermalScope', 'ReflexSight', 'ReflexSightAdvanced', 'WideScope', '_ReflexSIghtVigilance', 'ImprovedIronsight', }}, {CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'Compensator', 'Suppressor', 'ImprovisedSuppressor', 'MuzzleBooster', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagNormalFine', 'MagLarge', 'MagLargeFine', }}, {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'BarrelNormalImproved', 'BarrelHeavy', 'BarrelLong', 'BarrelLongImproved', 'BarrelShort', 'BarrelShortImproved', 'long_barrel_light', 'BarrelShort_Light', 'BarrelLight', 'BarrelHeavyLong', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagLarge', 'MagLargeFine', 'MagNormal', 'MagNormalFine', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = true, AvailableComponents = {'StockNormal', 'StockHeavy', 'StockLight', 'StockNo', }}, {CanBeEmpty = true, SlotType = 'Under', Modifiable = true, AvailableComponents = {'GrenadeLauncher', 'TacGrip', 'VerticalGrip', }}}
-	FNFAL.Valuable = 1
-	FNFAL.CanAppearInShop = true
-	FNFAL.Tier = 2
-	FNFAL.MaxStock = 3
-	FNFAL.RestockWeight = 40
-	FNFAL.CategoryPair = "AssaultRifles"
-	FNFAL.PenetrationClass = 1
-
-
-	BrowningM2HMG.is_vanilla_firearm = true
-	BrowningM2HMG.Cost = 2520
-	BrowningM2HMG.Damage = 45
-	BrowningM2HMG.CritPerAim = 200
-	BrowningM2HMG.BurstCritMul = 60
-	BrowningM2HMG.CritChanceScaled = 10
-	storeProps(BrowningM2HMG, "AimAccuracy", 25, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(BrowningM2HMG, "AimAccuracy", 2, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(BrowningM2HMG, "WeaponRange", 40, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(BrowningM2HMG, "WeaponRange", 38, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	BrowningM2HMG.PBbonus_base = 0
-	BrowningM2HMG.Handling = 2
-	BrowningM2HMG.ShootAP = 4000
-	BrowningM2HMG.ReloadAP = 6000
-	BrowningM2HMG.OverwatchAngle = 3600
-	BrowningM2HMG.MagazineSize = 100
-	BrowningM2HMG.Cumbersome = 1
-	BrowningM2HMG.Noise = 30
-	BrowningM2HMG.PointBlankBonus = 1
-	BrowningM2HMG.PreparedAttackType = "Machine Gun"
-	BrowningM2HMG.AvailableAttacks = {"MGBurstFire"}
-	BrowningM2HMG.Rat_swap_ap = 30
-	BrowningM2HMG.long_shots = 3
-	BrowningM2HMG.auto_shots = 3
-	BrowningM2HMG.RPM = 500
-	BrowningM2HMG.AutoFireOnly = true
-	BrowningM2HMG.wep_base_recoil_mul = 60
-	BrowningM2HMG.weigth_held_mul = 100
-	BrowningM2HMG.wep_base_snapshot_mul = 90
-	BrowningM2HMG.wep_base_hip_mul = 100
-	BrowningM2HMG.recoil_mechanism = "Recoil_Operated"
-	BrowningM2HMG.Rat_cycling = "Auto"
-	BrowningM2HMG.ScrapParts = 20
-	BrowningM2HMG.RepairCost = 80
-	BrowningM2HMG.Reliability = 86
-	BrowningM2HMG.AdditionalHint = T{891996501927,[[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Stationary weapon
- ]]}
-	BrowningM2HMG.ComponentSlots = {{CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'browning_bipod', Modifiable = false, AvailableComponents = {'browning_bipod', }}}
-	BrowningM2HMG.Tier = 1
-	BrowningM2HMG.MaxStock = 3
-	BrowningM2HMG.PenetrationClass = 1
-
-
-	Gewehr98.is_vanilla_firearm = true
-	Gewehr98.Cost = 2000
-	Gewehr98.Damage = 33
-	Gewehr98.CritPerAim = 750
-	Gewehr98.BurstCritMul = 60
-	Gewehr98.CritChanceScaled = 20
-	storeProps(Gewehr98, "AimAccuracy", 49, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Gewehr98, "AimAccuracy", 7, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Gewehr98, "WeaponRange", 40, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Gewehr98, "WeaponRange", 36, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	Gewehr98.PBbonus_base = -7
-	Gewehr98.Handling = -28
-	Gewehr98.ShootAP = 4000
-	Gewehr98.ReloadAP = 3000
-	Gewehr98.APStance = 40
-	Gewehr98.OverwatchAngle = 651
-	Gewehr98.MagazineSize = 5
-	Gewehr98.Cumbersome = 0
-	Gewehr98.Noise = 22
-	Gewehr98.PointBlankBonus = 1
-	Gewehr98.PreparedAttackType = "Both"
-	Gewehr98.AvailableAttacks = {"SingleShot", "CancelShot"}
-	Gewehr98.Rat_swap_ap = 30
-	Gewehr98.wep_base_recoil_mul = 86
-	Gewehr98.weigth_held_mul = 132
-	Gewehr98.wep_base_snapshot_mul = 126
-	Gewehr98.wep_base_hip_mul = 82
-	Gewehr98.recoil_mechanism = "Bolt_Action"
-	Gewehr98.Rat_cycling = "BoltAction"
-	Gewehr98.default_long_barrel = true
-	Gewehr98.rat_barrel_len = 740
-	Gewehr98.rat_weigth = 4500
-	Gewehr98.Weight = 4500
-	Gewehr98.ScrapParts = 8
-	Gewehr98.RepairCost = 80
-	Gewehr98.Reliability = 97
-	Gewehr98.AdditionalHint = T{973204362273,[[<description_hints>]]}
-	Gewehr98.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'GewehrDefaultSight', Modifiable = true, AvailableComponents = {'LROptics', 'ReflexSight', 'ScopeCOG', 'GewehrDefaultSight', 'ImprovedIronsight', 'ReflexSightAdvanced', 'ScopeCOGQuick', 'ThermalScope', '_ReflexSIghtVigilance', 'WideScope', 'LROpticsAdvanced', 'PSG_DefaultScope', }}, {CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'ImprovisedSuppressor', 'Suppressor', }}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'Bolt_action', Modifiable = true, AvailableComponents = {'Bolt_action', }}}
-	Gewehr98.CanAppearInShop = true
-	Gewehr98.CanAppearUsed = true
-	Gewehr98.Tier = 1
-	Gewehr98.MaxStock = 3
-	Gewehr98.RestockWeight = 100
-	Gewehr98.CategoryPair = "Rifles"
-	Gewehr98.PenetrationClass = 1
-
-
-	DragunovSVD.is_vanilla_firearm = true
-	DragunovSVD.Cost = 8440
-	DragunovSVD.Damage = 32
-	DragunovSVD.CritPerAim = 800
-	DragunovSVD.BurstCritMul = 60
-	DragunovSVD.CritChanceScaled = 20
-	storeProps(DragunovSVD, "AimAccuracy", 46, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(DragunovSVD, "AimAccuracy", 7, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(DragunovSVD, "WeaponRange", 38, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(DragunovSVD, "WeaponRange", 36, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	DragunovSVD.PBbonus_base = -2
-	DragunovSVD.Handling = -11
-	DragunovSVD.ShootAP = 4000
-	DragunovSVD.ReloadAP = 3000
-	DragunovSVD.APStance = 37
-	DragunovSVD.OverwatchAngle = 820
-	DragunovSVD.MagazineSize = 10
-	DragunovSVD.Cumbersome = 0
-	DragunovSVD.Noise = 22
-	DragunovSVD.PointBlankBonus = 1
-	DragunovSVD.PreparedAttackType = "Both"
-	DragunovSVD.AvailableAttacks = {"SingleShot", "CancelShot"}
-	DragunovSVD.Rat_swap_ap = 30
-	DragunovSVD.wep_base_recoil_mul = 89
-	DragunovSVD.weigth_held_mul = 132
-	DragunovSVD.wep_base_snapshot_mul = 117
-	DragunovSVD.wep_base_hip_mul = 89
-	DragunovSVD.recoil_mechanism = "Gas_Operated"
-	DragunovSVD.Rat_cycling = "SemiAuto"
-	DragunovSVD.default_long_barrel = true
-	DragunovSVD.rat_barrel_len = 610
-	DragunovSVD.rat_weigth = 4500
-	DragunovSVD.Weight = 4500
-	DragunovSVD.ScrapParts = 14
-	DragunovSVD.RepairCost = 80
-	DragunovSVD.Reliability = 78
-	DragunovSVD.AdditionalHint = T{715363343098,[[<description_hints>]]}
-	DragunovSVD.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = true, AvailableComponents = {'StockHeavy', 'StockLight', 'StockNormal', }}, {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagLarge', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'LROptics_DragunovDefault', Modifiable = true, AvailableComponents = {'LROptics_DragunovDefault', 'ReflexSight', 'ScopeCOG', 'ThermalScope', 'LROpticsAdvanced', 'ReflexSightAdvanced', 'ScopeCOGQuick', '_ReflexSIghtVigilance', 'WideScope', 'PSG_DefaultScope', 'LROptics', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'Compensator', Modifiable = true, AvailableComponents = {'Compensator', 'Suppressor', }}}
-	DragunovSVD.CanAppearInShop = true
-	DragunovSVD.CanAppearUsed = true
-	DragunovSVD.Tier = 2
-	DragunovSVD.MaxStock = 2
-	DragunovSVD.RestockWeight = 60
-	DragunovSVD.CategoryPair = "Rifles"
-	DragunovSVD.PenetrationClass = 1
 
 
 	HK21.is_vanilla_firearm = true
@@ -4226,482 +4093,6 @@ function RatoGBO_WepPatch()
 	HK21.RestockWeight = 40
 	HK21.CategoryPair = "MachineGuns"
 	HK21.PenetrationClass = 1
-
-
-	Galil.is_vanilla_firearm = true
-	Galil.Cost = 7860
-	Galil.Damage = 32
-	Galil.CritPerAim = 600
-	Galil.BurstCritMul = 60
-	Galil.CritChanceScaled = 20
-	storeProps(Galil, "AimAccuracy", 36, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Galil, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Galil, "WeaponRange", 36, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Galil, "WeaponRange", 30, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	Galil.PBbonus_base = 3
-	Galil.Handling = 8
-	Galil.ShootAP = 4000
-	Galil.ReloadAP = 3000
-	Galil.APStance = 37
-	Galil.OverwatchAngle = 1052
-	Galil.MagazineSize = 25
-	Galil.Cumbersome = 0
-	Galil.Noise = 22
-	Galil.PointBlankBonus = 1
-	Galil.PreparedAttackType = "Overwatch"
-	Galil.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
-	Galil.Rat_swap_ap = 30
-	Galil.RPM = 650
-	Galil.wep_base_recoil_mul = 92
-	Galil.weigth_held_mul = 131
-	Galil.wep_base_snapshot_mul = 112
-	Galil.wep_base_hip_mul = 93
-	Galil.recoil_mechanism = "Gas_Operated"
-	Galil.Rat_cycling = "Auto"
-	Galil.rat_barrel_len = 535
-	Galil.rat_weigth = 4450
-	Galil.Weight = 4450
-	Galil.ScrapParts = 10
-	Galil.RepairCost = 50
-	Galil.Reliability = 79
-	Galil.AdditionalHint = T{233977894097,[[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> In-built bottle opener]]}
-	Galil.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelLong', 'BarrelNormal', 'BarrelShort', 'long_barrel_light', 'BarrelLight', 'BarrelShort_Light', 'BarrelHeavyLong', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = true, AvailableComponents = {'StockHeavy', 'StockLight', 'StockNormal', 'StockNo', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'Galil_Brake_Default', Modifiable = true, AvailableComponents = {'Galil_Brake_Default', 'Compensator', 'Suppressor', 'ImprovisedSuppressor', 'MuzzleBooster', }}, {CanBeEmpty = false, SlotType = 'Under', DefaultComponent = 'Galil_Handguard_Default', Modifiable = true, AvailableComponents = {'GrenadeLauncher_Galil', 'Galil_Handguard_Default', 'Bipod_Galil', 'VerticalGrip', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'LROptics', 'ReflexSight', 'ThermalScope', 'ScopeCOG', '_ReflexSIghtVigilance', 'WideScope', 'ReflexSightAdvanced', 'ScopeCOGQuick', 'ImprovedIronsight', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagLarge', 'MagNormal', 'MagQuick', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}}
-	Galil.Valuable = 1
-	Galil.CanAppearInShop = true
-	Galil.CanAppearUsed = true
-	Galil.Tier = 3
-	Galil.MaxStock = 3
-	Galil.RestockWeight = 40
-	Galil.CategoryPair = "AssaultRifles"
-	Galil.PenetrationClass = 1
-
-
-	Galil_FlagHill.is_vanilla_firearm = true
-	Galil_FlagHill.Cost = 7860
-	Galil_FlagHill.Damage = 32
-	Galil_FlagHill.CritPerAim = 870
-	Galil_FlagHill.BurstCritMul = 60
-	Galil_FlagHill.CritChanceScaled = 30
-	storeProps(Galil_FlagHill, "AimAccuracy", 36, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Galil_FlagHill, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Galil_FlagHill, "WeaponRange", 36, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Galil_FlagHill, "WeaponRange", 34, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	Galil_FlagHill.PBbonus_base = 2
-	Galil_FlagHill.Handling = 7
-	Galil_FlagHill.ShootAP = 4000
-	Galil_FlagHill.ReloadAP = 3000
-	Galil_FlagHill.APStance = 35
-	Galil_FlagHill.OverwatchAngle = 1080
-	Galil_FlagHill.MagazineSize = 25
-	Galil_FlagHill.Cumbersome = 0
-	Galil_FlagHill.Noise = 22
-	Galil_FlagHill.PointBlankBonus = 1
-	Galil_FlagHill.PreparedAttackType = "Overwatch"
-	Galil_FlagHill.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
-	Galil_FlagHill.Rat_swap_ap = 30
-	Galil_FlagHill.RPM = 650
-	Galil_FlagHill.wep_base_recoil_mul = 100
-	Galil_FlagHill.weigth_held_mul = 100
-	Galil_FlagHill.wep_base_snapshot_mul = 106
-	Galil_FlagHill.wep_base_hip_mul = 93
-	Galil_FlagHill.recoil_mechanism = "Gas_Operated"
-	Galil_FlagHill.Rat_cycling = "Auto"
-	Galil_FlagHill.rat_barrel_len = 535
-	Galil_FlagHill.ScrapParts = 10
-	Galil_FlagHill.RepairCost = 50
-	Galil_FlagHill.Reliability = 79
-	Galil_FlagHill.AdditionalHint = T{811371938636,[[<description_hints>]]}
-	Galil_FlagHill.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'long_barrel_light', Modifiable = false, AvailableComponents = {'long_barrel_light', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = false, AvailableComponents = {'StockNormal', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'Galil_Brake_Default', Modifiable = false, AvailableComponents = {'Galil_Brake_Default', }}, {CanBeEmpty = false, SlotType = 'Under', DefaultComponent = 'Bipod_Galil', Modifiable = false, AvailableComponents = {'Bipod_Galil', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'WideScope', Modifiable = false, AvailableComponents = {'WideScope', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = false, AvailableComponents = {'MagNormal', }}}
-	Galil_FlagHill.PenetrationClass = 1
-
-
-	M14SAW.is_vanilla_firearm = true
-	M14SAW.DisplayName = Untranslated([[M1A]])
-	M14SAW.object_class = "AssaultRifle"
-	M14SAW.Cost = 3600
-	M14SAW.Damage = 31
-	M14SAW.CritPerAim = 200
-	M14SAW.BurstCritMul = 60
-	M14SAW.CritChanceScaled = 10
-	storeProps(M14SAW, "AimAccuracy", 38, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M14SAW, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M14SAW, "WeaponRange", 36, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M14SAW, "WeaponRange", 34, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	M14SAW.PBbonus_base = 0
-	M14SAW.Handling = 5
-	M14SAW.ShootAP = 4000
-	M14SAW.ReloadAP = 3000
-	M14SAW.APStance = 37
-	M14SAW.OverwatchAngle = 1000
-	M14SAW.MagazineSize = 10
-	M14SAW.Cumbersome = 0
-	M14SAW.Noise = 20
-	M14SAW.PointBlankBonus = 1
-	M14SAW.PreparedAttackType = "Overwatch"
-	M14SAW.AvailableAttacks = {"SingleShot", "CancelShot"}
-	M14SAW.Rat_swap_ap = 30
-	M14SAW.wep_base_recoil_mul = 90
-	M14SAW.weigth_held_mul = 137
-	M14SAW.wep_base_snapshot_mul = 105
-	M14SAW.wep_base_hip_mul = 97
-	M14SAW.recoil_mechanism = "Gas_Operated"
-	M14SAW.Rat_cycling = "SemiAuto"
-	M14SAW.rat_barrel_len = 559
-	M14SAW.rat_weigth = 4100
-	M14SAW.Weight = 4100
-	M14SAW.ScrapParts = 10
-	M14SAW.RepairCost = 80
-	M14SAW.Reliability = 71
-	M14SAW.AdditionalHint = T{517364861436,[[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Civilian issued, most commonly found variant. Only fires in semi-auto]]}
-	M14SAW.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelLong', 'BarrelLongImproved', 'BarrelNormal', 'BarrelNormalImproved', 'BarrelShort', 'BarrelShortImproved', 'BarrelHeavyLong', 'BarrelLight', 'long_barrel_light', 'BarrelShort_Light', 'BarrelHeavy', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = true, AvailableComponents = {'StockNormal', 'StockLight', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagLarge_5', 'MagLargeFine_5', 'MagNormal', 'MagNormalFine', 'MagQuick', }}, {CanBeEmpty = true, SlotType = 'Under', Modifiable = true, AvailableComponents = {'GrenadeLauncher_M14', 'TacGrip_M14', 'Bipod_Under', 'VerticalGrip_M14', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'M14_Default_Muzzle', Modifiable = true, AvailableComponents = {'M14_Default_Muzzle', 'Compensator', 'Suppressor', 'ImprovisedSuppressor', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'LaserDot', 'FlashlightDot', 'UVDot', 'Flashlight', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'ImprovedIronsight', 'LROptics', 'LROpticsAdvanced', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope', 'WideScope', '_ReflexSIghtVigilance', }}}
-	M14SAW.CanAppearInShop = true
-	M14SAW.CanAppearUsed = true
-	M14SAW.Tier = 1
-	M14SAW.MaxStock = 3
-	M14SAW.RestockWeight = 40
-	M14SAW.CategoryPair = "AssaultRifles"
-	M14SAW.Icon = "Mod/cfahRED/Images/M1A_icon.png"
-	M14SAW.PenetrationClass = 1
-
-
-	M14SAW_AUTO.is_vanilla_firearm = true
-	M14SAW_AUTO.object_class = "AssaultRifle"
-	M14SAW_AUTO.Cost = 4320
-	M14SAW_AUTO.Damage = 31
-	M14SAW_AUTO.CritPerAim = 200
-	M14SAW_AUTO.BurstCritMul = 60
-	M14SAW_AUTO.CritChanceScaled = 10
-	storeProps(M14SAW_AUTO, "AimAccuracy", 38, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M14SAW_AUTO, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M14SAW_AUTO, "WeaponRange", 36, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M14SAW_AUTO, "WeaponRange", 34, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	M14SAW_AUTO.PBbonus_base = -1
-	M14SAW_AUTO.Handling = 4
-	M14SAW_AUTO.ShootAP = 4000
-	M14SAW_AUTO.ReloadAP = 3000
-	M14SAW_AUTO.APStance = 37
-	M14SAW_AUTO.OverwatchAngle = 870
-	M14SAW_AUTO.MagazineSize = 10
-	M14SAW_AUTO.Cumbersome = 0
-	M14SAW_AUTO.Noise = 20
-	M14SAW_AUTO.PointBlankBonus = 1
-	M14SAW_AUTO.PreparedAttackType = "Overwatch"
-	M14SAW_AUTO.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
-	M14SAW_AUTO.Rat_swap_ap = 30
-	M14SAW_AUTO.RPM = 700
-	M14SAW_AUTO.burst_recoil_delta = 125
-	M14SAW_AUTO.long_recoil_delta = 125
-	M14SAW_AUTO.auto_recoil_delta = 125
-	M14SAW_AUTO.wep_base_recoil_mul = 87
-	M14SAW_AUTO.weigth_held_mul = 137
-	M14SAW_AUTO.wep_base_snapshot_mul = 109
-	M14SAW_AUTO.wep_base_hip_mul = 97
-	M14SAW_AUTO.recoil_mechanism = "Gas_Operated"
-	M14SAW_AUTO.Rat_cycling = "Auto"
-	M14SAW_AUTO.rat_barrel_len = 559
-	M14SAW_AUTO.rat_weigth = 5220
-	M14SAW_AUTO.Weight = 5220
-	M14SAW_AUTO.ScrapParts = 10
-	M14SAW_AUTO.RepairCost = 80
-	M14SAW_AUTO.Reliability = 71
-	M14SAW_AUTO.AdditionalHint = T{419078734073,[[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Military variant with burst fire and auto fire modes
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Has a big recoil penalty]]}
-	M14SAW_AUTO.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelLong', 'BarrelLongImproved', 'BarrelNormal', 'BarrelShort', 'BarrelShortImproved', 'BarrelHeavyLong', 'BarrelLight', 'long_barrel_light', 'BarrelShort_Light', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockHeavy', Modifiable = true, AvailableComponents = {'StockHeavy', 'StockLight', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagLarge_5', 'MagLargeFine_5', 'MagNormal', 'MagNormalFine', 'MagQuick', }}, {CanBeEmpty = true, SlotType = 'Under', Modifiable = true, AvailableComponents = {'GrenadeLauncher_M14', 'TacGrip_M14', 'VerticalGrip_M14', 'Bipod_Under', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'M14_Default_Muzzle', Modifiable = true, AvailableComponents = {'M14_Default_Muzzle', 'Compensator', 'Suppressor', 'ImprovisedSuppressor', 'MuzzleBooster', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'LaserDot', 'FlashlightDot', 'UVDot', 'Flashlight', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'ImprovedIronsight', 'LROptics', 'LROpticsAdvanced', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope', 'WideScope', '_ReflexSIghtVigilance', }}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'm14_component_recoil', Modifiable = false, AvailableComponents = {'m14_component_recoil', }}}
-	M14SAW_AUTO.CanAppearInShop = true
-	M14SAW_AUTO.Tier = 2
-	M14SAW_AUTO.MaxStock = 2
-	M14SAW_AUTO.RestockWeight = 40
-	M14SAW_AUTO.CategoryPair = "AssaultRifles"
-	M14SAW_AUTO.PenetrationClass = 1
-
-
-	MG58.is_vanilla_firearm = true
-	MG58.Cost = 3000
-	MG58.Damage = 32
-	MG58.CritPerAim = 200
-	MG58.BurstCritMul = 60
-	MG58.CritChanceScaled = 10
-	storeProps(MG58, "AimAccuracy", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(MG58, "AimAccuracy", 2, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(MG58, "WeaponRange", 32, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(MG58, "WeaponRange", 40, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	MG58.PBbonus_base = -3
-	MG58.Handling = -21
-	MG58.HandlingNotProneMul = 250
-	MG58.ShootAP = 4000
-	MG58.ReloadAP = 5000
-	MG58.APStance = 45
-	MG58.OverwatchAngle = 571
-	MG58.MagazineSize = 50
-	MG58.Cumbersome = 1
-	MG58.Noise = 22
-	MG58.PointBlankBonus = 1
-	MG58.PreparedAttackType = "Machine Gun"
-	MG58.AvailableAttacks = {"MGBurstFire", "BurstFire", "SingleShot", "CancelShot"}
-	MG58.Rat_swap_ap = 30
-	MG58.long_shots = 7
-	MG58.auto_shots = 6
-	MG58.RPM = 1500
-	MG58.AutoFireOnly = true
-	MG58.wep_base_recoil_mul = 82
-	MG58.weigth_held_mul = 182
-	MG58.wep_base_snapshot_mul = 138
-	MG58.wep_base_hip_mul = 92
-	MG58.recoil_mechanism = "Gas_Operated"
-	MG58.Rat_cycling = "Auto"
-	MG58.rat_barrel_len = 550
-	MG58.rat_weigth = 11600
-	MG58.Weight = 11600
-	MG58.ScrapParts = 12
-	MG58.RepairCost = 80
-	MG58.Reliability = 84
-	MG58.AdditionalHint = T{240845249658,[[<description_hints>]]}
-	MG58.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Bipod', DefaultComponent = 'Bipod_MG42', Modifiable = false, AvailableComponents = {'Bipod_MG42', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'ImprovedIronsight', Modifiable = false, AvailableComponents = {'ImprovedIronsight', }}}
-	MG58.Valuable = 1
-	MG58.Tier = 1
-	MG58.PenetrationClass = 1
-
-
-	AR15.is_vanilla_firearm = true
-	AR15.Cost = 5160
-	AR15.Damage = 27
-	AR15.CritPerAim = 660
-	AR15.BurstCritMul = 60
-	AR15.CritChanceScaled = 20
-	storeProps(AR15, "AimAccuracy", 38, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AR15, "AimAccuracy", 5, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AR15, "WeaponRange", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AR15, "WeaponRange", 32, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	AR15.PBbonus_base = 2
-	AR15.Handling = 7
-	AR15.ShootAP = 4000
-	AR15.ReloadAP = 3000
-	AR15.APStance = 35
-	AR15.OverwatchAngle = 1130
-	AR15.MagazineSize = 30
-	AR15.Cumbersome = 0
-	AR15.Noise = 20
-	AR15.PointBlankBonus = 1
-	AR15.PreparedAttackType = "Overwatch"
-	AR15.AvailableAttacks = {"SingleShot", "BurstFire", "CancelShot"}
-	AR15.Rat_swap_ap = 30
-	AR15.RPM = 600
-	AR15.wep_base_recoil_mul = 101
-	AR15.weigth_held_mul = 121
-	AR15.wep_base_snapshot_mul = 101
-	AR15.wep_base_hip_mul = 98
-	AR15.recoil_mechanism = "Gas_Operated"
-	AR15.Rat_cycling = "SemiAuto"
-	AR15.rat_barrel_len = 508
-	AR15.rat_weigth = 3000
-	AR15.Weight = 3000
-	AR15.ScrapParts = 10
-	AR15.RepairCost = 80
-	AR15.Reliability = 73
-	AR15.AdditionalHint = T{145852997392,[[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Only semi-auto with standard stocks]]}
-	AR15.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'DefaultIronsight_AR15', Modifiable = true, AvailableComponents = {'ScopeCOG', 'LROptics', 'LROpticsAdvanced', 'ThermalScope', 'ReflexSight', 'DefaultIronsight_AR15', 'ImprovedIronsight_AR15', 'WideScope', '_ReflexSIghtVigilance', 'ReflexSightAdvanced', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagNormalFine', 'MagLarge', 'MagLargeFine', 'MagQuick', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'BarrelNormalImproved', 'BarrelShort', 'BarrelShortImproved', 'BarrelLongImproved', 'BarrelLight', 'long_barrel_light', 'BarrelShort_Light', 'BarrelHeavyLong', 'BarrelLong', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockHeavy_AR_BurstOnly', Modifiable = true, AvailableComponents = {'StockHeavy_AR_BurstOnly', 'StockLight_AR_BurstOnly', 'StockBump', }}, {CanBeEmpty = true, SlotType = 'Under', Modifiable = true, AvailableComponents = {'GrenadeLauncher', 'VerticalGrip', 'TacGrip', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}, {CanBeEmpty = true, SlotType = 'Muzzle', DefaultComponent = 'Compensator', Modifiable = true, AvailableComponents = {'Compensator', 'ImprovisedSuppressor', 'Suppressor', 'MuzzleBooster', }}}
-	AR15.CanAppearInShop = true
-	AR15.CanAppearUsed = true
-	AR15.Tier = 2
-	AR15.MaxStock = 3
-	AR15.RestockWeight = 90
-	AR15.CategoryPair = "AssaultRifles"
-	AR15.PenetrationClass = 1
-
-
-	AK74.is_vanilla_firearm = true
-	AK74.Cost = 7500
-	AK74.Damage = 26
-	AK74.CritPerAim = 600
-	AK74.BurstCritMul = 60
-	AK74.CritChanceScaled = 20
-	storeProps(AK74, "AimAccuracy", 38, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AK74, "AimAccuracy", 5, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AK74, "WeaponRange", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AK74, "WeaponRange", 36, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	AK74.PBbonus_base = 3
-	AK74.Handling = 8
-	AK74.ShootAP = 4000
-	AK74.ReloadAP = 3000
-	AK74.APStance = 35
-	AK74.OverwatchAngle = 1127
-	AK74.MagazineSize = 30
-	AK74.Cumbersome = 0
-	AK74.Noise = 22
-	AK74.PointBlankBonus = 1
-	AK74.PreparedAttackType = "Overwatch"
-	AK74.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
-	AK74.Rat_swap_ap = 30
-	AK74.RPM = 600
-	AK74.wep_base_recoil_mul = 100
-	AK74.weigth_held_mul = 127
-	AK74.wep_base_snapshot_mul = 101
-	AK74.wep_base_hip_mul = 100
-	AK74.recoil_mechanism = "Gas_Operated"
-	AK74.Rat_cycling = "Auto"
-	AK74.rat_barrel_len = 410
-	AK74.rat_weigth = 3800
-	AK74.Weight = 3800
-	AK74.ScrapParts = 10
-	AK74.RepairCost = 20
-	AK74.Reliability = 86
-	AK74.AdditionalHint = T{470765972773,[[<description_hints>]]}
-	AK74.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockHeavy', Modifiable = true, AvailableComponents = {'StockHeavy', 'StockLight', 'StockNo', 'StockNormal', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormalFine', Modifiable = true, AvailableComponents = {'MagNormalFine', 'MagLarge', 'MagLargeFine', 'MagQuick', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'LROptics', 'LROpticsAdvanced', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope', 'WideScope', '_ReflexSIghtVigilance', 'LROptics_DragunovDefault', 'ImprovedIronsight', }}, {CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'Compensator', 'MuzzleBooster', 'ImprovisedSuppressor', 'Suppressor', }}, {CanBeEmpty = true, SlotType = 'Under', Modifiable = true, AvailableComponents = {'GrenadeLauncher', 'Bipod_Under', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}, {CanBeEmpty = true, SlotType = 'Barrel', Modifiable = true, AvailableComponents = {'BarrelHeavy', 'BarrelLight', }}}
-	AK74.Valuable = 1
-	AK74.CanAppearInShop = true
-	AK74.CanAppearUsed = true
-	AK74.Tier = 3
-	AK74.MaxStock = 3
-	AK74.RestockWeight = 80
-	AK74.CategoryPair = "AssaultRifles"
-	AK74.PenetrationClass = 1
-
-
-	M16A2.is_vanilla_firearm = true
-	M16A2.object_class = "AssaultRifle"
-	M16A2.Cost = 5940
-	M16A2.Damage = 27
-	M16A2.CritPerAim = 200
-	M16A2.BurstCritMul = 60
-	M16A2.CritChanceScaled = 10
-	storeProps(M16A2, "AimAccuracy", 37, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M16A2, "AimAccuracy", 5, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M16A2, "WeaponRange", 34, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M16A2, "WeaponRange", 34, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	M16A2.PBbonus_base = 1
-	M16A2.Handling = 6
-	M16A2.ShootAP = 4000
-	M16A2.ReloadAP = 3000
-	M16A2.APStance = 35
-	M16A2.OverwatchAngle = 1024
-	M16A2.MagazineSize = 20
-	M16A2.Cumbersome = 0
-	M16A2.Noise = 18
-	M16A2.PointBlankBonus = 1
-	M16A2.PreparedAttackType = "Overwatch"
-	M16A2.AvailableAttacks = {"BurstFire", "SingleShot", "CancelShot"}
-	M16A2.Rat_swap_ap = 30
-	M16A2.RPM = 800
-	M16A2.BurstSelective = true
-	M16A2.burst_recoil_delta = 100
-	M16A2.wep_base_recoil_mul = 98
-	M16A2.weigth_held_mul = 125
-	M16A2.wep_base_snapshot_mul = 106
-	M16A2.wep_base_hip_mul = 95
-	M16A2.recoil_mechanism = "Gas_Operated"
-	M16A2.Rat_cycling = "Auto"
-	M16A2.rat_barrel_len = 500
-	M16A2.rat_weigth = 3600
-	M16A2.Weight = 3600
-	M16A2.ScrapParts = 10
-	M16A2.RepairCost = 80
-	M16A2.Reliability = 71
-	M16A2.AdditionalHint = T{550693603298,[[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> No Auto firing mode]]}
-	M16A2.ComponentSlots = {{CanBeEmpty = true, SlotType = 'Handguard', Modifiable = false, AvailableComponents = { }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'ScopeCOG', 'ScopeCOGQuick', 'LROptics', 'ThermalScope', 'ReflexSight', 'WideScope', '_ReflexSIghtVigilance', 'ImprovedIronsight', }}, {CanBeEmpty = true, SlotType = 'Muzzle', DefaultComponent = 'Compensator', Modifiable = true, AvailableComponents = {'Compensator', 'Suppressor', 'ImprovisedSuppressor', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'BarrelLight', 'BarrelHeavy', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagLarge', 'MagNormal', 'R_MagQuickLarge', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = true, AvailableComponents = {'StockNormal', 'StockLight', 'StockNo', }}, {CanBeEmpty = false, SlotType = 'Under', DefaultComponent = 'M16_Handguard', Modifiable = true, AvailableComponents = {'GrenadeLauncher_M16A1', 'VerticalGrip_M16', 'M16_Handguard', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}}
-	M16A2.CanAppearInShop = true
-	M16A2.Tier = 2
-	M16A2.MaxStock = 3
-	M16A2.RestockWeight = 40
-	M16A2.CategoryPair = "AssaultRifles"
-	M16A2.PenetrationClass = 1
-
-
-	G36.is_vanilla_firearm = true
-	G36.Cost = 9000
-	G36.Damage = 26
-	G36.CritPerAim = 660
-	G36.BurstCritMul = 85
-	G36.CritChanceScaled = 20
-	storeProps(G36, "AimAccuracy", 41, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(G36, "AimAccuracy", 6, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(G36, "WeaponRange", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(G36, "WeaponRange", 36, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	G36.PBbonus_base = 1
-	G36.Handling = 6
-	G36.ShootAP = 3000
-	G36.ReloadAP = 3000
-	G36.APStance = 35
-	G36.OverwatchAngle = 1023
-	G36.MagazineSize = 30
-	G36.Cumbersome = 0
-	G36.Noise = 18
-	G36.PointBlankBonus = 1
-	G36.PreparedAttackType = "Overwatch"
-	G36.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
-	G36.Rat_swap_ap = 30
-	G36.burst_shots = 2
-	G36.RPM = 750
-	G36.BurstSelective = true
-	G36.AutoFireCustomDeltaAP = 10
-	G36.SingleShotCustomDeltaAP = 10
-	G36.burst_recoil_delta = 95
-	G36.wep_base_recoil_mul = 98
-	G36.weigth_held_mul = 128
-	G36.wep_base_snapshot_mul = 106
-	G36.wep_base_hip_mul = 96
-	G36.recoil_mechanism = "Gas_Operated"
-	G36.Rat_cycling = "Auto"
-	G36.rat_barrel_len = 480
-	G36.rat_weigth = 4000
-	G36.Weight = 4000
-	G36.ScrapParts = 10
-	G36.RepairCost = 80
-	G36.Reliability = 75
-	G36.AdditionalHint = T{507516354956,[[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Special 2-shot burst mode with improved critical chance and reduced recoil]]}
-	G36.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'long_barrel_light', 'BarrelLong', 'BarrelHeavyLong', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'G36_SCOPE', Modifiable = true, AvailableComponents = {'G36_SCOPE', 'ThermalScope', 'ReflexSightAdvanced', 'SCOPE_G36_2', 'PSG_DefaultScope', '_ReflexSIghtVigilance', 'WideScope', 'ScopeCOG', 'ScopeCOGQuick', 'LROptics', 'ImprovedIronsight', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'Compensator', Modifiable = true, AvailableComponents = {'Compensator', 'Suppressor', 'ImprovisedSuppressor', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagLarge_9', 'MagQuick', }}, {CanBeEmpty = true, SlotType = 'Under', Modifiable = true, AvailableComponents = {'TacGrip', 'VerticalGrip', 'GrenadeLauncher', 'Bipod_Under', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'foldable_StockNormal', Modifiable = true, AvailableComponents = {'StockHeavy', 'StockLight', 'foldable_StockNormal', 'StockFolded', }}}
-	G36.Valuable = 1
-	G36.CanAppearInShop = true
-	G36.Tier = 3
-	G36.MaxStock = 3
-	G36.RestockWeight = 20
-	G36.CategoryPair = "AssaultRifles"
-	G36.PenetrationClass = 1
-
-
-	GoldenGun.is_vanilla_firearm = true
-	GoldenGun.Cost = 18000
-	GoldenGun.Damage = 33
-	GoldenGun.CritPerAim = 1000
-	GoldenGun.BurstCritMul = 60
-	GoldenGun.CritChanceScaled = 40
-	storeProps(GoldenGun, "AimAccuracy", 40, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(GoldenGun, "AimAccuracy", 9, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(GoldenGun, "WeaponRange", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(GoldenGun, "WeaponRange", 32, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	GoldenGun.PBbonus_base = -1
-	GoldenGun.Handling = 1
-	GoldenGun.ShootAP = 4000
-	GoldenGun.ReloadAP = 3000
-	GoldenGun.APStance = 35
-	GoldenGun.OverwatchAngle = 870
-	GoldenGun.MagazineSize = 10
-	GoldenGun.Cumbersome = 1
-	GoldenGun.Noise = 22
-	GoldenGun.PointBlankBonus = 1
-	GoldenGun.PreparedAttackType = "Both"
-	GoldenGun.AvailableAttacks = {"SingleShot"}
-	GoldenGun.Rat_swap_ap = 30
-	GoldenGun.wep_base_recoil_mul = 100
-	GoldenGun.weigth_held_mul = 100
-	GoldenGun.wep_base_snapshot_mul = 100
-	GoldenGun.wep_base_hip_mul = 90
-	GoldenGun.recoil_mechanism = "Single_Shot"
-	GoldenGun.Rat_cycling = "SemiAuto"
-	GoldenGun.rat_barrel_len = 457
-	GoldenGun.ScrapParts = 16
-	GoldenGun.RepairCost = 80
-	GoldenGun.Reliability = 71
-	GoldenGun.AdditionalHint = T{864686045799,[[<description_hints>]]}
-	GoldenGun.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Bipod', DefaultComponent = 'Bipod', Modifiable = false, AvailableComponents = {'Bipod', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'LROptics', Modifiable = false, AvailableComponents = {'LROptics', }}}
-	GoldenGun.Valuable = 1
-	GoldenGun.CategoryPair = "AssaultRifles"
-	GoldenGun.PenetrationClass = 1
 
 
 	FNMinimi.is_vanilla_firearm = true
@@ -4804,104 +4195,620 @@ function RatoGBO_WepPatch()
 	RPK74.PenetrationClass = 1
 
 
-	MG42.is_vanilla_firearm = true
-	MG42.Cost = 2520
-	MG42.Damage = 30
-	MG42.CritPerAim = 200
-	MG42.BurstCritMul = 60
-	MG42.CritChanceScaled = 10
-	storeProps(MG42, "AimAccuracy", 27, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(MG42, "AimAccuracy", 2, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(MG42, "WeaponRange", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(MG42, "WeaponRange", 38, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	MG42.PBbonus_base = -4
-	MG42.Handling = -22
-	MG42.HandlingNotProneMul = 250
-	MG42.ShootAP = 4000
-	MG42.ReloadAP = 5000
-	MG42.APStance = 45
-	MG42.OverwatchAngle = 571
-	MG42.MagazineSize = 50
-	MG42.Cumbersome = 1
-	MG42.Noise = 22
-	MG42.PointBlankBonus = 1
-	MG42.PreparedAttackType = "Machine Gun"
-	MG42.AvailableAttacks = {"MGBurstFire", "BurstFire", "SingleShot", "CancelShot"}
-	MG42.Rat_swap_ap = 30
-	MG42.long_shots = 6
-	MG42.auto_shots = 6
-	MG42.RPM = 1200
-	MG42.AutoFireOnly = true
-	MG42.wep_base_recoil_mul = 82
-	MG42.weigth_held_mul = 182
-	MG42.wep_base_snapshot_mul = 138
-	MG42.wep_base_hip_mul = 92
-	MG42.recoil_mechanism = "Short_Recoil"
-	MG42.Rat_cycling = "Auto"
-	MG42.rat_barrel_len = 550
-	MG42.rat_weigth = 11600
-	MG42.Weight = 11600
-	MG42.ScrapParts = 12
-	MG42.RepairCost = 80
-	MG42.Reliability = 78
-	MG42.AdditionalHint = T{386845693893,[[<description_hints>]]}
-	MG42.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Bipod', DefaultComponent = 'Bipod_MG42', Modifiable = false, AvailableComponents = {'Bipod_MG42', }}}
-	MG42.CanAppearInShop = true
-	MG42.CanAppearUsed = true
-	MG42.Tier = 1
-	MG42.MaxStock = 1
-	MG42.RestockWeight = 80
-	MG42.CategoryPair = "MachineGuns"
-	MG42.PenetrationClass = 1
+	Gewehr98.is_vanilla_firearm = true
+	Gewehr98.Cost = 2000
+	Gewehr98.Damage = 33
+	Gewehr98.CritPerAim = 750
+	Gewehr98.BurstCritMul = 60
+	Gewehr98.CritChanceScaled = 20
+	storeProps(Gewehr98, "AimAccuracy", 49, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Gewehr98, "AimAccuracy", 7, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Gewehr98, "WeaponRange", 40, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Gewehr98, "WeaponRange", 36, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	Gewehr98.PBbonus_base = -7
+	Gewehr98.Handling = -28
+	Gewehr98.ShootAP = 4000
+	Gewehr98.ReloadAP = 3000
+	Gewehr98.APStance = 35
+	Gewehr98.OverwatchAngle = 651
+	Gewehr98.MagazineSize = 5
+	Gewehr98.Cumbersome = 0
+	Gewehr98.Noise = 22
+	Gewehr98.PointBlankBonus = 1
+	Gewehr98.PreparedAttackType = "Both"
+	Gewehr98.AvailableAttacks = {"SingleShot", "CancelShot"}
+	Gewehr98.Rat_swap_ap = 30
+	Gewehr98.wep_base_recoil_mul = 86
+	Gewehr98.weigth_held_mul = 132
+	Gewehr98.wep_base_snapshot_mul = 126
+	Gewehr98.wep_base_hip_mul = 82
+	Gewehr98.recoil_mechanism = "Bolt_Action"
+	Gewehr98.Rat_cycling = "BoltAction"
+	Gewehr98.default_long_barrel = true
+	Gewehr98.rat_barrel_len = 740
+	Gewehr98.rat_weigth = 4500
+	Gewehr98.Weight = 4500
+	Gewehr98.ScrapParts = 8
+	Gewehr98.RepairCost = 80
+	Gewehr98.Reliability = 97
+	Gewehr98.AdditionalHint = T{973204362273,[[<description_hints>]]}
+	Gewehr98.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'GewehrDefaultSight', Modifiable = true, AvailableComponents = {'LROptics', 'ReflexSight', 'ScopeCOG', 'GewehrDefaultSight', 'ImprovedIronsight', 'ReflexSightAdvanced', 'ScopeCOGQuick', 'ThermalScope', '_ReflexSIghtVigilance', 'WideScope', 'LROpticsAdvanced', 'PSG_DefaultScope', }}, {CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'ImprovisedSuppressor', 'Suppressor', }}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'Bolt_action', Modifiable = true, AvailableComponents = {'Bolt_action', }}}
+	Gewehr98.CanAppearInShop = true
+	Gewehr98.CanAppearUsed = true
+	Gewehr98.Tier = 1
+	Gewehr98.MaxStock = 3
+	Gewehr98.RestockWeight = 100
+	Gewehr98.CategoryPair = "Rifles"
+	Gewehr98.PenetrationClass = 1
 
 
-	AUG.is_vanilla_firearm = true
-	AUG.Cost = 6120
-	AUG.Damage = 26
-	AUG.CritPerAim = 200
-	AUG.BurstCritMul = 60
-	AUG.CritChanceScaled = 10
-	storeProps(AUG, "AimAccuracy", 32, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AUG, "AimAccuracy", 5, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AUG, "WeaponRange", 28, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AUG, "WeaponRange", 30, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	AUG.PBbonus_base = 4
-	AUG.Handling = 10
-	AUG.ShootAP = 4000
-	AUG.ReloadAP = 3000
-	AUG.APStance = 30
-	AUG.OverwatchAngle = 983
-	AUG.MagazineSize = 30
-	AUG.Cumbersome = 0
-	AUG.Noise = 20
-	AUG.PointBlankBonus = 1
-	AUG.PreparedAttackType = "Overwatch"
-	AUG.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
-	AUG.Rat_swap_ap = 30
-	AUG.RPM = 700
-	AUG.BurstSelective = true
-	AUG.burst_recoil_delta = 95
-	AUG.wep_base_recoil_mul = 97
-	AUG.weigth_held_mul = 130
-	AUG.wep_base_snapshot_mul = 108
-	AUG.wep_base_hip_mul = 95
-	AUG.recoil_mechanism = "Gas_Operated"
-	AUG.Rat_cycling = "Auto"
-	AUG.rat_barrel_len = 500
-	AUG.rat_weigth = 4200
-	AUG.Weight = 4200
-	AUG.ScrapParts = 10
-	AUG.RepairCost = 80
-	AUG.Reliability = 78
-	AUG.AdditionalHint = T{780533559812,[[<description_hints>]]}
-	AUG.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'BarrelShort_AUG', 'BarrelShortImproved_AUG', 'BarrelLong_AUG', 'BarrelLongImproved_AUG', 'BarrelLight', 'long_barrel_AUG_light', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'AUGCompensator_01', Modifiable = true, AvailableComponents = {'AUGCompensator_01', 'AUGCompensator_03', 'Suppressor', }}, {CanBeEmpty = true, SlotType = 'Under', DefaultComponent = 'TacGrip_aug', Modifiable = true, AvailableComponents = {'TacGrip_aug', }}, {CanBeEmpty = true, SlotType = 'Grenadelauncher', Modifiable = true, AvailableComponents = {'GrenadeLauncher_AUG', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagLarge_7', 'MagNormal', 'MagQuick', }}, {CanBeEmpty = true, SlotType = 'Mount', Modifiable = false, AvailableComponents = {'AUGMount', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'AUGScope_Default', Modifiable = true, AvailableComponents = {'LROptics', 'LROpticsAdvanced', 'ThermalScope', 'ReflexSight', 'ScopeCOG', 'AUGScope_Default', '_ReflexSIghtVigilance', 'WideScope', 'ReflexSightAdvanced', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'bullup', Modifiable = false, AvailableComponents = {'bullup', }}}
-	AUG.Valuable = 1
-	AUG.CanAppearInShop = true
-	AUG.Tier = 2
-	AUG.MaxStock = 3
-	AUG.RestockWeight = 20
-	AUG.CategoryPair = "AssaultRifles"
-	AUG.PenetrationClass = 1
+	M24Sniper.is_vanilla_firearm = true
+	M24Sniper.Cost = 8600
+	M24Sniper.Damage = 32
+	M24Sniper.CritPerAim = 1000
+	M24Sniper.BurstCritMul = 60
+	M24Sniper.CritChanceScaled = 30
+	storeProps(M24Sniper, "AimAccuracy", 56, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M24Sniper, "AimAccuracy", 9, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M24Sniper, "WeaponRange", 48, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M24Sniper, "WeaponRange", 38, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	M24Sniper.PBbonus_base = -3
+	M24Sniper.Handling = -13
+	M24Sniper.ShootAP = 4000
+	M24Sniper.ReloadAP = 3000
+	M24Sniper.APStance = 35
+	M24Sniper.OverwatchAngle = 772
+	M24Sniper.MagazineSize = 5
+	M24Sniper.Cumbersome = 0
+	M24Sniper.Noise = 22
+	M24Sniper.PointBlankBonus = 1
+	M24Sniper.PreparedAttackType = "Both"
+	M24Sniper.AvailableAttacks = {"SingleShot", "CancelShot"}
+	M24Sniper.Rat_swap_ap = 30
+	M24Sniper.wep_base_recoil_mul = 88
+	M24Sniper.weigth_held_mul = 137
+	M24Sniper.wep_base_snapshot_mul = 119
+	M24Sniper.wep_base_hip_mul = 89
+	M24Sniper.recoil_mechanism = "Bolt_Action"
+	M24Sniper.Rat_cycling = "BoltAction"
+	M24Sniper.default_long_barrel = true
+	M24Sniper.rat_barrel_len = 610
+	M24Sniper.rat_weigth = 5200
+	M24Sniper.Weight = 5200
+	M24Sniper.ScrapParts = 14
+	M24Sniper.RepairCost = 80
+	M24Sniper.Reliability = 95
+	M24Sniper.AdditionalHint = T{713886804400,[[<description_hints>]]}
+	M24Sniper.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = true, AvailableComponents = {'StockHeavy', 'StockLight', 'StockNormal', }}, {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagLarge', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'LROptics', Modifiable = true, AvailableComponents = {'LROptics', 'LROpticsAdvanced', 'ReflexSight', 'ScopeCOG', 'ThermalScope', 'PSG_DefaultScope', 'WideScope', '_ReflexSIghtVigilance', }}, {CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'Suppressor', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'Bolt_action', Modifiable = true, AvailableComponents = {'Bolt_action', }}}
+	M24Sniper.CanAppearInShop = true
+	M24Sniper.Tier = 2
+	M24Sniper.MaxStock = 2
+	M24Sniper.RestockWeight = 30
+	M24Sniper.CategoryPair = "Rifles"
+	M24Sniper.PenetrationClass = 1
+
+
+	DragunovSVD.is_vanilla_firearm = true
+	DragunovSVD.Cost = 8440
+	DragunovSVD.Damage = 32
+	DragunovSVD.CritPerAim = 800
+	DragunovSVD.BurstCritMul = 60
+	DragunovSVD.CritChanceScaled = 20
+	storeProps(DragunovSVD, "AimAccuracy", 46, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(DragunovSVD, "AimAccuracy", 7, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(DragunovSVD, "WeaponRange", 38, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(DragunovSVD, "WeaponRange", 36, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	DragunovSVD.PBbonus_base = -2
+	DragunovSVD.Handling = -11
+	DragunovSVD.ShootAP = 4000
+	DragunovSVD.ReloadAP = 3000
+	DragunovSVD.APStance = 35
+	DragunovSVD.OverwatchAngle = 820
+	DragunovSVD.MagazineSize = 10
+	DragunovSVD.Cumbersome = 0
+	DragunovSVD.Noise = 22
+	DragunovSVD.PointBlankBonus = 1
+	DragunovSVD.PreparedAttackType = "Both"
+	DragunovSVD.AvailableAttacks = {"SingleShot", "CancelShot"}
+	DragunovSVD.Rat_swap_ap = 30
+	DragunovSVD.wep_base_recoil_mul = 89
+	DragunovSVD.weigth_held_mul = 132
+	DragunovSVD.wep_base_snapshot_mul = 117
+	DragunovSVD.wep_base_hip_mul = 89
+	DragunovSVD.recoil_mechanism = "Gas_Operated"
+	DragunovSVD.Rat_cycling = "SemiAuto"
+	DragunovSVD.default_long_barrel = true
+	DragunovSVD.rat_barrel_len = 610
+	DragunovSVD.rat_weigth = 4500
+	DragunovSVD.Weight = 4500
+	DragunovSVD.ScrapParts = 14
+	DragunovSVD.RepairCost = 80
+	DragunovSVD.Reliability = 78
+	DragunovSVD.AdditionalHint = T{715363343098,[[<description_hints>]]}
+	DragunovSVD.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = true, AvailableComponents = {'StockHeavy', 'StockLight', 'StockNormal', }}, {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagLarge', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'LROptics_DragunovDefault', Modifiable = true, AvailableComponents = {'LROptics_DragunovDefault', 'ReflexSight', 'ScopeCOG', 'ThermalScope', 'LROpticsAdvanced', 'ReflexSightAdvanced', 'ScopeCOGQuick', '_ReflexSIghtVigilance', 'WideScope', 'PSG_DefaultScope', 'LROptics', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'Compensator', Modifiable = true, AvailableComponents = {'Compensator', 'Suppressor', }}}
+	DragunovSVD.CanAppearInShop = true
+	DragunovSVD.CanAppearUsed = true
+	DragunovSVD.Tier = 2
+	DragunovSVD.MaxStock = 2
+	DragunovSVD.RestockWeight = 60
+	DragunovSVD.CategoryPair = "Rifles"
+	DragunovSVD.PenetrationClass = 1
+
+
+	Galil.is_vanilla_firearm = true
+	Galil.Cost = 7860
+	Galil.Damage = 32
+	Galil.CritPerAim = 300
+	Galil.BurstCritMul = 60
+	Galil.CritChanceScaled = 20
+	storeProps(Galil, "AimAccuracy", 36, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Galil, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Galil, "WeaponRange", 36, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Galil, "WeaponRange", 30, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	Galil.PBbonus_base = 3
+	Galil.Handling = 8
+	Galil.ShootAP = 4000
+	Galil.ReloadAP = 3000
+	Galil.APStance = 33
+	Galil.OverwatchAngle = 1052
+	Galil.MagazineSize = 25
+	Galil.Cumbersome = 0
+	Galil.Noise = 22
+	Galil.PointBlankBonus = 1
+	Galil.PreparedAttackType = "Overwatch"
+	Galil.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
+	Galil.Rat_swap_ap = 30
+	Galil.RPM = 650
+	Galil.wep_base_recoil_mul = 92
+	Galil.weigth_held_mul = 131
+	Galil.wep_base_snapshot_mul = 112
+	Galil.wep_base_hip_mul = 93
+	Galil.recoil_mechanism = "Gas_Operated"
+	Galil.Rat_cycling = "Auto"
+	Galil.rat_barrel_len = 535
+	Galil.rat_weigth = 4450
+	Galil.Weight = 4450
+	Galil.ScrapParts = 10
+	Galil.RepairCost = 50
+	Galil.Reliability = 79
+	Galil.AdditionalHint = T{233977894097,[[<description_hints>
+ <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> In-built bottle opener]]}
+	Galil.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelLong', 'BarrelNormal', 'BarrelShort', 'long_barrel_light', 'BarrelLight', 'BarrelShort_Light', 'BarrelHeavyLong', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = true, AvailableComponents = {'StockHeavy', 'StockLight', 'StockNormal', 'StockNo', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'Galil_Brake_Default', Modifiable = true, AvailableComponents = {'Galil_Brake_Default', 'Compensator', 'Suppressor', 'ImprovisedSuppressor', 'MuzzleBooster', }}, {CanBeEmpty = false, SlotType = 'Under', DefaultComponent = 'Galil_Handguard_Default', Modifiable = true, AvailableComponents = {'GrenadeLauncher_Galil', 'Galil_Handguard_Default', 'Bipod_Galil', 'VerticalGrip', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'LROptics', 'ReflexSight', 'ThermalScope', 'ScopeCOG', '_ReflexSIghtVigilance', 'WideScope', 'ReflexSightAdvanced', 'ScopeCOGQuick', 'ImprovedIronsight', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagLarge', 'MagNormal', 'MagQuick', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}}
+	Galil.Valuable = 1
+	Galil.CanAppearInShop = true
+	Galil.CanAppearUsed = true
+	Galil.Tier = 3
+	Galil.MaxStock = 3
+	Galil.RestockWeight = 40
+	Galil.CategoryPair = "AssaultRifles"
+	Galil.PenetrationClass = 1
+
+
+	FNFAL.is_vanilla_firearm = true
+	FNFAL.Cost = 5340
+	FNFAL.Damage = 32
+	FNFAL.CritPerAim = 200
+	FNFAL.BurstCritMul = 60
+	FNFAL.CritChanceScaled = 10
+	storeProps(FNFAL, "AimAccuracy", 37, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(FNFAL, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(FNFAL, "WeaponRange", 42, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(FNFAL, "WeaponRange", 36, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	FNFAL.PBbonus_base = -2
+	FNFAL.Handling = 2
+	FNFAL.ShootAP = 4000
+	FNFAL.ReloadAP = 3000
+	FNFAL.APStance = 33
+	FNFAL.OverwatchAngle = 1021
+	FNFAL.MagazineSize = 20
+	FNFAL.Cumbersome = 0
+	FNFAL.Noise = 22
+	FNFAL.PointBlankBonus = 1
+	FNFAL.PreparedAttackType = "Overwatch"
+	FNFAL.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
+	FNFAL.Rat_swap_ap = 30
+	FNFAL.RPM = 650
+	FNFAL.wep_base_recoil_mul = 95
+	FNFAL.weigth_held_mul = 132
+	FNFAL.wep_base_snapshot_mul = 106
+	FNFAL.wep_base_hip_mul = 93
+	FNFAL.recoil_mechanism = "Gas_Operated"
+	FNFAL.Rat_cycling = "Auto"
+	FNFAL.rat_barrel_len = 533
+	FNFAL.rat_weigth = 4600
+	FNFAL.Weight = 4600
+	FNFAL.ScrapParts = 10
+	FNFAL.RepairCost = 80
+	FNFAL.Reliability = 72
+	FNFAL.AdditionalHint = T{634047228362,[[<description_hints>]]}
+	FNFAL.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Handguard', DefaultComponent = 'FNFAL_Handguard', Modifiable = false, AvailableComponents = {'FNFAL_Handguard', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'ScopeCOG', 'ScopeCOGQuick', 'LROptics', 'ThermalScope', 'ReflexSight', 'ReflexSightAdvanced', 'WideScope', '_ReflexSIghtVigilance', 'ImprovedIronsight', }}, {CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'Compensator', 'Suppressor', 'ImprovisedSuppressor', 'MuzzleBooster', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagNormalFine', 'MagLarge', 'MagLargeFine', }}, {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'BarrelNormalImproved', 'BarrelHeavy', 'BarrelLong', 'BarrelLongImproved', 'BarrelShort', 'BarrelShortImproved', 'long_barrel_light', 'BarrelShort_Light', 'BarrelLight', 'BarrelHeavyLong', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagLarge', 'MagLargeFine', 'MagNormal', 'MagNormalFine', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = true, AvailableComponents = {'StockNormal', 'StockHeavy', 'StockLight', 'StockNo', }}, {CanBeEmpty = true, SlotType = 'Under', Modifiable = true, AvailableComponents = {'GrenadeLauncher', 'TacGrip', 'VerticalGrip', }}}
+	FNFAL.Valuable = 1
+	FNFAL.CanAppearInShop = true
+	FNFAL.Tier = 2
+	FNFAL.MaxStock = 3
+	FNFAL.RestockWeight = 40
+	FNFAL.CategoryPair = "AssaultRifles"
+	FNFAL.PenetrationClass = 1
+
+
+	M14SAW.is_vanilla_firearm = true
+	M14SAW.DisplayName = Untranslated([[M1A]])
+	M14SAW.object_class = "AssaultRifle"
+	M14SAW.Cost = 3600
+	M14SAW.Damage = 31
+	M14SAW.CritPerAim = 200
+	M14SAW.BurstCritMul = 60
+	M14SAW.CritChanceScaled = 10
+	storeProps(M14SAW, "AimAccuracy", 38, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M14SAW, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M14SAW, "WeaponRange", 36, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M14SAW, "WeaponRange", 34, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	M14SAW.PBbonus_base = 0
+	M14SAW.Handling = 5
+	M14SAW.ShootAP = 4000
+	M14SAW.ReloadAP = 3000
+	M14SAW.APStance = 33
+	M14SAW.OverwatchAngle = 1000
+	M14SAW.MagazineSize = 10
+	M14SAW.Cumbersome = 0
+	M14SAW.Noise = 20
+	M14SAW.PointBlankBonus = 1
+	M14SAW.PreparedAttackType = "Overwatch"
+	M14SAW.AvailableAttacks = {"SingleShot", "CancelShot"}
+	M14SAW.Rat_swap_ap = 30
+	M14SAW.wep_base_recoil_mul = 90
+	M14SAW.weigth_held_mul = 137
+	M14SAW.wep_base_snapshot_mul = 105
+	M14SAW.wep_base_hip_mul = 97
+	M14SAW.recoil_mechanism = "Gas_Operated"
+	M14SAW.Rat_cycling = "SemiAuto"
+	M14SAW.rat_barrel_len = 559
+	M14SAW.rat_weigth = 4100
+	M14SAW.Weight = 4100
+	M14SAW.ScrapParts = 10
+	M14SAW.RepairCost = 80
+	M14SAW.Reliability = 71
+	M14SAW.AdditionalHint = T{517364861436,[[<description_hints>
+ <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Civilian issued, most commonly found variant. Only fires in semi-auto]]}
+	M14SAW.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelLong', 'BarrelLongImproved', 'BarrelNormal', 'BarrelNormalImproved', 'BarrelShort', 'BarrelShortImproved', 'BarrelHeavyLong', 'BarrelLight', 'long_barrel_light', 'BarrelShort_Light', 'BarrelHeavy', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = true, AvailableComponents = {'StockNormal', 'StockLight', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagLarge_5', 'MagLargeFine_5', 'MagNormal', 'MagNormalFine', 'MagQuick', }}, {CanBeEmpty = true, SlotType = 'Under', Modifiable = true, AvailableComponents = {'GrenadeLauncher_M14', 'TacGrip_M14', 'Bipod_Under', 'VerticalGrip_M14', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'M14_Default_Muzzle', Modifiable = true, AvailableComponents = {'M14_Default_Muzzle', 'Compensator', 'Suppressor', 'ImprovisedSuppressor', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'LaserDot', 'FlashlightDot', 'UVDot', 'Flashlight', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'ImprovedIronsight', 'LROptics', 'LROpticsAdvanced', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope', 'WideScope', '_ReflexSIghtVigilance', }}}
+	M14SAW.CanAppearInShop = true
+	M14SAW.CanAppearUsed = true
+	M14SAW.Tier = 1
+	M14SAW.MaxStock = 3
+	M14SAW.RestockWeight = 40
+	M14SAW.CategoryPair = "AssaultRifles"
+	M14SAW.Icon = "Mod/cfahRED/Images/M1A_icon.png"
+	M14SAW.PenetrationClass = 1
+
+
+	M14SAW_AUTO.is_vanilla_firearm = true
+	M14SAW_AUTO.object_class = "AssaultRifle"
+	M14SAW_AUTO.Cost = 4320
+	M14SAW_AUTO.Damage = 31
+	M14SAW_AUTO.CritPerAim = 200
+	M14SAW_AUTO.BurstCritMul = 60
+	M14SAW_AUTO.CritChanceScaled = 10
+	storeProps(M14SAW_AUTO, "AimAccuracy", 38, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M14SAW_AUTO, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M14SAW_AUTO, "WeaponRange", 36, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M14SAW_AUTO, "WeaponRange", 34, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	M14SAW_AUTO.PBbonus_base = -1
+	M14SAW_AUTO.Handling = 4
+	M14SAW_AUTO.ShootAP = 4000
+	M14SAW_AUTO.ReloadAP = 3000
+	M14SAW_AUTO.APStance = 33
+	M14SAW_AUTO.OverwatchAngle = 870
+	M14SAW_AUTO.MagazineSize = 10
+	M14SAW_AUTO.Cumbersome = 0
+	M14SAW_AUTO.Noise = 20
+	M14SAW_AUTO.PointBlankBonus = 1
+	M14SAW_AUTO.PreparedAttackType = "Overwatch"
+	M14SAW_AUTO.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
+	M14SAW_AUTO.Rat_swap_ap = 30
+	M14SAW_AUTO.RPM = 700
+	M14SAW_AUTO.burst_recoil_delta = 125
+	M14SAW_AUTO.long_recoil_delta = 125
+	M14SAW_AUTO.auto_recoil_delta = 125
+	M14SAW_AUTO.wep_base_recoil_mul = 87
+	M14SAW_AUTO.weigth_held_mul = 137
+	M14SAW_AUTO.wep_base_snapshot_mul = 109
+	M14SAW_AUTO.wep_base_hip_mul = 97
+	M14SAW_AUTO.recoil_mechanism = "Gas_Operated"
+	M14SAW_AUTO.Rat_cycling = "Auto"
+	M14SAW_AUTO.rat_barrel_len = 559
+	M14SAW_AUTO.rat_weigth = 5220
+	M14SAW_AUTO.Weight = 5220
+	M14SAW_AUTO.ScrapParts = 10
+	M14SAW_AUTO.RepairCost = 80
+	M14SAW_AUTO.Reliability = 71
+	M14SAW_AUTO.AdditionalHint = T{419078734073,[[<description_hints>
+ <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Military variant with burst fire and auto fire modes
+ <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Has a big recoil penalty]]}
+	M14SAW_AUTO.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelLong', 'BarrelLongImproved', 'BarrelNormal', 'BarrelShort', 'BarrelShortImproved', 'BarrelHeavyLong', 'BarrelLight', 'long_barrel_light', 'BarrelShort_Light', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockHeavy', Modifiable = true, AvailableComponents = {'StockHeavy', 'StockLight', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagLarge_5', 'MagLargeFine_5', 'MagNormal', 'MagNormalFine', 'MagQuick', }}, {CanBeEmpty = true, SlotType = 'Under', Modifiable = true, AvailableComponents = {'GrenadeLauncher_M14', 'TacGrip_M14', 'VerticalGrip_M14', 'Bipod_Under', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'M14_Default_Muzzle', Modifiable = true, AvailableComponents = {'M14_Default_Muzzle', 'Compensator', 'Suppressor', 'ImprovisedSuppressor', 'MuzzleBooster', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'LaserDot', 'FlashlightDot', 'UVDot', 'Flashlight', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'ImprovedIronsight', 'LROptics', 'LROpticsAdvanced', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope', 'WideScope', '_ReflexSIghtVigilance', }}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'm14_component_recoil', Modifiable = false, AvailableComponents = {'m14_component_recoil', }}}
+	M14SAW_AUTO.CanAppearInShop = true
+	M14SAW_AUTO.Tier = 2
+	M14SAW_AUTO.MaxStock = 2
+	M14SAW_AUTO.RestockWeight = 40
+	M14SAW_AUTO.CategoryPair = "AssaultRifles"
+	M14SAW_AUTO.PenetrationClass = 1
+
+
+	GoldenGun.is_vanilla_firearm = true
+	GoldenGun.Cost = 18000
+	GoldenGun.Damage = 33
+	GoldenGun.CritPerAim = 1000
+	GoldenGun.BurstCritMul = 60
+	GoldenGun.CritChanceScaled = 40
+	storeProps(GoldenGun, "AimAccuracy", 40, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(GoldenGun, "AimAccuracy", 9, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(GoldenGun, "WeaponRange", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(GoldenGun, "WeaponRange", 32, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	GoldenGun.PBbonus_base = -1
+	GoldenGun.Handling = 1
+	GoldenGun.ShootAP = 4000
+	GoldenGun.ReloadAP = 3000
+	GoldenGun.APStance = 30
+	GoldenGun.OverwatchAngle = 870
+	GoldenGun.MagazineSize = 10
+	GoldenGun.Cumbersome = 1
+	GoldenGun.Noise = 22
+	GoldenGun.PointBlankBonus = 1
+	GoldenGun.PreparedAttackType = "Both"
+	GoldenGun.AvailableAttacks = {"SingleShot"}
+	GoldenGun.Rat_swap_ap = 30
+	GoldenGun.wep_base_recoil_mul = 100
+	GoldenGun.weigth_held_mul = 100
+	GoldenGun.wep_base_snapshot_mul = 100
+	GoldenGun.wep_base_hip_mul = 90
+	GoldenGun.recoil_mechanism = "Single_Shot"
+	GoldenGun.Rat_cycling = "SemiAuto"
+	GoldenGun.rat_barrel_len = 457
+	GoldenGun.ScrapParts = 16
+	GoldenGun.RepairCost = 80
+	GoldenGun.Reliability = 71
+	GoldenGun.AdditionalHint = T{864686045799,[[<description_hints>]]}
+	GoldenGun.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Bipod', DefaultComponent = 'Bipod', Modifiable = false, AvailableComponents = {'Bipod', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'LROptics', Modifiable = false, AvailableComponents = {'LROptics', }}}
+	GoldenGun.Valuable = 1
+	GoldenGun.CategoryPair = "AssaultRifles"
+	GoldenGun.PenetrationClass = 1
+
+
+	Galil_FlagHill.is_vanilla_firearm = true
+	Galil_FlagHill.Cost = 7860
+	Galil_FlagHill.Damage = 32
+	Galil_FlagHill.CritPerAim = 870
+	Galil_FlagHill.BurstCritMul = 60
+	Galil_FlagHill.CritChanceScaled = 30
+	storeProps(Galil_FlagHill, "AimAccuracy", 36, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Galil_FlagHill, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Galil_FlagHill, "WeaponRange", 36, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Galil_FlagHill, "WeaponRange", 34, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	Galil_FlagHill.PBbonus_base = 2
+	Galil_FlagHill.Handling = 7
+	Galil_FlagHill.ShootAP = 4000
+	Galil_FlagHill.ReloadAP = 3000
+	Galil_FlagHill.APStance = 30
+	Galil_FlagHill.OverwatchAngle = 1080
+	Galil_FlagHill.MagazineSize = 25
+	Galil_FlagHill.Cumbersome = 0
+	Galil_FlagHill.Noise = 22
+	Galil_FlagHill.PointBlankBonus = 1
+	Galil_FlagHill.PreparedAttackType = "Overwatch"
+	Galil_FlagHill.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
+	Galil_FlagHill.Rat_swap_ap = 30
+	Galil_FlagHill.RPM = 650
+	Galil_FlagHill.wep_base_recoil_mul = 100
+	Galil_FlagHill.weigth_held_mul = 100
+	Galil_FlagHill.wep_base_snapshot_mul = 106
+	Galil_FlagHill.wep_base_hip_mul = 93
+	Galil_FlagHill.recoil_mechanism = "Gas_Operated"
+	Galil_FlagHill.Rat_cycling = "Auto"
+	Galil_FlagHill.rat_barrel_len = 535
+	Galil_FlagHill.ScrapParts = 10
+	Galil_FlagHill.RepairCost = 50
+	Galil_FlagHill.Reliability = 79
+	Galil_FlagHill.AdditionalHint = T{811371938636,[[<description_hints>]]}
+	Galil_FlagHill.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'long_barrel_light', Modifiable = false, AvailableComponents = {'long_barrel_light', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = false, AvailableComponents = {'StockNormal', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'Galil_Brake_Default', Modifiable = false, AvailableComponents = {'Galil_Brake_Default', }}, {CanBeEmpty = false, SlotType = 'Under', DefaultComponent = 'Bipod_Galil', Modifiable = false, AvailableComponents = {'Bipod_Galil', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'WideScope', Modifiable = false, AvailableComponents = {'WideScope', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = false, AvailableComponents = {'MagNormal', }}}
+	Galil_FlagHill.PenetrationClass = 1
+
+
+	AR15.is_vanilla_firearm = true
+	AR15.Cost = 5160
+	AR15.Damage = 27
+	AR15.CritPerAim = 500
+	AR15.BurstCritMul = 60
+	AR15.CritChanceScaled = 20
+	storeProps(AR15, "AimAccuracy", 38, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AR15, "AimAccuracy", 5, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AR15, "WeaponRange", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AR15, "WeaponRange", 32, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	AR15.PBbonus_base = 2
+	AR15.Handling = 7
+	AR15.ShootAP = 4000
+	AR15.ReloadAP = 3000
+	AR15.APStance = 30
+	AR15.OverwatchAngle = 1130
+	AR15.MagazineSize = 30
+	AR15.Cumbersome = 0
+	AR15.Noise = 20
+	AR15.PointBlankBonus = 1
+	AR15.PreparedAttackType = "Overwatch"
+	AR15.AvailableAttacks = {"SingleShot", "BurstFire", "CancelShot"}
+	AR15.Rat_swap_ap = 30
+	AR15.RPM = 600
+	AR15.wep_base_recoil_mul = 101
+	AR15.weigth_held_mul = 121
+	AR15.wep_base_snapshot_mul = 101
+	AR15.wep_base_hip_mul = 98
+	AR15.recoil_mechanism = "Gas_Operated"
+	AR15.Rat_cycling = "SemiAuto"
+	AR15.rat_barrel_len = 508
+	AR15.rat_weigth = 3000
+	AR15.Weight = 3000
+	AR15.ScrapParts = 10
+	AR15.RepairCost = 80
+	AR15.Reliability = 73
+	AR15.AdditionalHint = T{145852997392,[[<description_hints>
+ <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Only semi-auto with standard stocks]]}
+	AR15.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'DefaultIronsight_AR15', Modifiable = true, AvailableComponents = {'ScopeCOG', 'LROptics', 'LROpticsAdvanced', 'ThermalScope', 'ReflexSight', 'DefaultIronsight_AR15', 'ImprovedIronsight_AR15', 'WideScope', '_ReflexSIghtVigilance', 'ReflexSightAdvanced', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagNormalFine', 'MagLarge', 'MagLargeFine', 'MagQuick', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'BarrelNormalImproved', 'BarrelShort', 'BarrelShortImproved', 'BarrelLongImproved', 'BarrelLight', 'long_barrel_light', 'BarrelShort_Light', 'BarrelHeavyLong', 'BarrelLong', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockHeavy_AR_BurstOnly', Modifiable = true, AvailableComponents = {'StockHeavy_AR_BurstOnly', 'StockLight_AR_BurstOnly', 'StockBump', }}, {CanBeEmpty = true, SlotType = 'Under', Modifiable = true, AvailableComponents = {'GrenadeLauncher', 'VerticalGrip', 'TacGrip', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}, {CanBeEmpty = true, SlotType = 'Muzzle', DefaultComponent = 'Compensator', Modifiable = true, AvailableComponents = {'Compensator', 'ImprovisedSuppressor', 'Suppressor', 'MuzzleBooster', }}}
+	AR15.CanAppearInShop = true
+	AR15.CanAppearUsed = true
+	AR15.Tier = 2
+	AR15.MaxStock = 3
+	AR15.RestockWeight = 90
+	AR15.CategoryPair = "AssaultRifles"
+	AR15.PenetrationClass = 1
+
+
+	G36.is_vanilla_firearm = true
+	G36.Cost = 9000
+	G36.Damage = 26
+	G36.CritPerAim = 500
+	G36.BurstCritMul = 85
+	G36.CritChanceScaled = 20
+	storeProps(G36, "AimAccuracy", 41, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(G36, "AimAccuracy", 6, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(G36, "WeaponRange", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(G36, "WeaponRange", 36, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	G36.PBbonus_base = 1
+	G36.Handling = 6
+	G36.ShootAP = 3000
+	G36.ReloadAP = 3000
+	G36.APStance = 30
+	G36.OverwatchAngle = 1023
+	G36.MagazineSize = 30
+	G36.Cumbersome = 0
+	G36.Noise = 18
+	G36.PointBlankBonus = 1
+	G36.PreparedAttackType = "Overwatch"
+	G36.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
+	G36.Rat_swap_ap = 30
+	G36.burst_shots = 2
+	G36.RPM = 750
+	G36.BurstSelective = true
+	G36.AutoFireCustomDeltaAP = 10
+	G36.SingleShotCustomDeltaAP = 10
+	G36.burst_recoil_delta = 95
+	G36.wep_base_recoil_mul = 98
+	G36.weigth_held_mul = 128
+	G36.wep_base_snapshot_mul = 106
+	G36.wep_base_hip_mul = 96
+	G36.recoil_mechanism = "Gas_Operated"
+	G36.Rat_cycling = "Auto"
+	G36.rat_barrel_len = 480
+	G36.rat_weigth = 4000
+	G36.Weight = 4000
+	G36.ScrapParts = 10
+	G36.RepairCost = 80
+	G36.Reliability = 75
+	G36.AdditionalHint = T{507516354956,[[<description_hints>
+ <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Special 2-shot burst mode with improved critical chance and reduced recoil]]}
+	G36.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'long_barrel_light', 'BarrelLong', 'BarrelHeavyLong', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'G36_SCOPE', Modifiable = true, AvailableComponents = {'G36_SCOPE', 'ThermalScope', 'ReflexSightAdvanced', 'SCOPE_G36_2', 'PSG_DefaultScope', '_ReflexSIghtVigilance', 'WideScope', 'ScopeCOG', 'ScopeCOGQuick', 'LROptics', 'ImprovedIronsight', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'Compensator', Modifiable = true, AvailableComponents = {'Compensator', 'Suppressor', 'ImprovisedSuppressor', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagLarge_9', 'MagQuick', }}, {CanBeEmpty = true, SlotType = 'Under', Modifiable = true, AvailableComponents = {'TacGrip', 'VerticalGrip', 'GrenadeLauncher', 'Bipod_Under', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'foldable_StockNormal', Modifiable = true, AvailableComponents = {'StockHeavy', 'StockLight', 'foldable_StockNormal', 'StockFolded', }}}
+	G36.Valuable = 1
+	G36.CanAppearInShop = true
+	G36.Tier = 3
+	G36.MaxStock = 3
+	G36.RestockWeight = 20
+	G36.CategoryPair = "AssaultRifles"
+	G36.PenetrationClass = 1
+
+
+	AK74.is_vanilla_firearm = true
+	AK74.Cost = 7500
+	AK74.Damage = 26
+	AK74.CritPerAim = 400
+	AK74.BurstCritMul = 60
+	AK74.CritChanceScaled = 20
+	storeProps(AK74, "AimAccuracy", 38, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AK74, "AimAccuracy", 5, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AK74, "WeaponRange", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AK74, "WeaponRange", 36, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	AK74.PBbonus_base = 3
+	AK74.Handling = 8
+	AK74.ShootAP = 4000
+	AK74.ReloadAP = 3000
+	AK74.APStance = 30
+	AK74.OverwatchAngle = 1127
+	AK74.MagazineSize = 30
+	AK74.Cumbersome = 0
+	AK74.Noise = 22
+	AK74.PointBlankBonus = 1
+	AK74.PreparedAttackType = "Overwatch"
+	AK74.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
+	AK74.Rat_swap_ap = 30
+	AK74.RPM = 600
+	AK74.wep_base_recoil_mul = 100
+	AK74.weigth_held_mul = 127
+	AK74.wep_base_snapshot_mul = 101
+	AK74.wep_base_hip_mul = 100
+	AK74.recoil_mechanism = "Gas_Operated"
+	AK74.Rat_cycling = "Auto"
+	AK74.rat_barrel_len = 410
+	AK74.rat_weigth = 3800
+	AK74.Weight = 3800
+	AK74.ScrapParts = 10
+	AK74.RepairCost = 20
+	AK74.Reliability = 86
+	AK74.AdditionalHint = T{470765972773,[[<description_hints>]]}
+	AK74.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockHeavy', Modifiable = true, AvailableComponents = {'StockHeavy', 'StockLight', 'StockNo', 'StockNormal', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormalFine', Modifiable = true, AvailableComponents = {'MagNormalFine', 'MagLarge', 'MagLargeFine', 'MagQuick', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'LROptics', 'LROpticsAdvanced', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope', 'WideScope', '_ReflexSIghtVigilance', 'LROptics_DragunovDefault', 'ImprovedIronsight', }}, {CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'Compensator', 'MuzzleBooster', 'ImprovisedSuppressor', 'Suppressor', }}, {CanBeEmpty = true, SlotType = 'Under', Modifiable = true, AvailableComponents = {'GrenadeLauncher', 'Bipod_Under', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}, {CanBeEmpty = true, SlotType = 'Barrel', Modifiable = true, AvailableComponents = {'BarrelHeavy', 'BarrelLight', }}}
+	AK74.Valuable = 1
+	AK74.CanAppearInShop = true
+	AK74.CanAppearUsed = true
+	AK74.Tier = 3
+	AK74.MaxStock = 3
+	AK74.RestockWeight = 80
+	AK74.CategoryPair = "AssaultRifles"
+	AK74.PenetrationClass = 1
+
+
+	M16A2.is_vanilla_firearm = true
+	M16A2.object_class = "AssaultRifle"
+	M16A2.Cost = 5940
+	M16A2.Damage = 27
+	M16A2.CritPerAim = 200
+	M16A2.BurstCritMul = 60
+	M16A2.CritChanceScaled = 10
+	storeProps(M16A2, "AimAccuracy", 37, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M16A2, "AimAccuracy", 5, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M16A2, "WeaponRange", 34, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M16A2, "WeaponRange", 34, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	M16A2.PBbonus_base = 1
+	M16A2.Handling = 6
+	M16A2.ShootAP = 4000
+	M16A2.ReloadAP = 3000
+	M16A2.APStance = 30
+	M16A2.OverwatchAngle = 1024
+	M16A2.MagazineSize = 20
+	M16A2.Cumbersome = 0
+	M16A2.Noise = 18
+	M16A2.PointBlankBonus = 1
+	M16A2.PreparedAttackType = "Overwatch"
+	M16A2.AvailableAttacks = {"BurstFire", "SingleShot", "CancelShot"}
+	M16A2.Rat_swap_ap = 30
+	M16A2.RPM = 800
+	M16A2.BurstSelective = true
+	M16A2.burst_recoil_delta = 100
+	M16A2.wep_base_recoil_mul = 98
+	M16A2.weigth_held_mul = 125
+	M16A2.wep_base_snapshot_mul = 106
+	M16A2.wep_base_hip_mul = 95
+	M16A2.recoil_mechanism = "Gas_Operated"
+	M16A2.Rat_cycling = "Auto"
+	M16A2.rat_barrel_len = 500
+	M16A2.rat_weigth = 3600
+	M16A2.Weight = 3600
+	M16A2.ScrapParts = 10
+	M16A2.RepairCost = 80
+	M16A2.Reliability = 71
+	M16A2.AdditionalHint = T{550693603298,[[<description_hints>
+ <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> No Auto firing mode]]}
+	M16A2.ComponentSlots = {{CanBeEmpty = true, SlotType = 'Handguard', Modifiable = false, AvailableComponents = { }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'ScopeCOG', 'ScopeCOGQuick', 'LROptics', 'ThermalScope', 'ReflexSight', 'WideScope', '_ReflexSIghtVigilance', 'ImprovedIronsight', }}, {CanBeEmpty = true, SlotType = 'Muzzle', DefaultComponent = 'Compensator', Modifiable = true, AvailableComponents = {'Compensator', 'Suppressor', 'ImprovisedSuppressor', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'BarrelLight', 'BarrelHeavy', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagLarge', 'MagNormal', 'R_MagQuickLarge', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = true, AvailableComponents = {'StockNormal', 'StockLight', 'StockNo', }}, {CanBeEmpty = false, SlotType = 'Under', DefaultComponent = 'M16_Handguard', Modifiable = true, AvailableComponents = {'GrenadeLauncher_M16A1', 'VerticalGrip_M16', 'M16_Handguard', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}}
+	M16A2.CanAppearInShop = true
+	M16A2.Tier = 2
+	M16A2.MaxStock = 3
+	M16A2.RestockWeight = 40
+	M16A2.CategoryPair = "AssaultRifles"
+	M16A2.PenetrationClass = 1
 
 
 	AK47.is_vanilla_firearm = true
@@ -4918,7 +4825,7 @@ function RatoGBO_WepPatch()
 	AK47.Handling = 8
 	AK47.ShootAP = 4000
 	AK47.ReloadAP = 3000
-	AK47.APStance = 35
+	AK47.APStance = 30
 	AK47.OverwatchAngle = 1086
 	AK47.MagazineSize = 30
 	AK47.Cumbersome = 0
@@ -4950,102 +4857,56 @@ function RatoGBO_WepPatch()
 	AK47.PenetrationClass = 1
 
 
-	M4Commando.is_vanilla_firearm = true
-	M4Commando.Cost = 10050
-	M4Commando.Damage = 25
-	M4Commando.CritPerAim = 200
-	M4Commando.BurstCritMul = 60
-	M4Commando.CritChanceScaled = 10
-	storeProps(M4Commando, "AimAccuracy", 27, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M4Commando, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M4Commando, "WeaponRange", 26, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(M4Commando, "WeaponRange", 30, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	M4Commando.PBbonus_base = 7
-	M4Commando.Handling = 14
-	M4Commando.ShootAP = 3000
-	M4Commando.ReloadAP = 3000
-	M4Commando.APStance = 28
-	M4Commando.OverwatchAngle = 1429
-	M4Commando.MagazineSize = 20
-	M4Commando.Cumbersome = 0
-	M4Commando.Noise = 20
-	M4Commando.PointBlankBonus = 1
-	M4Commando.PreparedAttackType = "Overwatch"
-	M4Commando.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "RunAndGun", "CancelShot"}
-	M4Commando.Rat_swap_ap = 20
-	M4Commando.RPM = 800
-	M4Commando.wep_base_recoil_mul = 100
-	M4Commando.weigth_held_mul = 117
-	M4Commando.wep_base_snapshot_mul = 86
-	M4Commando.wep_base_hip_mul = 108
-	M4Commando.recoil_mechanism = "Gas_Operated"
-	M4Commando.Rat_cycling = "Auto"
-	M4Commando.rat_barrel_len = 250
-	M4Commando.rat_weigth = 2430
-	M4Commando.Weight = 2430
-	M4Commando.ScrapParts = 10
-	M4Commando.RepairCost = 80
-	M4Commando.Reliability = 67
-	M4Commando.AdditionalHint = T{502423132983,[[<description_hints>]]}
-	M4Commando.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Under', DefaultComponent = 'Handguard_Commando', Modifiable = true, AvailableComponents = {'Handguard_Commando', 'VerticalGrip_Commando', 'GrenadeLauncher_Commando', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagNormalFine', 'MagLarge', 'MagLargeFine', 'R_MagQuickLarge', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = true, AvailableComponents = {'StockNormal', 'StockLight', 'StockNo', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'LaserDot', 'FlashlightDot', 'UVDot', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'LROptics', 'ReflexSight', 'ScopeCOG', 'ThermalScope', 'ReflexSightAdvanced', 'ScopeCOGQuick', '_ReflexSIghtVigilance', 'WideScope', 'ImprovedIronsight', }}, {CanBeEmpty = true, SlotType = 'Muzzle', DefaultComponent = 'Compensator', Modifiable = true, AvailableComponents = {'Compensator', 'MuzzleBooster', 'Suppressor', 'ImprovisedSuppressor', }}}
-	M4Commando.Valuable = 1
-	M4Commando.CanAppearInShop = true
-	M4Commando.CanAppearUsed = false
-	M4Commando.Tier = 3
-	M4Commando.MaxStock = 3
-	M4Commando.RestockWeight = 30
-	M4Commando.CategoryPair = "SubmachineGuns"
-	M4Commando.PenetrationClass = 1
-
-
-	FAMAS.is_vanilla_firearm = true
-	FAMAS.Cost = 4120
-	FAMAS.Damage = 25
-	FAMAS.CritPerAim = 200
-	FAMAS.BurstCritMul = 60
-	FAMAS.CritChanceScaled = 10
-	storeProps(FAMAS, "AimAccuracy", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(FAMAS, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(FAMAS, "WeaponRange", 26, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(FAMAS, "WeaponRange", 30, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	FAMAS.PBbonus_base = 4
-	FAMAS.Handling = 10
-	FAMAS.ShootAP = 4000
-	FAMAS.ReloadAP = 4000
-	FAMAS.APStance = 30
-	FAMAS.OverwatchAngle = 1051
-	FAMAS.MagazineSize = 25
-	FAMAS.Cumbersome = 0
-	FAMAS.Noise = 18
-	FAMAS.PointBlankBonus = 1
-	FAMAS.PreparedAttackType = "Overwatch"
-	FAMAS.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
-	FAMAS.Rat_swap_ap = 30
-	FAMAS.RPM = 1000
-	FAMAS.BurstSelective = true
-	FAMAS.burst_recoil_delta = 95
-	FAMAS.wep_base_recoil_mul = 97
-	FAMAS.weigth_held_mul = 127
-	FAMAS.wep_base_snapshot_mul = 108
-	FAMAS.wep_base_hip_mul = 94
-	FAMAS.recoil_mechanism = "Roller_Delayed"
-	FAMAS.Rat_cycling = "Auto"
-	FAMAS.rat_barrel_len = 488
-	FAMAS.rat_weigth = 3900
-	FAMAS.Weight = 3900
-	FAMAS.ScrapParts = 10
-	FAMAS.RepairCost = 80
-	FAMAS.Reliability = 69
-	FAMAS.AdditionalHint = T{423566125417,[[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Increased Reload cost]]}
-	FAMAS.ComponentSlots = {{CanBeEmpty = true, SlotType = 'Under', Modifiable = true, AvailableComponents = {'VerticalGrip', }}, {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'LaserDot', 'FlashlightDot', 'UVDot', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = { 'ReflexSight', 'ScopeCOGQuick', 'ScopeCOG', '_ReflexSIghtVigilance', 'ReflexSightAdvanced', 'WideScope', 'ImprovedIronsight', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'Compensator', Modifiable = true, AvailableComponents = {'Compensator', 'Suppressor', 'ImprovisedSuppressor', }}, {CanBeEmpty = true, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = false, AvailableComponents = {'MagNormal', }}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'bullup', Modifiable = false, AvailableComponents = {'bullup', }}}
-	FAMAS.CanAppearInShop = true
-	FAMAS.CanAppearUsed = true
-	FAMAS.Tier = 1
-	FAMAS.MaxStock = 3
-	FAMAS.RestockWeight = 80
-	FAMAS.CategoryPair = "AssaultRifles"
-	FAMAS.PenetrationClass = 1
+	AA12.is_vanilla_firearm = true
+	AA12.Cost = 7920
+	AA12.Damage = 6
+	AA12.ObjDamageMod = 150
+	AA12.CritPerAim = 200
+	AA12.BurstCritMul = 60
+	AA12.CritChanceScaled = 10
+	storeProps(AA12, "AimAccuracy", 24, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AA12, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AA12, "WeaponRange", 22, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AA12, "WeaponRange", 22, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	AA12.PBbonus_base = 1
+	AA12.Handling = 11
+	AA12.ShootAP = 5000
+	AA12.ReloadAP = 3000
+	AA12.APStance = 30
+	AA12.OverwatchAngle = 1001
+	AA12.MagazineSize = 8
+	AA12.Cumbersome = 0
+	AA12.Noise = 25
+	AA12.PointBlankBonus = 1
+	AA12.PreparedAttackType = "Overwatch"
+	AA12.AvailableAttacks = {"BuckshotBurst", "Buckshot", "CancelShotCone", "BurstFire", "SingleShot", "CancelShot"}
+	AA12.BuckshotConeAngle = 355
+	AA12.BuckshotFalloffDamage = 50
+	AA12.Rat_swap_ap = 30
+	AA12.RPM = 300
+	AA12.wep_base_recoil_mul = 90
+	AA12.weigth_held_mul = 133
+	AA12.wep_base_snapshot_mul = 107
+	AA12.wep_base_hip_mul = 110
+	AA12.recoil_mechanism = "Gas_Operated"
+	AA12.Rat_cycling = "Auto"
+	AA12.rat_barrel_len = 330
+	AA12.rat_weigth = 4700
+	AA12.Weight = 4700
+	AA12.ScrapParts = 12
+	AA12.RepairCost = 50
+	AA12.Reliability = 77
+	AA12.AdditionalHint = T{141818519778,[[<description_hints>
+ <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Special firing mode: Buckshot Burst]]}
+	AA12.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'BarrelLongShotgun', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagLarge_6', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'ReflexSightAdvanced', 'ReflexSight', 'ScopeCOGQuick', '_ReflexSIghtVigilance', 'ImprovedIronsight', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight_aa12', 'LaserDot_aa12', 'FlashlightDot_aa12', 'UVDot_aa12', }}, {CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'Suppressor', 'Compensator', }}}
+	AA12.Valuable = 1
+	AA12.CanAppearInShop = true
+	AA12.CanAppearUsed = true
+	AA12.Tier = 3
+	AA12.MaxStock = 3
+	AA12.RestockWeight = 40
+	AA12.CategoryPair = "Shotguns"
+	AA12.PenetrationClass = 1
 
 
 	Winchester_Quest.is_vanilla_firearm = true
@@ -5063,7 +4924,7 @@ function RatoGBO_WepPatch()
 	Winchester_Quest.Handling = 5
 	Winchester_Quest.ShootAP = 4000
 	Winchester_Quest.ReloadAP = 3000
-	Winchester_Quest.APStance = 32
+	Winchester_Quest.APStance = 27
 	Winchester_Quest.OverwatchAngle = 1320
 	Winchester_Quest.MagazineSize = 4
 	Winchester_Quest.Cumbersome = 0
@@ -5105,7 +4966,7 @@ function RatoGBO_WepPatch()
 	Winchester1894.Handling = 2
 	Winchester1894.ShootAP = 4000
 	Winchester1894.ReloadAP = 3000
-	Winchester1894.APStance = 32
+	Winchester1894.APStance = 27
 	Winchester1894.OverwatchAngle = 1053
 	Winchester1894.MagazineSize = 9
 	Winchester1894.Cumbersome = 0
@@ -5138,59 +4999,11 @@ function RatoGBO_WepPatch()
 	Winchester1894.PenetrationClass = 1
 
 
-	AKSU.is_vanilla_firearm = true
-	AKSU.Cost = 4500
-	AKSU.Damage = 24
-	AKSU.CritPerAim = 200
-	AKSU.BurstCritMul = 60
-	AKSU.CritChanceScaled = 10
-	storeProps(AKSU, "AimAccuracy", 25, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AKSU, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AKSU, "WeaponRange", 24, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AKSU, "WeaponRange", 26, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	AKSU.PBbonus_base = 9
-	AKSU.Handling = 17
-	AKSU.ShootAP = 3000
-	AKSU.ReloadAP = 3000
-	AKSU.APStance = 27
-	AKSU.OverwatchAngle = 1448
-	AKSU.MagazineSize = 30
-	AKSU.Cumbersome = 0
-	AKSU.Noise = 20
-	AKSU.PointBlankBonus = 1
-	AKSU.PreparedAttackType = "Overwatch"
-	AKSU.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "RunAndGun", "CancelShot"}
-	AKSU.Rat_swap_ap = 20
-	AKSU.RPM = 636
-	AKSU.wep_base_recoil_mul = 95
-	AKSU.weigth_held_mul = 120
-	AKSU.wep_base_snapshot_mul = 84
-	AKSU.wep_base_hip_mul = 111
-	AKSU.recoil_mechanism = "Gas_Operated"
-	AKSU.Rat_cycling = "Auto"
-	AKSU.rat_barrel_len = 210
-	AKSU.rat_weigth = 2900
-	AKSU.Weight = 2900
-	AKSU.ScrapParts = 10
-	AKSU.RepairCost = 50
-	AKSU.Reliability = 82
-	AKSU.AdditionalHint = T{326130558343,[[<description_hints>]]}
-	AKSU.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = false, AvailableComponents = {'BarrelNormal', }}, {CanBeEmpty = false, SlotType = 'Handguard', DefaultComponent = 'AKSU_Hanguard_Basic', Modifiable = true, AvailableComponents = {'AKSU_Hanguard_Basic', 'AKSU_VerticalGrip', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagNormalFine', 'MagLarge', 'MagQuick', 'MagLargeFine', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'LaserDot', 'FlashlightDot', 'UVDot', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'LROptics', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope', 'WideScope', '_ReflexSIghtVigilance', 'LROptics_DragunovDefault', 'ImprovedIronsight', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'MuzzleBooster', Modifiable = true, AvailableComponents = {'Compensator_ReducedReliability', 'MuzzleBooster', 'Suppressor', 'ImprovisedSuppressor', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockLight', Modifiable = true, AvailableComponents = {'StockLight', }}}
-	AKSU.Valuable = 1
-	AKSU.CanAppearInShop = true
-	AKSU.CanAppearUsed = true
-	AKSU.Tier = 2
-	AKSU.MaxStock = 3
-	AKSU.RestockWeight = 40
-	AKSU.CategoryPair = "SubmachineGuns"
-	AKSU.PenetrationClass = 1
-
-
 	M41Shotgun.is_vanilla_firearm = true
 	M41Shotgun.Cost = 3000
 	M41Shotgun.Damage = 7
 	M41Shotgun.ObjDamageMod = 150
-	M41Shotgun.CritPerAim = 400
+	M41Shotgun.CritPerAim = 300
 	M41Shotgun.BurstCritMul = 60
 	M41Shotgun.CritChanceScaled = 20
 	storeProps(M41Shotgun, "AimAccuracy", 27, "aCTH", GBO_gCTHModeItemPropertyTable)
@@ -5201,7 +5014,7 @@ function RatoGBO_WepPatch()
 	M41Shotgun.Handling = 6
 	M41Shotgun.ShootAP = 5000
 	M41Shotgun.ReloadAP = 5000
-	M41Shotgun.APStance = 30
+	M41Shotgun.APStance = 25
 	M41Shotgun.OverwatchAngle = 881
 	M41Shotgun.MagazineSize = 6
 	M41Shotgun.Cumbersome = 0
@@ -5235,6 +5048,345 @@ function RatoGBO_WepPatch()
 	M41Shotgun.PenetrationClass = 1
 
 
+	AUG.is_vanilla_firearm = true
+	AUG.Cost = 6120
+	AUG.Damage = 26
+	AUG.CritPerAim = 200
+	AUG.BurstCritMul = 60
+	AUG.CritChanceScaled = 10
+	storeProps(AUG, "AimAccuracy", 32, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AUG, "AimAccuracy", 5, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AUG, "WeaponRange", 28, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AUG, "WeaponRange", 30, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	AUG.PBbonus_base = 4
+	AUG.Handling = 10
+	AUG.ShootAP = 4000
+	AUG.ReloadAP = 3000
+	AUG.APStance = 25
+	AUG.OverwatchAngle = 983
+	AUG.MagazineSize = 30
+	AUG.Cumbersome = 0
+	AUG.Noise = 20
+	AUG.PointBlankBonus = 1
+	AUG.PreparedAttackType = "Overwatch"
+	AUG.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
+	AUG.Rat_swap_ap = 30
+	AUG.RPM = 700
+	AUG.BurstSelective = true
+	AUG.burst_recoil_delta = 95
+	AUG.wep_base_recoil_mul = 97
+	AUG.weigth_held_mul = 130
+	AUG.wep_base_snapshot_mul = 108
+	AUG.wep_base_hip_mul = 95
+	AUG.recoil_mechanism = "Gas_Operated"
+	AUG.Rat_cycling = "Auto"
+	AUG.rat_barrel_len = 500
+	AUG.rat_weigth = 4200
+	AUG.Weight = 4200
+	AUG.ScrapParts = 10
+	AUG.RepairCost = 80
+	AUG.Reliability = 78
+	AUG.AdditionalHint = T{780533559812,[[<description_hints>]]}
+	AUG.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'BarrelShort_AUG', 'BarrelShortImproved_AUG', 'BarrelLong_AUG', 'BarrelLongImproved_AUG', 'BarrelLight', 'long_barrel_AUG_light', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'AUGCompensator_01', Modifiable = true, AvailableComponents = {'AUGCompensator_01', 'AUGCompensator_03', 'Suppressor', }}, {CanBeEmpty = true, SlotType = 'Under', DefaultComponent = 'TacGrip_aug', Modifiable = true, AvailableComponents = {'TacGrip_aug', }}, {CanBeEmpty = true, SlotType = 'Grenadelauncher', Modifiable = true, AvailableComponents = {'GrenadeLauncher_AUG', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagLarge_7', 'MagNormal', 'MagQuick', }}, {CanBeEmpty = true, SlotType = 'Mount', Modifiable = false, AvailableComponents = {'AUGMount', }}, {CanBeEmpty = false, SlotType = 'Scope', DefaultComponent = 'AUGScope_Default', Modifiable = true, AvailableComponents = {'LROptics', 'LROpticsAdvanced', 'ThermalScope', 'ReflexSight', 'ScopeCOG', 'AUGScope_Default', '_ReflexSIghtVigilance', 'WideScope', 'ReflexSightAdvanced', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'FlashlightDot', 'LaserDot', 'UVDot', }}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'bullup', Modifiable = false, AvailableComponents = {'bullup', }}}
+	AUG.Valuable = 1
+	AUG.CanAppearInShop = true
+	AUG.Tier = 2
+	AUG.MaxStock = 3
+	AUG.RestockWeight = 20
+	AUG.CategoryPair = "AssaultRifles"
+	AUG.PenetrationClass = 1
+
+
+	FAMAS.is_vanilla_firearm = true
+	FAMAS.Cost = 4120
+	FAMAS.Damage = 25
+	FAMAS.CritPerAim = 200
+	FAMAS.BurstCritMul = 60
+	FAMAS.CritChanceScaled = 10
+	storeProps(FAMAS, "AimAccuracy", 30, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(FAMAS, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(FAMAS, "WeaponRange", 26, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(FAMAS, "WeaponRange", 30, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	FAMAS.PBbonus_base = 4
+	FAMAS.Handling = 10
+	FAMAS.ShootAP = 4000
+	FAMAS.ReloadAP = 4000
+	FAMAS.APStance = 25
+	FAMAS.OverwatchAngle = 1051
+	FAMAS.MagazineSize = 25
+	FAMAS.Cumbersome = 0
+	FAMAS.Noise = 18
+	FAMAS.PointBlankBonus = 1
+	FAMAS.PreparedAttackType = "Overwatch"
+	FAMAS.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "CancelShot"}
+	FAMAS.Rat_swap_ap = 30
+	FAMAS.RPM = 1000
+	FAMAS.BurstSelective = true
+	FAMAS.burst_recoil_delta = 95
+	FAMAS.wep_base_recoil_mul = 97
+	FAMAS.weigth_held_mul = 127
+	FAMAS.wep_base_snapshot_mul = 108
+	FAMAS.wep_base_hip_mul = 94
+	FAMAS.recoil_mechanism = "Roller_Delayed"
+	FAMAS.Rat_cycling = "Auto"
+	FAMAS.rat_barrel_len = 488
+	FAMAS.rat_weigth = 3900
+	FAMAS.Weight = 3900
+	FAMAS.ScrapParts = 10
+	FAMAS.RepairCost = 80
+	FAMAS.Reliability = 69
+	FAMAS.AdditionalHint = T{423566125417,[[<description_hints>
+ <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Increased Reload cost]]}
+	FAMAS.ComponentSlots = {{CanBeEmpty = true, SlotType = 'Under', Modifiable = true, AvailableComponents = {'VerticalGrip', }}, {CanBeEmpty = true, SlotType = 'Bipod', Modifiable = true, AvailableComponents = {'Bipod', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'LaserDot', 'FlashlightDot', 'UVDot', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = { 'ReflexSight', 'ScopeCOGQuick', 'ScopeCOG', '_ReflexSIghtVigilance', 'ReflexSightAdvanced', 'WideScope', 'ImprovedIronsight', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'Compensator', Modifiable = true, AvailableComponents = {'Compensator', 'Suppressor', 'ImprovisedSuppressor', }}, {CanBeEmpty = true, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = false, AvailableComponents = {'MagNormal', }}, {CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'bullup', Modifiable = false, AvailableComponents = {'bullup', }}}
+	FAMAS.CanAppearInShop = true
+	FAMAS.CanAppearUsed = true
+	FAMAS.Tier = 1
+	FAMAS.MaxStock = 3
+	FAMAS.RestockWeight = 80
+	FAMAS.CategoryPair = "AssaultRifles"
+	FAMAS.PenetrationClass = 1
+
+
+	Auto5.is_vanilla_firearm = true
+	Auto5.Cost = 1200
+	Auto5.Damage = 7
+	Auto5.ObjDamageMod = 150
+	Auto5.CritPerAim = 200
+	Auto5.BurstCritMul = 60
+	Auto5.CritChanceScaled = 10
+	storeProps(Auto5, "AimAccuracy", 18, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Auto5, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Auto5, "WeaponRange", 22, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Auto5, "WeaponRange", 22, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	Auto5.PBbonus_base = -1
+	Auto5.Handling = 8
+	Auto5.ShootAP = 5000
+	Auto5.ReloadAP = 4000
+	Auto5.APStance = 25
+	Auto5.OverwatchAngle = 959
+	Auto5.MagazineSize = 4
+	Auto5.Cumbersome = 0
+	Auto5.Noise = 25
+	Auto5.PointBlankBonus = 1
+	Auto5.PreparedAttackType = "Overwatch"
+	Auto5.AvailableAttacks = {"Buckshot", "CancelShotCone", "SingleShot", "CancelShot"}
+	Auto5.BuckshotConeAngle = 300
+	Auto5.BuckshotFalloffDamage = 50
+	Auto5.Rat_swap_ap = 30
+	Auto5.wep_base_recoil_mul = 98
+	Auto5.weigth_held_mul = 100
+	Auto5.wep_base_snapshot_mul = 100
+	Auto5.wep_base_hip_mul = 112
+	Auto5.recoil_mechanism = "Recoil_Operated"
+	Auto5.Rat_cycling = "SemiAuto"
+	Auto5.rat_weigth = 4000
+	Auto5.Weight = 4000
+	Auto5.ScrapParts = 10
+	Auto5.RepairCost = 50
+	Auto5.Reliability = 73
+	Auto5.AdditionalHint = T{413545464036,[[<description_hints>]]}
+	Auto5.ComponentSlots = {{CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'DuckbillChoke', 'FullChoke', 'Compensator', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'Auto5_Basic_NMag', Modifiable = true, AvailableComponents = {'Auto5_Basic_LMag', 'Auto5_Basic_NMag', 'Auto5_Long_LMag', 'Auto5_Long_NMag', 'Auto5_Short_NMag', }}}
+	Auto5.CanAppearInShop = true
+	Auto5.CanAppearUsed = true
+	Auto5.Tier = 1
+	Auto5.MaxStock = 3
+	Auto5.RestockWeight = 50
+	Auto5.CategoryPair = "Shotguns"
+	Auto5.PenetrationClass = 1
+
+
+	DoubleBarrelShotgun.is_vanilla_firearm = true
+	DoubleBarrelShotgun.Cost = 860
+	DoubleBarrelShotgun.Damage = 6
+	DoubleBarrelShotgun.ObjDamageMod = 150
+	DoubleBarrelShotgun.CritPerAim = 200
+	DoubleBarrelShotgun.BurstCritMul = 60
+	DoubleBarrelShotgun.CritChanceScaled = 10
+	storeProps(DoubleBarrelShotgun, "AimAccuracy", 20, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(DoubleBarrelShotgun, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(DoubleBarrelShotgun, "WeaponRange", 20, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(DoubleBarrelShotgun, "WeaponRange", 20, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	DoubleBarrelShotgun.PBbonus_base = -3
+	DoubleBarrelShotgun.Handling = 6
+	DoubleBarrelShotgun.ShootAP = 5000
+	DoubleBarrelShotgun.ReloadAP = 4000
+	DoubleBarrelShotgun.APStance = 25
+	DoubleBarrelShotgun.OverwatchAngle = 901
+	DoubleBarrelShotgun.MagazineSize = 2
+	DoubleBarrelShotgun.Cumbersome = 0
+	DoubleBarrelShotgun.Noise = 25
+	DoubleBarrelShotgun.PointBlankBonus = 1
+	DoubleBarrelShotgun.PreparedAttackType = "Overwatch"
+	DoubleBarrelShotgun.AvailableAttacks = {"Buckshot", "DoubleBarrel", "CancelShotCone", "SingleShot", "CancelShot"}
+	DoubleBarrelShotgun.BuckshotConeAngle = 390
+	DoubleBarrelShotgun.BuckshotFalloffDamage = 50
+	DoubleBarrelShotgun.Rat_swap_ap = 30
+	DoubleBarrelShotgun.wep_base_recoil_mul = 100
+	DoubleBarrelShotgun.weigth_held_mul = 100
+	DoubleBarrelShotgun.wep_base_snapshot_mul = 100
+	DoubleBarrelShotgun.wep_base_hip_mul = 110
+	DoubleBarrelShotgun.recoil_mechanism = "Break_Action"
+	DoubleBarrelShotgun.rat_weigth = 4000
+	DoubleBarrelShotgun.Weight = 4000
+	DoubleBarrelShotgun.ScrapParts = 8
+	DoubleBarrelShotgun.RepairCost = 50
+	DoubleBarrelShotgun.Reliability = 99
+	DoubleBarrelShotgun.AdditionalHint = T{150578847961,[[<description_hints>
+ <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Special firing mode: Double Barrel]]}
+	DoubleBarrelShotgun.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelLongShotgun', 'BarrelNormal', 'BarrelShortShotgun', }}}
+	DoubleBarrelShotgun.CanAppearInShop = true
+	DoubleBarrelShotgun.CanAppearUsed = true
+	DoubleBarrelShotgun.Tier = 1
+	DoubleBarrelShotgun.MaxStock = 3
+	DoubleBarrelShotgun.RestockWeight = 120
+	DoubleBarrelShotgun.CategoryPair = "Shotguns"
+	DoubleBarrelShotgun.PenetrationClass = 1
+
+
+	M4Commando.is_vanilla_firearm = true
+	M4Commando.Cost = 10050
+	M4Commando.Damage = 25
+	M4Commando.CritPerAim = 200
+	M4Commando.BurstCritMul = 60
+	M4Commando.CritChanceScaled = 10
+	storeProps(M4Commando, "AimAccuracy", 27, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M4Commando, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M4Commando, "WeaponRange", 26, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(M4Commando, "WeaponRange", 30, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	M4Commando.PBbonus_base = 7
+	M4Commando.Handling = 14
+	M4Commando.ShootAP = 3000
+	M4Commando.ReloadAP = 3000
+	M4Commando.APStance = 23
+	M4Commando.OverwatchAngle = 1429
+	M4Commando.MagazineSize = 20
+	M4Commando.Cumbersome = 0
+	M4Commando.Noise = 20
+	M4Commando.PointBlankBonus = 1
+	M4Commando.PreparedAttackType = "Overwatch"
+	M4Commando.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "RunAndGun", "CancelShot"}
+	M4Commando.Rat_swap_ap = 20
+	M4Commando.RPM = 800
+	M4Commando.wep_base_recoil_mul = 100
+	M4Commando.weigth_held_mul = 117
+	M4Commando.wep_base_snapshot_mul = 86
+	M4Commando.wep_base_hip_mul = 108
+	M4Commando.recoil_mechanism = "Gas_Operated"
+	M4Commando.Rat_cycling = "Auto"
+	M4Commando.rat_barrel_len = 250
+	M4Commando.rat_weigth = 2430
+	M4Commando.Weight = 2430
+	M4Commando.ScrapParts = 10
+	M4Commando.RepairCost = 80
+	M4Commando.Reliability = 67
+	M4Commando.AdditionalHint = T{502423132983,[[<description_hints>]]}
+	M4Commando.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Under', DefaultComponent = 'Handguard_Commando', Modifiable = true, AvailableComponents = {'Handguard_Commando', 'VerticalGrip_Commando', 'GrenadeLauncher_Commando', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagNormalFine', 'MagLarge', 'MagLargeFine', 'R_MagQuickLarge', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNormal', Modifiable = true, AvailableComponents = {'StockNormal', 'StockLight', 'StockNo', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'LaserDot', 'FlashlightDot', 'UVDot', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'LROptics', 'ReflexSight', 'ScopeCOG', 'ThermalScope', 'ReflexSightAdvanced', 'ScopeCOGQuick', '_ReflexSIghtVigilance', 'WideScope', 'ImprovedIronsight', }}, {CanBeEmpty = true, SlotType = 'Muzzle', DefaultComponent = 'Compensator', Modifiable = true, AvailableComponents = {'Compensator', 'MuzzleBooster', 'Suppressor', 'ImprovisedSuppressor', }}}
+	M4Commando.Valuable = 1
+	M4Commando.CanAppearInShop = true
+	M4Commando.CanAppearUsed = false
+	M4Commando.Tier = 3
+	M4Commando.MaxStock = 3
+	M4Commando.RestockWeight = 30
+	M4Commando.CategoryPair = "SubmachineGuns"
+	M4Commando.PenetrationClass = 1
+
+
+	MP40.is_vanilla_firearm = true
+	MP40.Cost = 1100
+	MP40.Damage = 18
+	MP40.CritPerAim = 200
+	MP40.BurstCritMul = 60
+	MP40.CritChanceScaled = 10
+	storeProps(MP40, "AimAccuracy", 22, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(MP40, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(MP40, "WeaponRange", 22, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(MP40, "WeaponRange", 26, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	MP40.PBbonus_base = 7
+	MP40.Handling = 14
+	MP40.ShootAP = 3000
+	MP40.ReloadAP = 3000
+	MP40.APStance = 23
+	MP40.OverwatchAngle = 1321
+	MP40.MagazineSize = 32
+	MP40.Cumbersome = 0
+	MP40.Noise = 20
+	MP40.PointBlankBonus = 1
+	MP40.PreparedAttackType = "Overwatch"
+	MP40.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "RunAndGun", "CancelShot"}
+	MP40.Rat_swap_ap = 20
+	MP40.RPM = 500
+	MP40.AutoFireOnly = true
+	MP40.wep_base_recoil_mul = 95
+	MP40.weigth_held_mul = 128
+	MP40.wep_base_snapshot_mul = 91
+	MP40.wep_base_hip_mul = 108
+	MP40.recoil_mechanism = "Blowback"
+	MP40.Rat_cycling = "Auto"
+	MP40.rat_barrel_len = 250
+	MP40.rat_weigth = 4000
+	MP40.Weight = 4000
+	MP40.ScrapParts = 6
+	MP40.RepairCost = 80
+	MP40.Reliability = 68
+	MP40.AdditionalHint = T{749284137120,[[<description_hints>]]}
+	MP40.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagLarge', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockLight', Modifiable = true, AvailableComponents = {'StockLight', }}, {CanBeEmpty = true, SlotType = 'Scope' , Modifiable = false, AvailableComponents = {}}}
+	MP40.CanAppearInShop = true
+	MP40.CanAppearUsed = true
+	MP40.Tier = 1
+	MP40.MaxStock = 3
+	MP40.RestockWeight = 70
+	MP40.CategoryPair = "SubmachineGuns"
+	MP40.PenetrationClass = 1
+
+
+	AKSU.is_vanilla_firearm = true
+	AKSU.Cost = 4500
+	AKSU.Damage = 24
+	AKSU.CritPerAim = 200
+	AKSU.BurstCritMul = 60
+	AKSU.CritChanceScaled = 10
+	storeProps(AKSU, "AimAccuracy", 25, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AKSU, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AKSU, "WeaponRange", 24, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(AKSU, "WeaponRange", 26, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	AKSU.PBbonus_base = 9
+	AKSU.Handling = 17
+	AKSU.ShootAP = 3000
+	AKSU.ReloadAP = 3000
+	AKSU.APStance = 22
+	AKSU.OverwatchAngle = 1448
+	AKSU.MagazineSize = 30
+	AKSU.Cumbersome = 0
+	AKSU.Noise = 20
+	AKSU.PointBlankBonus = 1
+	AKSU.PreparedAttackType = "Overwatch"
+	AKSU.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "RunAndGun", "CancelShot"}
+	AKSU.Rat_swap_ap = 20
+	AKSU.RPM = 636
+	AKSU.wep_base_recoil_mul = 95
+	AKSU.weigth_held_mul = 120
+	AKSU.wep_base_snapshot_mul = 84
+	AKSU.wep_base_hip_mul = 111
+	AKSU.recoil_mechanism = "Gas_Operated"
+	AKSU.Rat_cycling = "Auto"
+	AKSU.rat_barrel_len = 210
+	AKSU.rat_weigth = 2900
+	AKSU.Weight = 2900
+	AKSU.ScrapParts = 10
+	AKSU.RepairCost = 50
+	AKSU.Reliability = 82
+	AKSU.AdditionalHint = T{326130558343,[[<description_hints>]]}
+	AKSU.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = false, AvailableComponents = {'BarrelNormal', }}, {CanBeEmpty = false, SlotType = 'Handguard', DefaultComponent = 'AKSU_Hanguard_Basic', Modifiable = true, AvailableComponents = {'AKSU_Hanguard_Basic', 'AKSU_VerticalGrip', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagNormalFine', 'MagLarge', 'MagQuick', 'MagLargeFine', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight', 'LaserDot', 'FlashlightDot', 'UVDot', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'LROptics', 'ReflexSight', 'ReflexSightAdvanced', 'ScopeCOG', 'ScopeCOGQuick', 'ThermalScope', 'WideScope', '_ReflexSIghtVigilance', 'LROptics_DragunovDefault', 'ImprovedIronsight', }}, {CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'MuzzleBooster', Modifiable = true, AvailableComponents = {'Compensator_ReducedReliability', 'MuzzleBooster', 'Suppressor', 'ImprovisedSuppressor', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockLight', Modifiable = true, AvailableComponents = {'StockLight', }}}
+	AKSU.Valuable = 1
+	AKSU.CanAppearInShop = true
+	AKSU.CanAppearUsed = true
+	AKSU.Tier = 2
+	AKSU.MaxStock = 3
+	AKSU.RestockWeight = 40
+	AKSU.CategoryPair = "SubmachineGuns"
+	AKSU.PenetrationClass = 1
+
+
 	MP5K.is_vanilla_firearm = true
 	MP5K.Cost = 2160
 	MP5K.Damage = 19
@@ -5249,7 +5401,7 @@ function RatoGBO_WepPatch()
 	MP5K.Handling = 17
 	MP5K.ShootAP = 3000
 	MP5K.ReloadAP = 3000
-	MP5K.APStance = 25
+	MP5K.APStance = 20
 	MP5K.OverwatchAngle = 1437
 	MP5K.MagazineSize = 15
 	MP5K.Cumbersome = 0
@@ -5299,7 +5451,7 @@ function RatoGBO_WepPatch()
 	MP5.Handling = 17
 	MP5.ShootAP = 3000
 	MP5.ReloadAP = 3000
-	MP5.APStance = 25
+	MP5.APStance = 20
 	MP5.OverwatchAngle = 1437
 	MP5.MagazineSize = 15
 	MP5.Cumbersome = 0
@@ -5332,96 +5484,6 @@ function RatoGBO_WepPatch()
 	MP5.PenetrationClass = 1
 
 
-	MP40.is_vanilla_firearm = true
-	MP40.Cost = 1100
-	MP40.Damage = 18
-	MP40.CritPerAim = 200
-	MP40.BurstCritMul = 60
-	MP40.CritChanceScaled = 10
-	storeProps(MP40, "AimAccuracy", 22, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(MP40, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(MP40, "WeaponRange", 22, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(MP40, "WeaponRange", 26, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	MP40.PBbonus_base = 7
-	MP40.Handling = 14
-	MP40.ShootAP = 3000
-	MP40.ReloadAP = 3000
-	MP40.APStance = 28
-	MP40.OverwatchAngle = 1321
-	MP40.MagazineSize = 32
-	MP40.Cumbersome = 0
-	MP40.Noise = 20
-	MP40.PointBlankBonus = 1
-	MP40.PreparedAttackType = "Overwatch"
-	MP40.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "RunAndGun", "CancelShot"}
-	MP40.Rat_swap_ap = 20
-	MP40.RPM = 500
-	MP40.AutoFireOnly = true
-	MP40.wep_base_recoil_mul = 95
-	MP40.weigth_held_mul = 128
-	MP40.wep_base_snapshot_mul = 91
-	MP40.wep_base_hip_mul = 108
-	MP40.recoil_mechanism = "Blowback"
-	MP40.Rat_cycling = "Auto"
-	MP40.rat_barrel_len = 250
-	MP40.rat_weigth = 4000
-	MP40.Weight = 4000
-	MP40.ScrapParts = 6
-	MP40.RepairCost = 80
-	MP40.Reliability = 68
-	MP40.AdditionalHint = T{749284137120,[[<description_hints>]]}
-	MP40.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagLarge', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockLight', Modifiable = true, AvailableComponents = {'StockLight', }}, {CanBeEmpty = true, SlotType = 'Scope' , Modifiable = false, AvailableComponents = {}}}
-	MP40.CanAppearInShop = true
-	MP40.CanAppearUsed = true
-	MP40.Tier = 1
-	MP40.MaxStock = 3
-	MP40.RestockWeight = 70
-	MP40.CategoryPair = "SubmachineGuns"
-	MP40.PenetrationClass = 1
-
-
-	LionRoar.is_vanilla_firearm = true
-	LionRoar.Cost = 1800
-	LionRoar.Damage = 19
-	LionRoar.CritPerAim = 200
-	LionRoar.BurstCritMul = 60
-	LionRoar.CritChanceScaled = 10
-	storeProps(LionRoar, "AimAccuracy", 24, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(LionRoar, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(LionRoar, "WeaponRange", 22, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(LionRoar, "WeaponRange", 26, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	LionRoar.PBbonus_base = 8
-	LionRoar.Handling = 16
-	LionRoar.ShootAP = 3000
-	LionRoar.ReloadAP = 3000
-	LionRoar.APStance = 22
-	LionRoar.OverwatchAngle = 1410
-	LionRoar.MagazineSize = 20
-	LionRoar.Cumbersome = 0
-	LionRoar.Noise = 20
-	LionRoar.PointBlankBonus = 1
-	LionRoar.PreparedAttackType = "Overwatch"
-	LionRoar.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "RunAndGun"}
-	LionRoar.Rat_swap_ap = 10
-	LionRoar.RPM = 600
-	LionRoar.wep_base_recoil_mul = 108
-	LionRoar.weigth_held_mul = 100
-	LionRoar.wep_base_snapshot_mul = 95
-	LionRoar.wep_base_hip_mul = 110
-	LionRoar.recoil_mechanism = "Gas_Operated"
-	LionRoar.Rat_cycling = "Auto"
-	LionRoar.rat_barrel_len = 325
-	LionRoar.ScrapParts = 10
-	LionRoar.RepairCost = 80
-	LionRoar.Reliability = 78
-	LionRoar.AdditionalHint = T{901243090653,[[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> OUR weapon
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Burst fire has 4 shots
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Limited ammo capacity]]}
-	LionRoar.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'LionRoar_compensator', Modifiable = false, AvailableComponents = {'LionRoar_compensator', }}, {CanBeEmpty = false, SlotType = 'Internal', DefaultComponent = 'Internal_plus_burstshot', Modifiable = false, AvailableComponents = {'Internal_plus_burstshot', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNo', Modifiable = false, AvailableComponents = {'StockNo', }}}
-	LionRoar.PenetrationClass = 1
-
-
 	UZI.is_vanilla_firearm = true
 	UZI.Cost = 1200
 	UZI.Damage = 18
@@ -5436,7 +5498,7 @@ function RatoGBO_WepPatch()
 	UZI.Handling = 16
 	UZI.ShootAP = 3000
 	UZI.ReloadAP = 3000
-	UZI.APStance = 25
+	UZI.APStance = 20
 	UZI.OverwatchAngle = 1410
 	UZI.MagazineSize = 25
 	UZI.Cumbersome = 0
@@ -5469,110 +5531,94 @@ function RatoGBO_WepPatch()
 	UZI.PenetrationClass = 1
 
 
-	AA12.is_vanilla_firearm = true
-	AA12.Cost = 7920
-	AA12.Damage = 6
-	AA12.ObjDamageMod = 150
-	AA12.CritPerAim = 200
-	AA12.BurstCritMul = 60
-	AA12.CritChanceScaled = 10
-	storeProps(AA12, "AimAccuracy", 24, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AA12, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AA12, "WeaponRange", 22, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(AA12, "WeaponRange", 22, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	AA12.PBbonus_base = 1
-	AA12.Handling = 11
-	AA12.ShootAP = 5000
-	AA12.ReloadAP = 3000
-	AA12.APStance = 33
-	AA12.OverwatchAngle = 1001
-	AA12.MagazineSize = 8
-	AA12.Cumbersome = 0
-	AA12.Noise = 25
-	AA12.PointBlankBonus = 1
-	AA12.PreparedAttackType = "Overwatch"
-	AA12.AvailableAttacks = {"BuckshotBurst", "Buckshot", "CancelShotCone", "BurstFire", "SingleShot", "CancelShot"}
-	AA12.BuckshotConeAngle = 355
-	AA12.BuckshotFalloffDamage = 50
-	AA12.Rat_swap_ap = 30
-	AA12.RPM = 300
-	AA12.wep_base_recoil_mul = 90
-	AA12.weigth_held_mul = 133
-	AA12.wep_base_snapshot_mul = 107
-	AA12.wep_base_hip_mul = 110
-	AA12.recoil_mechanism = "Gas_Operated"
-	AA12.Rat_cycling = "Auto"
-	AA12.rat_barrel_len = 330
-	AA12.rat_weigth = 4700
-	AA12.Weight = 4700
-	AA12.ScrapParts = 12
-	AA12.RepairCost = 50
-	AA12.Reliability = 77
-	AA12.AdditionalHint = T{141818519778,[[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Special firing mode: Buckshot Burst]]}
-	AA12.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelNormal', 'BarrelLongShotgun', }}, {CanBeEmpty = false, SlotType = 'Magazine', DefaultComponent = 'MagNormal', Modifiable = true, AvailableComponents = {'MagNormal', 'MagLarge_6', }}, {CanBeEmpty = true, SlotType = 'Scope', Modifiable = true, AvailableComponents = {'ReflexSightAdvanced', 'ReflexSight', 'ScopeCOGQuick', '_ReflexSIghtVigilance', 'ImprovedIronsight', }}, {CanBeEmpty = true, SlotType = 'Side', Modifiable = true, AvailableComponents = {'Flashlight_aa12', 'LaserDot_aa12', 'FlashlightDot_aa12', 'UVDot_aa12', }}, {CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'Suppressor', 'Compensator', }}}
-	AA12.Valuable = 1
-	AA12.CanAppearInShop = true
-	AA12.CanAppearUsed = true
-	AA12.Tier = 3
-	AA12.MaxStock = 3
-	AA12.RestockWeight = 40
-	AA12.CategoryPair = "Shotguns"
-	AA12.PenetrationClass = 1
+	Auto5_quest.is_vanilla_firearm = true
+	Auto5_quest.Cost = 1200
+	Auto5_quest.Damage = 6
+	Auto5_quest.ObjDamageMod = 150
+	Auto5_quest.CritPerAim = 200
+	Auto5_quest.BurstCritMul = 60
+	Auto5_quest.CritChanceScaled = 10
+	storeProps(Auto5_quest, "AimAccuracy", 18, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Auto5_quest, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Auto5_quest, "WeaponRange", 20, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(Auto5_quest, "WeaponRange", 20, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	Auto5_quest.PBbonus_base = -1
+	Auto5_quest.Handling = 8
+	Auto5_quest.ShootAP = 5000
+	Auto5_quest.ReloadAP = 5000
+	Auto5_quest.APStance = 20
+	Auto5_quest.OverwatchAngle = 959
+	Auto5_quest.MagazineSize = 8
+	Auto5_quest.Cumbersome = 0
+	Auto5_quest.Noise = 25
+	Auto5_quest.PointBlankBonus = 1
+	Auto5_quest.PreparedAttackType = "Overwatch"
+	Auto5_quest.AvailableAttacks = {"BuckshotBurst", "BurstFire"}
+	Auto5_quest.BuckshotConeAngle = 300
+	Auto5_quest.BuckshotFalloffDamage = 100
+	Auto5_quest.Rat_swap_ap = 30
+	Auto5_quest.RPM = 300
+	Auto5_quest.wep_base_recoil_mul = 98
+	Auto5_quest.weigth_held_mul = 100
+	Auto5_quest.wep_base_snapshot_mul = 100
+	Auto5_quest.wep_base_hip_mul = 115
+	Auto5_quest.recoil_mechanism = "Recoil_Operated"
+	Auto5_quest.Rat_cycling = "Auto"
+	Auto5_quest.ScrapParts = 10
+	Auto5_quest.RepairCost = 50
+	Auto5_quest.Reliability = 73
+	Auto5_quest.AdditionalHint = T{732527392585,[[<description_hints>
+ <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Rapid Invalidation]]}
+	Auto5_quest.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'Auto5_Basic_NMag', Modifiable = false, AvailableComponents = {'Auto5_Basic_LMag', }}}
+	Auto5_quest.PenetrationClass = 1
 
 
-	Auto5.is_vanilla_firearm = true
-	Auto5.Cost = 1200
-	Auto5.Damage = 7
-	Auto5.ObjDamageMod = 150
-	Auto5.CritPerAim = 200
-	Auto5.BurstCritMul = 60
-	Auto5.CritChanceScaled = 10
-	storeProps(Auto5, "AimAccuracy", 18, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Auto5, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Auto5, "WeaponRange", 22, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Auto5, "WeaponRange", 22, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	Auto5.PBbonus_base = -1
-	Auto5.Handling = 8
-	Auto5.ShootAP = 5000
-	Auto5.ReloadAP = 4000
-	Auto5.APStance = 30
-	Auto5.OverwatchAngle = 959
-	Auto5.MagazineSize = 4
-	Auto5.Cumbersome = 0
-	Auto5.Noise = 25
-	Auto5.PointBlankBonus = 1
-	Auto5.PreparedAttackType = "Overwatch"
-	Auto5.AvailableAttacks = {"Buckshot", "CancelShotCone", "SingleShot", "CancelShot"}
-	Auto5.BuckshotConeAngle = 300
-	Auto5.BuckshotFalloffDamage = 50
-	Auto5.Rat_swap_ap = 30
-	Auto5.wep_base_recoil_mul = 98
-	Auto5.weigth_held_mul = 100
-	Auto5.wep_base_snapshot_mul = 100
-	Auto5.wep_base_hip_mul = 112
-	Auto5.recoil_mechanism = "Recoil_Operated"
-	Auto5.Rat_cycling = "SemiAuto"
-	Auto5.rat_weigth = 4000
-	Auto5.Weight = 4000
-	Auto5.ScrapParts = 10
-	Auto5.RepairCost = 50
-	Auto5.Reliability = 73
-	Auto5.AdditionalHint = T{413545464036,[[<description_hints>]]}
-	Auto5.ComponentSlots = {{CanBeEmpty = true, SlotType = 'Muzzle', Modifiable = true, AvailableComponents = {'DuckbillChoke', 'FullChoke', 'Compensator', }}, {CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'Auto5_Basic_NMag', Modifiable = true, AvailableComponents = {'Auto5_Basic_LMag', 'Auto5_Basic_NMag', 'Auto5_Long_LMag', 'Auto5_Long_NMag', 'Auto5_Short_NMag', }}}
-	Auto5.CanAppearInShop = true
-	Auto5.CanAppearUsed = true
-	Auto5.Tier = 1
-	Auto5.MaxStock = 3
-	Auto5.RestockWeight = 50
-	Auto5.CategoryPair = "Shotguns"
-	Auto5.PenetrationClass = 1
+	LionRoar.is_vanilla_firearm = true
+	LionRoar.Cost = 1800
+	LionRoar.Damage = 19
+	LionRoar.CritPerAim = 200
+	LionRoar.BurstCritMul = 60
+	LionRoar.CritChanceScaled = 10
+	storeProps(LionRoar, "AimAccuracy", 24, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(LionRoar, "AimAccuracy", 4, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(LionRoar, "WeaponRange", 22, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(LionRoar, "WeaponRange", 26, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	LionRoar.PBbonus_base = 8
+	LionRoar.Handling = 16
+	LionRoar.ShootAP = 3000
+	LionRoar.ReloadAP = 3000
+	LionRoar.APStance = 18
+	LionRoar.OverwatchAngle = 1410
+	LionRoar.MagazineSize = 20
+	LionRoar.Cumbersome = 0
+	LionRoar.Noise = 20
+	LionRoar.PointBlankBonus = 1
+	LionRoar.PreparedAttackType = "Overwatch"
+	LionRoar.AvailableAttacks = {"BurstFire", "AutoFire", "SingleShot", "RunAndGun"}
+	LionRoar.Rat_swap_ap = 10
+	LionRoar.RPM = 600
+	LionRoar.wep_base_recoil_mul = 108
+	LionRoar.weigth_held_mul = 100
+	LionRoar.wep_base_snapshot_mul = 95
+	LionRoar.wep_base_hip_mul = 110
+	LionRoar.recoil_mechanism = "Gas_Operated"
+	LionRoar.Rat_cycling = "Auto"
+	LionRoar.rat_barrel_len = 325
+	LionRoar.ScrapParts = 10
+	LionRoar.RepairCost = 80
+	LionRoar.Reliability = 78
+	LionRoar.AdditionalHint = T{901243090653,[[<description_hints>
+ <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> OUR weapon
+ <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Burst fire has 4 shots
+ <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Limited ammo capacity]]}
+	LionRoar.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Muzzle', DefaultComponent = 'LionRoar_compensator', Modifiable = false, AvailableComponents = {'LionRoar_compensator', }}, {CanBeEmpty = false, SlotType = 'Internal', DefaultComponent = 'Internal_plus_burstshot', Modifiable = false, AvailableComponents = {'Internal_plus_burstshot', }}, {CanBeEmpty = false, SlotType = 'Stock', DefaultComponent = 'StockNo', Modifiable = false, AvailableComponents = {'StockNo', }}}
+	LionRoar.PenetrationClass = 1
 
 
 	DesertEagle.is_vanilla_firearm = true
 	DesertEagle.Cost = 7000
 	DesertEagle.Damage = 25
-	DesertEagle.CritPerAim = 600
+	DesertEagle.CritPerAim = 400
 	DesertEagle.BurstCritMul = 60
 	DesertEagle.CritChanceScaled = 20
 	storeProps(DesertEagle, "AimAccuracy", 18, "aCTH", GBO_gCTHModeItemPropertyTable)
@@ -5583,7 +5629,7 @@ function RatoGBO_WepPatch()
 	DesertEagle.Handling = 19
 	DesertEagle.ShootAP = 4000
 	DesertEagle.ReloadAP = 3000
-	DesertEagle.APStance = 8
+	DesertEagle.APStance = 10
 	DesertEagle.OverwatchAngle = 1936
 	DesertEagle.MagazineSize = 8
 	DesertEagle.Cumbersome = 0
@@ -5620,7 +5666,7 @@ function RatoGBO_WepPatch()
 	ColtAnaconda.is_vanilla_firearm = true
 	ColtAnaconda.Cost = 4600
 	ColtAnaconda.Damage = 24
-	ColtAnaconda.CritPerAim = 750
+	ColtAnaconda.CritPerAim = 600
 	ColtAnaconda.BurstCritMul = 60
 	ColtAnaconda.CritChanceScaled = 30
 	storeProps(ColtAnaconda, "AimAccuracy", 19, "aCTH", GBO_gCTHModeItemPropertyTable)
@@ -5631,7 +5677,7 @@ function RatoGBO_WepPatch()
 	ColtAnaconda.Handling = 20
 	ColtAnaconda.ShootAP = 4000
 	ColtAnaconda.ReloadAP = 3000
-	ColtAnaconda.APStance = 7
+	ColtAnaconda.APStance = 9
 	ColtAnaconda.OverwatchAngle = 2118
 	ColtAnaconda.MagazineSize = 6
 	ColtAnaconda.Cumbersome = 0
@@ -5666,96 +5712,6 @@ function RatoGBO_WepPatch()
 	ColtAnaconda.PenetrationClass = 1
 
 
-	Auto5_quest.is_vanilla_firearm = true
-	Auto5_quest.Cost = 1200
-	Auto5_quest.Damage = 6
-	Auto5_quest.ObjDamageMod = 150
-	Auto5_quest.CritPerAim = 200
-	Auto5_quest.BurstCritMul = 60
-	Auto5_quest.CritChanceScaled = 10
-	storeProps(Auto5_quest, "AimAccuracy", 18, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Auto5_quest, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Auto5_quest, "WeaponRange", 20, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(Auto5_quest, "WeaponRange", 20, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	Auto5_quest.PBbonus_base = -1
-	Auto5_quest.Handling = 8
-	Auto5_quest.ShootAP = 5000
-	Auto5_quest.ReloadAP = 5000
-	Auto5_quest.APStance = 25
-	Auto5_quest.OverwatchAngle = 959
-	Auto5_quest.MagazineSize = 8
-	Auto5_quest.Cumbersome = 0
-	Auto5_quest.Noise = 25
-	Auto5_quest.PointBlankBonus = 1
-	Auto5_quest.PreparedAttackType = "Overwatch"
-	Auto5_quest.AvailableAttacks = {"BuckshotBurst", "BurstFire"}
-	Auto5_quest.BuckshotConeAngle = 300
-	Auto5_quest.BuckshotFalloffDamage = 100
-	Auto5_quest.Rat_swap_ap = 30
-	Auto5_quest.RPM = 300
-	Auto5_quest.wep_base_recoil_mul = 98
-	Auto5_quest.weigth_held_mul = 100
-	Auto5_quest.wep_base_snapshot_mul = 100
-	Auto5_quest.wep_base_hip_mul = 115
-	Auto5_quest.recoil_mechanism = "Recoil_Operated"
-	Auto5_quest.Rat_cycling = "Auto"
-	Auto5_quest.ScrapParts = 10
-	Auto5_quest.RepairCost = 50
-	Auto5_quest.Reliability = 73
-	Auto5_quest.AdditionalHint = T{732527392585,[[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Rapid Invalidation]]}
-	Auto5_quest.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'Auto5_Basic_NMag', Modifiable = false, AvailableComponents = {'Auto5_Basic_LMag', }}}
-	Auto5_quest.PenetrationClass = 1
-
-
-	DoubleBarrelShotgun.is_vanilla_firearm = true
-	DoubleBarrelShotgun.Cost = 860
-	DoubleBarrelShotgun.Damage = 6
-	DoubleBarrelShotgun.ObjDamageMod = 150
-	DoubleBarrelShotgun.CritPerAim = 200
-	DoubleBarrelShotgun.BurstCritMul = 60
-	DoubleBarrelShotgun.CritChanceScaled = 10
-	storeProps(DoubleBarrelShotgun, "AimAccuracy", 20, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(DoubleBarrelShotgun, "AimAccuracy", 3, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(DoubleBarrelShotgun, "WeaponRange", 20, "aCTH", GBO_gCTHModeItemPropertyTable)
-	storeProps(DoubleBarrelShotgun, "WeaponRange", 20, "oldCTH", GBO_gCTHModeItemPropertyTable)
-	DoubleBarrelShotgun.PBbonus_base = -3
-	DoubleBarrelShotgun.Handling = 6
-	DoubleBarrelShotgun.ShootAP = 5000
-	DoubleBarrelShotgun.ReloadAP = 4000
-	DoubleBarrelShotgun.APStance = 30
-	DoubleBarrelShotgun.OverwatchAngle = 901
-	DoubleBarrelShotgun.MagazineSize = 2
-	DoubleBarrelShotgun.Cumbersome = 0
-	DoubleBarrelShotgun.Noise = 25
-	DoubleBarrelShotgun.PointBlankBonus = 1
-	DoubleBarrelShotgun.PreparedAttackType = "Overwatch"
-	DoubleBarrelShotgun.AvailableAttacks = {"Buckshot", "DoubleBarrel", "CancelShotCone", "SingleShot", "CancelShot"}
-	DoubleBarrelShotgun.BuckshotConeAngle = 390
-	DoubleBarrelShotgun.BuckshotFalloffDamage = 50
-	DoubleBarrelShotgun.Rat_swap_ap = 30
-	DoubleBarrelShotgun.wep_base_recoil_mul = 100
-	DoubleBarrelShotgun.weigth_held_mul = 100
-	DoubleBarrelShotgun.wep_base_snapshot_mul = 100
-	DoubleBarrelShotgun.wep_base_hip_mul = 110
-	DoubleBarrelShotgun.recoil_mechanism = "Break_Action"
-	DoubleBarrelShotgun.rat_weigth = 4000
-	DoubleBarrelShotgun.Weight = 4000
-	DoubleBarrelShotgun.ScrapParts = 8
-	DoubleBarrelShotgun.RepairCost = 50
-	DoubleBarrelShotgun.Reliability = 99
-	DoubleBarrelShotgun.AdditionalHint = T{150578847961,[[<description_hints>
- <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Special firing mode: Double Barrel]]}
-	DoubleBarrelShotgun.ComponentSlots = {{CanBeEmpty = false, SlotType = 'Barrel', DefaultComponent = 'BarrelNormal', Modifiable = true, AvailableComponents = {'BarrelLongShotgun', 'BarrelNormal', 'BarrelShortShotgun', }}}
-	DoubleBarrelShotgun.CanAppearInShop = true
-	DoubleBarrelShotgun.CanAppearUsed = true
-	DoubleBarrelShotgun.Tier = 1
-	DoubleBarrelShotgun.MaxStock = 3
-	DoubleBarrelShotgun.RestockWeight = 120
-	DoubleBarrelShotgun.CategoryPair = "Shotguns"
-	DoubleBarrelShotgun.PenetrationClass = 1
-
-
 	TexRevolver.is_vanilla_firearm = true
 	TexRevolver.Cost = 1200
 	TexRevolver.Damage = 23
@@ -5770,7 +5726,7 @@ function RatoGBO_WepPatch()
 	TexRevolver.Handling = 19
 	TexRevolver.ShootAP = 4000
 	TexRevolver.ReloadAP = 3000
-	TexRevolver.APStance = 6
+	TexRevolver.APStance = 8
 	TexRevolver.OverwatchAngle = 2162
 	TexRevolver.MagazineSize = 6
 	TexRevolver.Cumbersome = 0
@@ -5815,7 +5771,7 @@ function RatoGBO_WepPatch()
 	ColtPeacemaker.Handling = 19
 	ColtPeacemaker.ShootAP = 4000
 	ColtPeacemaker.ReloadAP = 3000
-	ColtPeacemaker.APStance = 6
+	ColtPeacemaker.APStance = 8
 	ColtPeacemaker.OverwatchAngle = 2162
 	ColtPeacemaker.MagazineSize = 6
 	ColtPeacemaker.Cumbersome = 0
@@ -5863,7 +5819,7 @@ function RatoGBO_WepPatch()
 	Bereta92.Handling = 20
 	Bereta92.ShootAP = 4000
 	Bereta92.ReloadAP = 3000
-	Bereta92.APStance = 5
+	Bereta92.APStance = 7
 	Bereta92.OverwatchAngle = 2209
 	Bereta92.MagazineSize = 15
 	Bereta92.Cumbersome = 0
@@ -5910,7 +5866,7 @@ function RatoGBO_WepPatch()
 	HiPower.Handling = 20
 	HiPower.ShootAP = 4000
 	HiPower.ReloadAP = 3000
-	HiPower.APStance = 5
+	HiPower.APStance = 7
 	HiPower.OverwatchAngle = 2216
 	HiPower.MagazineSize = 13
 	HiPower.Cumbersome = 0
@@ -5957,7 +5913,7 @@ function RatoGBO_WepPatch()
 	Glock18.Handling = 22
 	Glock18.ShootAP = 3000
 	Glock18.ReloadAP = 3000
-	Glock18.APStance = 4
+	Glock18.APStance = 6
 	Glock18.OverwatchAngle = 2232
 	Glock18.MagazineSize = 15
 	Glock18.Cumbersome = 0
@@ -5996,6 +5952,50 @@ function RatoGBO_WepPatch()
 	Glock18.RestockWeight = 30
 	Glock18.CategoryPair = "Handguns"
 	Glock18.PenetrationClass = 1
+
+
+	BrowningM2HMG.is_vanilla_firearm = true
+	BrowningM2HMG.Cost = 2520
+	BrowningM2HMG.Damage = 45
+	BrowningM2HMG.CritPerAim = 200
+	BrowningM2HMG.BurstCritMul = 60
+	BrowningM2HMG.CritChanceScaled = 10
+	storeProps(BrowningM2HMG, "AimAccuracy", 25, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(BrowningM2HMG, "AimAccuracy", 2, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(BrowningM2HMG, "WeaponRange", 40, "aCTH", GBO_gCTHModeItemPropertyTable)
+	storeProps(BrowningM2HMG, "WeaponRange", 38, "oldCTH", GBO_gCTHModeItemPropertyTable)
+	BrowningM2HMG.PBbonus_base = 0
+	BrowningM2HMG.Handling = 2
+	BrowningM2HMG.ShootAP = 4000
+	BrowningM2HMG.ReloadAP = 6000
+	BrowningM2HMG.OverwatchAngle = 3600
+	BrowningM2HMG.MagazineSize = 100
+	BrowningM2HMG.Cumbersome = 1
+	BrowningM2HMG.Noise = 30
+	BrowningM2HMG.PointBlankBonus = 1
+	BrowningM2HMG.PreparedAttackType = "Machine Gun"
+	BrowningM2HMG.AvailableAttacks = {"MGBurstFire"}
+	BrowningM2HMG.Rat_swap_ap = 30
+	BrowningM2HMG.long_shots = 3
+	BrowningM2HMG.auto_shots = 3
+	BrowningM2HMG.RPM = 500
+	BrowningM2HMG.AutoFireOnly = true
+	BrowningM2HMG.wep_base_recoil_mul = 60
+	BrowningM2HMG.weigth_held_mul = 100
+	BrowningM2HMG.wep_base_snapshot_mul = 90
+	BrowningM2HMG.wep_base_hip_mul = 100
+	BrowningM2HMG.recoil_mechanism = "Recoil_Operated"
+	BrowningM2HMG.Rat_cycling = "Auto"
+	BrowningM2HMG.ScrapParts = 20
+	BrowningM2HMG.RepairCost = 80
+	BrowningM2HMG.Reliability = 86
+	BrowningM2HMG.AdditionalHint = T{891996501927,[[<description_hints>
+ <image UI/Conversation/T_Dialogue_IconBackgroundCircle.tga 400 130 128 120> Stationary weapon
+ ]]}
+	BrowningM2HMG.ComponentSlots = {{CanBeEmpty = false, SlotType = 'General', DefaultComponent = 'browning_bipod', Modifiable = false, AvailableComponents = {'browning_bipod', }}}
+	BrowningM2HMG.Tier = 1
+	BrowningM2HMG.MaxStock = 3
+	BrowningM2HMG.PenetrationClass = 1
 
 
 	GBO_ApplyCHTModeItemProps(GBO_gCTHModeItemPropertyTable)

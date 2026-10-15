@@ -16,6 +16,7 @@
 
 ---- Como cada param canonico se combina quando dois tracos o declaram.
 ---- mul_pct: percentual base 100 (MulDivRound). add: soma. max/min/set: sem identidade.
+--TODO: PARAR DE USAR CODIGO PRA SETTAR OS COMPONENTES, APENAS TRAITS. ASSIGNMENTS DE TIPO DE CTH DEVEM SER SETADOS NO PRESET COM AS NOVAS FUNCIONALIDADES. SOMENTE TRAcOS SETADOS NO CODIGO
 GBO_PARAM_COMBINE = {
     OverwatchAngle = "mul_pct",
     snapshot_mul = "mul_pct",
@@ -84,6 +85,7 @@ local short_barrel_handgun_aim_reduction = 2
 local long_barrel_aim_bonus = 6
 local long_barrel_handgun_aim_bonus = 3
 local light_stock_aim_reduction = 4
+local lightstock_aim_mul = 92
 ---- pistols are authored at ~63% of SMG aim, so stockless lands inside the pistol spread
 local no_stock_aim_mul = 65
 
@@ -236,19 +238,18 @@ GBO_COMP_TRAITS = {
     },
 	["Stock.Light"] = {
 		effects = 			{
-			--"light_stock_aim_reduce",
-			--"NoFullAuto",
-			--"StanceAPdecrease",
+			"light_stock_aim_reduce",
 			"StanceAPdecrease",
 			"hipfire_light_stock",
 			"stocklight_effect_recoil",},
 		params = {
-			APdecrease = 5 --10
+			APdecrease = 5,
+			--10
 		},
 		modes = {
 			aCTH = {
-				effects = {DecreaseAimAccuracy = false, light_stock_aim_reduce = false},
-				--params = {AimAccuracyDecrease = light_stock_aim_reduction},
+				effects = {DecreaseAimAccuracy = false, light_stock_aim_reduce = false, MultiplyAimAccuracy = true},
+				params = {AimAccuracyMul = lightstock_aim_mul},
 			},
 		},
 	},
@@ -467,7 +468,7 @@ GBO_BASE_RECIPES = {
 		},
 		modes = {
 			aCTH = {
-				effects ={ReduceAimAccuracy = false, MultiplyAimAccuracy = true},
+				effects ={ReduceAimAccuracy = false, MultiplyAimAccuracy_NoStock = true},
 				params = {AimAccuracyMul = no_stock_aim_mul},
 				},
 		},

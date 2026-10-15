@@ -141,6 +141,28 @@ function weapon_components_rat()
         },
         StatToModify = "AimAccuracy",
         group = "Stats",
+        id = "MultiplyAimAccuracy_NoStock"
+    })
+
+	PlaceObj('WeaponComponentEffect', {
+        Comment = "Engine applies (base + adds) * mul, so it scales barrel/caliber bonuses too.",
+        Description = T(946513216548,
+                        "Decreases Accuracy bonus from Aiming"),
+        ModificationType = "Multiply",
+        Parameters = {
+            PlaceObj(
+                'PresetParamNumber', {
+                    'Name',
+                    "AimAccuracyMul",
+                    'Tag',
+                    "<AimAccuracyMul>"
+                })
+        },
+        RequiredParams = {
+            "AimAccuracyMul"
+        },
+        StatToModify = "AimAccuracy",
+        group = "Stats",
         id = "MultiplyAimAccuracy"
     })
 
@@ -1504,7 +1526,8 @@ local t_table = {
     [695014801114] = "Decreases <em>Handling</em>",
     [169244869056] = "Slightly increases <em>Handling</em>",
     [588843192458] = "Decreases weapon length, affecting Recoil, Snapshot, Hipfire accuracy penalties and <em>Handling</em>",
-    [700413725434] = "Increases weapon length, affecting Recoil, Snapshot, Hipfire accuracy penalties and <em>Handling</em>"
+    [700413725434] = "Increases weapon length, affecting Recoil, Snapshot, Hipfire accuracy penalties and <em>Handling</em>",
+	[946513216548] = "Decreases Accuracy bonus from Aiming"
 }
 
 ratG_T_table['COMPONENT_weaponcomp_effects.lua'] =

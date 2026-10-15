@@ -10475,12 +10475,18 @@ return {
 			"StanceAPdecrease",
 			"hipfire_light_stock",
 			"stocklight_effect_recoil",
+			"MultiplyAimAccuracy",
 		},
 		Parameters = {
 			PlaceObj('PresetParamNumber', {
 				'Name', "APdecrease",
 				'Value', 5,
 				'Tag', "<APdecrease>",
+			}),
+			PlaceObj('PresetParamNumber', {
+				'Name', "AimAccuracyMul",
+				'Value', 92,
+				'Tag', "<AimAccuracyMul>",
 			}),
 		},
 		Slot = "Stock",
@@ -10634,7 +10640,7 @@ return {
 			"hipfire_no_stock",
 			"Enable_RunAndGun",
 			"ReduceRange",
-			"MultiplyAimAccuracy",
+			"MultiplyAimAccuracy_NoStock",
 		},
 		Parameters = {
 			PlaceObj('PresetParamNumber', {
@@ -10748,6 +10754,7 @@ return {
 			"StanceAPdecrease",
 			"hipfire_light_stock",
 			"stocklight_effect_recoil",
+			"MultiplyAimAccuracy",
 			"NoFullAuto",
 		},
 		Parameters = {
@@ -10755,6 +10762,11 @@ return {
 				'Name', "APdecrease",
 				'Value', 5,
 				'Tag', "<APdecrease>",
+			}),
+			PlaceObj('PresetParamNumber', {
+				'Name', "AimAccuracyMul",
+				'Value', 92,
+				'Tag', "<AimAccuracyMul>",
 			}),
 		},
 		Slot = "Stock",
