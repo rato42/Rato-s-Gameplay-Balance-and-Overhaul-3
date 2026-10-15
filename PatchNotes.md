@@ -58,9 +58,11 @@ Changed mobile attacks targeting aquisition, so now you can try to use it even i
 When you use autofire, you will be able to choose the ammount of bullets you want to fire. Burst Fire action has been removed and kept only on weapons with selective fire. 
 Weapons now have RPM stat, that influences how much AP each additional shot cost.
 
-There is a chance, based on Composure (marks + wisdom) and RPM of the weapon, of shooting more bullets than intended when using autofire. You will pay the AP cost if this happens. Psycho increases the chance, Automatic Weapons perk decreases it. Tring to one tap increases the chance.
+There is a chance, based on Composure (marks + wisdom) and RPM of the weapon, of shooting more bullets than intended when using autofire. You will pay the AP cost if this happens. Psycho increases the chance, Automatic Weapons perk decreases it. Trying to one tap increases the chance.
 
 Some weapons are only capable of automatic fire. (no single shot, but you can try to onetap)
+
+Some MGs now have Selective Burst and Single Shot
 
 Psycho has been reworked, the chance of triggering the upgrade is now 6% instead of 3%. In case of this triggering, no extra AP is deducted. single shot becomes automatic fire with 3 shots. Selective burst becomse 2 bursts. automatic fire double bullet count, capped on 10
 
@@ -112,13 +114,13 @@ Scopes, sights, side attachments, muzzle attachments, bipods, GL now are invento
 -- New weapon stat: Critical chance per aim
 Weapons now have a state called critical chance per aim, which scales per merc hand-eye coordination (marks+dex) and is applied to each aim level (thanks captain obvious). The mechanic already existed, but now it has completely overriden the old crit scaling based on merc level. Weapons will have different values, Snipers have the most.
 
--- UI Improvements -- 
-The UI section that displays Recoil, Snapshot etc was reworked. The displayed number is the effective value for the merc, while the grey number afterwards displays the weapon base value. Additionally, now there is a visual display in form of a bar. Green and red show the merc stats impact on the value.
 -- Perks --
 - Opportunistic Killer: no longer enables crits on interrupt attacks. Instead, grants 1 extra overwatch attack. Still reloads automatically after overwatch
 - Killzone: no longer grants a bonus attack on interrupts. Overwatch attacks against the first enemy each turn have 3 aim levels, the second 2, the rest 1. Enables crits on interrupt attacks
 - Collateral Damage renamed to Beaten Zone: same aim levels as Killzone, but for MG Setup interrupt attacks (no crits). No longer has bonus damage against enemies in cover. Bonus damage against objects was kept
 
+-- UI Improvements -- 
+The UI section that displays Recoil, Snapshot etc was reworked. The displayed number is the effective value for the merc, while the grey number afterwards displays the weapon base value. Additionally, now there is a visual display in form of a bar. Green and red show the merc stats impact on the value.
 -- -- -- -- -- -- -- -- -- 
 ```
 

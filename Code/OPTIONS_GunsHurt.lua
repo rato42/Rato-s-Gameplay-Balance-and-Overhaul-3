@@ -23,12 +23,12 @@ function gunshurt()
             item.Damage = MulDivRound(caliber_dmg or orig.dmg, mul, 100)
             item.base_Damage = MulDivRound(caliber_dmg or orig.basedmg, mul, 100)
 
-            if Platform.developer and Platform.rat then
-                print("----------")
-                print("ID:", item.class)
-                print("original dmg:", orig.dmg)
-                print("dmg:", item.Damage)
-            end
+            --if Platform.developer and Platform.rat then
+            --    print("----------")
+            --    print("ID:", item.class)
+            --    print("original dmg:", orig.dmg)
+            --    print("dmg:", item.Damage)
+            --end
         end
     end)
 end

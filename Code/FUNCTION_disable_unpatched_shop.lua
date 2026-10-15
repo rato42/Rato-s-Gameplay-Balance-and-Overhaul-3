@@ -86,7 +86,7 @@ function IsVanillaFirearm(weapon)
         "MG42", "MG58", "RPK74", "BarretM82", "DragunovSVD", "Gewehr98", "M24Sniper", "PSG1",
         "Winchester1894", "AKSU", "M4Commando", "MP40", "MP5", "MP5K", "UZI", "AA12", "Auto5",
         "DoubleBarrelShotgun", "M41Shotgun", "Auto5_quest", "Galil_FlagHill", "LionRoar",
-        "Winchester_Quest", "FlareHandgun"
+        "Winchester_Quest", "FlareHandgun", "RPG7"
     }
 
     for _, vanillaClass in ipairs(vanilla) do
